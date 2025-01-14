@@ -1,0 +1,110 @@
+*{
+    margin : 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.Contenedor {
+    width: 100%;
+    height: 100vh;
+    background-color: lightblue;
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+}
+
+.Forma-Contenedor{
+    width: 100%;
+    max-width: 450px;
+    background-color: cadetblue;
+    padding: 50px 60px 70px;
+    text-align: center;
+    border-radius: 25px;
+}
+.Forma-Contenedor h1 {
+    font-size: 30px;
+    margin-bottom: 60px;
+    color: #FFFFFF;
+    position: relative;
+}
+
+.Forma-Contenedor h1::after {
+    content: '';
+    width: 30px;
+    height: 4px;
+    border-radius: 3px;
+    background: azure;
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.input-field{
+    background-color: #FFFFFF;
+    margin: 15px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    transition: max-height 0.5s;
+    overflow: hidden;
+}
+
+input {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: none;
+    padding: 18px 15px;
+
+}
+
+input::placeholder{
+    color: black;
+}
+
+.input-field i {
+    margin-left: 15px;
+    color: darkslategrey;
+}
+
+form p{
+    text-align: left;
+    font-size: 13px;
+}
+
+form p a{
+    color: azure;
+    margin-left: 5px;
+}
+
+.btn-field{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-field button {
+    flex-basis: 48%;
+    font-size: 16px;
+    background-color: cornflowerblue;
+    color: #FFFFFF;
+    height: 40px;
+    border-radius: 10px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: background 1s;
+}
+
+.input-group {
+    height: 250px;
+}
+
+.btn-field button.disable {
+    background-color: #EAEAEA;
+    color: black;
+}
+
