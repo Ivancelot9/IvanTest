@@ -16,6 +16,12 @@ statusMessage.style.color = "red";
 statusMessage.style.marginTop = "10px";
 document.querySelector(".Forma-Contenedor").appendChild(statusMessage);
 
+document.querySelector("form").addEventListener("submit", function (event) {
+    if (!validarFormulario()) {
+        event.preventDefault(); // Evita el envío si las validaciones fallan
+    }
+});
+
 //Validar Formulario
 function validarFormulario(){
 

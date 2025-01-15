@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name = "viewport" content="width=device-width, initial-scale=1.0"> <!-- Adaptabilidad a pantallas (Celular o Computadoras -->
     <title>Formulario</title>
-    <link rel ="icon" href = Imagenes/dracula.png type="image/x-icon"> <!-- Icono y Referencia de Imagen -->
+    <link rel ="icon" href = imagenes/dracula.png type="image/x-icon"> <!-- Icono y Referencia de Imagen -->
     <link rel = "stylesheet"   href = "css/Prueba.css">  <!-- Formato para Linkear archivo Css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -13,33 +13,32 @@
     <div class = "Contenedor">
         <div class = "Forma-Contenedor">
             <h1 id="title">Registro</h1>
-            <form>
+            <form action = "procesar_registro.php" method = "POST">
                 <div class = "input-group">
                     <div class = "input-field">
                          <i class ="fa-solid fa-user"></i>
-                         <input type = "text" placeholder="Nombre">
+                         <input type = "text" placeholder="Nombre" required>
                     </div>
                     <div class = "input-field" id = "nameInput">
                         <i class ="fa-solid fa-envelope"></i>
-                        <input type = "text" placeholder="Número de Nómina">
+                        <input type = "text" placeholder="Número de Nómina" required>
                     </div>
                     <div class = "input-field">
                         <i class ="fa-solid fa-lock"></i>
-                        <input type = "text" placeholder="Contraseña">
+                        <input type = "text" placeholder="Contraseña" required>
                     </div>
                     <p>¿Olvidaste tu Contraseña, we? <a href="#">Click Aquí</a> </p>
                 </div>
 
                 <div class = "btn-field">
-                   <button id = "signUp" type = "button">Registro</button>
-                    <button id = "signIn" type = "button" class = "disable">Login</button>
-
+                    <button id="signUp" type="submit">Registro</button>
+                    <button id="signIn" type="button" class="disable">Login</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <script src="JS/pruebin.js"></script>
+    <script src="js/pruebin.js"></script>
 </body>
 
 
