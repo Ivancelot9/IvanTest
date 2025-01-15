@@ -16,10 +16,13 @@ statusMessage.style.color = "red";
 statusMessage.style.marginTop = "10px";
 document.querySelector(".Forma-Contenedor").appendChild(statusMessage);
 
-document.querySelector("form").addEventListener("submit", function (event) {
-    if (!validarFormulario()) {
-        event.preventDefault(); // Evita el envío si las validaciones fallan
-    }
+
+//Validar el formulario al enviarlo
+document.querySelector("form").addEventListener("submit", function (event){
+  event.preventDefault(); //Evita el envio del formulario tradicionalmente
+  if(validarFormulario()){
+      enviarDatos();// Llama a la funcion para enviar datos al servidor
+  }
 });
 
 //Validar Formulario
@@ -58,6 +61,49 @@ function validarFormulario(){
 }
 
 
+//Enviar datos al servidor con fetch
+function enviarDatos(){
+    const formData = new formData();
+    formData.append("Nombre", inputNombre.value.trim());
+    formData.append("NumNomina", inputNomina.value.trim());
+    formData.append("Contrasena", inputContra.value.trim());
+
+    fetch("dao/registroUsuarios.php", {
+        method: "POST",
+        body: formData,
+})
+        .then((response) =>{
+        if (!response.ok) {
+            throw new Error("Error en la respuesta del servidor");
+        }
+        return response.json();
+        })
+        .then((data) =>{
+            if (data.status === "success"){
+                //Mostrar mensaje de exito y redirigir al usuario
+                Swal.fire({
+                    icon: "success",
+                    title: "¡Registro exitoso!",
+                    text: data.message || "Tu cuenta ha sido creada correctamente",
+                    confirmButtonText: "Iniciar Sesión",
+                }).then(() => {
+                    window.location.href = "login.php";
+                });
+            } else {
+                //Mostrar Mensaje de error del servidor
+                statusMessage.textContent = data.message || "Hubo un problema al procesar";
+                statusMessage.style.color = "red";
+            }
+        })
+        .catch((error) => {
+           //Manejar errores de comunicacion con el servidor
+           statusMessage.textContent = "Error en la comunicación con el servidor";
+           statusMessage.style.color = "red";
+           console.error("Error", error);
+        });
+}
+
+
 // Eventos para los botones de la animación
 signIn.onclick = function () {
     nameInput.style.maxHeight = "0";
@@ -78,39 +124,6 @@ signUp.onclick = function () {
         console.log("Datos válidos. Procesando registro...");
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Animaciones de Botones
-signIn.onclick = function () {
-    nameInput.style.maxHeight = "0";
-    title.innerHTML = "Login";
-    signUp.classList.add("disable");
-    signIn.classList.remove("disable");
-}
-
-signUp.onclick = function () {
-    nameInput.style.maxHeight = "60px";
-    title.innerHTML = "Registro";
-    signUp.classList.remove("disable");
-    signIn.classList.add("disable");
-}
 
 
 
