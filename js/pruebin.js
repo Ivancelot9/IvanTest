@@ -23,14 +23,14 @@ function validarFormulario(){
 
     // `const` define una variable que no cambiará su referencia.
     // Obtenemos el valor del campo, eliminando los espacios en blanco al inicio y al final.
-    const nombre = inputNombre.value.trim();
+    const Nombre = inputNombre.value.trim();
 
     // Usamos `let` porque el valor inicial puede cambiar más adelante en el código.
     let numNomina = inputNomina.value.trim();
     const contrasena =inputContrasena.value.trim();
 
     //Validar que camos no se queden vacios
-    if(!nombre || !numNomina || !contrasena)
+    if(!Nombre || !numNomina || !contrasena)
     {
         statusMessage.textContent = "Completa todos los campos";
         return false;
