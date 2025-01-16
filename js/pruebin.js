@@ -9,9 +9,9 @@ let title = document.getElementById("title");
 
 //Referencias a los campos del formulario
 //QuerySelector selecciona el primer elemento del DOM que coinda con tu parametro
-const inputNombre = document.querySelector('input[placeholder="Nombre"]');
-const inputNomina = document.querySelector('input[placeholder="Número de Nómina"]');
-const inputContrasena = document.querySelector('input[placeholder="Contrasena"]');
+const inputNombre = document.getElementById('input[placeholder="Nombre"]');
+const inputNomina = document.getElementById('input[placeholder="Número de Nómina"]');
+const inputContrasena = document.getElementById('input[placeholder="Contrasena"]');
 
 //Mensaje de Advertencia
 let statusMessage = document.createElement(("p"));
