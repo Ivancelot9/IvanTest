@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault(); // Evita el envío tradicional del formulario
 
         // Validar formulario
-        if (!validarFormulario()) return;
+        if (!validarFormulario()) return;//verga
 
         // Enviar datos al servidor
         const formData = new FormData();
