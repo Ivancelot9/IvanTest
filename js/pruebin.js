@@ -71,7 +71,7 @@ function enviarDatos(){
     formData.append("NumNomina", inputNomina.value.trim());
     formData.append("Contrasena", inputContra.value.trim());
 
-    fetch("dao/registroUsuarios.php", {
+    fetch("dao/usuario.php", {
         method: "POST",
         body: formData,
 })

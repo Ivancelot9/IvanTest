@@ -1,5 +1,5 @@
 <?php
-require_once 'usuario.php';
+require_once 'conexion.php';
 header('Content-Type: application/json');
 
 try{
