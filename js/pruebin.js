@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Referencias a los campos del formulario
-    const inputNombre = document.getElementById("nombre");
-    const inputNomina = document.getElementById("numeroNomina");
-    const inputContrasena = document.getElementById("contrasena");
+    const inputNombre = document.getElementById("Nombre");
+    const inputNomina = document.getElementById("NumNomina");
+    const inputContrasena = document.getElementById("Contrasena");
     const formulario = document.getElementById("formularioRegistro");
 
     // Mensaje de advertencia dinámico
