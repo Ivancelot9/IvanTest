@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         formData.append("Contrasena", inputContrasena.value.trim());
 
         fetch('dao/registroUsuario.php', {
-            method: "POST",
+            method: 'POST',
             body: formData,
         })
             .then((response) => {
