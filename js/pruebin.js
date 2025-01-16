@@ -1,4 +1,5 @@
-
+document.getElementById("formularioRegistro").addEventListener("submit", function (event){
+    event.preventDefault();
 
 //Obtener referencias del HTML
 let signUp= document.getElementById("signUp");
@@ -10,22 +11,12 @@ let title = document.getElementById("title");
 //QuerySelector selecciona el primer elemento del DOM que coinda con tu parametro
 const inputNombre = document.querySelector('input[placeholder="Nombre"]');
 const inputNomina = document.querySelector('input[placeholder="Número de Nómina"]');
-const inputContra = document.querySelector('input[placeholder="Contrasena"]');
+const inputContrasena = document.querySelector('input[placeholder="Contrasena"]');
 
 //Mensaje de Advertencia
 let statusMessage = document.createElement(("p"));
 statusMessage.style.color = "red";
 statusMessage.style.marginTop = "10px";
-document.querySelector(".Forma-Contenedor").appendChild(statusMessage);
-
-
-//Validar el formulario al enviarlo
-document.querySelector("form").addEventListener("submit", function (event){
-  event.preventDefault(); //Evita el envio del formulario tradicionalmente
-  if(validarFormulario()){
-      enviarDatos();// Llama a la funcion para enviar datos al servidor
-  }
-});
 
 //Validar Formulario
 function validarFormulario(){
@@ -36,10 +27,10 @@ function validarFormulario(){
 
     // Usamos `let` porque el valor inicial puede cambiar más adelante en el código.
     let numNomina = inputNomina.value.trim();
-    const contra =inputContra.value.trim();
+    const contrasena =inputContrasena.value.trim();
 
     //Validar que camos no se queden vacios
-    if(!nombre || !numNomina || !contra)
+    if(!nombre || !numNomina || !contrasena)
     {
         statusMessage.textContent = "Completa todos los campos";
         return false;
@@ -65,11 +56,10 @@ function validarFormulario(){
 
 
 //Enviar datos al servidor con fetch
-function enviarDatos(){
     const formData = new FormData();
     formData.append("Nombre", inputNombre.value.trim());
     formData.append("NumNomina", inputNomina.value.trim());
-    formData.append("Contrasena", inputContra.value.trim());
+    formData.append("Contrasena", inputContrasena.value.trim());
 
     fetch("dao/registroUsuario.php", {
         method: "POST",
@@ -89,9 +79,7 @@ function enviarDatos(){
                     title: "¡Registro exitoso!",
                     text: data.message || "Tu cuenta ha sido creada correctamente",
                     confirmButtonText: "Iniciar Sesión",
-                }).then(() => {
-                    window.location.href = "login.php";
-                });
+                })
             } else {
                 //Mostrar Mensaje de error del servidor
                 statusMessage.textContent = data.message || "Hubo un problema al procesar";
@@ -104,7 +92,7 @@ function enviarDatos(){
            statusMessage.style.color = "red";
            console.error("Error", error);
         });
-}
+
 
 
 // Eventos para los botones de la animación
@@ -126,8 +114,8 @@ signUp.onclick = function () {
         // Aquí podrías enviar los datos al servidor con un método como fetch o AJAX.
         console.log("Datos válidos. Procesando registro...");
     }
-};
+}
 
-
+});
 
 
