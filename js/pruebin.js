@@ -1,3 +1,5 @@
+
+
 //Obtener referencias del HTML
 let signUp= document.getElementById("signUp");
 let signIn = document.getElementById("signIn");
@@ -39,21 +41,22 @@ function validarFormulario(){
     //Validar que camos no se queden vacios
     if(!nombre || !numNomina || !contra)
     {
-        statusMessage.textContent = "Completa todos los capos";
+        statusMessage.textContent = "Completa todos los campos";
         return false;
     }
 
-    //Validar que el numero de nomina tenga exactamente 8 caracteres
-    if(numNomina.length < 8)
+    //Validar que el numero de nomina tenga solo 5 digitos
+    if(numNomina.length !== 5)
     {
-        numNomina = numNomina.padStart(8, "0");
-    }
-
-    if (numNomina.length !== 8)
-    {
-        statusMessage.textContent = "Agrega tres 0 antes de tu número de nómina ejemplo 00058587";
+        statusMessage.textContent = "Número de Nómina debe tener 5 digitos";
         return false;
     }
+
+    //Agrega 3 ceros al inicio de la nomina
+    numNomina = numNomina.padStart(8, "0");
+
+    //Actualizar el valor del campo con los ceros añadidos
+    inputNomina.value = numNomina;
 
     statusMessage.textContent = "Formulario enviado correctamente";
     statusMessage.style.color = "green";
@@ -63,7 +66,7 @@ function validarFormulario(){
 
 //Enviar datos al servidor con fetch
 function enviarDatos(){
-    const formData = new formData();
+    const formData = new FormData();
     formData.append("Nombre", inputNombre.value.trim());
     formData.append("NumNomina", inputNomina.value.trim());
     formData.append("Contrasena", inputContra.value.trim());
