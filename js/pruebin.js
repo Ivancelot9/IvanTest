@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         formData.append("NumNomina", inputNomina.value.trim().padStart(8, "0")); // Completa con 3 ceros
         formData.append("Contrasena", inputContrasena.value.trim());
 
-        fetch('https://grammermx.com/IvanTest/dao/registroUsuario.php', {
+        fetch('../dao/registroUsuario.php', {
             method: 'POST',
             body: formData,
         })
