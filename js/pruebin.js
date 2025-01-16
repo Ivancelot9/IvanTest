@@ -10,7 +10,7 @@ let title = document.getElementById("title");
 //QuerySelector selecciona el primer elemento del DOM que coinda con tu parametro
 const inputNombre = document.querySelector('input[placeholder="Nombre"]');
 const inputNomina = document.querySelector('input[placeholder="Número de Nómina"]');
-const inputContra = document.querySelector('input[placeholder="Contraseña"]');
+const inputContra = document.querySelector('input[placeholder="Contrasena"]');
 
 //Mensaje de Advertencia
 let statusMessage = document.createElement(("p"));
@@ -71,7 +71,7 @@ function enviarDatos(){
     formData.append("NumNomina", inputNomina.value.trim());
     formData.append("Contrasena", inputContra.value.trim());
 
-    fetch("dao/usuario.php", {
+    fetch("dao/registroUsuario.php", {
         method: "POST",
         body: formData,
 })

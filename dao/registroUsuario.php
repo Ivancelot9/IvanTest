@@ -1,32 +1,36 @@
 <?php
-require_once 'conexion.php';
-header('Content-Type: application/json');
-
-try{
-    //Obtener datos enviados por POST
-    $nombre = isset($_POST["Nombre"]) ? $_POST["Nombre"] : '';
-    $numNomina = isset($_POST["NumNomina"]) ? $_POST["NumNomina"] : '';
-    $contrasena = isset($_POST["Contrasena"]) ? $_POST["Contrasena"] : '';
-
-    if(empty($nombre) || empty($numNomina) || empty($contrasena)){
-        echo json_encode(['status' => 'error', 'message' => 'Todos los campos son obligatorios']);
-        exit;
-    }
-
-    $usuario = new usuario();
-
-    //Verificar si el numero de nomina ya existe
-    if ($usuario->existeNumNomina($numNomina)) {
-        echo json_encode(['status' => 'error', 'message' => 'El numero de nomina ya se encuentra registrado']);
-        exit;
-    }
-
-    //Registrar el usuario
-    if ($usuario->registrarUsuario($nombre, $numNomina, $contrasena)) {
-        echo json_encode(['status' => 'succes', 'message' => 'Usuario registrado correctamente']);
-    }else{
-        echo json_encode(['status' => 'error', 'message' => 'Error al registrar usuario']);
-    }
-}catch (Exception $e) {
-    echo json_encode(['status' => 'error', 'message' => 'Error en el servidor: ' . $e->getMessage()]);
-}
+session_start();
+// Iniciar sesión
+include_once("conexion.php");
+// Revisar si la solicitud es POST
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Validar que todos los datos requeridos están presentes
+      if (isset($_POST['NumNomina'], $_POST['Nombre'], $_POST['Contrasena'])) {
+          // Obtener los datos del formulario
+           $NumNomina = $_POST['NumNomina'];
+           $Nombre = $_POST['Nombre'];
+           $Contrasena = $_POST['Contrasena'];
+           $response = registrarUsuarioEnDB($NumNomina, $Nombre, $Contrasena);
+      } else
+      { $response = array('status' => 'error', 'message' => 'Datos incompletos.');
+      }
+} else {
+    $response = array('status' => 'error', 'message' => 'Se requiere método POST.');
+}echo json_encode($response);
+exit();
+// Función para registrar al usuario en la base de datos
+function registrarUsuarioEnDB($NumNomina, $Nombre, $Contrasena){
+    $con = new LocalConector();
+    $conex = $con->conectar();
+    $insertUsuario = $conex->prepare("INSERT INTO Usuario (IdUsuario, Nombre, Contraseña)     
+                                     VALUES (?, ?, ?)");
+    $insertUsuario->bind_param("sss", $NumNomina, $Nombre, $Contrasena);
+    $resultado = $insertUsuario->execute();
+    $conex->close();
+    if ($resultado) {
+        $response = array('status' => 'success', 'message' => 'Usuario registrado exitosamente');
+    } else
+    {
+        $response = array('status' => 'error', 'message' => 'Error al registrar usuario');
+    }    return $response;}
+?>
