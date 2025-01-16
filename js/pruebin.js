@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault(); // Evita el envío tradicional del formulario
 
         // Validar formulario
-        if (!validarFormulario()) return;//vergargeg
+        if (!validarFormulario()) return;//verga
 
         // Enviar datos al servidor
         const formData = new FormData();
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         formData.append("NumNomina", inputNomina.value.trim().padStart(8, "0")); // Completa con 3 ceros
         formData.append("Contrasena", inputContrasena.value.trim());
 
-        fetch('../dao/registroUsuario.php', {
+        fetch('https://grammermx.com/IvanTest/dao/registroUsuario.php', {
             method: 'POST',
             body: formData,
         })
