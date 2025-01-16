@@ -2,11 +2,11 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Adaptabilidad a pantallas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario</title>
-    <link rel="icon" href="imagenes/dracula.png" type="image/x-icon"> <!-- Favicon -->
-    <link rel="stylesheet" href="css/Prueba.css"> <!-- Archivo CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="imagenes/dracula.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/Prueba.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -19,15 +19,15 @@
             <div class="input-group">
                 <div class="input-field">
                     <i class="fa-solid fa-user"></i>
-                    <input type="text" placeholder="Nombre" id="nombre" required>
+                    <input type="text" id="Nombre" placeholder="Nombre" required>
                 </div>
             </div>
 
             <!-- Campo Número de Nómina -->
             <div class="input-group">
-                <div class="input-field" id="nameInput">
+                <div class="input-field">
                     <i class="fa-solid fa-envelope"></i>
-                    <input type="text" placeholder="Número de Nómina" id="numeroNomina" required maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                    <input type="text" id="NumNomina" placeholder="Número de Nómina" required maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                 </div>
             </div>
 
@@ -35,11 +35,11 @@
             <div class="input-group">
                 <div class="input-field">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="text" placeholder="Contrasena" id="contrasena" required>
+                    <input type="password" id="Contrasena" placeholder="Contrasena" required>
                 </div>
             </div>
 
-            <p>¿Olvidaste tu Contraseña, we? <a href="#">Click Aquí</a></p>
+            <p>¿Olvidaste tu contraseña? <a href="#">Haz clic aquí</a></p>
 
             <!-- Botones -->
             <div class="btn-field">
