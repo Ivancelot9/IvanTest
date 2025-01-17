@@ -26,10 +26,10 @@
         <form id="formularioRegistro"> <!-- Inicio del formulario -->
 
             <!-- Campo Nombre -->
-            <div class="input-group" id="nameGroup"> <!-- Agrupación de input y su ícono -->
+            <div class="input-group"> <!-- Agrupación de input y su ícono -->
                 <div class="input-field"> <!-- Estilo individual del input -->
                     <i class="fa-solid fa-user"></i> <!-- Ícono de usuario -->
-                    <input type="text" id="Nombre" placeholder="Nombre"> <!-- Input para el nombre -->
+                    <input type="text" id="Nombre" placeholder="Nombre" required> <!-- Input para el nombre -->
                 </div>
             </div>
 
@@ -37,7 +37,7 @@
             <div class="input-group">
                 <div class="input-field">
                     <i class="fa-solid fa-envelope"></i> <!-- Ícono de nómina -->
-                    <input type="text" id="NumNomina" placeholder="Número de Nómina" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')"> <!-- Input solo permite números -->
+                    <input type="text" id="NumNomina" placeholder="Número de Nómina" required maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')"> <!-- Input solo permite números -->
                 </div>
             </div>
 
@@ -45,16 +45,16 @@
             <div class="input-group">
                 <div class="input-field">
                     <i class="fa-solid fa-lock"></i> <!-- Ícono de candado para contraseña -->
-                    <input type="password" id="Contrasena" placeholder="Contrasena"> <!-- Input para la contraseña -->
+                    <input type="password" id="Contrasena" placeholder="Contrasena" required> <!-- Input para la contraseña -->
                 </div>
             </div>
 
             <!-- Enlace para recuperación de contraseña -->
-            <p>¿Olvidaste tu contraseña? <a href="#">Haz clic aquí</a></p>
+            <p>¿Olvidaste tu contraseña, we? <a href="#">Haz clic aquí</a></p>
 
             <!-- Botones de acción -->
             <div class="btn-field">
-                <button id="signUp" type="button">Registro</button> <!-- Botón para registrar -->
+                <button id="signUp" type="submit">Registro</button> <!-- Botón para registrar -->
                 <button id="signIn" type="button" class="disable">Login</button> <!-- Botón desactivado para login -->
             </div>
         </form>

@@ -22,8 +22,7 @@ if (isset($_GET['NumNomina'])) {
         }
 
         // Depuración: Ver qué llega al servidor
-        // echo json_encode(['debug' => $NumNomina]);
-        // exit;
+        file_put_contents("debug.log", "NumNomina recibido: $NumNomina\n", FILE_APPEND);
 
         // Consultar datos del usuario usando la columna `IdUsuario`
         $query = $conex->prepare("SELECT Nombre, IdUsuario FROM Usuario WHERE IdUsuario = ?");

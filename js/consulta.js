@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
     consultarButton.addEventListener("click", function () {
         let nomina = consultaNomina.value.trim();
 
-        // Validar que se ingresen entre 1 y 5 dígitos
-        if (!nomina || nomina.length > 5 || !/^\d+$/.test(nomina)) {
-            resultadoConsulta.textContent = "Por favor, ingresa un número de nómina válido de hasta 5 dígitos.";
+        // Validar que el número de nómina tenga 5 dígitos
+        if (!nomina || nomina.length !== 5) {
+            resultadoConsulta.textContent = "Por favor, ingresa un número de nómina válido de 5 dígitos.";
             return;
         }
 
@@ -16,14 +16,14 @@ document.addEventListener("DOMContentLoaded", function () {
         nomina = nomina.padStart(8, "0");
 
         // Realiza una petición al servidor para obtener datos
-        fetch(`https://grammermx.com/IvanTest/dao/consultarUsuario.php?NumNomina=${nomina}`)
+        fetch(`https://grammermx.com/IvanTest/dao/consultaUsuario.php?NumNomina=${nomina}`)
             .then((response) => {
                 if (!response.ok) throw new Error("Error en la consulta al servidor");
                 return response.json();
             })
             .then((data) => {
                 if (data.status === "success") {
-                    // Mostrar los datos del usuario con un formulario para editar
+                    // Mostrar los datos del usuario con un formulario editable
                     resultadoConsulta.innerHTML = `
                         <form id="updateUsuario">
                             <p><strong>Nombre:</strong></p>
