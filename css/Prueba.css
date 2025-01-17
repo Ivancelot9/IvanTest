@@ -1,110 +1,120 @@
-*{
-    margin : 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
-    text-decoration: none;
+/* Estilo global */
+* {
+    margin: 0; /* Elimina el margen predeterminado */
+    padding: 0; /* Elimina el relleno predeterminado */
+    font-family: Arial, Helvetica, sans-serif; /* Fuente global */
+    box-sizing: border-box; /* Incluye márgenes y relleno en el tamaño total */
+    text-decoration: none; /* Elimina subrayados en enlaces */
 }
 
+/* Contenedor principal de la página */
 .Contenedor {
-    width: 100%;
-    height: 100vh;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center ;
+    width: 100%; /* Ocupa el 100% del ancho de la pantalla */
+    min-height: 100vh; /* Altura mínima de la pantalla */
+    height: auto; /* Permite ajustar altura según el contenido */
+    background-color: black; /* Fondo negro */
+    display: flex; /* Centra contenido en flexbox */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
 }
 
-.Forma-Contenedor{
-    width: 100%;
-    max-width: 450px;
-    background-color: cadetblue;
-    padding: 50px 60px 70px;
-    text-align: center;
-    border-radius: 25px;
+/* Contenedor del formulario */
+.Forma-Contenedor {
+    width: 90%; /* Ocupa el 90% del ancho disponible */
+    max-width: 450px; /* Máximo ancho permitido */
+    background-color: cadetblue; /* Fondo color cadetblue */
+    padding: 50px 60px 70px; /* Relleno interno */
+    text-align: center; /* Centra el texto */
+    border-radius: 25px; /* Bordes redondeados */
 }
+
+/* Estilo del título del formulario */
 .Forma-Contenedor h1 {
-    font-size: 30px;
-    margin-bottom: 60px;
-    color: #FFFFFF;
-    position: relative;
+    font-size: 30px; /* Tamaño de fuente */
+    margin-bottom: 60px; /* Espaciado inferior */
+    color: #FFFFFF; /* Color de texto blanco */
+    position: relative; /* Posición relativa para efectos decorativos */
 }
 
+/* Decoración del título */
 .Forma-Contenedor h1::after {
-    content: '';
-    width: 30px;
-    height: 4px;
-    border-radius: 3px;
-    background: azure;
-    position: absolute;
-    bottom: -12px;
-    left: 50%;
-    transform: translateX(-50%);
+    content: ''; /* Contenido vacío para la línea decorativa */
+    width: 30px; /* Ancho de la línea */
+    height: 4px; /* Altura de la línea */
+    border-radius: 3px; /* Bordes redondeados */
+    background: azure; /* Color de la línea */
+    position: absolute; /* Posición absoluta respecto al título */
+    bottom: -12px; /* Ubicación debajo del título */
+    left: 50%; /* Centrado horizontal */
+    transform: translateX(-50%); /* Ajuste exacto de centrado */
 }
 
-.input-field{
-    background-color: #FFFFFF;
-    margin: 15px 0;
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    transition: max-height 0.5s;
-    overflow: hidden;
+/* Estilo de los campos de entrada */
+.input-field {
+    background-color: #FFFFFF; /* Fondo blanco */
+    margin: 15px 0; /* Espaciado vertical entre campos */
+    border-radius: 3px; /* Bordes redondeados */
+    display: flex; /* Alineación de ícono y texto */
+    align-items: center; /* Centra verticalmente los elementos */
+    transition: max-height 0.5s; /* Transición suave para cambios de altura */
+    overflow: hidden; /* Oculta contenido desbordado */
 }
 
+/* Estilo de los inputs */
 input {
-    width: 100%;
-    background: transparent;
-    border: 0;
-    outline: none;
-    padding: 18px 15px;
-
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    background: transparent; /* Fondo transparente */
+    border: 0; /* Sin bordes */
+    outline: none; /* Sin borde de enfoque */
+    padding: 10px 15px; /* Espaciado interno */
 }
 
-input::placeholder{
-    color: black;
+/* Estilo de los placeholders */
+input::placeholder {
+    color: black; /* Color del texto de ayuda */
 }
 
+/* Estilo de los íconos dentro de los campos */
 .input-field i {
-    margin-left: 15px;
-    color: darkslategrey;
+    margin-left: 15px; /* Margen izquierdo del ícono */
+    color: darkslategrey; /* Color del ícono */
 }
 
-form p{
-    text-align: left;
-    font-size: 13px;
+/* Estilo de los párrafos dentro del formulario */
+form p {
+    text-align: left; /* Alineación a la izquierda */
+    font-size: 13px; /* Tamaño de fuente */
 }
 
-form p a{
-    color: azure;
-    margin-left: 5px;
+/* Estilo de los enlaces dentro del formulario */
+form p a {
+    color: azure; /* Color del enlace */
+    margin-left: 5px; /* Espaciado izquierdo */
 }
 
-.btn-field{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+/* Contenedor de los botones */
+.btn-field {
+    width: 100%; /* Ocupa todo el ancho */
+    display: flex; /* Botones alineados horizontalmente */
+    justify-content: space-between; /* Espaciados uniformemente */
 }
 
+/* Estilo de los botones */
 .btn-field button {
-    flex-basis: 48%;
-    font-size: 16px;
-    background-color: cornflowerblue;
-    color: #FFFFFF;
-    height: 40px;
-    border-radius: 10px;
-    border: 0;
-    outline: 0;
-    cursor: pointer;
-    transition: background 1s;
+    flex-basis: 48%; /* Cada botón ocupa el 48% del contenedor */
+    font-size: 16px; /* Tamaño del texto */
+    background-color: cornflowerblue; /* Color de fondo */
+    color: #FFFFFF; /* Texto blanco */
+    height: 40px; /* Altura del botón */
+    border-radius: 10px; /* Bordes redondeados */
+    border: 0; /* Sin bordes */
+    outline: 0; /* Sin borde de enfoque */
+    cursor: pointer; /* Cursor de mano al pasar sobre el botón */
+    transition: background 1s; /* Transición de color suave */
 }
 
-.input-group {
-    height: 250px;
-}
-
+/* Botón deshabilitado */
 .btn-field button.disable {
-    background-color: #EAEAEA;
-    color: black;
+    background-color: #EAEAEA; /* Fondo gris */
+    color: black; /* Texto negro */
 }
-

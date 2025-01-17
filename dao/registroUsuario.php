@@ -51,7 +51,6 @@ function registrarUsuarioEnDB($NumNomina, $Nombre, $Contrasena) {
         if (!$conex) {
             return ['status' => 'error', 'message' => 'Error al conectar a la base de datos.'];
         }
-
         // Hashear la contraseña
         $hashedPassword = password_hash($Contrasena, PASSWORD_DEFAULT);
 

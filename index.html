@@ -1,55 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
+    <!-- Metadatos básicos -->
+    <meta charset="UTF-8"> <!-- Define la codificación de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta el contenido para pantallas responsivas -->
+    <title>Formulario</title> <!-- Título de la página -->
+
+    <!-- Icono del sitio web -->
     <link rel="icon" href="imagenes/dracula.png" type="image/x-icon">
+
+    <!-- Enlace al archivo CSS personalizado -->
     <link rel="stylesheet" href="css/Prueba.css">
+
+    <!-- Enlace a la librería Font Awesome para íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Enlace a la librería SweetAlert2 para alertas dinámicas -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-
 <body>
-<div class="Contenedor">
-    <div class="Forma-Contenedor">
-        <h1 id="title">Registro</h1>
-        <form id="formularioRegistro">
+<div class="Contenedor"> <!-- Contenedor principal de toda la página -->
+    <div class="Forma-Contenedor"> <!-- Contenedor específico del formulario -->
+        <h1 id="title">Registro</h1> <!-- Título del formulario -->
+
+        <form id="formularioRegistro"> <!-- Inicio del formulario -->
+
             <!-- Campo Nombre -->
-            <div class="input-group">
-                <div class="input-field">
-                    <i class="fa-solid fa-user"></i>
-                    <input type="text" id="Nombre" placeholder="Nombre" required>
+            <div class="input-group" id="nameGroup"> <!-- Agrupación de input y su ícono -->
+                <div class="input-field"> <!-- Estilo individual del input -->
+                    <i class="fa-solid fa-user"></i> <!-- Ícono de usuario -->
+                    <input type="text" id="Nombre" placeholder="Nombre"> <!-- Input para el nombre -->
                 </div>
             </div>
 
             <!-- Campo Número de Nómina -->
             <div class="input-group">
                 <div class="input-field">
-                    <i class="fa-solid fa-envelope"></i>
-                    <input type="text" id="NumNomina" placeholder="Número de Nómina" required maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                    <i class="fa-solid fa-envelope"></i> <!-- Ícono de nómina -->
+                    <input type="text" id="NumNomina" placeholder="Número de Nómina" maxlength="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')"> <!-- Input solo permite números -->
                 </div>
             </div>
 
             <!-- Campo Contraseña -->
             <div class="input-group">
                 <div class="input-field">
-                    <i class="fa-solid fa-lock"></i>
-                    <input type="password" id="Contrasena" placeholder="Contrasena" required>
+                    <i class="fa-solid fa-lock"></i> <!-- Ícono de candado para contraseña -->
+                    <input type="password" id="Contrasena" placeholder="Contrasena"> <!-- Input para la contraseña -->
                 </div>
             </div>
 
+            <!-- Enlace para recuperación de contraseña -->
             <p>¿Olvidaste tu contraseña? <a href="#">Haz clic aquí</a></p>
 
-            <!-- Botones -->
+            <!-- Botones de acción -->
             <div class="btn-field">
-                <button id="signUp" type="submit">Registro</button>
-                <button id="signIn" type="button" class="disable">Login</button>
+                <button id="signUp" type="button">Registro</button> <!-- Botón para registrar -->
+                <button id="signIn" type="button" class="disable">Login</button> <!-- Botón desactivado para login -->
             </div>
         </form>
     </div>
 </div>
 
+<!-- Enlace al archivo JavaScript personalizado -->
 <script src="js/pruebin.js" defer></script>
 </body>
 </html>
