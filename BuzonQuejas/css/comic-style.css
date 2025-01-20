@@ -1,0 +1,151 @@
+/* Fondo general tipo cómic */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../imagenes/fondoazul.jpg'); /* Ruta de la imagen */
+    background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+    background-repeat: no-repeat; /* Evita que se repita */
+    background-position: center; /* Centra la imagen en la pantalla */
+    background-attachment: fixed; /* Fija el fondo al hacer scroll */
+}
+
+/* Contenedor principal */
+.comic-container {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    border: 8px solid #004aad;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+
+/* Efectos de burbujas tipo cómic */
+.comic-effects .bubble {
+    position: absolute;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 50%;
+    transform: rotate(-10deg);
+    z-index: 1;
+    animation: float 2s infinite;
+}
+
+.comic-effects .wow {
+    background: #ffcc00;
+    top: -20px;
+    left: 10px;
+}
+
+.comic-effects .poof {
+    background: #ff5500;
+    top: 50%;
+    right: 10px;
+}
+
+.comic-effects .bam {
+    background: #00aaff;
+    bottom: -20px;
+    left: 30px;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(-5px);
+    }
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+/* Título estilo cómic */
+.comic-title {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #004aad;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px #fff, -2px -2px #004aad;
+}
+
+/* Formulario */
+.form-container {
+    background: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #004aad;
+    background: #eaf3fa;
+    color: #004aad;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+    background: #004aad;
+    color: #fff;
+}
+
+.toggle-btn:first-child {
+    margin-right: 5px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+.input-group i {
+    color: #004aad;
+    margin-right: 10px;
+}
+
+input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #333;
+}
+
+.submit-btn {
+    padding: 10px;
+    background: #004aad;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: #00327e;
+}
