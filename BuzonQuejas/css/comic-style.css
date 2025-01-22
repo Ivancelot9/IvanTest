@@ -85,20 +85,51 @@ body {
     font-family: "Bangers", sans-serif; /* Aplica la fuente Bangers */
     font-size: 2rem;
 }
-
 .submit-btn {
     flex: 1;
-    padding: 15px;
+    padding: 6px;
     border: 2px solid #000000;
     background: #1094e0;
     color: #000000;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s ease;
     font-family: "Bangers", sans-serif; /* Aplica la fuente Bangers */
     font-size: 2rem;
+    transition: transform 0.2s ease; /* Transición suave para volver al estado original */
+    display: inline-flex; /* Alinea el texto centrado */
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
+
+.submit-btn:hover {
+    animation: vibrate-grow 0.2s ease forwards; /* Vibra más rápido y crece */
+}
+
+.submit-btn:active {
+    transform: scale(1.05); /* Se reduce ligeramente al hacer clic */
+}
+
+@keyframes vibrate-grow {
+    0% {
+        transform: translate(0, 0) scale(1); /* Tamaño inicial */
+    }
+    25% {
+        transform: translate(-2px, -2px) scale(1.1); /* Esquina superior izquierda y ligeramente más grande */
+    }
+    50% {
+        transform: translate(2px, -2px) scale(1.15); /* Esquina superior derecha y más grande */
+    }
+    75% {
+        transform: translate(2px, 2px) scale(1.2); /* Esquina inferior derecha y más grande */
+    }
+    100% {
+        transform: translate(-2px, 2px) scale(1.2); /* Esquina inferior izquierda y tamaño final */
+    }
+}
+
 
 .toggle-btn.active {
     background: #1094e0;
@@ -133,10 +164,35 @@ input {
 }
 
 
-
-.submit-btn:hover {
-    background: #00327e;
+.welcome-box {
+    text-align: center;
+    margin-bottom: 20px;
 }
+
+.welcome-box .toggle-btn {
+    background: #eaf3fa;
+    color: #004aad;
+    font-size: 2rem; /* Botón más grande */
+    padding: 15px 30px; /* Más espacio interno */
+    border-radius: 5px;
+    border: 2px solid #004aad;
+    cursor: default;
+    text-transform: uppercase;
+}
+
+.input-group {
+    margin-bottom: 30px; /* Mayor separación */
+}
+
+.input-group i {
+    color: #1094e0; /* Cambia el ícono a un color destacado */
+}
+
+.input-group input {
+    padding: 15px; /* Campos más cómodos */
+    font-size: 1.2rem; /* Texto más grande */
+}
+
 
 .logo {
     display: block;
