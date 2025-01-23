@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Login Usuario y Admin">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Login Usuario y Admin 1.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/registroAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/registroAdmin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/inicioSesion.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/inicioSesion.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +105,7 @@
       <workItem from="1737470624219" duration="3726000" />
       <workItem from="1737483014224" duration="7340000" />
       <workItem from="1737555401022" duration="18391000" />
-      <workItem from="1737641527375" duration="3918000" />
+      <workItem from="1737641527375" duration="4628000" />
     </task>
     <task id="LOCAL-00001" summary="Prueba">
       <option name="closed" value="true" />
@@ -357,7 +355,23 @@
       <option name="project" value="LOCAL" />
       <updated>1737579860031</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Login Usuario y Admin 1.0">
+      <option name="closed" value="true" />
+      <created>1737647035400</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1737647035400</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Login Usuario y Admin 1.0">
+      <option name="closed" value="true" />
+      <created>1737647085199</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1737647085199</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -415,6 +429,7 @@
     <MESSAGE value="Cambio de Carpetas" />
     <MESSAGE value="Login Usuario" />
     <MESSAGE value="Login Usuario y Admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login Usuario y Admin" />
+    <MESSAGE value="Login Usuario y Admin 1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login Usuario y Admin 1.0" />
   </component>
 </project>
