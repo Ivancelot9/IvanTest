@@ -45,7 +45,7 @@ function validarDatos(string $NumNomina, string $Nombre, string $Contrasena): ?a
     return null;
 }
 
-// Función para registrar administrador
+// Función para registrar administrador jeje
 function registrarAdminEnDB(string $NumNomina, string $Nombre, string $Contrasena): array {
     try {
         $con = new LocalConector();
