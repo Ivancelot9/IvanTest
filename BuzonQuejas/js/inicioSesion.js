@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Enviar datos al servidor mediante fetch
-        fetch("https://grammermx.com/IvanTest/dao/registroAdmin.php", {
+        fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/registroAdmin.php", {
             method: "POST",
             body: formData,
         })
