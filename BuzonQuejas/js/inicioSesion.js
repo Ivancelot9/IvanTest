@@ -79,7 +79,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Enviar datos al servidor mediante fetch
-        fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/registroAdmin.php", {
+        const  url = isLoginMode
+        ? "https://grammermx.com/IvanTest/BuzonQuejas/dao/validacionAdmin.php"
+            : "https://grammermx.com/IvanTest/BuzonQuejas/dao/registroAdmin.php"
+        fetch( url, {
             method: "POST",
             body: formData,
         })
@@ -133,4 +136,6 @@ document.addEventListener("DOMContentLoaded", function () {
         statusMessage.textContent = "";
         return true;
     }
+
+
 });
