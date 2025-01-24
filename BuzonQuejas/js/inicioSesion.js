@@ -1,4 +1,4 @@
-import { validarCamposComunes, validarNombre, validarFormulario } from "./validacionesAdmin.js";
+import { validarFormulario } from "./validacionesAdmin.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     const loginBtn = document.getElementById("loginBtn");
@@ -87,6 +87,10 @@ document.addEventListener("DOMContentLoaded", function () {
             formData.append("Nombre", nombre);
         }
 
+
+
+
+
         // Enviar datos al servidor mediante fetch
         const url = isLoginMode
             ? "https://grammermx.com/IvanTest/BuzonQuejas/dao/validacionAdmin.php"
@@ -106,7 +110,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         isLoginMode ? "¡Inicio exitoso!" : "¡Registro exitoso!",
                         data.message || (isLoginMode ? "Bienvenido de nuevo" : "Cuenta creada correctamente"),
                         "success"
-                    );
+                    ).then(() => {
+                        if (isLoginMode) {
+                            // Redirigir al usuario al dashboard
+                            window.location.href = "dashboardAdmin.php";
+                        }
+                    });
                 } else {
                     statusMessage.textContent = data.message || "Hubo un problema al procesar tu solicitud";
                 }

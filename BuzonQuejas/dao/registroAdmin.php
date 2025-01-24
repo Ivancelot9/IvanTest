@@ -55,12 +55,14 @@ function registrarAdminEnDB(string $NumNomina, string $Nombre, string $Contrasen
             return ['status' => 'error', 'message' => 'Error al conectar a la base de datos.'];
         }
 
-        $query = $conex->prepare("INSERT INTO Usuario (NumeroNomina, Nombre, Contrasena) VALUES (?, ?, ?)");
+
+
+        $query = $conex->prepare("INSERT INTO Usuario (NumeroNomina, Nombre, Contrasena) VALUES (?, ?, ?, ?)");
         if (!$query) {
             return ['status' => 'error', 'message' => 'Error al preparar la consulta.'];
         }
 
-        $query->bind_param("sss", $NumNomina, $Nombre, $Contrasena);
+        $query->bind_param("sssi", $NumNomina, $Nombre, $Contrasena, $idRol);
         $resultado = $query->execute();
 
         $query->close();
