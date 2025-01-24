@@ -24,3 +24,22 @@ export function validarNombre(nombre) {
 
     return ""; // Sin errores
 }
+
+// Validar el formulario completo
+export function validarFormulario({ numeroNomina, contrasena, nombre = "", isLoginMode }) {
+    // Validar campos comunes
+    const errorCamposComunes = validarCamposComunes(numeroNomina, contrasena);
+    if (errorCamposComunes) {
+        return errorCamposComunes;
+    }
+
+    // Validar nombre solo si no es modo login
+    if (!isLoginMode) {
+        const errorNombre = validarNombre(nombre);
+        if (errorNombre) {
+            return errorNombre;
+        }
+    }
+
+    return ""; // Sin errores
+}
