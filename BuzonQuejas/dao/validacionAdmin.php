@@ -2,8 +2,6 @@
 session_start(); // Iniciar sesión
 include_once("conexion.php"); // Incluir la conexión a la base de datos
 
-header('Content-Type: application/json');
-
 // Verificar si el método es POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['NumNomina'], $_POST['Contrasena'])) {

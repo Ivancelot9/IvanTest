@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
+import { validarCamposComunes, validarNombre } from "./validacionesAdmin.js";
+     document.addEventListener("DOMContentLoaded", function () {
     const loginBtn = document.getElementById("loginBtn");
     const registerBtn = document.getElementById("registerBtn");
     const dynamicFields = document.getElementById("dynamicFields");
@@ -80,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Enviar datos al servidor mediante fetch
         const  url = isLoginMode
-        ? "https://grammermx.com/IvanTest/BuzonQuejas/dao/validacionAdmin.php"
+            ? "https://grammermx.com/IvanTest/BuzonQuejas/dao/validacionAdmin.php"
             : "https://grammermx.com/IvanTest/BuzonQuejas/dao/registroAdmin.php"
         fetch( url, {
             method: "POST",
@@ -110,32 +111,34 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 
-    // Función para validar los datos del formulario
-    function validarFormulario() {
-        const inputNomina = document.getElementById("NumNomina");
-        const inputContrasena = document.getElementById("Contrasena");
-        const inputNombre = document.getElementById("Nombre");
+         function validarFormulario() {
+             const inputNomina = document.getElementById("NumNomina");
+             const inputContrasena = document.getElementById("Contrasena");
+             const inputNombre = document.getElementById("Nombre");
 
-        const numeroNomina = inputNomina.value.trim();
-        const contrasena = inputContrasena.value.trim();
-        const nombre = inputNombre ? inputNombre.value.trim() : "";
+             const numeroNomina = inputNomina.value.trim();
+             const contrasena = inputContrasena.value.trim();
+             const nombre = inputNombre ? inputNombre.value.trim() : "";
 
-        // Validar campos comunes (Nómina y Contraseña)
-        if (!numeroNomina || !contrasena || (!isLoginMode && !nombre)) {
-            statusMessage.textContent = "Completa todos los campos";
-            return false;
-        }
+             // Validar campos comunes
+             const errorCamposComunes = validarCamposComunes(numeroNomina, contrasena);
+             if (errorCamposComunes) {
+                 statusMessage.textContent = errorCamposComunes;
+                 return false;
+             }
 
-        // Validar que el Número de Nómina tenga exactamente 5 dígitos
-        if (numeroNomina.length !== 5) {
-            statusMessage.textContent = "El Número de Nómina debe tener 5 dígitos exactos";
-            return false;
-        }
+             // Validar el nombre solo si está en modo registro
+             if (!isLoginMode) {
+                 const errorNombre = validarNombre(nombre);
+                 if (errorNombre) {
+                     statusMessage.textContent = errorNombre;
+                     return false;
+                 }
+             }
 
-        // Validación exitosa
-        statusMessage.textContent = "";
-        return true;
-    }
+             statusMessage.textContent = ""; // Sin errores
+             return true;
+         }
 
 
 });

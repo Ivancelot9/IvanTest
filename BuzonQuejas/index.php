@@ -41,6 +41,6 @@
         </div>
     </div>
 </div>
-<script src="js/inicioSesion.js" defer></script>
+<script src="js/inicioSesion.js" type="module" defer></script>
 </body>
 </html>
