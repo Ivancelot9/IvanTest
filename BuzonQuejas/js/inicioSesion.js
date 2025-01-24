@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
             .then((response) => {
                 if (!response.ok) throw new Error("Error en la respuesta del servidor");
-                return response.json(); // Convertir la respuesta a JSON
+                return response.json(); // Convertir la respuesta a JSONs
             })
             .then((data) => {
                 if (data.status === "success") {
