@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        // Registro en la base de datos
+        // Registro en la base de datossss
         $response = registrarAdminEnDB($NumNomina, $Nombre, $Contrasena, 1);
     } else {
         $response = ['status' => 'error', 'message' => 'Datos incompletos.'];
