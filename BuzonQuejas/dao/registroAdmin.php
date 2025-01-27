@@ -62,7 +62,7 @@ function registrarAdminEnDB(string $NumNomina, string $Nombre, string $Contrasen
             return ['status' => 'error', 'message' => 'Error al preparar la consulta.'];
         }
 
-        $query->bind_param("sssi", $NumNomina, $Nombre, $Contrasena, $idRol);
+        $query->bind_param("sssi", $NumNomina, $Nombre, $Contrasena, $IdRol);
         $resultado = $query->execute();
 
         $query->close();
