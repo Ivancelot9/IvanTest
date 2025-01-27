@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Registro en la base de datos
-        $response = registrarAdminEnDB($NumNomina, $Nombre, $Contrasena);
+        $response = registrarAdminEnDB($NumNomina, $Nombre, $Contrasena, 1);
     } else {
         $response = ['status' => 'error', 'message' => 'Datos incompletos.'];
     }
@@ -46,7 +46,7 @@ function validarDatos(string $NumNomina, string $Nombre, string $Contrasena): ?a
 }
 
 // Función para registrar administrador jeje
-function registrarAdminEnDB(string $NumNomina, string $Nombre, string $Contrasena): array {
+function registrarAdminEnDB(string $NumNomina, string $Nombre, string $Contrasena, int $IdRol): array {
     try {
         $con = new LocalConector();
         $conex = $con->conectar();
@@ -57,7 +57,7 @@ function registrarAdminEnDB(string $NumNomina, string $Nombre, string $Contrasen
 
 
 
-        $query = $conex->prepare("INSERT INTO Usuario (NumeroNomina, Nombre, Contrasena) VALUES (?, ?, ?, ?)");
+        $query = $conex->prepare("INSERT INTO Usuario (NumeroNomina, Nombre, Contrasena, IdRol) VALUES (?, ?, ?, ?)");
         if (!$query) {
             return ['status' => 'error', 'message' => 'Error al preparar la consulta.'];
         }
