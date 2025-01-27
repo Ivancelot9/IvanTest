@@ -1,0 +1,148 @@
+/* Fondo general tipo cómic */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    background-image: url('../imagenes/fondo2AzulC.jpg'); /* Cambia esto por la ruta de tu fondo */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: "Bangers", serif;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: white; /* Fondo blanco */
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+    border: 8px solid black; /* Borde grueso estilo cómic */
+}
+
+.sidebar .profile {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.sidebar .profile img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid black; /* Borde negro estilo cómic */
+    margin-bottom: 10px;
+}
+
+.sidebar .profile h4 {
+    color: black;
+    font-size: 1.5rem;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: black;
+    margin: 10px 0;
+    padding: 10px 15px;
+    width: 90%;
+    text-align: center;
+    border-radius: 10px;
+    font-family: "Bangers", serif;
+    font-size: 1.5rem;
+    background: #1094e0; /* Fondo blanco */
+    transition: transform 0.2s, background 0.3s;
+    border: 3px solid black; /* Borde grueso estilo cómic */
+    box-shadow: 3px 3px 0 black; /* Sombra estilo cómic */
+}
+
+.sidebar a:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    border: 8px solid black; /* Borde grueso estilo cómic */
+    background: white;
+    max-width: 60%; /* Ancho ajustado */
+    max-height: 70%; /* Altura ajustada */
+    margin: auto; /* Centrar el contenido principal */
+    box-shadow: 5px 5px 0 black; /* Sombra estilo cómic */
+    overflow-y: auto;
+}
+
+/* Header */
+.header h1 {
+    font-size: 2.5rem;
+    color: black;
+    text-shadow: 2px 2px 0 black;
+}
+
+/* Comic Container */
+.comic-container {
+    background: #fff;
+    border: 8px solid black; /* Borde grueso estilo cómic */
+    padding: 20px;
+    box-shadow: 5px 5px 0 black; /* Sombra estilo cómic */
+    border-radius: 15px;
+    margin-top: 10px;
+}
+
+/* Comic Title */
+.comic-title {
+    font-size: 2.5rem;
+    color: black;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table th, table td {
+    border: 2px solid black; /* Borde grueso estilo cómic */
+    padding: 10px;
+    text-align: center;
+    font-family: "Bangers", serif;
+    font-size: 1.2rem;
+}
+
+table th {
+    background-color: #1094e0;
+    color: white;
+}
+
+table td {
+    background-color: #eaf3fa;
+}
+
+/* Button estilo cómic */
+.submit-btn {
+    display: inline-block;
+    background: white;
+    color: black;
+    font-family: "Bangers", serif;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 3px solid black; /* Borde grueso estilo cómic */
+    transition: transform 0.3s;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 black; /* Sombra estilo cómic */
+}
+
+.submit-btn:hover {
+    transform: scale(1.1);
+    background: #f0f0f0;
+}
