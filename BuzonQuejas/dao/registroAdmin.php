@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $NumNomina = trim($_POST['NumNomina']);
         $Nombre = trim($_POST['Nombre']);
         $Contrasena = trim($_POST['Contrasena']);
+        $IdRol = 1; // Valor predeterminado para el rol
 
         // Validación centralizada
         $validacion = validarDatos($NumNomina, $Nombre, $Contrasena);
@@ -18,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        // Registro en la base de datossss
-        $response = registrarAdminEnDB($NumNomina, $Nombre, $Contrasena, 1);
+        // Registro en la base de datos
+        $response = registrarAdminEnDB($NumNomina, $Nombre, $Contrasena, $IdRol);
     } else {
         $response = ['status' => 'error', 'message' => 'Datos incompletos.'];
     }
@@ -45,7 +46,7 @@ function validarDatos(string $NumNomina, string $Nombre, string $Contrasena): ?a
     return null;
 }
 
-// Función para registrar administrador jeje
+// Función para registrar administrador
 function registrarAdminEnDB(string $NumNomina, string $Nombre, string $Contrasena, int $IdRol): array {
     try {
         $con = new LocalConector();
@@ -55,16 +56,29 @@ function registrarAdminEnDB(string $NumNomina, string $Nombre, string $Contrasen
             return ['status' => 'error', 'message' => 'Error al conectar a la base de datos.'];
         }
 
+        // Verifica que el rol con IdRol = 1 exista antes de insertar
+        $rolQuery = $conex->prepare("SELECT COUNT(*) FROM Roles WHERE IdRol = ?");
+        if (!$rolQuery) {
+            return ['status' => 'error', 'message' => 'Error al preparar la consulta para verificar el rol.'];
+        }
+        $rolQuery->bind_param("i", $IdRol);
+        $rolQuery->execute();
+        $rolQuery->bind_result($rolExists);
+        $rolQuery->fetch();
+        $rolQuery->close();
 
+        if ($rolExists === 0) {
+            return ['status' => 'error', 'message' => 'El rol con IdRol = 1 no existe.'];
+        }
 
+        // Inserta el usuario con el IdRol validado
         $query = $conex->prepare("INSERT INTO Usuario (NumeroNomina, Nombre, Contrasena, IdRol) VALUES (?, ?, ?, ?)");
         if (!$query) {
-            return ['status' => 'error', 'message' => 'Error al preparar la consulta.'];
+            return ['status' => 'error', 'message' => 'Error al preparar la consulta para insertar el usuario.'];
         }
 
         $query->bind_param("sssi", $NumNomina, $Nombre, $Contrasena, $IdRol);
         $resultado = $query->execute();
-
         $query->close();
         $conex->close();
 
