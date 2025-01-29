@@ -4,7 +4,7 @@ body {
     padding: 0;
     height: 100vh;
     display: flex;
-    background-image: url('../imagenes/fondo2AzulC.jpg'); /* Cambia esto por la ruta de tu fondo */
+    background-image: url('../imagenes/fondoazul.jpg'); /* Cambia esto por la ruta de tu fondo */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -13,15 +13,14 @@ body {
 
 /* Sidebar */
 .sidebar {
-    width: 250px;
+    width: 350px;
     background-color: white; /* Fondo blanco */
-    color: black;
+    color: #1094e0;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
-    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
-    border: 8px solid black; /* Borde grueso estilo cómic */
+    border: 15px solid #1094e0; /* Borde grueso bien marcado */
 }
 
 .sidebar .profile {
@@ -33,7 +32,7 @@ body {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    border: 3px solid black; /* Borde negro estilo cómic */
+    border: 3px #1094e0; /* Borde negro estilo cómic */
     margin-bottom: 10px;
 }
 
@@ -63,24 +62,41 @@ body {
     transform: scale(1.05);
 }
 
+/* Botón activo */
+.sidebar a.active {
+    background-color: #005f9e; /* Azul más oscuro */
+    color: white; /* Texto blanco */
+    font-weight: bold;
+    transform: scale(1.1); /* Aumenta ligeramente */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Sombra destacada */
+}
+
 /* Main Content */
 .main-content {
     flex: 1;
     padding: 20px;
-    border: 8px solid black; /* Borde grueso estilo cómic */
+    border: 15px solid #1094e0; /* Borde grueso bien marcado */
     background: white;
     max-width: 60%; /* Ancho ajustado */
     max-height: 70%; /* Altura ajustada */
     margin: auto; /* Centrar el contenido principal */
-    box-shadow: 5px 5px 0 black; /* Sombra estilo cómic */
     overflow-y: auto;
+    border-radius: 15px; /* Redondeado como en el otro estilo */
 }
 
 /* Header */
 .header h1 {
-    font-size: 2.5rem;
-    color: black;
-    text-shadow: 2px 2px 0 black;
+    font-size: 2.5rem; /* Tamaño del texto */
+    text-align: center;
+    color: rgba(23, 102, 209, 0.88); /* Color principal del texto */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    margin-bottom: 20px; /* Espaciado debajo del título */
+    letter-spacing: 2px; /* Añade espacio entre las letras */
+    text-shadow:
+            -2px -2px 0 #000, /* Contorno negro en la parte superior izquierda */
+            2px -2px 0 #000, /* Contorno negro en la parte superior derecha */
+            -2px  2px 0 #000, /* Contorno negro en la parte inferior izquierda */
+            2px  2px 0 #000; /* Contorno negro en la parte inferior derecha */
 }
 
 /* Comic Container */
@@ -121,6 +137,16 @@ table th, table td {
 table th {
     background-color: #1094e0;
     color: white;
+    font-size: 1.5rem;
+    text-shadow:
+            -3px -3px 0 black,
+            3px -3px 0 black,
+            -3px 3px 0 black,
+            3px 3px 0 black,
+            -3px 0 0 black,
+            3px 0 0 black,
+            0 -3px 0 black,
+            0 3px 0 black;
 }
 
 table td {
@@ -129,20 +155,119 @@ table td {
 
 /* Button estilo cómic */
 .submit-btn {
-    display: inline-block;
-    background: white;
-    color: black;
-    font-family: "Bangers", serif;
-    font-size: 1.5rem;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: 3px solid black; /* Borde grueso estilo cómic */
-    transition: transform 0.3s;
+    flex: 1;
+    padding: 6px;
+    border: 2px solid #000000;
+    background: #1094e0;
+    color: #000000;
+    font-weight: bold;
+    text-transform: uppercase;
     cursor: pointer;
-    box-shadow: 3px 3px 0 black; /* Sombra estilo cómic */
+    font-family: "Bangers", sans-serif; /* Aplica la fuente Bangers */
+    font-size: 2rem;
+    transition: transform 0.2s ease; /* Transición suave para volver al estado original */
+    display: inline-flex; /* Alinea el texto centrado */
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .submit-btn:hover {
-    transform: scale(1.1);
+    animation: vibrate-grow 0.2s ease forwards; /* Vibra más rápido y crece */
+}
+
+.submit-btn:active {
+    transform: scale(1.05); /* Se reduce ligeramente al hacer clic */
+}
+
+@keyframes vibrate-grow {
+    0% {
+        transform: translate(0, 0) scale(1); /* Tamaño inicial */
+    }
+    25% {
+        transform: translate(-2px, -2px) scale(1.1); /* Esquina superior izquierda y ligeramente más grande */
+    }
+    50% {
+        transform: translate(2px, -2px) scale(1.15); /* Esquina superior derecha y más grande */
+    }
+    75% {
+        transform: translate(2px, 2px) scale(1.2); /* Esquina inferior derecha y más grande */
+    }
+    100% {
+        transform: translate(-2px, 2px) scale(1.2); /* Esquina inferior izquierda y tamaño final */
+    }
+}
+
+.logo-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.logo-img {
+    max-width: 500px; /* Ajusta el tamaño según sea necesario */
+    height: auto;
+}
+
+/* Estilo para la sección de Datos Personales */
+.personal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    background: white;
+    border: 5px solid #1094e0; /* Borde azul tipo cómic */
+    border-radius: 10px;
+    box-shadow: 3px 3px 0 #1094e0; /* Sombra estilo cómic */
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Estilos de cada campo */
+.info-item {
+    display: flex;
+    flex-direction: column;
+    font-family: "Bangers", serif;
+    font-size: 1.5rem;
+    color: black;
+}
+
+.info-item label {
+    font-weight: bold;
+    color: #1094e0;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; /* Contorno de texto */
+}
+
+/* Inputs de solo lectura */
+.personal-info input {
     background: #f0f0f0;
+    border: 2px solid black;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-family: "Bangers", serif;
+    color: black;
+    border-radius: 5px;
+    text-align: center;
+    outline: none;
+}
+
+/* Botón de edición */
+.submit-btn {
+    display: block;
+    margin: 20px auto 0;
+    background: white;
+    color: black;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 3px solid black;
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 black;
+}
+
+.submit-btn:hover {
+    background: #1094e0;
+    color: white;
+    transform: scale(1.1);
 }
