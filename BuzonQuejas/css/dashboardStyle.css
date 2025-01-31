@@ -41,34 +41,49 @@ body {
     font-size: 1.5rem;
 }
 
+/* 🎨 Estilos para los botones de la barra lateral */
 .sidebar a {
-    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 2px solid black;
+    background: #1094e0;
     color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: "Bangers", sans-serif;
+    font-size: 1.5rem;
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 black;
+    text-decoration: none; /* Elimina subrayado */
     margin: 10px 0;
-    padding: 10px 15px;
-    width: 90%;
+    width: 80%;
     text-align: center;
     border-radius: 10px;
-    font-family: "Bangers", serif;
-    font-size: 1.5rem;
-    background: #1094e0; /* Fondo blanco */
-    transition: transform 0.2s, background 0.3s;
-    border: 3px solid black; /* Borde grueso estilo cómic */
-    box-shadow: 3px 3px 0 black; /* Sombra estilo cómic */
 }
 
+/* 🔥 Efecto al pasar el mouse */
 .sidebar a:hover {
-    background-color: #f0f0f0;
-    transform: scale(1.05);
+    animation: vibrate-grow 0.2s ease forwards;
+
 }
 
-/* Botón activo */
+/* 📌 Botón activo */
 .sidebar a.active {
-    background-color: #005f9e; /* Azul más oscuro */
-    color: white; /* Texto blanco */
-    font-weight: bold;
-    transform: scale(1.1); /* Aumenta ligeramente */
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Sombra destacada */
+    background: white;
+    color: #1094e0;
+    border: 2px solid black;
+    transform: scale(1.2);
+    box-shadow: 5px 5px 0 black;
+}
+
+/* 🎯 Vibración del botón */
+@keyframes vibrate-grow {
+    0% { transform: scale(1.2) translateX(-2px); }
+    50% { transform: scale(1.2) translateX(2px); }
+    100% { transform: scale(1.2) translateX(-2px); }
 }
 
 /* Main Content */
@@ -110,13 +125,18 @@ body {
 }
 
 /* Comic Title */
-.comic-title {
-    font-size: 2.5rem;
-    color: black;
+.comic-title, info-item label {
+    font-size: 2.5rem; /* Tamaño del texto */
     text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
+    color: rgba(23, 102, 209, 0.88); /* Color principal del texto */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    margin-bottom: 20px; /* Espaciado debajo del título */
+    letter-spacing: 2px; /* Añade espacio entre las letras */
+    text-shadow:
+            -2px -2px 0 #000, /* Contorno negro en la parte superior izquierda */
+            2px -2px 0 #000, /* Contorno negro en la parte superior derecha */
+            -2px  2px 0 #000, /* Contorno negro en la parte inferior izquierda */
+            2px  2px 0 #000; /* Contorno negro en la parte inferior derecha */
 }
 
 /* Table */
@@ -199,6 +219,15 @@ table td {
     }
 }
 
+.toggle-btn.active {
+    background: #1094e0;
+    color: #000000;
+}
+
+.toggle-btn:first-child {
+    margin-right: 5px;
+}
+
 .logo-container {
     text-align: center;
     margin-top: 20px;
@@ -232,11 +261,7 @@ table td {
     color: black;
 }
 
-.info-item label {
-    font-weight: bold;
-    color: #1094e0;
-    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; /* Contorno de texto */
-}
+
 
 /* Inputs de solo lectura */
 .personal-info input {
@@ -251,23 +276,3 @@ table td {
     outline: none;
 }
 
-/* Botón de edición */
-.submit-btn {
-    display: block;
-    margin: 20px auto 0;
-    background: white;
-    color: black;
-    font-size: 1.5rem;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: 3px solid black;
-    transition: transform 0.2s ease-in-out;
-    cursor: pointer;
-    box-shadow: 3px 3px 0 black;
-}
-
-.submit-btn:hover {
-    background: #1094e0;
-    color: white;
-    transform: scale(1.1);
-}
