@@ -125,7 +125,7 @@ body {
 }
 
 /* Comic Title */
-.comic-title, info-item label {
+.comic-title {
     font-size: 2.5rem; /* Tamaño del texto */
     text-align: center;
     color: rgba(23, 102, 209, 0.88); /* Color principal del texto */
@@ -261,7 +261,19 @@ table td {
     color: black;
 }
 
+.info-item label {
+    font-size: 1.5rem; /* Tamaño del texto */
+    text-align: left;
+    color: rgba(23, 102, 209, 0.88); /* Color principal del texto */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    margin-bottom: 5px; /* Espaciado debajo del título */
 
+    text-shadow:
+            -2px -2px 0 #000, /* Contorno negro en la parte superior izquierda */
+            2px -2px 0 #000, /* Contorno negro en la parte superior derecha */
+            -2px  2px 0 #000, /* Contorno negro en la parte inferior izquierda */
+            2px  2px 0 #000; /* Contorno negro en la parte inferior derecha */
+}
 
 /* Inputs de solo lectura */
 .personal-info input {
