@@ -88,15 +88,15 @@ body {
 
 /* Main Content */
 .main-content {
-    flex: 1;
     padding: 20px;
-    border: 15px solid #1094e0; /* Borde grueso bien marcado */
+    border: 15px solid #1094e0;
     background: white;
-    max-width: 60%; /* Ancho ajustado */
-    max-height: 70%; /* Altura ajustada */
-    margin: auto; /* Centrar el contenido principal */
-    overflow-y: auto;
-    border-radius: 15px; /* Redondeado como en el otro estilo */
+
+    margin: 5% auto; /* Agrega margen arriba y abajo */
+    border-radius: 15px;
+    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+    width: calc(100% - 380px); /* Se ajusta con la sidebar */
+    max-width: 70%; /* Limita el ancho para evitar que se extienda demasiado */
 }
 
 /* Header */
@@ -122,6 +122,21 @@ body {
     box-shadow: 5px 5px 0 black; /* Sombra estilo cómic */
     border-radius: 15px;
     margin-top: 10px;
+
+    display: flex;
+    flex-direction: column; /* Para distribuir el contenido hacia abajo */
+}
+
+/* Opcional: Ajusta los elementos internos para que crezcan junto con el contenedor */
+.comic-title {
+    margin-bottom: 20px;
+}
+
+.comic-content {
+    flex-grow: 1; /* Se expande dentro del comic-container */
+    display: flex;
+    flex-direction: column; /* Distribuye los elementos en columna */
+    justify-content: space-between; /* Se distribuyen uniformemente */
 }
 
 /* Comic Title */
@@ -140,6 +155,11 @@ body {
 }
 
 /* Table */
+
+table, .personal-info, .info-item {
+    flex-grow: 1;
+    margin-bottom: 20px; /* Añade espacio entre los elementos */
+}
 table {
     width: 100%;
     border-collapse: collapse;
@@ -286,5 +306,144 @@ table td {
     border-radius: 5px;
     text-align: center;
     outline: none;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 350px;
+    background-color: white;
+    color: #1094e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    border: 15px solid #1094e0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    transition: transform 0.3s ease-in-out; /* Animación de deslizamiento */
+}
+
+/* Espacio entre la sidebar y el main-content */
+.sidebar::after {
+    content: "";
+    display: block;
+    width: 100px; /* Espacio entre la sidebar y el contenido */
+}
+
+/* Cuando la sidebar está oculta */
+.sidebar.hidden {
+    transform: translateX(-100%);
+}
+
+/* Main Content (ajustado con espacio a la izquierda) */
+.main-content {
+    margin-left: 450px; /* Espacio entre la sidebar y el contenido */
+    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+    width: calc(100% - 380px);
+
+}
+
+/* Cuando la sidebar está oculta, mantiene un pequeño espacio */
+.main-content.expanded {
+    margin-left: auto; /* Se centra */
+    width: 80%; /* Deja un 20% de margen a la izquierda y derecha */
+    max-height: 80%; /* Deja un 20% de margen arriba y abajo */
+}
+
+/* Botón para ocultar/mostrar la sidebar */
+.toggle-btn {
+    position: fixed;
+    left: 320px; /* Espaciado para mantenerlo separado */
+    top: 20px;
+    background: #1094e0;
+    color: white;
+    border: 2px solid black;
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: left 0.3s ease-in-out;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+/* Cuando la sidebar está oculta, mover el botón a la izquierda */
+.sidebar.hidden ~ .toggle-btn {
+    left: 40px; /* Mover el botón a la izquierda */
+}
+
+.hero-animation {
+    position: absolute;
+    top: 20px;
+    width: 100px;
+    height: auto;
+    left: -150px; /* Inicia fuera de la pantalla */
+    transition: left 1s cubic-bezier(0.7, 0, 0.3, 1), transform 1.2s ease-in-out;
+    opacity: 0;
+}
+
+/* 🟢 Vuelo de izquierda a derecha al desglosar la sidebar */
+.hero-fly-right {
+    left: 320px;
+    transition: left 0.5s cubic-bezier(0.8, 0, 0.4, 1);
+}
+
+.hero-fly-right-end {
+    left: 100vw;
+    transition: left 1.5s cubic-bezier(0.3, 0, 0.1, 1);
+}
+
+/* 🔵 Vuelo de derecha a izquierda al ocultar la sidebar */
+.hero-fly-left {
+    left: 320px;
+    transform: rotateY(180deg);
+    transition: left 0.5s cubic-bezier(0.8, 0, 0.4, 1), transform 0.6s ease-in-out;
+}
+
+.hero-fly-left-end {
+    left: -150px;
+    transition: left 1.5s cubic-bezier(0.3, 0, 0.1, 1);
+}
+
+
+
+/* 📱💻 RESPONSIVE DESIGN: Para tablets y laptops */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 280px; /* Sidebar más pequeña en pantallas medianas */
+    }
+
+    .main-content {
+        margin-left: 300px; /* Ajustar margen con sidebar */
+        width: calc(100% - 300px);
+    }
+
+    .toggle-btn {
+        left: 290px; /* Ajustar botón */
+    }
+
+    .sidebar.hidden ~ .toggle-btn {
+        left: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 250px;
+    }
+
+    .main-content {
+        margin-left: 250px;
+        width: calc(100% - 250px);
+    }
+
+    .toggle-btn {
+        left: 260px;
+    }
+
+    .sidebar.hidden ~ .toggle-btn {
+        left: 20px;
+    }
 }
 

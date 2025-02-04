@@ -11,6 +11,8 @@
 
 <!-- Sidebar -->
 <div class="sidebar">
+    <button id="toggleSidebar" class="toggle-btn">☰</button>
+    <img src="imagenes/superhero-sinfondo.png" class="hero-animation">
     <div class="profile">
         <img src="https://via.placeholder.com/80" alt="Profile Picture">
         <h4>Iván Alejandro Medina</h4>

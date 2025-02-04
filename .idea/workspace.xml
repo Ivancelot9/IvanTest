@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Login Usuario y Admin 1.1">
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/superhero-sinfondo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/superhero.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/Prueba.html" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/Prueba.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/logicaDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/logicaDashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +47,7 @@
 }</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -76,8 +80,8 @@
       <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\BuzonQuejas\css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\BuzonQuejas\js" />
       <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\BuzonQuejas\imagenes" />
+      <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\BuzonQuejas\js" />
       <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\BuzonQuejas" />
       <recent name="C:\Users\Ex-Medina-I\Documents\Ivan Medina\Imagenes" />
     </key>
@@ -114,7 +118,7 @@
       <workItem from="1737641527375" duration="14828000" />
       <workItem from="1737729559479" duration="17096000" />
       <workItem from="1737988085078" duration="41211000" />
-      <workItem from="1738333229998" duration="9895000" />
+      <workItem from="1738333229998" duration="24127000" />
     </task>
     <task id="LOCAL-00001" summary="Prueba">
       <option name="closed" value="true" />
@@ -500,7 +504,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738683697498</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Login Usuario y Admin 1.1">
+      <option name="closed" value="true" />
+      <created>1738684135707</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1738684135707</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
