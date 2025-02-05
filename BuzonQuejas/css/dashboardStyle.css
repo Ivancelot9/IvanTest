@@ -29,11 +29,42 @@ body {
 }
 
 .sidebar .profile img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 3px #1094e0; /* Borde negro estilo cómic */
-    margin-bottom: 10px;
+    width: 150px; /* Tamaño de la imagen */
+    height: 150px;
+    border-radius: 50%; /* Hace la imagen redonda */
+    border: 5px solid black; /* ¡Borde sólido visible! */
+    object-fit: cover; /* Ajusta la imagen sin deformarla */
+    position: relative; /* Necesario para el pseudo-elemento */
+    z-index: 1; /* Asegura que la imagen esté encima del contorno animado */
+}
+/* Halo animado */
+.sidebar .profile {
+    position: relative; /* Crea un contexto para el pseudo-elemento */
+}
+
+.sidebar .profile::after {
+    content: "";
+    position: absolute;
+    top: -5px; /* Ajusta para que rodee el borde negro */
+    left: 10px;
+    width: 160px; /* Tamaño total del contorno */
+    height: 160px;
+    border-radius: 50%; /* Hace el borde animado redondo */
+    border: 5px solid transparent; /* Borde inicial transparente */
+    border-top: 5px solid #1094e0; /* Parte azul que se mueve */
+    border-right: 5px solid #1094e0;
+    animation: halo-spin 2s linear infinite; /* Animación de giro */
+    z-index: 2; /* Detrás de la imagen */
+}
+
+/* Animación de giro */
+@keyframes halo-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .sidebar .profile h4 {
@@ -75,15 +106,15 @@ body {
     background: white;
     color: #1094e0;
     border: 2px solid black;
-    transform: scale(1.2);
+    transform: scale(1);
     box-shadow: 5px 5px 0 black;
 }
 
 /* 🎯 Vibración del botón */
 @keyframes vibrate-grow {
-    0% { transform: scale(1.2) translateX(-2px); }
-    50% { transform: scale(1.2) translateX(2px); }
-    100% { transform: scale(1.2) translateX(-2px); }
+    0% { transform: scale(1.03) translateX(-2px); }
+    50% { transform: scale(1.03) translateX(2px); }
+    100% { transform: scale(1.03) translateX(-2px); }
 }
 
 /* Main Content */
@@ -226,16 +257,16 @@ table td {
         transform: translate(0, 0) scale(1); /* Tamaño inicial */
     }
     25% {
-        transform: translate(-2px, -2px) scale(1.1); /* Esquina superior izquierda y ligeramente más grande */
+        transform: translate(-2px, -2px) scale(1.03); /* Esquina superior izquierda y ligeramente más grande */
     }
     50% {
-        transform: translate(2px, -2px) scale(1.15); /* Esquina superior derecha y más grande */
+        transform: translate(2px, -2px) scale(1.05); /* Esquina superior derecha y más grande */
     }
     75% {
-        transform: translate(2px, 2px) scale(1.2); /* Esquina inferior derecha y más grande */
+        transform: translate(2px, 2px) scale(1.07); /* Esquina inferior derecha y más grande */
     }
     100% {
-        transform: translate(-2px, 2px) scale(1.2); /* Esquina inferior izquierda y tamaño final */
+        transform: translate(-2px, 2px) scale(1.07); /* Esquina inferior izquierda y tamaño final */
     }
 }
 
@@ -355,22 +386,22 @@ table td {
 /* Botón para ocultar/mostrar la sidebar */
 .toggle-btn {
     position: fixed;
-    left: 320px; /* Espaciado para mantenerlo separado */
-    top: 20px;
+    left: 16px; /* Espaciado para mantenerlo separado */
+    top: 16px;
     background: #1094e0;
     color: white;
     border: 2px solid black;
     padding: 10px 15px;
     font-size: 1.5rem;
     cursor: pointer;
-    transition: left 0.3s ease-in-out;
+    transition: left 0.3s ease-in-out, transform 0.3s ease-in-out;
     border-radius: 5px;
-    z-index: 1000;
+    z-index: 2000;
 }
 
 /* Cuando la sidebar está oculta, mover el botón a la izquierda */
 .sidebar.hidden ~ .toggle-btn {
-    left: 40px; /* Mover el botón a la izquierda */
+    left: 320px; /* Mover el botón a la izquierda */
 }
 
 .hero-animation {
@@ -445,5 +476,40 @@ table td {
     .sidebar.hidden ~ .toggle-btn {
         left: 20px;
     }
+}
+
+/* 🎨 Estilos para el botón de Cerrar Sesión */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 2px solid black;
+    background: #d9534f; /* 🔴 Rojo llamativo */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: "Bangers", sans-serif;
+    font-size: 1.5rem;
+    transition: transform 0.2s ease-in-out, background 0.2s;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 black;
+    text-decoration: none;
+    margin-top: auto; /* Lo envía hasta abajo */
+    margin-bottom: 20px; /* Espaciado del fondo */
+    width: 80%;
+    text-align: center;
+    border-radius: 10px;
+}
+
+/* 🔥 Efecto al pasar el mouse */
+.logout-btn:hover {
+    background: #c9302c; /* 🔴 Rojo más oscuro */
+    transform: scale(1.05);
+}
+
+/* 📌 Cuando se presiona */
+.logout-btn:active {
+    transform: scale(0.95);
 }
 

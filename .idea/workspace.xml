@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Login Usuario y Admin 1.1">
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/superhero-sinfondo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/superhero.png" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Dashboard">
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/user.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" afterDir="false" />
@@ -64,7 +63,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/Ex-Medina-I/Documents/IvanTest/BuzonQuejas/css",
+    "last_opened_file_path": "C:/Users/Ex-Medina-I/Documents/IvanTest/BuzonQuejas/imagenes",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -77,6 +76,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\BuzonQuejas\imagenes" />
       <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\BuzonQuejas\css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -118,15 +118,8 @@
       <workItem from="1737641527375" duration="14828000" />
       <workItem from="1737729559479" duration="17096000" />
       <workItem from="1737988085078" duration="41211000" />
-      <workItem from="1738333229998" duration="24127000" />
-    </task>
-    <task id="LOCAL-00001" summary="Prueba">
-      <option name="closed" value="true" />
-      <created>1736874904714</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1736874904715</updated>
+      <workItem from="1738333229998" duration="24243000" />
+      <workItem from="1738765007944" duration="12897000" />
     </task>
     <task id="LOCAL-00002" summary="Prueba">
       <option name="closed" value="true" />
@@ -512,7 +505,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738684135707</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Dashboard">
+      <option name="closed" value="true" />
+      <created>1738703382155</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1738703382156</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -572,6 +573,7 @@
     <MESSAGE value="Login Usuario y Admin" />
     <MESSAGE value="Login Usuario y Admin 1.0" />
     <MESSAGE value="Login Usuario y Admin 1.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login Usuario y Admin 1.1" />
+    <MESSAGE value="Dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dashboard" />
   </component>
 </project>

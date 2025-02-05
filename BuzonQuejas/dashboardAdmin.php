@@ -14,13 +14,14 @@
     <button id="toggleSidebar" class="toggle-btn">☰</button>
     <img src="imagenes/superhero-sinfondo.png" class="hero-animation">
     <div class="profile">
-        <img src="https://via.placeholder.com/80" alt="Profile Picture">
+        <img src="imagenes/user.png" alt="Profile Picture">
         <h4>Iván Alejandro Medina</h4>
     </div>
     <!-- Botones con IDs -->
     <a href="#" id="btn-datos-personales" class="active">Datos Personales</a>
     <a href="#" id="btn-historial-reportes">Historial de Reportes</a>
     <a href="#" id="btn-reportes-completos">Reportes Completos</a>
+    <a href="#" id="btn-cerrar-sesion" class="logout-btn">Cerrar Sesión</a>
 </div>
 
 <!-- Contenedor Principal -->
