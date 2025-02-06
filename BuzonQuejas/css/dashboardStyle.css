@@ -19,8 +19,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between; /* Distribuye contenido: arriba y abajo */
     padding: 20px 0;
     border: 15px solid #1094e0; /* Borde grueso bien marcado */
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh; /* Ocupar toda la altura */
+    transition: transform 0.3s ease-in-out; /* Animación de deslizamiento */
+
 }
 
 .sidebar .profile {
@@ -339,22 +346,6 @@ table td {
     outline: none;
 }
 
-/* Sidebar */
-.sidebar {
-    width: 350px;
-    background-color: white;
-    color: #1094e0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    border: 15px solid #1094e0;
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    transition: transform 0.3s ease-in-out; /* Animación de deslizamiento */
-}
 
 /* Espacio entre la sidebar y el main-content */
 .sidebar::after {
@@ -428,7 +419,7 @@ table td {
 /* 🔵 Vuelo de derecha a izquierda al ocultar la sidebar */
 .hero-fly-left {
     left: 320px;
-    transform: rotateY(180deg);
+    transform: rotateY(0deg);
     transition: left 0.5s cubic-bezier(0.8, 0, 0.4, 1), transform 0.6s ease-in-out;
 }
 
@@ -483,7 +474,7 @@ table td {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 20px;
+    padding: 15px 20px;
     border: 2px solid black;
     background: #d9534f; /* 🔴 Rojo llamativo */
     color: white;
@@ -495,8 +486,7 @@ table td {
     cursor: pointer;
     box-shadow: 3px 3px 0 black;
     text-decoration: none;
-    margin-top: auto; /* Lo envía hasta abajo */
-    margin-bottom: 20px; /* Espaciado del fondo */
+    margin-bottom: -50px; /* Espaciado del fondo */
     width: 80%;
     text-align: center;
     border-radius: 10px;
@@ -512,4 +502,77 @@ table td {
 .logout-btn:active {
     transform: scale(0.95);
 }
+
+/* 🔹 Contenedor de botones normales */
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-top: -200px;
+}
+
+/* 🔴 Empujar "Cerrar Sesión" hacia abajo */
+.logout-btn {
+    margin-top: auto; /* Ahora sí se irá hasta abajo */
+}
+
+/* 🔥 Pantalla de carga al cerrar sesión */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../imagenes/fondoazul.jpg'); /* Mantiene el fondo */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s;
+}
+
+/* 🦸‍♂️ Superhéroe animado */
+#hero-loading {
+    position: absolute;
+    left: -200px; /* Inicia fuera de la pantalla */
+    width: 500px; /* Ajustar tamaño */
+    height: auto;
+    display: block; /* Asegurar que aparece */
+}
+
+/* 🦸‍♂️ Animación del superhéroe volando de izquierda a derecha */
+@keyframes heroFly {
+    0% {
+        left: -200px; /* Empieza fuera */
+        opacity: 1;
+    }
+    50% {
+        left: 50vw; /* Pasa por el centro */
+        transform: scale(1.3); /* Se agranda */
+    }
+    100% {
+        left: 110vw; /* Sale por la derecha */
+        opacity: 0;
+    }
+}
+
+/* 🔹 Texto "Cerrando sesión..." */
+.loading-text {
+    font-size: 2rem;
+    font-family: "Bangers", sans-serif;
+    color: white;
+    text-shadow: 3px 3px 0 black;
+    margin-top: 20px;
+}
+
+
+
+
+
 

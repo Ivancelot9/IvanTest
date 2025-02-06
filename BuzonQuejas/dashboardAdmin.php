@@ -13,15 +13,21 @@
 <div class="sidebar">
     <button id="toggleSidebar" class="toggle-btn">☰</button>
     <img src="imagenes/superhero-sinfondo.png" class="hero-animation">
+
     <div class="profile">
         <img src="imagenes/user.png" alt="Profile Picture">
         <h4>Iván Alejandro Medina</h4>
     </div>
-    <!-- Botones con IDs -->
-    <a href="#" id="btn-datos-personales" class="active">Datos Personales</a>
-    <a href="#" id="btn-historial-reportes">Historial de Reportes</a>
-    <a href="#" id="btn-reportes-completos">Reportes Completos</a>
+    <!-- 🔹 Nuevo contenedor para los botones de navegación -->
+    <div class="sidebar-links">
+        <a href="#" id="btn-datos-personales" class="active">Datos Personales</a>
+        <a href="#" id="btn-historial-reportes">Historial de Reportes</a>
+        <a href="#" id="btn-reportes-completos">Reportes Completos</a>
+    </div>
+
+    <!-- 🔴 Este botón queda fuera del contenedor de navegación -->
     <a href="#" id="btn-cerrar-sesion" class="logout-btn">Cerrar Sesión</a>
+
 </div>
 
 <!-- Contenedor Principal -->
@@ -85,8 +91,15 @@
     </div>
 </div>
 
+<!-- 🔥 Pantalla de carga con animación de superhéroe -->
+<div id="loading-screen">
+    <img src="imagenes/superhero-sinfondo.png" id="hero-loading" alt="Saliendo...">
+    <p class="loading-text">Cerrando sesión...</p>
+</div>
+
 <!-- Vincular el archivo JavaScript -->
 <script src="js/logicaDashboard.js"></script>
+<script src="js/cerrarSesion.js"></script>
 
 </body>
 </html>
