@@ -22,6 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Validar las credenciales en la base de datos
         $response = validarCredencialesEnDB($NumNomina, $Contrasena);
+        session_start();
+        $_SESSION['NumNomina'] = $NumNomina;
+        $_SESSION['Contrasena'] = $Contrasena;
+
+
     } else {
         $response = ['status' => 'error', 'message' => 'Datos incompletos.'];
     }

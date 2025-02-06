@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+
+echo $_SESSION['NumNomina'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

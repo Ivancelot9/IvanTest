@@ -517,7 +517,7 @@ table td {
     margin-top: auto; /* Ahora sí se irá hasta abajo */
 }
 
-/* 🔥 Pantalla de carga al cerrar sesión */
+/* 🔵 Pantalla de carga al cerrar sesión */
 #loading-screen {
     position: fixed;
     top: 0;
@@ -530,48 +530,64 @@ table td {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     z-index: 9999;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.5s ease-in-out, visibility 0.5s;
 }
 
-/* 🦸‍♂️ Superhéroe animado */
+/* 🦸‍♂️ Animación del superhéroe */
 #hero-loading {
     position: absolute;
-    left: -200px; /* Inicia fuera de la pantalla */
-    width: 500px; /* Ajustar tamaño */
+    left: -200px; /* Inicia más a la izquierda */
+    width: 300px; /* 🔥 Ahora es más grande */
     height: auto;
-    display: block; /* Asegurar que aparece */
 }
 
-/* 🦸‍♂️ Animación del superhéroe volando de izquierda a derecha */
-@keyframes heroFly {
+/* 🔥 Animación para que el héroe cruce la pantalla */
+@keyframes fly-right {
     0% {
-        left: -200px; /* Empieza fuera */
-        opacity: 1;
+        left: -200px;
+        transform: scale(1);
     }
     50% {
-        left: 50vw; /* Pasa por el centro */
-        transform: scale(1.3); /* Se agranda */
+        left: 50%;
+        transform: scale(1.3);
     }
     100% {
-        left: 110vw; /* Sale por la derecha */
-        opacity: 0;
+        left: 100vw;
+        transform: scale(1);
     }
 }
 
-/* 🔹 Texto "Cerrando sesión..." */
+/* 🔥 Estilos del texto en la pantalla de carga */
 .loading-text {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 2rem;
     font-family: "Bangers", sans-serif;
     color: white;
-    text-shadow: 3px 3px 0 black;
-    margin-top: 20px;
+    text-transform: uppercase;
+    text-shadow:
+            -3px -3px 0 black,
+            3px -3px 0 black,
+            -3px 3px 0 black,
+            3px 3px 0 black;
+    letter-spacing: 2px;
+    animation: fadeIn 1s ease-in-out;
 }
 
-
+/* 🔄 Animación para que aparezca suavemente */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
 
 
