@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Cerrar Sesion">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/validacionAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/validacionAdmin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/cerrarSesion.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/cerrarSesion.js" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Cerrar Sesion" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -119,15 +114,7 @@
       <workItem from="1737988085078" duration="41211000" />
       <workItem from="1738333229998" duration="24243000" />
       <workItem from="1738765007944" duration="13409000" />
-      <workItem from="1738851331085" duration="18454000" />
-    </task>
-    <task id="LOCAL-00004" summary="Prueba">
-      <option name="closed" value="true" />
-      <created>1737048448875</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1737048448875</updated>
+      <workItem from="1738851331085" duration="18797000" />
     </task>
     <task id="LOCAL-00005" summary="Prueba">
       <option name="closed" value="true" />
@@ -513,7 +500,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738873848866</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Cerrar Sesion">
+      <option name="closed" value="true" />
+      <created>1738876208909</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1738876208909</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

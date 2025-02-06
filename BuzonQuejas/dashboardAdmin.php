@@ -1,9 +1,12 @@
 <?php
-
 session_start();
 
-echo $_SESSION['NumNomina'];
-
+if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["Contrasena"]== "" && $_SESSION["Contrasena"]== null) {
+    echo "<META HTTP-EQUIV='REFRESH' CONTENT='1; URL=index.php'>";
+    session_destroy();
+}else{
+    session_start();
+}
 ?>
 
 <!DOCTYPE html>
