@@ -19,23 +19,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode(['status' => 'error', 'message' => 'El número de nómina debe tener 8 dígitos.']);
             exit;
         }
-
         // Validar las credenciales en la base de datos
         $response = validarCredencialesEnDB($NumNomina, $Contrasena);
-        session_start();
-        $_SESSION['NumNomina'] = $NumNomina;
-        $_SESSION['Contrasena'] = $Contrasena;
 
+        if ($response['status'] === 'success') {
+            $_SESSION['NumNomina'] = $NumNomina;
+            $_SESSION['Contrasena'] = $Contrasena;
+            $_SESSION['Conectado'] = true; // Bandera de sesión activa
 
+            echo json_encode(['status' => 'success', 'message' => 'Inicio de sesión exitoso.']);
+        } else {
+            echo json_encode($response);
+        }
     } else {
-        $response = ['status' => 'error', 'message' => 'Datos incompletos.'];
+        echo json_encode(['status' => 'error', 'message' => 'Datos incompletos.']);
     }
 } else {
-    $response = ['status' => 'error', 'message' => 'Se requiere método POST.'];
+    echo json_encode(['status' => 'error', 'message' => 'Se requiere método POST.']);
 }
 
-// Responder en formato JSON
-echo json_encode($response);
 exit();
 
 // Función para validar las credenciales en la base de datos

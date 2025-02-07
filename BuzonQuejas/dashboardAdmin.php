@@ -40,19 +40,15 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <a href="#" id="btn-cerrar-sesion" class="logout-btn">Cerrar Sesión</a>
 
 </div>
-
 <!-- Contenedor Principal -->
 <div class="main-content">
-    <!-- Contenedor del logo -->
     <div class="logo-container">
         <img src="imagenes/Grammer_Logo.jpg" alt="Grammer Logo" class="logo-img">
     </div>
 
-    <!-- Sección inicial: Datos Personales -->
+    <!-- Datos Personales -->
     <div id="datos-personales" class="content comic-container">
         <h2 class="comic-title">Datos Personales</h2>
-
-        <!-- Contenedor de los datos -->
         <div class="personal-info">
             <div class="info-item">
                 <label for="nombre">Nombre:</label>
@@ -63,54 +59,55 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 <input type="text" id="nomina" name="nomina" value="123456" readonly>
             </div>
         </div>
-
-        <!-- Botón para editar -->
         <button type="button" id="editar-btn" class="submit-btn">Editar Datos</button>
     </div>
 
-
-    <!-- Historial de Reportes (oculto por defecto) -->
+    <!-- Historial de Reportes -->
     <div id="historial-reportes" class="content comic-container" style="display: none;">
         <h2 class="comic-title">Historial de Reportes</h2>
-        <table>
+        <table id="tabla-reportes" class="styled-table">
             <thead>
             <tr>
-                <th>Shift Leader</th>
+                <th>Folio</th>
+                <th>Número de Nómina</th>
                 <th>Área</th>
-                <th>Reporte</th>
+                <th>Acción</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Pedro Pérez</td>
-                <td>Producción</td>
-                <td>Reporte 1</td>
-            </tr>
-            <tr>
-                <td>María López</td>
-                <td>Calidad</td>
-                <td>Reporte 2</td>
-            </tr>
+            <!-- Se llenará dinámicamente -->
             </tbody>
         </table>
     </div>
 
-    <!-- Reportes Completos (oculto por defecto) -->
+    <!-- Reportes Completos -->
     <div id="reportes-completos" class="content comic-container" style="display: none;">
         <h2 class="comic-title">Reportes Completos</h2>
         <p>Aquí podrás consultar todos los reportes generados.</p>
     </div>
 </div>
 
-<!-- 🔥 Pantalla de carga con animación de superhéroe -->
-<div id="loading-screen">
-    <img src="imagenes/superhero-sinfondo.png" id="hero-loading" alt="Saliendo...">
-    <p class="loading-text">Cerrando sesión...</p>
+<!-- Modal para Detalle del Reporte -->
+<div id="modal-detalle-reporte" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Detalle del Reporte</h2>
+        <div class="reporte-detalle">
+            <p><strong>Folio:</strong> <span id="detalle-folio"></span></p>
+            <p><strong>Número de Nómina:</strong> <span id="detalle-nomina"></span></p>
+            <p><strong>Fecha de Registro:</strong> <span id="detalle-fecha-registro"></span></p>
+            <p><strong>Fecha de Inicio:</strong> <span id="detalle-fecha-inicio"></span></p>
+            <p><strong>Fecha Finalizada:</strong> <span id="detalle-fecha-finalizada"></span></p>
+            <p><strong>Descripción:</strong> <span id="detalle-descripcion"></span></p>
+            <p><strong>Comentarios:</strong> <span id="detalle-comentarios"></span></p>
+            <p><strong>Estatus:</strong> <span id="detalle-estatus"></span></p>
+        </div>
+    </div>
 </div>
 
-<!-- Vincular el archivo JavaScript -->
+<!-- Scripts -->
 <script src="js/logicaDashboard.js"></script>
 <script src="js/cerrarSesion.js"></script>
-
+<script src="js/historialReportes.js"></script>
 </body>
 </html>
