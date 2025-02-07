@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Cerrar Sesion">
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/js/historialReportes.js" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Historial de Reportes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/validacionAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/validacionAdmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/historialReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/historialReportes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,15 +120,7 @@
       <workItem from="1738333229998" duration="24243000" />
       <workItem from="1738765007944" duration="13409000" />
       <workItem from="1738851331085" duration="18797000" />
-      <workItem from="1738937845041" duration="10456000" />
-    </task>
-    <task id="LOCAL-00005" summary="Prueba">
-      <option name="closed" value="true" />
-      <created>1737049647152</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1737049647152</updated>
+      <workItem from="1738937845041" duration="11305000" />
     </task>
     <task id="LOCAL-00006" summary="Prueba">
       <option name="closed" value="true" />
@@ -514,7 +506,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738876208909</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Historial de Reportes">
+      <option name="closed" value="true" />
+      <created>1738953460105</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1738953460105</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -576,6 +576,7 @@
     <MESSAGE value="Login Usuario y Admin 1.1" />
     <MESSAGE value="Dashboard" />
     <MESSAGE value="Cerrar Sesion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cerrar Sesion" />
+    <MESSAGE value="Historial de Reportes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Historial de Reportes" />
   </component>
 </project>
