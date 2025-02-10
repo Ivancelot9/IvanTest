@@ -101,12 +101,6 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 </div>
 
 
-<!-- 🔥 Aquí aparece el frame cuando se abre el reporte -->
-<div id="frame-container" style="display: none; width: 100%; height: 600px; text-align: center; margin-top: 20px;">
-    <iframe id="frame-reporte" style="width: 80%; height: 100%; border: 3px solid black;"></iframe>
-</div>
-
-
 
 <!-- Scripts -->
 <script src="js/logicaDashboard.js"></script>
