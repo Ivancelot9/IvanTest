@@ -2,9 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("modal-detalle-reporte");
     const closeModal = document.querySelector(".close-modal");
 
-    document.querySelectorAll(".mostrar-reporte").forEach(button => {
-        button.addEventListener("click", () => {
-            const folio = button.getAttribute("data-folio");
+    // 📌 Delegar eventos a los botones de "Mostrar Reporte"
+    document.addEventListener("click", (event) => {
+        if (event.target.classList.contains("mostrar-reporte")) {
+            const folio = event.target.getAttribute("data-folio");
 
             // 📌 Simulación de datos del reporte
             const reportes = {
@@ -19,14 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             modal.style.display = "flex";
-        });
+        }
     });
 
+    // 📌 Cerrar modal al hacer clic en "✖"
     closeModal.addEventListener("click", () => {
         modal.style.display = "none";
     });
 
-    // Cerrar el modal al hacer clic fuera de él
+    // 📌 Cerrar modal al hacer clic fuera de él
     window.addEventListener("click", (event) => {
         if (event.target === modal) {
             modal.style.display = "none";
