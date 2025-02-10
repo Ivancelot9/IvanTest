@@ -589,9 +589,9 @@ table td {
     }
 }
 
-/* Estilos del fondo del modal */
+/* Fondo oscuro del modal */
 .modal {
-    display: none; /* Por defecto, está oculto */
+    display: none; /* Por defecto, oculto */
     position: fixed;
     top: 0;
     left: 0;
@@ -600,33 +600,32 @@ table td {
     background: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
     justify-content: center; /* Centrado horizontal */
     align-items: center; /* Centrado vertical */
-    z-index: 10000; /* Asegura que esté encima de otros elementos */
+    z-index: 10000; /* Asegura que esté encima */
 }
 
-/* Estilos del contenido del modal */
+/* Contenido del modal */
 .modal-content {
     background: white;
     padding: 20px;
-    width: 50%; /* El modal ocupa el 50% del ancho de la pantalla */
-    max-width: 600px; /* Máximo ancho del modal */
+    width: 50%; /* El ancho será el 50% de la pantalla */
+    max-width: 600px; /* Máximo ancho */
     height: auto;
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra elegante */
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Sombra para el modal */
     text-align: center;
+    display: flex;
+    flex-direction: column; /* Distribución en columna */
+    align-items: center;
     position: relative; /* Para posicionar el botón de cerrar */
 }
-
-/* Botón de cerrar */
+/* 📌 Botón de cerrar modal */
 .close-modal {
     cursor: pointer;
     font-size: 20px;
-    font-weight: bold;
     position: absolute;
     top: 10px;
-    right: 15px;
-    color: #000;
+    right: 20px;
 }
-
 
 
 
