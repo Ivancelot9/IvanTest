@@ -589,43 +589,6 @@ table td {
     }
 }
 
-/* Fondo oscuro del modal */
-.modal {
-    display: none; /* Por defecto, oculto */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
-    justify-content: center; /* Centrado horizontal */
-    align-items: center; /* Centrado vertical */
-    z-index: 10000; /* Asegura que esté encima */
-}
-
-/* Contenido del modal */
-.modal-content {
-    background: white;
-    padding: 20px;
-    width: 50%; /* El ancho será el 50% de la pantalla */
-    max-width: 600px; /* Máximo ancho */
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Sombra para el modal */
-    text-align: center;
-    display: flex;
-    flex-direction: column; /* Distribución en columna */
-    align-items: center;
-    position: relative; /* Para posicionar el botón de cerrar */
-}
-/* 📌 Botón de cerrar modal */
-.close-modal {
-    cursor: pointer;
-    font-size: 20px;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-}
 
 
 
