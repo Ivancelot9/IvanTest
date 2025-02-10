@@ -590,58 +590,74 @@ table td {
 }
 
 
-/*Ventana Emergente del Boton Historial de Reportes*/
-.reporte-detalle {
+/* Fondo del modal */
+.modal {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 900px;
-    max-height: 90%;
-    overflow-y: auto;
-    background-color: #fff;
-    border: 5px solid #000;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque */
+    display: none; /* Se mostrará con JavaScript */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+/* Cuando el modal está activo */
+.modal.show {
+    display: flex; /* Ahora sí se activa sin conflictos */
+}
+
+/* Contenedor del modal con efecto de hoja */
+.modal-content {
+    background: #fff;
+    width: 500px;
     padding: 20px;
-    font-family: 'Bangers', cursive;
-    animation: slide-in 0.3s ease-out;
+    border: 8px solid black;
+    box-shadow: 10px 10px 0 black, 5px 5px 0 #1094e0;
+    border-radius: 15px;
+    transform: scale(0.7); /* Inicialmente más pequeño */
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    font-family: "Bangers", sans-serif;
 }
 
-@keyframes slide-in {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -60%);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
+/* Cuando el modal está activo */
+.modal.show .modal-content {
+    transform: scale(1);
+    opacity: 1;
 }
 
-.close-btn {
+/* Botón de cerrar con estilo cómic */
+.close-modal {
     position: absolute;
     top: 10px;
-    right: 10px;
-    font-size: 24px;
-    background: none;
-    border: none;
+    right: 15px;
+    font-size: 2rem;
     cursor: pointer;
-    color: #000;
-    transition: color 0.3s;
-}
-
-.close-btn:hover {
     color: red;
+    text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
 }
 
-.reporte-info p {
-    font-size: 18px;
-    margin: 10px 0;
-    color: #333;
-    line-height: 1.5;
+.close-modal:hover {
+    color: darkred;
+}
+
+/* Estilos para el contenido del reporte */
+.reporte-detalle {
+    font-size: 1.3rem;
+    color: black;
+}
+
+.reporte-detalle p {
+    background: #f8f8f8;
+    padding: 10px;
+    border: 2px solid black;
+    box-shadow: 3px 3px 0 black;
+    margin-bottom: 10px;
+    border-radius: 5px;
 }
 
 
