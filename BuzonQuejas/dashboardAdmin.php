@@ -87,7 +87,6 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     </div>
 </div>
 
-<!-- Modal para Detalle del Reporte -->
 <div id="modal-detalle-reporte" class="modal">
     <div class="modal-content">
         <span class="close-modal">&times;</span>
@@ -98,7 +97,6 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
             <p><strong>📅 Fecha de Registro:</strong> <span id="detalle-fecha-registro"></span></p>
             <p><strong>🕒 Fecha de Inicio:</strong> <span id="detalle-fecha-inicio"></span></p>
             <p><strong>✅ Fecha Finalizada:</strong> <span id="detalle-fecha-finalizada"></span></p>
-            <p><strong>📝 Descripción:</strong> <span id="detalle-descripcion"></span></p>
             <p><strong>💬 Comentarios:</strong> <span id="detalle-comentarios"></span></p>
             <p><strong>📊 Estatus:</strong> <span id="detalle-estatus"></span></p>
         </div>
