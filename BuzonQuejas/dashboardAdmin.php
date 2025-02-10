@@ -101,18 +101,12 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 </div>
 
 
-<!-- 📌 MODAL (Pantalla del Reporte) -->
-<div id="modal-detalle-reporte" class="modal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h2>📜 Detalle del Reporte</h2>
-        <p><strong>Folio:</strong> <span id="detalle-folio"></span></p>
-        <p><strong>Número de Nómina:</strong> <span id="detalle-nomina"></span></p>
-        <p><strong>Área:</strong> <span id="detalle-area"></span></p>
-        <p><strong>Descripción:</strong> <span id="detalle-descripcion"></span></p>
-        <p><strong>📊 Estatus:</strong> <span id="detalle-estatus"></span></p>
-    </div>
+<!-- IFRAME FLOTANTE -->
+<div id="iframe-container" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 9999; align-items: center; justify-content: center;">
+    <iframe id="iframe-content" style="width: 80%; height: 80%; border: none; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);"></iframe>
+    <button id="close-iframe" style="position: absolute; top: 20px; right: 20px; padding: 10px 20px; font-size: 16px; background: #ff4d4d; color: white; border: none; border-radius: 5px; cursor: pointer;">Cerrar</button>
 </div>
+
 
 
 <!-- Scripts -->

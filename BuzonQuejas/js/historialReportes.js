@@ -1,52 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("📌 Script del modal cargado correctamente");
+    console.log("📌 Script del iframe cargado correctamente");
 
-    const modal = document.getElementById("modal-detalle-reporte");
-    const closeModal = document.querySelector(".close-modal");
+    const iframeContainer = document.getElementById("iframe-container");
+    const iframeContent = document.getElementById("iframe-content");
+    const closeIframe = document.getElementById("close-iframe");
     const botonesMostrar = document.querySelectorAll(".mostrar-reporte");
 
-    if (!modal || !closeModal || botonesMostrar.length === 0) {
-        console.error("❌ ERROR: No se encontró el modal, el botón de cerrar o los botones de reporte.");
+    if (!iframeContainer || !iframeContent || !closeIframe || botonesMostrar.length === 0) {
+        console.error("❌ ERROR: No se encontró el iframe, el botón de cerrar o los botones de reporte.");
         return;
     }
 
-    // 📌 Datos de prueba
     const reportes = {
-        "001": { folio: "001", nomina: "123456", area: "Sistemas", descripcion: "Soporte técnico realizado", estatus: "Completado" },
-        "002": { folio: "002", nomina: "654321", area: "Recursos Humanos", descripcion: "Evaluación de personal", estatus: "Pendiente" }
+        "001": "reporte-001.html", // Ruta al archivo HTML del reporte
+        "002": "reporte-002.html"  // Ruta al archivo HTML del reporte
     };
 
-    // ✅ EVENTO PARA ABRIR EL MODAL
+    // Abrir iframe con el contenido correspondiente
     botonesMostrar.forEach(boton => {
         boton.addEventListener("click", (event) => {
-            console.log("✅ Intentando abrir el modal...");
             const folio = event.target.getAttribute("data-folio");
-
             if (reportes[folio]) {
-                document.getElementById("detalle-folio").textContent = reportes[folio].folio;
-                document.getElementById("detalle-nomina").textContent = reportes[folio].nomina;
-                document.getElementById("detalle-area").textContent = reportes[folio].area;
-                document.getElementById("detalle-descripcion").textContent = reportes[folio].descripcion;
-                document.getElementById("detalle-estatus").textContent = reportes[folio].estatus;
-
-                modal.style.display = "flex"; // 🔥 Aquí se muestra el modal
+                iframeContent.src = reportes[folio]; // Cargar el contenido en el iframe
+                iframeContainer.style.display = "flex"; // Mostrar el iframe flotante
             } else {
-                console.warn("⚠️ No hay datos para este folio.");
+                console.warn("⚠️ No hay contenido para este folio.");
             }
         });
     });
 
-    // ✅ EVENTO PARA CERRAR EL MODAL (BOTÓN "X")
-    closeModal.addEventListener("click", () => {
-        console.log("❌ Cerrar modal");
-        modal.style.display = "none";
-    });
-
-    // ✅ CERRAR EL MODAL AL HACER CLIC FUERA DE ÉL
-    window.addEventListener("click", (event) => {
-        if (event.target === modal) {
-            console.log("❌ Cerrar modal al hacer clic fuera");
-            modal.style.display = "none";
-        }
+    // Cerrar iframe
+    closeIframe.addEventListener("click", () => {
+        iframeContainer.style.display = "none";
+        iframeContent.src = ""; // Limpia el contenido del iframe
     });
 });
