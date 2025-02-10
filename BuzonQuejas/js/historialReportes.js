@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeModal = document.querySelector(".close-modal");
     const botonesMostrar = document.querySelectorAll(".mostrar-reporte");
 
-    // Verifica la existencia de los elementos
     if (!modal || !closeModal || botonesMostrar.length === 0) {
         console.error("❌ ERROR: No se encontró el modal, el botón de cerrar o los botones de reporte.");
         return;
@@ -24,8 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const folio = event.target.getAttribute("data-folio");
 
-            // Rellena los datos del modal si el folio existe
             if (reportes[folio]) {
+                // Rellena los datos del modal
                 document.getElementById("detalle-folio").textContent = reportes[folio].folio;
                 document.getElementById("detalle-nomina").textContent = reportes[folio].nomina;
                 document.getElementById("detalle-area").textContent = reportes[folio].area;
@@ -33,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("detalle-estatus").textContent = reportes[folio].estatus;
 
                 // Mostrar el modal
-                modal.style.display = "flex"; // Cambia a flexbox para centrarlo
+                modal.style.display = "flex";
             } else {
                 console.warn("⚠️ No hay datos para este folio.");
             }

@@ -600,7 +600,7 @@ table td {
     background: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
     justify-content: center; /* Centrado horizontal */
     align-items: center; /* Centrado vertical */
-    z-index: 10000; /* Asegura que esté encima de otros elementos */
+    z-index: 10000; /* Asegura que esté encima */
 }
 
 /* Estilos del contenido del modal */
@@ -626,6 +626,7 @@ table td {
     right: 15px;
     color: #000;
 }
+
 
 
 
