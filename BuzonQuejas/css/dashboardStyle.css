@@ -589,49 +589,47 @@ table td {
     }
 }
 
-/* Estilo general para el modal */
+/* Fondo general del modal */
 .modal {
     position: fixed; /* Siempre encima del contenido */
     top: 0;
     left: 0;
-    width: 100%; /* Cubrir todo el ancho */
-    height: 100%; /* Cubrir todo el alto */
-    background: rgba(0, 0, 0, 0.7); /* Oscurecer el fondo */
-    backdrop-filter: blur(5px); /* Efecto de desenfoque */
+    width: 100%; /* Cubre todo el ancho */
+    height: 100%; /* Cubre todo el alto */
+    background: rgba(0, 0, 0, 0.7); /* Oscurece el fondo */
     display: none; /* Oculto inicialmente */
-    align-items: center; /* Centrar verticalmente */
-    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
     z-index: 9999; /* Asegura que esté sobre todo */
-    overflow: hidden; /* Oculta el scroll del modal */
 }
 
-/* Cuando el modal está activo */
+/* Muestra el modal cuando tiene la clase .show */
 .modal.show {
-    display: flex; /* Lo muestra con flexbox */
+    display: flex;
 }
 
 /* Contenedor del modal */
 .modal-content {
-    background: #fff;
-    width: 600px; /* Ancho estándar del modal */
-    max-width: 90%; /* Adaptable en pantallas pequeñas */
+    background: white;
+    width: 600px; /* Ancho del modal */
+    max-width: 90%; /* Adaptable a pantallas pequeñas */
     height: auto; /* Ajuste automático */
-    max-height: 90%; /* No excede la pantalla */
-    padding: 20px; /* Espaciado interno */
-    border: 5px solid black; /* Estilo cómic */
+    max-height: 90%; /* Evita que sobrepase la pantalla */
+    padding: 20px;
+    border: 5px solid black; /* Estilo de borde cómic */
     border-radius: 15px; /* Esquinas redondeadas */
-    box-shadow: 10px 10px 0 black, 5px 5px 0 #1094e0; /* Estilo de sombra cómic */
-    transform: scale(0.7); /* Tamaño inicial para animación */
-    opacity: 0; /* Invisible inicialmente */
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out; /* Animación */
-    overflow-y: auto; /* Habilita el scroll si es necesario */
-    font-family: "Bangers", sans-serif; /* Fuente personalizada */
+    box-shadow: 10px 10px 0 black, 5px 5px 0 #1094e0; /* Sombras estilo cómic */
+    overflow-y: auto; /* Scroll si es necesario */
+    font-family: "Bangers", sans-serif; /* Fuente cómic */
+    transform: scale(0.7); /* Inicia más pequeño */
+    opacity: 0; /* Inicialmente invisible */
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out; /* Animaciones */
 }
 
-/* Cuando el modal está activo */
+/* Cuando el modal está visible */
 .modal.show .modal-content {
-    transform: scale(1); /* Escala completa */
-    opacity: 1; /* Totalmente visible */
+    transform: scale(1); /* Tamaño completo */
+    opacity: 1; /* Visible */
 }
 
 /* Botón de cerrar */
@@ -642,25 +640,14 @@ table td {
     font-size: 1.5rem;
     cursor: pointer;
     color: red;
-    text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
     z-index: 10000;
 }
 
-.close-modal:hover {
-    color: darkred;
-}
-
-/* Detalles del reporte */
+/* Estilo para los detalles */
 .reporte-detalle p {
     font-size: 1.2rem;
     color: black;
-    background: #f8f8f8;
-    padding: 10px;
-    border: 2px solid black;
-    box-shadow: 3px 3px 0 black;
     margin-bottom: 10px;
-    border-radius: 5px;
-    line-height: 1.5;
 }
 
 /* Deshabilitar el scroll del fondo cuando el modal está activo */

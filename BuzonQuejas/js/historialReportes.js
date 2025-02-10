@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Referencias a elementos
-    const modal = document.getElementById("modal-detalle-reporte"); // El modal
-    const closeModal = modal.querySelector(".close-modal"); // Botón de cerrar del modal
-    const body = document.body; // Cuerpo del documento
+    // Referencias al modal
+    const modal = document.getElementById("modal-detalle-reporte");
+    const closeModal = modal.querySelector(".close-modal");
+    const body = document.body;
 
-    // Datos de los reportes (puedes reemplazarlos con los tuyos)
+    // Datos de ejemplo
     const reportes = {
         "001": {
             folio: "001",
@@ -28,34 +28,32 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Función para cargar la tabla de reportes
+    // Carga la tabla de reportes
     function cargarTabla() {
-        const tabla = document.querySelector("#tabla-reportes tbody"); // Selecciona el tbody de la tabla
+        const tabla = document.querySelector("#tabla-reportes tbody");
         tabla.innerHTML = ""; // Limpia la tabla
 
-        // Itera sobre los reportes y crea filas dinámicamente
+        // Crea dinámicamente las filas de la tabla
         Object.keys(reportes).forEach((folio) => {
             const reporte = reportes[folio];
             const fila = document.createElement("tr");
-
             fila.innerHTML = `
                 <td>${reporte.folio}</td>
                 <td>${reporte.numeroNomina}</td>
                 <td>${reporte.descripcion}</td>
                 <td><button class="mostrar-reporte" data-folio="${reporte.folio}">Mostrar Reporte</button></td>
             `;
-
-            tabla.appendChild(fila); // Agrega la fila a la tabla
+            tabla.appendChild(fila);
         });
 
-        // Agrega eventos a los botones de "Mostrar Reporte"
+        // Agrega eventos a los botones
         document.querySelectorAll(".mostrar-reporte").forEach((boton) => {
             boton.addEventListener("click", (e) => {
-                const folio = e.target.dataset.folio; // Obtén el folio del botón
-                const datos = reportes[folio]; // Obtén los datos del reporte
+                const folio = e.target.dataset.folio;
+                const datos = reportes[folio];
 
                 if (datos) {
-                    // Llena los datos del modal
+                    // Llena el modal con los datos del reporte
                     document.getElementById("detalle-folio").textContent = datos.folio;
                     document.getElementById("detalle-nomina").textContent = datos.numeroNomina;
                     document.getElementById("detalle-descripcion").textContent = datos.descripcion;
@@ -67,26 +65,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     // Muestra el modal
                     modal.classList.add("show");
-                    body.classList.add("modal-open"); // Desactiva el scroll del fondo
+                    body.classList.add("modal-open");
                 }
             });
         });
     }
 
-    // Cerrar el modal
+    // Evento para cerrar el modal
     closeModal.addEventListener("click", () => {
-        modal.classList.remove("show"); // Oculta el modal
-        body.classList.remove("modal-open"); // Reactiva el scroll del fondo
+        modal.classList.remove("show");
+        body.classList.remove("modal-open");
     });
 
-    // Cerrar el modal al hacer clic fuera de él
+    // Cierra el modal al hacer clic fuera de él
     modal.addEventListener("click", (e) => {
-        if (e.target === modal) { // Verifica que se haga clic fuera del contenido
+        if (e.target === modal) {
             modal.classList.remove("show");
             body.classList.remove("modal-open");
         }
     });
 
-    // Carga inicial de la tabla de reportes
+    // Cargar la tabla de reportes al iniciar
     cargarTabla();
 });
