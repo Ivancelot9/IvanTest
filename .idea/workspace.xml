@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Historial de Reportes 1.4" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Historial de Reportes 1.4">
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/historialReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/historialReportes.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,15 +118,7 @@
       <workItem from="1738765007944" duration="13409000" />
       <workItem from="1738851331085" duration="18797000" />
       <workItem from="1738937845041" duration="13699000" />
-      <workItem from="1739197086312" duration="17702000" />
-    </task>
-    <task id="LOCAL-00051" summary="Dashboard">
-      <option name="closed" value="true" />
-      <created>1738789470182</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1738789470183</updated>
+      <workItem from="1739197086312" duration="17888000" />
     </task>
     <task id="LOCAL-00052" summary="Cerrar Sesion">
       <option name="closed" value="true" />
@@ -510,7 +504,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739219971791</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="Historial de Reportes 1.4">
+      <option name="closed" value="true" />
+      <created>1739220220716</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1739220220716</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
