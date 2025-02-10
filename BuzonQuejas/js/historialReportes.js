@@ -6,10 +6,16 @@ document.addEventListener("DOMContentLoaded", function () {
         boton.addEventListener("click", function () {
             const folio = this.getAttribute("data-folio");
 
-            // Crear ventana emergente con detalles del reporte
+            // 🔹 Primero abrimos la ventana emergente (para evitar bloqueos)
             const popup = window.open("", "Reporte", "width=600,height=400");
 
-            // Escribir contenido del reporte con el atributo lang="es"
+            // 🔹 Verificamos si la ventana se abrió correctamente
+            if (!popup) {
+                alert("⚠️ La ventana emergente fue bloqueada. Habilita los pop-ups en tu navegador.");
+                return;
+            }
+
+            // 🔹 Escribir contenido cuando la ventana esté lista
             popup.document.write(`
                 <!DOCTYPE html>
                 <html lang="es">
@@ -68,6 +74,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 </body>
                 </html>
             `);
+
+            // 🔹 Esperamos a que la ventana termine de cargarse antes de manipular su contenido
+            popup.document.close(); // 🔥 Cierra el flujo de escritura para evitar errores
         });
     });
 });
