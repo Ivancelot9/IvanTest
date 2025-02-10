@@ -101,18 +101,15 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 
 
 <!-- 📌 MODAL (Pantalla del Reporte) -->
-<div id="modal-detalle-reporte" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); align-items: center; justify-content: center;">
-    <div class="modal-content" style="background: white; padding: 20px; width: 50%; height: 60%; position: relative;">
-        <span class="close-modal" style="cursor: pointer; font-size: 20px; position: absolute; top: 10px; right: 20px;">&times;</span>
+<div id="modal-detalle-reporte" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
         <h2>📜 Detalle del Reporte</h2>
         <p><strong>Folio:</strong> <span id="detalle-folio"></span></p>
         <p><strong>Número de Nómina:</strong> <span id="detalle-nomina"></span></p>
         <p><strong>Área:</strong> <span id="detalle-area"></span></p>
-        <p><strong>Descripción:</strong> <span id="detalle-descripcion"></span></p> <!-- 🆕 Agregado -->
+        <p><strong>Descripción:</strong> <span id="detalle-descripcion"></span></p>
         <p><strong>📊 Estatus:</strong> <span id="detalle-estatus"></span></p>
-
-
-
     </div>
 </div>
 
