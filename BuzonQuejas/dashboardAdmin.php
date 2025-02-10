@@ -109,6 +109,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
         <p><strong>Área:</strong> <span id="detalle-area"></span></p>
         <p><strong>Descripción:</strong> <span id="detalle-descripcion"></span></p> <!-- 🆕 Agregado -->
 
+
     </div>
 </div>
 
