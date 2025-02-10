@@ -1,66 +1,53 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("📌 Script cargado correctamente");
+    console.log("📌 Script del modal cargado correctamente");
 
     // 📌 Referencias al modal y al botón de cerrar
     const modal = document.getElementById("modal-detalle-reporte");
     const closeModal = document.querySelector(".close-modal");
+    const botonesMostrar = document.querySelectorAll(".mostrar-reporte"); // Captura todos los botones
 
-    // 📌 Verificación de existencia del modal
-    if (!modal || !closeModal) {
-        console.error("❌ ERROR: No se encontró el modal o el botón de cerrar.");
+    // 📌 Verifica que los elementos existen antes de continuar
+    if (!modal || !closeModal || botonesMostrar.length === 0) {
+        console.error("❌ ERROR: No se encontró el modal, el botón de cerrar o los botones de reporte.");
         return;
     }
 
-    // 📌 Delegación de eventos para manejar clics en "Mostrar Reporte"
-    document.addEventListener("click", (event) => {
-        if (event.target.classList.contains("mostrar-reporte")) {
+    // 📌 Datos de los reportes (Simulados)
+    const reportes = {
+        "001": { folio: "001", nomina: "123456", area: "Sistemas", descripcion: "Soporte técnico realizado", estatus: "Completado" },
+        "002": { folio: "002", nomina: "654321", area: "Recursos Humanos", descripcion: "Evaluación de personal", estatus: "Pendiente" }
+    };
+
+    // 📌 Mostrar el modal cuando se haga clic en un botón de reporte
+    botonesMostrar.forEach(boton => {
+        boton.addEventListener("click", (event) => {
             console.log("✅ Botón de Mostrar Reporte clickeado");
 
             const folio = event.target.getAttribute("data-folio");
 
-            // 📌 Simulación de datos del reporte
-            const reportes = {
-                "001": { folio: "001", nomina: "123456", area: "Sistemas", descripcion: "Soporte técnico realizado", estatus: "Completado" },
-                "002": { folio: "002", nomina: "654321", area: "Recursos Humanos", descripcion: "Evaluación de personal", estatus: "Pendiente" }
-            };
-
             if (reportes[folio]) {
-                // 📌 Verifica que los elementos existen antes de modificar su contenido
-                const detalleFolio = document.getElementById("detalle-folio");
-                const detalleNomina = document.getElementById("detalle-nomina");
-                const detalleArea = document.getElementById("detalle-area");
-                const detalleDescripcion = document.getElementById("detalle-descripcion");
-                const detalleEstatus = document.getElementById("detalle-estatus");
-
-                if (!detalleFolio || !detalleNomina || !detalleArea || !detalleDescripcion || !detalleEstatus) {
-                    console.error("❌ ERROR: Faltan elementos en el modal.");
-                    return;
-                }
-
-                // 📌 Asignar datos al modal
-                detalleFolio.textContent = reportes[folio].folio;
-                detalleNomina.textContent = reportes[folio].nomina;
-                detalleArea.textContent = reportes[folio].area;
-                detalleDescripcion.textContent = reportes[folio].descripcion;
-                detalleEstatus.textContent = reportes[folio].estatus; // 🆕 Nueva asignación
+                // 📌 Asigna los valores en el modal
+                document.getElementById("detalle-folio").textContent = reportes[folio].folio;
+                document.getElementById("detalle-nomina").textContent = reportes[folio].nomina;
+                document.getElementById("detalle-area").textContent = reportes[folio].area;
+                document.getElementById("detalle-descripcion").textContent = reportes[folio].descripcion;
+                document.getElementById("detalle-estatus").textContent = reportes[folio].estatus;
 
                 // 📌 Mostrar el modal correctamente
                 modal.style.display = "flex";
-                modal.style.alignItems = "center";
-                modal.style.justifyContent = "center";
             } else {
                 console.warn("⚠️ No hay datos para este folio.");
             }
-        }
+        });
     });
 
-    // 📌 Cerrar modal al hacer clic en "✖"
+    // 📌 Cerrar el modal cuando se haga clic en el botón de cerrar (✖)
     closeModal.addEventListener("click", () => {
         console.log("❌ Cerrar modal");
         modal.style.display = "none";
     });
 
-    // 📌 Cerrar modal al hacer clic fuera de él
+    // 📌 Cerrar el modal cuando se haga clic fuera de él
     window.addEventListener("click", (event) => {
         if (event.target === modal) {
             console.log("❌ Cerrar modal al hacer clic fuera");
