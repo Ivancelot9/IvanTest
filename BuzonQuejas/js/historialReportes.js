@@ -29,7 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("detalle-estatus").textContent = reportes[folio].estatus;
 
                 // 📌 Mostrar el modal correctamente
-                modal.style.display = "flex";
+                modal.style.display = "flex"; // Se activa con flexbox
+                modal.style.alignItems = "center";
+                modal.style.justifyContent = "center";
             } else {
                 console.warn("⚠️ No hay datos para este folio.");
             }

@@ -589,18 +589,18 @@ table td {
     }
 }
 
-/* 📌 Estilos para el modal */
+/* 📌 Modal - Fondo oscuro */
 .modal {
-    display: none; /* Se muestra con JS */
+    display: none; /* Se activa con JS */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro con opacidad */
     align-items: center;
-    z-index: 9999; /* Asegura que esté por encima */
+    justify-content: center;
+    z-index: 10000; /* Asegura que esté por encima */
 }
 
 /* 📌 Contenido del modal */
@@ -610,6 +610,7 @@ table td {
     width: 50%;
     max-width: 600px; /* No más ancho que esto */
     height: auto;
+    min-height: 300px; /* Asegura que tenga un tamaño mínimo */
     border-radius: 10px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
@@ -617,6 +618,17 @@ table td {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
+
+/* 📌 Botón de cerrar modal */
+.close-modal {
+    cursor: pointer;
+    font-size: 20px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
 
 
