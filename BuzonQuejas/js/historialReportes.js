@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("modal-detalle-reporte");
     const closeModal = modal.querySelector(".close-modal");
+    const body = document.body;
 
     const reportes = {
         "001": { folio: "001", numeroNomina: "123456", descripcion: "Reporte de prueba 1", estatus: "Completado", fechaRegistro: "01/02/2025", fechaInicio: "02/02/2025", fechaFinalizada: "05/02/2025", comentarios: "Reporte finalizado sin problemas" },
@@ -31,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const datos = reportes[folio];
 
                 if (datos) {
+                    // Rellenar los datos del modal
                     document.getElementById("detalle-folio").textContent = datos.folio;
                     document.getElementById("detalle-nomina").textContent = datos.numeroNomina;
                     document.getElementById("detalle-descripcion").textContent = datos.descripcion;
@@ -40,18 +42,21 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.getElementById("detalle-fecha-finalizada").textContent = datos.fechaFinalizada;
                     document.getElementById("detalle-comentarios").textContent = datos.comentarios;
 
-                    modal.classList.add("show"); // Aparece con animación
+                    // Mostrar el modal
+                    modal.classList.add("show");
                     modal.style.display = "flex";
+                    body.classList.add("modal-open");
                 }
             });
         });
     }
 
     closeModal.addEventListener("click", () => {
-        modal.classList.remove("show"); // Oculta con animación
+        modal.classList.remove("show");
         setTimeout(() => {
             modal.style.display = "none";
         }, 300);
+        body.classList.remove("modal-open");
     });
 
     cargarTabla();
