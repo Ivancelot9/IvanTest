@@ -107,6 +107,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
         <p><strong>Folio:</strong> <span id="detalle-folio"></span></p>
         <p><strong>Número de Nómina:</strong> <span id="detalle-nomina"></span></p>
         <p><strong>Área:</strong> <span id="detalle-area"></span></p>
+
     </div>
 </div>
 
