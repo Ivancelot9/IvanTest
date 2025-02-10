@@ -101,10 +101,9 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 </div>
 
 
-<!-- IFRAME FLOTANTE -->
-<div id="iframe-container" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 9999; align-items: center; justify-content: center;">
-    <iframe id="iframe-content" style="width: 80%; height: 80%; border: none; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);"></iframe>
-    <button id="close-iframe" style="position: absolute; top: 20px; right: 20px; padding: 10px 20px; font-size: 16px; background: #ff4d4d; color: white; border: none; border-radius: 5px; cursor: pointer;">Cerrar</button>
+<!-- 🔥 Aquí aparece el frame cuando se abre el reporte -->
+<div id="frame-container" style="display: none; width: 100%; height: 600px; text-align: center; margin-top: 20px;">
+    <iframe id="frame-reporte" style="width: 80%; height: 100%; border: 3px solid black;"></iframe>
 </div>
 
 
