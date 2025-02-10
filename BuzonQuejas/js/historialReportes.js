@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Referencias al modal
-    const modal = document.getElementById("modal-detalle-reporte");
-    const closeModal = modal.querySelector(".close-modal");
-    const body = document.body;
+    // Referencias principales
+    const modal = document.getElementById("modal-detalle-reporte"); // Modal
+    const closeModal = modal.querySelector(".close-modal"); // Botón de cerrar
+    const body = document.body; // Para manejar el scroll
 
-    // Datos de ejemplo
+    // Datos simulados de los reportes
     const reportes = {
         "001": {
             folio: "001",
@@ -28,32 +28,37 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Carga la tabla de reportes
+    // Cargar la tabla de reportes
     function cargarTabla() {
         const tabla = document.querySelector("#tabla-reportes tbody");
-        tabla.innerHTML = ""; // Limpia la tabla
+        tabla.innerHTML = ""; // Limpia cualquier contenido previo
 
-        // Crea dinámicamente las filas de la tabla
+        // Generar filas dinámicamente
         Object.keys(reportes).forEach((folio) => {
             const reporte = reportes[folio];
             const fila = document.createElement("tr");
+
             fila.innerHTML = `
                 <td>${reporte.folio}</td>
                 <td>${reporte.numeroNomina}</td>
                 <td>${reporte.descripcion}</td>
-                <td><button class="mostrar-reporte" data-folio="${reporte.folio}">Mostrar Reporte</button></td>
+                <td>
+                    <button class="mostrar-reporte" data-folio="${reporte.folio}">
+                        Mostrar Reporte
+                    </button>
+                </td>
             `;
-            tabla.appendChild(fila);
+            tabla.appendChild(fila); // Agregar fila a la tabla
         });
 
-        // Agrega eventos a los botones
+        // Asignar eventos a los botones
         document.querySelectorAll(".mostrar-reporte").forEach((boton) => {
             boton.addEventListener("click", (e) => {
-                const folio = e.target.dataset.folio;
-                const datos = reportes[folio];
+                const folio = e.target.dataset.folio; // Obtener el folio del reporte
+                const datos = reportes[folio]; // Obtener datos del reporte
 
                 if (datos) {
-                    // Llena el modal con los datos del reporte
+                    // Llenar el modal con los datos del reporte
                     document.getElementById("detalle-folio").textContent = datos.folio;
                     document.getElementById("detalle-nomina").textContent = datos.numeroNomina;
                     document.getElementById("detalle-descripcion").textContent = datos.descripcion;
@@ -63,9 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.getElementById("detalle-fecha-finalizada").textContent = datos.fechaFinalizada;
                     document.getElementById("detalle-comentarios").textContent = datos.comentarios;
 
-                    // Muestra el modal
+                    // Mostrar el modal
                     modal.classList.add("show");
-                    body.classList.add("modal-open");
+                    body.classList.add("modal-open"); // Desactiva el scroll del fondo
                 }
             });
         });
@@ -73,11 +78,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Evento para cerrar el modal
     closeModal.addEventListener("click", () => {
-        modal.classList.remove("show");
-        body.classList.remove("modal-open");
+        modal.classList.remove("show"); // Ocultar modal
+        body.classList.remove("modal-open"); // Reactivar scroll
     });
 
-    // Cierra el modal al hacer clic fuera de él
+    // Cerrar el modal al hacer clic fuera de él
     modal.addEventListener("click", (e) => {
         if (e.target === modal) {
             modal.classList.remove("show");
