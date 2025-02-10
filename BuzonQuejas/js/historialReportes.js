@@ -1,80 +1,53 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Seleccionamos todos los botones "Mostrar Reporte"
+    const historialReportes = document.getElementById("historial-reportes");
+
+    // 🔹 Crear el contenedor del reporte una sola vez
+    let reporteDetalle = document.createElement("div");
+    reporteDetalle.id = "reporte-detalle";
+    reporteDetalle.style.display = "none"; // Inicialmente oculto
+    reporteDetalle.innerHTML = `
+        <div class="reporte-contenedor">
+            <h2>Detalles del Reporte</h2>
+            <p><strong>Folio:</strong> <span id="detalle-folio"></span></p>
+            <p><strong>Área:</strong> <span id="detalle-area"></span></p>
+            <p><strong>Fecha:</strong> <span id="detalle-fecha"></span></p>
+            <p><strong>Estado:</strong> <span id="detalle-estado"></span></p>
+            <p><strong>Descripción:</strong> <span id="detalle-descripcion"></span></p>
+            <button id="cerrar-reporte">Cerrar</button>
+        </div>
+    `;
+
+    // Agregar el contenedor al DOM antes de la tabla
+    historialReportes.insertBefore(reporteDetalle, historialReportes.firstChild);
+
+    // Seleccionar todos los botones "Mostrar Reporte"
     document.querySelectorAll(".mostrar-reporte").forEach((boton) => {
         boton.addEventListener("click", function () {
             const folio = this.getAttribute("data-folio");
 
-            // 🔹 Primero abrimos la ventana emergente (para evitar bloqueos)
-            const popup = window.open("", "_blank", "width=600,height=400");
+            // Simulación de carga de datos del reporte
+            const reportes = {
+                "001": { area: "Sistemas", fecha: "10/02/2025", estado: "En revisión", descripcion: "Reporte detallado del folio 001." },
+                "002": { area: "Recursos Humanos", fecha: "11/02/2025", estado: "Pendiente", descripcion: "Reporte detallado del folio 002." }
+            };
 
-            // 🔹 Verificamos si la ventana se abrió correctamente
-            if (!popup) {
-                alert("⚠️ La ventana emergente fue bloqueada. Habilita los pop-ups en tu navegador.");
-                return;
-            }
+            // Obtener datos del reporte
+            const datos = reportes[folio] || { area: "Desconocido", fecha: "N/A", estado: "N/A", descripcion: "No hay información." };
 
-            // 🔹 Esperamos a que la ventana esté lista antes de escribir en ella
-            setTimeout(() => {
-                popup.document.write(`
-                    <!DOCTYPE html>
-                    <html lang="es">
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>Reporte ${folio}</title>
-                        <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
-                        <style>
-                            body {
-                                font-family: 'Bangers', cursive;
-                                background: #fff;
-                                text-align: center;
-                                padding: 20px;
-                            }
-                            .reporte-container {
-                                border: 3px solid #000;
-                                padding: 20px;
-                                background: #fffae6;
-                                box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-                                width: 90%;
-                                margin: auto;
-                            }
-                            h2 {
-                                color: #ff4500;
-                            }
-                            .info {
-                                text-align: left;
-                                margin: 10px 0;
-                            }
-                            button {
-                                background: #ff4500;
-                                color: white;
-                                border: none;
-                                padding: 10px;
-                                font-size: 16px;
-                                cursor: pointer;
-                            }
-                            button:hover {
-                                background: #d40000;
-                            }
-                        </style>
-                    </head>
-                    <body>
-                        <div class="reporte-container">
-                            <h2>Reporte ${folio}</h2>
-                            <div class="info">
-                                <p><strong>Folio:</strong> ${folio}</p>
-                                <p><strong>Área:</strong> Sistemas</p>
-                                <p><strong>Fecha:</strong> 10/02/2025</p>
-                                <p><strong>Estado:</strong> En revisión</p>
-                                <p><strong>Descripción:</strong> Aquí se muestra toda la información detallada del reporte.</p>
-                            </div>
-                            <button onclick="window.print()">Imprimir</button>
-                        </div>
-                    </body>
-                    </html>
-                `);
-                popup.document.close(); // 🔥 Cierra el flujo de escritura para evitar errores
-            }, 500);
+            // Llenar el reporte con los datos
+            document.getElementById("detalle-folio").textContent = folio;
+            document.getElementById("detalle-area").textContent = datos.area;
+            document.getElementById("detalle-fecha").textContent = datos.fecha;
+            document.getElementById("detalle-estado").textContent = datos.estado;
+            document.getElementById("detalle-descripcion").textContent = datos.descripcion;
+
+            // Mostrar el reporte
+            reporteDetalle.style.display = "block";
         });
+    });
+
+    // Evento para cerrar el reporte
+    document.getElementById("cerrar-reporte").addEventListener("click", function () {
+        reporteDetalle.style.display = "none";
     });
 });
