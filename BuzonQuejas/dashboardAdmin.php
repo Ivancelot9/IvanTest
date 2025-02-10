@@ -75,7 +75,18 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
             </tr>
             </thead>
             <tbody>
-            <!-- Se llenará dinámicamente -->
+            <tr>
+                <td>001</td>
+                <td>123456</td>
+                <td>Sistemas</td>
+                <td><button class="mostrar-reporte" data-folio="001">Mostrar Reporte</button></td>
+            </tr>
+            <tr>
+                <td>002</td>
+                <td>654321</td>
+                <td>Recursos Humanos</td>
+                <td><button class="mostrar-reporte" data-folio="002">Mostrar Reporte</button></td>
+            </tr>
             </tbody>
         </table>
     </div>
@@ -87,21 +98,18 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     </div>
 </div>
 
-<div id="modal-detalle-reporte" class="modal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
+
+<!-- 📌 MODAL (Pantalla del Reporte) -->
+<div id="modal-detalle-reporte" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); align-items: center; justify-content: center;">
+    <div class="modal-content" style="background: white; padding: 20px; width: 50%; height: 60%; position: relative;">
+        <span class="close-modal" style="cursor: pointer; font-size: 20px; position: absolute; top: 10px; right: 20px;">&times;</span>
         <h2>📜 Detalle del Reporte</h2>
-        <div class="reporte-detalle">
-            <p><strong>📌 Folio:</strong> <span id="detalle-folio"></span></p>
-            <p><strong>👤 Número de Nómina:</strong> <span id="detalle-nomina"></span></p>
-            <p><strong>📅 Fecha de Registro:</strong> <span id="detalle-fecha-registro"></span></p>
-            <p><strong>🕒 Fecha de Inicio:</strong> <span id="detalle-fecha-inicio"></span></p>
-            <p><strong>✅ Fecha Finalizada:</strong> <span id="detalle-fecha-finalizada"></span></p>
-            <p><strong>💬 Comentarios:</strong> <span id="detalle-comentarios"></span></p>
-            <p><strong>📊 Estatus:</strong> <span id="detalle-estatus"></span></p>
-        </div>
+        <p><strong>Folio:</strong> <span id="detalle-folio"></span></p>
+        <p><strong>Número de Nómina:</strong> <span id="detalle-nomina"></span></p>
+        <p><strong>Área:</strong> <span id="detalle-area"></span></p>
     </div>
 </div>
+
 
 <!-- Scripts -->
 <script src="js/logicaDashboard.js"></script>
