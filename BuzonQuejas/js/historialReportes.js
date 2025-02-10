@@ -10,16 +10,34 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+    // 📌 Datos de prueba
+    const reportes = {
+        "001": { folio: "001", nomina: "123456", area: "Sistemas", descripcion: "Soporte técnico realizado", estatus: "Completado" },
+        "002": { folio: "002", nomina: "654321", area: "Recursos Humanos", descripcion: "Evaluación de personal", estatus: "Pendiente" }
+    };
+
     // ✅ EVENTO PARA ABRIR EL MODAL
     botonesMostrar.forEach(boton => {
-        boton.addEventListener("click", () => {  // 🔥 Se elimina (event) porque no se usa
+        boton.addEventListener("click", (event) => {
             console.log("✅ Intentando abrir el modal...");
-            modal.style.display = "flex"; // SOLO SE ACTIVA AQUÍ
+            const folio = event.target.getAttribute("data-folio");
+
+            if (reportes[folio]) {
+                document.getElementById("detalle-folio").textContent = reportes[folio].folio;
+                document.getElementById("detalle-nomina").textContent = reportes[folio].nomina;
+                document.getElementById("detalle-area").textContent = reportes[folio].area;
+                document.getElementById("detalle-descripcion").textContent = reportes[folio].descripcion;
+                document.getElementById("detalle-estatus").textContent = reportes[folio].estatus;
+
+                modal.style.display = "flex"; // 🔥 Aquí se muestra el modal
+            } else {
+                console.warn("⚠️ No hay datos para este folio.");
+            }
         });
     });
 
     // ✅ EVENTO PARA CERRAR EL MODAL (BOTÓN "X")
-    closeModal.addEventListener("click", () => {  // 🔥 Aquí tampoco se usa (event), así que se elimina
+    closeModal.addEventListener("click", () => {
         console.log("❌ Cerrar modal");
         modal.style.display = "none";
     });
