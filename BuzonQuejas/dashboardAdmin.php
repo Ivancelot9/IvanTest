@@ -73,7 +73,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 <th>Folio</th>
                 <th>Número de Nómina</th>
                 <th>Área</th>
-                <th>Acción</th>
+                <th>Comentarios</th>
             </tr>
             </thead>
             <tbody>
@@ -81,13 +81,13 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 <td>001</td>
                 <td>123456</td>
                 <td>Sistemas</td>
-                <td><button class="mostrar-reporte" data-folio="001">Mostrar Reporte</button></td>
+                <td><button class="agregar-comentarios" data-folio ="001">Agregar Comentario</button></td>
             </tr>
             <tr>
                 <td>002</td>
                 <td>654321</td>
                 <td>Recursos Humanos</td>
-                <td><button class="mostrar-reporte" data-folio="002">Mostrar Reporte</button></td>
+                <td><button class="agregar-comentario" data-folio="002">Agregar Comentario</button></td>
             </tr>
             </tbody>
         </table>
