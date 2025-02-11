@@ -27,6 +27,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    /* 🔹 INICIALMENTE PEQUEÑO */
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+/* 🔹 Cuando el modal esté activo, se agranda */
+.modal-content.active {
+    transform: scale(1);
+    opacity: 1;
 }
 
 /* 🔹 Estilos para la caja de texto */

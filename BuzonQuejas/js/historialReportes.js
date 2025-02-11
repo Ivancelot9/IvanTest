@@ -21,15 +21,32 @@ document.addEventListener("DOMContentLoaded", function () {
     // Agregar el modal al body
     document.body.appendChild(comentariosModal);
 
-    // Evento para cerrar el modal
+    let modalContent = comentariosModal.querySelector(".modal-content");
+
+    // Evento para cerrar el modal con animación
     comentariosModal.querySelector(".close-modal").addEventListener("click", function () {
-        comentariosModal.style.display = "none";
+        modalContent.classList.remove("active"); // 🔹 Ocultar animadamente
+        setTimeout(() => {
+            comentariosModal.style.display = "none";
+        }, 300); // 🔹 Esperar a que termine la animación antes de ocultar
     });
 
-    // Evento para abrir el modal al hacer clic en "Agregar Comentario"
+    // Evento para abrir el modal con animación desde el botón
     document.querySelectorAll(".agregar-comentario").forEach((boton) => {
         boton.addEventListener("click", function () {
-            comentariosModal.style.display = "flex"; // 🔹 Ahora aparecerá centrado
+            let rect = boton.getBoundingClientRect(); // 🔹 Obtener la posición del botón
+
+            // 🔹 Mostrar el modal y hacer que crezca desde el botón
+            comentariosModal.style.display = "flex";
+            modalContent.style.transformOrigin = `${rect.left + rect.width / 2}px ${rect.top + rect.height / 2}px`;
+            modalContent.style.transform = "scale(0)";
+            modalContent.style.opacity = "0";
+
+            setTimeout(() => {
+                modalContent.classList.add("active"); // 🔹 Activar la animación de expansión
+                modalContent.style.transform = "scale(1)";
+                modalContent.style.opacity = "1";
+            }, 10);
         });
     });
 
