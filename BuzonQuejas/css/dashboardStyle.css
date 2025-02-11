@@ -591,7 +591,18 @@ table td {
 
 
 
-
+#reporte-modal {
+    display: flex;
+    justify-content: center; /* 🔹 Centra el modal horizontalmente */
+    align-items: center; /* 🔹 Centra el modal verticalmente */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* 🔹 Asegura que esté encima */
+}
 
 /* 🔹 Organiza el modal en dos columnas */
 .modal-content {
