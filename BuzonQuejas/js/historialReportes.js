@@ -22,28 +22,39 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(comentariosModal);
 
     let modalContent = comentariosModal.querySelector(".modal-content");
+    let lastClickedButton = null; // 🔹 Guarda el botón que abrió el modal
 
-    // Evento para cerrar el modal con animación
+    // Evento para cerrar el modal con animación inversa
     comentariosModal.querySelector(".close-modal").addEventListener("click", function () {
-        modalContent.classList.remove("active"); // 🔹 Ocultar animadamente
+        if (!lastClickedButton) {
+            comentariosModal.style.display = "none";
+            return;
+        }
+
+        let rect = lastClickedButton.getBoundingClientRect(); // 🔹 Posición del botón
+
+        modalContent.style.transformOrigin = `${rect.left + rect.width / 2}px ${rect.top + rect.height / 2}px`;
+        modalContent.style.transform = "scale(0)";
+        modalContent.style.opacity = "0";
+
         setTimeout(() => {
             comentariosModal.style.display = "none";
-        }, 300); // 🔹 Esperar a que termine la animación antes de ocultar
+        }, 300); // 🔹 Esperamos que termine la animación antes de ocultarlo
     });
 
     // Evento para abrir el modal con animación desde el botón
     document.querySelectorAll(".agregar-comentario").forEach((boton) => {
         boton.addEventListener("click", function () {
-            let rect = boton.getBoundingClientRect(); // 🔹 Obtener la posición del botón
+            lastClickedButton = boton; // 🔹 Guarda el botón que activó el modal
+            let rect = boton.getBoundingClientRect(); // 🔹 Posición del botón
 
-            // 🔹 Mostrar el modal y hacer que crezca desde el botón
             comentariosModal.style.display = "flex";
             modalContent.style.transformOrigin = `${rect.left + rect.width / 2}px ${rect.top + rect.height / 2}px`;
             modalContent.style.transform = "scale(0)";
             modalContent.style.opacity = "0";
 
             setTimeout(() => {
-                modalContent.classList.add("active"); // 🔹 Activar la animación de expansión
+                modalContent.classList.add("active");
                 modalContent.style.transform = "scale(1)";
                 modalContent.style.opacity = "1";
             }, 10);
