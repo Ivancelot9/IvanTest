@@ -625,15 +625,16 @@ table td {
 .reporte-container {
     width: 65%;
     padding: 20px;
+    min-height: 10vh; /* 🔹 Evita que colapse si el contenido es poco */
     max-height: 70vh; /* 🔹 Limita la altura para forzar el scroll */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
     border-right: 2px solid #ccc;
-    overflow-y: auto !important; /* 🔹 FORZAMOS el scroll */
+    overflow-y: auto; /* 🔹 Scroll vertical ACTIVADO */
     overflow-x: hidden;
-    flex-grow: 1; /* 🔹 Hace que el contenedor se expanda y respete la altura */
+    flex-grow: 1; /* 🔹 Hace que el contenedor se expanda sin desbordarse */
 }
 
 
