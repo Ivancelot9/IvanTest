@@ -630,7 +630,7 @@ table td {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 15px;
 }
 
 /* 🔹 Estilos específicos para los detalles del reporte */
@@ -641,6 +641,9 @@ table td {
     padding: 10px;
     border-radius: 5px;
     width: 100%;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
 }
 
 /* 🔹 Sección de comentarios (derecha, más pequeña) */
@@ -697,6 +700,7 @@ table td {
 .close-modal:hover {
     color: #d40000;
 }
+
 
 
 
