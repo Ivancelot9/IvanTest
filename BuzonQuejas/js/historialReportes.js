@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(reporteModal);
 
     // Seleccionar todos los botones "Mostrar Reporte"
-    document.querySelectorAll(".mostrar-reporte").forEach((boton) => {
+    document.querySelectorAll(".agregar-comentario").forEach((boton) => {
         boton.addEventListener("click", function () {
             const folio = this.getAttribute("data-folio");
 
