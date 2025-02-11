@@ -607,18 +607,7 @@ table td {
     overflow: hidden;
 }
 
-/* 🔹 Sección del reporte (lado izquierdo) */
-.reporte-container {
-    width: 65%;
-    padding: 20px;
-    overflow-y: auto;
-    max-height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-    border-right: 2px solid #ccc; /* Línea divisoria */
-}
+
 /* 🔹 Sección del reporte (lado izquierdo) */
 .reporte-container {
     width: 65%;
