@@ -594,7 +594,7 @@ table td {
 #reporte-modal {
     display: flex;
     justify-content: center; /* 🔹 Centra el modal horizontalmente */
-    align-items: flex-start; /* 🔹 Centra el modal verticalmente */
+    align-items: flex-start; /* 🔹 Permite que el modal crezca en altura */
     position: fixed;
     left: 0;
     top: 0;
@@ -602,7 +602,7 @@ table td {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000; /* 🔹 Asegura que esté encima */
-    overflow-y: auto;
+    overflow-y: auto; /* 🔹 Agregamos scroll en caso de que el modal sea muy grande */
 }
 
 /* 🔹 Organiza el modal en dos columnas */
@@ -612,9 +612,9 @@ table td {
     background: #fffae6;
     border: 3px solid #000;
     width: 70%;
-    max-width: 900px; /* 🔹 Evita que el modal se haga muy grande */
-    height: auto;
-    max-height: 90vh;
+    max-width: 900px; /* 🔹 Mantiene un tamaño razonable */
+    height: auto; /* 🔹 Permite que el contenido crezca naturalmente */
+    max-height: 90vh; /* 🔹 Evita que el modal sea demasiado alto */
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
     font-family: 'Bangers', cursive;
     border-radius: 10px;
@@ -627,15 +627,15 @@ table td {
     width: 65%;
     padding: 20px;
     min-height: 10vh; /* 🔹 Evita que colapse si el contenido es poco */
-    max-height: 70vh; /* 🔹 Limita la altura para forzar el scroll */
+    max-height: 70vh; /* 🔹 Forzar el scroll */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
     border-right: 2px solid #ccc;
-    overflow-y: auto; /* 🔹 Scroll vertical ACTIVADO */
+    overflow-y: scroll; /* 🔹 Scroll vertical */
     overflow-x: hidden;
-    flex-grow: 1; /* 🔹 Hace que el contenedor se expanda sin desbordarse */
+    flex-grow: 1;
 }
 
 
