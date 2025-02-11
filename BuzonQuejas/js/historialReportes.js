@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // 🔹 Crear el modal de comentarios personales
+    // 🔹 Crear el modal de comentarios
     let comentariosModal = document.createElement("div");
     comentariosModal.id = "reporte-modal";
     comentariosModal.style.display = "none"; // Inicialmente oculto
@@ -26,6 +26,13 @@ document.addEventListener("DOMContentLoaded", function () {
         comentariosModal.style.display = "none";
     });
 
+    // Evento para abrir el modal al hacer clic en "Agregar Comentario"
+    document.querySelectorAll(".agregar-comentario").forEach((boton) => {
+        boton.addEventListener("click", function () {
+            comentariosModal.style.display = "flex"; // 🔹 Abre el modal correctamente
+        });
+    });
+
     // Botón para guardar comentarios
     let btnGuardar = comentariosModal.querySelector(".btn-guardar");
     let inputComentario = comentariosModal.querySelector("#nueva-nota");
@@ -40,12 +47,5 @@ document.addEventListener("DOMContentLoaded", function () {
             listaComentarios.appendChild(nuevoComentario);
             inputComentario.value = ""; // Limpiar el textarea después de guardar
         }
-    });
-
-    // Evento para abrir el modal al hacer clic en "Agregar Comentario"
-    document.querySelectorAll(".agregar-comentario").forEach((boton) => {
-        boton.addEventListener("click", function () {
-            comentariosModal.style.display = "flex";
-        });
     });
 });

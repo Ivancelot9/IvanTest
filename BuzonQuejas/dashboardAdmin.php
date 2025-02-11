@@ -81,7 +81,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 <td>001</td>
                 <td>123456</td>
                 <td>Sistemas</td>
-                <td><button class="agregar-comentarios" data-folio ="001">Agregar Comentario</button></td>
+                <td><button class="agregar-comentario" data-folio="001">Agregar Comentario</button></td>
             </tr>
             <tr>
                 <td>002</td>
