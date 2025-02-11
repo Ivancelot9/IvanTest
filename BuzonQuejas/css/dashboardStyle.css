@@ -627,6 +627,20 @@ table td {
     padding: 20px;
     overflow-y: auto; /* Scroll si es necesario */
     max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+/* 🔹 Estilos específicos para los detalles del reporte */
+.reporte-container p {
+    font-size: 1rem;
+    color: #333;
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
 }
 
 /* 🔹 Sección de comentarios (derecha, más pequeña) */
@@ -683,7 +697,6 @@ table td {
 .close-modal:hover {
     color: #d40000;
 }
-
 
 
 
