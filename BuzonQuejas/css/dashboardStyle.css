@@ -607,22 +607,19 @@ table td {
     overflow: hidden;
 }
 
-
 /* 🔹 Sección del reporte (lado izquierdo) */
 .reporte-container {
     width: 65%;
     padding: 20px;
-    min-height: 10vh; /* 🔹 Evita que colapse si el contenido es poco */
-    max-height: 70vh; /* 🔹 Limita la altura para forzar el scroll */
+    overflow-y: auto;
+    max-height: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
-    border-right: 2px solid #ccc;
-    overflow-y: auto; /* 🔹 Scroll vertical ACTIVADO */
-    overflow-x: hidden;
-    flex-grow: 1; /* 🔹 Hace que el contenedor se expanda sin desbordarse */
+    border-right: 2px solid #ccc; /* Línea divisoria */
 }
+
 
 
 /* 🔹 Estilos específicos para los detalles */
