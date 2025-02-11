@@ -631,7 +631,9 @@ table td {
     align-items: flex-start;
     gap: 15px;
     border-right: 2px solid #ccc; /* Línea divisoria */
-    overflow-x: auto;
+    overflow-y: auto; /* 🔹 SOLO scroll vertical */
+    overflow-x: hidden; /* 🔹 Evita scroll horizontal */
+    white-space: normal; /* 🔹 Asegura que el texto no crezca horizontalmente */
 }
 
 
