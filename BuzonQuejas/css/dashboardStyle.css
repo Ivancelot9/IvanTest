@@ -589,6 +589,10 @@ table td {
     }
 }
 
+
+
+
+
 /* 🔹 Estilos del modal flotante */
 #reporte-modal {
     display: none;
@@ -614,6 +618,8 @@ table td {
     font-family: 'Bangers', cursive;
     border-radius: 10px;
     position: relative;
+    height: 70vh; /* Ajusta la altura al 70% del viewport */
+    overflow-y: auto; /* Agrega scroll si el contenido es muy grande */
 }
 
 /* 🔹 Botón de cerrar modal */
