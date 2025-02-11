@@ -607,13 +607,13 @@ table td {
     align-items: center;
 }
 
-/* 🔹 Contenedor principal del modal */
+/* 🔹 Organiza el modal en dos columnas */
 .modal-content {
     display: flex;
     background: #fffae6;
     border: 3px solid #000;
     width: 70%;
-    height: 80vh; /* Más alto para adaptarse mejor */
+    height: 80vh;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
     font-family: 'Bangers', cursive;
     border-radius: 10px;
@@ -621,19 +621,21 @@ table td {
     overflow: hidden;
 }
 
-/* 🔹 Sección del reporte (izquierda, más grande) */
+/* 🔹 Sección del reporte (lado izquierdo) */
 .reporte-container {
-    width: 65%; /* Ocupa más espacio */
+    width: 65%;
     padding: 20px;
-    overflow-y: auto; /* Scroll si es necesario */
+    overflow-y: auto;
     max-height: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
+    border-right: 2px solid #ccc; /* Línea divisoria */
 }
 
-/* 🔹 Estilos específicos para los detalles del reporte */
+
+/* 🔹 Estilos específicos para los detalles */
 .reporte-container p {
     font-size: 1rem;
     color: #333;

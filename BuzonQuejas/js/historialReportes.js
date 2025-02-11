@@ -4,8 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
     reporteModal.id = "reporte-modal";
     reporteModal.style.display = "none"; // Inicialmente oculto
     reporteModal.innerHTML = `
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="reporte-container">
             <h2>Detalles del Reporte</h2>
             <p><strong>Folio:</strong> <span id="detalle-folio"></span></p>
             <p><strong>Área:</strong> <span id="detalle-area"></span></p>
@@ -13,7 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
             <p><strong>Estado:</strong> <span id="detalle-estado"></span></p>
             <p><strong>Descripción:</strong> <span id="detalle-descripcion"></span></p>
         </div>
-    `;
+        <div class="comentarios-container">
+            <!-- La sección de comentarios la hacemos después -->
+        </div>
+    </div>
+`;
 
     // Agregar el modal al body para que esté por encima de todo
     document.body.appendChild(reporteModal);
