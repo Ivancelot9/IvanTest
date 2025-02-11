@@ -15,7 +15,7 @@
 /* 🔹 Contenedor del modal, ahora más pequeño y centrado */
 .modal-content {
     background: #fffae6;
-    border: 10px solid #000;
+    border: 5px solid #000;
     width: 40%; /* 🔹 Tamaño más pequeño */
     max-width: 500px; /* 🔹 Evita que se haga muy grande */
     height: auto;
@@ -41,7 +41,7 @@
 
 /* 🔹 Estilos del botón de guardar */
 .btn-guardar {
-    font-family: 'Bangers', cursive; /* 🔹 Aplica la fuente Bangers */
+    font-family: 'Bangers', cursive;
     width: 100%;
     padding: 10px;
     margin-top: 10px;
@@ -51,7 +51,14 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out; /* 🔹 Transición suave */
 }
+
+/* 🔹 Efecto al pasar el mouse */
+.btn-guardar:hover {
+    transform: scale(1.1); /* 🔹 Aumenta el tamaño un 10% */
+}
+
 
 /* 🔹 Ajuste de los comentarios guardados */
 .comentarios-container {
