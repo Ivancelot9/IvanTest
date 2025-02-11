@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Historial de Reportes 1.5">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalComentarios.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalComentarios.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,15 +120,7 @@
       <workItem from="1738937845041" duration="13699000" />
       <workItem from="1739197086312" duration="18943000" />
       <workItem from="1739284470584" duration="9442000" />
-      <workItem from="1739297582060" duration="2134000" />
-    </task>
-    <task id="LOCAL-00082" summary="Historial de Reportes 1.4">
-      <option name="closed" value="true" />
-      <created>1739211088756</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1739211088756</updated>
+      <workItem from="1739297582060" duration="2192000" />
     </task>
     <task id="LOCAL-00083" summary="Historial de Reportes 1.4">
       <option name="closed" value="true" />
@@ -515,7 +506,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739299587708</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="Historial de Reportes 1.5">
+      <option name="closed" value="true" />
+      <created>1739299741321</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1739299741321</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
