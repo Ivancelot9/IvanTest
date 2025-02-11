@@ -591,5 +591,91 @@ table td {
 
 
 
+/* 🔹 Ajustamos el modal para que esté centrado y tenga un tamaño adecuado */
+#reporte-modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 🔹 Fondo oscuro semi-transparente */
+    z-index: 1000; /* 🔹 Asegura que esté encima de todo */
+}
 
+/* 🔹 Contenedor del modal, ahora más pequeño y centrado */
+.modal-content {
+    background: #fffae6;
+    border: 3px solid #000;
+    width: 40%; /* 🔹 Tamaño más pequeño */
+    max-width: 500px; /* 🔹 Evita que se haga muy grande */
+    height: auto;
+    padding: 20px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    font-family: 'Bangers', cursive;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 🔹 Estilos para la caja de texto */
+#nueva-nota {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    resize: none;
+}
+
+/* 🔹 Estilos del botón de guardar */
+.btn-guardar {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #ff4500;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 🔹 Ajuste de los comentarios guardados */
+.comentarios-container {
+    width: 100%;
+    margin-top: 20px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* 🔹 Estilos para cada comentario */
+.comentario {
+    background: #eef;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+/* 🔹 Botón de cerrar */
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ff4500;
+    font-weight: bold;
+}
+.close-modal:hover {
+    color: #d40000;
+}
 
