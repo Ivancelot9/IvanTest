@@ -18,6 +18,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/dashboardStyle.css"> <!-- Vincula el CSS externo -->
     <link rel="stylesheet" href="css/modalComentarios.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 
 
 </head>

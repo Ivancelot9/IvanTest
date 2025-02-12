@@ -19,22 +19,34 @@ document.addEventListener("DOMContentLoaded", function () {
     let modalContent = descripcionModal.querySelector(".modal-content");
     let lastClickedButton = null; // 🔹 Guarda el botón que activó el modal
 
-    // Evento para cerrar el modal con animación inversa
-    descripcionModal.querySelector(".close-modal").addEventListener("click", function () {
+    // 🔹 Función para animar apertura/cierre del modal
+    function animarModal(abrir) {
         if (!lastClickedButton) {
-            descripcionModal.style.display = "none";
+            descripcionModal.style.display = abrir ? "flex" : "none";
             return;
         }
 
-        // 🔹 Hacer que se reduzca y desaparezca en dirección al botón que lo abrió
-        let rect = lastClickedButton.getBoundingClientRect();
+        let rect = lastClickedButton.getBoundingClientRect(); // 🔹 Posición del botón
+
         modalContent.style.transformOrigin = `${rect.left + rect.width / 2}px ${rect.top + rect.height / 2}px`;
-        modalContent.style.transform = "scale(0)";
-        modalContent.style.opacity = "0";
+        modalContent.style.transform = abrir ? "scale(0)" : "scale(1)";
+        modalContent.style.opacity = abrir ? "0" : "1";
 
         setTimeout(() => {
-            descripcionModal.style.display = "none";
+            if (abrir) {
+                modalContent.classList.add("active");
+                modalContent.style.transform = "scale(1)";
+                modalContent.style.opacity = "1";
+            } else {
+                modalContent.classList.remove("active");
+                descripcionModal.style.display = "none";
+            }
         }, 300);
+    }
+
+    // Evento para cerrar el modal con animación inversa
+    descripcionModal.querySelector(".close-modal").addEventListener("click", function () {
+        animarModal(false);
     });
 
     // Evento para abrir el modal con animación desde el botón "Mostrar Descripción"
@@ -46,17 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("descripcion-texto").textContent =
                 this.getAttribute("data-descripcion") || "Sin descripción disponible.";
 
-            // 🔹 Posicionar y animar el modal en el centro
+            // 🔹 Mostrar y animar el modal
             descripcionModal.style.display = "flex";
-            modalContent.style.transformOrigin = "center center";
-            modalContent.style.transform = "scale(0)";
-            modalContent.style.opacity = "0";
-
-            setTimeout(() => {
-                modalContent.classList.add("active");
-                modalContent.style.transform = "scale(1)";
-                modalContent.style.opacity = "1";
-            }, 10);
+            animarModal(true);
         });
     });
 });
