@@ -68,53 +68,49 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <!-- Historial de Reportes -->
     <div id="historial-reportes" class="content comic-container" style="display: none;">
         <h2 class="comic-title">Historial de Reportes</h2>
-        <table id="tabla-reportes" class="styled-table">
-            <thead>
-            <tr>
-                <th>Folio</th>
-                <th>Número de Nómina</th>
-                <th>Encargado</th>
-                <th>Fecha Registro</th>
-                <th>Fecha Inicio</th>
-                <th>Fecha Finalización</th>
-                <th>Descripción</th>
-                <th>Estatus</th>
-                <th>Comentarios</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>001</td>
-                <td>123456</td>
-                <td>Juan Pérez</td>
-                <td>10/02/2025</td>
-                <td>12/02/2025</td>
-                <td>15/02/2025</td>
-                <td>Problema con el sistema de autenticación</td>
-                <td>En proceso</td>
-                <td>
-                    Se está revisando el caso <br>
-                    <button class="agregar-comentario" data-folio="001">Agregar Comentario</button>
-                </td>
-            </tr>
-            <tr>
-                <td>002</td>
-                <td>654321</td>
-                <td>María López</td>
-                <td>11/02/2025</td>
-                <td>13/02/2025</td>
-                <td>16/02/2025</td>
-                <td>Error en la base de datos</td>
-                <td>Pendiente</td>
-                <td>
-                    Aún no revisado <br>
-                    <button class="agregar-comentario" data-folio="002">Agregar Comentario</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="table-container"> <!-- Nuevo contenedor para hacerlo responsive -->
+            <table id="tabla-reportes" class="styled-table">
+                <thead>
+                <tr>
+                    <th>Folio</th>
+                    <th>Número de Nómina</th>
+                    <th>Encargado</th>
+                    <th>Fecha Registro</th>
+                    <th>Fecha Finalización</th>
+                    <th>Descripción</th>
+                    <th>Estatus</th>
+                    <th>Comentarios</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>123456</td>
+                    <td>Juan Pérez</td>
+                    <td>10/02/2025</td>
+                    <td>-</td> <!-- Sin fecha hasta que el admin la establezca -->
+                    <td>Problema con el sistema de autenticación</td>
+                    <td>En proceso</td>
+                    <td>
+                        <button class="agregar-comentario" data-folio="001">Agregar Comentario</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>654321</td>
+                    <td>María López</td>
+                    <td>11/02/2025</td>
+                    <td>-</td>
+                    <td>Error en la base de datos</td>
+                    <td>Pendiente</td>
+                    <td>
+                        <button class="agregar-comentario" data-folio="002">Agregar Comentario</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-
     <!-- Reportes Completos -->
     <div id="reportes-completos" class="content comic-container" style="display: none;">
         <h2 class="comic-title">Reportes Completos</h2>

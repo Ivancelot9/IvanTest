@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Comentarios Agregados">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Historial de Reportes Tabla">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" afterDir="false" />
     </list>
@@ -122,15 +122,7 @@
       <workItem from="1739197086312" duration="18943000" />
       <workItem from="1739284470584" duration="9442000" />
       <workItem from="1739297582060" duration="5956000" />
-      <workItem from="1739369781837" duration="2356000" />
-    </task>
-    <task id="LOCAL-00087" summary="Historial de Reportes 1.4">
-      <option name="closed" value="true" />
-      <created>1739213043552</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1739213043552</updated>
+      <workItem from="1739369781837" duration="2993000" />
     </task>
     <task id="LOCAL-00088" summary="Historial de Reportes 1.4">
       <option name="closed" value="true" />
@@ -516,7 +508,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739307152120</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="Historial de Reportes Tabla">
+      <option name="closed" value="true" />
+      <created>1739374154399</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1739374154399</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -586,6 +586,7 @@
     <MESSAGE value="Historial de Reportes 1.4" />
     <MESSAGE value="Historial de Reportes 1.5" />
     <MESSAGE value="Comentarios Agregados" />
-    <option name="LAST_COMMIT_MESSAGE" value="Comentarios Agregados" />
+    <MESSAGE value="Historial de Reportes Tabla" />
+    <option name="LAST_COMMIT_MESSAGE" value="Historial de Reportes Tabla" />
   </component>
 </project>
