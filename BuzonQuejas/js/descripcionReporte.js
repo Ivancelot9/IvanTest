@@ -26,21 +26,16 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        let rect = lastClickedButton.getBoundingClientRect(); // 🔹 Posición del botón
-        modalContent.style.transformOrigin = `${rect.left + rect.width / 2}px ${rect.top + rect.height / 2}px`;
-        modalContent.style.transform = "scale(0)";
-        modalContent.style.opacity = "0";
-
+        modalContent.classList.remove("active"); // 🔹 Ocultar animadamente
         setTimeout(() => {
             descripcionModal.style.display = "none";
-        }, 300); // 🔹 Esperamos que termine la animación antes de ocultarlo
+        }, 300);
     });
 
     // Evento para abrir el modal con animación desde el botón "Mostrar Descripción"
     document.querySelectorAll(".mostrar-descripcion").forEach((boton) => {
         boton.addEventListener("click", function () {
             lastClickedButton = boton; // 🔹 Guarda el botón que activó el modal
-            let rect = boton.getBoundingClientRect(); // 🔹 Posición del botón
 
             // 🔹 Obtener la descripción del reporte
             let descripcion = this.getAttribute("data-descripcion") || "Sin descripción disponible.";
@@ -50,14 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // 🔹 Mostrar el modal con animación
             descripcionModal.style.display = "flex";
-            modalContent.style.transformOrigin = `${rect.left + rect.width / 2}px ${rect.top + rect.height / 2}px`;
-            modalContent.style.transform = "scale(0)";
-            modalContent.style.opacity = "0";
-
             setTimeout(() => {
                 modalContent.classList.add("active");
-                modalContent.style.transform = "scale(1)";
-                modalContent.style.opacity = "1";
             }, 10);
         });
     });
