@@ -128,6 +128,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 <script src="js/logicaDashboard.js"></script>
 <script src="js/cerrarSesion.js"></script>
 <script src="js/comentarios.js"></script>
+<script src="js/descripcionReporte.js"></script>
 
 </body>
 </html>
