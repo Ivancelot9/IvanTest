@@ -68,7 +68,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <!-- Historial de Reportes -->
     <div id="historial-reportes" class="content comic-container" style="display: none;">
         <h2 class="comic-title">Historial de Reportes</h2>
-        <div class="table-container"> <!-- Nuevo contenedor para hacerlo responsive -->
+        <div class="table-container">
             <table id="tabla-reportes" class="styled-table">
                 <thead>
                 <tr>
@@ -89,7 +89,9 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                     <td>Juan Pérez</td>
                     <td>10/02/2025</td>
                     <td>-</td> <!-- Sin fecha hasta que el admin la establezca -->
-                    <td>Problema con el sistema de autenticación</td>
+                    <td>
+                        <button class="mostrar-descripcion" data-descripcion="Problema con el sistema de autenticación">Mostrar Descripción</button>
+                    </td>
                     <td>En proceso</td>
                     <td>
                         <button class="agregar-comentario" data-folio="001">Agregar Comentario</button>
@@ -101,7 +103,9 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                     <td>María López</td>
                     <td>11/02/2025</td>
                     <td>-</td>
-                    <td>Error en la base de datos</td>
+                    <td>
+                        <button class="mostrar-descripcion" data-descripcion="Error en la base de datos">Mostrar Descripción</button>
+                    </td>
                     <td>Pendiente</td>
                     <td>
                         <button class="agregar-comentario" data-folio="002">Agregar Comentario</button>

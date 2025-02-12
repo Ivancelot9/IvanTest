@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Historial de Reportes Tabla">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Historial de Reportes Tabla 1.0">
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalDescripcion.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/js/descripcionReporte.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" afterDir="false" />
     </list>
@@ -122,15 +124,7 @@
       <workItem from="1739197086312" duration="18943000" />
       <workItem from="1739284470584" duration="9442000" />
       <workItem from="1739297582060" duration="5956000" />
-      <workItem from="1739369781837" duration="2993000" />
-    </task>
-    <task id="LOCAL-00088" summary="Historial de Reportes 1.4">
-      <option name="closed" value="true" />
-      <created>1739213304902</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1739213304902</updated>
+      <workItem from="1739369781837" duration="5255000" />
     </task>
     <task id="LOCAL-00089" summary="Historial de Reportes 1.4">
       <option name="closed" value="true" />
@@ -516,7 +510,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739374154399</updated>
     </task>
-    <option name="localTasksCounter" value="137" />
+    <task id="LOCAL-00137" summary="Historial de Reportes Tabla 1.0">
+      <option name="closed" value="true" />
+      <created>1739374792983</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1739374792983</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -587,6 +589,7 @@
     <MESSAGE value="Historial de Reportes 1.5" />
     <MESSAGE value="Comentarios Agregados" />
     <MESSAGE value="Historial de Reportes Tabla" />
-    <option name="LAST_COMMIT_MESSAGE" value="Historial de Reportes Tabla" />
+    <MESSAGE value="Historial de Reportes Tabla 1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Historial de Reportes Tabla 1.0" />
   </component>
 </project>

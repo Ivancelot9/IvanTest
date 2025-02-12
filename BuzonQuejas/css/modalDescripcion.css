@@ -1,0 +1,64 @@
+/* 🔹 Ajustamos el modal para que esté centrado */
+#descripcion-modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+/* 🔹 Contenedor del modal */
+.modal-content {
+    background: #fffae6;
+    border: 5px solid #000;
+    width: 40%;
+    max-width: 500px;
+    height: auto;
+    padding: 20px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    font-family: 'Bangers', cursive;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* 🔹 INICIALMENTE PEQUEÑO */
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+/* 🔹 Cuando el modal esté activo, se agranda */
+.modal-content.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* 🔹 Estilos de la descripción */
+.descripcion-container {
+    text-align: center;
+    font-size: 1rem;
+    color: #333;
+    padding: 10px;
+    width: 100%;
+}
+
+/* 🔹 Botón de cerrar */
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ff4500;
+    font-weight: bold;
+}
+.close-modal:hover {
+    color: #d40000;
+}
