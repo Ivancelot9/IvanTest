@@ -1,3 +1,5 @@
+/* 🔹 Importar fuente manuscrita */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
 /* 🔹 Ajustamos el modal para que esté CENTRADO SIEMPRE */
 #descripcion-modal {
     display: none;
@@ -14,13 +16,13 @@
 
 /* 🔹 Contenedor del modal, ahora más pequeño y centrado */
 .modal-content {
-    background: #fffae6;
+    background: #fffae6; /* 🔹 Color de papel */
     border: 5px solid #000;
     width: 40%;
     max-width: 500px;
     height: auto;
     padding: 20px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.3); /* 🔹 Sombra realista */
     font-family: 'Bangers', cursive;
     border-radius: 10px;
     position: relative;
@@ -40,6 +42,25 @@
     opacity: 1;
 }
 
+/* 🔹 Contenedor de la descripción - Aquí aplicamos el efecto de hoja */
+.descripcion-container {
+    width: 100%;
+    max-width: 450px;
+    min-height: 300px;
+    padding: 20px;
+    background: linear-gradient(white 95%, #ddd 96%); /* 🔹 Líneas de cuaderno */
+    background-size: 100% 30px; /* 🔹 Espaciado de líneas */
+    border: 3px solid #ccc; /* 🔹 Simula borde de hoja */
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* 🔹 Sombra interna */
+    font-family: 'Caveat', cursive; /* 🔹 Fuente manuscrita opcional */
+    font-size: 1.2rem;
+    line-height: 30px; /* 🔹 Espaciado entre líneas */
+    text-align: left;
+    color: #333;
+    overflow-y: auto;
+}
+
 /* 🔹 Botón de cerrar */
 .close-modal {
     position: absolute;
@@ -53,3 +74,5 @@
 .close-modal:hover {
     color: #d40000;
 }
+
+
