@@ -361,9 +361,10 @@ table td {
 
 /* Main Content (ajustado con espacio a la izquierda) */
 .main-content {
-    margin-left: 450px; /* Espacio entre la sidebar y el contenido */
+    margin-left: 350px; /* Espacio entre la sidebar y el contenido */
     transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
-    width: calc(100% - 380px);
+    width: calc(100% - 400px);
+    max-width: 75%;
 
 }
 
@@ -509,7 +510,7 @@ table td {
     flex-direction: column;
     width: 100%;
     align-items: center;
-    margin-top: -200px;
+    margin-top: 30px;
 }
 
 /* 🔴 Empujar "Cerrar Sesión" hacia abajo */
@@ -598,8 +599,8 @@ table td {
     transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
 
     /* 🔹 El contenido respeta la sidebar (Empujado a la derecha) */
-    margin-left: 350px; /* 🔹 Sidebar empuja el contenido */
-    width: calc(100% - 380px);
+    margin-left: 370px; /* 🔹 Sidebar empuja el contenido */
+    width: calc(100% - 400px);
     max-width: 75%;
 }
 
