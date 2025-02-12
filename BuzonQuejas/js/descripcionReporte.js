@@ -19,29 +19,30 @@ document.addEventListener("DOMContentLoaded", function () {
     let modalContent = descripcionModal.querySelector(".modal-content");
     let lastClickedButton = null; // 🔹 Guarda el botón que activó el modal
 
-    // 🔹 Función para animar apertura/cierre del modal
+    // 🔹 Función para animar apertura/cierre del modal correctamente
     function animarModal(abrir) {
-        if (!lastClickedButton) {
-            descripcionModal.style.display = abrir ? "flex" : "none";
-            return;
-        }
+        if (abrir) {
+            if (!lastClickedButton) return;
 
-        let rect = lastClickedButton.getBoundingClientRect(); // 🔹 Posición del botón
+            let rect = lastClickedButton.getBoundingClientRect(); // 🔹 Posición del botón
+            modalContent.style.transformOrigin = `${rect.left + rect.width / 2}px ${rect.top + rect.height / 2}px`;
+            modalContent.style.transform = "scale(0)";
+            modalContent.style.opacity = "0";
 
-        modalContent.style.transformOrigin = `${rect.left + rect.width / 2}px ${rect.top + rect.height / 2}px`;
-        modalContent.style.transform = abrir ? "scale(0)" : "scale(1)";
-        modalContent.style.opacity = abrir ? "0" : "1";
-
-        setTimeout(() => {
-            if (abrir) {
+            descripcionModal.style.display = "flex"; // 🔹 Mostrar modal antes de animar
+            setTimeout(() => {
                 modalContent.classList.add("active");
                 modalContent.style.transform = "scale(1)";
                 modalContent.style.opacity = "1";
-            } else {
+            }, 10);
+        } else {
+            modalContent.style.transform = "scale(0)";
+            modalContent.style.opacity = "0";
+            setTimeout(() => {
                 modalContent.classList.remove("active");
                 descripcionModal.style.display = "none";
-            }
-        }, 300);
+            }, 300);
+        }
     }
 
     // Evento para cerrar el modal con animación inversa
@@ -58,8 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("descripcion-texto").textContent =
                 this.getAttribute("data-descripcion") || "Sin descripción disponible.";
 
-            // 🔹 Mostrar y animar el modal
-            descripcionModal.style.display = "flex";
+            // 🔹 Mostrar y animar el modal correctamente
             animarModal(true);
         });
     });
