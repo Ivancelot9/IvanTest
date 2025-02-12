@@ -155,15 +155,13 @@ body {
 
 /* Comic Container */
 .comic-container {
-    background: #fff;
-    border: 8px solid black; /* Borde grueso estilo cómic */
-    padding: 20px;
-    box-shadow: 5px 5px 0 black; /* Sombra estilo cómic */
-    border-radius: 15px;
-    margin-top: 10px;
-
-    display: flex;
-    flex-direction: column; /* Para distribuir el contenido hacia abajo */
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+    flex: 1;
+    min-width: 0;
 }
 
 /* Opcional: Ajusta los elementos internos para que crezcan junto con el contenedor */
