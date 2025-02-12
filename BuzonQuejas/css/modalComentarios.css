@@ -12,12 +12,12 @@
     z-index: 1000; /* 🔹 Asegura que esté encima de todo */
 }
 
-/* 🔹 Contenedor del modal, ahora más pequeño y centrado */
-.modal-content {
+/* 🔹 Contenedor del modal de comentarios */
+.comentarios-modal {
     background: #fffae6;
     border: 5px solid #000;
-    width: 40%; /* 🔹 Tamaño más pequeño */
-    max-width: 500px; /* 🔹 Evita que se haga muy grande */
+    width: 40%;
+    max-width: 350px; /* 🔹 Más pequeño */
     height: auto;
     padding: 20px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
@@ -27,15 +27,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    /* 🔹 INICIALMENTE PEQUEÑO */
     transform: scale(0);
     opacity: 0;
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 
-/* 🔹 Cuando el modal esté activo, se agranda */
-.modal-content.active {
+/* 🔹 Cuando el modal esté activo */
+.comentarios-modal.active {
     transform: scale(1);
     opacity: 1;
 }
@@ -59,17 +57,16 @@
     background: #ff4500;
     color: white;
     font-size: 1rem;
-    border: 2px solid #000;;
+    border: 2px solid #000;
     border-radius: 5px;
     cursor: pointer;
-    transition: transform 0.2s ease-in-out; /* 🔹 Transición suave */
+    transition: transform 0.2s ease-in-out;
 }
 
 /* 🔹 Efecto al pasar el mouse */
 .btn-guardar:hover {
-    transform: scale(1.1); /* 🔹 Aumenta el tamaño un 10% */
+    transform: scale(1.1);
 }
-
 
 /* 🔹 Ajuste de los comentarios guardados */
 .comentarios-container {
@@ -101,6 +98,7 @@
     color: #ff4500;
     font-weight: bold;
 }
+
 .close-modal:hover {
     color: #d40000;
 }

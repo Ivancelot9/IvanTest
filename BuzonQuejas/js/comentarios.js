@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     comentariosModal.id = "reporte-modal";
     comentariosModal.style.display = "none"; // 🔹 Oculto por defecto
     comentariosModal.innerHTML = `
-    <div class="modal-content">
+    <div class="modal-content comentarios-modal">
         <span class="close-modal">&times;</span>
         <div class="notas-container">
             <h2>Agregar Comentario</h2>
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="comentarios-lista"></div>
         </div>
     </div>
-    `;
+`;
 
     // Agregar el modal al body
     document.body.appendChild(comentariosModal);
