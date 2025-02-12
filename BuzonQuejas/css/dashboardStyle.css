@@ -135,6 +135,7 @@ body {
     transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
     width: calc(100% - 380px); /* Se ajusta con la sidebar */
     max-width: 70%; /* Limita el ancho para evitar que se extienda demasiado */
+    overflow: hidden; /* Asegura que nada se salga */
 }
 
 /* Header */
