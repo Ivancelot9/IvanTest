@@ -22,11 +22,11 @@ document.addEventListener("DOMContentLoaded", function () {
             heroLoading.style.animation = "fly-right 2s ease-in-out forwards"; // Activar animación
 
             // 📌 Hacer la solicitud al servidor para cerrar sesión
-            fetch('dao/cerrarSesion.php', { method: 'POST' })
+            fetch('https://grammermx.com/IvanTest/BuzonQuejas/dao/cerrarSesion.php', { method: 'POST' })
                 .then(response => {
                     if (response.ok) {
                         setTimeout(() => {
-                            window.location.href = "index.php"; // 🔄 Redirigir al login
+                            window.location.href = "https://grammermx.com/IvanTest/BuzonQuejas/index.php"; // 🔄 Redirigir al login
                         }, 2500); // Esperar el tiempo de la animación
                     } else {
                         alert("Error al cerrar sesión. Inténtalo nuevamente.");
