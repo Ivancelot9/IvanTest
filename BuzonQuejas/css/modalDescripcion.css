@@ -1,4 +1,4 @@
-/* 🔹 Ajustamos el modal para que esté centrado */
+/* 🔹 Ajustamos el modal para que esté CENTRADO SIEMPRE */
 #descripcion-modal {
     display: none;
     justify-content: center;
@@ -9,45 +9,39 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* 🔹 Fondo oscuro semi-transparente */
-    z-index: 1000;
+    z-index: 1000; /* 🔹 Asegura que esté encima de todo */
 }
 
-/* 🔹 Contenedor del modal */
-#descripcion-modal .modal-content {
+/* 🔹 Contenedor del modal, ahora más pequeño y centrado */
+.modal-content {
     background: #fffae6;
     border: 5px solid #000;
-    width: 40%; /* 🔹 Tamaño ajustado */
+    width: 40%;
     max-width: 500px;
     height: auto;
     padding: 20px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
     font-family: 'Bangers', cursive;
     border-radius: 10px;
-    position: fixed; /* 🔹 Asegura que esté centrado en pantalla */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0); /* 🔹 INICIALMENTE PEQUEÑO Y CENTRADO */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* 🔹 INICIALMENTE PEQUEÑO */
+    transform: scale(0);
     opacity: 0;
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 
-/* 🔹 Cuando el modal esté activo, se agranda y mantiene el centrado */
-#descripcion-modal .modal-content.active {
-    transform: translate(-50%, -50%) scale(1);
+/* 🔹 Cuando el modal esté activo, se agranda */
+.modal-content.active {
+    transform: scale(1);
     opacity: 1;
 }
 
-/* 🔹 Estilos de la descripción */
-.descripcion-container {
-    text-align: center;
-    font-size: 1rem;
-    color: #333;
-    padding: 10px;
-    width: 100%;
-}
-
 /* 🔹 Botón de cerrar */
-#descripcion-modal .close-modal {
+.close-modal {
     position: absolute;
     top: 10px;
     right: 20px;
@@ -56,7 +50,6 @@
     color: #ff4500;
     font-weight: bold;
 }
-
-#descripcion-modal .close-modal:hover {
+.close-modal:hover {
     color: #d40000;
 }

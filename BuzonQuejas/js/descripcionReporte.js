@@ -26,7 +26,12 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        modalContent.classList.remove("active"); // 🔹 Ocultar animadamente
+        // 🔹 Hacer que se reduzca y desaparezca en dirección al botón que lo abrió
+        let rect = lastClickedButton.getBoundingClientRect();
+        modalContent.style.transformOrigin = `${rect.left + rect.width / 2}px ${rect.top + rect.height / 2}px`;
+        modalContent.style.transform = "scale(0)";
+        modalContent.style.opacity = "0";
+
         setTimeout(() => {
             descripcionModal.style.display = "none";
         }, 300);
@@ -37,14 +42,20 @@ document.addEventListener("DOMContentLoaded", function () {
         boton.addEventListener("click", function () {
             lastClickedButton = boton; // 🔹 Guarda el botón que activó el modal
 
-            // 🔹 Mostrar la descripción en el modal sin necesidad de usar una variable intermedia
+            // 🔹 Mostrar la descripción en el modal
             document.getElementById("descripcion-texto").textContent =
                 this.getAttribute("data-descripcion") || "Sin descripción disponible.";
 
-            // 🔹 Mostrar el modal con animación
+            // 🔹 Posicionar y animar el modal en el centro
             descripcionModal.style.display = "flex";
+            modalContent.style.transformOrigin = "center center";
+            modalContent.style.transform = "scale(0)";
+            modalContent.style.opacity = "0";
+
             setTimeout(() => {
                 modalContent.classList.add("active");
+                modalContent.style.transform = "scale(1)";
+                modalContent.style.opacity = "1";
             }, 10);
         });
     });
