@@ -8,7 +8,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* 🔹 Fondo oscuro semi-transparente */
     z-index: 1000;
 }
 
@@ -16,14 +16,14 @@
 #descripcion-modal .modal-content {
     background: #fffae6;
     border: 5px solid #000;
-    width: 40%;
+    width: 40%; /* 🔹 Tamaño ajustado */
     max-width: 500px;
     height: auto;
     padding: 20px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
     font-family: 'Bangers', cursive;
     border-radius: 10px;
-    position: fixed; /* 🔹 Usamos fixed para evitar desplazamientos */
+    position: fixed; /* 🔹 Asegura que esté centrado en pantalla */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0); /* 🔹 INICIALMENTE PEQUEÑO Y CENTRADO */

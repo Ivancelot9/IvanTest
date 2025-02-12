@@ -37,11 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
         boton.addEventListener("click", function () {
             lastClickedButton = boton; // 🔹 Guarda el botón que activó el modal
 
-            // 🔹 Obtener la descripción del reporte
-            let descripcion = this.getAttribute("data-descripcion") || "Sin descripción disponible.";
-
-            // 🔹 Mostrar la descripción en el modal
-            document.getElementById("descripcion-texto").textContent = descripcion;
+            // 🔹 Mostrar la descripción en el modal sin necesidad de usar una variable intermedia
+            document.getElementById("descripcion-texto").textContent =
+                this.getAttribute("data-descripcion") || "Sin descripción disponible.";
 
             // 🔹 Mostrar el modal con animación
             descripcionModal.style.display = "flex";
