@@ -510,7 +510,7 @@ table td {
     flex-direction: column;
     width: 100%;
     align-items: center;
-    margin-top: 30px;
+    margin-top: -50px;
 }
 
 /* 🔴 Empujar "Cerrar Sesión" hacia abajo */
