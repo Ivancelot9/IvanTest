@@ -14,7 +14,7 @@ body {
 /* Sidebar */
 .sidebar {
     width: 280px; /* 🔹 Sidebar más delgada */
-    background-color: #04050c;
+    background-color: white;
     color: #1094e0;
     display: flex;
     flex-direction: column;
@@ -32,21 +32,18 @@ body {
 }
 
 .sidebar .profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-bottom: 30px;
     text-align: center;
-    position: relative;
-    margin-bottom: 15px; /* 🔹 Ajuste de espacio */
 }
 
 .sidebar .profile img {
-    width: 120px; /* 🔹 Imagen más pequeña */
-    height: 120px;
-    border-radius: 50%;
-    border: 3px solid black;
-    object-fit: cover;
-    z-index: 1;
+    width: 150px; /* Tamaño de la imagen */
+    height: 150px;
+    border-radius: 50%; /* Hace la imagen redonda */
+    border: 5px solid black; /* ¡Borde sólido visible! */
+    object-fit: cover; /* Ajusta la imagen sin deformarla */
+    position: relative; /* Necesario para el pseudo-elemento */
+    z-index: 1; /* Asegura que la imagen esté encima del contorno animado */
 }
 /* Halo animado */
 .sidebar .profile {
@@ -56,37 +53,31 @@ body {
 .sidebar .profile::after {
     content: "";
     position: absolute;
-    top: -4px;
-    left: 8px;
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top: 3px solid #1094e0;
-    border-right: 3px solid #1094e0;
-    animation: halo-spin 2s linear infinite;
-    z-index: 0;
+    top: -5px; /* Ajusta para que rodee el borde negro */
+    left: 10px;
+    width: 160px; /* Tamaño total del contorno */
+    height: 160px;
+    border-radius: 50%; /* Hace el borde animado redondo */
+    border: 5px solid transparent; /* Borde inicial transparente */
+    border-top: 5px solid #1094e0; /* Parte azul que se mueve */
+    border-right: 5px solid #1094e0;
+    animation: halo-spin 2s linear infinite; /* Animación de giro */
+    z-index: 2; /* Detrás de la imagen */
 }
 
 /* Animación de giro */
 @keyframes halo-spin {
-    0% {transform: rotate(0deg);}
-    100% {transform: rotate(360deg);}
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .sidebar .profile h4 {
     color: black;
-    font-size: 1.3rem;
-    margin-top: 8px;
-}
-
-/* 🔹 Contenedor de botones normales */
-.sidebar-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: -10px; /* 🔹 Ajuste de separación */
+    font-size: 1.5rem;
 }
 
 /* 🎨 Estilos para los botones de la barra lateral */
@@ -94,21 +85,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 12px; /* 🔹 Menos padding */
+    padding: 10px 20px;
     border: 2px solid black;
     background: #1094e0;
     color: black;
+    font-weight: bold;
     text-transform: uppercase;
     font-family: "Bangers", sans-serif;
-    font-size: 1.2rem; /* 🔹 Fuente reducida */
+    font-size: 1.5rem;
     transition: transform 0.2s ease-in-out;
     cursor: pointer;
     box-shadow: 3px 3px 0 black;
-    text-decoration: none;
-    margin: 6px 0;
-    width: 90%; /* 🔹 Ajuste de ancho */
+    text-decoration: none; /* Elimina subrayado */
+    margin: 10px 0;
+    width: 80%;
     text-align: center;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 /* 🔥 Efecto al pasar el mouse */
@@ -512,7 +504,14 @@ table td {
     transform: scale(0.95);
 }
 
-
+/* 🔹 Contenedor de botones normales */
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-top: -50px;
+}
 
 /* 🔴 Empujar "Cerrar Sesión" hacia abajo */
 .logout-btn {
