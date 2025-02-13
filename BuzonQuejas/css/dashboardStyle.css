@@ -14,7 +14,7 @@ body {
 /* Sidebar */
 .sidebar {
     width: 280px;
-    background: rgba(6, 90, 204, 0.88);
+    background: rgba(5, 59, 129, 0.88);
     color: #1094e0;
     display: flex;
     flex-direction: column;
