@@ -21,7 +21,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 15px 0; /* 🔹 Ajuste del padding */
-    border: 8px solid black;
+    border: 8px solid #1094e0;
     position: fixed;
     left: 0;
     top: 0;
