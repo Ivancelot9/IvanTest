@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Descripcion Ajustes Letra">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalDescripcion.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalDescripcion.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -123,15 +122,7 @@
       <workItem from="1739284470584" duration="9442000" />
       <workItem from="1739297582060" duration="5956000" />
       <workItem from="1739369781837" duration="18355000" />
-      <workItem from="1739455962452" duration="6163000" />
-    </task>
-    <task id="LOCAL-00121" summary="Historial de Reportes 1.5">
-      <option name="closed" value="true" />
-      <created>1739294859558</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1739294859558</updated>
+      <workItem from="1739455962452" duration="6307000" />
     </task>
     <task id="LOCAL-00122" summary="Historial de Reportes 1.5">
       <option name="closed" value="true" />
@@ -517,7 +508,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739461751128</updated>
     </task>
-    <option name="localTasksCounter" value="170" />
+    <task id="LOCAL-00170" summary="Modal Descripcion Ajustes Letra">
+      <option name="closed" value="true" />
+      <created>1739462329710</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1739462329710</updated>
+    </task>
+    <option name="localTasksCounter" value="171" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
