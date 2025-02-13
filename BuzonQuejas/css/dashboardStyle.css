@@ -24,6 +24,7 @@ body {
     border: 5px solid black; /* 🔲 Borde negro interno */
     outline: 5px solid white; /* 🔳 Borde blanco intermedio */
     box-shadow: 0 0 0 10px black; /* 🔲 Contorno negro externo */
+    box-sizing: border-box;
     position: fixed;
     left: 0;
     top: -50px;
