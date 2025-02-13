@@ -14,7 +14,7 @@ body {
 /* Sidebar */
 .sidebar {
     width: 280px; /* 🔹 Sidebar más delgada */
-    background-color: white;
+    background-color: #04050c;
     color: #1094e0;
     display: flex;
     flex-direction: column;

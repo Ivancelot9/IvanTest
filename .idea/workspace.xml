@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Comentarios">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Arreglando SideBar">
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,15 +122,7 @@
       <workItem from="1739284470584" duration="9442000" />
       <workItem from="1739297582060" duration="5956000" />
       <workItem from="1739369781837" duration="18355000" />
-      <workItem from="1739455962452" duration="11373000" />
-    </task>
-    <task id="LOCAL-00129" summary="Historial de Reportes 1.5">
-      <option name="closed" value="true" />
-      <created>1739299324161</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1739299324161</updated>
+      <workItem from="1739455962452" duration="11485000" />
     </task>
     <task id="LOCAL-00130" summary="Historial de Reportes 1.5">
       <option name="closed" value="true" />
@@ -516,7 +508,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739467052019</updated>
     </task>
-    <option name="localTasksCounter" value="178" />
+    <task id="LOCAL-00178" summary="Arreglando SideBar">
+      <option name="closed" value="true" />
+      <created>1739467697925</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1739467697925</updated>
+    </task>
+    <option name="localTasksCounter" value="179" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -568,7 +568,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modificar Usuario" />
     <MESSAGE value="Update Implementado" />
     <MESSAGE value="Cambio de Carpetas" />
     <MESSAGE value="Login Usuario" />
@@ -593,6 +592,7 @@
     <MESSAGE value="Modal Descripcion" />
     <MESSAGE value="Modal Descripcion Ajustes Letra" />
     <MESSAGE value="Modal Comentarios" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modal Comentarios" />
+    <MESSAGE value="Arreglando SideBar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglando SideBar" />
   </component>
 </project>
