@@ -364,7 +364,7 @@ table td {
 .sidebar::after {
     content: "";
     display: block;
-    width: 10px; /* Espacio entre la sidebar y el contenido */
+    width: 500px; /* Espacio entre la sidebar y el contenido */
 }
 
 /* Cuando la sidebar está oculta */
