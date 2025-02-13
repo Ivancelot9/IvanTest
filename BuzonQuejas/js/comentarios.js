@@ -16,13 +16,15 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="comentarios-lista"></div>
         </div>
     </div>
-`;
+    `;
 
     // Agregar el modal al body
     document.body.appendChild(comentariosModal);
 
     let modalContent = comentariosModal.querySelector(".modal-content");
     let lastClickedButton = null; // 🔹 Guarda el botón que abrió el modal
+    let currentFolio = null; // 🔹 Guarda el folio del reporte actual
+    let comentariosPorReporte = {}; // 🔥 Objeto para guardar comentarios por folio
 
     // Evento para cerrar el modal con animación inversa
     comentariosModal.querySelector(".close-modal").addEventListener("click", function () {
@@ -47,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         boton.addEventListener("click", function () {
             lastClickedButton = boton; // 🔹 Guarda el botón que activó el modal
             let rect = boton.getBoundingClientRect(); // 🔹 Posición del botón
+            currentFolio = boton.getAttribute("data-folio"); // 🔥 Obtener el folio del reporte
 
             comentariosModal.style.display = "flex";
             modalContent.style.transformOrigin = `${rect.left + rect.width / 2}px ${rect.top + rect.height / 2}px`;
@@ -58,6 +61,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 modalContent.style.transform = "scale(1)";
                 modalContent.style.opacity = "1";
             }, 10);
+
+            // 🔹 Cargar comentarios del folio actual
+            cargarComentarios(currentFolio);
         });
     });
 
@@ -68,12 +74,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     btnGuardar.addEventListener("click", function () {
         let textoComentario = inputComentario.value.trim();
-        if (textoComentario !== "") {
-            let nuevoComentario = document.createElement("div");
-            nuevoComentario.classList.add("comentario");
-            nuevoComentario.textContent = textoComentario;
-            listaComentarios.appendChild(nuevoComentario);
+        if (textoComentario !== "" && currentFolio) {
+            if (!comentariosPorReporte[currentFolio]) {
+                comentariosPorReporte[currentFolio] = []; // 🔥 Si no existe, creamos el array
+            }
+
+            comentariosPorReporte[currentFolio].push(textoComentario); // 🔥 Guardar comentario en su reporte
             inputComentario.value = ""; // 🔹 Limpiar el textarea después de guardar
+
+            cargarComentarios(currentFolio); // 🔥 Volver a cargar los comentarios del reporte actual
         }
     });
+
+    // 🔹 Función para cargar comentarios del folio actual
+    function cargarComentarios(folio) {
+        listaComentarios.innerHTML = ""; // 🔥 Limpiar comentarios previos
+
+        if (comentariosPorReporte[folio]) {
+            comentariosPorReporte[folio].forEach((comentario) => {
+                let nuevoComentario = document.createElement("div");
+                nuevoComentario.classList.add("comentario");
+                nuevoComentario.textContent = comentario;
+                listaComentarios.appendChild(nuevoComentario);
+            });
+        }
+    }
 });
