@@ -123,6 +123,12 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     </div>
 </div>
 
+<!-- 🔥 Pantalla de carga con animación de superhéroe -->
+<div id="loading-screen">
+    <img src="imagenes/superhero-sinfondo.png" id="hero-loading" alt="Saliendo...">
+    <p class="loading-text">Cerrando sesión...</p>
+</div>
+
 
 
 <!-- Scripts -->

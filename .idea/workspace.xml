@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Historial de Reportes Tabla 1.2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Cerrar Sesion Restaurada">
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -123,15 +122,7 @@
       <workItem from="1739284470584" duration="9442000" />
       <workItem from="1739297582060" duration="5956000" />
       <workItem from="1739369781837" duration="18355000" />
-      <workItem from="1739455962452" duration="3021000" />
-    </task>
-    <task id="LOCAL-00114" summary="Historial de Reportes 1.5">
-      <option name="closed" value="true" />
-      <created>1739293600229</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1739293600229</updated>
+      <workItem from="1739455962452" duration="3212000" />
     </task>
     <task id="LOCAL-00115" summary="Historial de Reportes 1.5">
       <option name="closed" value="true" />
@@ -517,7 +508,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739393874598</updated>
     </task>
-    <option name="localTasksCounter" value="163" />
+    <task id="LOCAL-00163" summary="Cerrar Sesion Restaurada">
+      <option name="closed" value="true" />
+      <created>1739459201494</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1739459201494</updated>
+    </task>
+    <option name="localTasksCounter" value="164" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -591,6 +590,7 @@
     <MESSAGE value="Historial de Reportes Tabla 1.0" />
     <MESSAGE value="Historial de Reportes Tabla 1.1" />
     <MESSAGE value="Historial de Reportes Tabla 1.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Historial de Reportes Tabla 1.2" />
+    <MESSAGE value="Cerrar Sesion Restaurada" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cerrar Sesion Restaurada" />
   </component>
 </project>
