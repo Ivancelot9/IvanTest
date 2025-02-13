@@ -80,8 +80,10 @@ body {
 }
 
 .sidebar .profile h4 {
+    margin-top: 10px;
     color: black;
     font-size: 1.5rem;
+    margin-bottom: 30px;
 }
 
 /* 🔹 Contenedor de botones normales */
