@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Arreglando SideBar">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,15 +123,7 @@
       <workItem from="1739284470584" duration="9442000" />
       <workItem from="1739297582060" duration="5956000" />
       <workItem from="1739369781837" duration="18355000" />
-      <workItem from="1739455962452" duration="18323000" />
-    </task>
-    <task id="LOCAL-00179" summary="Arreglando SideBar">
-      <option name="closed" value="true" />
-      <created>1739467799791</created>
-      <option name="number" value="00179" />
-      <option name="presentableId" value="LOCAL-00179" />
-      <option name="project" value="LOCAL" />
-      <updated>1739467799791</updated>
+      <workItem from="1739455962452" duration="18428000" />
     </task>
     <task id="LOCAL-00180" summary="Arreglando SideBar">
       <option name="closed" value="true" />
@@ -516,7 +509,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739474517103</updated>
     </task>
-    <option name="localTasksCounter" value="228" />
+    <task id="LOCAL-00228" summary="Arreglando SideBar">
+      <option name="closed" value="true" />
+      <created>1739474691941</created>
+      <option name="number" value="00228" />
+      <option name="presentableId" value="LOCAL-00228" />
+      <option name="project" value="LOCAL" />
+      <updated>1739474691941</updated>
+    </task>
+    <option name="localTasksCounter" value="229" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
