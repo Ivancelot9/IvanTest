@@ -59,8 +59,8 @@ body {
     position: absolute;
     top: -5px; /* Ajusta para que rodee el borde negro */
     left: 30px;
-    width: 120px; /* Tamaño total del contorno */
-    height: 120px;
+    width: 121px; /* Tamaño total del contorno */
+    height: 121px;
     border-radius: 50%; /* Hace el borde animado redondo */
     border: 5px solid transparent; /* Borde inicial transparente */
     border-top: 5px solid #1094e0; /* Parte azul que se mueve */
