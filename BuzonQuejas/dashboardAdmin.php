@@ -117,7 +117,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
         </div>
     </div>
     <!-- Reportes Completos -->
-    <div id="reportes-completos" class="content comic-container" style="display: none;">
+    <div id="reportes-completos" class="content comic-container" style="display: none">
         <h2 class="comic-title">Reportes Completos</h2>
         <p>Aquí podrás consultar todos los reportes generados.</p>
     </div>
