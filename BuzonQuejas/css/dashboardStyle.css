@@ -21,10 +21,9 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 15px 0; /* 🔹 Ajuste del padding */
-    border: 4px solid black; /* 🔲 Borde negro interno */
-    box-shadow:
-            0 0 0 4px white,  /* 🔳 Borde blanco en el medio */
-            0 0 0 8px black;  /* 🔲 Borde negro externo */
+    border: 5px solid black; /* 🔲 Borde negro interno */
+    outline: 5px solid white; /* 🔳 Borde blanco intermedio */
+    box-shadow: 0 0 0 10px black; /* 🔲 Contorno negro externo */
     position: fixed;
     left: 0;
     top: 0;
