@@ -58,7 +58,7 @@ body {
     content: "";
     position: absolute;
     top: -5px; /* Ajusta para que rodee el borde negro */
-    left: 0;
+    left: 20px;
     width: 110px; /* Tamaño total del contorno */
     height: 110px;
     border-radius: 50%; /* Hace el borde animado redondo */
