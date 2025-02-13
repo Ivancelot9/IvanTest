@@ -21,14 +21,17 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 15px 0;
-    border: 5px solid black; /* 🔲 Borde negro interno */
-    outline: 5px solid white; /* 🔳 Borde blanco intermedio */
-    box-shadow: 0 0 0 5px black; /* 🔲 Contorno negro externo */
+    border: 5px solid black;
+    outline: 5px solid white;
+    box-shadow:
+            0 0 0 10px black, /* Contorno externo negro */
+            inset 0 5px 0 black, /* Contorno negro superior interno */
+            inset 0 -5px 0 black; /* Contorno negro inferior interno */
     box-sizing: border-box;
     position: fixed;
     left: 0;
     top: 0;
-    height: calc(100vh - 10px); /* 🔥 Evita que el borde inferior se corte */
+    height: 100vh;
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
 
