@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Arreglando SideBar">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -123,23 +122,7 @@
       <workItem from="1739284470584" duration="9442000" />
       <workItem from="1739297582060" duration="5956000" />
       <workItem from="1739369781837" duration="18355000" />
-      <workItem from="1739455962452" duration="13616000" />
-    </task>
-    <task id="LOCAL-00149" summary="Historial de Reportes Tabla 1.1">
-      <option name="closed" value="true" />
-      <created>1739381318096</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1739381318096</updated>
-    </task>
-    <task id="LOCAL-00150" summary="Historial de Reportes Tabla 1.1">
-      <option name="closed" value="true" />
-      <created>1739381734179</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1739381734179</updated>
+      <workItem from="1739455962452" duration="13687000" />
     </task>
     <task id="LOCAL-00151" summary="Historial de Reportes Tabla 1.2">
       <option name="closed" value="true" />
@@ -517,7 +500,23 @@
       <option name="project" value="LOCAL" />
       <updated>1739469893911</updated>
     </task>
-    <option name="localTasksCounter" value="198" />
+    <task id="LOCAL-00198" summary="Arreglando SideBar">
+      <option name="closed" value="true" />
+      <created>1739469947390</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1739469947390</updated>
+    </task>
+    <task id="LOCAL-00199" summary="Arreglando SideBar">
+      <option name="closed" value="true" />
+      <created>1739469987538</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1739469987538</updated>
+    </task>
+    <option name="localTasksCounter" value="200" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
