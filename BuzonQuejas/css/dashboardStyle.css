@@ -59,7 +59,7 @@ body {
     position: absolute;
     top: -5px; /* Ajusta para que rodee el borde negro */
     left: 10px;
-    width: 160px; /* Tamaño total del contorno */
+    width: 130px; /* Tamaño total del contorno */
     height: 160px;
     border-radius: 50%; /* Hace el borde animado redondo */
     border: 5px solid transparent; /* Borde inicial transparente */
@@ -364,7 +364,7 @@ table td {
 .sidebar::after {
     content: "";
     display: block;
-    width: 500px; /* Espacio entre la sidebar y el contenido */
+    width: 10px; /* Espacio entre la sidebar y el contenido */
 }
 
 /* Cuando la sidebar está oculta */
