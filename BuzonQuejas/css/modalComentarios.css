@@ -40,7 +40,9 @@
 
 /* 🔹 Estilo de la caja de texto (Papel suave) */
 #nueva-nota {
-    width: 100%;
+    width: calc(100% - 20px); /* 🔹 Hace que el ancho sea más preciso */
+    margin: 0 auto; /* 🔹 Centra horizontalmente */
+    display: block; /* 🔹 Asegura que no tenga margen lateral raro */
     height: 120px;
     padding: 12px;
     border: 2px solid #ff9900;
@@ -50,6 +52,7 @@
     font-size: 1rem;
     font-family: 'Patrick Hand', cursive;
     resize: none;
+    text-align: left;
 }
 
 /* 🔹 Botón de guardar con efecto flotante */
