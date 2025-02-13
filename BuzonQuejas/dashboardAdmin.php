@@ -91,7 +91,14 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                     <td>10/02/2025</td>
                     <td>-</td> <!-- Sin fecha hasta que el admin la establezca -->
                     <td>
-                        <button class="mostrar-descripcion" data-descripcion="Problema con el sistema de autenticación">Mostrar Descripción</button>
+                        <button class="mostrar-descripcion" data-descripcion="El sistema de autenticación presenta un problema crítico al momento de iniciar sesión. Algunos usuarios han reportado que, tras ingresar sus credenciales correctamente, la página se recarga sin proporcionar acceso a la plataforma. Se ha detectado que esto ocurre principalmente en navegadores basados en Chromium, aunque algunos usuarios de Firefox también han informado el problema.
+
+Durante las pruebas realizadas, se observó que la sesión se inicia correctamente en el backend, pero el frontend no recibe la confirmación adecuada, lo que provoca un bucle de autenticación. Este problema podría estar relacionado con el almacenamiento de sesiones en el servidor, la expiración prematura de las cookies o una mala sincronización entre el cliente y el servidor.
+
+Además, en la consola del navegador se detectaron errores de CORS al intentar recuperar datos del usuario, lo que sugiere que algunas solicitudes AJAX no están configuradas correctamente. Para solucionar este problema, se recomienda verificar la configuración del servidor de autenticación, revisar la política de cookies, y realizar pruebas en distintos dispositivos y redes para detectar patrones específicos en los errores.
+
+Es crucial resolver este problema lo antes posible, ya que afecta directamente la experiencia del usuario y limita el acceso a la plataforma. Se recomienda asignar este caso a un equipo especializado en autenticación y seguridad web para realizar un diagnóstico más detallado.">Mostrar Descripción</button>
+
                     </td>
                     <td>En proceso</td>
                     <td>
