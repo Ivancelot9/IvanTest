@@ -13,20 +13,21 @@ body {
 
 /* Sidebar */
 .sidebar {
-    width: 350px;
-    background-color: white; /* Fondo blanco */
+    width: 280px; /* 🔹 Sidebar más delgada */
+    background-color: white;
     color: #1094e0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; /* Distribuye contenido: arriba y abajo */
-    padding: 20px 0;
-    border: 15px solid #1094e0; /* Borde grueso bien marcado */
+    justify-content: space-between;
+    padding: 15px 0; /* 🔹 Ajuste del padding */
+    border: 8px solid #1094e0;
     position: fixed;
     left: 0;
     top: 0;
-    height: 100vh; /* Ocupar toda la altura */
-    transition: transform 0.3s ease-in-out; /* Animación de deslizamiento */
+    height: 100vh;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
 
 }
 
