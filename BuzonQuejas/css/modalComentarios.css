@@ -40,19 +40,19 @@
 
 /* 🔹 Estilo de la caja de texto (Papel suave) */
 #nueva-nota {
-    width: calc(100% - 20px); /* 🔹 Hace que el ancho sea más preciso */
-    margin: 0 auto; /* 🔹 Centra horizontalmente */
-    display: block; /* 🔹 Asegura que no tenga margen lateral raro */
-    height: 120px;
-    padding: 12px;
+    width: 100%; /* Mantiene el tamaño correcto */
+    margin: 0 auto; /* Centra horizontalmente */
+    display: block; /* Asegura que ocupe toda la línea */
+    padding: 10px;
     border: 2px solid #ff9900;
     border-radius: 8px;
-    background: #fffde8; /* Fondo color papel */
+    background: #fffde8;
     box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
     font-size: 1rem;
     font-family: 'Patrick Hand', cursive;
     resize: none;
     text-align: left;
+    box-sizing: border-box; /* 🔥 Evita que el padding afecte el tamaño */
 }
 
 /* 🔹 Botón de guardar con efecto flotante */
