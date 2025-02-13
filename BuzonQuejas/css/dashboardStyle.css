@@ -37,7 +37,7 @@ body {
     align-items: center;
     text-align: center;
     position: relative;
-    margin-bottom: 15px; /* 🔹 Ajuste de espacio */
+    margin-bottom: 50px; /* 🔹 Ajuste de espacio */
 }
 
 .sidebar .profile img {
