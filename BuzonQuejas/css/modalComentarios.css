@@ -1,4 +1,4 @@
-/* 🔹 Ajustamos el modal para que esté centrado y tenga un tamaño adecuado */
+/* 🔹 Ajustamos el modal para centrarlo con efecto suave */
 #reporte-modal {
     display: none;
     justify-content: center;
@@ -8,97 +8,115 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* 🔹 Fondo oscuro semi-transparente */
-    z-index: 1000; /* 🔹 Asegura que esté encima de todo */
+    background: rgba(0, 0, 0, 0.6); /* 🔥 Fondo más oscuro para mejor enfoque */
+    backdrop-filter: blur(5px); /* 🔥 Efecto de desenfoque */
+    z-index: 1000;
 }
 
-/* 🔹 Contenedor del modal de comentarios */
+/* 🔹 Contenedor del modal con estilo de post-it */
 .comentarios-modal {
-    background: #fffae6;
-    border: 5px solid #000;
+    background: #fffbcc; /* 🎨 Color amarillo pastel tipo nota adhesiva */
+    border: 4px solid #ffcc00; /* Borde amarillo más fuerte */
     width: 40%;
-    max-width: 350px; /* 🔹 Más pequeño */
-    height: auto;
+    max-width: 380px; /* Un poco más grande */
     padding: 20px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
     font-family: 'Bangers', cursive;
-    border-radius: 10px;
+    border-radius: 15px;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transform: scale(0);
+    transform: translateY(-30px) scale(0.8);
     opacity: 0;
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transition: transform 0.4s ease-out, opacity 0.3s ease-out;
 }
 
 /* 🔹 Cuando el modal esté activo */
 .comentarios-modal.active {
-    transform: scale(1);
+    transform: translateY(0) scale(1);
     opacity: 1;
 }
 
-/* 🔹 Estilos para la caja de texto */
+/* 🔹 Estilo de la caja de texto (Papel suave) */
 #nueva-nota {
     width: 100%;
-    height: 100px;
-    padding: 10px;
-    border: 2px solid #000;
-    border-radius: 5px;
+    height: 120px;
+    padding: 12px;
+    border: 2px solid #ff9900;
+    border-radius: 8px;
+    background: #fffde8; /* Fondo color papel */
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    font-family: 'Patrick Hand', cursive;
     resize: none;
 }
 
-/* 🔹 Estilos del botón de guardar */
+/* 🔹 Botón de guardar con efecto flotante */
 .btn-guardar {
     font-family: 'Bangers', cursive;
     width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background: #ff4500;
+    padding: 12px;
+    margin-top: 12px;
+    background: #ff6600;
     color: white;
-    font-size: 1rem;
-    border: 2px solid #000;
-    border-radius: 5px;
+    font-size: 1.1rem;
+    border: 2px solid #cc4400;
+    border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 /* 🔹 Efecto al pasar el mouse */
 .btn-guardar:hover {
     transform: scale(1.1);
+    background: #ff4500;
 }
 
-/* 🔹 Ajuste de los comentarios guardados */
+/* 🔹 Contenedor de comentarios (estilo caja de notas) */
 .comentarios-container {
     width: 100%;
     margin-top: 20px;
     background: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    max-height: 200px;
+    padding: 15px;
+    border-radius: 10px;
+    max-height: 220px;
     overflow-y: auto;
+    border: 2px dashed #ffcc00; /* 🟡 Bordes estilo papel rasgado */
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
-/* 🔹 Estilos para cada comentario */
+/* 🔹 Estilo para cada comentario */
 .comentario {
-    background: #eef;
-    padding: 10px;
+    background: #f9ffb0; /* 💛 Color post-it */
+    padding: 12px;
     margin-bottom: 10px;
-    border-radius: 5px;
-    font-size: 0.9rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: 'Patrick Hand', cursive;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
 }
 
-/* 🔹 Botón de cerrar */
+/* 🔹 Efecto de levantamiento al pasar el mouse */
+.comentario:hover {
+    transform: scale(1.05);
+}
+
+/* 🔹 Botón de cerrar (más visible) */
 .close-modal {
     position: absolute;
     top: 10px;
-    right: 20px;
-    font-size: 24px;
+    right: 15px;
+    font-size: 26px;
     cursor: pointer;
-    color: #ff4500;
+    color: #ff3300;
     font-weight: bold;
+    transition: transform 0.2s ease-in-out;
 }
 
+/* 🔹 Efecto al pasar el mouse */
 .close-modal:hover {
+    transform: rotate(90deg);
     color: #d40000;
 }
