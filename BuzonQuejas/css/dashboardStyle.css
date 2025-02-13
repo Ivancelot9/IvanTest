@@ -14,7 +14,7 @@ body {
 /* Sidebar */
 .sidebar {
     width: 280px; /* 🔹 Sidebar más delgada */
-    background: url('../imagenes/download.jpg') center / cover no-repeat;
+    background: url('../imagenes/Fondo2Comic.jpg.jpg') center / cover no-repeat;
     color: #1094e0;
     display: flex;
     flex-direction: column;
