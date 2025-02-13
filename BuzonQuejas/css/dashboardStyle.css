@@ -80,6 +80,15 @@ body {
     font-size: 1.5rem;
 }
 
+/* 🔹 Contenedor de botones normales */
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-top: -10px;
+}
+
 /* 🎨 Estilos para los botones de la barra lateral */
 .sidebar a {
     display: flex;
@@ -502,15 +511,6 @@ table td {
 /* 📌 Cuando se presiona */
 .logout-btn:active {
     transform: scale(0.95);
-}
-
-/* 🔹 Contenedor de botones normales */
-.sidebar-links {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    margin-top: -50px;
 }
 
 /* 🔴 Empujar "Cerrar Sesión" hacia abajo */
