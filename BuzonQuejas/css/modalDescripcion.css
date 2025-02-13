@@ -47,7 +47,7 @@
     max-width: 450px;
     height: 100%;
     min-height: 500px;
-    padding-top: 25px; /* Ajusta la posición del texto */
+    padding-top: 100px; /* Ajusta la posición del texto */
     background:
             linear-gradient(white 28px, #a2caff 29px) repeat-y,
             linear-gradient(to right, #ff4a4a 5px, transparent 5px);
