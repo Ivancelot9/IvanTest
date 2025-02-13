@@ -1,5 +1,5 @@
 /* 🔹 Importar fuente manuscrita */
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 /* 🔹 Ajustamos el modal para que esté CENTRADO SIEMPRE */
 #descripcion-modal {
     display: none;
@@ -54,8 +54,8 @@
     background-size: 100% 30px, 100% 100%;
     border-radius: 10px;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
-    font-family: 'Caveat', cursive;
-    font-size: 1.3rem;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.4rem;
     line-height: 30px;
     text-align: left;
     color: #333;
