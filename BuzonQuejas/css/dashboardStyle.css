@@ -32,18 +32,21 @@ body {
 }
 
 .sidebar .profile {
-    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    position: relative;
+    margin-bottom: 15px; /* 🔹 Ajuste de espacio */
 }
 
 .sidebar .profile img {
-    width: 150px; /* Tamaño de la imagen */
-    height: 150px;
-    border-radius: 50%; /* Hace la imagen redonda */
-    border: 5px solid black; /* ¡Borde sólido visible! */
-    object-fit: cover; /* Ajusta la imagen sin deformarla */
-    position: relative; /* Necesario para el pseudo-elemento */
-    z-index: 1; /* Asegura que la imagen esté encima del contorno animado */
+    width: 120px; /* 🔹 Imagen más pequeña */
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid black;
+    object-fit: cover;
+    z-index: 1;
 }
 /* Halo animado */
 .sidebar .profile {
