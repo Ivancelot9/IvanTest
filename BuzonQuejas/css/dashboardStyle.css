@@ -14,7 +14,7 @@ body {
 /* Sidebar */
 .sidebar {
     width: 280px;
-    height: 90vh; /* Se reduce la altura */
+    height: 90vh; /* Mantiene la altura reducida */
     background: rgba(5, 59, 129, 0.88);
     color: #1094e0;
     display: flex;
@@ -35,11 +35,12 @@ body {
 
     box-sizing: border-box;
     position: fixed;
-    left: 0;
-    top: 5vh; /* Ajusta la posición más centrada */
+    left: 10px; /* 🔥 Ajustado más a la derecha */
+    top: 5vh; /* Mantiene la posición */
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
 }
+
 
 .sidebar .profile {
     display: flex;
