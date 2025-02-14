@@ -423,7 +423,8 @@ table td {
 
 /* Cuando la sidebar está oculta, mover el botón a la derecha */
 .sidebar.hidden ~ .toggle-btn {
-    left: calc(100vw - 60px);  /* 🔥 Se mueve al borde derecho de la sidebar */
+    left: auto; /* 🔥 Quitamos left */
+    right: 10px; /* 🔥 Ahora se posiciona al lado derecho de la pantalla */
 }
 
 .hero-animation {
