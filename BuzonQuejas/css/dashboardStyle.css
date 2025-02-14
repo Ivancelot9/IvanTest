@@ -21,15 +21,13 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 15px 0;
-    border: 5px solid black;
-    outline: 5px solid white;
+
+    border: 5px solid black;  /* Borde negro principal */
+    outline: 5px solid white; /* Contorno blanco */
+
     box-shadow:
-            0 0 0 10px black,  /* Contorno externo negro */
-            0 0 0 15px white,  /* Contorno externo blanco más grande */
-            inset 0 5px 0 black, /* Contorno negro superior interno */
-            inset 0 -5px 0 black, /* Contorno negro inferior interno */
-            inset 5px 0 0 black,  /* Contorno negro izquierdo interno */
-            inset -5px 0 0 black; /* Contorno negro derecho interno */
+            0 0 0 10px black; /* Contorno negro externo */
+
     box-sizing: border-box;
     position: fixed;
     left: 0;
