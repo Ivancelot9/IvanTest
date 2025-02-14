@@ -414,7 +414,7 @@ table td {
     cursor: pointer;
     transition: left 0.3s ease-in-out, transform 0.3s ease-in-out;
     border-radius: 5px;
-    z-index: 3000;
+    z-index: 2000;
 
     /* ✨ Contorno de cómic */
     outline: 5px solid white;
