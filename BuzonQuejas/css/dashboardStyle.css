@@ -423,12 +423,12 @@ table td {
 
 /* Cuando la sidebar está visible, el botón está pegado a la izquierda */
 .sidebar:not(.hidden) .toggle-btn {
-    left: 0;
+    left: 10px;
 }
 
 /* Cuando la sidebar está oculta, mover el botón al borde derecho del sidebar */
 .sidebar.hidden + .toggle-btn {
-    left: calc(280px - 40px); /* 🔥 Pegado al borde derecho donde estaba la sidebar */
+    left: calc(280px + 10px); /* 🔥 Pegado al borde derecho donde estaba la sidebar */
 }
 
 .hero-animation {
