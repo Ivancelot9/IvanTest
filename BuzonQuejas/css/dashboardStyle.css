@@ -404,7 +404,7 @@ table td {
 /* Botón para ocultar/mostrar la sidebar */
 .toggle-btn {
     position: fixed;
-    top: 120px;
+    top: 25px;
     left: calc(280px + 15px); /* 🔥 Se coloca automáticamente al lado del sidebar */
     background: #1094e0;
     color: white;
