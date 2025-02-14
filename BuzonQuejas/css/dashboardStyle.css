@@ -405,7 +405,7 @@ table td {
 .toggle-btn {
     position: fixed;
     top: 40px;
-    left: 10px;
+    left: 0;
     background: #1094e0;
     color: white;
     border: 3px solid black;
@@ -428,7 +428,7 @@ table td {
 
 /* Cuando la sidebar está oculta, mover el botón al borde derecho del sidebar */
 .sidebar.hidden + .toggle-btn {
-    left: 290px; /* 🔥 Pegado al borde derecho donde estaba la sidebar */
+    left: calc(280px + 40px); /* 🔥 Pegado al borde derecho donde estaba la sidebar */
 }
 
 .hero-animation {
