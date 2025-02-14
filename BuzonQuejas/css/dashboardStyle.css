@@ -464,39 +464,6 @@ table td {
     transition: left 1.5s cubic-bezier(0.3, 0, 0.1, 1);
 }
 
-/* 📱💻 RESPONSIVE DESIGN */
-@media (max-width: 1024px) {
-    .sidebar {
-        width: 250px; /* Sidebar más pequeña en tablets/laptops */
-    }
-
-    .main-content {
-        margin-left: 250px;
-        width: calc(100% - 250px);
-    }
-
-    /* 🔥 Se ajusta dinámicamente con el ancho de la sidebar */
-    .sidebar.hidden + .toggle-btn {
-        left: calc(250px + 10px);
-    }
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        width: 220px;
-    }
-
-    .main-content {
-        margin-left: 220px;
-        width: calc(100% - 220px);
-    }
-
-    /* 🔥 Se ajusta dinámicamente con el ancho de la sidebar */
-    .sidebar.hidden + .toggle-btn {
-        left: calc(220px + 10px);
-    }
-}
-
 
 /* 🎨 Estilos para el botón de Cerrar Sesión */
 .logout-btn {
