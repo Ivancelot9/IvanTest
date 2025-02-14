@@ -421,10 +421,14 @@ table td {
     box-shadow: 0 0 0 5px black;
 }
 
-/* Cuando la sidebar está oculta, mover el botón a la derecha */
-.sidebar.hidden ~ .toggle-btn {
-    left: auto; /* 🔥 Quitamos left */
-    right: 50px; /* 🔥 Ahora se posiciona al lado derecho de la pantalla */
+/* Cuando la sidebar está visible, el botón está pegado a la izquierda */
+.sidebar:not(.hidden) .toggle-btn {
+    left: 0;
+}
+
+/* Cuando la sidebar está oculta, mover el botón al borde derecho del sidebar */
+.sidebar.hidden + .toggle-btn {
+    left: calc(280px + 10px); /* 🔥 Pegado al borde derecho donde estaba la sidebar */
 }
 
 .hero-animation {
@@ -460,31 +464,10 @@ table td {
     transition: left 1.5s cubic-bezier(0.3, 0, 0.1, 1);
 }
 
-
-
-/* 📱💻 RESPONSIVE DESIGN: Para tablets y laptops */
+/* 📱💻 RESPONSIVE DESIGN */
 @media (max-width: 1024px) {
     .sidebar {
-        width: 280px; /* Sidebar más pequeña en pantallas medianas */
-    }
-
-    .main-content {
-        margin-left: 300px; /* Ajustar margen con sidebar */
-        width: calc(100% - 300px);
-    }
-
-    .toggle-btn {
-        left: 290px; /* Ajustar botón */
-    }
-
-    .sidebar.hidden ~ .toggle-btn {
-        left: 20px;
-    }
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        width: 250px;
+        width: 250px; /* Sidebar más pequeña en tablets/laptops */
     }
 
     .main-content {
@@ -492,14 +475,28 @@ table td {
         width: calc(100% - 250px);
     }
 
-    .toggle-btn {
-        left: 260px;
-    }
-
-    .sidebar.hidden ~ .toggle-btn {
-        left: 20px;
+    /* 🔥 Se ajusta dinámicamente con el ancho de la sidebar */
+    .sidebar.hidden + .toggle-btn {
+        left: calc(250px + 10px);
     }
 }
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 220px;
+    }
+
+    .main-content {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+    }
+
+    /* 🔥 Se ajusta dinámicamente con el ancho de la sidebar */
+    .sidebar.hidden + .toggle-btn {
+        left: calc(220px + 10px);
+    }
+}
+
 
 /* 🎨 Estilos para el botón de Cerrar Sesión */
 .logout-btn {
