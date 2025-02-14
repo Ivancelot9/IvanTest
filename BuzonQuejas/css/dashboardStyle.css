@@ -421,9 +421,9 @@ table td {
     box-shadow: 0 0 0 5px black;
 }
 
-/* Cuando la sidebar está oculta, mover el botón a la izquierda */
+/* Cuando la sidebar está oculta, mover el botón a la derecha */
 .sidebar.hidden ~ .toggle-btn {
-    left: calc(280px + 15px); /* 🔥 Se mueve al borde derecho de la sidebar */
+    left: calc(280px + -500px); /* 🔥 Se mueve al borde derecho de la sidebar */
 }
 
 .hero-animation {
