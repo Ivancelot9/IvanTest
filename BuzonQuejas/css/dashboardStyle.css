@@ -423,7 +423,7 @@ table td {
 
 /* Cuando la sidebar está oculta, mover el botón a la izquierda */
 .sidebar.hidden ~ .toggle-btn {
-    left: 10px;
+    left: 15px;
 }
 
 .hero-animation {
