@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Arreglando SideBar 1.0">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Arreglando SideBar 1.1">
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,15 +123,7 @@
       <workItem from="1739297582060" duration="5956000" />
       <workItem from="1739369781837" duration="18355000" />
       <workItem from="1739455962452" duration="20891000" />
-      <workItem from="1739542481040" duration="6961000" />
-    </task>
-    <task id="LOCAL-00194" summary="Arreglando SideBar">
-      <option name="closed" value="true" />
-      <created>1739469631210</created>
-      <option name="number" value="00194" />
-      <option name="presentableId" value="LOCAL-00194" />
-      <option name="project" value="LOCAL" />
-      <updated>1739469631210</updated>
+      <workItem from="1739542481040" duration="7078000" />
     </task>
     <task id="LOCAL-00195" summary="Arreglando SideBar">
       <option name="closed" value="true" />
@@ -517,7 +509,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739547503957</updated>
     </task>
-    <option name="localTasksCounter" value="243" />
+    <task id="LOCAL-00243" summary="Arreglando SideBar 1.1">
+      <option name="closed" value="true" />
+      <created>1739552621610</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
+      <option name="project" value="LOCAL" />
+      <updated>1739552621610</updated>
+    </task>
+    <option name="localTasksCounter" value="244" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -569,7 +569,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cambio de Carpetas" />
     <MESSAGE value="Login Usuario" />
     <MESSAGE value="Login Usuario y Admin" />
     <MESSAGE value="Login Usuario y Admin 1.0" />
@@ -594,6 +593,7 @@
     <MESSAGE value="Modal Comentarios" />
     <MESSAGE value="Arreglando SideBar" />
     <MESSAGE value="Arreglando SideBar 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglando SideBar 1.0" />
+    <MESSAGE value="Arreglando SideBar 1.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglando SideBar 1.1" />
   </component>
 </project>
