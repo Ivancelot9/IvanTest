@@ -421,14 +421,10 @@ table td {
     box-shadow: 0 0 0 5px black;
 }
 
-/* Cuando la sidebar está visible, el botón está pegado a la izquierda */
-.sidebar:not(.hidden) .toggle-btn {
-    left: 0;
-}
-
-/* Cuando la sidebar está oculta, mover el botón al borde derecho del sidebar */
-.sidebar.hidden + .toggle-btn {
-    left: calc(280px - 40px); /* 🔥 Pegado al borde derecho donde estaba la sidebar */
+/* Cuando la sidebar está oculta, mover el botón a la derecha */
+.sidebar.hidden ~ .toggle-btn {
+    left: auto; /* 🔥 Quitamos left */
+    right: 10px; /* 🔥 Ahora se posiciona al lado derecho de la pantalla */
 }
 
 .hero-animation {
@@ -464,6 +460,46 @@ table td {
     transition: left 1.5s cubic-bezier(0.3, 0, 0.1, 1);
 }
 
+
+
+/* 📱💻 RESPONSIVE DESIGN: Para tablets y laptops */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 280px; /* Sidebar más pequeña en pantallas medianas */
+    }
+
+    .main-content {
+        margin-left: 300px; /* Ajustar margen con sidebar */
+        width: calc(100% - 300px);
+    }
+
+    .toggle-btn {
+        left: 290px; /* Ajustar botón */
+    }
+
+    .sidebar.hidden ~ .toggle-btn {
+        left: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 250px;
+    }
+
+    .main-content {
+        margin-left: 250px;
+        width: calc(100% - 250px);
+    }
+
+    .toggle-btn {
+        left: 260px;
+    }
+
+    .sidebar.hidden ~ .toggle-btn {
+        left: 20px;
+    }
+}
 
 /* 🎨 Estilos para el botón de Cerrar Sesión */
 .logout-btn {
@@ -589,5 +625,87 @@ table td {
     width: calc(100% - 400px);
     max-width: 75%;
 }
+
+/* 🔹 CUANDO LA SIDEBAR SE OCULTA, EL CONTENIDO SE CENTRA */
+.sidebar.hidden ~ .main-content {
+    margin-left: auto;
+    width: 85%;
+}
+
+/* 🔹 PARA TABLETS (Entre 600px y 1024px) */
+@media screen and (max-width: 1024px) {
+    .sidebar {
+        width: 250px; /* 🔹 Sidebar más delgada en tablets */
+    }
+
+    .main-content {
+        margin-left: 270px; /* 🔹 Ajustar con la nueva sidebar */
+        width: calc(100% - 270px);
+        max-width: 80%;
+    }
+
+    /* 🔹 Cuando la sidebar está oculta */
+    .sidebar.hidden ~ .main-content {
+        margin-left: auto;
+        width: 90%;
+    }
+}
+
+/* 🔹 PARA LAPTOPS PEQUEÑAS (Menos de 1366px) */
+@media screen and (max-width: 1366px) {
+    .sidebar {
+        width: 280px;
+    }
+
+    .main-content {
+        margin-left: 300px;
+        width: calc(100% - 300px);
+        max-width: 85%;
+    }
+
+    .sidebar.hidden ~ .main-content {
+        margin-left: auto;
+        width: 95%;
+    }
+}
+
+/* 🔹 PARA PANTALLAS MUY PEQUEÑAS (Menos de 768px - Celulares o tablets en vertical) */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 220px;
+    }
+
+    .main-content {
+        margin-left: 240px;
+        width: calc(100% - 240px);
+        max-width: 95%;
+    }
+
+    /* 🔹 Cuando la sidebar está oculta */
+    .sidebar.hidden ~ .main-content {
+        margin-left: auto;
+        width: 100%;
+    }
+}
+
+/* 🔹 AJUSTES PARA PANTALLAS DE CELULARES (Menos de 600px) */
+@media screen and (max-width: 600px) {
+    .sidebar {
+        width: 180px; /* 🔹 Sidebar compacta */
+    }
+
+    .main-content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+        max-width: 98%;
+    }
+
+    /* 🔹 Cuando la sidebar está oculta */
+    .sidebar.hidden ~ .main-content {
+        margin-left: auto;
+        width: 100%;
+    }
+}
+
 
 
