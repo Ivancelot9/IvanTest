@@ -24,9 +24,10 @@ body {
 
     border: 5px solid black;  /* Borde negro principal */
     outline: 5px solid white; /* Contorno blanco */
+    outline-offset: -5px;     /* Hace que el contorno blanco se ajuste mejor */
 
     box-shadow:
-            0 0 0 10px black; /* Contorno negro externo */
+            0 0 0 15px black; /* Contorno negro externo que cubre todo */
 
     box-sizing: border-box;
     position: fixed;
