@@ -405,7 +405,7 @@ table td {
 .toggle-btn {
     position: fixed;
     top: 40px;
-    left: calc(280px + 50px); /* 🔥 Se coloca automáticamente al lado del sidebar */
+    left: calc(280px + -50px); /* 🔥 Se coloca automáticamente al lado del sidebar */
     background: #1094e0;
     color: white;
     border: 3px solid black;
