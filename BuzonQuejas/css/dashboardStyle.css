@@ -22,12 +22,15 @@ body {
     justify-content: space-between;
     padding: 15px 0;
 
-    border: 5px solid black;  /* Borde negro principal */
-    outline: 5px solid white; /* Contorno blanco */
-    outline-offset: -5px;     /* Hace que el contorno blanco se ajuste mejor */
+    /* 1️⃣ Primera línea negra */
+    border: 5px solid black;
 
+    /* 2️⃣ Contorno blanco más ancho */
+    outline: 10px solid white;
+
+    /* 3️⃣ Segunda línea negra (más gruesa) */
     box-shadow:
-            0 0 0 15px black; /* Contorno negro externo que cubre todo */
+            0 0 0 15px black;
 
     box-sizing: border-box;
     position: fixed;
@@ -36,7 +39,6 @@ body {
     height: 100vh;
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
-
 }
 
 .sidebar .profile {
