@@ -14,6 +14,7 @@ body {
 /* Sidebar */
 .sidebar {
     width: 280px;
+    height: 90vh; /* Se reduce la altura */
     background: rgba(5, 59, 129, 0.88);
     color: #1094e0;
     display: flex;
@@ -28,15 +29,14 @@ body {
     /* 2️⃣ Contorno blanco más ancho */
     outline: 10px solid white;
 
-    /* 3️⃣ Segunda línea negra (más gruesa) */
+    /* 3️⃣ Segunda línea negra */
     box-shadow:
             0 0 0 15px black;
 
     box-sizing: border-box;
     position: fixed;
     left: 0;
-    top: 0;
-    height: 100vh;
+    top: 5vh; /* Ajusta la posición más centrada */
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
 }
