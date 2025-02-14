@@ -404,22 +404,26 @@ table td {
 /* Botón para ocultar/mostrar la sidebar */
 .toggle-btn {
     position: fixed;
-    left: 16px; /* Espaciado para mantenerlo separado */
     top: 16px;
+    left: calc(280px + 10px); /* 🔥 Se coloca automáticamente al lado del sidebar */
     background: #1094e0;
     color: white;
-    border: 2px solid black;
+    border: 3px solid black;
     padding: 10px 15px;
     font-size: 1.5rem;
     cursor: pointer;
     transition: left 0.3s ease-in-out, transform 0.3s ease-in-out;
     border-radius: 5px;
     z-index: 2000;
+
+    /* ✨ Contorno de cómic */
+    outline: 5px solid white;
+    box-shadow: 0 0 0 5px black;
 }
 
 /* Cuando la sidebar está oculta, mover el botón a la izquierda */
 .sidebar.hidden ~ .toggle-btn {
-    left: 320px; /* Mover el botón a la izquierda */
+    left: 10px;
 }
 
 .hero-animation {
