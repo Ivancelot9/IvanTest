@@ -24,8 +24,10 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 </head>
 <body>
 
-<!-- Botón para mostrar/ocultar sidebar (Ahora está afuera) -->
-<button id="toggleSidebar" class="toggle-btn">☰</button>
+<!-- Contenedor del botón -->
+<div class="toggle-btn-wrapper">
+    <button id="toggleSidebar" class="toggle-btn">☰</button>
+</div>
 
 <!-- Sidebar -->
 <div class="sidebar">
