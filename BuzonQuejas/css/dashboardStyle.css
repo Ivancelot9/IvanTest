@@ -144,6 +144,24 @@ body {
     box-shadow: 5px 5px 0 black;
 }
 
+/* Espacio entre la sidebar y el main-content */
+.sidebar::after {
+    content: "";
+    display: block;
+    width: 10px; /* Espacio entre la sidebar y el contenido */
+}
+
+/* Cuando la sidebar está oculta */
+.sidebar.hidden {
+    transform: translateX(-110%);
+}
+
+/* 🔹 Cuando la sidebar está oculta, mover el botón al borde derecho */
+.sidebar.hidden + .toggle-btn {
+    left: 300px; /* 🔥 Se mueve al borde derecho donde estaba la sidebar */
+}
+
+
 /* 🎯 Vibración del botón */
 @keyframes vibrate-grow {
     0% { transform: scale(1.03) translateX(-2px); }
@@ -373,17 +391,6 @@ table td {
 }
 
 
-/* Espacio entre la sidebar y el main-content */
-.sidebar::after {
-    content: "";
-    display: block;
-    width: 10px; /* Espacio entre la sidebar y el contenido */
-}
-
-/* Cuando la sidebar está oculta */
-.sidebar.hidden {
-    transform: translateX(-100%);
-}
 
 /* Main Content (ajustado con espacio a la izquierda) */
 .main-content {
@@ -420,10 +427,7 @@ table td {
     outline: 5px solid white;
     box-shadow: 0 0 0 5px black;
 }
-/* 🔹 Cuando la sidebar está oculta, mover el botón al borde derecho */
-.sidebar.hidden + .toggle-btn {
-    left: 300px; /* 🔥 Se mueve al borde derecho donde estaba la sidebar */
-}
+
 .hero-animation {
     position: absolute;
     top: 20px;
