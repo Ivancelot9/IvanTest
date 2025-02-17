@@ -400,65 +400,48 @@ table td {
     max-height: 80%; /* Deja un 20% de margen arriba y abajo */
 }
 
-/* 🔥 Botón estilo explosión de cómic */
+/* 🎤 Botón estilo burbuja de diálogo de cómic */
 .toggle-btn {
     position: fixed;
     top: 45px;
     left: 5px;
-    background: #FFD700; /* Amarillo dorado */
+    background: #FFD700; /* Color amarillo dorado */
     color: black;
     border: 5px solid black; /* 1️⃣ Línea negra interna */
-    padding: 8px 12px;
+    padding: 10px 15px;
     font-size: 1.2rem;
     font-family: "Bangers", sans-serif;
     text-transform: uppercase;
     cursor: pointer;
-    transition: left 0.3s ease-in-out, transform 0.2s ease-in-out;
-    border-radius: 50%;
+    transition: left 0.3s ease-in-out;
+    border-radius: 50%; /* 🔹 Mantiene una forma más redonda */
     z-index: 3000;
 
-    /* ✨ Contorno de tres capas */
-    outline: 10px solid white; /* 2️⃣ Contorno blanco intermedio */
+    /* ✨ Contorno de cómic bien marcado */
+    outline: 12px solid white; /* 2️⃣ Contorno blanco grueso */
     box-shadow: 0 0 0 15px black; /* 3️⃣ Segunda línea negra externa */
 }
 
-/* 🔥 Explosión detrás del botón (decoración) */
-.toggle-btn::before {
+/* 💬 Pequeña "cola" de burbuja tipo cómic */
+.toggle-btn::after {
     content: "";
-    display: block;
-    width: 55px;
-    height: 55px;
-    background: radial-gradient(circle, rgba(255, 0, 0, 0.8) 10%, rgba(255, 215, 0, 0.9) 60%, rgba(255, 0, 0, 0.8) 100%);
     position: absolute;
-    top: 50%;
+    bottom: -10px;
     left: 50%;
-    transform: translate(-50%, -50%);
-    clip-path: polygon(50% 0%, 80% 10%, 100% 50%, 80% 90%, 50% 100%, 20% 90%, 0% 50%, 20% 10%);
-    z-index: -1;
-
-    /* 🔥 Contorno explosión */
+    transform: translateX(-50%);
+    width: 15px;
+    height: 15px;
+    background: #FFD700;
     border: 5px solid black;
-    outline: 10px solid white;
-    box-shadow: 0 0 0 15px black;
-}
-
-/* 🎯 Efecto al pasar el mouse */
-.toggle-btn:hover {
-    transform: scale(1.1) rotate(-3deg);
-    box-shadow: 0 0 0 20px black;
-}
-
-/* ✨ Efecto de clic */
-.toggle-btn:active {
-    transform: scale(0.9);
-    box-shadow: none;
+    outline: 7px solid white;
+    box-shadow: 0 0 0 10px black;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 
 /* 📌 Ajuste cuando la sidebar está oculta */
 .sidebar.hidden + .toggle-btn {
     left: 280px;
 }
-
 
 .hero-animation {
     position: absolute;
