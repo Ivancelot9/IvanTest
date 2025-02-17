@@ -425,6 +425,7 @@ table td {
     justify-content: center;
     width: 45px; /* 🔹 Tamaño fijo */
     height: 45px; /* 🔹 Tamaño fijo */
+    z-index: 3000;
 
     /* 🌟 Contornos cómic */
     outline: 6px solid white; /* 🔹 Contorno blanco */
