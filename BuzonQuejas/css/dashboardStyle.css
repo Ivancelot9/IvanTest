@@ -399,49 +399,65 @@ table td {
     width: 80%; /* Deja un 20% de margen a la izquierda y derecha */
     max-height: 80%; /* Deja un 20% de margen arriba y abajo */
 }
-
-/* 🎤 Botón de cómic más pequeño */
-.toggle-btn {
+/* 💬 Contenedor de burbuja */
+.toggle-btn-wrapper {
     position: fixed;
-    top: 50px;
-    left: 20px;
-    background: #FFD700; /* Amarillo vibrante */
+    top: 40px;
+    left: 5px;
+    z-index: 3000;
+}
+
+/* 🗯️ Burbuja estilo cómic */
+.toggle-btn {
+    position: relative;
+    background: #FFD700; /* 🔥 Amarillo vibrante */
     color: black;
-    border: 3px solid black; /* 🔹 Línea negra interna más delgada */
-    padding: 5px 8px; /* 🔥 Reduce el tamaño */
-    font-size: 0.9rem; /* 🔥 Texto más pequeño */
+    border: 3px solid black; /* Línea negra interna */
+    padding: 8px 12px; /* 🔹 Tamaño más compacto */
+    font-size: 1rem; /* 🔹 Texto más pequeño */
     font-family: "Bangers", sans-serif;
     text-transform: uppercase;
     cursor: pointer;
-    transition: left 0.3s ease-in-out;
-    border-radius: 50%; /* 🔹 Mantiene la forma */
-    z-index: 3000;
+    transition: transform 0.2s ease-in-out;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px; /* 🔹 Tamaño fijo */
+    height: 45px; /* 🔹 Tamaño fijo */
 
-    /* ✨ Contorno de cómic bien marcado */
-    outline: 8px solid white; /* 🔹 Contorno blanco más delgado */
-    box-shadow: 0 0 0 10px black; /* 🔹 Segunda línea negra externa */
+    /* 🌟 Contornos cómic */
+    outline: 6px solid white; /* 🔹 Contorno blanco */
+    box-shadow: 0 0 0 8px black; /* 🔹 Segunda línea negra externa */
 }
 
-/* 💬 Pequeña "cola" de burbuja más compacta */
+/* 🔹 Efecto de presión al hacer click */
+.toggle-btn:active {
+    transform: scale(0.95);
+}
+
+/* 💭 Pequeña "cola" de burbuja de cómic */
 .toggle-btn::after {
     content: "";
     position: absolute;
-    bottom: -7px;
+    bottom: -12px;
     left: 50%;
     transform: translateX(-50%);
-    width: 10px;
-    height: 10px;
+    width: 18px;
+    height: 18px;
     background: #FFD700;
     border: 3px solid black;
     outline: 5px solid white;
-    box-shadow: 0 0 0 7px black;
+    box-shadow: 0 0 0 6px black;
     clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 
 /* 📌 Ajuste cuando la sidebar está oculta */
-.sidebar.hidden + .toggle-btn {
+.sidebar.hidden + .toggle-btn-wrapper {
     left: 270px;
 }
+
+
 .hero-animation {
     position: absolute;
     top: 20px;
