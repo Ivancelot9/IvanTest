@@ -442,6 +442,11 @@ table td {
     left: 300px; /* Ajusta al borde de la sidebar */
 }
 
+/* Cuando la sidebar está oculta, ajustar la posición */
+.sidebar.hidden + .toggle-btn {
+    left: 300px; /* Ajusta al borde de la sidebar */
+}
+
 
 .hero-animation {
     position: absolute;
