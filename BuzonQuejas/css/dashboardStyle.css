@@ -403,8 +403,8 @@ table td {
 /* Contenedor del botón */
 .toggle-btn-wrapper {
     position: fixed;
-    top: 70px; /* 🔹 Mueve el botón más abajo */
-    left: 10px; /* 🔹 Ajusta su posición horizontalmente */
+    top: 100px; /* 🔹 Mueve el botón más abajo */
+    left: 15px; /* 🔹 Ajusta su posición horizontalmente */
     z-index: 3000;
 }
 
