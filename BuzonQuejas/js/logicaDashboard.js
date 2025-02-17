@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const sidebar = document.querySelector(".sidebar");
+    const mainContent = document.querySelector(".main-content"); // 🔥 Se agregó esta referencia
     const toggleBtn = document.getElementById("toggleSidebar");
     const hero = document.querySelector(".hero-animation");
 
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 100);
 
             sidebar.classList.remove("hidden");
+            mainContent.classList.remove("expanded"); // 🔥 Asegurar que vuelva a la derecha cuando sidebar esté visible
 
             setTimeout(() => {
                 hero.style.opacity = "0";
@@ -48,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             setTimeout(() => {
                 sidebar.classList.add("hidden");
+                mainContent.classList.add("expanded"); // 🔥 Ahora el contenido se centrará cuando sidebar esté oculta
             }, 200);
 
             setTimeout(() => {
