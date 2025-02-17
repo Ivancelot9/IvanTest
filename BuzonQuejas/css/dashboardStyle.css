@@ -402,12 +402,12 @@ table td {
 
 /* 🔥 Botón estilo explosión de cómic */
 .toggle-btn {
-    position: fixed; /* No más conflictos */
+    position: fixed;
     top: 45px;
-    left: 20px;
+    left: 5px;
     background: #FFD700; /* Amarillo dorado */
     color: black;
-    border: 4px solid black;
+    border: 5px solid black; /* 1️⃣ Primera línea negra */
     padding: 8px 10px;
     font-size: 1.2rem;
     font-family: "Bangers", sans-serif;
@@ -417,8 +417,9 @@ table td {
     border-radius: 50%;
     z-index: 3000;
 
-    /* ✨ Efecto 3D con sombras gruesas */
-    box-shadow: -4px 4px 0 black, 4px -4px 0 black, 4px 4px 0 black, -4px -4px 0 black;
+    /* ✨ Contorno grueso tipo cómic */
+    outline: 10px solid white; /* 2️⃣ Contorno blanco */
+    box-shadow: 0 0 0 15px black; /* 3️⃣ Segunda línea negra */
 }
 
 /* 🔥 Explosión detrás del botón */
@@ -435,12 +436,17 @@ table td {
     clip-path: polygon(50% 0%, 80% 10%, 100% 50%, 80% 90%, 50% 100%, 20% 90%, 0% 50%, 20% 10%);
     z-index: -1;
     transition: transform 0.2s ease-in-out;
+
+    /* ✨ Contorno de cómic en la explosión */
+    border: 5px solid black;
+    outline: 10px solid white;
+    box-shadow: 0 0 0 15px black;
 }
 
 /* 🌀 Efecto al pasar el mouse */
 .toggle-btn:hover {
     transform: scale(1.1) rotate(-3deg);
-    box-shadow: -6px 6px 0 black, 6px -6px 0 black, 6px 6px 0 black, -6px -6px 0 black;
+    box-shadow: 0 0 0 20px black;
 }
 
 /* ✨ Efecto de clic */
