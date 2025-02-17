@@ -400,54 +400,48 @@ table td {
     max-height: 80%; /* Deja un 20% de margen arriba y abajo */
 }
 
-/* 📌 Contenedor del botón (mantiene posición fija) */
+/* Contenedor del botón */
 .toggle-btn-wrapper {
     position: fixed;
-    top: 50px;
-    left: 15px;
+    top: 70px; /* 🔹 Mueve el botón más abajo */
+    left: 10px; /* 🔹 Ajusta su posición horizontalmente */
     z-index: 3000;
 }
 
-/* 🟦 Botón estilo cómic cuadrado */
+/* Estilo cuadrado con contorno cómic */
 .toggle-btn {
     position: relative;
-    background: #FFD700; /* 🌟 Amarillo vibrante */
+    background: #FFD700; /* 🟡 Amarillo vibrante */
     color: black;
-    border: 5px solid black; /* 🖤 Línea negra interna */
-    padding: 8px 12px;
-    font-size: 1.2rem;
+    border: 3px solid black; /* Línea negra interna */
+    padding: 5px 8px; /* 🔹 Hace el botón más pequeño */
+    font-size: 0.9rem; /* 🔹 Reduce el tamaño del icono/texto */
     font-family: "Bangers", sans-serif;
     text-transform: uppercase;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
+    border-radius: 8px; /* 🔹 Esquinas suavemente redondeadas */
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px; /* 📏 Tamaño cuadrado */
-    height: 50px;
-    border-radius: 10px; /* 🟦 Bordes redondeados */
+    width: 35px; /* 🔹 Tamaño más compacto */
+    height: 35px; /* 🔹 Mantiene forma cuadrada */
+    z-index: 3000;
 
-    /* ✨ Contorno cómic */
-    outline: 8px solid white; /* ⚪ Contorno blanco */
-    box-shadow: 0 0 0 10px black; /* ⚫ Segunda línea negra externa */
+    /* 🌟 Contornos cómic */
+    outline: 5px solid white; /* 🔹 Contorno blanco */
+    box-shadow: 0 0 0 6px black; /* 🔹 Segunda línea negra externa */
 }
 
-/* 🔄 Cambio de icono cuando la sidebar está oculta */
-.sidebar.hidden + .toggle-btn-wrapper .toggle-btn {
-    background: #FF4500; /* 🔥 Cambia de color al esconder */
-    color: white;
-}
-
-/* 🖱️ Efecto hover */
-.toggle-btn:hover {
-    transform: scale(1.05);
-}
-
-/* 🔽 Efecto de presión */
+/* 🔹 Efecto de presión al hacer click */
 .toggle-btn:active {
     transform: scale(0.95);
 }
 
+/* 📌 Ajuste cuando la sidebar está oculta */
+.sidebar.hidden + .toggle-btn-wrapper {
+    left: 270px; /* 🔥 Se mueve a la derecha */
+}
 
 .hero-animation {
     position: absolute;
