@@ -400,49 +400,48 @@ table td {
     max-height: 80%; /* Deja un 20% de margen arriba y abajo */
 }
 
-/* 🎤 Botón estilo burbuja de diálogo de cómic */
+/* 🎤 Botón de cómic más pequeño */
 .toggle-btn {
     position: fixed;
-    top: 45px;
-    left: 25px;
-    background: #FFD700; /* Color amarillo dorado */
+    top: 50px;
+    left: 5px;
+    background: #FFD700; /* Amarillo vibrante */
     color: black;
-    border: 5px solid black; /* 1️⃣ Línea negra interna */
-    padding: 10px 15px;
-    font-size: 1.2rem;
+    border: 3px solid black; /* 🔹 Línea negra interna más delgada */
+    padding: 5px 8px; /* 🔥 Reduce el tamaño */
+    font-size: 0.9rem; /* 🔥 Texto más pequeño */
     font-family: "Bangers", sans-serif;
     text-transform: uppercase;
     cursor: pointer;
     transition: left 0.3s ease-in-out;
-    border-radius: 50%; /* 🔹 Mantiene una forma más redonda */
+    border-radius: 50%; /* 🔹 Mantiene la forma */
     z-index: 3000;
 
     /* ✨ Contorno de cómic bien marcado */
-    outline: 12px solid white; /* 2️⃣ Contorno blanco grueso */
-    box-shadow: 0 0 0 15px black; /* 3️⃣ Segunda línea negra externa */
+    outline: 8px solid white; /* 🔹 Contorno blanco más delgado */
+    box-shadow: 0 0 0 10px black; /* 🔹 Segunda línea negra externa */
 }
 
-/* 💬 Pequeña "cola" de burbuja tipo cómic */
+/* 💬 Pequeña "cola" de burbuja más compacta */
 .toggle-btn::after {
     content: "";
     position: absolute;
-    bottom: -10px;
+    bottom: -7px;
     left: 50%;
     transform: translateX(-50%);
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 10px;
     background: #FFD700;
-    border: 5px solid black;
-    outline: 7px solid white;
-    box-shadow: 0 0 0 10px black;
+    border: 3px solid black;
+    outline: 5px solid white;
+    box-shadow: 0 0 0 7px black;
     clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 
 /* 📌 Ajuste cuando la sidebar está oculta */
 .sidebar.hidden + .toggle-btn {
-    left: 280px;
+    left: 270px;
 }
-
 .hero-animation {
     position: absolute;
     top: 20px;
