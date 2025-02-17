@@ -24,9 +24,12 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 </head>
 <body>
 
+<!-- Botón para mostrar/ocultar sidebar (Ahora está afuera) -->
+<button id="toggleSidebar" class="toggle-btn">☰</button>
+
 <!-- Sidebar -->
 <div class="sidebar">
-    <button id="toggleSidebar" class="toggle-btn">☰</button>
+
     <img src="imagenes/superhero-sinfondo.png" class="hero-animation">
 
     <div class="profile">
