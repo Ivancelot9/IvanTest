@@ -407,8 +407,8 @@ table td {
     left: 5px;
     background: #FFD700; /* Amarillo dorado */
     color: black;
-    border: 5px solid black; /* 1️⃣ Primera línea negra */
-    padding: 8px 10px;
+    border: 5px solid black; /* 1️⃣ Línea negra interna */
+    padding: 8px 12px;
     font-size: 1.2rem;
     font-family: "Bangers", sans-serif;
     text-transform: uppercase;
@@ -417,12 +417,12 @@ table td {
     border-radius: 50%;
     z-index: 3000;
 
-    /* ✨ Contorno grueso tipo cómic */
-    outline: 10px solid white; /* 2️⃣ Contorno blanco */
-    box-shadow: 0 0 0 15px black; /* 3️⃣ Segunda línea negra */
+    /* ✨ Contorno de tres capas */
+    outline: 10px solid white; /* 2️⃣ Contorno blanco intermedio */
+    box-shadow: 0 0 0 15px black; /* 3️⃣ Segunda línea negra externa */
 }
 
-/* 🔥 Explosión detrás del botón */
+/* 🔥 Explosión detrás del botón (decoración) */
 .toggle-btn::before {
     content: "";
     display: block;
@@ -435,15 +435,14 @@ table td {
     transform: translate(-50%, -50%);
     clip-path: polygon(50% 0%, 80% 10%, 100% 50%, 80% 90%, 50% 100%, 20% 90%, 0% 50%, 20% 10%);
     z-index: -1;
-    transition: transform 0.2s ease-in-out;
 
-    /* ✨ Contorno de cómic en la explosión */
+    /* 🔥 Contorno explosión */
     border: 5px solid black;
     outline: 10px solid white;
     box-shadow: 0 0 0 15px black;
 }
 
-/* 🌀 Efecto al pasar el mouse */
+/* 🎯 Efecto al pasar el mouse */
 .toggle-btn:hover {
     transform: scale(1.1) rotate(-3deg);
     box-shadow: 0 0 0 20px black;
