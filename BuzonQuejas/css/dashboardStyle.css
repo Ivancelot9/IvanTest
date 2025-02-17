@@ -404,7 +404,7 @@ table td {
 .toggle-btn {
     position: fixed;
     top: 45px;
-    left: 5px;
+    left: 25px;
     background: #FFD700; /* Color amarillo dorado */
     color: black;
     border: 5px solid black; /* 1️⃣ Línea negra interna */
