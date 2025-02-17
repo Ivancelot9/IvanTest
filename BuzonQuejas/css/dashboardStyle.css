@@ -153,7 +153,7 @@ body {
 
 /* Cuando la sidebar está oculta */
 .sidebar.hidden {
-    transform: translateX(-103.5%);
+    transform: translateX(-103%);
 }
 
 /* 🔹 Cuando la sidebar está oculta, mover el botón al borde derecho */
