@@ -403,7 +403,7 @@ table td {
 .toggle-btn {
     position: fixed;
     top: 45px;
-    left: 5px;
+    left: 10px;
     background: #FFEB3B; /* 🟡 Amarillo brillante estilo cómic */
     color: #000000;
     border: 4px solid black;
