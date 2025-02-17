@@ -414,7 +414,7 @@ table td {
     cursor: pointer;
     transition: left 0.3s ease-in-out, transform 0.3s ease-in-out;
     border-radius: 5px;
-    z-index: 2000;
+    z-index: 3000;
 
     /* ✨ Contorno de cómic */
     outline: 5px solid white;
@@ -428,7 +428,7 @@ table td {
 
 /* Cuando la sidebar está oculta, mover el botón al borde derecho del sidebar */
 .sidebar.hidden + .toggle-btn {
-    left: calc(280px + 40px); /* 🔥 Pegado al borde derecho donde estaba la sidebar */
+    left: 290px; /* 🔥 Pegado al borde derecho donde estaba la sidebar */
 }
 
 .hero-animation {
