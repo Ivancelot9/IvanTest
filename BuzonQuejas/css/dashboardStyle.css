@@ -429,7 +429,7 @@ table td {
     z-index: 3000;
 
     /* 🌟 Contornos cómic */
-    outline: 12px solid white; /* 🔹 Contorno blanco */
+    outline: 5px solid white; /* 🔹 Contorno blanco */
     box-shadow: 0 0 0 6px black; /* 🔹 Segunda línea negra externa */
 }
 
