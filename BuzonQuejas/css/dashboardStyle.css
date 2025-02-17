@@ -411,8 +411,8 @@ table td {
 /* Estilo cuadrado con contorno cómic */
 .toggle-btn {
     position: relative;
-    background: #FFD700; /* 🟡 Amarillo vibrante */
-    color: black;
+    background: rgba(23, 102, 209, 0.88); /* 🟡 Amarillo vibrante */
+    color: white;
     border: 3px solid black; /* Línea negra interna */
     padding: 5px 8px; /* 🔹 Hace el botón más pequeño */
     font-size: 0.9rem; /* 🔹 Reduce el tamaño del icono/texto */
