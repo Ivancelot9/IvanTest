@@ -400,66 +400,53 @@ table td {
     max-height: 80%; /* Deja un 20% de margen arriba y abajo */
 }
 
-/* 💬 Contenedor del botón de la sidebar */
+/* 📌 Contenedor del botón (mantiene posición fija) */
 .toggle-btn-wrapper {
     position: fixed;
-    top: 30px; /* 🔹 Ajuste de altura */
-    left: 10px; /* 🔹 Pegado a la izquierda */
-    z-index: 5000; /* 🔥 Lo mantiene siempre visible */
+    top: 50px;
+    left: 15px;
+    z-index: 3000;
 }
 
-/* 🗯️ Botón con burbuja de cómic */
+/* 🟦 Botón estilo cómic cuadrado */
 .toggle-btn {
     position: relative;
-    background: #FFD700; /* 🟡 Amarillo vibrante */
+    background: #FFD700; /* 🌟 Amarillo vibrante */
     color: black;
-    border: 4px solid black; /* 🖤 Línea negra interna */
-    padding: 6px 10px; /* 🔹 Más compacto */
-    font-size: 1.2rem; /* 🔹 Tamaño reducido */
+    border: 5px solid black; /* 🖤 Línea negra interna */
+    padding: 8px 12px;
+    font-size: 1.2rem;
     font-family: "Bangers", sans-serif;
     text-transform: uppercase;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 42px; /* 🔹 Tamaño fijo */
-    height: 42px; /* 🔹 Tamaño fijo */
-    z-index: 5000; /* 🔥 Se asegura que esté al frente */
+    width: 50px; /* 📏 Tamaño cuadrado */
+    height: 50px;
+    border-radius: 10px; /* 🟦 Bordes redondeados */
 
-    /* ✨ Contornos cómic */
-    outline: 6px solid white; /* ⚪ Contorno blanco */
-    box-shadow: 0 0 0 8px black; /* 🖤 Segunda línea negra externa */
+    /* ✨ Contorno cómic */
+    outline: 8px solid white; /* ⚪ Contorno blanco */
+    box-shadow: 0 0 0 10px black; /* ⚫ Segunda línea negra externa */
 }
 
-/* 🔹 Efecto de presión al hacer click */
+/* 🔄 Cambio de icono cuando la sidebar está oculta */
+.sidebar.hidden + .toggle-btn-wrapper .toggle-btn {
+    background: #FF4500; /* 🔥 Cambia de color al esconder */
+    color: white;
+}
+
+/* 🖱️ Efecto hover */
+.toggle-btn:hover {
+    transform: scale(1.05);
+}
+
+/* 🔽 Efecto de presión */
 .toggle-btn:active {
-    transform: scale(0.9);
+    transform: scale(0.95);
 }
-
-/* 💭 Pequeña "cola" de burbuja de cómic */
-.toggle-btn::after {
-    content: "";
-    position: absolute;
-    bottom: -14px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 18px;
-    height: 18px;
-    background: #FFD700;
-    border: 4px solid black;
-    outline: 5px solid white;
-    box-shadow: 0 0 0 6px black;
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    z-index: 5000;
-}
-
-/* 📌 Ajuste cuando la sidebar está oculta */
-.sidebar.hidden + .toggle-btn-wrapper {
-    left: 270px;
-}
-
 
 
 .hero-animation {
