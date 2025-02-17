@@ -400,22 +400,21 @@ table td {
     max-height: 80%; /* Deja un 20% de margen arriba y abajo */
 }
 
-
-/* 💬 Contenedor de burbuja */
+/* 💬 Contenedor del botón de la sidebar */
 .toggle-btn-wrapper {
     position: fixed;
-    top: 40px;
-    left: 5px;
-    z-index: 4000; /* 🔥 Se asegura que esté por encima */
+    top: 30px; /* 🔹 Ajuste de altura */
+    left: 10px; /* 🔹 Pegado a la izquierda */
+    z-index: 5000; /* 🔥 Lo mantiene siempre visible */
 }
 
-/* 🗯️ Burbuja estilo cómic */
+/* 🗯️ Botón con burbuja de cómic */
 .toggle-btn {
     position: relative;
     background: #FFD700; /* 🟡 Amarillo vibrante */
     color: black;
     border: 4px solid black; /* 🖤 Línea negra interna */
-    padding: 5px 10px; /* 🔹 Más compacto */
+    padding: 6px 10px; /* 🔹 Más compacto */
     font-size: 1.2rem; /* 🔹 Tamaño reducido */
     font-family: "Bangers", sans-serif;
     text-transform: uppercase;
@@ -425,13 +424,13 @@ table td {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px; /* 🔹 Tamaño fijo */
-    height: 50px; /* 🔹 Tamaño fijo */
-    z-index: 4000; /* 🔥 Se asegura que esté adelante */
+    width: 42px; /* 🔹 Tamaño fijo */
+    height: 42px; /* 🔹 Tamaño fijo */
+    z-index: 5000; /* 🔥 Se asegura que esté al frente */
 
     /* ✨ Contornos cómic */
-    outline: 8px solid white; /* ⚪ Contorno blanco más ancho */
-    box-shadow: 0 0 0 10px black; /* 🖤 Segunda línea negra externa */
+    outline: 6px solid white; /* ⚪ Contorno blanco */
+    box-shadow: 0 0 0 8px black; /* 🖤 Segunda línea negra externa */
 }
 
 /* 🔹 Efecto de presión al hacer click */
@@ -446,20 +445,21 @@ table td {
     bottom: -14px;
     left: 50%;
     transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     background: #FFD700;
     border: 4px solid black;
-    outline: 7px solid white;
-    box-shadow: 0 0 0 8px black;
+    outline: 5px solid white;
+    box-shadow: 0 0 0 6px black;
     clip-path: polygon(0 0, 100% 0, 50% 100%);
-    z-index: 4000;
+    z-index: 5000;
 }
 
 /* 📌 Ajuste cuando la sidebar está oculta */
 .sidebar.hidden + .toggle-btn-wrapper {
     left: 270px;
 }
+
 
 
 .hero-animation {
