@@ -404,47 +404,52 @@ table td {
     position: fixed;
     top: 45px;
     left: 5px;
-    background: #E50914; /* 🔥 Rojo vibrante */
-    color: white;
+    background: #FFEB3B; /* 🟡 Amarillo brillante estilo cómic */
+    color: #000000;
     border: 4px solid black;
-    padding: 10px 15px; /* Ajuste para que se vea mejor */
-    font-size: 1.2rem;
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    font-family: "Bangers", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     cursor: pointer;
     transition: left 0.3s ease-in-out, transform 0.2s ease-in-out;
     border-radius: 10px;
     z-index: 3000;
 
-    /* ✨ Efecto cómic */
+    /* ✨ Contorno de cómic */
     outline: 4px solid white;
-    box-shadow: -4px 4px 0 black, 4px -4px 0 black, 4px 4px 0 black, -4px -4px 0 black; /* Sombras gruesas */
-    font-family: "Bangers", sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-
-    /* 🔥 Animación de vibración leve */
-    animation: vibrate-small 0.2s infinite alternate ease-in-out;
+    box-shadow: -5px 5px 0 black, 5px -5px 0 black, 5px 5px 0 black, -5px -5px 0 black;
 }
 
-/* ✨ Animación de vibración sutil */
-@keyframes vibrate-small {
-    0% { transform: scale(1) translateX(-1px); }
-    100% { transform: scale(1.05) translateX(1px); }
+/* 🔥 Explosión detrás del botón */
+.toggle-btn::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.8) 0%, rgba(255, 215, 0, 0.9) 60%, rgba(255, 0, 0, 0.8) 100%);
+    top: -10px;
+    left: -10px;
+    clip-path: polygon(50% 0%, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0% 50%, 35% 35%);
+    z-index: -1;
+    transition: transform 0.2s ease-in-out;
 }
 
-/* Efecto de clic */
+/* 🌀 Efecto al pasar el mouse */
+.toggle-btn:hover {
+    transform: scale(1.1) rotate(-2deg);
+}
+
+/* ✨ Efecto de clic */
 .toggle-btn:active {
-    transform: scale(0.95);
+    transform: scale(0.9);
     box-shadow: none;
 }
 
-/* Cuando la sidebar está oculta, ajustar la posición */
+/* 📌 Ajuste cuando la sidebar está oculta */
 .sidebar.hidden + .toggle-btn {
-    left: 300px; /* Ajusta al borde de la sidebar */
-}
-
-/* Cuando la sidebar está oculta, ajustar la posición */
-.sidebar.hidden + .toggle-btn {
-    left: 300px; /* Ajusta al borde de la sidebar */
+    left: 300px;
 }
 
 
