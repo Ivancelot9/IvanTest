@@ -124,15 +124,7 @@
       <workItem from="1739369781837" duration="18355000" />
       <workItem from="1739455962452" duration="20891000" />
       <workItem from="1739542481040" duration="15208000" />
-      <workItem from="1739801701264" duration="9950000" />
-    </task>
-    <task id="LOCAL-00257" summary="Arreglando SideBar 1.1">
-      <option name="closed" value="true" />
-      <created>1739556787369</created>
-      <option name="number" value="00257" />
-      <option name="presentableId" value="LOCAL-00257" />
-      <option name="project" value="LOCAL" />
-      <updated>1739556787369</updated>
+      <workItem from="1739801701264" duration="9995000" />
     </task>
     <task id="LOCAL-00258" summary="Arreglando SideBar 1.1">
       <option name="closed" value="true" />
@@ -518,7 +510,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739819737977</updated>
     </task>
-    <option name="localTasksCounter" value="306" />
+    <task id="LOCAL-00306" summary="Boton Sidebar">
+      <option name="closed" value="true" />
+      <created>1739819846017</created>
+      <option name="number" value="00306" />
+      <option name="presentableId" value="LOCAL-00306" />
+      <option name="project" value="LOCAL" />
+      <updated>1739819846017</updated>
+    </task>
+    <option name="localTasksCounter" value="307" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
