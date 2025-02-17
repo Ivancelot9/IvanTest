@@ -413,7 +413,7 @@ table td {
     position: relative;
     background: rgba(23, 102, 209, 0.88); /* 🟡 Amarillo vibrante */
     color: white;
-    border: 3px solid black; /* Línea negra interna */
+    border: 6px solid black; /* Línea negra interna */
     padding: 5px 8px; /* 🔹 Hace el botón más pequeño */
     font-size: 0.9rem; /* 🔹 Reduce el tamaño del icono/texto */
     font-family: "Bangers", sans-serif;
@@ -429,7 +429,7 @@ table td {
     z-index: 3000;
 
     /* 🌟 Contornos cómic */
-    outline: 5px solid white; /* 🔹 Contorno blanco */
+    outline: 12px solid white; /* 🔹 Contorno blanco */
     box-shadow: 0 0 0 6px black; /* 🔹 Segunda línea negra externa */
 }
 
