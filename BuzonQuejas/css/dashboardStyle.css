@@ -48,7 +48,7 @@ body {
     align-items: center;
     text-align: center;
     position: relative;
-    margin-top: 60px; /* 🔥 Aumenta este valor para bajar más */
+    margin-top: 40px; /* 🔥 Aumenta este valor para bajar más */
     margin-bottom: 15px; /* 🔹 Ajuste de espacio */
 }
 
