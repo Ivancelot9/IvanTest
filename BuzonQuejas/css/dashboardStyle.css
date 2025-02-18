@@ -122,20 +122,6 @@ body {
     white-space: normal; /* ✅ Permite salto de línea si es necesario */
 }
 
-/* 🗨️ Cola de la burbuja */
-.username-bubble::after {
-    content: "";
-    position: absolute;
-    bottom: -5px; /* 📌 Ajusta la posición para que se vea mejor */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 18px;
-    height: 18px;
-    background: white;
-    border: 3px solid black;
-    outline: 5px solid white;
-    box-shadow: 0 0 0 5px black;
-}
 
 /* 🔹 Contenedor de botones normales */
 .sidebar-links {
