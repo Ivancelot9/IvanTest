@@ -37,7 +37,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <div class="profile">
         <img src="imagenes/user.png" alt="Profile Picture">
         <div class="username-bubble">
-            <h4>Iván Alejandro Medina</h4>
+            <h4>Iván Alejandro Medina Cerritos</h4>
         </div>
     </div>
     <!-- 🔹 Nuevo contenedor para los botones de navegación -->
