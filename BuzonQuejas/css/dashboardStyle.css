@@ -90,28 +90,48 @@ body {
     }
 }
 
-.sidebar .profile h4 {
-    font-size: 1.8rem; /* 🔹 Un poco más grande */
-    color: #FFD700; /* 🌟 Amarillo vibrante */
+/* 🎭 Burbuja de diálogo para el nombre */
+.username-bubble {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white; /* 💭 Fondo de la burbuja */
+    padding: 5px 12px; /* 🔹 Más compacto */
+    border: 3px solid black; /* 🎯 Contorno negro */
+    outline: 6px solid white; /* ✨ Contorno blanco extra */
+    box-shadow: 0 0 0 6px black; /* 🔹 Segunda línea negra externa */
+    border-radius: 12px; /* 🌀 Bordes suavemente redondeados */
+    position: relative;
+    max-width: 180px; /* 📏 Evita romper la estructura con nombres largos */
     text-align: center;
-    text-transform: uppercase; /* 🔥 Da un efecto más impactante */
-    letter-spacing: 2px;
-    margin-top: 30px; /* 🔼 Ajusta el espacio */
-    margin-bottom: 20px;
-
-    /* 🎯 Contorno negro con efecto cómic */
-    text-shadow:
-            -3px -3px 0 black,
-            3px -3px 0 black,
-            -3px 3px 0 black,
-            3px 3px 0 black;
-
-    /* ✨ Efecto de vibración al pasar el mouse */
-    transition: transform 0.2s ease-in-out;
+    margin-top: 5px; /* 🔥 Ajusta la burbuja respecto a la imagen */
 }
 
-.sidebar .profile h4:hover {
-    transform: scale(1.1) rotate(-2deg); /* 💥 Un pequeño giro al pasar el mouse */
+/* 🗨️ Cola de la burbuja */
+.username-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -10px; /* 📌 Ajusta la posición para que se vea mejor */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 18px;
+    background: white;
+    border: 3px solid black;
+    outline: 5px solid white;
+    box-shadow: 0 0 0 5px black;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+
+/* ✨ Texto dentro de la burbuja */
+.username-bubble h4 {
+    font-size: 0.9rem; /* 🔹 Más pequeño */
+    color: black; /* 🎯 Mantiene la letra negra */
+    font-weight: bold;
+    text-transform: uppercase; /* 🔥 Resalta el nombre */
+    letter-spacing: 1px;
+    margin: 0;
+    text-align: center;
 }
 
 /* 🔹 Contenedor de botones normales */
