@@ -77,7 +77,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <!-- 🏢 Historial de Reportes -->
     <div id="historial-reportes" class="content comic-container" style="display: none;">
         <h2 class="comic-title">Historial de Reportes</h2>
-        <!-- 🔎 Filtro para buscar en la tabla (Movido aquí) -->
+        <!-- 🔎 Filtro para buscar en la tabla -->
         <div class="table-controls">
             <label for="filter-column">Filtrar por:</label>
             <select id="filter-column">
@@ -88,6 +88,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 <option value="estatus">Estatus</option>
             </select>
             <input type="text" id="filter-input" placeholder="Buscar...">
+            <button id="filter-button">🔍 Buscar</button> <!-- ✅ Nuevo botón -->
         </div>
 
         <div class="table-container">
