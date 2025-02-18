@@ -91,10 +91,27 @@ body {
 }
 
 .sidebar .profile h4 {
-    margin-top: 40px;
-    color: black;
-    font-size: 1.5rem;
-    margin-bottom: 35px;
+    font-size: 1.8rem; /* 🔹 Un poco más grande */
+    color: #FFD700; /* 🌟 Amarillo vibrante */
+    text-align: center;
+    text-transform: uppercase; /* 🔥 Da un efecto más impactante */
+    letter-spacing: 2px;
+    margin-top: 30px; /* 🔼 Ajusta el espacio */
+    margin-bottom: 20px;
+
+    /* 🎯 Contorno negro con efecto cómic */
+    text-shadow:
+            -3px -3px 0 black,
+            3px -3px 0 black,
+            -3px 3px 0 black,
+            3px 3px 0 black;
+
+    /* ✨ Efecto de vibración al pasar el mouse */
+    transition: transform 0.2s ease-in-out;
+}
+
+.sidebar .profile h4:hover {
+    transform: scale(1.1) rotate(-2deg); /* 💥 Un pequeño giro al pasar el mouse */
 }
 
 /* 🔹 Contenedor de botones normales */
