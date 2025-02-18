@@ -262,45 +262,6 @@ body {
             2px  2px 0 #000; /* Contorno negro en la parte inferior derecha */
 }
 
-/* Table */
-
-table, .personal-info, .info-item {
-    flex-grow: 1;
-    margin-bottom: 20px; /* Añade espacio entre los elementos */
-}
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-}
-
-table th, table td {
-    border: 2px solid black; /* Borde grueso estilo cómic */
-    padding: 10px;
-    text-align: center;
-    font-family: "Bangers", serif;
-    font-size: 1.2rem;
-}
-
-table th {
-    background-color: #1094e0;
-    color: white;
-    font-size: 1.5rem;
-    text-shadow:
-            -3px -3px 0 black,
-            3px -3px 0 black,
-            -3px 3px 0 black,
-            3px 3px 0 black,
-            -3px 0 0 black,
-            3px 0 0 black,
-            0 -3px 0 black,
-            0 3px 0 black;
-}
-
-table td {
-    background-color: #eaf3fa;
-}
-
 /* Button estilo cómic */
 .submit-btn {
     flex: 1;

@@ -19,6 +19,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <link rel="stylesheet" href="css/dashboardStyle.css"> <!-- Vincula el CSS externo -->
     <link rel="stylesheet" href="css/modalComentarios.css">
     <link rel="stylesheet" href="css/modalDescripcion.css">
+    <link rel="stylesheet" href="css/tablaReportes.css">
 
 
 </head>
@@ -107,6 +108,36 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 </thead>
                 <tbody id="tabla-body">
                 <!-- 🚀 Aquí van los reportes generados dinámicamente -->
+                <tr>
+                    <td>001</td>
+                    <td>123456</td>
+                    <td>Juan Pérez</td>
+                    <td>10/02/2025</td>
+                    <td>-</td>
+                    <td><button class="mostrar-descripcion">Mostrar Descripción</button></td>
+                    <td><strong>En proceso</strong></td>
+                    <td><button class="agregar-comentario">Agregar Comentario</button></td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>654321</td>
+                    <td>María López</td>
+                    <td>11/02/2025</td>
+                    <td>-</td>
+                    <td><button class="mostrar-descripcion">Mostrar Descripción</button></td>
+                    <td><strong>Pendiente</strong></td>
+                    <td><button class="agregar-comentario">Agregar Comentario</button></td>
+                </tr>
+                <tr>
+                    <td>003</td>
+                    <td>789654</td>
+                    <td>Carlos García</td>
+                    <td>12/02/2025</td>
+                    <td>-</td>
+                    <td><button class="mostrar-descripcion">Mostrar Descripción</button></td>
+                    <td><strong>Completado</strong></td>
+                    <td><button class="agregar-comentario">Agregar Comentario</button></td>
+                </tr>
                 </tbody>
             </table>
         </div>
@@ -139,6 +170,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 <script src="js/cerrarSesion.js"></script>
 <script src="js/comentarios.js"></script>
 <script src="js/descripcionReporte.js"></script>
+<script src="js/tablaReportes.js"></script>
 
 </body>
 </html>
