@@ -86,3 +86,12 @@ button.agregar-comentario:hover {
     overflow-y: auto; /* 📜 Scroll vertical */
     border: 3px solid black; /* 🎯 Bordes para resaltar */
 }
+
+/* 🔥 Resaltado de texto al filtrar */
+.highlight {
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+    padding: 2px 4px;
+    border-radius: 3px;
+}

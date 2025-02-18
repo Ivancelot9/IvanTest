@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const filasPorPagina = 10;
     let paginaActual = 1;
-    let datosFiltrados = [...datosReportes]; // Inicia con todos los datos
+    let datosFiltrados = [...datosReportes];
 
     const tablaBody = document.getElementById("tabla-body");
     const prevPageBtn = document.getElementById("prevPage");
@@ -17,22 +17,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const filterInput = document.getElementById("filter-input");
     const filterButton = document.getElementById("filter-button");
 
+    // 🔥 Función para resaltar coincidencias en el texto
+    function resaltarTexto(texto, filtro) {
+        if (!filtro) return texto; // Si no hay filtro, no hacer nada
+        const regex = new RegExp(`(${filtro})`, "gi"); // Expresión regular para buscar coincidencias
+        return texto.replace(regex, `<span class="highlight">$1</span>`); // Envuelve la coincidencia en un <span>
+    }
+
     function mostrarReportes(pagina, reportes = datosFiltrados) {
         tablaBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
         const fin = inicio + filasPorPagina;
         const reportesPagina = reportes.slice(inicio, fin);
+        const valorFiltro = filterInput.value.toLowerCase();
 
         reportesPagina.forEach(reporte => {
             const fila = document.createElement("tr");
             fila.innerHTML = `
-                <td>${reporte.folio}</td>
-                <td>${reporte.nomina}</td>
-                <td>${reporte.encargado}</td>
-                <td>${reporte.fechaRegistro}</td>
-                <td>${reporte.fechaFinalizacion}</td>
+                <td>${resaltarTexto(reporte.folio, valorFiltro)}</td>
+                <td>${resaltarTexto(reporte.nomina, valorFiltro)}</td>
+                <td>${resaltarTexto(reporte.encargado, valorFiltro)}</td>
+                <td>${resaltarTexto(reporte.fechaRegistro, valorFiltro)}</td>
+                <td>${resaltarTexto(reporte.fechaFinalizacion, valorFiltro)}</td>
                 <td><button class="mostrar-descripcion" data-descripcion="${reporte.descripcion}">Mostrar Descripción</button></td>
-                <td><strong>${reporte.estatus}</strong></td>
+                <td><strong>${resaltarTexto(reporte.estatus, valorFiltro)}</strong></td>
                 <td><button class="agregar-comentario" data-folio="${reporte.folio}">Agregar Comentario</button></td>
             `;
             tablaBody.appendChild(fila);
@@ -48,13 +56,13 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportes(paginaActual);
     }
 
-    // ✅ Nueva función de filtrado con búsqueda parcial
+    // ✅ Función de filtrado con resaltado
     function filtrarReportes() {
         const valorFiltro = filterInput.value.toLowerCase();
         const columna = filterColumn.value;
 
         datosFiltrados = datosReportes.filter(reporte => {
-            return reporte[columna].toLowerCase().startsWith(valorFiltro);
+            return reporte[columna].toLowerCase().includes(valorFiltro);
         });
 
         paginaActual = 1;
@@ -64,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
     prevPageBtn.addEventListener("click", () => cambiarPagina(-1));
     nextPageBtn.addEventListener("click", () => cambiarPagina(1));
 
-    // 🔹 Filtro en tiempo real (cuando el usuario escribe)
+    // 🔹 Filtrado en tiempo real
     filterInput.addEventListener("input", filtrarReportes);
 
     // 🔍 Botón para ejecutar la búsqueda manualmente
