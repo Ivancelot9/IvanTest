@@ -105,7 +105,7 @@ body {
     max-width: 220px; /* 📏 Se agranda para nombres más largos */
     min-width: 180px; /* 🔹 Evita que se haga demasiado pequeña */
     text-align: center;
-    margin-top: 15px; /* 📌 Más espacio respecto a la imagen */
+    margin-top: 35px; /* 📌 Más espacio respecto a la imagen */
     word-wrap: break-word; /* 🛠️ Permite que el texto haga salto de línea */
 }
 
