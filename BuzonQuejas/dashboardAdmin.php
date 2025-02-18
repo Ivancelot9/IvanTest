@@ -73,7 +73,22 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
         <button type="button" id="editar-btn" class="submit-btn">Editar Datos</button>
     </div>
 
-    <!-- Historial de Reportes -->
+
+
+    <!-- 🔎 Filtro para buscar en la tabla -->
+    <div class="table-controls">
+        <label for="filter-column">Filtrar por:</label>
+        <select id="filter-column">
+            <option value="folio">Folio</option>
+            <option value="nomina">Número de Nómina</option>
+            <option value="encargado">Encargado</option>
+            <option value="fechaRegistro">Fecha Registro</option>
+            <option value="estatus">Estatus</option>
+        </select>
+        <input type="text" id="filter-input" placeholder="Buscar...">
+    </div>
+
+    <!-- 🏢 Tabla de Reportes -->
     <div id="historial-reportes" class="content comic-container" style="display: none;">
         <h2 class="comic-title">Historial de Reportes</h2>
         <div class="table-container">
@@ -90,46 +105,20 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                     <th>Comentarios</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>001</td>
-                    <td>123456</td>
-                    <td>Juan Pérez</td>
-                    <td>10/02/2025</td>
-                    <td>-</td> <!-- Sin fecha hasta que el admin la establezca -->
-                    <td>
-                        <button class="mostrar-descripcion" data-descripcion="El sistema de autenticación presenta un problema crítico al momento de iniciar sesión. Algunos usuarios han reportado que, tras ingresar sus credenciales correctamente, la página se recarga sin proporcionar acceso a la plataforma. Se ha detectado que esto ocurre principalmente en navegadores basados en Chromium, aunque algunos usuarios de Firefox también han informado el problema.
-
-Durante las pruebas realizadas, se observó que la sesión se inicia correctamente en el backend, pero el frontend no recibe la confirmación adecuada, lo que provoca un bucle de autenticación. Este problema podría estar relacionado con el almacenamiento de sesiones en el servidor, la expiración prematura de las cookies o una mala sincronización entre el cliente y el servidor.
-
-Además, en la consola del navegador se detectaron errores de CORS al intentar recuperar datos del usuario, lo que sugiere que algunas solicitudes AJAX no están configuradas correctamente. Para solucionar este problema, se recomienda verificar la configuración del servidor de autenticación, revisar la política de cookies, y realizar pruebas en distintos dispositivos y redes para detectar patrones específicos en los errores.
-
-Es crucial resolver este problema lo antes posible, ya que afecta directamente la experiencia del usuario y limita el acceso a la plataforma. Se recomienda asignar este caso a un equipo especializado en autenticación y seguridad web para realizar un diagnóstico más detallado.">Mostrar Descripción</button>
-
-                    </td>
-                    <td>En proceso</td>
-                    <td>
-                        <button class="agregar-comentario" data-folio="001">Agregar Comentario</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>002</td>
-                    <td>654321</td>
-                    <td>María López</td>
-                    <td>11/02/2025</td>
-                    <td>-</td>
-                    <td>
-                        <button class="mostrar-descripcion" data-descripcion="Error en la base de datos">Mostrar Descripción</button>
-                    </td>
-                    <td>Pendiente</td>
-                    <td>
-                        <button class="agregar-comentario" data-folio="002">Agregar Comentario</button>
-                    </td>
-                </tr>
+                <tbody id="tabla-body">
+                <!-- 🚀 Aquí van los reportes generados dinámicamente -->
                 </tbody>
             </table>
         </div>
+
+        <!-- 📑 Controles de paginación -->
+        <div class="pagination">
+            <button id="prevPage" disabled>⬅ Anterior</button>
+            <span id="pageIndicator">Página 1</span>
+            <button id="nextPage">Siguiente ➡</button>
+        </div>
     </div>
+
     <!-- Reportes Completos -->
     <div id="reportes-completos" class="content comic-container" style="display: none">
         <h2 class="comic-title">Reportes Completos</h2>
