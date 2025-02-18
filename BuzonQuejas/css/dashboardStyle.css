@@ -96,15 +96,30 @@ body {
     justify-content: center;
     align-items: center;
     background: white; /* 💭 Fondo de la burbuja */
-    padding: 5px 12px; /* 🔹 Más compacto */
+    padding: 6px 15px; /* 🏗️ Aumentamos el padding */
     border: 3px solid black; /* 🎯 Contorno negro */
     outline: 6px solid white; /* ✨ Contorno blanco extra */
     box-shadow: 0 0 0 6px black; /* 🔹 Segunda línea negra externa */
     border-radius: 12px; /* 🌀 Bordes suavemente redondeados */
     position: relative;
-    max-width: 180px; /* 📏 Evita romper la estructura con nombres largos */
+    max-width: 220px; /* 📏 Se agranda para nombres más largos */
+    min-width: 180px; /* 🔹 Evita que se haga demasiado pequeña */
     text-align: center;
-    margin-top: 5px; /* 🔥 Ajusta la burbuja respecto a la imagen */
+    margin-top: 15px; /* 📌 Más espacio respecto a la imagen */
+    word-wrap: break-word; /* 🛠️ Permite que el texto haga salto de línea */
+}
+
+/* ✨ Ajuste del texto dentro de la burbuja */
+.username-bubble h4 {
+    font-size: 0.85rem; /* 🔹 Más pequeño para nombres largos */
+    color: black; /* 🎯 Mantiene la letra negra */
+    font-weight: bold;
+    text-transform: uppercase; /* 🔥 Resalta el nombre */
+    letter-spacing: 1px;
+    margin: 0;
+    text-align: center;
+    line-height: 1.2; /* 📌 Evita que el texto quede demasiado pegado */
+    white-space: normal; /* ✅ Permite salto de línea si es necesario */
 }
 
 /* 🗨️ Cola de la burbuja */
@@ -121,17 +136,6 @@ body {
     outline: 5px solid white;
     box-shadow: 0 0 0 5px black;
     clip-path: polygon(50% 100%, 0 0, 100% 0);
-}
-
-/* ✨ Texto dentro de la burbuja */
-.username-bubble h4 {
-    font-size: 0.9rem; /* 🔹 Más pequeño */
-    color: black; /* 🎯 Mantiene la letra negra */
-    font-weight: bold;
-    text-transform: uppercase; /* 🔥 Resalta el nombre */
-    letter-spacing: 1px;
-    margin: 0;
-    text-align: center;
 }
 
 /* 🔹 Contenedor de botones normales */
