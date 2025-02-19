@@ -206,11 +206,12 @@ body {
     width: calc(100% - 380px);
     max-width: 70%;
 
-    /* 🔥 Asegura que la tabla no haga crecer `main-content` */
-    min-height: auto;
+    /* 🔥 Dale un tamaño mínimo para que no crezca infinitamente */
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden; /* ✅ Evita que se salga */
 }
 
 /* Header */
@@ -235,9 +236,10 @@ body {
     margin: 0 auto;
     padding: 10px;
     box-sizing: border-box;
-    flex-grow: 1; /* 🔥 Hace que ocupe el espacio disponible */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
+    overflow: hidden; /* ✅ Evita que crezca más allá de `main-content` */
 }
 
 /* Opcional: Ajusta los elementos internos para que crezcan junto con el contenedor */
