@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla Reportes (Reportes Vista)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/tablaReportes.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/tablaReportes.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,15 +127,7 @@
       <workItem from="1739542481040" duration="15208000" />
       <workItem from="1739801701264" duration="12568000" />
       <workItem from="1739888316279" duration="12403000" />
-      <workItem from="1739974756659" duration="17963000" />
-    </task>
-    <task id="LOCAL-00360" summary="Tabla Reportes (Reportes Vista)">
-      <option name="closed" value="true" />
-      <created>1739976705554</created>
-      <option name="number" value="00360" />
-      <option name="presentableId" value="LOCAL-00360" />
-      <option name="project" value="LOCAL" />
-      <updated>1739976705554</updated>
+      <workItem from="1739974756659" duration="18286000" />
     </task>
     <task id="LOCAL-00361" summary="Tabla Reportes (Reportes Vista)">
       <option name="closed" value="true" />
@@ -520,7 +513,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739997292300</updated>
     </task>
-    <option name="localTasksCounter" value="409" />
+    <task id="LOCAL-00409" summary="Tabla Reportes (Reportes Vista)">
+      <option name="closed" value="true" />
+      <created>1739997506045</created>
+      <option name="number" value="00409" />
+      <option name="presentableId" value="LOCAL-00409" />
+      <option name="project" value="LOCAL" />
+      <updated>1739997506045</updated>
+    </task>
+    <option name="localTasksCounter" value="410" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
