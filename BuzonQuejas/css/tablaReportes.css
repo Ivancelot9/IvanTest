@@ -6,11 +6,10 @@
     overflow-y: auto;
     border: 3px solid black;
 
-    /* 🔥 Permitir que la tabla crezca sin empujar la paginación */
-    height: 400px; /* 🔥 Esto asegurará que haya un espacio definido */
-    min-height: 300px; /* ✅ Mantiene una altura mínima */
-    max-height: 60vh; /* 📏 Se ajusta según la pantalla */
+    /* 🔥 Ajuste para que la tabla no empuje la paginación fuera */
+    max-height: calc(100vh - 280px);
     flex-grow: 1;
+    position: relative;
 }
 
 /* 📌 Ajustes generales */
