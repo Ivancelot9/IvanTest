@@ -6,9 +6,9 @@
     overflow-y: auto; /* Scroll vertical activado */
     border: 3px solid black;
 
-    /* ✅ SOLO SE MOSTRARÁN 2 REPORTES AL INICIO */
-    height: 200px;
-    min-height: 180px;
+    /* 🔥 Ahora solo se ven 2 filas, pero los demás están dentro con scroll */
+    height: 220px;
+    min-height: 200px;
     max-height: 50vh;
 }
 
