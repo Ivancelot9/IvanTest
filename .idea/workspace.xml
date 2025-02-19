@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla Reportes (Reportes Vista)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/tablaReportes.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/tablaReportes.css" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla Reportes (Reportes Vista)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -127,15 +124,7 @@
       <workItem from="1739542481040" duration="15208000" />
       <workItem from="1739801701264" duration="12568000" />
       <workItem from="1739888316279" duration="12403000" />
-      <workItem from="1739974756659" duration="17067000" />
-    </task>
-    <task id="LOCAL-00356" summary="Tabla Reportes Botones">
-      <option name="closed" value="true" />
-      <created>1739911056565</created>
-      <option name="number" value="00356" />
-      <option name="presentableId" value="LOCAL-00356" />
-      <option name="project" value="LOCAL" />
-      <updated>1739911056565</updated>
+      <workItem from="1739974756659" duration="17143000" />
     </task>
     <task id="LOCAL-00357" summary="Tabla Reportes Filtrador de Busqueda">
       <option name="closed" value="true" />
@@ -521,7 +510,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739993009039</updated>
     </task>
-    <option name="localTasksCounter" value="405" />
+    <task id="LOCAL-00405" summary="Tabla Reportes (Reportes Vista)">
+      <option name="closed" value="true" />
+      <created>1739996604962</created>
+      <option name="number" value="00405" />
+      <option name="presentableId" value="LOCAL-00405" />
+      <option name="project" value="LOCAL" />
+      <updated>1739996604962</updated>
+    </task>
+    <option name="localTasksCounter" value="406" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
