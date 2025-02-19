@@ -7,9 +7,9 @@
     border: 3px solid black;
 
     /* 🔥 Ahora solo se ven 2 filas, pero los demás están dentro con scroll */
-    height: 220px;
-    min-height: 200px;
-    max-height: 50vh;
+    height: 320px;
+    min-height: 280px;
+    max-height: 60vh;
 }
 
 /* 📌 Ajustes generales */
