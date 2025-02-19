@@ -2,14 +2,14 @@
 
 .table-container {
     max-width: 100%;
-    overflow-x: auto; /* 📜 Permitir scroll horizontal si es necesario */
-    overflow-y: auto; /* 📜 Activar scroll vertical */
+    overflow-x: auto; /* Scroll horizontal si es necesario */
+    overflow-y: auto; /* Scroll vertical activado */
     border: 3px solid black;
 
-    /* ✅ Mantiene los 10 reportes visibles sin romper la paginación */
-    height: 400px;
-    min-height: 300px;
-    max-height: 60vh; /* Se ajusta dinámicamente */
+    /* ✅ SOLO SE MOSTRARÁN 2 REPORTES AL INICIO */
+    height: 200px;
+    min-height: 180px;
+    max-height: 50vh;
 }
 
 /* 📌 Ajustes generales */

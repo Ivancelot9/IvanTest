@@ -13,34 +13,26 @@ document.addEventListener("DOMContentLoaded", function () {
         { folio: "011", nomina: "666777", encargado: "Miguel Ángel López", fechaRegistro: "20/02/2025", fechaFinalizacion: "-", descripcion: "Prueba con el reporte número 11", estatus: "Pendiente" }
     ];
 
-    const filasPorPagina = 10; // ✅ AHORA SE MOSTRARÁN 10 REPORTES POR PÁGINA
-    let paginaActual = 1;
+    const filasIniciales = 2; // 🔥 Se mostrarán 2 reportes al inicio
     let datosFiltrados = [...datosReportes];
 
     const tablaBody = document.getElementById("tabla-body");
-    const prevPageBtn = document.getElementById("prevPage");
-    const nextPageBtn = document.getElementById("nextPage");
-    const pageIndicator = document.getElementById("pageIndicator");
     const filterColumn = document.getElementById("filter-column");
     const filterInput = document.getElementById("filter-input");
     const filterButton = document.getElementById("filter-button");
 
-    // 🔥 Resaltar solo en la columna seleccionada
     function resaltarTexto(texto, filtro) {
         if (!filtro || filtro.trim() === "") return texto;
         const regex = new RegExp(`(${filtro})`, "gi");
         return texto.replace(regex, `<span class="highlight">$1</span>`);
     }
 
-    function mostrarReportes(pagina, reportes = datosFiltrados) {
+    function mostrarReportes(reportes = datosFiltrados) {
         tablaBody.innerHTML = "";
-        const inicio = (pagina - 1) * filasPorPagina;
-        const fin = inicio + filasPorPagina;
-        const reportesPagina = reportes.slice(inicio, fin);
         const valorFiltro = filterInput.value.toLowerCase();
         const columnaSeleccionada = filterColumn.value;
 
-        reportesPagina.forEach(reporte => {
+        reportes.forEach((reporte, index) => {
             const fila = document.createElement("tr");
             fila.innerHTML = `
                 <td>${columnaSeleccionada === "folio" ? resaltarTexto(reporte.folio, valorFiltro) : reporte.folio}</td>
@@ -52,19 +44,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td><strong>${columnaSeleccionada === "estatus" ? resaltarTexto(reporte.estatus, valorFiltro) : reporte.estatus}</strong></td>
                 <td><button class="agregar-comentario" data-folio="${reporte.folio}">Agregar Comentario</button></td>
             `;
-            tablaBody.appendChild(fila);
+            if (index < filasIniciales) {
+                tablaBody.appendChild(fila);
+            }
         });
 
-        document.querySelector(".table-container").scrollTop = 0; // 🔥 AJUSTA EL SCROLL AUTOMÁTICAMENTE
-
-        pageIndicator.textContent = `Página ${pagina}`;
-        prevPageBtn.disabled = pagina === 1;
-        nextPageBtn.disabled = fin >= reportes.length;
-    }
-
-    function cambiarPagina(delta) {
-        paginaActual += delta;
-        mostrarReportes(paginaActual);
+        document.querySelector(".table-container").scrollTop = 0; // 🔥 Ajusta el scroll automáticamente
     }
 
     function filtrarReportes() {
@@ -75,15 +60,11 @@ document.addEventListener("DOMContentLoaded", function () {
             return reporte[columna].toLowerCase().includes(valorFiltro);
         });
 
-        paginaActual = 1;
-        mostrarReportes(paginaActual);
+        mostrarReportes(datosFiltrados);
     }
-
-    prevPageBtn.addEventListener("click", () => cambiarPagina(-1));
-    nextPageBtn.addEventListener("click", () => cambiarPagina(1));
 
     filterInput.addEventListener("input", filtrarReportes);
     filterButton.addEventListener("click", filtrarReportes);
 
-    mostrarReportes(paginaActual);
+    mostrarReportes();
 });
