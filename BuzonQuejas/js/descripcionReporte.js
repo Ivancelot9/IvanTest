@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <p id="descripcion-texto"></p>
         </div>
     </div>
-`;
+    `;
 
     // Agregar el modal al body
     document.body.appendChild(descripcionModal);
@@ -50,17 +50,17 @@ document.addEventListener("DOMContentLoaded", function () {
         animarModal(false);
     });
 
-    // Evento para abrir el modal con animación desde el botón "Mostrar Descripción"
-    document.querySelectorAll(".mostrar-descripcion").forEach((boton) => {
-        boton.addEventListener("click", function () {
-            lastClickedButton = boton; // 🔹 Guarda el botón que activó el modal
+    // 🔹 Delegación de eventos para los botones de "Mostrar Descripción"
+    document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("mostrar-descripcion")) {
+            lastClickedButton = event.target;
 
             // 🔹 Mostrar la descripción en el modal
             document.getElementById("descripcion-texto").textContent =
-                this.getAttribute("data-descripcion") || "Sin descripción disponible.";
+                lastClickedButton.getAttribute("data-descripcion") || "Sin descripción disponible.";
 
             // 🔹 Mostrar y animar el modal correctamente
             animarModal(true);
-        });
+        }
     });
 });
