@@ -197,21 +197,20 @@ body {
 
 /* Main Content */
 .main-content {
-    padding: 15px;
+    padding: 20px;
     border: 15px solid #1094e0;
     background: white;
-    margin: 2% auto;
+    margin: 5% auto;
     border-radius: 15px;
     transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
     width: calc(100% - 380px);
     max-width: 70%;
 
-    /* 🔥 Evita que la tabla se desborde */
-    min-height: 85vh;
+    /* 🔥 Asegura que la tabla no haga crecer `main-content` */
+    min-height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden; /* 📌 Asegura que nada se salga */
 }
 
 /* Header */
