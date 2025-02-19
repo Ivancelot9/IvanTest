@@ -206,10 +206,11 @@ body {
     width: calc(100% - 380px);
     max-width: 70%;
 
-    /* 🔥 Permite que la tabla crezca SIN cortar la paginación */
-    min-height: 85vh; /* 📏 Ajuste dinámico */
+    /* 🔥 Asegura que la tabla no haga crecer `main-content` */
+    min-height: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 /* Header */
