@@ -201,18 +201,18 @@ body {
     border: 15px solid #1094e0;
     background: white;
 
-    margin: 5% auto; /* Agrega margen arriba y abajo */
+    margin: 5% auto;
     border-radius: 15px;
     transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
-    width: calc(100% - 380px); /* Se ajusta con la sidebar */
-    max-width: 70%; /* Limita el ancho para evitar que se extienda demasiado */
-    overflow: hidden; /* Asegura que nada se salga */
+    width: calc(100% - 380px);
+    max-width: 70%;
+    overflow: hidden;
 
-    /* ✅ Agrega esto SIN borrar lo que tienes */
-    min-height: 80vh; /* 🔥 Hace que el contenido crezca si hay más espacio (iPad) */
+    /* ✅ Modificación aquí */
+    min-height: auto; /* 🛠️ Evita que crezca más de lo necesario */
     display: flex;
-    flex-direction: column; /* 🔹 Acomoda los elementos en columna */
-    justify-content: space-between; /* 🔥 Asegura que la paginación no se oculte */
+    flex-direction: column;
+    justify-content: flex-start; /* 🔥 Evita que la paginación empuje la tabla hacia abajo */
 }
 
 /* Header */
