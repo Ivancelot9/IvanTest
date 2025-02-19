@@ -5,11 +5,12 @@
     overflow-x: auto; /* 📜 Scroll horizontal si es necesario */
     overflow-y: auto; /* 📜 Activa el scroll vertical */
     border: 3px solid black; /* 🎯 Bordes para resaltar */
-    padding-bottom: 50px; /* 🔥 Espacio extra para evitar que tape la paginación */
+    padding-bottom: 70px; /* 🔥 Asegura que la paginación no quede oculta */
 
-    /* ✅ Agrega esto SIN borrar lo que tienes */
-    max-height: 70vh; /* 🔥 En iPads permitirá que la tabla crezca más */
+    /* 🔥 Corrección para que en laptop los botones no se oculten */
+    max-height: calc(100vh - 250px); /* 📏 Ajuste dinámico para que la tabla crezca sin tapar la paginación */
     flex-grow: 1; /* 🔥 Hará que la tabla use el espacio disponible */
+    position: relative; /* ✅ Evita que la paginación se mezcle con el scroll */
 }
 
 /* 📌 Ajustes generales */
@@ -71,11 +72,13 @@ button.agregar-comentario:hover {
     align-items: center;
     gap: 20px;
     margin-top: 15px; /* 🔥 Da espacio entre la tabla y los botones */
-    position: relative; /* Asegura que no se mezcle con el scroll */
+    position: relative; /* ✅ Evita que quede atrapada en el `overflow` */
 
-    /* ✅ Agrega esto SIN borrar lo que tienes */
-    min-height: 50px; /* 📏 Evita que los botones desaparezcan */
-    flex-wrap: wrap; /* 🔥 Permite que los botones se acomoden en pantallas pequeñas */
+    /* 🔥 SOLUCIÓN PARA LAPTOP */
+    min-height: 60px; /* 📏 Evita que los botones desaparezcan */
+    flex-wrap: wrap; /* ✅ Permite que se acomoden si no caben */
+    bottom: 0; /* 🔹 Asegura que siempre esté al fondo */
+    width: 100%; /* 🔥 Hace que ocupe todo el ancho */
 
 }
 
@@ -91,13 +94,6 @@ button.agregar-comentario:hover {
 
 .pagination button:hover {
     transform: scale(1.1);
-}
-
-/* 🛠️ Para evitar que la tabla sea infinita en altura */
-.table-container {
-    max-height: 400px; /* 🔥 Altura máxima de la tabla */
-    overflow-y: auto; /* 📜 Scroll vertical */
-    border: 3px solid black; /* 🎯 Bordes para resaltar */
 }
 
 /* 🔥 Resaltado de texto al filtrar */
