@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { folio: "011", nomina: "666777", encargado: "Miguel Ángel López", fechaRegistro: "20/02/2025", fechaFinalizacion: "-", descripcion: "Prueba con el reporte número 11", estatus: "Pendiente" }
     ];
 
-    const filasPorPagina = 10;
+    const filasPorPagina = 10; // ✅ AHORA SE MOSTRARÁN 10 REPORTES POR PÁGINA
     let paginaActual = 1;
     let datosFiltrados = [...datosReportes];
 
@@ -27,18 +27,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 🔥 Resaltar solo en la columna seleccionada
     function resaltarTexto(texto, filtro) {
-        if (!filtro || filtro.trim() === "") return texto; // Evita resaltar si el filtro está vacío
-        const regex = new RegExp(`(${filtro})`, "gi"); // Expresión regular para buscar coincidencias
-        return texto.replace(regex, `<span class="highlight">$1</span>`); // Aplica resaltado
+        if (!filtro || filtro.trim() === "") return texto;
+        const regex = new RegExp(`(${filtro})`, "gi");
+        return texto.replace(regex, `<span class="highlight">$1</span>`);
     }
 
     function mostrarReportes(pagina, reportes = datosFiltrados) {
         tablaBody.innerHTML = "";
-        const inicio = (pagina === 1) ? 0 : (pagina - 1) * filasPorPagina;
-        const fin = (pagina === 1) ? 2 : inicio + filasPorPagina;
+        const inicio = (pagina - 1) * filasPorPagina;
+        const fin = inicio + filasPorPagina;
         const reportesPagina = reportes.slice(inicio, fin);
         const valorFiltro = filterInput.value.toLowerCase();
-        const columnaSeleccionada = filterColumn.value; // Obtiene la columna seleccionada
+        const columnaSeleccionada = filterColumn.value;
 
         reportesPagina.forEach(reporte => {
             const fila = document.createElement("tr");
@@ -55,8 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
             tablaBody.appendChild(fila);
         });
 
-        // ✅ Ajusta el scroll automáticamente para que empiece desde arriba
-        document.querySelector(".table-container").scrollTop = 0;
+        document.querySelector(".table-container").scrollTop = 0; // 🔥 AJUSTA EL SCROLL AUTOMÁTICAMENTE
 
         pageIndicator.textContent = `Página ${pagina}`;
         prevPageBtn.disabled = pagina === 1;
@@ -68,7 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportes(paginaActual);
     }
 
-    // ✅ Filtrar datos y aplicar resaltado solo en la columna seleccionada
     function filtrarReportes() {
         const valorFiltro = filterInput.value.toLowerCase();
         const columna = filterColumn.value;
@@ -84,10 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
     prevPageBtn.addEventListener("click", () => cambiarPagina(-1));
     nextPageBtn.addEventListener("click", () => cambiarPagina(1));
 
-    // 🔹 Filtrar en tiempo real
     filterInput.addEventListener("input", filtrarReportes);
-
-    // 🔍 Botón de búsqueda manual
     filterButton.addEventListener("click", filtrarReportes);
 
     mostrarReportes(paginaActual);
