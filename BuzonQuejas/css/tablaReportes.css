@@ -6,10 +6,10 @@
     overflow-y: auto;
     border: 3px solid black;
 
-    /* 🔥 Ajuste para mostrar 2 reportes y que los demás bajen con el scroll */
-    max-height: calc(100vh - 350px); /* 📏 Ajusta la altura sin estirar de más */
-    min-height: 200px; /* 🔹 Evita que se vea demasiado pequeña */
+    /* 🔥 Ajuste para que la tabla no empuje la paginación fuera */
+    max-height: calc(100vh - 280px);
     flex-grow: 1;
+    position: relative;
 }
 
 /* 📌 Ajustes generales */
@@ -70,14 +70,12 @@ button.agregar-comentario:hover {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    margin-top: 10px; /* 🔥 Espacio entre la tabla y los botones */
-
-    /* 🔥 Asegura que la paginación NO quede flotando */
+    margin-top: 10px;
     position: relative;
-    background: white;
     padding: 15px 0;
     z-index: 10;
     width: 100%;
+    background: white;
 }
 
 .pagination button {
