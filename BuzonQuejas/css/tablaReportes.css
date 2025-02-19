@@ -5,11 +5,10 @@
     overflow-x: auto; /* 📜 Scroll horizontal si es necesario */
     overflow-y: auto; /* 📜 Activa el scroll vertical */
     border: 3px solid black; /* 🎯 Bordes para resaltar */
-    padding-bottom: 100px; /* 🔥 Asegura que la paginación NO quede oculta */
 
-    /* 🔥 Corrección para que en laptop los botones no se oculten */
-    max-height: calc(100vh - 200px); /* 📏 Permite que la tabla crezca más */
-    flex-grow: 1; /* 🔥 Hará que la tabla use el espacio disponible */
+    /* 🔥 Ajuste para evitar que la paginación se mezcle con la tabla */
+    max-height: calc(100vh - 250px); /* 📏 Permite que la tabla crezca más sin tapar la paginación */
+    flex-grow: 1;
     position: relative; /* ✅ Evita que la paginación se mezcle con el scroll */
 }
 
@@ -71,13 +70,12 @@ button.agregar-comentario:hover {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    margin-top: 15px; /* 🔥 Espacio entre la tabla y los botones */
-    position: sticky; /* 🔥 Asegura que la paginación NUNCA desaparezca */
-    bottom: 0; /* 📌 Fijado abajo */
-    background: white; /* 📜 Evita que el fondo la tape */
+    margin-top: 10px; /* 🔥 Espacio entre la tabla y los botones */
+    position: relative; /* ✅ Ahora se coloca debajo de la tabla */
     padding: 10px 0; /* 🔥 Da más espacio */
-    z-index: 10; /* ✅ Asegura que esté sobre la tabla */
+    z-index: 10;
     width: 100%;
+    background: transparent; /* 📜 Evita que el fondo bloquee la tabla */
 }
 
 .pagination button {
