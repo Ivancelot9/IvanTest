@@ -380,10 +380,10 @@ body {
 
 /* Main Content (ajustado con espacio a la izquierda) */
 .main-content {
-    margin-left: auto; /* Espacio entre la sidebar y el contenido */
+    margin-left: 280px; /* Espacio entre la sidebar y el contenido */
     transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
-    width: calc(100% - 320px);
-    max-width: 50%;
+    width: calc(80% - 320px);
+    max-width: 75%;
 
 }
 
