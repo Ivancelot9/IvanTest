@@ -197,7 +197,7 @@ body {
 
 /* Main Content */
 .main-content {
-    padding: 15px;
+    padding: 5px;
     border: 15px solid #1094e0;
     background: white;
     margin: 1% auto;
@@ -207,7 +207,7 @@ body {
     max-width: 70%;
 
     /* 🔥 Evita que la tabla se desborde */
-    min-height: 75vh;
+    min-height: 50vh;
     display: flex;
     flex-direction: column;
     align-items: center;
