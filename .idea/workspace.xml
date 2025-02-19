@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla Reportes Filtrador de Busqueda">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla Reportes (Reportes Vista)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,15 +128,7 @@
       <workItem from="1739542481040" duration="15208000" />
       <workItem from="1739801701264" duration="12568000" />
       <workItem from="1739888316279" duration="12403000" />
-      <workItem from="1739974756659" duration="902000" />
-    </task>
-    <task id="LOCAL-00310" summary="Boton Sidebar">
-      <option name="closed" value="true" />
-      <created>1739824305929</created>
-      <option name="number" value="00310" />
-      <option name="presentableId" value="LOCAL-00310" />
-      <option name="project" value="LOCAL" />
-      <updated>1739824305929</updated>
+      <workItem from="1739974756659" duration="1618000" />
     </task>
     <task id="LOCAL-00311" summary="Boton Sidebar">
       <option name="closed" value="true" />
@@ -521,7 +514,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739912328702</updated>
     </task>
-    <option name="localTasksCounter" value="359" />
+    <task id="LOCAL-00359" summary="Tabla Reportes (Reportes Vista)">
+      <option name="closed" value="true" />
+      <created>1739975754116</created>
+      <option name="number" value="00359" />
+      <option name="presentableId" value="LOCAL-00359" />
+      <option name="project" value="LOCAL" />
+      <updated>1739975754116</updated>
+    </task>
+    <option name="localTasksCounter" value="360" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -573,7 +574,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Historial de Reportes 1.0" />
     <MESSAGE value="Historial de Reportes 1.1" />
     <MESSAGE value="Historial de Reportes 1.2" />
     <MESSAGE value="Historial de Reportes 1.3" />
@@ -598,6 +598,7 @@
     <MESSAGE value="Tabla Reportes" />
     <MESSAGE value="Tabla Reportes Botones" />
     <MESSAGE value="Tabla Reportes Filtrador de Busqueda" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tabla Reportes Filtrador de Busqueda" />
+    <MESSAGE value="Tabla Reportes (Reportes Vista)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tabla Reportes (Reportes Vista)" />
   </component>
 </project>
