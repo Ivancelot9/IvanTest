@@ -106,38 +106,19 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 </tr>
                 </thead>
                 <tbody id="tabla-body">
-                <!-- 🚀 Aquí van los reportes generados dinámicamente -->
-                <tr>
-                    <td>001</td>
-                    <td>123456</td>
-                    <td>Juan Pérez</td>
-                    <td>10/02/2025</td>
-                    <td>-</td>
-                    <td><button class="mostrar-descripcion">Mostrar Descripción</button></td>
-                    <td><strong>En proceso</strong></td>
-                    <td><button class="agregar-comentario">Agregar Comentario</button></td>
-                </tr>
-                <tr>
-                    <td>002</td>
-                    <td>654321</td>
-                    <td>María López</td>
-                    <td>11/02/2025</td>
-                    <td>-</td>
-                    <td><button class="mostrar-descripcion">Mostrar Descripción</button></td>
-                    <td><strong>Pendiente</strong></td>
-                    <td><button class="agregar-comentario">Agregar Comentario</button></td>
-                </tr>
-                <tr>
-                    <td>003</td>
-                    <td>789654</td>
-                    <td>Carlos García</td>
-                    <td>12/02/2025</td>
-                    <td>-</td>
-                    <td><button class="mostrar-descripcion">Mostrar Descripción</button></td>
-                    <td><strong>Completado</strong></td>
-                    <td><button class="agregar-comentario">Agregar Comentario</button></td>
-                </tr>
+                <!-- 🚀 Reportes de prueba -->
+                <tr><td>001</td><td>123456</td><td>Juan Pérez</td><td>10/02/2025</td><td>-</td><td><button class="mostrar-descripcion">Mostrar Descripción</button></td><td><strong>En proceso</strong></td><td><button class="agregar-comentario">Agregar Comentario</button></td></tr>
+                <tr><td>002</td><td>654321</td><td>María López</td><td>11/02/2025</td><td>-</td><td><button class="mostrar-descripcion">Mostrar Descripción</button></td><td><strong>Pendiente</strong></td><td><button class="agregar-comentario">Agregar Comentario</button></td></tr>
+                <tr><td>003</td><td>789654</td><td>Carlos García</td><td>12/02/2025</td><td>-</td><td><button class="mostrar-descripcion">Mostrar Descripción</button></td><td><strong>Completado</strong></td><td><button class="agregar-comentario">Agregar Comentario</button></td></tr>
+                <tr><td>004</td><td>111222</td><td>Laura Torres</td><td>13/02/2025</td><td>-</td><td><button class="mostrar-descripcion">Mostrar Descripción</button></td><td><strong>Pendiente</strong></td><td><button class="agregar-comentario">Agregar Comentario</button></td></tr>
+                <tr><td>005</td><td>333444</td><td>Diego Mendoza</td><td>14/02/2025</td><td>-</td><td><button class="mostrar-descripcion">Mostrar Descripción</button></td><td><strong>En proceso</strong></td><td><button class="agregar-comentario">Agregar Comentario</button></td></tr>
+                <tr><td>006</td><td>555666</td><td>Sofía Ramírez</td><td>15/02/2025</td><td>-</td><td><button class="mostrar-descripcion">Mostrar Descripción</button></td><td><strong>Completado</strong></td><td><button class="agregar-comentario">Agregar Comentario</button></td></tr>
+                <tr><td>007</td><td>777888</td><td>Ricardo Pérez</td><td>16/02/2025</td><td>-</td><td><button class="mostrar-descripcion">Mostrar Descripción</button></td><td><strong>Pendiente</strong></td><td><button class="agregar-comentario">Agregar Comentario</button></td></tr>
+                <tr><td>008</td><td>999000</td><td>Fernanda López</td><td>17/02/2025</td><td>-</td><td><button class="mostrar-descripcion">Mostrar Descripción</button></td><td><strong>En proceso</strong></td><td><button class="agregar-comentario">Agregar Comentario</button></td></tr>
+                <tr><td>009</td><td>222333</td><td>Andrés Salgado</td><td>18/02/2025</td><td>-</td><td><button class="mostrar-descripcion">Mostrar Descripción</button></td><td><strong>Completado</strong></td><td><button class="agregar-comentario">Agregar Comentario</button></td></tr>
+                <tr><td>010</td><td>444555</td><td>Gabriela Márquez</td><td>19/02/2025</td><td>-</td><td><button class="mostrar-descripcion">Mostrar Descripción</button></td><td><strong>Pendiente</strong></td><td><button class="agregar-comentario">Agregar Comentario</button></td></tr>
                 </tbody>
+
             </table>
         </div>
         <!-- 📑 Controles de paginación (También movido aquí) -->
