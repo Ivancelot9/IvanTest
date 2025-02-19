@@ -200,19 +200,16 @@ body {
     padding: 20px;
     border: 15px solid #1094e0;
     background: white;
-
     margin: 5% auto;
     border-radius: 15px;
     transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
     width: calc(100% - 380px);
     max-width: 70%;
-    overflow: hidden;
 
-    /* ✅ Modificación aquí */
-    min-height: auto; /* 🛠️ Evita que crezca más de lo necesario */
+    /* 🔥 Permite que la tabla crezca SIN cortar la paginación */
+    min-height: 85vh; /* 📏 Ajuste dinámico */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* 🔥 Evita que la paginación empuje la tabla hacia abajo */
 }
 
 /* Header */
