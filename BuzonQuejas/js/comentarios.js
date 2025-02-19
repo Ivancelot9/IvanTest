@@ -22,52 +22,56 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(comentariosModal);
 
     let modalContent = comentariosModal.querySelector(".modal-content");
-    let lastClickedButton = null; // 🔹 Guarda el botón que abrió el modal
+    let lastClickedButton = null; // 🔹 Guarda el botón que activó el modal
     let currentFolio = null; // 🔹 Guarda el folio del reporte actual
     let comentariosPorReporte = {}; // 🔥 Objeto para guardar comentarios por folio
 
-    // Evento para cerrar el modal con animación inversa
-    comentariosModal.querySelector(".close-modal").addEventListener("click", function () {
-        if (!lastClickedButton) {
-            comentariosModal.style.display = "none";
-            return;
-        }
-
-        let rect = lastClickedButton.getBoundingClientRect(); // 🔹 Posición del botón
-
-        modalContent.style.transformOrigin = `${rect.left + rect.width / 2}px ${rect.top + rect.height / 2}px`;
-        modalContent.style.transform = "scale(0)";
-        modalContent.style.opacity = "0";
-
-        setTimeout(() => {
-            comentariosModal.style.display = "none";
-        }, 300); // 🔹 Esperamos que termine la animación antes de ocultarlo
-    });
-
-    // Evento para abrir el modal con animación desde el botón
-    document.querySelectorAll(".agregar-comentario").forEach((boton) => {
-        boton.addEventListener("click", function () {
-            lastClickedButton = boton; // 🔹 Guarda el botón que activó el modal
-            let rect = boton.getBoundingClientRect(); // 🔹 Posición del botón
-            currentFolio = boton.getAttribute("data-folio"); // 🔥 Obtener el folio del reporte
-
-            comentariosModal.style.display = "flex";
+    // 🔹 Función para animar el modal
+    function animarModal(abrir) {
+        if (abrir) {
+            let rect = lastClickedButton.getBoundingClientRect();
             modalContent.style.transformOrigin = `${rect.left + rect.width / 2}px ${rect.top + rect.height / 2}px`;
             modalContent.style.transform = "scale(0)";
             modalContent.style.opacity = "0";
 
+            comentariosModal.style.display = "flex";
             setTimeout(() => {
                 modalContent.classList.add("active");
                 modalContent.style.transform = "scale(1)";
                 modalContent.style.opacity = "1";
             }, 10);
+        } else {
+            modalContent.style.transform = "scale(0)";
+            modalContent.style.opacity = "0";
+            setTimeout(() => {
+                modalContent.classList.remove("active");
+                comentariosModal.style.display = "none";
+            }, 300);
+        }
+    }
 
-            // 🔹 Cargar comentarios del folio actual
-            cargarComentarios(currentFolio);
-        });
+    // 🔹 Evento para cerrar el modal
+    comentariosModal.querySelector(".close-modal").addEventListener("click", function () {
+        animarModal(false);
     });
 
-    // Botón para guardar comentarios
+    // 🔹 Función para abrir el modal desde cualquier botón "Agregar Comentario"
+    function abrirModal() {
+        lastClickedButton = this;
+        currentFolio = this.getAttribute("data-folio");
+        animarModal(true);
+        cargarComentarios(currentFolio);
+    }
+
+    // 🔹 Función para inicializar eventos en los botones
+    function inicializarEventosBotones() {
+        document.querySelectorAll(".agregar-comentario").forEach((boton) => {
+            boton.removeEventListener("click", abrirModal);
+            boton.addEventListener("click", abrirModal);
+        });
+    }
+
+    // 🔹 Botón para guardar comentarios
     let btnGuardar = comentariosModal.querySelector(".btn-guardar");
     let inputComentario = comentariosModal.querySelector("#nueva-nota");
     let listaComentarios = comentariosModal.querySelector(".comentarios-lista");
@@ -76,20 +80,17 @@ document.addEventListener("DOMContentLoaded", function () {
         let textoComentario = inputComentario.value.trim();
         if (textoComentario !== "" && currentFolio) {
             if (!comentariosPorReporte[currentFolio]) {
-                comentariosPorReporte[currentFolio] = []; // 🔥 Si no existe, creamos el array
+                comentariosPorReporte[currentFolio] = [];
             }
-
-            comentariosPorReporte[currentFolio].push(textoComentario); // 🔥 Guardar comentario en su reporte
-            inputComentario.value = ""; // 🔹 Limpiar el textarea después de guardar
-
-            cargarComentarios(currentFolio); // 🔥 Volver a cargar los comentarios del reporte actual
+            comentariosPorReporte[currentFolio].push(textoComentario);
+            inputComentario.value = "";
+            cargarComentarios(currentFolio);
         }
     });
 
     // 🔹 Función para cargar comentarios del folio actual
     function cargarComentarios(folio) {
-        listaComentarios.innerHTML = ""; // 🔥 Limpiar comentarios previos
-
+        listaComentarios.innerHTML = "";
         if (comentariosPorReporte[folio]) {
             comentariosPorReporte[folio].forEach((comentario) => {
                 let nuevoComentario = document.createElement("div");
@@ -99,4 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
     }
+
+    // ✅ Asigna los eventos correctamente después de que se carguen los datos
+    setTimeout(inicializarEventosBotones, 500);
 });
