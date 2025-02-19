@@ -2,12 +2,13 @@
 
 .table-container {
     max-width: 100%;
-    overflow-x: auto; /* 📜 Scroll horizontal si es necesario */
-    overflow-y: auto; /* 📜 Scroll SOLO dentro de la tabla */
-    border: 3px solid black; /* 🎯 Bordes para resaltar */
+    overflow-x: auto;
+    overflow-y: auto;
+    border: 3px solid black;
 
-    /* 🔥 Ajuste para que SOLO la tabla tenga scroll */
-    max-height: 280px; /* 📏 Muestra solo 2 reportes en laptop antes del scroll */
+    /* 🔥 Ajuste para mostrar 2 reportes y que los demás bajen con el scroll */
+    max-height: calc(100vh - 350px); /* 📏 Ajusta la altura sin estirar de más */
+    min-height: 200px; /* 🔹 Evita que se vea demasiado pequeña */
     flex-grow: 1;
 }
 

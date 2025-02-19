@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function mostrarReportes(pagina, reportes = datosFiltrados) {
         tablaBody.innerHTML = "";
-        const inicio = (pagina - 1) * filasPorPagina;
-        const fin = inicio + filasPorPagina;
+        const inicio = (pagina === 1) ? 0 : (pagina - 1) * filasPorPagina;
+        const fin = (pagina === 1) ? 2 : inicio + filasPorPagina;
         const reportesPagina = reportes.slice(inicio, fin);
         const valorFiltro = filterInput.value.toLowerCase();
         const columnaSeleccionada = filterColumn.value; // Obtiene la columna seleccionada
@@ -54,6 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
             tablaBody.appendChild(fila);
         });
+
+        // ✅ Ajusta el scroll automáticamente para que empiece desde arriba
+        document.querySelector(".table-container").scrollTop = 0;
 
         pageIndicator.textContent = `Página ${pagina}`;
         prevPageBtn.disabled = pagina === 1;
