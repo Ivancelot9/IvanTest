@@ -207,6 +207,12 @@ body {
     width: calc(100% - 380px); /* Se ajusta con la sidebar */
     max-width: 70%; /* Limita el ancho para evitar que se extienda demasiado */
     overflow: hidden; /* Asegura que nada se salga */
+
+    /* ✅ Agrega esto SIN borrar lo que tienes */
+    min-height: 80vh; /* 🔥 Hace que el contenido crezca si hay más espacio (iPad) */
+    display: flex;
+    flex-direction: column; /* 🔹 Acomoda los elementos en columna */
+    justify-content: space-between; /* 🔥 Asegura que la paginación no se oculte */
 }
 
 /* Header */
