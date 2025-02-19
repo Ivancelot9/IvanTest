@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 🔹 Función para cargar comentarios del folio actual
+    // 🔹 Función para cargar comentarios del folio actuals
     function cargarComentarios(folio) {
         listaComentarios.innerHTML = "";
         if (comentariosPorReporte[folio]) {
