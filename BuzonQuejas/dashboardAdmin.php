@@ -110,7 +110,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 
                 </tbody>
 
-            </table>s
+            </table>
         </div>
         <!-- 📑 Controles de paginación (También movido aquí) -->
         <div class="pagination">
