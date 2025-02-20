@@ -1,13 +1,84 @@
-/* 🔘 Contenedor de botones alineados en fila */
+/* 🗓️ Estilos para el modal de fecha de finalización */
+#modal-fecha {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro translúcido */
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 🎨 Contenedor principal del modal */
+.modal-fecha {
+    background: #fdfdfd;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 8px 8px 0 black, -4px -4px 0 white;
+    width: 340px;
+    position: relative;
+    border: 4px solid black;
+    animation: popUp 0.3s ease-in-out;
+
+    /* 📅 Simulación de calendario con perforaciones */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 📌 Encabezado tipo calendario */
+.modal-fecha h2 {
+    font-size: 1.8rem;
+    background: #ffcc00;
+    color: black;
+    padding: 8px;
+    margin: 0;
+    border-bottom: 4px solid black;
+    width: 100%;
+    text-align: center;
+    box-shadow: 4px 4px 0px black;
+    font-family: "Bangers", serif;
+}
+
+/* 🔳 Efecto de perforaciones para que parezca un calendario de pared */
+.modal-fecha::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 120px;
+    height: 20px;
+    background: radial-gradient(circle, black 15%, transparent 16%);
+    background-size: 15px 15px;
+    transform: translateX(-50%);
+}
+
+/* ✏️ Input de fecha con estilo manuscrito */
+.modal-fecha input {
+    font-size: 1.3rem;
+    padding: 10px;
+    border: 3px solid black;
+    border-radius: 10px;
+    background: white;
+    text-align: center;
+    font-family: "Patrick Hand", cursive; /* Fuente tipo manuscrita */
+    box-shadow: 4px 4px 0 black;
+}
+
+/* 🔘 Contenedor de botones en una fila */
 .modal-fecha .botones-container {
     display: flex;
     justify-content: space-between;
-    gap: 10px; /* Espacio entre botones */
     margin-top: 15px;
     width: 100%;
 }
 
-/* 🔘 Botones con estilo cómic */
+/* 🔘 Botones con efecto cómic */
 .modal-fecha button {
     background: white;
     color: black;
@@ -19,17 +90,18 @@
     font-family: "Bangers", serif;
     box-shadow: 5px 5px 0 black;
     transition: all 0.2s ease-in-out;
-    flex: 1; /* 🔥 Ocupan el mismo espacio */
+    flex: 1;
+    margin: 0 5px;
 }
 
-/* 🔥 Hover con efecto de crecimiento */
+/* 🔥 Hover para los botones */
 .modal-fecha button:hover {
     background: #ffcc00;
     transform: scale(1.1);
     box-shadow: 7px 7px 0 black;
 }
 
-/* ❌ Botón "Cancelar" */
+/* ❌ Botón de cerrar con color rojo llamativo */
 #cerrar-fecha {
     background: #d9534f;
     color: white;
@@ -39,7 +111,7 @@
     background: #c9302c;
 }
 
-/* ✅ Botón "Finalizar Reporte" */
+/* ✅ Botón "Finalizar Reporte" en azul */
 #guardar-fecha {
     background: #1094e0;
     color: white;
@@ -47,4 +119,15 @@
 
 #guardar-fecha:hover {
     background: #0b75b1;
+}
+
+/* ✨ Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popUp {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
