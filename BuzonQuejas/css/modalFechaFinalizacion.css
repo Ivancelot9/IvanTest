@@ -19,19 +19,11 @@
     padding: 20px;
     border-radius: 15px;
     text-align: center;
-    box-shadow: 8px 8px 0px black, -4px -4px 0px white;
+    box-shadow: 8px 8px 0 black, -4px -4px 0 white;
     width: 320px;
     position: relative;
     border: 4px solid black;
     animation: popUp 0.3s ease-in-out;
-}
-
-/* 🖼️ Fondo tipo papel rayado */
-.modal-fecha {
-    background: linear-gradient(white 28px, #a2caff 29px) repeat-y,
-    linear-gradient(to right, #ff4a4a 5px, transparent 5px);
-    background-size: 100% 30px, 100% 100%;
-    background-position: 100% 30px, 100% 100%;
 }
 
 /* ✏️ Input de fecha con estilo más atractivo */
@@ -46,6 +38,13 @@
     box-shadow: 4px 4px 0 black;
 }
 
+/* 🔘 Contenedor de botones en una fila */
+.modal-fecha .botones-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
 /* 🔘 Botones con efecto cómic */
 .modal-fecha button {
     background: white;
@@ -58,6 +57,8 @@
     font-family: "Bangers", serif;
     box-shadow: 5px 5px 0 black;
     transition: all 0.2s ease-in-out;
+    flex: 1;
+    margin: 0 5px;
 }
 
 /* 🔥 Hover para los botones */
@@ -75,6 +76,16 @@
 
 #cerrar-fecha:hover {
     background: #c9302c;
+}
+
+/* ✅ Botón "Finalizar Reporte" en azul */
+#guardar-fecha {
+    background: #1094e0;
+    color: white;
+}
+
+#guardar-fecha:hover {
+    background: #0b75b1;
 }
 
 /* ✨ Animaciones */
