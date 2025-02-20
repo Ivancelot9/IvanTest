@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla Reportes (Reacomodando Filas)">
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalFechaFinalizacion.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/js/fechaFinalizacion.js" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla Reportes Calendario">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalFechaFinalizacion.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalFechaFinalizacion.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,15 +128,7 @@
       <workItem from="1739801701264" duration="12568000" />
       <workItem from="1739888316279" duration="12403000" />
       <workItem from="1739974756659" duration="19570000" />
-      <workItem from="1740061093555" duration="6431000" />
-    </task>
-    <task id="LOCAL-00366" summary="Tabla Reportes (Reportes Vista)">
-      <option name="closed" value="true" />
-      <created>1739983178505</created>
-      <option name="number" value="00366" />
-      <option name="presentableId" value="LOCAL-00366" />
-      <option name="project" value="LOCAL" />
-      <updated>1739983178505</updated>
+      <workItem from="1740061093555" duration="6583000" />
     </task>
     <task id="LOCAL-00367" summary="Tabla Reportes (Reportes Vista)">
       <option name="closed" value="true" />
@@ -525,7 +514,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740067610183</updated>
     </task>
-    <option name="localTasksCounter" value="415" />
+    <task id="LOCAL-00415" summary="Tabla Reportes Calendario">
+      <option name="closed" value="true" />
+      <created>1740071672125</created>
+      <option name="number" value="00415" />
+      <option name="presentableId" value="LOCAL-00415" />
+      <option name="project" value="LOCAL" />
+      <updated>1740071672125</updated>
+    </task>
+    <option name="localTasksCounter" value="416" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -577,7 +574,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Historial de Reportes 1.2" />
     <MESSAGE value="Historial de Reportes 1.3" />
     <MESSAGE value="Historial de Reportes 1.4" />
     <MESSAGE value="Historial de Reportes 1.5" />
@@ -602,6 +598,7 @@
     <MESSAGE value="Tabla Reportes Filtrador de Busqueda" />
     <MESSAGE value="Tabla Reportes (Reportes Vista)" />
     <MESSAGE value="Tabla Reportes (Reacomodando Filas)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tabla Reportes (Reacomodando Filas)" />
+    <MESSAGE value="Tabla Reportes Calendario" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tabla Reportes Calendario" />
   </component>
 </project>
