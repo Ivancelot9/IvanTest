@@ -41,11 +41,11 @@
     border-bottom: 4px solid black;
     width: 100%;
     text-align: center;
-    box-shadow: 4px 4px 0px black;
+    box-shadow: 4px 4px 0 black;
     font-family: "Bangers", serif;
 }
 
-/* 🔳 Efecto de perforaciones para que parezca un calendario de pared */
+/* 🔳 Efecto de perforaciones tipo calendario de pared */
 .modal-fecha::before {
     content: "";
     position: absolute;
@@ -58,7 +58,7 @@
     transform: translateX(-50%);
 }
 
-/* ✏️ Input de fecha con estilo manuscrito */
+/* ✏️ Input de fecha */
 .modal-fecha input {
     font-size: 1.3rem;
     padding: 10px;
@@ -66,11 +66,11 @@
     border-radius: 10px;
     background: white;
     text-align: center;
-    font-family: "Patrick Hand", cursive; /* Fuente tipo manuscrita */
+    font-family: "Patrick Hand", cursive;
     box-shadow: 4px 4px 0 black;
 }
 
-/* 🔘 Contenedor de botones en una fila */
+/* 🔘 Contenedor de botones en fila */
 .modal-fecha .botones-container {
     display: flex;
     justify-content: space-between;
@@ -78,7 +78,7 @@
     width: 100%;
 }
 
-/* 🔘 Botones con efecto cómic */
+/* 🔘 Botones estilo cómic */
 .modal-fecha button {
     background: white;
     color: black;
@@ -90,8 +90,7 @@
     font-family: "Bangers", serif;
     box-shadow: 5px 5px 0 black;
     transition: all 0.2s ease-in-out;
-    flex: 1;
-    margin: 0 5px;
+    width: 45%;  /* 🔥 Ambos botones del mismo tamaño */
 }
 
 /* 🔥 Hover para los botones */
@@ -101,20 +100,22 @@
     box-shadow: 7px 7px 0 black;
 }
 
-/* ❌ Botón de cerrar con color rojo llamativo */
+/* ❌ Botón de cancelar alineado a la izquierda */
 #cerrar-fecha {
     background: #d9534f;
     color: white;
+    text-align: center;
 }
 
 #cerrar-fecha:hover {
     background: #c9302c;
 }
 
-/* ✅ Botón "Finalizar Reporte" en azul */
+/* ✅ Botón "Finalizar Reporte" alineado a la derecha */
 #guardar-fecha {
     background: #1094e0;
     color: white;
+    text-align: center;
 }
 
 #guardar-fecha:hover {
