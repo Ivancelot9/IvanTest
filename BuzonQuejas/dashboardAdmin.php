@@ -95,9 +95,10 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
             <table id="tabla-reportes" class="styled-table">
                 <thead>
                 <tr>
+                    <th>Folio</th>
+                    <th>Fecha Registro</th>
                     <th>Número de Nómina</th>
                     <th>Encargado</th>
-                    <th>Fecha Registro</th>
                     <th>Descripción</th>
                     <th>Comentarios</th>
                     <th>Estatus</th>
@@ -107,6 +108,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 <tbody id="tabla-body"></tbody>
             </table>
         </div>
+
         <!-- 📑 Controles de paginación (También movido aquí) -->
         <div class="pagination">
             <button id="prevPage" disabled>⬅ Anterior</button>
