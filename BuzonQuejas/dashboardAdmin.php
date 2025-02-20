@@ -95,21 +95,16 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
             <table id="tabla-reportes" class="styled-table">
                 <thead>
                 <tr>
-                    <th>Folio</th>
                     <th>Número de Nómina</th>
                     <th>Encargado</th>
                     <th>Fecha Registro</th>
-                    <th>Fecha Finalización</th>
                     <th>Descripción</th>
-                    <th>Estatus</th>
                     <th>Comentarios</th>
+                    <th>Estatus</th>
+                    <th>Fecha de Finalización</th>
                 </tr>
                 </thead>
-                <tbody id="tabla-body">
-                <!-- 🚀 Reportes de prueba -->
-
-                </tbody>
-
+                <tbody id="tabla-body"></tbody>
             </table>
         </div>
         <!-- 📑 Controles de paginación (También movido aquí) -->
