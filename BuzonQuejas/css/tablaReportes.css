@@ -46,7 +46,8 @@ table td {
 
 /* 🔘 Estilos para los botones de la tabla */
 button.mostrar-descripcion,
-button.agregar-comentario {
+button.agregar-comentario,
+button.seleccionar-fecha{
     background: white;
     color: black;
     border: 2px solid black;
@@ -60,7 +61,8 @@ button.agregar-comentario {
 
 /* 🔥 Efecto hover en botones */
 button.mostrar-descripcion:hover,
-button.agregar-comentario:hover {
+button.agregar-comentario:hover,
+button.seleccionar-fecha:hover{
     transform: scale(1.1);
 }
 
