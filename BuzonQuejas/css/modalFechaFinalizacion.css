@@ -9,7 +9,7 @@
     background: rgba(0, 0, 0, 0.5); /* Fondo oscuro translúcido */
     justify-content: center;
     align-items: center;
-    z-index: 3000; /* 🔥 Mayor prioridad */
+    z-index: 3000;
     animation: fadeIn 0.3s ease-in-out;
 }
 
@@ -20,21 +20,53 @@
     border-radius: 15px;
     text-align: center;
     box-shadow: 8px 8px 0 black, -4px -4px 0 white;
-    width: 320px;
+    width: 340px;
     position: relative;
     border: 4px solid black;
     animation: popUp 0.3s ease-in-out;
+
+    /* 📅 Simulación de calendario con perforaciones */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* ✏️ Input de fecha con estilo más atractivo */
+/* 📌 Encabezado tipo calendario */
+.modal-fecha h2 {
+    font-size: 1.8rem;
+    background: #ffcc00;
+    color: black;
+    padding: 8px;
+    margin: 0;
+    border-bottom: 4px solid black;
+    width: 100%;
+    text-align: center;
+    box-shadow: 4px 4px 0px black;
+    font-family: "Bangers", serif;
+}
+
+/* 🔳 Efecto de perforaciones para que parezca un calendario de pared */
+.modal-fecha::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 120px;
+    height: 20px;
+    background: radial-gradient(circle, black 15%, transparent 16%);
+    background-size: 15px 15px;
+    transform: translateX(-50%);
+}
+
+/* ✏️ Input de fecha con estilo manuscrito */
 .modal-fecha input {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     padding: 10px;
     border: 3px solid black;
     border-radius: 10px;
     background: white;
     text-align: center;
-    font-family: "Bangers", serif;
+    font-family: "Patrick Hand", cursive; /* Fuente tipo manuscrita */
     box-shadow: 4px 4px 0 black;
 }
 
@@ -43,6 +75,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
+    width: 100%;
 }
 
 /* 🔘 Botones con efecto cómic */
