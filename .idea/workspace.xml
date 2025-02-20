@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla Reportes (Reacomodando Filas)">
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalFechaFinalizacion.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/js/fechaFinalizacion.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
@@ -21,8 +23,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -129,15 +131,7 @@
       <workItem from="1739801701264" duration="12568000" />
       <workItem from="1739888316279" duration="12403000" />
       <workItem from="1739974756659" duration="19570000" />
-      <workItem from="1740061093555" duration="4200000" />
-    </task>
-    <task id="LOCAL-00365" summary="Tabla Reportes (Reportes Vista)">
-      <option name="closed" value="true" />
-      <created>1739980756229</created>
-      <option name="number" value="00365" />
-      <option name="presentableId" value="LOCAL-00365" />
-      <option name="project" value="LOCAL" />
-      <updated>1739980756229</updated>
+      <workItem from="1740061093555" duration="6431000" />
     </task>
     <task id="LOCAL-00366" summary="Tabla Reportes (Reportes Vista)">
       <option name="closed" value="true" />
@@ -523,7 +517,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740063470941</updated>
     </task>
-    <option name="localTasksCounter" value="414" />
+    <task id="LOCAL-00414" summary="Tabla Reportes (Reacomodando Filas)">
+      <option name="closed" value="true" />
+      <created>1740067610183</created>
+      <option name="number" value="00414" />
+      <option name="presentableId" value="LOCAL-00414" />
+      <option name="project" value="LOCAL" />
+      <updated>1740067610183</updated>
+    </task>
+    <option name="localTasksCounter" value="415" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

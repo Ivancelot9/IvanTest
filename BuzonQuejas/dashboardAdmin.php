@@ -20,6 +20,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <link rel="stylesheet" href="css/modalComentarios.css">
     <link rel="stylesheet" href="css/modalDescripcion.css">
     <link rel="stylesheet" href="css/tablaReportes.css">
+    <link rel="stylesheet" href="css/modalFechaFinalizacion.css">
 
 
 </head>
@@ -138,6 +139,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 <script src="js/comentarios.js"></script>
 <script src="js/descripcionReporte.js"></script>
 <script src="js/tablaReportes.js"></script>
+<script src="js/fechaFinalizacion.js"></script>
 
 </body>
 </html>
