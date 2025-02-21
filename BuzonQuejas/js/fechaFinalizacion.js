@@ -4,19 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
     modalFecha.id = "modal-fecha";
     modalFecha.style.display = "none";
     modalFecha.innerHTML = `
-    <!-- 🗓️ Modal de Fecha de Finalización -->
-<div id="modal-fecha">
     <div class="modal-fecha">
         <h2>Seleccionar Fecha de Finalización</h2>
-        <input type="date" id="fecha-finalizacion" />
-
-        <!-- 🔘 Contenedor de botones en fila -->
-        <div class="botones-container">
-            <button id="cerrar-fecha">Cancelar</button>
-            <button id="guardar-fecha">Finalizar Reporte</button>
-        </div>
+        <input type="date" id="fecha-seleccionada">
+        <button id="guardar-fecha">Guardar</button>
+        <button id="cerrar-fecha">Cancelar</button>
     </div>
-</div>
     `;
 
     // 🔹 Agregar el modal al body
