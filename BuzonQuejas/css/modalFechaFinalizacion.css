@@ -16,19 +16,21 @@
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     border: 4px solid black;
-    width: 450px;  /* 📏 Hacerlo más grande */
+    width: 500px;  /* 📏 Más ancho para espacio balanceado */
     text-align: center;
     position: relative;
     font-family: "Bangers", serif;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: center;  /* ✅ Centrando los elementos */
 }
 
-/* 📆 Calendario dentro del modal */
+/* 📆 Calendario centrado en el modal */
 #calendario-container {
     display: flex;
     justify-content: center;
+    width: 100%;  /* 🔥 Ocupa todo el ancho disponible */
 }
 
 /* 🎨 Personalización de Flatpickr */
@@ -76,6 +78,7 @@
     justify-content: space-between;
     gap: 10px;
     margin-top: 10px;
+    width: 100%;
 }
 
 /* ❌ Botón Cancelar */
@@ -85,6 +88,7 @@
     flex: 1;
     padding: 10px;
     font-size: 1.1rem;
+    font-family: "Bangers", serif;  /* 🔥 Fuente Bangers */
     cursor: pointer;
     border-radius: 8px;
     border: 3px solid black;
@@ -102,6 +106,7 @@
     flex: 1;
     padding: 10px;
     font-size: 1.1rem;
+    font-family: "Bangers", serif;  /* 🔥 Fuente Bangers */
     cursor: pointer;
     border-radius: 8px;
     border: 3px solid black;
