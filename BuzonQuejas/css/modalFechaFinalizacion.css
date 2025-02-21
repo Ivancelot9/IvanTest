@@ -11,7 +11,7 @@
 
 /* 📅 Modal con efecto hoja desprendida */
 .modal-fecha {
-    background: linear-gradient(145deg, #e4e4e4, #ffffff), url('https://i.imgur.com/0g7cqDq.png') center/cover no-repeat;
+    background: linear-gradient(145deg, #e4e4e4, #ffffff), url('https://i.imgur.com/0g7cqDq.png') center/cover no-repeat;  /* ✅ Fondo con degradado + imagen combinados */
     padding: 30px;
     border-radius: 30px 30px 16px 16px;
     box-shadow: 8px 8px 0 black;
@@ -26,85 +26,90 @@
     align-items: center;
 }
 
-/* 📆 Contorno fuerte alrededor de TODO el calendario */
+
+/* 📆 Contenedor del calendario centrado */
 #calendario-container {
     display: flex;
     justify-content: center;
     width: 100%;
-    padding: 15px;
-    background-color: #fafafa;
-    border: 6px solid black;  /* ✅ Contorno grueso REAL */
-    box-shadow: 10px 10px 0 black;  /* ✅ Sombra intensa */
-    border-radius: 24px;  /* 🔥 Bordes redondeados */
 }
 
-/* 📅 Contenedor general del calendario con contorno */
+/* 📅 Calendario con contorno fuerte */
 .flatpickr-calendar {
-    background: #f5f5f5;  /* 🔥 Fondo gris claro para reducir el blanco */
-    border: 4px solid black;  /* ✅ Contorno negro grueso */
+    background: #fafafa;
+    border: 6px solid black;
     box-shadow: 6px 6px 0 black;
     font-family: "Bangers", serif;
-    border-radius: 16px;
-    padding: 10px;
+    border-radius: 20px;
+    padding: 20px;
 }
 
-/* 🏷️ Mes y año con letras negras */
+/* 🏷️ Encabezado del mes con fondo más vibrante */
 .flatpickr-months {
     background-color: #1094e0;
-    color: black;  /* 🔥 Letras negras para más contraste */
-    border-radius: 8px;
+    color: black;
+    border-radius: 10px;
     font-weight: bold;
     text-transform: uppercase;
+    border: 4px solid black;
 }
 
-/* 🗓️ Días de la semana más oscuros */
+/* 🗓️ Días de la semana con sombreado */
 .flatpickr-weekdays {
     background-color: #ffd966;
     border-radius: 8px;
     font-size: 1.1rem;
-    color: black;  /* ✅ Letras negras */
+    color: black;
     font-weight: bold;
+    border: 3px solid black;
 }
 
-/* 🔵 Días individuales con contorno más visible */
+/* 🔵 Días con contorno negro */
 .flatpickr-day {
-    border: 2px solid black;
-    border-radius: 6px;
-    box-shadow: 2px 2px 0 black;
+    border: 3px solid black;
+    border-radius: 8px;
+    box-shadow: 4px 4px 0 black;
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease;
     background-color: white;
-    color: black;  /* ✅ Letras negras para días */
+    color: black;
 }
 
-/* 🔥 Hover sobre los días */
+/* 🔥 Hover dinámico en los días */
 .flatpickr-day:hover {
     background-color: #1094e0;
     color: white;
 }
 
-/* 🔴 Día actual destacado */
+/* 🔴 Día actual con sombra extra */
 .flatpickr-day.today {
     background-color: #d9534f;
     color: white;
     font-weight: bold;
-    box-shadow: 3px 3px 0 black;
+    box-shadow: 5px 5px 0 black;
 }
 
-/* 🏁 Días seleccionados */
+/* 🏁 Días seleccionados con efecto */
 .flatpickr-day.selected {
     background-color: #0b75b1;
     color: white;
     font-weight: bold;
-    box-shadow: 3px 3px 0 black;
+    box-shadow: 5px 5px 0 black;
 }
 
-/* 🔘 Botones mejorados */
+/* 🔘 Input de fecha oculto visualmente */
+#fecha-seleccionada {
+    display: none;  /* 🔥 No es necesario mostrarlo visualmente */
+}
+
+/* 🔘 Botones mejorados con efecto relieve */
 #cerrar-fecha, #guardar-fecha {
     font-family: "Bangers", serif;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: bold;
     text-transform: uppercase;
+    border: 3px solid black;
+    box-shadow: 5px 5px 0 black;
 }
 
 /* ✅ Botón Finalizar Reporte */
@@ -112,11 +117,9 @@
     background: #1094e0;
     color: white;
     flex: 1;
-    padding: 10px;
+    padding: 12px;
     cursor: pointer;
-    border-radius: 10px;
-    border: 3px solid black;
-    box-shadow: 5px 5px 0 black;
+    border-radius: 12px;
 }
 
 #guardar-fecha:hover {
@@ -128,13 +131,26 @@
     background: #d9534f;
     color: white;
     flex: 1;
-    padding: 10px;
+    padding: 12px;
     cursor: pointer;
-    border-radius: 10px;
-    border: 3px solid black;
-    box-shadow: 5px 5px 0 black;
+    border-radius: 12px;
 }
 
 #cerrar-fecha:hover {
     background: #c9302c;
+}
+
+/* 🎬 Animación de despliegue tipo rebote */
+@keyframes desplegar {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    70% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
 }
