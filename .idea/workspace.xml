@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla Reportes Calendario Colores">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla Reportes Calendario Colores 1.0">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalFechaFinalizacion.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalFechaFinalizacion.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,15 +129,7 @@
       <workItem from="1739888316279" duration="12403000" />
       <workItem from="1739974756659" duration="19570000" />
       <workItem from="1740061093555" duration="13822000" />
-      <workItem from="1740147315355" duration="12105000" />
-    </task>
-    <task id="LOCAL-00398" summary="Tabla Reportes (Reportes Vista)">
-      <option name="closed" value="true" />
-      <created>1739992009345</created>
-      <option name="number" value="00398" />
-      <option name="presentableId" value="LOCAL-00398" />
-      <option name="project" value="LOCAL" />
-      <updated>1739992009345</updated>
+      <workItem from="1740147315355" duration="12238000" />
     </task>
     <task id="LOCAL-00399" summary="Tabla Reportes (Reportes Vista)">
       <option name="closed" value="true" />
@@ -522,7 +515,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740171420849</updated>
     </task>
-    <option name="localTasksCounter" value="447" />
+    <task id="LOCAL-00447" summary="Tabla Reportes Calendario Colores 1.0">
+      <option name="closed" value="true" />
+      <created>1740171461419</created>
+      <option name="number" value="00447" />
+      <option name="presentableId" value="LOCAL-00447" />
+      <option name="project" value="LOCAL" />
+      <updated>1740171461419</updated>
+    </task>
+    <option name="localTasksCounter" value="448" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -574,7 +575,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Historial de Reportes 1.4" />
     <MESSAGE value="Historial de Reportes 1.5" />
     <MESSAGE value="Comentarios Agregados" />
     <MESSAGE value="Historial de Reportes Tabla" />
@@ -599,6 +599,7 @@
     <MESSAGE value="Tabla Reportes (Reacomodando Filas)" />
     <MESSAGE value="Tabla Reportes Calendario" />
     <MESSAGE value="Tabla Reportes Calendario Colores" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tabla Reportes Calendario Colores" />
+    <MESSAGE value="Tabla Reportes Calendario Colores 1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tabla Reportes Calendario Colores 1.0" />
   </component>
 </project>

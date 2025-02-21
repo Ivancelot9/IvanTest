@@ -115,7 +115,7 @@
 /* ✅ Botón Finalizar Reporte */
 #guardar-fecha {
     background: #1094e0;
-    color: white;
+    color: black;
     flex: 1;
     padding: 12px;
     cursor: pointer;
@@ -129,7 +129,7 @@
 /* ❌ Botón Cancelar */
 #cerrar-fecha {
     background: #d9534f;
-    color: white;
+    color: black;
     flex: 1;
     padding: 12px;
     cursor: pointer;
