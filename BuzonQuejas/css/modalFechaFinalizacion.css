@@ -22,8 +22,8 @@
     font-family: "Bangers", serif;
 }
 
-/* 🗓️ Input de calendario desplegable */
-.modal-fecha input[type="date"] {
+/* 🗓️ Input de calendario con Flatpickr */
+.modal-fecha input[type="text"] {
     width: 100%;
     padding: 12px;
     border: 3px solid black;
@@ -33,6 +33,45 @@
     cursor: pointer;
     box-shadow: 4px 4px 0 black;
     margin-bottom: 20px;
+}
+
+/* 🎨 Personalización de Flatpickr con estilo cómic */
+.flatpickr-calendar {
+    background: white;
+    border: 4px solid black;
+    box-shadow: 5px 5px 0 black;
+    font-family: "Bangers", serif;
+    border-radius: 12px;
+}
+
+.flatpickr-months {
+    background-color: #1094e0;
+    color: white;
+    border-radius: 8px;
+}
+
+.flatpickr-weekdays {
+    background-color: #ffd966;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.flatpickr-day {
+    border: 2px solid black;
+    border-radius: 6px;
+    box-shadow: 2px 2px 0 black;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.flatpickr-day:hover {
+    background-color: #1094e0;
+    color: white;
+}
+
+.flatpickr-day.today {
+    background-color: #d9534f;
+    color: white;
 }
 
 /* 🔘 Botones en fila debajo */

@@ -21,6 +21,9 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <link rel="stylesheet" href="css/modalDescripcion.css">
     <link rel="stylesheet" href="css/tablaReportes.css">
     <link rel="stylesheet" href="css/modalFechaFinalizacion.css">
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 
 
 </head>
@@ -140,6 +143,9 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 <script src="js/descripcionReporte.js"></script>
 <script src="js/tablaReportes.js"></script>
 <script src="js/fechaFinalizacion.js"></script>
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 
 </body>
 </html>
