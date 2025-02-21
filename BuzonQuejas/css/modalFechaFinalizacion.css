@@ -27,16 +27,11 @@
 }
 
 
-/* 🗓️ Contorno fuerte alrededor de TODO el calendario */
+/* 📆 Contenedor del calendario centrado */
 #calendario-container {
     display: flex;
     justify-content: center;
     width: 100%;
-    padding: 15px;
-    background-color: #fafafa;
-    border: 6px solid rgba(23, 102, 209, 0.88);  /* ✅ Contorno grueso REAL */
-    box-shadow: 10px 10px 0 black;  /* ✅ Sombra intensa */
-    border-radius: 24px;  /* 🔥 Bordes redondeados */
 }
 
 /* 📅 Calendario con contorno fuerte */
