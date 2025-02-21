@@ -4,7 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
     modalFecha.id = "modal-fecha";
     modalFecha.style.display = "none";
     modalFecha.innerHTML = `
+    <div id="modal-fecha">
     <div class="modal-fecha">
+        <div class="modal-background"></div> <!-- Fondo decorativo -->
         <h2>Seleccionar Fecha de Finalización</h2>
         <div id="calendario-container"></div> <!-- 📅 Calendario siempre visible -->
         <input type="text" id="fecha-seleccionada" placeholder="Selecciona una fecha" readonly />
@@ -13,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
             <button id="guardar-fecha">Finalizar Reporte</button>
         </div>
     </div>
+</div>
+
     `;
 
     // 🔹 Agregar el modal al body
