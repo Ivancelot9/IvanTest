@@ -140,7 +140,7 @@
     background: #c9302c;
 }
 
-/* 🎬 Animación de despliegue tipo rebote */
+/* 🎬 Animación de despliegue tipo rebotee */
 @keyframes desplegar {
     0% {
         transform: translate(-50%, -50%) scale(0.5);
