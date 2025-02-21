@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla Reportes Calendario Colores">
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/fechaFinalizacion.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/fechaFinalizacion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalFechaFinalizacion.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalFechaFinalizacion.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,15 +128,7 @@
       <workItem from="1739888316279" duration="12403000" />
       <workItem from="1739974756659" duration="19570000" />
       <workItem from="1740061093555" duration="13822000" />
-      <workItem from="1740147315355" duration="11854000" />
-    </task>
-    <task id="LOCAL-00395" summary="Tabla Reportes (Reportes Vista)">
-      <option name="closed" value="true" />
-      <created>1739990717432</created>
-      <option name="number" value="00395" />
-      <option name="presentableId" value="LOCAL-00395" />
-      <option name="project" value="LOCAL" />
-      <updated>1739990717432</updated>
+      <workItem from="1740147315355" duration="11959000" />
     </task>
     <task id="LOCAL-00396" summary="Tabla Reportes (Reportes Vista)">
       <option name="closed" value="true" />
@@ -522,7 +514,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740171169544</updated>
     </task>
-    <option name="localTasksCounter" value="444" />
+    <task id="LOCAL-00444" summary="Tabla Reportes Calendario Colores">
+      <option name="closed" value="true" />
+      <created>1740171204954</created>
+      <option name="number" value="00444" />
+      <option name="presentableId" value="LOCAL-00444" />
+      <option name="project" value="LOCAL" />
+      <updated>1740171204954</updated>
+    </task>
+    <option name="localTasksCounter" value="445" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
