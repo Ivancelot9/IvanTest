@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     modalFecha.innerHTML = `
     <div id="modal-fecha">
     <div class="modal-fecha">
-        <div class="modal-background"></div> <!-- Fondo decorativo -->
+        <div class="modal-background"></div> <!-- ✅ Fondo explícito -->
         <h2>Seleccionar Fecha de Finalización</h2>
         <div id="calendario-container"></div> <!-- 📅 Calendario siempre visible -->
         <input type="text" id="fecha-seleccionada" placeholder="Selecciona una fecha" readonly />
