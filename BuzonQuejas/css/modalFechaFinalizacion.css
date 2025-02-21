@@ -11,7 +11,7 @@
 
 /* 📅 Modal con efecto hoja desprendida */
 .modal-fecha {
-    background: linear-gradient(145deg, #e4e4e4, #ffffff), url('https://i.imgur.com/0g7cqDq.png') center/cover no-repeat;  /* ✅ Fondo con degradado + imagen combinados */
+    background: linear-gradient(145deg, #e4e4e4, #ffffff), url('https://i.imgur.com/0g7cqDq.png') center/cover no-repeat;
     padding: 30px;
     border-radius: 30px 30px 16px 16px;
     box-shadow: 8px 8px 0 black;
@@ -26,25 +26,27 @@
     align-items: center;
 }
 
-
-/* 📆 Contenedor del calendario centrado */
+/* 📆 Contorno fuerte alrededor de TODO el calendario */
 #calendario-container {
     display: flex;
     justify-content: center;
     width: 100%;
+    padding: 15px;
+    background-color: #fafafa;
+    border: 6px solid black;  /* ✅ Contorno grueso REAL */
+    box-shadow: 10px 10px 0 black;  /* ✅ Sombra intensa */
+    border-radius: 24px;  /* 🔥 Bordes redondeados */
 }
 
-/* 📅 Calendario con contorno fuerte */
+/* 📅 Calendario con contorno */
 .flatpickr-calendar {
     background: #fafafa;
-    border: 6px solid black;
-    box-shadow: 6px 6px 0 black;
     font-family: "Bangers", serif;
     border-radius: 20px;
     padding: 20px;
 }
 
-/* 🏷️ Encabezado del mes con fondo más vibrante */
+/* 🏷️ Encabezado del mes */
 .flatpickr-months {
     background-color: #1094e0;
     color: black;
@@ -54,7 +56,7 @@
     border: 4px solid black;
 }
 
-/* 🗓️ Días de la semana con sombreado */
+/* 🗓️ Días de la semana */
 .flatpickr-weekdays {
     background-color: #ffd966;
     border-radius: 8px;
@@ -64,7 +66,7 @@
     border: 3px solid black;
 }
 
-/* 🔵 Días con contorno negro */
+/* 🔵 Días con contorno */
 .flatpickr-day {
     border: 3px solid black;
     border-radius: 8px;
@@ -81,7 +83,7 @@
     color: white;
 }
 
-/* 🔴 Día actual con sombra extra */
+/* 🔴 Día actual */
 .flatpickr-day.today {
     background-color: #d9534f;
     color: white;
@@ -89,7 +91,7 @@
     box-shadow: 5px 5px 0 black;
 }
 
-/* 🏁 Días seleccionados con efecto */
+/* 🏁 Días seleccionados */
 .flatpickr-day.selected {
     background-color: #0b75b1;
     color: white;
@@ -99,10 +101,10 @@
 
 /* 🔘 Input de fecha oculto visualmente */
 #fecha-seleccionada {
-    display: none;  /* 🔥 No es necesario mostrarlo visualmente */
+    display: none;
 }
 
-/* 🔘 Botones mejorados con efecto relieve */
+/* 🔘 Botones con relieve */
 #cerrar-fecha, #guardar-fecha {
     font-family: "Bangers", serif;
     font-size: 1.3rem;
@@ -115,42 +117,4 @@
 /* ✅ Botón Finalizar Reporte */
 #guardar-fecha {
     background: #1094e0;
-    color: white;
-    flex: 1;
-    padding: 12px;
-    cursor: pointer;
-    border-radius: 12px;
-}
-
-#guardar-fecha:hover {
-    background: #0b75b1;
-}
-
-/* ❌ Botón Cancelar */
-#cerrar-fecha {
-    background: #d9534f;
-    color: white;
-    flex: 1;
-    padding: 12px;
-    cursor: pointer;
-    border-radius: 12px;
-}
-
-#cerrar-fecha:hover {
-    background: #c9302c;
-}
-
-/* 🎬 Animación de despliegue tipo rebote */
-@keyframes desplegar {
-    0% {
-        transform: translate(-50%, -50%) scale(0.5);
-        opacity: 0;
-    }
-    70% {
-        transform: translate(-50%, -50%) scale(1.1);
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-    }
 }
