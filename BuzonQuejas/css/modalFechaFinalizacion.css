@@ -33,43 +33,45 @@
     width: 100%;  /* 🔥 Ocupa todo el ancho disponible */
 }
 
-/* 📅 Contenedor general del calendario con contorno */
+/* 📅 Contenedor general del calendario con contorno fuerte */
 .flatpickr-calendar {
-    background: #f5f5f5;  /* 🔥 Fondo gris claro para reducir el blanco */
-    border: 4px solid black;  /* ✅ Contorno negro grueso */
-    box-shadow: 6px 6px 0 black;
+    background: #f5f5f5;  /* 🔥 Fondo gris claro */
+    border: 5px solid black;  /* ✅ Contorno negro grueso */
+    box-shadow: 8px 8px 0 black;  /* ✅ Sombra más pronunciada */
     font-family: "Bangers", serif;
-    border-radius: 16px;
-    padding: 10px;
+    border-radius: 20px;  /* ✅ Bordes más redondeados */
+    padding: 15px;
 }
 
-/* 🏷️ Mes y año con letras negras */
+/* 🏷️ Mes y año con contorno */
 .flatpickr-months {
     background-color: #1094e0;
-    color: black;  /* 🔥 Letras negras para más contraste */
-    border-radius: 8px;
+    color: black;
+    border-radius: 10px;
     font-weight: bold;
     text-transform: uppercase;
+    border: 3px solid black;  /* 🔥 Contorno negro alrededor del mes */
 }
 
-/* 🗓️ Días de la semana más oscuros */
+/* 🗓️ Días de la semana con contorno */
 .flatpickr-weekdays {
     background-color: #ffd966;
     border-radius: 8px;
     font-size: 1.1rem;
-    color: black;  /* ✅ Letras negras */
+    color: black;
     font-weight: bold;
+    border: 2px solid black;  /* ✅ Contorno negro para los días */
 }
 
-/* 🔵 Días individuales con contorno más visible */
+/* 🔵 Días individuales con contorno fuerte */
 .flatpickr-day {
     border: 2px solid black;
-    border-radius: 6px;
-    box-shadow: 2px 2px 0 black;
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 black;
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease;
     background-color: white;
-    color: black;  /* ✅ Letras negras para días */
+    color: black;
 }
 
 /* 🔥 Hover sobre los días */
@@ -83,7 +85,7 @@
     background-color: #d9534f;
     color: white;
     font-weight: bold;
-    box-shadow: 3px 3px 0 black;
+    box-shadow: 4px 4px 0 black;
 }
 
 /* 🏁 Días seleccionados */
@@ -91,7 +93,22 @@
     background-color: #0b75b1;
     color: white;
     font-weight: bold;
-    box-shadow: 3px 3px 0 black;
+    box-shadow: 4px 4px 0 black;
+}
+
+/* 🗓️ Contorno alrededor del input */
+#fecha-seleccionada {
+    width: 100%;
+    padding: 12px;
+    border: 3px solid black;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 black;
+    margin-top: 10px;
+    background-color: white;
+    color: black;
 }
 
 /* 🔘 Botones mejorados */
@@ -105,7 +122,7 @@
 /* ✅ Botón Finalizar Reporte */
 #guardar-fecha {
     background: #1094e0;
-    color: black;
+    color: white;
     flex: 1;
     padding: 10px;
     cursor: pointer;
@@ -121,7 +138,7 @@
 /* ❌ Botón Cancelar */
 #cerrar-fecha {
     background: #d9534f;
-    color: black;
+    color: white;
     flex: 1;
     padding: 10px;
     cursor: pointer;
@@ -133,4 +150,5 @@
 #cerrar-fecha:hover {
     background: #c9302c;
 }
+
 
