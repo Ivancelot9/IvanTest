@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
     modalFecha.innerHTML = `
     <div class="modal-fecha">
         <h2>Seleccionar Fecha de Finalización</h2>
-        <input type="text" id="fecha-seleccionada" placeholder="Selecciona una fecha" />
+        <div id="calendario-container"></div> <!-- 📅 Calendario siempre visible -->
+        <input type="text" id="fecha-seleccionada" placeholder="Selecciona una fecha" readonly />
         <div class="botones-container">
             <button id="cerrar-fecha">Cancelar</button>
             <button id="guardar-fecha">Finalizar Reporte</button>
@@ -17,20 +18,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // 🔹 Agregar el modal al body
     document.body.appendChild(modalFecha);
 
-    // 🔹 Inicializar Flatpickr en el input de fecha
     let fechaSeleccionada = document.getElementById("fecha-seleccionada");
-    flatpickr(fechaSeleccionada, {
-        dateFormat: "d/m/Y",  // Formato de fecha
-        defaultDate: new Date(),  // Fecha actual por defecto
-        minDate: "today",  // No permite seleccionar fechas pasadas
-        locale: "es",  // Idioma en español
-        disableMobile: true,  // Forzar versión de escritorio en móviles
-        monthSelectorType: "static",  // Mostrar selector de mes fijo
-    });
-
     let btnGuardar = document.getElementById("guardar-fecha");
     let btnCerrar = document.getElementById("cerrar-fecha");
     let lastClickedButton = null;
+
+    // 🔹 Inicializar Flatpickr directamente dentro del contenedor
+    flatpickr("#calendario-container", {
+        inline: true,  // 📅 Mostrar calendario siempre visible
+        dateFormat: "d/m/Y",  // Formato de fecha
+        defaultDate: new Date(),  // Fecha actual por defecto
+        minDate: "today",  // No permite fechas pasadas
+        locale: "es",  // Idioma en español
+        disableMobile: true,  // Forzar versión escritorio en móviles
+        monthSelectorType: "static",  // Selector de mes fijo
+        onChange: function (selectedDates, dateStr) {
+            fechaSeleccionada.value = dateStr;  // 🔥 Actualizar input cuando se seleccione fecha
+        }
+    });
 
     // 🔹 Evento para abrir el modal desde el botón "Seleccionar Fecha"
     document.addEventListener("click", function (event) {
@@ -45,7 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (lastClickedButton) {
             let fecha = fechaSeleccionada.value;
             if (fecha) {
-                // 🔥 Reemplaza el botón con la fecha seleccionada en formato legible
                 lastClickedButton.parentElement.innerHTML = `
                     <span class="fecha-final">${fecha}</span>
                 `;
