@@ -102,3 +102,28 @@ button.seleccionar-fecha:hover{
     padding: 2px 4px;
     border-radius: 3px;
 }
+
+
+/* Boton Estatus*/
+
+.estatus-btn {
+    /* Un fondo llamativo con un gradiente que combine con el estilo cómic */
+    background: linear-gradient(45deg, #FFD700, #FF8C00);
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-family: "Bangers", cursive;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.estatus-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 4px 4px 0 black;
+}
+
+.estatus-btn:active {
+    transform: scale(0.95);
+}
