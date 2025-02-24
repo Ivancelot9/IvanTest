@@ -65,9 +65,9 @@
 
 /* 🔵 Días con contorno negro */
 .flatpickr-day {
-    border: 3px solid black;
+    border: 3px solid rgba(5, 59, 129, 0.88);
     border-radius: 8px;
-    box-shadow: 4px 4px 0 black;
+    box-shadow: 4px 4px 0 #1094e0;
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease;
     background-color: white;
