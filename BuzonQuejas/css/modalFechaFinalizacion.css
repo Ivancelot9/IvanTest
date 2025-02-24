@@ -26,7 +26,6 @@
     align-items: center;
 }
 
-
 /* 📆 Contenedor del calendario centrado */
 #calendario-container {
     display: flex;
@@ -95,6 +94,16 @@
     color: white;
     font-weight: bold;
     box-shadow: 5px 5px 0 black;
+}
+
+/* 🚫 Estilo para días fuera del mes actual o deshabilitados */
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay,
+.flatpickr-day.disabled {
+    background-color: #f0f0f0; /* Fondo grisáceo */
+    border-color: #a9a9a9;     /* Borde más suave */
+    color: #7d7d7d;           /* Texto en tono gris */
+    pointer-events: none;     /* Deshabilita la interacción */
 }
 
 /* 🔘 Input de fecha oculto visualmente */
