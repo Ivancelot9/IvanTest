@@ -83,11 +83,11 @@
 
 /* Septiembre – Transición al otoño, con tonos cálidos */
 .theme-september {
-    --theme-header-bg: linear-gradient(90deg, #FF8C00, #E25822); /* DarkOrange a Burnt Sienna */
-    --theme-header-text: #FFFFFF;
-    --theme-header-border: #FF8C00;
-    --theme-day-border: #FF8C00;
-    --theme-day-shadow: #FF8C00;
+    --theme-header-bg: linear-gradient(90deg, #006341, #FFFFFF, #CE1126); /* Verde, blanco y rojo */
+    --theme-header-text: #000000; /* Texto en negro para buen contraste */
+    --theme-header-border: #006341;
+    --theme-day-border: #006341;
+    --theme-day-shadow: #006341;
 }
 
 /* Octubre – Halloween: vibrante y misterioso */

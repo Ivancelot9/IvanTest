@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla Reportes Calendario Colores 2.0" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla Reportes Calendario Colores 2.0">
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalFechaFinalizacion.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalFechaFinalizacion.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -127,15 +129,7 @@
       <workItem from="1739974756659" duration="19570000" />
       <workItem from="1740061093555" duration="13822000" />
       <workItem from="1740147315355" duration="12238000" />
-      <workItem from="1740406764398" duration="7468000" />
-    </task>
-    <task id="LOCAL-00412" summary="Tabla Reportes (Reportes Vista)">
-      <option name="closed" value="true" />
-      <created>1739998503426</created>
-      <option name="number" value="00412" />
-      <option name="presentableId" value="LOCAL-00412" />
-      <option name="project" value="LOCAL" />
-      <updated>1739998503426</updated>
+      <workItem from="1740406764398" duration="7739000" />
     </task>
     <task id="LOCAL-00413" summary="Tabla Reportes (Reacomodando Filas)">
       <option name="closed" value="true" />
@@ -521,7 +515,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740415537356</updated>
     </task>
-    <option name="localTasksCounter" value="461" />
+    <task id="LOCAL-00461" summary="Tabla Reportes Calendario Colores 2.0">
+      <option name="closed" value="true" />
+      <created>1740416249102</created>
+      <option name="number" value="00461" />
+      <option name="presentableId" value="LOCAL-00461" />
+      <option name="project" value="LOCAL" />
+      <updated>1740416249102</updated>
+    </task>
+    <option name="localTasksCounter" value="462" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
