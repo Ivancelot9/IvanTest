@@ -11,7 +11,7 @@
 
 /* 📅 Modal con efecto hoja desprendida */
 .modal-fecha {
-    background: linear-gradient(145deg, #e4e4e4, #ffffff), url('https://i.imgur.com/0g7cqDq.png') center/cover no-repeat;  /* ✅ Fondo con degradado + imagen combinados */
+    background: linear-gradient(145deg, #e4e4e4, #ffffff), url('https://i.imgur.com/0g7cqDq.png') center/cover no-repeat;
     padding: 30px;
     border-radius: 30px 30px 16px 16px;
     box-shadow: 8px 8px 0 black;
@@ -99,8 +99,8 @@
 /* 🚫 Estilo para días fuera del mes actual o deshabilitados */
 .flatpickr-day.prevMonthDay,
 .flatpickr-day.nextMonthDay,
-.flatpickr-day.disabled {
-    background-color: black; /* Fondo grisáceo */
+.flatpickr-day.flatpickr-disabled {
+    background-color: #f0f0f0; /* Fondo grisáceo */
     border-color: #a9a9a9;     /* Borde más suave */
     color: #7d7d7d;           /* Texto en tono gris */
     pointer-events: none;     /* Deshabilita la interacción */
@@ -108,7 +108,7 @@
 
 /* 🔘 Input de fecha oculto visualmente */
 #fecha-seleccionada {
-    display: none;  /* 🔥 No es necesario mostrarlo visualmente */
+    display: none;
 }
 
 /* 🔘 Botones mejorados con efecto relieve */
