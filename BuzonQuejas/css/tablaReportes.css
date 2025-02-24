@@ -108,7 +108,7 @@ button.seleccionar-fecha:hover{
 
 .estatus-btn {
     /* Un fondo llamativo con un gradiente que combine con el estilo cómic */
-    background: linear-gradient(45deg, #FFD700, #FF8C00);
+    background: linear-gradient(45deg, #e6f1ff, rgba(5, 59, 129, 0.88));
     color: #000;
     border: 2px solid #000;
     border-radius: 8px;
