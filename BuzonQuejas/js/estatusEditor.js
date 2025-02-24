@@ -1,56 +1,63 @@
-// estatus-editor.js
+// estatusEditor.js
 
-// Función que abre el modal de fecha (asegúrate de que exista o importarla)
+// Función para abrir el modal de fecha (ajústala según tu implementación)
 function openDateModal() {
-    // Ejemplo: mostrar el modal de fecha
+    // Por ejemplo, si tu modal tiene id "modal-fecha"
     document.getElementById("modal-fecha").style.display = "flex";
 }
 
-// Inicializa la funcionalidad de edición de estatus en las celdas
+// Función para actualizar el texto del botón en la celda
+function updateStatusButton(cell, newStatus) {
+    const btn = cell.querySelector('.estatus-btn');
+    if (btn) {
+        btn.innerText = newStatus;
+    }
+}
+
+// Inicializa la funcionalidad del editor de estatus
 function initEstatusEditor() {
+    // Selecciona todas las celdas de estatus (asegúrate de que tengan la clase "estatus-cell")
     document.querySelectorAll('.estatus-cell').forEach(cell => {
-        cell.addEventListener('click', function() {
-            // Evita que se active el modo edición si ya está
-            if (cell.querySelector('select')) return;
+        // Guarda el valor actual y reemplázalo por un botón
+        let currentStatus = cell.innerText.trim();
+        cell.innerHTML = `<button class="estatus-btn">${currentStatus}</button>`;
 
-            let currentValue = cell.innerText.trim();
-
-            // Crea el elemento select con las opciones
-            let select = document.createElement('select');
-            select.innerHTML = `
-                <option value="en_proceso" ${currentValue === 'En Proceso' ? 'selected' : ''}>En Proceso</option>
-                <option value="pendiente" ${currentValue === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
-                <option value="finalizado" ${currentValue === 'Finalizado' ? 'selected' : ''}>Finalizado</option>
-            `;
-
-            // Reemplaza el contenido de la celda por el select
-            cell.innerHTML = "";
-            cell.appendChild(select);
-            select.focus();
-
-            // Cuando se cambia la selección
-            select.addEventListener('change', function() {
-                let selected = select.value;
-                if (selected === 'finalizado') {
-                    openDateModal(); // Abre el modal de fecha para confirmar la finalización
-                    cell.innerText = 'Finalizado';
-                } else {
-                    cell.innerText = selected === 'en_proceso' ? 'En Proceso' : 'Pendiente';
-                }
-            });
-
-            // Si se pierde el foco sin cambio, restaura el valor original
-            select.addEventListener('blur', function() {
-                if (!select.value) {
-                    cell.innerText = currentValue;
+        cell.querySelector('.estatus-btn').addEventListener('click', function() {
+            // Usa SweetAlert2 para mostrar un selector
+            Swal.fire({
+                title: 'Seleccione el estatus',
+                input: 'select',
+                inputOptions: {
+                    'en_proceso': 'En Proceso',
+                    'pendiente': 'Pendiente',
+                    'finalizado': 'Finalizado'
+                },
+                inputValue: currentStatus.toLowerCase().replace(" ", "_"),
+                showCancelButton: true,
+                inputPlaceholder: 'Seleccione un estatus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let selected = result.value;
+                    if (selected === 'finalizado') {
+                        // Muestra un aviso indicando que se debe asignar la fecha
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Asignar fecha',
+                            text: 'Debe asignar la fecha para finalizar el reporte',
+                            confirmButtonText: 'Asignar fecha'
+                        }).then(() => {
+                            openDateModal();
+                            updateStatusButton(cell, 'Finalizado');
+                        });
+                    } else {
+                        let statusText = selected === 'en_proceso' ? 'En Proceso' : 'Pendiente';
+                        updateStatusButton(cell, statusText);
+                    }
                 }
             });
         });
     });
 }
-
-// Exporta la función si estás usando módulos (opcional)
-// export { initEstatusEditor };
 
 // Inicializa la funcionalidad cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", initEstatusEditor);
