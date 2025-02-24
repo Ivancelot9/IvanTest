@@ -59,6 +59,7 @@
     --theme-header-bg: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
     --theme-header-text: #FFFFFF;
     --theme-header-border: #FF1493;   /* Rosa intenso */
+    /* Para los días se usará una variación por cada elemento, se define aquí por defecto (se sobreescribe luego) */
     --theme-day-border: #FF1493;
     --theme-day-shadow: #FF1493;
 }
@@ -81,10 +82,10 @@
     --theme-day-shadow: #FFD700;
 }
 
-/* Septiembre – Transición al otoño, con tonos cálidos */
+/* Septiembre – Día de la Independencia de México: verde, blanco y rojo */
 .theme-september {
     --theme-header-bg: linear-gradient(90deg, #006341, #FFFFFF, #CE1126); /* Verde, blanco y rojo */
-    --theme-header-text: #000000; /* Texto en negro para buen contraste */
+    --theme-header-text: #000000;
     --theme-header-border: #006341;
     --theme-day-border: #006341;
     --theme-day-shadow: #006341;
@@ -116,6 +117,8 @@
     --theme-day-border: #008000;
     --theme-day-shadow: #008000;
 }
+
+
 /* ▪ Resto del CSS */
 
 /* 🗓️ Modal centrado con estilo hoja de calendario */
@@ -283,4 +286,41 @@
         transform: translate(-50%, -50%) scale(1);
         opacity: 1;
     }
+}
+
+/* ▪ Variación para el mes de junio: cada día con un color distinto del arcoíris */
+.theme-june .flatpickr-day:nth-child(7n+1) {
+    border-color: red;
+    box-shadow: 4px 4px 0 red;
+    color: red;
+}
+.theme-june .flatpickr-day:nth-child(7n+2) {
+    border-color: orange;
+    box-shadow: 4px 4px 0 orange;
+    color: orange;
+}
+.theme-june .flatpickr-day:nth-child(7n+3) {
+    border-color: yellow;
+    box-shadow: 4px 4px 0 yellow;
+    color: yellow;
+}
+.theme-june .flatpickr-day:nth-child(7n+4) {
+    border-color: green;
+    box-shadow: 4px 4px 0 green;
+    color: green;
+}
+.theme-june .flatpickr-day:nth-child(7n+5) {
+    border-color: blue;
+    box-shadow: 4px 4px 0 blue;
+    color: blue;
+}
+.theme-june .flatpickr-day:nth-child(7n+6) {
+    border-color: indigo;
+    box-shadow: 4px 4px 0 indigo;
+    color: indigo;
+}
+.theme-june .flatpickr-day:nth-child(7n+7) {
+    border-color: violet;
+    box-shadow: 4px 4px 0 violet;
+    color: violet;
 }
