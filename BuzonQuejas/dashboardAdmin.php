@@ -124,7 +124,37 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <!-- Reportes Completos -->
     <div id="reportes-completos" class="content comic-container" style="display: none">
         <h2 class="comic-title">Reportes Completos</h2>
-        <p>Aquí podrás consultar todos los reportes generados.</p>
+        <div class="table-controls">
+            <label for="filter-column-completo">Filtrar por:</label>
+            <select id="filter-column-completo">
+                <option value="folio">Folio</option>
+                <option value="nomina">Número de Nómina</option>
+                <option value="encargado">Encargado</option>
+                <option value="fechaRegistro">Fecha Registro</option>
+            </select>
+            <input type="text" id="filter-input-completo" placeholder="Buscar...">
+            <button id="filter-button-completo">🔍 Buscar</button>
+        </div>
+        <div class="table-container">
+            <table id="tabla-completos" class="styled-table">
+                <thead>
+                <tr>
+                    <th>Folio</th>
+                    <th>Fecha Registro</th>
+                    <th>Número de Nómina</th>
+                    <th>Encargado</th>
+                    <th>Fecha Finalización</th>
+                </tr>
+                </thead>
+                <tbody id="tabla-completos-body"></tbody>
+            </table>
+        </div>
+        <div class="pagination">
+            <button id="prevPage-completo" disabled>⬅ Anterior</button>
+            <span id="pageIndicator-completo">Página 1</span>
+            <button id="nextPage-completo">Siguiente ➡</button>
+        </div>
+        <button id="exportar-excel" class="submit-btn">Exportar a Excel</button>
     </div>
 </div>
 
@@ -143,6 +173,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 <script src="js/descripcionReporte.js"></script>
 <script src="js/tablaReportes.js"></script>
 <script src="js/fechaFinalizacion.js"></script>
+<script src="js/tablaReportesCompletos.js"></script>
 <!-- Flatpickr JS -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src = "js/estatusEditor.js"></script>
@@ -151,3 +182,9 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 
 </body>
 </html>
+
+
+
+
+
+
