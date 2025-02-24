@@ -91,7 +91,7 @@
 
 .theme-november {
     --theme-header-bg: #8B4513;       /* SaddleBrown */
-    --theme-header-text: #FFD700;       /* Gold */
+    --theme-header-text: #FFD700;     /* Gold */
     --theme-header-border: #8B4513;
     --theme-day-border: #8B4513;
     --theme-day-shadow: #8B4513;
@@ -120,7 +120,8 @@
 
 /* 📅 Modal con efecto hoja desprendida */
 .modal-fecha {
-    background: linear-gradient(145deg, #e4e4e4, #ffffff), url('https://i.imgur.com/0g7cqDq.png') center/cover no-repeat;
+    background: linear-gradient(145deg, #e4e4e4, #ffffff),
+    url('https://i.imgur.com/0g7cqDq.png') center/cover no-repeat;
     padding: 30px;
     border-radius: 30px 30px 16px 16px;
     box-shadow: 8px 8px 0 black;
@@ -128,11 +129,13 @@
     width: 550px;
     text-align: center;
     position: relative;
-    font-family: "Bangers", serif;
+    font-family: "Bangers", cursive;
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    /* Efecto “papel” */
+    background-blend-mode: multiply;
 }
 
 /* 📆 Contenedor del calendario centrado */
@@ -142,17 +145,18 @@
     width: 100%;
 }
 
-/* 📅 Calendario con contorno fuerte */
+/* 📅 Calendario con contorno fuerte y estilo “dibujado” */
 .flatpickr-calendar {
     background: #fafafa;
     border: 6px solid black;
-    box-shadow: 6px 6px 0 black;
-    font-family: "Bangers", serif;
+    box-shadow: 8px 8px 0 black;
+    font-family: "Bangers", cursive;
     border-radius: 20px;
     padding: 20px;
+    position: relative;
 }
 
-/* 🏷️ Encabezado del mes con fondo dinámico */
+/* ▪ Encabezado del mes con fondo dinámico y efecto de trazo cómic */
 .flatpickr-months {
     background-color: var(--theme-header-bg);
     color: var(--theme-header-text);
@@ -160,30 +164,41 @@
     font-weight: bold;
     text-transform: uppercase;
     border: 4px solid var(--theme-header-border);
+    padding: 5px 10px;
+    text-shadow: 2px 2px 0 black;
+    margin-bottom: 10px;
 }
 
-/* 🗓️ Días de la semana con color vibrante */
+/* ▪ Días de la semana con color vibrante y efecto “sticker” */
 .flatpickr-weekdays {
-    background-color: #FFCC00; /* Amarillo brillante */
+    background-color: #FFCC00;
     border-radius: 8px;
     font-size: 1.1rem;
     color: black;
     font-weight: bold;
     border: 3px solid black;
+    padding: 3px 0;
+    box-shadow: 2px 2px 0 black;
 }
 
-/* 🔵 Estilo general de los días con contorno dinámico */
+/* ▪ Estilo general de los días con contorno dinámico y efecto “pop” */
 .flatpickr-day {
     border: 3px solid var(--theme-day-border);
     border-radius: 8px;
     box-shadow: 4px 4px 0 var(--theme-day-shadow);
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
     background-color: white;
     color: var(--theme-day-border);
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
-/* 🚫 Estilos para días fuera del mes o deshabilitados */
+.flatpickr-day:active {
+    transform: scale(0.95);
+}
+
+/* ▪ Estilos para días fuera del mes o deshabilitados con un toque “apagado” */
 .flatpickr-calendar .flatpickr-day.flatpickr-disabled,
 .flatpickr-calendar .flatpickr-day.prevMonthDay,
 .flatpickr-calendar .flatpickr-day.nextMonthDay {
@@ -194,82 +209,18 @@
     pointer-events: none;
 }
 
-/* 🔥 Hover dinámico en los días activos */
+/* ▪ Hover dinámico en los días activos, efecto “resalta” */
 .flatpickr-day:hover {
     background-color: var(--theme-day-border);
     color: white;
 }
 
-/* 🔴 Día actual con sombra extra */
+/* ▪ Día actual con sombra extra y efecto “impacto” */
 .flatpickr-day.today {
-    background-color: #CC0000;  /* Rojo vibrante */
+    background-color: #CC0000;
     color: white;
     font-weight: bold;
     box-shadow: 5px 5px 0 black;
 }
 
-/* 🏁 Días seleccionados con efecto */
-.flatpickr-day.selected {
-    background-color: #3399FF;  /* Azul claro */
-    color: white;
-    font-weight: bold;
-    box-shadow: 5px 5px 0 black;
-}
-
-/* 🔘 Input de fecha oculto visualmente */
-#fecha-seleccionada {
-    display: none;
-}
-
-/* 🔘 Botones mejorados con efecto relieve */
-#cerrar-fecha, #guardar-fecha {
-    font-family: "Bangers", serif;
-    font-size: 1.3rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    border: 3px solid black;
-    box-shadow: 5px 5px 0 black;
-}
-
-/* ✅ Botón Finalizar Reporte */
-#guardar-fecha {
-    background: var(--theme-header-bg);
-    color: white;
-    flex: 1;
-    padding: 12px;
-    cursor: pointer;
-    border-radius: 12px;
-}
-
-#guardar-fecha:hover {
-    background: #003399;
-}
-
-/* ❌ Botón Cancelar */
-#cerrar-fecha {
-    background: #CC0000;
-    color: white;
-    flex: 1;
-    padding: 12px;
-    cursor: pointer;
-    border-radius: 12px;
-}
-
-#cerrar-fecha:hover {
-    background: #990000;
-}
-
-/* 🎬 Animación de despliegue tipo rebotee */
-@keyframes desplegar {
-    0% {
-        transform: translate(-50%, -50%) scale(0.5);
-        opacity: 0;
-    }
-    70% {
-        transform: translate(-50%, -50%) scale(1.1);
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-    }
-}
+/* ▪ Días seleccionados con efecto, resaltado de “toqu
