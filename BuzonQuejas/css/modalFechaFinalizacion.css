@@ -63,7 +63,7 @@
     border: 3px solid black;
 }
 
-/* 🔵 Días con contorno negro */
+/* 🔵 Estilo general de los días */
 .flatpickr-day {
     border: 3px solid rgba(5, 59, 129, 0.88);
     border-radius: 8px;
@@ -74,7 +74,18 @@
     color: rgba(6, 90, 204, 0.88);
 }
 
-/* 🔥 Hover dinámico en los días */
+/* 🚫 Estilos para días fuera del mes o deshabilitados */
+.flatpickr-calendar .flatpickr-day.flatpickr-disabled,
+.flatpickr-calendar .flatpickr-day.prevMonthDay,
+.flatpickr-calendar .flatpickr-day.nextMonthDay {
+    background-color: #292626 !important; /* Fondo oscuro para distinguir */
+    border: 3px solid #a9a9a9 !important;     /* Borde más suave */
+    box-shadow: none !important;              /* Sin sombra */
+    color: #7d7d7d !important;                /* Texto en tono gris */
+    pointer-events: none;
+}
+
+/* 🔥 Hover dinámico en los días activos */
 .flatpickr-day:hover {
     background-color: #1094e0;
     color: white;
@@ -94,16 +105,6 @@
     color: white;
     font-weight: bold;
     box-shadow: 5px 5px 0 black;
-}
-
-/* 🚫 Estilo para días fuera del mes actual o deshabilitados */
-.flatpickr-day.prevMonthDay,
-.flatpickr-day.nextMonthDay,
-.flatpickr-day.flatpickr-disabled {
-    background-color: #292626; /* Fondo grisáceo */
-    border-color: #a9a9a9;     /* Borde más suave */
-    color: #7d7d7d;           /* Texto en tono gris */
-    pointer-events: none;     /* Deshabilita la interacción */
 }
 
 /* 🔘 Input de fecha oculto visualmente */
