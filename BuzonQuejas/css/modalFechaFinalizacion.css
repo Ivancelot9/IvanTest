@@ -125,7 +125,7 @@
 /* ✅ Botón Finalizar Reporte */
 #guardar-fecha {
     background: #0055AA; /* Azul intenso */
-    color: #FFCC00;      /* Amarillo brillante */
+    color: white;      /* Amarillo brillante */
     flex: 1;
     padding: 12px;
     cursor: pointer;
