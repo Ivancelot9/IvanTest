@@ -43,19 +43,19 @@
     padding: 20px;
 }
 
-/* 🏷️ Encabezado del mes con fondo más vibrante */
+/* 🏷️ Encabezado del mes con fondo vibrante */
 .flatpickr-months {
-    background-color: #1094e0;
-    color: black;
+    background-color: #0055AA; /* Azul intenso */
+    color: #FFCC00;            /* Amarillo brillante */
     border-radius: 10px;
     font-weight: bold;
     text-transform: uppercase;
     border: 4px solid black;
 }
 
-/* 🗓️ Días de la semana con sombreado */
+/* 🗓️ Días de la semana con color vibrante */
 .flatpickr-weekdays {
-    background-color: #ffd966;
+    background-color: #FFCC00; /* Amarillo brillante */
     border-radius: 8px;
     font-size: 1.1rem;
     color: black;
@@ -65,35 +65,35 @@
 
 /* 🔵 Estilo general de los días */
 .flatpickr-day {
-    border: 3px solid rgba(5, 59, 129, 0.88);
+    border: 3px solid #0055AA;   /* Azul intenso */
     border-radius: 8px;
-    box-shadow: 4px 4px 0 #1094e0;
+    box-shadow: 4px 4px 0 #0055AA; /* Sombra en azul intenso */
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease;
     background-color: white;
-    color: rgba(6, 90, 204, 0.88);
+    color: #0055AA;               /* Texto en azul intenso */
 }
 
 /* 🚫 Estilos para días fuera del mes o deshabilitados */
 .flatpickr-calendar .flatpickr-day.flatpickr-disabled,
 .flatpickr-calendar .flatpickr-day.prevMonthDay,
 .flatpickr-calendar .flatpickr-day.nextMonthDay {
-    background-color: #292626 !important; /* Fondo oscuro para distinguir */
-    border: 3px solid #a9a9a9 !important;     /* Borde más suave */
-    box-shadow: none !important;              /* Sin sombra */
-    color: #7d7d7d !important;                /* Texto en tono gris */
+    background-color: #292626 !important;
+    border: 3px solid #a9a9a9 !important;
+    box-shadow: none !important;
+    color: #7d7d7d !important;
     pointer-events: none;
 }
 
 /* 🔥 Hover dinámico en los días activos */
 .flatpickr-day:hover {
-    background-color: #1094e0;
+    background-color: #0055AA;
     color: white;
 }
 
 /* 🔴 Día actual con sombra extra */
 .flatpickr-day.today {
-    background-color: #d9534f;
+    background-color: #CC0000;  /* Rojo vibrante */
     color: white;
     font-weight: bold;
     box-shadow: 5px 5px 0 black;
@@ -101,7 +101,7 @@
 
 /* 🏁 Días seleccionados con efecto */
 .flatpickr-day.selected {
-    background-color: #0b75b1;
+    background-color: #3399FF;  /* Azul claro */
     color: white;
     font-weight: bold;
     box-shadow: 5px 5px 0 black;
@@ -124,8 +124,8 @@
 
 /* ✅ Botón Finalizar Reporte */
 #guardar-fecha {
-    background: #1094e0;
-    color: black;
+    background: #0055AA; /* Azul intenso */
+    color: #FFCC00;      /* Amarillo brillante */
     flex: 1;
     padding: 12px;
     cursor: pointer;
@@ -133,13 +133,13 @@
 }
 
 #guardar-fecha:hover {
-    background: #0b75b1;
+    background: #003399; /* Azul más oscuro */
 }
 
 /* ❌ Botón Cancelar */
 #cerrar-fecha {
-    background: #d9534f;
-    color: black;
+    background: #CC0000; /* Rojo vibrante */
+    color: white;
     flex: 1;
     padding: 12px;
     cursor: pointer;
@@ -147,7 +147,7 @@
 }
 
 #cerrar-fecha:hover {
-    background: #c9302c;
+    background: #990000; /* Rojo más oscuro */
 }
 
 /* 🎬 Animación de despliegue tipo rebotee */
