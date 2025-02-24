@@ -100,7 +100,7 @@
 .flatpickr-day.prevMonthDay,
 .flatpickr-day.nextMonthDay,
 .flatpickr-day.disabled {
-    background-color: #f0f0f0; /* Fondo grisáceo */
+    background-color: black; /* Fondo grisáceo */
     border-color: #a9a9a9;     /* Borde más suave */
     color: #7d7d7d;           /* Texto en tono gris */
     pointer-events: none;     /* Deshabilita la interacción */
