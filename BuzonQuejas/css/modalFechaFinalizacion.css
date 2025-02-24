@@ -287,216 +287,217 @@
 }
 
 /* ▪ Variaciones creativas para los días en cada mes */
+/* Se aplican solo a días activos (excluyendo los deshabilitados, prevMonthDay y nextMonthDay) */
 
 /* Enero: alterna tres tonos de azul */
-.theme-january .flatpickr-day:nth-child(3n+1) {
+.theme-january .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+1) {
     border-color: #1E90FF !important;
     box-shadow: 4px 4px 0 #1E90FF !important;
     color: #1E90FF !important;
 }
-.theme-january .flatpickr-day:nth-child(3n+2) {
+.theme-january .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+2) {
     border-color: #00BFFF !important;
     box-shadow: 4px 4px 0 #00BFFF !important;
     color: #00BFFF !important;
 }
-.theme-january .flatpickr-day:nth-child(3n) {
+.theme-january .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n) {
     border-color: #87CEFA !important;
     box-shadow: 4px 4px 0 #87CEFA !important;
     color: #87CEFA !important;
 }
 
 /* Febrero: alterna tres tonos de rosa */
-.theme-february .flatpickr-day:nth-child(3n+1) {
+.theme-february .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+1) {
     border-color: #FF1493 !important;
     box-shadow: 4px 4px 0 #FF1493 !important;
     color: #FF1493 !important;
 }
-.theme-february .flatpickr-day:nth-child(3n+2) {
+.theme-february .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+2) {
     border-color: #FF69B4 !important;
     box-shadow: 4px 4px 0 #FF69B4 !important;
     color: #FF69B4 !important;
 }
-.theme-february .flatpickr-day:nth-child(3n) {
+.theme-february .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n) {
     border-color: #FFB6C1 !important;
     box-shadow: 4px 4px 0 #FFB6C1 !important;
     color: #FFB6C1 !important;
 }
 
 /* Marzo: alterna tres tonos de verde */
-.theme-march .flatpickr-day:nth-child(3n+1) {
+.theme-march .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+1) {
     border-color: #32CD32 !important;
     box-shadow: 4px 4px 0 #32CD32 !important;
     color: #32CD32 !important;
 }
-.theme-march .flatpickr-day:nth-child(3n+2) {
+.theme-march .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+2) {
     border-color: #3CB371 !important;
     box-shadow: 4px 4px 0 #3CB371 !important;
     color: #3CB371 !important;
 }
-.theme-march .flatpickr-day:nth-child(3n) {
+.theme-march .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n) {
     border-color: #00FA9A !important;
     box-shadow: 4px 4px 0 #00FA9A !important;
     color: #00FA9A !important;
 }
 
 /* Abril: alterna tres tonos de azul pastel */
-.theme-april .flatpickr-day:nth-child(3n+1) {
+.theme-april .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+1) {
     border-color: #00BFFF !important;
     box-shadow: 4px 4px 0 #00BFFF !important;
     color: #00BFFF !important;
 }
-.theme-april .flatpickr-day:nth-child(3n+2) {
+.theme-april .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+2) {
     border-color: #1E90FF !important;
     box-shadow: 4px 4px 0 #1E90FF !important;
     color: #1E90FF !important;
 }
-.theme-april .flatpickr-day:nth-child(3n) {
+.theme-april .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n) {
     border-color: #87CEFA !important;
     box-shadow: 4px 4px 0 #87CEFA !important;
     color: #87CEFA !important;
 }
 
 /* Mayo: alterna tres tonos púrpuras y rosados */
-.theme-may .flatpickr-day:nth-child(3n+1) {
+.theme-may .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+1) {
     border-color: #DA70D6 !important;
     box-shadow: 4px 4px 0 #DA70D6 !important;
     color: #DA70D6 !important;
 }
-.theme-may .flatpickr-day:nth-child(3n+2) {
+.theme-may .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+2) {
     border-color: #BA55D3 !important;
     box-shadow: 4px 4px 0 #BA55D3 !important;
     color: #BA55D3 !important;
 }
-.theme-may .flatpickr-day:nth-child(3n) {
+.theme-may .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n) {
     border-color: #FFB6C1 !important;
     box-shadow: 4px 4px 0 #FFB6C1 !important;
     color: #FFB6C1 !important;
 }
 
-/* Junio: (ya definido) ciclo de 7 colores del arcoíris */
-.theme-june .flatpickr-day:nth-child(7n+1) {
+/* Junio: ciclo de 7 colores del arcoíris */
+.theme-june .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(7n+1) {
     border-color: red !important;
     box-shadow: 4px 4px 0 red !important;
     color: red !important;
 }
-.theme-june .flatpickr-day:nth-child(7n+2) {
+.theme-june .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(7n+2) {
     border-color: orange !important;
     box-shadow: 4px 4px 0 orange !important;
     color: orange !important;
 }
-.theme-june .flatpickr-day:nth-child(7n+3) {
+.theme-june .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(7n+3) {
     border-color: yellow !important;
     box-shadow: 4px 4px 0 yellow !important;
     color: yellow !important;
 }
-.theme-june .flatpickr-day:nth-child(7n+4) {
+.theme-june .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(7n+4) {
     border-color: green !important;
     box-shadow: 4px 4px 0 green !important;
     color: green !important;
 }
-.theme-june .flatpickr-day:nth-child(7n+5) {
+.theme-june .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(7n+5) {
     border-color: blue !important;
     box-shadow: 4px 4px 0 blue !important;
     color: blue !important;
 }
-.theme-june .flatpickr-day:nth-child(7n+6) {
+.theme-june .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(7n+6) {
     border-color: indigo !important;
     box-shadow: 4px 4px 0 indigo !important;
     color: indigo !important;
 }
-.theme-june .flatpickr-day:nth-child(7n+7) {
+.theme-june .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(7n+7) {
     border-color: violet !important;
     box-shadow: 4px 4px 0 violet !important;
     color: violet !important;
 }
 
 /* Julio: alterna tres tonos cálidos */
-.theme-july .flatpickr-day:nth-child(3n+1) {
+.theme-july .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+1) {
     border-color: #FF4500 !important;
     box-shadow: 4px 4px 0 #FF4500 !important;
     color: #FF4500 !important;
 }
-.theme-july .flatpickr-day:nth-child(3n+2) {
+.theme-july .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+2) {
     border-color: #FF6347 !important;
     box-shadow: 4px 4px 0 #FF6347 !important;
     color: #FF6347 !important;
 }
-.theme-july .flatpickr-day:nth-child(3n) {
+.theme-july .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n) {
     border-color: #FF8C00 !important;
     box-shadow: 4px 4px 0 #FF8C00 !important;
     color: #FF8C00 !important;
 }
 
 /* Agosto: alterna tres tonos dorados */
-.theme-august .flatpickr-day:nth-child(3n+1) {
+.theme-august .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+1) {
     border-color: #FFD700 !important;
     box-shadow: 4px 4px 0 #FFD700 !important;
     color: #FFD700 !important;
 }
-.theme-august .flatpickr-day:nth-child(3n+2) {
+.theme-august .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+2) {
     border-color: #FFC107 !important;
     box-shadow: 4px 4px 0 #FFC107 !important;
     color: #FFC107 !important;
 }
-.theme-august .flatpickr-day:nth-child(3n) {
+.theme-august .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n) {
     border-color: #FFB347 !important;
     box-shadow: 4px 4px 0 #FFB347 !important;
     color: #FFB347 !important;
 }
 
 /* Septiembre: alterna tres colores de la bandera mexicana */
-.theme-september .flatpickr-day:nth-child(3n+1) {
+.theme-september .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+1) {
     border-color: #006341 !important;
     box-shadow: 4px 4px 0 #006341 !important;
     color: #006341 !important;
 }
-.theme-september .flatpickr-day:nth-child(3n+2) {
+.theme-september .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+2) {
     border-color: #FFFFFF !important;
     box-shadow: 4px 4px 0 #FFFFFF !important;
     color: #000000 !important;
 }
-.theme-september .flatpickr-day:nth-child(3n) {
+.theme-september .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n) {
     border-color: #CE1126 !important;
     box-shadow: 4px 4px 0 #CE1126 !important;
     color: #CE1126 !important;
 }
 
 /* Octubre: alterna negro y rojo */
-.theme-october .flatpickr-day:nth-child(2n+1) {
+.theme-october .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(2n+1) {
     border-color: black !important;
     box-shadow: 4px 4px 0 black !important;
     color: black !important;
 }
-.theme-october .flatpickr-day:nth-child(2n) {
+.theme-october .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(2n) {
     border-color: red !important;
     box-shadow: 4px 4px 0 red !important;
     color: red !important;
 }
 
 /* Noviembre: alterna tres tonos terrosos */
-.theme-november .flatpickr-day:nth-child(3n+1) {
+.theme-november .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+1) {
     border-color: #8B4513 !important;
     box-shadow: 4px 4px 0 #8B4513 !important;
     color: #8B4513 !important;
 }
-.theme-november .flatpickr-day:nth-child(3n+2) {
+.theme-november .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n+2) {
     border-color: #A0522D !important;
     box-shadow: 4px 4px 0 #A0522D !important;
     color: #A0522D !important;
 }
-.theme-november .flatpickr-day:nth-child(3n) {
+.theme-november .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(3n) {
     border-color: #D2691E !important;
     box-shadow: 4px 4px 0 #D2691E !important;
     color: #D2691E !important;
 }
 
 /* Diciembre: alterna verde y rojo */
-.theme-december .flatpickr-day:nth-child(2n+1) {
+.theme-december .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(2n+1) {
     border-color: #008000 !important;
     box-shadow: 4px 4px 0 #008000 !important;
     color: #008000 !important;
 }
-.theme-december .flatpickr-day:nth-child(2n) {
+.theme-december .flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay):nth-child(2n) {
     border-color: #FF0000 !important;
     box-shadow: 4px 4px 0 #FF0000 !important;
     color: #FF0000 !important;
