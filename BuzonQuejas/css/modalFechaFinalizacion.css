@@ -11,7 +11,7 @@
 
 /* Enero – Frescura invernal y renuevo (gradient hielo) */
 .theme-january {
-    --theme-header-bg: linear-gradient(90deg, #1E90FF, #87CEFA); /* DodgerBlue a LightSkyBlue */
+    --theme-header-bg: linear-gradient(90deg, #1E90FF, #87CEFA);
     --theme-header-text: #FFFFFF;
     --theme-header-border: #1E90FF;
     --theme-day-border: #1E90FF;
@@ -20,7 +20,7 @@
 
 /* Febrero – Amor y amistad, con un toque romántico */
 .theme-february {
-    --theme-header-bg: linear-gradient(90deg, #FF69B4, #FFB6C1); /* HotPink a LightPink */
+    --theme-header-bg: linear-gradient(90deg, #FF69B4, #FFB6C1);
     --theme-header-text: #FFFFFF;
     --theme-header-border: #FF69B4;
     --theme-day-border: #FF69B4;
@@ -29,7 +29,7 @@
 
 /* Marzo – Primavera fresca, vibrante y natural */
 .theme-march {
-    --theme-header-bg: linear-gradient(90deg, #32CD32, #00FA9A); /* LimeGreen a MediumSpringGreen */
+    --theme-header-bg: linear-gradient(90deg, #32CD32, #00FA9A);
     --theme-header-text: #FFFFFF;
     --theme-header-border: #32CD32;
     --theme-day-border: #32CD32;
@@ -38,7 +38,7 @@
 
 /* Abril – Pastel de primavera y toques de Pascua */
 .theme-april {
-    --theme-header-bg: linear-gradient(90deg, #00BFFF, #87CEFA); /* DeepSkyBlue a LightSkyBlue */
+    --theme-header-bg: linear-gradient(90deg, #00BFFF, #87CEFA);
     --theme-header-text: #FFFFFF;
     --theme-header-border: #00BFFF;
     --theme-day-border: #00BFFF;
@@ -47,7 +47,7 @@
 
 /* Mayo – Día de la Madre, suave y delicado */
 .theme-may {
-    --theme-header-bg: linear-gradient(90deg, #DA70D6, #FFB6C1); /* Orchid a LightPink */
+    --theme-header-bg: linear-gradient(90deg, #DA70D6, #FFB6C1);
     --theme-header-text: #FFFFFF;
     --theme-header-border: #DA70D6;
     --theme-day-border: #DA70D6;
@@ -58,15 +58,15 @@
 .theme-june {
     --theme-header-bg: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
     --theme-header-text: #FFFFFF;
-    --theme-header-border: #FF1493;   /* Rosa intenso */
-    /* Para los días se usará una variación por cada elemento, se define aquí por defecto (se sobreescribe luego) */
+    --theme-header-border: #FF1493; /* Rosa intenso */
+    /* Por defecto, los días se configuran en rosa; se sobreescribe luego */
     --theme-day-border: #FF1493;
     --theme-day-shadow: #FF1493;
 }
 
 /* Julio – Calor del verano: atardecer ardiente */
 .theme-july {
-    --theme-header-bg: linear-gradient(90deg, #FF4500, #FF8C00); /* OrangeRed a DarkOrange */
+    --theme-header-bg: linear-gradient(90deg, #FF4500, #FF8C00);
     --theme-header-text: #FFFFFF;
     --theme-header-border: #FF4500;
     --theme-day-border: #FF4500;
@@ -75,7 +75,7 @@
 
 /* Agosto – Sol de verano: dorado y cálido */
 .theme-august {
-    --theme-header-bg: linear-gradient(90deg, #FFD700, #FFB347); /* Gold a Peach */
+    --theme-header-bg: linear-gradient(90deg, #FFD700, #FFB347);
     --theme-header-text: #000000;
     --theme-header-border: #FFD700;
     --theme-day-border: #FFD700;
@@ -84,7 +84,7 @@
 
 /* Septiembre – Día de la Independencia de México: verde, blanco y rojo */
 .theme-september {
-    --theme-header-bg: linear-gradient(90deg, #006341, #FFFFFF, #CE1126); /* Verde, blanco y rojo */
+    --theme-header-bg: linear-gradient(90deg, #006341, #FFFFFF, #CE1126);
     --theme-header-text: #000000;
     --theme-header-border: #006341;
     --theme-day-border: #006341;
@@ -93,7 +93,7 @@
 
 /* Octubre – Halloween: vibrante y misterioso */
 .theme-october {
-    --theme-header-bg: linear-gradient(90deg, #FF6600, #FF8C00); /* Naranja intenso */
+    --theme-header-bg: linear-gradient(90deg, #FF6600, #FF8C00);
     --theme-header-text: #000000;
     --theme-header-border: #FF6600;
     --theme-day-border: #FF6600;
@@ -102,8 +102,8 @@
 
 /* Noviembre – Otoño profundo: tonos terrosos y dorados */
 .theme-november {
-    --theme-header-bg: linear-gradient(90deg, #8B4513, #D2691E); /* De SaddleBrown a Chocolate */
-    --theme-header-text: #FFD700; /* Gold */
+    --theme-header-bg: linear-gradient(90deg, #8B4513, #D2691E);
+    --theme-header-text: #FFD700;
     --theme-header-border: #8B4513;
     --theme-day-border: #8B4513;
     --theme-day-shadow: #8B4513;
@@ -111,7 +111,7 @@
 
 /* Diciembre – Navidad: un clásico contraste verde y rojo */
 .theme-december {
-    --theme-header-bg: linear-gradient(90deg, #008000, #FF0000); /* Verde a Rojo */
+    --theme-header-bg: linear-gradient(90deg, #008000, #FF0000);
     --theme-header-text: #FFFFFF;
     --theme-header-border: #008000;
     --theme-day-border: #008000;
@@ -121,7 +121,7 @@
 
 /* ▪ Resto del CSS */
 
-/* 🗓️ Modal centrado con estilo hoja de calendario */
+/* Modal centrado con estilo hoja de calendario */
 #modal-fecha {
     display: none;
     position: fixed;
@@ -132,7 +132,7 @@
     animation: desplegar 0.4s ease-in-out;
 }
 
-/* 📅 Modal con efecto hoja desprendida */
+/* Modal con efecto hoja desprendida */
 .modal-fecha {
     background: linear-gradient(145deg, #e4e4e4, #ffffff), url('https://i.imgur.com/0g7cqDq.png') center/cover no-repeat;
     padding: 30px;
@@ -149,14 +149,14 @@
     align-items: center;
 }
 
-/* 📆 Contenedor del calendario centrado */
+/* Contenedor del calendario centrado */
 #calendario-container {
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-/* 📅 Calendario con contorno fuerte */
+/* Calendario con contorno fuerte */
 .flatpickr-calendar {
     background: #fafafa;
     border: 6px solid black;
@@ -166,7 +166,7 @@
     padding: 20px;
 }
 
-/* 🏷️ Encabezado del mes con fondo dinámico */
+/* Encabezado del mes con fondo dinámico */
 .flatpickr-months {
     background-color: var(--theme-header-bg);
     color: var(--theme-header-text);
@@ -176,9 +176,9 @@
     border: 4px solid var(--theme-header-border);
 }
 
-/* 🗓️ Días de la semana con color vibrante */
+/* Días de la semana con color vibrante */
 .flatpickr-weekdays {
-    background-color: #FFCC00; /* Amarillo brillante */
+    background-color: #FFCC00;
     border-radius: 8px;
     font-size: 1.1rem;
     color: black;
@@ -186,7 +186,7 @@
     border: 3px solid black;
 }
 
-/* 🔵 Estilo general de los días con contorno dinámico */
+/* Estilo general de los días con contorno dinámico */
 .flatpickr-day {
     border: 3px solid var(--theme-day-border);
     border-radius: 8px;
@@ -197,7 +197,7 @@
     color: var(--theme-day-border);
 }
 
-/* 🚫 Estilos para días fuera del mes o deshabilitados */
+/* Estilos para días fuera del mes o deshabilitados */
 .flatpickr-calendar .flatpickr-day.flatpickr-disabled,
 .flatpickr-calendar .flatpickr-day.prevMonthDay,
 .flatpickr-calendar .flatpickr-day.nextMonthDay {
@@ -208,34 +208,34 @@
     pointer-events: none;
 }
 
-/* 🔥 Hover dinámico en los días activos */
+/* Hover dinámico en los días activos */
 .flatpickr-day:hover {
     background-color: var(--theme-day-border);
     color: white;
 }
 
-/* 🔴 Día actual con sombra extra */
+/* Día actual con sombra extra */
 .flatpickr-day.today {
-    background-color: #CC0000;  /* Rojo vibrante */
+    background-color: #CC0000;
     color: white;
     font-weight: bold;
     box-shadow: 5px 5px 0 black;
 }
 
-/* 🏁 Días seleccionados con efecto */
+/* Días seleccionados con efecto */
 .flatpickr-day.selected {
-    background-color: #3399FF;  /* Azul claro */
+    background-color: #3399FF;
     color: white;
     font-weight: bold;
     box-shadow: 5px 5px 0 black;
 }
 
-/* 🔘 Input de fecha oculto visualmente */
+/* Input de fecha oculto visualmente */
 #fecha-seleccionada {
     display: none;
 }
 
-/* 🔘 Botones mejorados con efecto relieve */
+/* Botones mejorados con efecto relieve */
 #cerrar-fecha, #guardar-fecha {
     font-family: "Bangers", serif;
     font-size: 1.3rem;
@@ -245,7 +245,7 @@
     box-shadow: 5px 5px 0 black;
 }
 
-/* ✅ Botón Finalizar Reporte */
+/* Botón Finalizar Reporte */
 #guardar-fecha {
     background: var(--theme-header-bg);
     color: white;
@@ -254,12 +254,11 @@
     cursor: pointer;
     border-radius: 12px;
 }
-
 #guardar-fecha:hover {
     background: #003399;
 }
 
-/* ❌ Botón Cancelar */
+/* Botón Cancelar */
 #cerrar-fecha {
     background: #CC0000;
     color: white;
@@ -268,12 +267,11 @@
     cursor: pointer;
     border-radius: 12px;
 }
-
 #cerrar-fecha:hover {
     background: #990000;
 }
 
-/* 🎬 Animación de despliegue tipo rebotee */
+/* Animación de despliegue tipo rebotee */
 @keyframes desplegar {
     0% {
         transform: translate(-50%, -50%) scale(0.5);
@@ -288,39 +286,218 @@
     }
 }
 
-/* ▪ Variación para el mes de junio: cada día con un color distinto del arcoíris */
+/* ▪ Variaciones creativas para los días en cada mes */
+
+/* Enero: alterna tres tonos de azul */
+.theme-january .flatpickr-day:nth-child(3n+1) {
+    border-color: #1E90FF !important;
+    box-shadow: 4px 4px 0 #1E90FF !important;
+    color: #1E90FF !important;
+}
+.theme-january .flatpickr-day:nth-child(3n+2) {
+    border-color: #00BFFF !important;
+    box-shadow: 4px 4px 0 #00BFFF !important;
+    color: #00BFFF !important;
+}
+.theme-january .flatpickr-day:nth-child(3n) {
+    border-color: #87CEFA !important;
+    box-shadow: 4px 4px 0 #87CEFA !important;
+    color: #87CEFA !important;
+}
+
+/* Febrero: alterna tres tonos de rosa */
+.theme-february .flatpickr-day:nth-child(3n+1) {
+    border-color: #FF1493 !important;
+    box-shadow: 4px 4px 0 #FF1493 !important;
+    color: #FF1493 !important;
+}
+.theme-february .flatpickr-day:nth-child(3n+2) {
+    border-color: #FF69B4 !important;
+    box-shadow: 4px 4px 0 #FF69B4 !important;
+    color: #FF69B4 !important;
+}
+.theme-february .flatpickr-day:nth-child(3n) {
+    border-color: #FFB6C1 !important;
+    box-shadow: 4px 4px 0 #FFB6C1 !important;
+    color: #FFB6C1 !important;
+}
+
+/* Marzo: alterna tres tonos de verde */
+.theme-march .flatpickr-day:nth-child(3n+1) {
+    border-color: #32CD32 !important;
+    box-shadow: 4px 4px 0 #32CD32 !important;
+    color: #32CD32 !important;
+}
+.theme-march .flatpickr-day:nth-child(3n+2) {
+    border-color: #3CB371 !important;
+    box-shadow: 4px 4px 0 #3CB371 !important;
+    color: #3CB371 !important;
+}
+.theme-march .flatpickr-day:nth-child(3n) {
+    border-color: #00FA9A !important;
+    box-shadow: 4px 4px 0 #00FA9A !important;
+    color: #00FA9A !important;
+}
+
+/* Abril: alterna tres tonos de azul pastel */
+.theme-april .flatpickr-day:nth-child(3n+1) {
+    border-color: #00BFFF !important;
+    box-shadow: 4px 4px 0 #00BFFF !important;
+    color: #00BFFF !important;
+}
+.theme-april .flatpickr-day:nth-child(3n+2) {
+    border-color: #1E90FF !important;
+    box-shadow: 4px 4px 0 #1E90FF !important;
+    color: #1E90FF !important;
+}
+.theme-april .flatpickr-day:nth-child(3n) {
+    border-color: #87CEFA !important;
+    box-shadow: 4px 4px 0 #87CEFA !important;
+    color: #87CEFA !important;
+}
+
+/* Mayo: alterna tres tonos púrpuras y rosados */
+.theme-may .flatpickr-day:nth-child(3n+1) {
+    border-color: #DA70D6 !important;
+    box-shadow: 4px 4px 0 #DA70D6 !important;
+    color: #DA70D6 !important;
+}
+.theme-may .flatpickr-day:nth-child(3n+2) {
+    border-color: #BA55D3 !important;
+    box-shadow: 4px 4px 0 #BA55D3 !important;
+    color: #BA55D3 !important;
+}
+.theme-may .flatpickr-day:nth-child(3n) {
+    border-color: #FFB6C1 !important;
+    box-shadow: 4px 4px 0 #FFB6C1 !important;
+    color: #FFB6C1 !important;
+}
+
+/* Junio: (ya definido) ciclo de 7 colores del arcoíris */
 .theme-june .flatpickr-day:nth-child(7n+1) {
-    border-color: red;
-    box-shadow: 4px 4px 0 red;
-    color: red;
+    border-color: red !important;
+    box-shadow: 4px 4px 0 red !important;
+    color: red !important;
 }
 .theme-june .flatpickr-day:nth-child(7n+2) {
-    border-color: orange;
-    box-shadow: 4px 4px 0 orange;
-    color: orange;
+    border-color: orange !important;
+    box-shadow: 4px 4px 0 orange !important;
+    color: orange !important;
 }
 .theme-june .flatpickr-day:nth-child(7n+3) {
-    border-color: yellow;
-    box-shadow: 4px 4px 0 yellow;
-    color: yellow;
+    border-color: yellow !important;
+    box-shadow: 4px 4px 0 yellow !important;
+    color: yellow !important;
 }
 .theme-june .flatpickr-day:nth-child(7n+4) {
-    border-color: green;
-    box-shadow: 4px 4px 0 green;
-    color: green;
+    border-color: green !important;
+    box-shadow: 4px 4px 0 green !important;
+    color: green !important;
 }
 .theme-june .flatpickr-day:nth-child(7n+5) {
-    border-color: blue;
-    box-shadow: 4px 4px 0 blue;
-    color: blue;
+    border-color: blue !important;
+    box-shadow: 4px 4px 0 blue !important;
+    color: blue !important;
 }
 .theme-june .flatpickr-day:nth-child(7n+6) {
-    border-color: indigo;
-    box-shadow: 4px 4px 0 indigo;
-    color: indigo;
+    border-color: indigo !important;
+    box-shadow: 4px 4px 0 indigo !important;
+    color: indigo !important;
 }
 .theme-june .flatpickr-day:nth-child(7n+7) {
-    border-color: violet;
-    box-shadow: 4px 4px 0 violet;
-    color: violet;
+    border-color: violet !important;
+    box-shadow: 4px 4px 0 violet !important;
+    color: violet !important;
+}
+
+/* Julio: alterna tres tonos cálidos */
+.theme-july .flatpickr-day:nth-child(3n+1) {
+    border-color: #FF4500 !important;
+    box-shadow: 4px 4px 0 #FF4500 !important;
+    color: #FF4500 !important;
+}
+.theme-july .flatpickr-day:nth-child(3n+2) {
+    border-color: #FF6347 !important;
+    box-shadow: 4px 4px 0 #FF6347 !important;
+    color: #FF6347 !important;
+}
+.theme-july .flatpickr-day:nth-child(3n) {
+    border-color: #FF8C00 !important;
+    box-shadow: 4px 4px 0 #FF8C00 !important;
+    color: #FF8C00 !important;
+}
+
+/* Agosto: alterna tres tonos dorados */
+.theme-august .flatpickr-day:nth-child(3n+1) {
+    border-color: #FFD700 !important;
+    box-shadow: 4px 4px 0 #FFD700 !important;
+    color: #FFD700 !important;
+}
+.theme-august .flatpickr-day:nth-child(3n+2) {
+    border-color: #FFC107 !important;
+    box-shadow: 4px 4px 0 #FFC107 !important;
+    color: #FFC107 !important;
+}
+.theme-august .flatpickr-day:nth-child(3n) {
+    border-color: #FFB347 !important;
+    box-shadow: 4px 4px 0 #FFB347 !important;
+    color: #FFB347 !important;
+}
+
+/* Septiembre: alterna tres colores de la bandera mexicana */
+.theme-september .flatpickr-day:nth-child(3n+1) {
+    border-color: #006341 !important;
+    box-shadow: 4px 4px 0 #006341 !important;
+    color: #006341 !important;
+}
+.theme-september .flatpickr-day:nth-child(3n+2) {
+    border-color: #FFFFFF !important;
+    box-shadow: 4px 4px 0 #FFFFFF !important;
+    color: #000000 !important;
+}
+.theme-september .flatpickr-day:nth-child(3n) {
+    border-color: #CE1126 !important;
+    box-shadow: 4px 4px 0 #CE1126 !important;
+    color: #CE1126 !important;
+}
+
+/* Octubre: alterna negro y rojo */
+.theme-october .flatpickr-day:nth-child(2n+1) {
+    border-color: black !important;
+    box-shadow: 4px 4px 0 black !important;
+    color: black !important;
+}
+.theme-october .flatpickr-day:nth-child(2n) {
+    border-color: red !important;
+    box-shadow: 4px 4px 0 red !important;
+    color: red !important;
+}
+
+/* Noviembre: alterna tres tonos terrosos */
+.theme-november .flatpickr-day:nth-child(3n+1) {
+    border-color: #8B4513 !important;
+    box-shadow: 4px 4px 0 #8B4513 !important;
+    color: #8B4513 !important;
+}
+.theme-november .flatpickr-day:nth-child(3n+2) {
+    border-color: #A0522D !important;
+    box-shadow: 4px 4px 0 #A0522D !important;
+    color: #A0522D !important;
+}
+.theme-november .flatpickr-day:nth-child(3n) {
+    border-color: #D2691E !important;
+    box-shadow: 4px 4px 0 #D2691E !important;
+    color: #D2691E !important;
+}
+
+/* Diciembre: alterna verde y rojo */
+.theme-december .flatpickr-day:nth-child(2n+1) {
+    border-color: #008000 !important;
+    box-shadow: 4px 4px 0 #008000 !important;
+    color: #008000 !important;
+}
+.theme-december .flatpickr-day:nth-child(2n) {
+    border-color: #FF0000 !important;
+    box-shadow: 4px 4px 0 #FF0000 !important;
+    color: #FF0000 !important;
 }
