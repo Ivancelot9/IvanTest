@@ -1,3 +1,112 @@
+/* ▪ Variables y clases de tema para cada mes */
+:root {
+    /* Valores por defecto */
+    --theme-header-bg: #0055AA;
+    --theme-header-text: #FFCC00;
+    --theme-header-border: #0055AA;
+    --theme-day-border: #0055AA;
+    --theme-day-shadow: #0055AA;
+}
+
+.theme-january {
+    --theme-header-bg: #1E90FF;       /* DodgerBlue */
+    --theme-header-text: #FFFFFF;
+    --theme-header-border: #1E90FF;
+    --theme-day-border: #1E90FF;
+    --theme-day-shadow: #1E90FF;
+}
+
+.theme-february {
+    --theme-header-bg: #FF69B4;       /* HotPink */
+    --theme-header-text: #FFFFFF;
+    --theme-header-border: #FF69B4;
+    --theme-day-border: #FF69B4;
+    --theme-day-shadow: #FF69B4;
+}
+
+.theme-march {
+    --theme-header-bg: #32CD32;       /* LimeGreen */
+    --theme-header-text: #FFFFFF;
+    --theme-header-border: #32CD32;
+    --theme-day-border: #32CD32;
+    --theme-day-shadow: #32CD32;
+}
+
+.theme-april {
+    --theme-header-bg: #00BFFF;       /* DeepSkyBlue */
+    --theme-header-text: #FFFFFF;
+    --theme-header-border: #00BFFF;
+    --theme-day-border: #00BFFF;
+    --theme-day-shadow: #00BFFF;
+}
+
+.theme-may {
+    --theme-header-bg: #DA70D6;       /* Orchid */
+    --theme-header-text: #FFFFFF;
+    --theme-header-border: #DA70D6;
+    --theme-day-border: #DA70D6;
+    --theme-day-shadow: #DA70D6;
+}
+
+.theme-june {
+    /* Tema arcoíris para el mes gay */
+    --theme-header-bg: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    --theme-header-text: #FFFFFF;
+    --theme-header-border: #FF1493;   /* Rosa intenso */
+    --theme-day-border: #FF1493;
+    --theme-day-shadow: #FF1493;
+}
+
+.theme-july {
+    --theme-header-bg: #FF4500;       /* OrangeRed */
+    --theme-header-text: #FFFFFF;
+    --theme-header-border: #FF4500;
+    --theme-day-border: #FF4500;
+    --theme-day-shadow: #FF4500;
+}
+
+.theme-august {
+    --theme-header-bg: #FFD700;       /* Gold */
+    --theme-header-text: #000000;
+    --theme-header-border: #FFD700;
+    --theme-day-border: #FFD700;
+    --theme-day-shadow: #FFD700;
+}
+
+.theme-september {
+    --theme-header-bg: #FF8C00;       /* DarkOrange */
+    --theme-header-text: #FFFFFF;
+    --theme-header-border: #FF8C00;
+    --theme-day-border: #FF8C00;
+    --theme-day-shadow: #FF8C00;
+}
+
+.theme-october {
+    --theme-header-bg: #FF6600;       /* Vibrante para Halloween */
+    --theme-header-text: #000000;
+    --theme-header-border: #FF6600;
+    --theme-day-border: #FF6600;
+    --theme-day-shadow: #FF6600;
+}
+
+.theme-november {
+    --theme-header-bg: #8B4513;       /* SaddleBrown */
+    --theme-header-text: #FFD700;       /* Gold */
+    --theme-header-border: #8B4513;
+    --theme-day-border: #8B4513;
+    --theme-day-shadow: #8B4513;
+}
+
+.theme-december {
+    --theme-header-bg: #008000;       /* Green */
+    --theme-header-text: #FF0000;       /* Red */
+    --theme-header-border: #008000;
+    --theme-day-border: #008000;
+    --theme-day-shadow: #008000;
+}
+
+/* ▪ Resto del CSS */
+
 /* 🗓️ Modal centrado con estilo hoja de calendario */
 #modal-fecha {
     display: none;
@@ -43,14 +152,14 @@
     padding: 20px;
 }
 
-/* 🏷️ Encabezado del mes con fondo vibrante */
+/* 🏷️ Encabezado del mes con fondo dinámico */
 .flatpickr-months {
-    background-color: #0055AA; /* Azul intenso */
-    color: #FFCC00;            /* Amarillo brillante */
+    background-color: var(--theme-header-bg);
+    color: var(--theme-header-text);
     border-radius: 10px;
     font-weight: bold;
     text-transform: uppercase;
-    border: 4px solid black;
+    border: 4px solid var(--theme-header-border);
 }
 
 /* 🗓️ Días de la semana con color vibrante */
@@ -63,31 +172,31 @@
     border: 3px solid black;
 }
 
-/* 🔵 Estilo general de los días */
+/* 🔵 Estilo general de los días con contorno dinámico */
 .flatpickr-day {
-    border: 3px solid #0055AA;   /* Azul intenso */
+    border: 3px solid var(--theme-day-border);
     border-radius: 8px;
-    box-shadow: 4px 4px 0 #0055AA; /* Sombra en azul intenso */
+    box-shadow: 4px 4px 0 var(--theme-day-shadow);
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease;
     background-color: white;
-    color: #0055AA;               /* Texto en azul intenso */
+    color: var(--theme-day-border);
 }
 
 /* 🚫 Estilos para días fuera del mes o deshabilitados */
 .flatpickr-calendar .flatpickr-day.flatpickr-disabled,
 .flatpickr-calendar .flatpickr-day.prevMonthDay,
 .flatpickr-calendar .flatpickr-day.nextMonthDay {
-    background-color: #F5F5F5 !important; /* Fondo gris muy claro */
-    border: 3px solid #CCCCCC !important;    /* Borde gris suave */
+    background-color: #F5F5F5 !important;
+    border: 3px solid #CCCCCC !important;
     box-shadow: none !important;
-    color: #999999 !important;              /* Texto en gris medio */
+    color: #999999 !important;
     pointer-events: none;
 }
 
 /* 🔥 Hover dinámico en los días activos */
 .flatpickr-day:hover {
-    background-color: #0055AA;
+    background-color: var(--theme-day-border);
     color: white;
 }
 
@@ -124,8 +233,8 @@
 
 /* ✅ Botón Finalizar Reporte */
 #guardar-fecha {
-    background: #0055AA; /* Azul intenso */
-    color: white;      /* Amarillo brillante */
+    background: var(--theme-header-bg);
+    color: white;
     flex: 1;
     padding: 12px;
     cursor: pointer;
@@ -133,12 +242,12 @@
 }
 
 #guardar-fecha:hover {
-    background: #003399; /* Azul más oscuro */
+    background: #003399;
 }
 
 /* ❌ Botón Cancelar */
 #cerrar-fecha {
-    background: #CC0000; /* Rojo vibrante */
+    background: #CC0000;
     color: white;
     flex: 1;
     padding: 12px;
@@ -147,7 +256,7 @@
 }
 
 #cerrar-fecha:hover {
-    background: #990000; /* Rojo más oscuro */
+    background: #990000;
 }
 
 /* 🎬 Animación de despliegue tipo rebotee */
