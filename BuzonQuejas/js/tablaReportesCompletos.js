@@ -1,7 +1,7 @@
 // finalizarReporte.js
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Datos iniciales de reportes (Historial). Estos se obtienen del backend en un caso real.
+    // Datos iniciales de reportes (Historial). (En un caso real, estos vendrían del backend)
     let datosReportes = [
         { folio: "001", nomina: "123456", encargado: "Juan Pérez", fechaRegistro: "10/02/2025", fechaFinalizacion: "-", descripcion: "Problema crítico en autenticación", estatus: "Pendiente" },
         { folio: "002", nomina: "654321", encargado: "María López", fechaRegistro: "11/02/2025", fechaFinalizacion: "-", descripcion: "Error en base de datos", estatus: "Pendiente" },
@@ -10,10 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Array para reportes finalizados (inicialmente vacío)
     let datosCompletos = [];
-
-    // Función para renderizar la tabla de Historial de Reportes
-    // (Asumo que ya tienes esta función en "tablaReportes.js", por ejemplo, llamada mostrarReportes)
-    // Por ejemplo: mostrarReportes(pagina, datosReportes);
 
     // -------------------------------
     // Función para renderizar la tabla de Reportes Completos
@@ -30,13 +26,27 @@ document.addEventListener("DOMContentLoaded", function () {
         datosPagina.forEach(reporte => {
             const fila = document.createElement("tr");
             fila.innerHTML = `
-        <td>${reporte.folio}</td>
-        <td>${reporte.fechaRegistro}</td>
-        <td>${reporte.nomina}</td>
-        <td>${reporte.encargado}</td>
-        <td>${reporte.fechaFinalizacion}</td>
-      `;
+                <td>${reporte.folio}</td>
+                <td>${reporte.nomina}</td>
+                <td>${reporte.encargado}</td>
+                <td>${reporte.fechaFinalizacion}</td>
+                <td><button class="exportar-individual" data-folio="${reporte.folio}">Excel</button></td>
+            `;
             tablaBody.appendChild(fila);
+
+            // Agregar evento al botón "Excel" para exportar los datos de esa fila
+            fila.querySelector(".exportar-individual").addEventListener("click", function() {
+                const csvContent = "data:text/csv;charset=utf-8," +
+                    "Folio,Número de Nómina,Encargado,Fecha Finalización\n" +
+                    `${reporte.folio},${reporte.nomina},${reporte.encargado},${reporte.fechaFinalizacion}\n`;
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", `reporte_${reporte.folio}.csv`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
         });
 
         // Actualiza indicadores de paginación

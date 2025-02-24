@@ -120,7 +120,6 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
             <button id="nextPage">Siguiente ➡</button>
         </div>
     </div>
-
     <!-- Reportes Completos -->
     <div id="reportes-completos" class="content comic-container" style="display: none">
         <h2 class="comic-title">Reportes Completos</h2>
@@ -140,10 +139,10 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 <thead>
                 <tr>
                     <th>Folio</th>
-                    <th>Fecha Registro</th>
                     <th>Número de Nómina</th>
                     <th>Encargado</th>
                     <th>Fecha Finalización</th>
+                    <th>Convertidor</th>
                 </tr>
                 </thead>
                 <tbody id="tabla-completos-body"></tbody>
@@ -154,8 +153,11 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
             <span id="pageIndicator-completo">Página 1</span>
             <button id="nextPage-completo">Siguiente ➡</button>
         </div>
-        <button id="exportar-excel" class="submit-btn">Exportar a Excel</button>
+        <!-- Si prefieres un botón global, lo podrías agregar aquí, pero en este ejemplo se hace por fila -->
     </div>
+
+
+
 </div>
 
 <!-- 🔥 Pantalla de carga con animación de superhéroe -->
