@@ -1,6 +1,7 @@
-/* ▪ Variables y clases de tema para cada mes */
+/* ▪ Variables y clases de tema para cada mes con más “coco” */
+
+/* Valores por defecto */
 :root {
-    /* Valores por defecto */
     --theme-header-bg: #0055AA;
     --theme-header-text: #FFCC00;
     --theme-header-border: #0055AA;
@@ -8,48 +9,53 @@
     --theme-day-shadow: #0055AA;
 }
 
+/* Enero – Frescura invernal y renuevo (gradient hielo) */
 .theme-january {
-    --theme-header-bg: #1E90FF;       /* DodgerBlue */
+    --theme-header-bg: linear-gradient(90deg, #1E90FF, #87CEFA); /* DodgerBlue a LightSkyBlue */
     --theme-header-text: #FFFFFF;
     --theme-header-border: #1E90FF;
     --theme-day-border: #1E90FF;
     --theme-day-shadow: #1E90FF;
 }
 
+/* Febrero – Amor y amistad, con un toque romántico */
 .theme-february {
-    --theme-header-bg: #FF69B4;       /* HotPink */
+    --theme-header-bg: linear-gradient(90deg, #FF69B4, #FFB6C1); /* HotPink a LightPink */
     --theme-header-text: #FFFFFF;
     --theme-header-border: #FF69B4;
     --theme-day-border: #FF69B4;
     --theme-day-shadow: #FF69B4;
 }
 
+/* Marzo – Primavera fresca, vibrante y natural */
 .theme-march {
-    --theme-header-bg: #32CD32;       /* LimeGreen */
+    --theme-header-bg: linear-gradient(90deg, #32CD32, #00FA9A); /* LimeGreen a MediumSpringGreen */
     --theme-header-text: #FFFFFF;
     --theme-header-border: #32CD32;
     --theme-day-border: #32CD32;
     --theme-day-shadow: #32CD32;
 }
 
+/* Abril – Pastel de primavera y toques de Pascua */
 .theme-april {
-    --theme-header-bg: #00BFFF;       /* DeepSkyBlue */
+    --theme-header-bg: linear-gradient(90deg, #00BFFF, #87CEFA); /* DeepSkyBlue a LightSkyBlue */
     --theme-header-text: #FFFFFF;
     --theme-header-border: #00BFFF;
     --theme-day-border: #00BFFF;
     --theme-day-shadow: #00BFFF;
 }
 
+/* Mayo – Día de la Madre, suave y delicado */
 .theme-may {
-    --theme-header-bg: #DA70D6;       /* Orchid */
+    --theme-header-bg: linear-gradient(90deg, #DA70D6, #FFB6C1); /* Orchid a LightPink */
     --theme-header-text: #FFFFFF;
     --theme-header-border: #DA70D6;
     --theme-day-border: #DA70D6;
     --theme-day-shadow: #DA70D6;
 }
 
+/* Junio – Mes Gay: un vibrante arcoíris */
 .theme-june {
-    /* Tema arcoíris para el mes gay */
     --theme-header-bg: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
     --theme-header-text: #FFFFFF;
     --theme-header-border: #FF1493;   /* Rosa intenso */
@@ -57,54 +63,59 @@
     --theme-day-shadow: #FF1493;
 }
 
+/* Julio – Calor del verano: atardecer ardiente */
 .theme-july {
-    --theme-header-bg: #FF4500;       /* OrangeRed */
+    --theme-header-bg: linear-gradient(90deg, #FF4500, #FF8C00); /* OrangeRed a DarkOrange */
     --theme-header-text: #FFFFFF;
     --theme-header-border: #FF4500;
     --theme-day-border: #FF4500;
     --theme-day-shadow: #FF4500;
 }
 
+/* Agosto – Sol de verano: dorado y cálido */
 .theme-august {
-    --theme-header-bg: #FFD700;       /* Gold */
+    --theme-header-bg: linear-gradient(90deg, #FFD700, #FFB347); /* Gold a Peach */
     --theme-header-text: #000000;
     --theme-header-border: #FFD700;
     --theme-day-border: #FFD700;
     --theme-day-shadow: #FFD700;
 }
 
+/* Septiembre – Transición al otoño, con tonos cálidos */
 .theme-september {
-    --theme-header-bg: #FF8C00;       /* DarkOrange */
+    --theme-header-bg: linear-gradient(90deg, #FF8C00, #E25822); /* DarkOrange a Burnt Sienna */
     --theme-header-text: #FFFFFF;
     --theme-header-border: #FF8C00;
     --theme-day-border: #FF8C00;
     --theme-day-shadow: #FF8C00;
 }
 
+/* Octubre – Halloween: vibrante y misterioso */
 .theme-october {
-    --theme-header-bg: #FF6600;       /* Vibrante para Halloween */
+    --theme-header-bg: linear-gradient(90deg, #FF6600, #FF8C00); /* Naranja intenso */
     --theme-header-text: #000000;
     --theme-header-border: #FF6600;
     --theme-day-border: #FF6600;
     --theme-day-shadow: #FF6600;
 }
 
+/* Noviembre – Otoño profundo: tonos terrosos y dorados */
 .theme-november {
-    --theme-header-bg: #8B4513;       /* SaddleBrown */
-    --theme-header-text: #FFD700;       /* Gold */
+    --theme-header-bg: linear-gradient(90deg, #8B4513, #D2691E); /* De SaddleBrown a Chocolate */
+    --theme-header-text: #FFD700; /* Gold */
     --theme-header-border: #8B4513;
     --theme-day-border: #8B4513;
     --theme-day-shadow: #8B4513;
 }
 
+/* Diciembre – Navidad: un clásico contraste verde y rojo */
 .theme-december {
-    --theme-header-bg: #008000;       /* Green */
-    --theme-header-text: #FF0000;       /* Red */
+    --theme-header-bg: linear-gradient(90deg, #008000, #FF0000); /* Verde a Rojo */
+    --theme-header-text: #FFFFFF;
     --theme-header-border: #008000;
     --theme-day-border: #008000;
     --theme-day-shadow: #008000;
 }
-
 /* ▪ Resto del CSS */
 
 /* 🗓️ Modal centrado con estilo hoja de calendario */
