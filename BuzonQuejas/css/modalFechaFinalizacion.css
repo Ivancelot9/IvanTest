@@ -71,7 +71,7 @@
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease;
     background-color: white;
-    color: black;
+    color: rgba(6, 90, 204, 0.88);
 }
 
 /* 🔥 Hover dinámico en los días */
