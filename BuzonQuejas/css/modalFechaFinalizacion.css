@@ -78,10 +78,10 @@
 .flatpickr-calendar .flatpickr-day.flatpickr-disabled,
 .flatpickr-calendar .flatpickr-day.prevMonthDay,
 .flatpickr-calendar .flatpickr-day.nextMonthDay {
-    background-color: #292626 !important;
-    border: 3px solid #a9a9a9 !important;
+    background-color: #F5F5F5 !important; /* Fondo gris muy claro */
+    border: 3px solid #CCCCCC !important;    /* Borde gris suave */
     box-shadow: none !important;
-    color: #7d7d7d !important;
+    color: #999999 !important;              /* Texto en gris medio */
     pointer-events: none;
 }
 
