@@ -139,6 +139,8 @@ document.addEventListener("DOMContentLoaded", function () {
         pageIndicator.textContent = `Página ${pagina}`;
         prevPageBtn.disabled = pagina === 1;
         nextPageBtn.disabled = fin >= reportes.length;
+
+        initEstatusEditor();
     }
 
     // ✅ Filtrado de reportes
