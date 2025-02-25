@@ -51,11 +51,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // 🔹 Inicializar Flatpickr con eventos para actualizar el tema
     flatpickr("#calendario-container", {
         inline: true,               // Mostrar calendario siempre visible
-        dateFormat: "d/m/Y",        // Formato de fecha
-        defaultDate: new Date(),    // Fecha actual por defecto
-        minDate: "today",           // No permite fechas pasadas
-        locale: "es",               // Idioma en español
-        disableMobile: true,        // Forzar versión escritorio en móviles
+        dateFormat: "d/m/Y",         // Formato de fecha
+        defaultDate: new Date(),     // Fecha actual por defecto
+        minDate: "today",            // No permite fechas pasadas
+        locale: "es",                // Idioma en español
+        disableMobile: true,         // Forzar versión escritorio en móviles
         monthSelectorType: "static", // Selector de mes fijo
         onReady: function (selectedDates, dateStr, instance) {
             updateTheme(instance.currentMonth);
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 🔹 Evento para guardar la fecha seleccionada, aplicar animación y mover el reporte
+    // 🔹 Evento para guardar la fecha seleccionada y mover el reporte
     btnGuardar.addEventListener("click", function () {
         if (lastClickedButton) {
             let fecha = fechaSeleccionada.value;
@@ -95,24 +95,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     reporte.fechaFinalizacion = fecha;
                     reporte.estatus = "Completado";
 
-                    // 🎨 Aplicar animación de desvanecimiento
-                    let fila = lastClickedButton.closest("tr");
-                    fila.classList.add("fade-out");
+                    // ✅ Mover a la tabla de reportes completados
+                    window.moverReporteACompletados(reporte);
 
-                    // 🕒 Esperar que termine la animación antes de eliminar y mover el reporte
-                    setTimeout(() => {
-                        // ✅ Mover a la tabla de reportes completados
-                        window.moverReporteACompletados(reporte);
-
-                        // ❌ Eliminar el reporte de la tabla de pendientes
-                        window.eliminarReportePorFolio(folioSeleccionado);
-
-                        // ✅ Cerrar el modal después de completar la transferencia
-                        modalFecha.style.display = "none";
-                    }, 500); // Coincide con la duración de la animación
+                    // ❌ Eliminar el reporte de la tabla de pendientes
+                    window.eliminarReportePorFolio(folioSeleccionado);
                 }
+
+                modalFecha.style.display = "none"; // Cerrar el modal
             } else {
                 alert("Por favor selecciona una fecha antes de finalizar el reporte.");
+
             }
         }
     });
