@@ -59,6 +59,10 @@ button.convertidor {
     cursor: pointer;
     box-shadow: 3px 3px 0 black;
     transition: all 0.2s ease-in-out;
+    display: inline-flex;  /* 🔹 Para que se alinee bien con el icono */
+    align-items: center;  /* 🔹 Centrar contenido */
+    justify-content: center;  /* 🔹 Asegurar alineación */
+    width: 100%;  /* 🔹 Ocupar todo el ancho de la celda */
 }
 
 /* 🎨 Estilo específico para el botón "Convertir" */
@@ -67,6 +71,8 @@ button.convertidor {
     border: 2px solid black; /* ✅ Borde negro */
     color: black; /* ✅ Letras negras */
     box-shadow: 3px 3px 0 black; /* ✅ Sombra negra para mantener el efecto */
+    width: auto; /* 🔹 Dejar que el botón se ajuste a su contenido */
+    padding: 8px 15px; /* 🔹 Ajuste de padding para mejor apariencia */
 }
 button.convertidor i {
     margin-right: 5px; /* Espacio entre el icono y el texto */
