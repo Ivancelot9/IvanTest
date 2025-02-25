@@ -502,3 +502,21 @@
     box-shadow: 4px 4px 0 #FF0000 !important;
     color: #FF0000 !important;
 }
+
+
+
+/* Animación de desvanecimiento */
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-20px); /* Efecto de desplazamiento suave */
+    }
+}
