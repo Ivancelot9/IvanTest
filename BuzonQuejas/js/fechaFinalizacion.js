@@ -86,32 +86,26 @@ document.addEventListener("DOMContentLoaded", function () {
             let fecha = fechaSeleccionada.value;
             if (fecha) {
                 lastClickedButton.parentElement.innerHTML = `
-                <span class="fecha-final">${fecha}</span>
-            `;
+                    <span class="fecha-final">${fecha}</span>
+                `;
 
-                // 🔄 Obtener el reporte desde la tabla de pendientes
+                // 🔄 Aquí es donde se transfiere el reporte a la segunda tabla
                 let reporte = window.getReportePorFolio(folioSeleccionado);
                 if (reporte) {
                     reporte.fechaFinalizacion = fecha;
                     reporte.estatus = "Completado";
 
-                    // 🕶️ Animación de desvanecimiento
-                    let fila = lastClickedButton.closest("tr");
-                    fila.classList.add("fade-out");
+                    // ✅ Mover a la tabla de reportes completados
+                    window.moverReporteACompletados(reporte);
 
-                    // Esperar que termine la animación antes de eliminar y mover el reporte
-                    setTimeout(() => {
-                        // ✅ Mover a la tabla de reportes completados
-                        window.moverReporteACompletados(reporte);
-
-                        // ❌ Eliminar de la tabla de pendientes
-                        window.eliminarReportePorFolio(folioSeleccionado);
-                    }, 500); // El tiempo debe coincidir con la duración de la animación
+                    // ❌ Eliminar el reporte de la tabla de pendientes
+                    window.eliminarReportePorFolio(folioSeleccionado);
                 }
 
                 modalFecha.style.display = "none"; // Cerrar el modal
             } else {
                 alert("Por favor selecciona una fecha antes de finalizar el reporte.");
+
             }
         }
     });
