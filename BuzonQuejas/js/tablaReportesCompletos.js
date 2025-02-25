@@ -7,14 +7,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const filterInputCompleto = document.getElementById("filter-input-completo");
     const filterButtonCompleto = document.getElementById("filter-button-completo");
 
-    let datosReportesCompletos = []; // 📌 Aquí se almacenarán los reportes completados
+    // 🔄 Cargar reportes completados desde localStorage
+    let datosReportesCompletos = JSON.parse(localStorage.getItem("reportesCompletados")) || [];
     let paginaActualCompleto = 1;
     const filasPorPagina = 10;
     let datosFiltradosCompletos = [...datosReportesCompletos];
 
-    // 🔄 Función global para mover el reporte a la tabla de completados
+    // ✅ Guardar cambios en localStorage
+    function guardarReportesCompletados() {
+        localStorage.setItem("reportesCompletados", JSON.stringify(datosReportesCompletos));
+    }
+
+    // 🔄 Función global para mover el reporte a la tabla de completados y guardarlo en localStorage
     window.moverReporteACompletados = function (reporte) {
         datosReportesCompletos.push(reporte); // Agregar el reporte al array
+        guardarReportesCompletados(); // Guardar en localStorage
         filtrarReportesCompletos(); // Actualizar la tabla con los datos nuevos
     };
 
@@ -87,4 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 📌 Evento de filtrado
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
+
+    // 📌 Mostrar reportes completados al cargar la página
+    mostrarReportesCompletos(paginaActualCompleto);
 });
