@@ -48,7 +48,8 @@ table td {
 button.mostrar-descripcion,
 button.agregar-comentario,
 button.seleccionar-fecha,
-button.estatus-btn {
+button.estatus-btn,
+button.convertidor {
     background: white;
     color: black;
     border: 2px solid black;
@@ -60,11 +61,20 @@ button.estatus-btn {
     transition: all 0.2s ease-in-out;
 }
 
+/* 🎨 Estilo específico para el botón "Convertir" */
+button.convertidor {
+    background: #28a745; /* ✅ Verde estilo Excel */
+    border: 2px solid black; /* ✅ Borde negro */
+    color: black; /* ✅ Letras negras */
+    box-shadow: 3px 3px 0 black; /* ✅ Sombra negra para mantener el efecto */
+}
+
 /* 🔥 Efecto hover en botones */
 button.mostrar-descripcion:hover,
 button.agregar-comentario:hover,
 button.seleccionar-fecha:hover,
-button.estatus-btn:hover {
+button.estatus-btn:hover,
+button.convertidor:hover{
     transform: scale(1.1);
 }
 
