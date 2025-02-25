@@ -101,10 +101,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ];
 
-    const filasPorPagina = 10; // ✅ Se muestran los 10 reportes en la tabla
+    const filasPorPagina = 10;
     let paginaActual = 1;
     let datosFiltrados = [...datosReportes];
 
+    // Elementos del DOM
     const tablaBody = document.getElementById("tabla-body");
     const prevPageBtn = document.getElementById("prevPage");
     const nextPageBtn = document.getElementById("nextPage");
@@ -113,49 +114,34 @@ document.addEventListener("DOMContentLoaded", function () {
     const filterInput = document.getElementById("filter-input");
     const filterButton = document.getElementById("filter-button");
 
-    function resaltarTexto(texto, filtro) {
-        if (!filtro || filtro.trim() === "") return texto;
-        const regex = new RegExp(`(${filtro})`, "gi");
-        return texto.replace(regex, `<span class="highlight">$1</span>`);
-    }
-
+    // Mostrar reportes
     function mostrarReportes(pagina, reportes = datosFiltrados) {
         tablaBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
         const fin = inicio + filasPorPagina;
         const reportesPagina = reportes.slice(inicio, fin);
-        const valorFiltro = filterInput.value.toLowerCase();
-        const columnaSeleccionada = filterColumn.value;
 
         reportesPagina.forEach(reporte => {
             const fila = document.createElement("tr");
             fila.innerHTML = `
-               <td>${columnaSeleccionada === "folio" ? resaltarTexto(reporte.folio, valorFiltro) : reporte.folio}</td>
-            <td>${columnaSeleccionada === "fechaRegistro" ? resaltarTexto(reporte.fechaRegistro, valorFiltro) : reporte.fechaRegistro}</td>
-            <td>${columnaSeleccionada === "nomina" ? resaltarTexto(reporte.nomina, valorFiltro) : reporte.nomina}</td>
-            <td>${columnaSeleccionada === "encargado" ? resaltarTexto(reporte.encargado, valorFiltro) : reporte.encargado}</td>
-            <td><button class="mostrar-descripcion" data-descripcion="${reporte.descripcion}">Mostrar Descripción</button></td>
-            <td><button class="agregar-comentario" data-folio="${reporte.folio}">Agregar Comentario</button></td>
-                <td class="estatus-cell"><strong>${columnaSeleccionada === "estatus" ? resaltarTexto(reporte.estatus, valorFiltro) : reporte.estatus}</strong></td>
-            <td>
-                <button class="seleccionar-fecha" data-folio="${reporte.folio}">Seleccionar Fecha</button>
-            </td>
+                <td>${reporte.folio}</td>
+                <td>${reporte.fechaRegistro}</td>
+                <td>${reporte.nomina}</td>
+                <td>${reporte.encargado}</td>
+                <td><button class="mostrar-descripcion" data-descripcion="${reporte.descripcion}">Mostrar Descripción</button></td>
+                <td><button class="agregar-comentario" data-folio="${reporte.folio}">Agregar Comentario</button></td>
+                <td class="estatus-cell"><strong>${reporte.estatus}</strong></td>
+                <td><button class="seleccionar-fecha" data-folio="${reporte.folio}">Finalizar Reporte</button></td>
             `;
             tablaBody.appendChild(fila);
         });
-
-        document.querySelector(".table-container").scrollTop = 0; // 🔥 Ajusta el scroll automáticamente
 
         pageIndicator.textContent = `Página ${pagina}`;
         prevPageBtn.disabled = pagina === 1;
         nextPageBtn.disabled = fin >= reportes.length;
     }
 
-    function cambiarPagina(delta) {
-        paginaActual += delta;
-        mostrarReportes(paginaActual);
-    }
-
+    // Filtrado de reportes
     function filtrarReportes() {
         const valorFiltro = filterInput.value.toLowerCase();
         const columna = filterColumn.value;
@@ -168,8 +154,28 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportes(paginaActual);
     }
 
-    prevPageBtn.addEventListener("click", () => cambiarPagina(-1));
-    nextPageBtn.addEventListener("click", () => cambiarPagina(1));
+    // Exponer funciones globalmente para usarlas desde otros scripts
+    window.getReportePorFolio = function (folio) {
+        return datosReportes.find(r => r.folio === folio);
+    };
+
+    window.eliminarReportePorFolio = function (folio) {
+        const index = datosReportes.findIndex(r => r.folio === folio);
+        if (index !== -1) {
+            datosReportes.splice(index, 1);
+            filtrarReportes();
+        }
+    };
+
+    prevPageBtn.addEventListener("click", () => {
+        paginaActual--;
+        mostrarReportes(paginaActual);
+    });
+
+    nextPageBtn.addEventListener("click", () => {
+        paginaActual++;
+        mostrarReportes(paginaActual);
+    });
 
     filterInput.addEventListener("input", filtrarReportes);
     filterButton.addEventListener("click", filtrarReportes);
