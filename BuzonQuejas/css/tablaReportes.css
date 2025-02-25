@@ -68,6 +68,10 @@ button.convertidor {
     color: black; /* ✅ Letras negras */
     box-shadow: 3px 3px 0 black; /* ✅ Sombra negra para mantener el efecto */
 }
+button.convertidor i {
+    margin-right: 5px; /* Espacio entre el icono y el texto */
+    font-size: 1.2rem; /* Tamaño del icono */
+}
 
 /* 🔥 Efecto hover en botones */
 button.mostrar-descripcion:hover,

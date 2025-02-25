@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${columnaSeleccionada === "encargado" ? resaltarTexto(reporte.encargado, valorFiltro) : reporte.encargado}</td>
                 <td>${columnaSeleccionada === "fechaFinalizacion" ? resaltarTexto(reporte.fechaFinalizacion, valorFiltro) : reporte.fechaFinalizacion}</td>
                 <td>${columnaSeleccionada === "estatus" ? resaltarTexto(reporte.estatus, valorFiltro) : reporte.estatus}</td>
-                <td><button class="convertidor">📊 Convertir a Excel</button></td>
+                <button class="convertidor"><i class="fa-solid fa-file-excel"></i> Convertir</button>
             `;
 
             // 🔹 Agregar evento al botón "Convertir"
