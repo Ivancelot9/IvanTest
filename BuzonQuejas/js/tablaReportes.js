@@ -125,13 +125,15 @@ document.addEventListener("DOMContentLoaded", function () {
             const fila = document.createElement("tr");
             fila.innerHTML = `
                 <td>${reporte.folio}</td>
-                <td>${reporte.fechaRegistro}</td>
-                <td>${reporte.nomina}</td>
-                <td>${reporte.encargado}</td>
-                <td><button class="mostrar-descripcion" data-descripcion="${reporte.descripcion}">Mostrar Descripción</button></td>
-                <td><button class="agregar-comentario" data-folio="${reporte.folio}">Agregar Comentario</button></td>
-                <td class="estatus-cell"><strong>${reporte.estatus}</strong></td>
-                <td><button class="seleccionar-fecha" data-folio="${reporte.folio}">Finalizar Reporte</button></td>
+            <td>${reporte.fechaRegistro}</td>
+            <td>${reporte.nomina}</td>
+            <td>${reporte.encargado}</td>
+            <td><button class="mostrar-descripcion" data-descripcion="${reporte.descripcion}">Mostrar Descripción</button></td>
+            <td><button class="agregar-comentario" data-folio="${reporte.folio}">Agregar Comentario</button></td>
+            <td class="estatus-cell"><strong>${reporte.estatus}</strong></td>
+            <td>
+                <button class="seleccionar-fecha" data-folio="${reporte.folio}" data-fila-id="${reporte.folio}">Finalizar Reporte</button>
+            </td>
             `;
             tablaBody.appendChild(fila);
         });
