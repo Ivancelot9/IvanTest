@@ -80,21 +80,24 @@ td .convertidor {
     width: 100%;  /* 🔹 Asegurar que el botón no se desborde */
 }
 
-/* 🎨 Estilo específico para el botón "Convertir" */
+/* 🎨 Estilo específico para el botón "Convertir a Excel" */
 button.convertidor {
-    background: #28a745; /* ✅ Verde estilo Excel */
-    border: 2px solid black; /* ✅ Borde negro */
-    color: black; /* ✅ Letras negras */
-    box-shadow: 3px 3px 0 black; /* ✅ Sombra negra para mantener el efecto */
-    width: auto; /* 🔹 Dejar que el botón se ajuste a su contenido */
-    padding: 8px 15px; /* 🔹 Ajuste de padding para mejor apariencia */
-    display: inline-flex; /* 🔹 Asegurar que el icono y texto estén alineados */
-    justify-content: center; /* 🔹 Centrar contenido del botón */
-    align-items: center; /* 🔹 Asegurar alineación vertical */
+    background: #28a745 !important; /* ✅ Verde estilo Excel */
+    border: 2px solid black !important; /* ✅ Borde negro */
+    color: black !important; /* ✅ Letras negras */
+    box-shadow: 3px 3px 0 black !important; /* ✅ Sombra negra */
+    width: auto !important; /* 🔹 Dejar que el botón se ajuste a su contenido */
+    padding: 8px 15px !important; /* 🔹 Ajuste de padding para mejor apariencia */
+    display: inline-flex !important; /* 🔹 Asegurar que el icono y texto estén alineados */
+    justify-content: center !important; /* 🔹 Centrar contenido del botón */
+    align-items: center !important; /* 🔹 Asegurar alineación vertical */
+    min-width: 140px !important; /* 🔹 Evitar que el botón sea muy pequeño */
 }
+
+/* 🔹 Corrección para el icono de Excel dentro del botón */
 button.convertidor i {
-    margin-right: 5px; /* Espacio entre el icono y el texto */
-    font-size: 1.2rem; /* Tamaño del icono */
+    margin-right: 5px !important; /* Espacio entre el icono y el texto */
+    font-size: 1.2rem !important; /* Tamaño del icono */
 }
 
 /* 🔥 Efecto hover en botones */
