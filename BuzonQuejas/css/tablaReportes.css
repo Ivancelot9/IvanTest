@@ -72,6 +72,14 @@ td {
     padding: 5px;  /* 🔹 Un poco de espacio */
 }
 
+/* 🎯 Asegurar que el botón esté bien alineado dentro de la celda */
+td .convertidor {
+    display: flex;  /* 🔹 Permite centrar el botón dentro del td */
+    justify-content: center;  /* 🔹 Lo coloca en el centro horizontalmente */
+    align-items: center;  /* 🔹 Lo centra verticalmente */
+    width: 100%;  /* 🔹 Asegurar que el botón no se desborde */
+}
+
 /* 🎨 Estilo específico para el botón "Convertir" */
 button.convertidor {
     background: #28a745; /* ✅ Verde estilo Excel */
@@ -80,6 +88,9 @@ button.convertidor {
     box-shadow: 3px 3px 0 black; /* ✅ Sombra negra para mantener el efecto */
     width: auto; /* 🔹 Dejar que el botón se ajuste a su contenido */
     padding: 8px 15px; /* 🔹 Ajuste de padding para mejor apariencia */
+    display: inline-flex; /* 🔹 Asegurar que el icono y texto estén alineados */
+    justify-content: center; /* 🔹 Centrar contenido del botón */
+    align-items: center; /* 🔹 Asegurar alineación vertical */
 }
 button.convertidor i {
     margin-right: 5px; /* Espacio entre el icono y el texto */
