@@ -120,20 +120,25 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
             <button id="nextPage">Siguiente ➡</button>
         </div>
     </div>
+
     <!-- Reportes Completos -->
     <div id="reportes-completos" class="content comic-container" style="display: none">
         <h2 class="comic-title">Reportes Completos</h2>
+
+        <!-- Controles de filtrado -->
         <div class="table-controls">
             <label for="filter-column-completo">Filtrar por:</label>
             <select id="filter-column-completo">
                 <option value="folio">Folio</option>
                 <option value="nomina">Número de Nómina</option>
                 <option value="encargado">Encargado</option>
-                <option value="fechaRegistro">Fecha Registro</option>
+                <option value="fechaFinalizacion">Fecha Finalización</option>
             </select>
             <input type="text" id="filter-input-completo" placeholder="Buscar...">
             <button id="filter-button-completo">🔍 Buscar</button>
         </div>
+
+        <!-- Tabla de reportes completados -->
         <div class="table-container">
             <table id="tabla-completos" class="styled-table">
                 <thead>
@@ -142,18 +147,22 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                     <th>Número de Nómina</th>
                     <th>Encargado</th>
                     <th>Fecha Finalización</th>
+                    <th>Estatus</th>
                     <th>Convertidor</th>
                 </tr>
                 </thead>
-                <tbody id="tabla-completos-body"></tbody>
+                <tbody id="tabla-completos-body">
+                <!-- Los reportes completados se insertarán aquí automáticamente -->
+                </tbody>
             </table>
         </div>
+
+        <!-- Controles de paginación -->
         <div class="pagination">
             <button id="prevPage-completo" disabled>⬅ Anterior</button>
             <span id="pageIndicator-completo">Página 1</span>
             <button id="nextPage-completo">Siguiente ➡</button>
         </div>
-        <!-- Si prefieres un botón global, lo podrías agregar aquí, pero en este ejemplo se hace por fila -->
     </div>
 
 

@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const filterInput = document.getElementById("filter-input");
     const filterButton = document.getElementById("filter-button");
 
-    // Mostrar reportes
+    // ✅ Mostrar reportes
     function mostrarReportes(pagina, reportes = datosFiltrados) {
         tablaBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
         nextPageBtn.disabled = fin >= reportes.length;
     }
 
-    // Filtrado de reportes
+    // ✅ Filtrado de reportes
     function filtrarReportes() {
         const valorFiltro = filterInput.value.toLowerCase();
         const columna = filterColumn.value;
@@ -154,11 +154,12 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportes(paginaActual);
     }
 
-    // Exponer funciones globalmente para usarlas desde otros scripts
+    // ✅ Exponer funciones globalmente para usarlas desde otros scripts
     window.getReportePorFolio = function (folio) {
         return datosReportes.find(r => r.folio === folio);
     };
 
+    // ✅ Eliminar el reporte y actualizar la tabla
     window.eliminarReportePorFolio = function (folio) {
         const index = datosReportes.findIndex(r => r.folio === folio);
         if (index !== -1) {
@@ -167,6 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
+    // ✅ Eventos de navegación de página
     prevPageBtn.addEventListener("click", () => {
         paginaActual--;
         mostrarReportes(paginaActual);
@@ -177,11 +179,10 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportes(paginaActual);
     });
 
+    // ✅ Evento para filtrar reportes
     filterInput.addEventListener("input", filtrarReportes);
     filterButton.addEventListener("click", filtrarReportes);
 
+    // ✅ Mostrar reportes al cargar
     mostrarReportes(paginaActual);
 });
-
-
-

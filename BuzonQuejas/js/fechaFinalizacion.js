@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let btnGuardar = document.getElementById("guardar-fecha");
     let btnCerrar = document.getElementById("cerrar-fecha");
     let lastClickedButton = null;
+    let folioSeleccionado = null;
 
     // ▪ Función para actualizar el tema según el mes
     function updateTheme(monthIndex) {
@@ -56,13 +57,13 @@ document.addEventListener("DOMContentLoaded", function () {
         locale: "es",                // Idioma en español
         disableMobile: true,         // Forzar versión escritorio en móviles
         monthSelectorType: "static", // Selector de mes fijo
-        onReady: function(selectedDates, dateStr, instance) {
+        onReady: function (selectedDates, dateStr, instance) {
             updateTheme(instance.currentMonth);
         },
-        onMonthChange: function(selectedDates, dateStr, instance) {
+        onMonthChange: function (selectedDates, dateStr, instance) {
             updateTheme(instance.currentMonth);
         },
-        onYearChange: function(selectedDates, dateStr, instance) {
+        onYearChange: function (selectedDates, dateStr, instance) {
             updateTheme(instance.currentMonth);
         },
         onChange: function (selectedDates, dateStr) {
@@ -74,11 +75,12 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("click", function (event) {
         if (event.target.classList.contains("seleccionar-fecha")) {
             lastClickedButton = event.target;
+            folioSeleccionado = lastClickedButton.getAttribute("data-folio"); // Capturar el folio del reporte
             modalFecha.style.display = "flex"; // Mostrar el modal
         }
     });
 
-    // 🔹 Evento para guardar la fecha seleccionada
+    // 🔹 Evento para guardar la fecha seleccionada y mover el reporte
     btnGuardar.addEventListener("click", function () {
         if (lastClickedButton) {
             let fecha = fechaSeleccionada.value;
@@ -86,11 +88,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 lastClickedButton.parentElement.innerHTML = `
                     <span class="fecha-final">${fecha}</span>
                 `;
+
+                // 🔄 Aquí es donde se transfiere el reporte a la segunda tabla
+                let reporte = window.getReportePorFolio(folioSeleccionado);
+                if (reporte) {
+                    reporte.fechaFinalizacion = fecha;
+                    reporte.estatus = "Completado";
+
+                    // ✅ Mover a la tabla de reportes completados
+                    window.moverReporteACompletados(reporte);
+
+                    // ❌ Eliminar el reporte de la tabla de pendientes
+                    window.eliminarReportePorFolio(folioSeleccionado);
+                }
+
+                modalFecha.style.display = "none"; // Cerrar el modal
             } else {
                 alert("Por favor selecciona una fecha antes de finalizar el reporte.");
-                return;
+
             }
-            modalFecha.style.display = "none"; // Cierra el modal
         }
     });
 
