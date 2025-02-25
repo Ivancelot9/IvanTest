@@ -65,6 +65,13 @@ button.convertidor {
     width: 100%;  /* 🔹 Ocupar todo el ancho de la celda */
 }
 
+/* 🔹 Corrección para que el botón no se salga de la celda */
+td {
+    text-align: center;  /* 🔹 Centra el contenido de la celda */
+    vertical-align: middle;  /* 🔹 Asegura que el botón quede alineado */
+    padding: 5px;  /* 🔹 Un poco de espacio */
+}
+
 /* 🎨 Estilo específico para el botón "Convertir" */
 button.convertidor {
     background: #28a745; /* ✅ Verde estilo Excel */
