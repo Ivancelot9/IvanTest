@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
 
-    // 📌 Función para exportar reporte a Excel con formato mejorado
+    // 📌 Función para exportar reporte a Excel con encabezados en negrita y fondo azul
     function exportarExcel(reporte) {
         if (!reporte) {
             Swal.fire("Error", "No se encontró el reporte en la tabla completados.", "error");
@@ -136,15 +136,17 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
 
         // 📌 Aplicar estilos a los encabezados (negrita y fondo azul)
-        const range = XLSX.utils.decode_range(ws["!ref"]);
+        let headerStyle = {
+            font: { bold: true, color: { rgb: "FFFFFF" } },
+            fill: { fgColor: { rgb: "4F81BD" } },
+            alignment: { horizontal: "center", vertical: "center" }
+        };
+
+        let range = XLSX.utils.decode_range(ws["!ref"]);
         for (let C = range.s.c; C <= range.e.c; ++C) {
             let cellAddress = XLSX.utils.encode_cell({ r: 0, c: C });
             if (!ws[cellAddress]) continue;
-            ws[cellAddress].s = {
-                font: { bold: true, color: { rgb: "FFFFFF" } },
-                fill: { fgColor: { rgb: "4F81BD" } },
-                alignment: { horizontal: "center", vertical: "center" }
-            };
+            ws[cellAddress].s = headerStyle;
         }
 
         wb.Sheets["Reporte"] = ws;
