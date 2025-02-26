@@ -27,6 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 🔄 Cargar comentarios desde `localStorage`
     let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {};
+    console.log("comentariosPorReporte al cargar:", comentariosPorReporte);
+
 
     // 🔹 Función para animar el modal
     function animarModal(abrir) {
