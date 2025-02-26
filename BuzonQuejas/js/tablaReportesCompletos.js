@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const filterButtonCompleto = document.getElementById("filter-button-completo");
 
     let datosReportesCompletos = JSON.parse(localStorage.getItem("reportesCompletos")) || [];
+    let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {}; // ✅ Cargar comentarios guardados
     let paginaActualCompleto = 1;
     const filasPorPagina = 10;
     let datosFiltradosCompletos = [...datosReportesCompletos];
@@ -15,14 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // 🔄 Guardar reportes en localStorage
     function guardarReportesCompletos() {
         localStorage.setItem("reportesCompletos", JSON.stringify(datosReportesCompletos));
+        localStorage.setItem("comentariosPorReporte", JSON.stringify(comentariosPorReporte)); // ✅ Guardar comentarios también
     }
-
-    // 🔄 Función global para mover el reporte a la tabla de completados
-    window.moverReporteACompletados = function (reporte) {
-        datosReportesCompletos.push(reporte);
-        guardarReportesCompletos();
-        filtrarReportesCompletos();
-    };
 
     // 🔎 Función para resaltar texto filtrado
     function resaltarTexto(texto, filtro) {
@@ -65,6 +60,59 @@ document.addEventListener("DOMContentLoaded", function () {
         nextPageBtnCompleto.disabled = fin >= reportes.length;
     }
 
+    // 📌 Función para exportar reporte a Excel incluyendo comentarios
+    function exportarExcel(reporte) {
+        if (!reporte) {
+            Swal.fire("Error", "No se encontró el reporte en la tabla completados.", "error");
+            return;
+        }
+
+        // 🔹 Obtener los comentarios del reporte actual
+        let comentarios = comentariosPorReporte[reporte.folio] ? comentariosPorReporte[reporte.folio].join(" | ") : "";
+
+        let wb = XLSX.utils.book_new();
+        wb.Props = {
+            Title: "Reportes Completados",
+            Subject: "Reporte Exportado",
+            Author: "Sistema",
+            CreatedDate: new Date()
+        };
+
+        wb.SheetNames.push("Reporte");
+        let ws_data = [
+            ["Folio", "Número de Nómina", "Encargado", "Fecha Registro", "Fecha Finalización", "Descripción", "Estatus", "Comentarios"],
+            [
+                reporte.folio,
+                reporte.nomina,
+                reporte.encargado,
+                reporte.fechaRegistro,
+                reporte.fechaFinalizacion,
+                reporte.descripcion,
+                "Completado",
+                comentarios  // ✅ Se agrega la columna de comentarios al Excel
+            ]
+        ];
+
+        let ws = XLSX.utils.aoa_to_sheet(ws_data);
+
+        // 📌 Ajustar ancho de columnas automáticamente
+        ws["!cols"] = [
+            { wch: 12 },  // Folio
+            { wch: 18 },  // Número de Nómina
+            { wch: 22 },  // Encargado
+            { wch: 15 },  // Fecha Registro
+            { wch: 15 },  // Fecha Finalización
+            { wch: 50 },  // Descripción
+            { wch: 15 },  // Estatus
+            { wch: 50 }   // Comentarios (✅ Ahora los comentarios tienen su propia columna)
+        ];
+
+        wb.Sheets["Reporte"] = ws;
+
+        // 📌 Descargar el archivo Excel
+        XLSX.writeFile(wb, `Reporte_${reporte.folio}.xlsx`);
+    }
+
     // 📌 Función para filtrar reportes completados
     function filtrarReportesCompletos() {
         const valorFiltro = filterInputCompleto.value.toLowerCase();
@@ -92,54 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // 📌 Evento de filtrado
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
-
-    // 📌 Función para exportar reporte a Excel con ancho de celdas ajustado
-    function exportarExcel(reporte) {
-        if (!reporte) {
-            Swal.fire("Error", "No se encontró el reporte en la tabla completados.", "error");
-            return;
-        }
-
-        let wb = XLSX.utils.book_new();
-        wb.Props = {
-            Title: "Reportes Completados",
-            Subject: "Reporte Exportado",
-            Author: "Sistema",
-            CreatedDate: new Date()
-        };
-
-        wb.SheetNames.push("Reporte");
-        let ws_data = [
-            ["Folio", "Número de Nómina", "Encargado", "Fecha Registro", "Fecha Finalización", "Descripción", "Estatus"],
-            [
-                reporte.folio,
-                reporte.nomina,
-                reporte.encargado,
-                reporte.fechaRegistro,
-                reporte.fechaFinalizacion,
-                reporte.descripcion,
-                "Completado"
-            ]
-        ];
-
-        let ws = XLSX.utils.aoa_to_sheet(ws_data);
-
-        // 📌 Ajustar ancho de columnas automáticamente
-        ws["!cols"] = [
-            { wch: 12 },  // Folio
-            { wch: 18 },  // Número de Nómina
-            { wch: 22 },  // Encargado
-            { wch: 15 },  // Fecha Registro
-            { wch: 15 },  // Fecha Finalización
-            { wch: 50 },  // Descripción
-            { wch: 15 }   // Estatus
-        ];
-
-        wb.Sheets["Reporte"] = ws;
-
-        // 📌 Descargar el archivo Excel
-        XLSX.writeFile(wb, `Reporte_${reporte.folio}.xlsx`);
-    }
 
     // 📌 Cargar reportes al inicio
     mostrarReportesCompletos(paginaActualCompleto);
