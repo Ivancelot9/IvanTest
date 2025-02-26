@@ -7,32 +7,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const filterInputCompleto = document.getElementById("filter-input-completo");
     const filterButtonCompleto = document.getElementById("filter-button-completo");
 
-    // 🔄 Cargar reportes completados desde localStorage
-    let datosReportesCompletos = JSON.parse(localStorage.getItem("reportesCompletados")) || [];
+    let datosReportesCompletos = JSON.parse(localStorage.getItem("reportesCompletos")) || [];
     let paginaActualCompleto = 1;
     const filasPorPagina = 10;
     let datosFiltradosCompletos = [...datosReportesCompletos];
 
-    // ✅ Guardar cambios en localStorage
-    function guardarReportesCompletados() {
-        localStorage.setItem("reportesCompletados", JSON.stringify(datosReportesCompletos));
-    }
-
-    // 🔄 Función global para mover el reporte a la tabla de completados y guardarlo en localStorage
+    // 🔄 Función global para mover el reporte a la tabla de completados
     window.moverReporteACompletados = function (reporte) {
-        datosReportesCompletos.push(reporte); // Agregar el reporte al array
-        guardarReportesCompletados(); // Guardar en localStorage
-        filtrarReportesCompletos(); // Actualizar la tabla con los datos nuevos
+        datosReportesCompletos.push(reporte);
+        localStorage.setItem("reportesCompletos", JSON.stringify(datosReportesCompletos));
+        filtrarReportesCompletos();
     };
 
-    // 🔎 Función para resaltar el texto filtrado
+    // 🔎 Función para resaltar texto filtrado
     function resaltarTexto(texto, filtro) {
         if (!filtro || filtro.trim() === "") return texto;
         const regex = new RegExp(`(${filtro})`, "gi");
         return texto.replace(regex, `<span class="highlight">$1</span>`);
     }
 
-    // 📌 Función para mostrar reportes en la tabla de completadoss
+    // 📌 Función para mostrar reportes en la tabla de completados
     function mostrarReportesCompletos(pagina, reportes = datosFiltradosCompletos) {
         tablaCompletosBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
@@ -49,13 +43,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${columnaSeleccionada === "encargado" ? resaltarTexto(reporte.encargado, valorFiltro) : reporte.encargado}</td>
                 <td>${columnaSeleccionada === "fechaFinalizacion" ? resaltarTexto(reporte.fechaFinalizacion, valorFiltro) : reporte.fechaFinalizacion}</td>
                 <td>${columnaSeleccionada === "estatus" ? resaltarTexto(reporte.estatus, valorFiltro) : reporte.estatus}</td>
-               <td class="convertidor-cell"><button class="convertidor"><i class="fas fa-file-excel"></i> Convertir a Excel</button></td>
+                <td><button class="convertidor"><i class="fas fa-file-excel"></i> Convertir a Excel</button></td>
             `;
 
-            // 🔹 Agregar evento al botón "Convertir"
             let btnConvertir = fila.querySelector(".convertidor");
             btnConvertir.addEventListener("click", function () {
-                alert(`Convertir reporte ${reporte.folio} - (Funcionalidad pendiente de implementar)`);
+                exportarExcel(reporte.folio);
             });
 
             tablaCompletosBody.appendChild(fila);
@@ -95,6 +88,50 @@ document.addEventListener("DOMContentLoaded", function () {
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
 
-    // 📌 Mostrar reportes completados al cargar la página
+    // 📌 Función para exportar reporte a Excel
+    function exportarExcel(folio) {
+        let reporte = datosReportesCompletos.find(r => r.folio === folio);
+        if (!reporte) return;
+
+        let reporteOriginal = JSON.parse(localStorage.getItem("reportesPendientes")).find(r => r.folio === folio);
+        if (!reporteOriginal) return;
+
+        let wb = XLSX.utils.book_new();
+        wb.Props = {
+            Title: "Reportes Completados",
+            Subject: "Reporte Exportado",
+            Author: "Sistema",
+            CreatedDate: new Date()
+        };
+
+        wb.SheetNames.push("Reporte");
+        let ws_data = [
+            ["Folio", "Número de Nómina", "Encargado", "Fecha Registro", "Fecha Finalización", "Descripción", "Estatus"],
+            [
+                reporteOriginal.folio,
+                reporteOriginal.nomina,
+                reporteOriginal.encargado,
+                reporteOriginal.fechaRegistro,
+                reporte.fechaFinalizacion,
+                reporteOriginal.descripcion,
+                reporte.estatus
+            ]
+        ];
+
+        let ws = XLSX.utils.aoa_to_sheet(ws_data);
+        wb.Sheets["Reporte"] = ws;
+        let wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+
+        function s2ab(s) {
+            let buf = new ArrayBuffer(s.length);
+            let view = new Uint8Array(buf);
+            for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+            return buf;
+        }
+
+        saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), `Reporte_${folio}.xlsx`);
+    }
+
+    // 📌 Cargar reportes al inicio
     mostrarReportesCompletos(paginaActualCompleto);
 });
