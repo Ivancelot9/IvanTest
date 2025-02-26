@@ -22,9 +22,11 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(comentariosModal);
 
     let modalContent = comentariosModal.querySelector(".modal-content");
-    let lastClickedButton = null; // 🔹 Guarda el botón que activó el modal
-    let currentFolio = null; // 🔹 Guarda el folio del reporte actual
-    let comentariosPorReporte = {}; // 🔥 Objeto para guardar comentarios por folio
+    let lastClickedButton = null;
+    let currentFolio = null;
+
+    // 🔄 Cargar comentarios desde `localStorage`
+    let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {};
 
     // 🔹 Función para animar el modal
     function animarModal(abrir) {
@@ -82,6 +84,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 comentariosPorReporte[currentFolio] = [];
             }
             comentariosPorReporte[currentFolio].push(textoComentario);
+
+            // 🔄 Guardar en `localStorage`
+            localStorage.setItem("comentariosPorReporte", JSON.stringify(comentariosPorReporte));
+
             inputComentario.value = "";
             cargarComentarios(currentFolio);
         }

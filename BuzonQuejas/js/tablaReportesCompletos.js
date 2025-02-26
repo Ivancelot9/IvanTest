@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // 🔹 Obtener los comentarios del reporte actual
-        let comentarios = comentariosPorReporte[reporte.folio] ? comentariosPorReporte[reporte.folio].join(" | ") : "";
+        let comentarios = comentariosPorReporte[reporte.folio] ? comentariosPorReporte[reporte.folio].join(" | ") : "Sin comentarios";
 
         let wb = XLSX.utils.book_new();
         wb.Props = {
