@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
 
-    // 📌 Función para exportar reporte a Excel
+    // 📌 Función para exportar reporte a Excel con formato mejorado
     function exportarExcel(reporte) {
         if (!reporte) {
             Swal.fire("Error", "No se encontró el reporte en la tabla completados.", "error");
@@ -123,6 +123,30 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
 
         let ws = XLSX.utils.aoa_to_sheet(ws_data);
+
+        // 📌 Ajustar ancho de columnas automáticamente
+        ws["!cols"] = [
+            { wch: 10 },  // Folio
+            { wch: 15 },  // Número de Nómina
+            { wch: 20 },  // Encargado
+            { wch: 15 },  // Fecha Registro
+            { wch: 15 },  // Fecha Finalización
+            { wch: 40 },  // Descripción
+            { wch: 12 }   // Estatus
+        ];
+
+        // 📌 Aplicar estilos a los encabezados (negrita y fondo azul)
+        const range = XLSX.utils.decode_range(ws["!ref"]);
+        for (let C = range.s.c; C <= range.e.c; ++C) {
+            let cellAddress = XLSX.utils.encode_cell({ r: 0, c: C });
+            if (!ws[cellAddress]) continue;
+            ws[cellAddress].s = {
+                font: { bold: true, color: { rgb: "FFFFFF" } },
+                fill: { fgColor: { rgb: "4F81BD" } },
+                alignment: { horizontal: "center", vertical: "center" }
+            };
+        }
+
         wb.Sheets["Reporte"] = ws;
 
         // 📌 Descargar el archivo Excel
