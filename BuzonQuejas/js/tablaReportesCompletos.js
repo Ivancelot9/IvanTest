@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return texto.replace(regex, `<span class="highlight">$1</span>`);
     }
 
-    // 📌 Función para mostrar reportes en la tabla de completados
+    // 📌 Función para mostrar reportes en la tabla de completadoss
     function mostrarReportesCompletos(pagina, reportes = datosFiltradosCompletos) {
         tablaCompletosBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
