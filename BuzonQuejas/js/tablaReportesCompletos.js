@@ -19,6 +19,13 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("comentariosPorReporte", JSON.stringify(comentariosPorReporte)); // ✅ Guardar comentarios también
     }
 
+    // 🔄 Función global para mover el reporte a la tabla de completados
+    window.moverReporteACompletados = function (reporte) {
+        datosReportesCompletos.push(reporte);
+        guardarReportesCompletos();
+        filtrarReportesCompletos();
+    };
+
     // 🔎 Función para resaltar texto filtrado
     function resaltarTexto(texto, filtro) {
         if (!filtro || filtro.trim() === "") return texto;
