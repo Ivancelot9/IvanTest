@@ -104,12 +104,8 @@ document.addEventListener("DOMContentLoaded", function () {
         reporte.fechaFinalizacion = fechaFinalizacion;
         reporte.estatus = "Completado";
 
-        // ✅ **Asegurar que los comentarios se agregan al reporte**
-        if (comentariosPorReporte[folio]) {
-            reporte.comentarios = [...comentariosPorReporte[folio]]; // Copia los comentarios al objeto reporte
-        } else {
-            reporte.comentarios = []; // Si no hay comentarios, que al menos exista la propiedad
-        }
+        // ✅ **Asegurar que los comentarios se agregan antes de guardar**
+        reporte.comentarios = comentariosPorReporte[folio] ? [...comentariosPorReporte[folio]] : [];
 
         // ✅ Guardar en reportes completados
         datosReportesCompletos.push(reporte);
