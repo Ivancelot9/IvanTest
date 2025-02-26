@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
 
-    // 📌 Función para exportar reporte a Excel con encabezados en negrita y fondo azul
+    // 📌 Función para exportar reporte a Excel con ancho de celdas ajustado
     function exportarExcel(reporte) {
         if (!reporte) {
             Swal.fire("Error", "No se encontró el reporte en la tabla completados.", "error");
@@ -126,28 +126,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 📌 Ajustar ancho de columnas automáticamente
         ws["!cols"] = [
-            { wch: 10 },  // Folio
-            { wch: 15 },  // Número de Nómina
-            { wch: 20 },  // Encargado
+            { wch: 12 },  // Folio
+            { wch: 18 },  // Número de Nómina
+            { wch: 22 },  // Encargado
             { wch: 15 },  // Fecha Registro
             { wch: 15 },  // Fecha Finalización
-            { wch: 40 },  // Descripción
-            { wch: 12 }   // Estatus
+            { wch: 50 },  // Descripción
+            { wch: 15 }   // Estatus
         ];
-
-        // 📌 Aplicar estilos a los encabezados (negrita y fondo azul)
-        let headerStyle = {
-            font: { bold: true, color: { rgb: "FFFFFF" } },
-            fill: { fgColor: { rgb: "4F81BD" } },
-            alignment: { horizontal: "center", vertical: "center" }
-        };
-
-        let range = XLSX.utils.decode_range(ws["!ref"]);
-        for (let C = range.s.c; C <= range.e.c; ++C) {
-            let cellAddress = XLSX.utils.encode_cell({ r: 0, c: C });
-            if (!ws[cellAddress]) continue;
-            ws[cellAddress].s = headerStyle;
-        }
 
         wb.Sheets["Reporte"] = ws;
 
