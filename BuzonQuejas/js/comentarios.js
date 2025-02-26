@@ -56,20 +56,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // 🔹 Función para abrir el modal desde cualquier botón "Agregar Comentario"
-    function abrirModal() {
-        lastClickedButton = this;
-        currentFolio = this.getAttribute("data-folio");
+    function abrirModal(event) {
+        lastClickedButton = event.target;
+        currentFolio = lastClickedButton.getAttribute("data-folio");
         animarModal(true);
         cargarComentarios(currentFolio);
     }
 
-    // 🔹 Función para inicializar eventos en los botones
-    function inicializarEventosBotones() {
-        document.querySelectorAll(".agregar-comentario").forEach((boton) => {
-            boton.removeEventListener("click", abrirModal);
-            boton.addEventListener("click", abrirModal);
-        });
-    }
+    // ✅ **Delegación de eventos**: Asignamos el evento a un contenedor en vez de cada botón individualmente.
+    document.body.addEventListener("click", function (event) {
+        if (event.target.classList.contains("agregar-comentario")) {
+            abrirModal(event);
+        }
+    });
 
     // 🔹 Botón para guardar comentarios
     let btnGuardar = comentariosModal.querySelector(".btn-guardar");
@@ -88,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 🔹 Función para cargar comentarios del folio actuals
+    // 🔹 Función para cargar comentarios del folio actual
     function cargarComentarios(folio) {
         listaComentarios.innerHTML = "";
         if (comentariosPorReporte[folio]) {
@@ -100,7 +99,4 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
     }
-
-    // ✅ Asigna los eventos correctamente después de que se carguen los datos
-    setTimeout(inicializarEventosBotones, 500);
 });

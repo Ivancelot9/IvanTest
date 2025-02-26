@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Pruebas Excel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,15 +131,7 @@
       <workItem from="1740147315355" duration="12238000" />
       <workItem from="1740406764398" duration="17174000" />
       <workItem from="1740493297672" duration="12270000" />
-      <workItem from="1740579783776" duration="7917000" />
-    </task>
-    <task id="LOCAL-00463" summary="Tabla Reportes Calendario Colores 2.0">
-      <option name="closed" value="true" />
-      <created>1740417391988</created>
-      <option name="number" value="00463" />
-      <option name="presentableId" value="LOCAL-00463" />
-      <option name="project" value="LOCAL" />
-      <updated>1740417391988</updated>
+      <workItem from="1740579783776" duration="10568000" />
     </task>
     <task id="LOCAL-00464" summary="Tabla Reportes Calendario Colores 2.0">
       <option name="closed" value="true" />
@@ -526,7 +517,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740588073829</updated>
     </task>
-    <option name="localTasksCounter" value="512" />
+    <task id="LOCAL-00512" summary="Pruebas Excel">
+      <option name="closed" value="true" />
+      <created>1740588854687</created>
+      <option name="number" value="00512" />
+      <option name="presentableId" value="LOCAL-00512" />
+      <option name="project" value="LOCAL" />
+      <updated>1740588854687</updated>
+    </task>
+    <option name="localTasksCounter" value="513" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
