@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
         { folio: "015", nomina: "789321", encargado: "David Sánchez", fechaRegistro: "24/02/2025", fechaFinalizacion: "-", descripcion: "Correcciones en el dashboard de control", estatus: "Pendiente" }
     ];
 
+    console.log("Reportes cargados desde localStorage:", datosReportes);
+
     const filasPorPagina = 10;
     let paginaActual = 1;
     let datosFiltrados = [...datosReportes];
@@ -34,34 +36,32 @@ document.addEventListener("DOMContentLoaded", function () {
     // ✅ Guardar cambios en localStorage
     function guardarReportesPendientes() {
         localStorage.setItem("reportesPendientes", JSON.stringify(datosReportes));
-    }
-
-    // ✅ Función para resaltar el texto filtrado
-    function resaltarTexto(texto, filtro) {
-        if (!filtro || filtro.trim() === "") return texto;
-        const regex = new RegExp(`(${filtro})`, "gi");
-        return texto.replace(regex, `<span class="highlight">$1</span>`);
+        console.log("Reportes guardados en localStorage:", datosReportes);
     }
 
     // ✅ Mostrar reportes en la tabla de pendientes
     function mostrarReportes(pagina, reportes = datosFiltrados) {
+        console.log("Mostrando reportes en la tabla:", reportes);
+
         tablaBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
         const fin = inicio + filasPorPagina;
         const reportesPagina = reportes.slice(inicio, fin);
-        const valorFiltro = filterInput.value.toLowerCase();
-        const columnaSeleccionada = filterColumn.value;
+
+        if (reportesPagina.length === 0) {
+            console.warn("⚠️ No hay reportes para mostrar en esta página.");
+        }
 
         reportesPagina.forEach(reporte => {
             let fila = document.createElement("tr");
             fila.innerHTML = `
-                <td>${columnaSeleccionada === "folio" ? resaltarTexto(reporte.folio, valorFiltro) : reporte.folio}</td>
-                <td>${columnaSeleccionada === "fechaRegistro" ? resaltarTexto(reporte.fechaRegistro, valorFiltro) : reporte.fechaRegistro}</td>
-                <td>${columnaSeleccionada === "nomina" ? resaltarTexto(reporte.nomina, valorFiltro) : reporte.nomina}</td>
-                <td>${columnaSeleccionada === "encargado" ? resaltarTexto(reporte.encargado, valorFiltro) : reporte.encargado}</td>
+                <td>${reporte.folio}</td>
+                <td>${reporte.fechaRegistro}</td>
+                <td>${reporte.nomina}</td>
+                <td>${reporte.encargado}</td>
                 <td><button class="mostrar-descripcion" data-descripcion="${reporte.descripcion}">Mostrar Descripción</button></td>
-                <td><button class="agregar-comentario" data-folio="${reporte.folio}">Agregar Comentario</button></td> <!-- ✅ BOTÓN RESTAURADO -->
-                <td class="estatus-cell"><strong>${columnaSeleccionada === "estatus" ? resaltarTexto(reporte.estatus, valorFiltro) : reporte.estatus}</strong></td>
+                <td><button class="agregar-comentario" data-folio="${reporte.folio}">Agregar Comentario</button></td>
+                <td class="estatus-cell"><strong>${reporte.estatus}</strong></td>
                 <td><button class="seleccionar-fecha" data-folio="${reporte.folio}">Finalizar Reporte</button></td>
             `;
             tablaBody.appendChild(fila);
@@ -70,9 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
         pageIndicator.textContent = `Página ${pagina}`;
         prevPageBtn.disabled = pagina === 1;
         nextPageBtn.disabled = fin >= reportes.length;
-
-        guardarReportesPendientes(); // Guardar en localStorage después de renderizar
-        initEstatusEditor();
     }
 
     // ✅ Filtrado de reportes
@@ -80,33 +77,39 @@ document.addEventListener("DOMContentLoaded", function () {
         const valorFiltro = filterInput.value.toLowerCase();
         const columna = filterColumn.value;
 
+        if (!columna || columna.trim() === "") {
+            console.error("⚠️ No se ha seleccionado una columna para filtrar.");
+            return;
+        }
+
         datosFiltrados = datosReportes.filter(reporte => {
-            return reporte[columna].toLowerCase().includes(valorFiltro);
+            return reporte[columna] && reporte[columna].toLowerCase().includes(valorFiltro);
         });
 
+        console.log("Reportes filtrados:", datosFiltrados);
         paginaActual = 1;
         mostrarReportes(paginaActual);
     }
-
-    // ✅ Exponer función globalmente para obtener un reporte por folio
-    window.getReportePorFolio = function (folio) {
-        return datosReportes.find(r => r.folio === folio);
-    };
 
     // ✅ Eliminar el reporte y actualizar la tabla y localStorage
     window.eliminarReportePorFolio = function (folio) {
         const index = datosReportes.findIndex(r => r.folio === folio);
         if (index !== -1) {
             datosReportes.splice(index, 1);
-            guardarReportesPendientes(); // Guardar cambios en localStorage
+            guardarReportesPendientes();
             filtrarReportes();
+        } else {
+            console.warn(`⚠️ No se encontró el reporte con folio ${folio}.`);
         }
     };
 
-    // ✅ Función global para mover el reporte a la tabla de completados
+    // ✅ Mover reporte a tabla de completados
     window.moverReporteACompletados = function (folio, fechaFinalizacion) {
         let reporteIndex = datosReportes.findIndex(r => r.folio === folio);
-        if (reporteIndex === -1) return;
+        if (reporteIndex === -1) {
+            console.error(`⚠️ No se encontró el reporte con folio ${folio} en la tabla de pendientes.`);
+            return;
+        }
 
         let reporte = datosReportes[reporteIndex];
         reporte.fechaFinalizacion = fechaFinalizacion;

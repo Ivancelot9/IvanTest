@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Convertidor Reporte a Excel">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Pruebas Excel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
     </list>
@@ -132,15 +132,7 @@
       <workItem from="1740147315355" duration="12238000" />
       <workItem from="1740406764398" duration="17174000" />
       <workItem from="1740493297672" duration="12270000" />
-      <workItem from="1740579783776" duration="6714000" />
-    </task>
-    <task id="LOCAL-00461" summary="Tabla Reportes Calendario Colores 2.0">
-      <option name="closed" value="true" />
-      <created>1740416249102</created>
-      <option name="number" value="00461" />
-      <option name="presentableId" value="LOCAL-00461" />
-      <option name="project" value="LOCAL" />
-      <updated>1740416249102</updated>
+      <workItem from="1740579783776" duration="7141000" />
     </task>
     <task id="LOCAL-00462" summary="Tabla Reportes Calendario Colores 2.0">
       <option name="closed" value="true" />
@@ -526,7 +518,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740587250629</updated>
     </task>
-    <option name="localTasksCounter" value="510" />
+    <task id="LOCAL-00510" summary="Pruebas Excel">
+      <option name="closed" value="true" />
+      <created>1740587652113</created>
+      <option name="number" value="00510" />
+      <option name="presentableId" value="LOCAL-00510" />
+      <option name="project" value="LOCAL" />
+      <updated>1740587652113</updated>
+    </task>
+    <option name="localTasksCounter" value="511" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -578,7 +578,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modal Comentarios" />
     <MESSAGE value="Arreglando SideBar" />
     <MESSAGE value="Arreglando SideBar 1.0" />
     <MESSAGE value="Arreglando SideBar 1.1" />
@@ -603,6 +602,7 @@
     <MESSAGE value="Correcion Estatus" />
     <MESSAGE value="Boton Excel" />
     <MESSAGE value="Convertidor Reporte a Excel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Convertidor Reporte a Excel" />
+    <MESSAGE value="Pruebas Excel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pruebas Excel" />
   </component>
 </project>
