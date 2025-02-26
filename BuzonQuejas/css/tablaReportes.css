@@ -48,7 +48,8 @@ table td {
 button.mostrar-descripcion,
 button.agregar-comentario,
 button.seleccionar-fecha,
-button.estatus-btn {
+button.estatus-btn,
+button.convertidor {
     background: white;
     color: black;
     border: 2px solid black;
