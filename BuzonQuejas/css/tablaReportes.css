@@ -48,8 +48,7 @@ table td {
 button.mostrar-descripcion,
 button.agregar-comentario,
 button.seleccionar-fecha,
-button.estatus-btn,
-button.convertidor {
+button.estatus-btn {
     background: white;
     color: black;
     border: 2px solid black;
@@ -73,11 +72,11 @@ td {
 }
 
 /* 🎯 Asegurar que el botón esté bien alineado dentro de la celda */
-td .convertidor {
+td.convertidor-cell {
     display: flex;  /* 🔹 Permite centrar el botón dentro del td */
     justify-content: center;  /* 🔹 Lo coloca en el centro horizontalmente */
     align-items: center;  /* 🔹 Lo centra verticalmente */
-    width: 100%;  /* 🔹 Asegurar que el botón no se desborde */
+    padding:0;  /* 🔹 Asegurar que el botón no se desborde */
 }
 
 /* 🎨 Estilo específico para el botón "Convertir a Excel" */
@@ -86,18 +85,18 @@ button.convertidor {
     border: 2px solid black !important; /* ✅ Borde negro */
     color: black !important; /* ✅ Letras negras */
     box-shadow: 3px 3px 0 black !important; /* ✅ Sombra negra */
-    width: auto !important; /* 🔹 Dejar que el botón se ajuste a su contenido */
-    padding: 8px 15px !important; /* 🔹 Ajuste de padding para mejor apariencia */
-    display: inline-flex !important; /* 🔹 Asegurar que el icono y texto estén alineados */
-    justify-content: center !important; /* 🔹 Centrar contenido del botón */
-    align-items: center !important; /* 🔹 Asegurar alineación vertical */
-    min-width: 140px !important; /* 🔹 Evitar que el botón sea muy pequeño */
+    width: auto !important; /* 🔹 No ocupará todo el ancho */
+    padding: 8px 15px !important; /* 🔹 Ajuste de padding */
+    display: flex !important; /* 🔹 Asegurar alineación correcta */
+    justify-content: center !important;
+    align-items: center !important;
+    min-width: 140px !important;
 }
 
 /* 🔹 Corrección para el icono de Excel dentro del botón */
 button.convertidor i {
-    margin-right: 5px !important; /* Espacio entre el icono y el texto */
-    font-size: 1.2rem !important; /* Tamaño del icono */
+    margin-right: 5px !important;
+    font-size: 1.2rem !important;
 }
 
 /* 🔥 Efecto hover en botones */
