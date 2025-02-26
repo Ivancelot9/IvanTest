@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let btnConvertir = fila.querySelector(".convertidor");
             btnConvertir.addEventListener("click", function () {
-                exportarExcel(reporte.folio);
+                exportarExcel(reporte.folio, reporte.fechaFinalizacion);
             });
 
             tablaCompletosBody.appendChild(fila);
@@ -89,12 +89,13 @@ document.addEventListener("DOMContentLoaded", function () {
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
 
     // 📌 Función para exportar reporte a Excel
-    function exportarExcel(folio) {
-        let reporte = datosReportesCompletos.find(r => r.folio === folio);
-        if (!reporte) return;
-
-        let reporteOriginal = JSON.parse(localStorage.getItem("reportesPendientes")).find(r => r.folio === folio);
-        if (!reporteOriginal) return;
+    function exportarExcel(folio, fechaFinalizacion) {
+        let reportesPendientes = JSON.parse(localStorage.getItem("reportesPendientes")) || [];
+        let reporteOriginal = reportesPendientes.find(r => r.folio === folio);
+        if (!reporteOriginal) {
+            Swal.fire("Error", "No se encontró el reporte original en la tabla 1.", "error");
+            return;
+        }
 
         let wb = XLSX.utils.book_new();
         wb.Props = {
@@ -112,24 +113,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 reporteOriginal.nomina,
                 reporteOriginal.encargado,
                 reporteOriginal.fechaRegistro,
-                reporte.fechaFinalizacion,
+                fechaFinalizacion,
                 reporteOriginal.descripcion,
-                reporte.estatus
+                "Completado"
             ]
         ];
 
         let ws = XLSX.utils.aoa_to_sheet(ws_data);
         wb.Sheets["Reporte"] = ws;
-        let wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
 
-        function s2ab(s) {
-            let buf = new ArrayBuffer(s.length);
-            let view = new Uint8Array(buf);
-            for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
-            return buf;
-        }
-
-        saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), `Reporte_${folio}.xlsx`);
+        // 📌 Descargar el archivo Excel
+        XLSX.writeFile(wb, `Reporte_${folio}.xlsx`);
     }
 
     // 📌 Cargar reportes al inicio
