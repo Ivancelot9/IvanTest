@@ -91,6 +91,24 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
+    // ✅ Función global para mover el reporte a la tabla de completados
+    window.moverReporteACompletados = function (folio, fechaFinalizacion) {
+        let reporteIndex = datosReportes.findIndex(r => r.folio === folio);
+        if (reporteIndex === -1) return;
+
+        let reporte = datosReportes[reporteIndex];
+        reporte.fechaFinalizacion = fechaFinalizacion;
+        reporte.estatus = "Completado";
+
+        let datosReportesCompletos = JSON.parse(localStorage.getItem("reportesCompletos")) || [];
+        datosReportesCompletos.push(reporte);
+        localStorage.setItem("reportesCompletos", JSON.stringify(datosReportesCompletos));
+
+        datosReportes.splice(reporteIndex, 1);
+        guardarReportesPendientes();
+        filtrarReportes();
+    };
+
     // ✅ Eventos de navegación de página
     prevPageBtn.addEventListener("click", () => {
         paginaActual--;

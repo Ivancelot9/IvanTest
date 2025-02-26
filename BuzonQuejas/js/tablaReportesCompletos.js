@@ -12,10 +12,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const filasPorPagina = 10;
     let datosFiltradosCompletos = [...datosReportesCompletos];
 
+    // 🔄 Guardar reportes en localStorage
+    function guardarReportesCompletos() {
+        localStorage.setItem("reportesCompletos", JSON.stringify(datosReportesCompletos));
+    }
+
     // 🔄 Función global para mover el reporte a la tabla de completados
     window.moverReporteACompletados = function (reporte) {
         datosReportesCompletos.push(reporte);
-        localStorage.setItem("reportesCompletos", JSON.stringify(datosReportesCompletos));
+        guardarReportesCompletos();
         filtrarReportesCompletos();
     };
 
@@ -48,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let btnConvertir = fila.querySelector(".convertidor");
             btnConvertir.addEventListener("click", function () {
-                exportarExcel(reporte.folio, reporte.fechaFinalizacion);
+                exportarExcel(reporte);
             });
 
             tablaCompletosBody.appendChild(fila);
@@ -89,11 +94,9 @@ document.addEventListener("DOMContentLoaded", function () {
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
 
     // 📌 Función para exportar reporte a Excel
-    function exportarExcel(folio, fechaFinalizacion) {
-        let reportesPendientes = JSON.parse(localStorage.getItem("reportesPendientes")) || [];
-        let reporteOriginal = reportesPendientes.find(r => r.folio === folio);
-        if (!reporteOriginal) {
-            Swal.fire("Error", "No se encontró el reporte original en la tabla 1.", "error");
+    function exportarExcel(reporte) {
+        if (!reporte) {
+            Swal.fire("Error", "No se encontró el reporte en la tabla completados.", "error");
             return;
         }
 
@@ -109,12 +112,12 @@ document.addEventListener("DOMContentLoaded", function () {
         let ws_data = [
             ["Folio", "Número de Nómina", "Encargado", "Fecha Registro", "Fecha Finalización", "Descripción", "Estatus"],
             [
-                reporteOriginal.folio,
-                reporteOriginal.nomina,
-                reporteOriginal.encargado,
-                reporteOriginal.fechaRegistro,
-                fechaFinalizacion,
-                reporteOriginal.descripcion,
+                reporte.folio,
+                reporte.nomina,
+                reporte.encargado,
+                reporte.fechaRegistro,
+                reporte.fechaFinalizacion,
+                reporte.descripcion,
                 "Completado"
             ]
         ];
@@ -123,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
         wb.Sheets["Reporte"] = ws;
 
         // 📌 Descargar el archivo Excel
-        XLSX.writeFile(wb, `Reporte_${folio}.xlsx`);
+        XLSX.writeFile(wb, `Reporte_${reporte.folio}.xlsx`);
     }
 
     // 📌 Cargar reportes al inicio
