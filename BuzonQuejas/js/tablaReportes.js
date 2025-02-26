@@ -3,7 +3,19 @@ document.addEventListener("DOMContentLoaded", function () {
     let datosReportes = JSON.parse(localStorage.getItem("reportesPendientes")) || [
         { folio: "001", nomina: "123456", encargado: "Juan Pérez", fechaRegistro: "10/02/2025", fechaFinalizacion: "-", descripcion: "El sistema de autenticación presenta un problema crítico.", estatus: "Pendiente" },
         { folio: "002", nomina: "654321", encargado: "María López", fechaRegistro: "11/02/2025", fechaFinalizacion: "-", descripcion: "Error en la base de datos", estatus: "Pendiente" },
-        { folio: "003", nomina: "789654", encargado: "Carlos García", fechaRegistro: "12/02/2025", fechaFinalizacion: "-", descripcion: "Actualización del sistema completada", estatus: "Pendiente" }
+        { folio: "003", nomina: "789654", encargado: "Carlos García", fechaRegistro: "12/02/2025", fechaFinalizacion: "-", descripcion: "Actualización del sistema completada", estatus: "Pendiente" },
+        { folio: "004", nomina: "111222", encargado: "Laura Torres", fechaRegistro: "13/02/2025", fechaFinalizacion: "-", descripcion: "Fallo en la conexión con el servidor", estatus: "Pendiente" },
+        { folio: "005", nomina: "333444", encargado: "Diego Mendoza", fechaRegistro: "14/02/2025", fechaFinalizacion: "-", descripcion: "Actualización del sistema operativo", estatus: "Pendiente" },
+        { folio: "006", nomina: "555666", encargado: "Sofía Ramírez", fechaRegistro: "15/02/2025", fechaFinalizacion: "-", descripcion: "Implementación de nuevo software", estatus: "Pendiente" },
+        { folio: "007", nomina: "777888", encargado: "Ricardo Pérez", fechaRegistro: "16/02/2025", fechaFinalizacion: "-", descripcion: "Revisión de seguridad en la red", estatus: "Pendiente" },
+        { folio: "008", nomina: "999000", encargado: "Fernanda López", fechaRegistro: "17/02/2025", fechaFinalizacion: "-", descripcion: "Optimización de base de datos", estatus: "Pendiente" },
+        { folio: "009", nomina: "222333", encargado: "Andrés Salgado", fechaRegistro: "18/02/2025", fechaFinalizacion: "-", descripcion: "Corrección de errores en frontend", estatus: "Pendiente" },
+        { folio: "010", nomina: "444555", encargado: "Gabriela Márquez", fechaRegistro: "19/02/2025", fechaFinalizacion: "-", descripcion: "Mejora en la experiencia del usuario", estatus: "Pendiente" },
+        { folio: "011", nomina: "666777", encargado: "Miguel Ángel López", fechaRegistro: "20/02/2025", fechaFinalizacion: "-", descripcion: "Prueba con el reporte número 11", estatus: "Pendiente" },
+        { folio: "012", nomina: "888999", encargado: "Clara Gutiérrez", fechaRegistro: "21/02/2025", fechaFinalizacion: "-", descripcion: "Error en la carga de archivos", estatus: "Pendiente" },
+        { folio: "013", nomina: "123789", encargado: "José Rojas", fechaRegistro: "22/02/2025", fechaFinalizacion: "-", descripcion: "Problema de conectividad con la VPN", estatus: "Pendiente" },
+        { folio: "014", nomina: "456123", encargado: "Ana Castillo", fechaRegistro: "23/02/2025", fechaFinalizacion: "-", descripcion: "Módulo de reportes no responde", estatus: "Pendiente" },
+        { folio: "015", nomina: "789321", encargado: "David Sánchez", fechaRegistro: "24/02/2025", fechaFinalizacion: "-", descripcion: "Correcciones en el dashboard de control", estatus: "Pendiente" }
     ];
 
     const filasPorPagina = 10;
