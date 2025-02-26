@@ -69,14 +69,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 📌 Función para exportar reporte a Excel incluyendo comentarios
     function exportarExcel(reporte) {
+
         if (!reporte) {
             Swal.fire("Error", "No se encontró el reporte en la tabla completados.", "error");
             return;
         }
-
-        // ✅ Recuperar comentarios guardados en localStorage
-        let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {};
-        let comentariosReporte = comentariosPorReporte[reporte.folio] ? comentariosPorReporte[reporte.folio].join(" | ") : "";
 
         let wb = XLSX.utils.book_new();
         wb.Props = {
@@ -97,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 reporte.fechaFinalizacion,
                 reporte.descripcion,
                 "Completado",
-                comentariosReporte  // ✅ Ahora los comentarios aparecerán correctamente
+                reporte.comentarios ? reporte.comentarios.join(" | ") : "" // ✅ Se extraen los comentarios desde el objeto reporte
             ]
         ];
 
@@ -112,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
             { wch: 15 },  // Fecha Finalización
             { wch: 50 },  // Descripción
             { wch: 15 },  // Estatus
-            { wch: 50 }   // Comentarios
+            { wch: 50 }   // Comentarios (✅ Ahora los comentarios tienen su propia columna)
         ];
 
         wb.Sheets["Reporte"] = ws;

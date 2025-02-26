@@ -104,10 +104,8 @@ document.addEventListener("DOMContentLoaded", function () {
         reporte.fechaFinalizacion = fechaFinalizacion;
         reporte.estatus = "Completado";
 
-        // ✅ Transferir los comentarios directamente
-        if (comentariosPorReporte[folio]) {
-            reporte.comentarios = comentariosPorReporte[folio];  // ✅ Agregar los comentarios al objeto de reporte
-        }
+        // ✅ **Incluir los comentarios dentro del objeto reporte**
+        reporte.comentarios = comentariosPorReporte[folio] || [];
 
         // ✅ Guardar en reportes completados
         datosReportesCompletos.push(reporte);
