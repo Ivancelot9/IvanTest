@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
             CreatedDate: new Date()
         };
 
-        wb.SheetNames.push("Reporte");
+        // 🔹 Definir encabezados con estilos
         let ws_data = [
             ["Folio", "Número de Nómina", "Encargado", "Fecha Registro", "Fecha Finalización", "Descripción", "Estatus"],
             [
@@ -123,6 +123,49 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
 
         let ws = XLSX.utils.aoa_to_sheet(ws_data);
+
+        // 🔹 Ajustar ancho de columnas automáticamente
+        const colWidths = [
+            { wch: 10 },  // Folio
+            { wch: 15 },  // Número de Nómina
+            { wch: 20 },  // Encargado
+            { wch: 15 },  // Fecha Registro
+            { wch: 15 },  // Fecha Finalización
+            { wch: 40 },  // Descripción
+            { wch: 12 }   // Estatus
+        ];
+        ws["!cols"] = colWidths;
+
+        // 🔹 Aplicar estilos de negritas y centrado a los encabezados
+        let headerRange = XLSX.utils.decode_range(ws["!ref"]);
+        for (let C = headerRange.s.c; C <= headerRange.e.c; ++C) {
+            let cellAddress = XLSX.utils.encode_cell({ r: 0, c: C });
+            if (!ws[cellAddress]) continue;
+            ws[cellAddress].s = {
+                font: { bold: true, color: { rgb: "FFFFFF" } },
+                fill: { fgColor: { rgb: "4F81BD" } },  // Azul para encabezados
+                alignment: { horizontal: "center", vertical: "center" }
+            };
+        }
+
+        // 🔹 Centrar texto en todas las celdas
+        for (let R = 1; R <= headerRange.e.r; ++R) {
+            for (let C = 0; C <= headerRange.e.c; ++C) {
+                let cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
+                if (!ws[cellAddress]) continue;
+                ws[cellAddress].s = { alignment: { horizontal: "center", vertical: "center" } };
+            }
+        }
+
+        // 🔹 Aplicar bordes a todas las celdas
+        for (let R = 0; R <= headerRange.e.r; ++R) {
+            for (let C = 0; C <= headerRange.e.c; ++C) {
+                let cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
+                if (!ws[cellAddress]) continue;
+                ws[cellAddress].s = { border: { top: { style: "thin" }, bottom: { style: "thin" }, left: { style: "thin" }, right: { style: "thin" } } };
+            }
+        }
+
         wb.Sheets["Reporte"] = ws;
 
         // 📌 Descargar el archivo Excel
