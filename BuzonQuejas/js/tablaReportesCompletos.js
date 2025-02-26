@@ -75,7 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // 🔹 Obtener los comentarios del reporte actual
-        let comentarios = comentariosPorReporte[reporte.folio] ? comentariosPorReporte[reporte.folio].join(" | ") : "Sin comentarios";
+        let comentarios = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {}; // ✅ Asegurar que se recuperen bien
+        let comentariosReporte = comentarios[reporte.folio] ? comentarios[reporte.folio].join(" | ") : ""; // ✅ Si hay comentarios, mostrarlos; si no, dejar vacío
 
         let wb = XLSX.utils.book_new();
         wb.Props = {
@@ -96,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 reporte.fechaFinalizacion,
                 reporte.descripcion,
                 "Completado",
-                comentarios  // ✅ Se agrega la columna de comentarios al Excel
+                comentariosReporte  // ✅ Ahora si hay comentarios, los mostrará; si no, la celda quedará vacía.
             ]
         ];
 
