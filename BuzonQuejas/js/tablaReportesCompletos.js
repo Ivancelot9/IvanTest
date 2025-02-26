@@ -74,9 +74,9 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // 🔹 Obtener los comentarios del reporte actual
-        let comentarios = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {}; // ✅ Asegurar que se recuperen bien
-        let comentariosReporte = comentarios[reporte.folio] ? comentarios[reporte.folio].join(" | ") : ""; // ✅ Si hay comentarios, mostrarlos; si no, dejar vacío
+        // ✅ Recuperar comentarios guardados en localStorage
+        let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {};
+        let comentariosReporte = comentariosPorReporte[reporte.folio] ? comentariosPorReporte[reporte.folio].join(" | ") : "";
 
         let wb = XLSX.utils.book_new();
         wb.Props = {
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 reporte.fechaFinalizacion,
                 reporte.descripcion,
                 "Completado",
-                comentariosReporte  // ✅ Ahora si hay comentarios, los mostrará; si no, la celda quedará vacía.
+                comentariosReporte  // ✅ Ahora los comentarios aparecerán correctamente
             ]
         ];
 
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
             { wch: 15 },  // Fecha Finalización
             { wch: 50 },  // Descripción
             { wch: 15 },  // Estatus
-            { wch: 50 }   // Comentarios (✅ Ahora los comentarios tienen su propia columna)
+            { wch: 50 }   // Comentarios
         ];
 
         wb.Sheets["Reporte"] = ws;

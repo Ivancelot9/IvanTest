@@ -93,6 +93,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ✅ Función global para mover el reporte a la tabla de completados
     window.moverReporteACompletados = function (folio, fechaFinalizacion) {
+        let datosReportes = JSON.parse(localStorage.getItem("reportesPendientes")) || [];
+        let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {};
+        let datosReportesCompletos = JSON.parse(localStorage.getItem("reportesCompletos")) || [];
+
         let reporteIndex = datosReportes.findIndex(r => r.folio === folio);
         if (reporteIndex === -1) return;
 
@@ -100,15 +104,21 @@ document.addEventListener("DOMContentLoaded", function () {
         reporte.fechaFinalizacion = fechaFinalizacion;
         reporte.estatus = "Completado";
 
-        let datosReportesCompletos = JSON.parse(localStorage.getItem("reportesCompletos")) || [];
+        // ✅ Transferir los comentarios directamente
+        if (comentariosPorReporte[folio]) {
+            reporte.comentarios = comentariosPorReporte[folio];  // ✅ Agregar los comentarios al objeto de reporte
+        }
+
+        // ✅ Guardar en reportes completados
         datosReportesCompletos.push(reporte);
         localStorage.setItem("reportesCompletos", JSON.stringify(datosReportesCompletos));
 
+        // ✅ Eliminar el reporte de la tabla de pendientes
         datosReportes.splice(reporteIndex, 1);
-        guardarReportesPendientes();
+        localStorage.setItem("reportesPendientes", JSON.stringify(datosReportes));
+
         filtrarReportes();
     };
-
     // ✅ Eventos de navegación de página
     prevPageBtn.addEventListener("click", () => {
         paginaActual--;
