@@ -104,8 +104,10 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 <button id="filter-button">🔍 Buscar</button> <!-- 🔹 Ahora está justo al lado del input -->
             </div>
 
-            <!-- 📤 Botón de Exportar Página (a la derecha) -->
-            <button id="exportarPaginaActual" class="btn-exportar">📄 Exportar Página</button>
+            <!-- 📤 Botón "Exportar Página" con icono de Excel -->
+            <button id="exportarPaginaActual" class="btn-exportar">
+                <i class="fas fa-file-excel"></i> Exportar Página
+            </button>
         </div>
 
         <div class="table-container">

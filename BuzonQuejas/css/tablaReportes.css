@@ -184,27 +184,37 @@ button.convertidor:hover{
     transform: scale(1.1);
 }
 
-/* 📤 Botón "Exportar Página" con estilo verde y borde más grueso */
+/* 📤 Botón "Exportar Página" con icono de Excel */
 #exportarPaginaActual {
-    background: #28a745; /* ✅ Verde */
+    background: #28a745;
     color: black;
-    border: 4px solid black; /* 🔹 Aumentamos el grosor del borde */
+    border: 4px solid black;
     font-family: "Bangers", serif;
     font-size: 1rem;
-    padding: 10px 20px;  /* 🔹 Tamaño del botón */
+    padding: 10px 20px;
     cursor: pointer;
-    box-shadow: 4px 4px 0 black; /* 🔹 Ajustamos el grosor de la sombra */
+    box-shadow: 4px 4px 0 black;
     transition: all 0.2s ease-in-out;
     position: relative;
-    left: -8px; /* 🔹 Mueve el botón un poco a la izquierda (ajústalo a tu gusto) */
-    min-width: 180px; /* 🔹 Aumenta el ancho del botón */
+    left: -8px;
+    min-width: 190px;
+    display: flex; /* 🔹 Para alinear el icono con el texto */
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* 🔹 Espaciado entre el icono y el texto */
 }
 
 /* 🎯 Hover para el botón de exportar */
 #exportarPaginaActual:hover {
-    background: #1e7e34; /* ✅ Verde más oscuro */
+    background: #1e7e34;
     color: white;
     transform: scale(1.1);
+}
+
+/* 🟢 Estilos específicos para el icono de Excel */
+#exportarPaginaActual i {
+    font-size: 1.2rem; /* 🔹 Ajustar tamaño del icono */
+    color: black; /* 🔹 Icono negro para que combine con el texto */
 }
 
 
