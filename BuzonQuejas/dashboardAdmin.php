@@ -137,7 +137,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <div id="reportes-completos" class="content comic-container" style="display: none">
         <h2 class="comic-title">Reportes Completos</h2>
 
-        <!-- 🔎 Controles superiores (Filtro + Exportar Página) -->
+        <!-- 🔎 Controles superiores (Filtro + Rango de Fechas + Exportar Página) -->
         <div class="table-controls">
             <div class="filter-container">
                 <label for="filter-column-completo">Filtrar por:</label>
@@ -149,6 +149,15 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 </select>
                 <input type="text" id="filter-input-completo" placeholder="Buscar...">
                 <button id="filter-button-completo">🔍 Buscar</button>
+            </div>
+
+            <!-- 📅 Filtro por rango de fechas -->
+            <div class="date-range-container">
+                <label for="start-date">Rango:</label>
+                <input type="date" id="start-date">
+                <span> a </span>
+                <input type="date" id="end-date">
+                <button id="filter-date-button">📆 Filtrar</button>
             </div>
 
             <!-- 📤 Botón "Exportar Página" con icono de Excel -->

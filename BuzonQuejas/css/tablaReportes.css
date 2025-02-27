@@ -151,7 +151,7 @@ button.convertidor:hover{
     display: flex;
     justify-content: space-between; /* 🔹 Separa el filtro (izquierda) y exportar (derecha) */
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 /* 🔎 Contenedor del filtro */
@@ -215,7 +215,51 @@ button.convertidor:hover{
     font-size: 1.2rem;
     color: black;
 }
+/* 📅 Contenedor del rango de fechas */
+.date-range-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: "Bangers", serif;
+}
 
+/* 📅 Inputs de fecha */
+#start-date, #end-date {
+    padding: 4px;
+    border: 2px solid black;
+    font-size: 1rem;
+    font-family: "Bangers", serif;
+    background-color: white;
+    color: black;
+    box-shadow: 2px 2px 0 black;
+    transition: all 0.2s ease-in-out;
+    width: 130px; /* 🔹 Tamaño ajustado */
+}
+
+#start-date:focus, #end-date:focus {
+    outline: none;
+    border-color: #1094e0;
+    box-shadow: 3px 3px 0 #1094e0;
+}
+
+/* 📆 Botón de Filtrar por fecha */
+#filter-date-button {
+    background: #f8f9fa;
+    color: black;
+    border: 2px solid black;
+    font-family: "Bangers", serif;
+    font-size: 1rem;
+    padding: 5px 12px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 black;
+    transition: all 0.2s ease-in-out;
+}
+
+#filter-date-button:hover {
+    background: black;
+    color: white;
+    transform: scale(1.1);
+}
 
 
 
