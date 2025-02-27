@@ -196,7 +196,7 @@ button.convertidor:hover{
     box-shadow: 3px 3px 0 black;
     transition: all 0.2s ease-in-out;
     position: relative;
-    left: -10px; /* 🔹 Mueve el botón un poco a la izquierda (ajústalo a tu gusto) */
+    left: -8px; /* 🔹 Mueve el botón un poco a la izquierda (ajústalo a tu gusto) */
     min-width: 180px; /* 🔹 Aumenta el ancho del botón */
 }
 
