@@ -8,21 +8,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const filterButtonCompleto = document.getElementById("filter-button-completo");
 
     let datosReportesCompletos = JSON.parse(localStorage.getItem("reportesCompletos")) || [];
-    let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {}; // ✅ Cargar comentarios guardados
+    let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {};
     let paginaActualCompleto = 1;
     const filasPorPagina = 10;
     let datosFiltradosCompletos = [...datosReportesCompletos];
 
-    // 🔄 Guardar reportes en localStorage
+    // ✅ 🔄 Guardar reportes en localStorage (RESTAURADO)
     function guardarReportesCompletos() {
         localStorage.setItem("reportesCompletos", JSON.stringify(datosReportesCompletos));
-        localStorage.setItem("comentariosPorReporte", JSON.stringify(comentariosPorReporte)); // ✅ Guardar comentarios también
+        localStorage.setItem("comentariosPorReporte", JSON.stringify(comentariosPorReporte));
     }
 
-    // 🔄 Función global para mover el reporte a la tabla de completados
+    // ✅ 🔄 Función global para mover el reporte a la tabla de completados (RESTAURADO)
     window.moverReporteACompletados = function (reporte) {
         datosReportesCompletos.push(reporte);
-        guardarReportesCompletos();
+        guardarReportesCompletos(); // 🔹 Se vuelve a llamar para guardar cambios
         filtrarReportesCompletos();
     };
 
@@ -61,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
             tablaCompletosBody.appendChild(fila);
         });
 
-        // 📌 Actualizar paginación
         pageIndicatorCompleto.textContent = `Página ${pagina}`;
         prevPageBtnCompleto.disabled = pagina === 1;
         nextPageBtnCompleto.disabled = fin >= reportes.length;
@@ -77,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {};
         let comentarios = reporte.comentarios && reporte.comentarios.length > 0
             ? reporte.comentarios.join(" | ")
-            : (comentariosPorReporte[reporte.folio] ? comentariosPorReporte[reporte.folio].join(" | ") : "");
+            : (comentariosPorReporte[reporte.folio] ? comentariosPorReporte[reporte.folio].join(" | ") : "Sin comentarios");
 
         let wb = XLSX.utils.book_new();
         wb.Props = {
@@ -98,27 +97,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 reporte.fechaFinalizacion,
                 reporte.descripcion,
                 "Completado",
-                comentarios  // ✅ Se asegura de que los comentarios se incluyan en el Excel
+                comentarios
             ]
         ];
 
         let ws = XLSX.utils.aoa_to_sheet(ws_data);
 
-        // 📌 Ajustar ancho de columnas automáticamente
         ws["!cols"] = [
-            { wch: 12 },  // Folio
-            { wch: 18 },  // Número de Nómina
-            { wch: 22 },  // Encargado
-            { wch: 15 },  // Fecha Registro
-            { wch: 15 },  // Fecha Finalización
-            { wch: 50 },  // Descripción
-            { wch: 15 },  // Estatus
-            { wch: 50 }   // Comentarios (✅ Ahora los comentarios tienen su propia columna)
+            { wch: 12 },
+            { wch: 18 },
+            { wch: 22 },
+            { wch: 15 },
+            { wch: 15 },
+            { wch: 50 },
+            { wch: 15 },
+            { wch: 50 }
         ];
 
         wb.Sheets["Reporte"] = ws;
-
-        // 📌 Descargar el archivo Excel
         XLSX.writeFile(wb, `Reporte_${reporte.folio}.xlsx`);
     }
 
@@ -135,7 +131,6 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportesCompletos(paginaActualCompleto);
     }
 
-    // 📌 Eventos de paginación
     prevPageBtnCompleto.addEventListener("click", () => {
         paginaActualCompleto--;
         mostrarReportesCompletos(paginaActualCompleto);
@@ -146,10 +141,8 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportesCompletos(paginaActualCompleto);
     });
 
-    // 📌 Evento de filtrado
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
 
-    // 📌 Cargar reportes al inicio
     mostrarReportesCompletos(paginaActualCompleto);
 });

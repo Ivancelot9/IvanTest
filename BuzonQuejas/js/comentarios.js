@@ -27,8 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 🔄 Cargar comentarios desde `localStorage`
     let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {};
-    console.log("comentariosPorReporte al cargar:", comentariosPorReporte);
-
+    console.log("Comentarios al cargar:", comentariosPorReporte); // ✅ DEPURACIÓN
 
     // 🔹 Función para animar el modal
     function animarModal(abrir) {
@@ -90,6 +89,9 @@ document.addEventListener("DOMContentLoaded", function () {
             // 🔄 Guardar en `localStorage`
             localStorage.setItem("comentariosPorReporte", JSON.stringify(comentariosPorReporte));
 
+            console.log(`Comentario agregado a folio ${currentFolio}:`, textoComentario); // ✅ DEPURACIÓN
+            console.log("Comentarios actualizados en `localStorage`:", comentariosPorReporte); // ✅ DEPURACIÓN
+
             inputComentario.value = "";
             cargarComentarios(currentFolio);
         }
@@ -98,6 +100,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // 🔹 Función para cargar comentarios del folio actual
     function cargarComentarios(folio) {
         listaComentarios.innerHTML = "";
+
+        // ✅ DEPURACIÓN: Verificar si los comentarios existen
+        console.log(`Cargando comentarios para folio ${folio}:`, comentariosPorReporte[folio]);
+
         if (comentariosPorReporte[folio]) {
             comentariosPorReporte[folio].forEach((comentario) => {
                 let nuevoComentario = document.createElement("div");

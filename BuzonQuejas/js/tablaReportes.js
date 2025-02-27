@@ -19,19 +19,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const filterInput = document.getElementById("filter-input");
     const filterButton = document.getElementById("filter-button");
 
-    // ✅ Guardar cambios en localStorage
     function guardarReportesPendientes() {
         localStorage.setItem("reportesPendientes", JSON.stringify(datosReportes));
     }
 
-    // ✅ Función para resaltar el texto filtrado
     function resaltarTexto(texto, filtro) {
         if (!filtro || filtro.trim() === "") return texto;
         const regex = new RegExp(`(${filtro})`, "gi");
         return texto.replace(regex, `<span class="highlight">$1</span>`);
     }
 
-    // ✅ Mostrar reportes en la tabla de pendientes
     function mostrarReportes(pagina, reportes = datosFiltrados) {
         tablaBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
@@ -48,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${columnaSeleccionada === "nomina" ? resaltarTexto(reporte.nomina, valorFiltro) : reporte.nomina}</td>
                 <td>${columnaSeleccionada === "encargado" ? resaltarTexto(reporte.encargado, valorFiltro) : reporte.encargado}</td>
                 <td><button class="mostrar-descripcion" data-descripcion="${reporte.descripcion}">Mostrar Descripción</button></td>
-                <td><button class="agregar-comentario" data-folio="${reporte.folio}">Agregar Comentario</button></td> <!-- ✅ BOTÓN RESTAURADO -->
+                <td><button class="agregar-comentario" data-folio="${reporte.folio}">Agregar Comentario</button></td>
                 <td class="estatus-cell"><strong>${columnaSeleccionada === "estatus" ? resaltarTexto(reporte.estatus, valorFiltro) : reporte.estatus}</strong></td>
                 <td><button class="seleccionar-fecha" data-folio="${reporte.folio}">Finalizar Reporte</button></td>
             `;
@@ -59,11 +56,10 @@ document.addEventListener("DOMContentLoaded", function () {
         prevPageBtn.disabled = pagina === 1;
         nextPageBtn.disabled = fin >= reportes.length;
 
-        guardarReportesPendientes(); // Guardar en localStorage después de renderizar
+        guardarReportesPendientes();
         initEstatusEditor();
     }
 
-    // ✅ Filtrado de reportes
     function filtrarReportes() {
         const valorFiltro = filterInput.value.toLowerCase();
         const columna = filterColumn.value;
@@ -76,22 +72,20 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportes(paginaActual);
     }
 
-    // ✅ Exponer función globalmente para obtener un reporte por folio
     window.getReportePorFolio = function (folio) {
         return datosReportes.find(r => r.folio === folio);
     };
 
-    // ✅ Eliminar el reporte y actualizar la tabla y localStorage
     window.eliminarReportePorFolio = function (folio) {
         const index = datosReportes.findIndex(r => r.folio === folio);
         if (index !== -1) {
             datosReportes.splice(index, 1);
-            guardarReportesPendientes(); // Guardar cambios en localStorage
+            guardarReportesPendientes();
             filtrarReportes();
         }
     };
 
-    // ✅ Función global para mover el reporte a la tabla de completados
+    // ✅ **Corrección: Mover reporte a completados con comentarios**
     window.moverReporteACompletados = function (folio, fechaFinalizacion) {
         let datosReportes = JSON.parse(localStorage.getItem("reportesPendientes")) || [];
         let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {};
@@ -104,20 +98,23 @@ document.addEventListener("DOMContentLoaded", function () {
         reporte.fechaFinalizacion = fechaFinalizacion;
         reporte.estatus = "Completado";
 
-        // 🔹 **Asegurar que los comentarios se agregan al reporte antes de guardarlo**
+        // ✅ **Asegurar que los comentarios se agregan correctamente**
         reporte.comentarios = comentariosPorReporte[folio] ? [...comentariosPorReporte[folio]] : [];
 
-        // 🔹 **Guardar en reportes completados**
+        // **Depuración: Verificar que los comentarios se están copiando**
+        console.log("Reporte antes de mover a completados:", reporte);
+
+        // ✅ Guardar reporte en reportesCompletos
         datosReportesCompletos.push(reporte);
         localStorage.setItem("reportesCompletos", JSON.stringify(datosReportesCompletos));
 
-        // 🔹 **Eliminar el reporte de la tabla de pendientes**
+        // ✅ Eliminar reporte de la tabla de pendientes
         datosReportes.splice(reporteIndex, 1);
         localStorage.setItem("reportesPendientes", JSON.stringify(datosReportes));
 
         filtrarReportes();
     };
-    // ✅ Eventos de navegación de página
+
     prevPageBtn.addEventListener("click", () => {
         paginaActual--;
         mostrarReportes(paginaActual);
@@ -128,10 +125,8 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportes(paginaActual);
     });
 
-    // ✅ Evento para filtrar reportes
     filterInput.addEventListener("input", filtrarReportes);
     filterButton.addEventListener("click", filtrarReportes);
 
-    // ✅ Mostrar reportes al cargar
     mostrarReportes(paginaActual);
 });
