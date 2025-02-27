@@ -146,4 +146,48 @@ button.convertidor:hover{
     border-radius: 3px;
 }
 
+/* 🔍 Botón de Buscar */
+#filter-button {
+    background: #f8f9fa; /* ✅ Fondo gris claro */
+    color: black;
+    border: 2px solid black;
+    font-family: "Bangers", serif;
+    font-size: 1rem;
+    padding: 5px 12px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 black;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* 🎯 Hover para el botón de buscar */
+#filter-button:hover {
+    background: black;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* 📤 Botón "Exportar Página" con estilo verde */
+#exportarPaginaActual {
+    background: #28a745; /* ✅ Verde */
+    color: black;
+    border: 2px solid black;
+    font-family: "Bangers", serif;
+    font-size: 1rem;
+    padding: 5px 12px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 black;
+    transition: all 0.2s ease-in-out;
+}
+
+/* 🎯 Hover para el botón de exportar */
+#exportarPaginaActual:hover {
+    background: #1e7e34; /* ✅ Verde más oscuro */
+    color: white;
+    transform: scale(1.1);
+}
+
+
 

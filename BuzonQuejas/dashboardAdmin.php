@@ -88,18 +88,24 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <!-- 🏢 Historial de Reportes -->
     <div id="historial-reportes" class="content comic-container" style="display: none;">
         <h2 class="comic-title">Historial de Reportes</h2>
-        <!-- 🔎 Filtro para buscar en la tabla -->
+
+        <!-- 🔎 Controles superiores (Filtro + Exportación) -->
         <div class="table-controls">
-            <label for="filter-column">Filtrar por:</label>
-            <select id="filter-column">
-                <option value="folio">Folio</option>
-                <option value="nomina">Número de Nómina</option>
-                <option value="encargado">Encargado</option>
-                <option value="fechaRegistro">Fecha Registro</option>
-                <option value="estatus">Estatus</option>
-            </select>
-            <input type="text" id="filter-input" placeholder="Buscar...">
-            <button id="filter-button">🔍 Buscar</button> <!-- ✅ Nuevo botón -->
+            <div class="filter-container">
+                <label for="filter-column">Filtrar por:</label>
+                <select id="filter-column">
+                    <option value="folio">Folio</option>
+                    <option value="nomina">Número de Nómina</option>
+                    <option value="encargado">Encargado</option>
+                    <option value="fechaRegistro">Fecha Registro</option>
+                    <option value="estatus">Estatus</option>
+                </select>
+                <input type="text" id="filter-input" placeholder="Buscar...">
+                <button id="filter-button">🔍 Buscar</button>
+            </div>
+
+            <!-- 📤 Botón de Exportar Página -->
+            <button id="exportarPaginaActual" class="btn-exportar">📄 Exportar Página</button>
         </div>
 
         <div class="table-container">
@@ -120,13 +126,14 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
             </table>
         </div>
 
-        <!-- 📑 Controles de paginación (También movido aquí) -->
+        <!-- 📑 Controles de paginación -->
         <div class="pagination">
             <button id="prevPage" disabled>⬅ Anterior</button>
             <span id="pageIndicator">Página 1</span>
             <button id="nextPage">Siguiente ➡</button>
         </div>
     </div>
+
 
     <!-- Reportes Completos -->
     <div id="reportes-completos" class="content comic-container" style="display: none">
