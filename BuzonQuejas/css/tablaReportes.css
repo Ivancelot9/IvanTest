@@ -184,16 +184,16 @@ button.convertidor:hover{
     transform: scale(1.1);
 }
 
-/* 📤 Botón "Exportar Página" con estilo verde */
+/* 📤 Botón "Exportar Página" con estilo verde y borde más grueso */
 #exportarPaginaActual {
     background: #28a745; /* ✅ Verde */
     color: black;
-    border: 2px solid black;
+    border: 4px solid black; /* 🔹 Aumentamos el grosor del borde */
     font-family: "Bangers", serif;
     font-size: 1rem;
-    padding: 10px 20px;  /* 🔹 Aumentamos el padding (más grande) */
+    padding: 10px 20px;  /* 🔹 Tamaño del botón */
     cursor: pointer;
-    box-shadow: 3px 3px 0 black;
+    box-shadow: 4px 4px 0 black; /* 🔹 Ajustamos el grosor de la sombra */
     transition: all 0.2s ease-in-out;
     position: relative;
     left: -8px; /* 🔹 Mueve el botón un poco a la izquierda (ajústalo a tu gusto) */
