@@ -146,110 +146,51 @@ button.convertidor:hover{
     border-radius: 3px;
 }
 
-/* 📌 Contenedor de controles (Filtro + Exportar) */
+/* 📌 Contenedor de controles (Filtro + Rango de Fechas + Exportar) */
 .table-controls {
     display: flex;
-    justify-content: space-between; /* 🔹 Separa el filtro (izquierda) y exportar (derecha) */
+    justify-content: space-between; /* 🔹 Separa los elementos */
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px; /* 🔹 Reducimos el espacio vertical */
+    flex-wrap: wrap; /* 🔹 Permite mejor distribución en pantallas pequeñas */
 }
 
 /* 🔎 Contenedor del filtro */
 .filter-container {
     display: flex;
-    gap: 8px; /* 🔹 Espaciado entre elementos */
+    gap: 6px; /* 🔹 Reduce el espacio entre elementos */
     align-items: center;
 }
 
-/* 🔍 Botón de buscar */
-#filter-button {
-    background: #f8f9fa;
-    color: black;
-    border: 2px solid black;
-    font-family: "Bangers", serif;
-    font-size: 1rem;
-    padding: 5px 12px;
-    cursor: pointer;
-    box-shadow: 3px 3px 0 black;
-    transition: all 0.2s ease-in-out;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-/* 🎯 Hover para el botón de buscar */
-#filter-button:hover {
-    background: black;
-    color: white;
-    transform: scale(1.1);
-}
-/* 📤 Botón "Exportar Página" en Reportes Completos */
-#exportarPaginaCompletos {
-    background: #28a745;
-    color: black;
-    border: 4px solid black;
-    font-family: "Bangers", serif;
-    font-size: 1rem;
-    padding: 10px 20px;
-    cursor: pointer;
-    box-shadow: 4px 4px 0 black;
-    transition: all 0.2s ease-in-out;
-    position: relative;
-    left: -8px;
-    min-width: 190px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-
-/* 🎯 Hover para el botón de exportar */
-#exportarPaginaCompletos:hover {
-    background: #1e7e34;
-    color: white;
-    transform: scale(1.1);
-}
-
-/* 🟢 Estilos específicos para el icono de Excel */
-#exportarPaginaCompletos i {
-    font-size: 1.2rem;
-    color: black;
-}
 /* 📅 Contenedor del rango de fechas */
 .date-range-container {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 4px; /* 🔹 Reduce el espacio entre los inputs */
     font-family: "Bangers", serif;
 }
 
-/* 📅 Inputs de fecha */
+/* 📅 Inputs de fecha (más compactos) */
 #start-date, #end-date {
-    padding: 4px;
+    padding: 3px; /* 🔹 Reduce el padding */
     border: 2px solid black;
-    font-size: 1rem;
+    font-size: 0.9rem; /* 🔹 Reduce un poco el tamaño */
     font-family: "Bangers", serif;
     background-color: white;
     color: black;
     box-shadow: 2px 2px 0 black;
     transition: all 0.2s ease-in-out;
-    width: 130px; /* 🔹 Tamaño ajustado */
+    width: 115px; /* 🔹 Reduce el ancho */
 }
 
-#start-date:focus, #end-date:focus {
-    outline: none;
-    border-color: #1094e0;
-    box-shadow: 3px 3px 0 #1094e0;
-}
-
-/* 📆 Botón de Filtrar por fecha */
+/* 📆 Botón de Filtrar por fecha (más compacto) */
 #filter-date-button {
     background: #f8f9fa;
     color: black;
     border: 2px solid black;
     font-family: "Bangers", serif;
-    font-size: 1rem;
-    padding: 5px 12px;
+    font-size: 0.9rem; /* 🔹 Reduce un poco el tamaño */
+    padding: 4px 10px; /* 🔹 Reduce el padding */
     cursor: pointer;
     box-shadow: 3px 3px 0 black;
     transition: all 0.2s ease-in-out;
@@ -258,8 +199,40 @@ button.convertidor:hover{
 #filter-date-button:hover {
     background: black;
     color: white;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
+
+/* 📤 Botón "Exportar Página" (más compacto y alineado) */
+#exportarPaginaCompletos {
+    background: #28a745;
+    color: black;
+    border: 4px solid black;
+    font-family: "Bangers", serif;
+    font-size: 1rem;
+    padding: 8px 16px; /* 🔹 Reduce el tamaño del botón */
+    cursor: pointer;
+    box-shadow: 4px 4px 0 black;
+    transition: all 0.2s ease-in-out;
+    min-width: 160px; /* 🔹 Reduce el ancho */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px; /* 🔹 Reduce el espacio entre icono y texto */
+}
+
+/* 🎯 Hover para el botón de exportar */
+#exportarPaginaCompletos:hover {
+    background: #1e7e34;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* 🟢 Icono de Excel dentro del botón */
+#exportarPaginaCompletos i {
+    font-size: 1rem; /* 🔹 Reduce el tamaño del icono */
+    color: black;
+}
+
 
 
 
