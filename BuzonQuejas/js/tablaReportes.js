@@ -104,14 +104,14 @@ document.addEventListener("DOMContentLoaded", function () {
         reporte.fechaFinalizacion = fechaFinalizacion;
         reporte.estatus = "Completado";
 
-        // ✅ **Asegurar que los comentarios se agregan antes de guardar**
+        // 🔹 **Asegurar que los comentarios se agregan al reporte antes de guardarlo**
         reporte.comentarios = comentariosPorReporte[folio] ? [...comentariosPorReporte[folio]] : [];
 
-        // ✅ Guardar en reportes completados
+        // 🔹 **Guardar en reportes completados**
         datosReportesCompletos.push(reporte);
         localStorage.setItem("reportesCompletos", JSON.stringify(datosReportesCompletos));
 
-        // ✅ Eliminar el reporte de la tabla de pendientes
+        // 🔹 **Eliminar el reporte de la tabla de pendientes**
         datosReportes.splice(reporteIndex, 1);
         localStorage.setItem("reportesPendientes", JSON.stringify(datosReportes));
 

@@ -69,11 +69,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 📌 Función para exportar reporte a Excel incluyendo comentarios
     function exportarExcel(reporte) {
-
         if (!reporte) {
             Swal.fire("Error", "No se encontró el reporte en la tabla completados.", "error");
             return;
         }
+
+        let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {};
+        let comentarios = reporte.comentarios && reporte.comentarios.length > 0
+            ? reporte.comentarios.join(" | ")
+            : (comentariosPorReporte[reporte.folio] ? comentariosPorReporte[reporte.folio].join(" | ") : "");
 
         let wb = XLSX.utils.book_new();
         wb.Props = {
@@ -94,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 reporte.fechaFinalizacion,
                 reporte.descripcion,
                 "Completado",
-                reporte.comentarios ? reporte.comentarios.join(" | ") : "" // ✅ Se extraen los comentarios desde el objeto reporte
+                comentarios  // ✅ Se asegura de que los comentarios se incluyan en el Excel
             ]
         ];
 
