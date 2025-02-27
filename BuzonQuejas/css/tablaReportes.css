@@ -161,24 +161,6 @@ button.convertidor:hover{
     align-items: center;
 }
 
-/* 🔎 Estilo del input de búsqueda */
-#filter-input {
-    padding: 6px 10px;
-    border: 2px solid black;
-    font-size: 1rem;
-    font-family: "Bangers", serif;
-    background-color: white;
-    color: black;
-    box-shadow: 2px 2px 0 black;
-    transition: all 0.2s ease-in-out;
-}
-
-#filter-input:focus {
-    outline: none;
-    border-color: #1094e0;
-    box-shadow: 3px 3px 0 #1094e0;
-}
-
 /* 🔍 Botón de buscar */
 #filter-button {
     background: #f8f9fa;
