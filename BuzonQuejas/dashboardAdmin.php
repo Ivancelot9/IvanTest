@@ -142,17 +142,25 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <div id="reportes-completos" class="content comic-container" style="display: none">
         <h2 class="comic-title">Reportes Completos</h2>
 
-        <!-- Controles de filtrado -->
+        <!-- 🔎 Controles superiores (Filtro + Exportar) -->
         <div class="table-controls">
-            <label for="filter-column-completo">Filtrar por:</label>
-            <select id="filter-column-completo">
-                <option value="folio">Folio</option>
-                <option value="nomina">Número de Nómina</option>
-                <option value="encargado">Encargado</option>
-                <option value="fechaFinalizacion">Fecha Finalización</option>
-            </select>
-            <input type="text" id="filter-input-completo" placeholder="Buscar...">
-            <button id="filter-button-completo">🔍 Buscar</button>
+            <div class="filter-container">
+                <label for="filter-column">Filtrar por:</label>
+                <select id="filter-column">
+                    <option value="folio">Folio</option>
+                    <option value="nomina">Número de Nómina</option>
+                    <option value="encargado">Encargado</option>
+                    <option value="fechaRegistro">Fecha Registro</option>
+                    <option value="estatus">Estatus</option>
+                </select>
+                <input type="text" id="filter-input" placeholder="Buscar...">
+                <button id="filter-button">🔍 Buscar</button> <!-- 🔹 Ahora está justo al lado del input -->
+            </div>
+
+            <!-- 📤 Botón "Exportar Página" con icono de Excel -->
+            <button id="exportarPaginaActual" class="btn-exportar">
+                <i class="fas fa-file-excel"></i> Exportar Página
+            </button>
         </div>
 
         <!-- Tabla de reportes completados -->
