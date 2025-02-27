@@ -89,7 +89,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <div id="historial-reportes" class="content comic-container" style="display: none;">
         <h2 class="comic-title">Historial de Reportes</h2>
 
-        <!-- 🔎 Controles superiores (Filtro + Exportación) -->
+        <!-- 🔎 Controles superiores (Filtro + Exportar) -->
         <div class="table-controls">
             <div class="filter-container">
                 <label for="filter-column">Filtrar por:</label>
@@ -101,10 +101,10 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                     <option value="estatus">Estatus</option>
                 </select>
                 <input type="text" id="filter-input" placeholder="Buscar...">
-                <button id="filter-button">🔍 Buscar</button>
+                <button id="filter-button">🔍 Buscar</button> <!-- 🔹 Ahora está justo al lado del input -->
             </div>
 
-            <!-- 📤 Botón de Exportar Página -->
+            <!-- 📤 Botón de Exportar Página (a la derecha) -->
             <button id="exportarPaginaActual" class="btn-exportar">📄 Exportar Página</button>
         </div>
 
@@ -133,6 +133,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
             <button id="nextPage">Siguiente ➡</button>
         </div>
     </div>
+
 
 
     <!-- Reportes Completos -->
