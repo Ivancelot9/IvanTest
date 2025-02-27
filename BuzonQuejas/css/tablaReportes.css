@@ -183,9 +183,8 @@ button.convertidor:hover{
     color: white;
     transform: scale(1.1);
 }
-
-/* 📤 Botón "Exportar Página" con icono de Excel */
-#exportarPaginaActual {
+/* 📤 Botón "Exportar Página" en Reportes Completos */
+#exportarPaginaCompletos {
     background: #28a745;
     color: black;
     border: 4px solid black;
@@ -198,24 +197,25 @@ button.convertidor:hover{
     position: relative;
     left: -8px;
     min-width: 190px;
-    display: flex; /* 🔹 Para alinear el icono con el texto */
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px; /* 🔹 Espaciado entre el icono y el texto */
+    gap: 8px;
 }
 
 /* 🎯 Hover para el botón de exportar */
-#exportarPaginaActual:hover {
+#exportarPaginaCompletos:hover {
     background: #1e7e34;
     color: white;
     transform: scale(1.1);
 }
 
 /* 🟢 Estilos específicos para el icono de Excel */
-#exportarPaginaActual i {
-    font-size: 1.2rem; /* 🔹 Ajustar tamaño del icono */
-    color: black; /* 🔹 Icono negro para que combine con el texto */
+#exportarPaginaCompletos i {
+    font-size: 1.2rem;
+    color: black;
 }
+
 
 
 

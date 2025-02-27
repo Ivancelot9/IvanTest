@@ -89,7 +89,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <div id="historial-reportes" class="content comic-container" style="display: none;">
         <h2 class="comic-title">Historial de Reportes</h2>
 
-        <!-- 🔎 Controles superiores (Filtro + Exportar) -->
+        <!-- 🔎 Controles superiores (Solo Filtro, SIN Exportar) -->
         <div class="table-controls">
             <div class="filter-container">
                 <label for="filter-column">Filtrar por:</label>
@@ -101,13 +101,8 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                     <option value="estatus">Estatus</option>
                 </select>
                 <input type="text" id="filter-input" placeholder="Buscar...">
-                <button id="filter-button">🔍 Buscar</button> <!-- 🔹 Ahora está justo al lado del input -->
+                <button id="filter-button">🔍 Buscar</button> <!-- 🔹 Justo al lado del input -->
             </div>
-
-            <!-- 📤 Botón "Exportar Página" con icono de Excel -->
-            <button id="exportarPaginaActual" class="btn-exportar">
-                <i class="fas fa-file-excel"></i> Exportar Página
-            </button>
         </div>
 
         <div class="table-container">
@@ -138,21 +133,28 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 
 
 
-    <!-- Reportes Completos -->
+    <!-- 📑 Reportes Completos -->
     <div id="reportes-completos" class="content comic-container" style="display: none">
         <h2 class="comic-title">Reportes Completos</h2>
 
-        <!-- Controles de filtrado -->
+        <!-- 🔎 Controles superiores (Filtro + Exportar Página) -->
         <div class="table-controls">
-            <label for="filter-column-completo">Filtrar por:</label>
-            <select id="filter-column-completo">
-                <option value="folio">Folio</option>
-                <option value="nomina">Número de Nómina</option>
-                <option value="encargado">Encargado</option>
-                <option value="fechaFinalizacion">Fecha Finalización</option>
-            </select>
-            <input type="text" id="filter-input-completo" placeholder="Buscar...">
-            <button id="filter-button-completo">🔍 Buscar</button>
+            <div class="filter-container">
+                <label for="filter-column-completo">Filtrar por:</label>
+                <select id="filter-column-completo">
+                    <option value="folio">Folio</option>
+                    <option value="nomina">Número de Nómina</option>
+                    <option value="encargado">Encargado</option>
+                    <option value="fechaFinalizacion">Fecha Finalización</option>
+                </select>
+                <input type="text" id="filter-input-completo" placeholder="Buscar...">
+                <button id="filter-button-completo">🔍 Buscar</button>
+            </div>
+
+            <!-- 📤 Botón "Exportar Página" con icono de Excel -->
+            <button id="exportarPaginaCompletos" class="btn-exportar">
+                <i class="fas fa-file-excel"></i> Exportar Página
+            </button>
         </div>
 
         <!-- Tabla de reportes completados -->
@@ -169,19 +171,17 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 </tr>
                 </thead>
                 <tbody id="tabla-completos-body">
-                <!-- Los reportes completados se insertarán aquí automáticamente -->
                 </tbody>
             </table>
         </div>
 
-        <!-- Controles de paginación -->
+        <!-- 📑 Controles de paginación -->
         <div class="pagination">
             <button id="prevPage-completo" disabled>⬅ Anterior</button>
             <span id="pageIndicator-completo">Página 1</span>
             <button id="nextPage-completo">Siguiente ➡</button>
         </div>
     </div>
-
 
 
 </div>
