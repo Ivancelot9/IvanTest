@@ -158,100 +158,66 @@ button.convertidor:hover{
 /* 🔎 Contenedor del filtro */
 .filter-container {
     display: flex;
-    gap: 6px; /* 🔹 Reduce el espacio entre elementos */
+    gap: 5px; /* 🔹 Reduce el espacio entre elementos */
     align-items: center;
+    flex: 1; /* 🔹 Hace que el filtro ocupe menos espacio */
 }
 
-/* 📅 Contenedor del rango de fechas */
+/* 📌 Label "Filtrar por" más pequeño */
+.filter-container label {
+    font-size: 0.9rem; /* 🔹 Reduce el tamaño */
+}
+
+/* 📌 Select e Input de búsqueda más compactos */
+.filter-container select,
+.filter-container input[type="text"] {
+    width: 110px; /* 🔹 Reduce más el ancho */
+    padding: 3px; /* 🔹 Reduce el padding */
+    font-size: 0.85rem; /* 🔹 Reduce el tamaño de fuente */
+    border: 2px solid black;
+    font-family: "Bangers", serif;
+    background-color: white;
+    color: black;
+    box-shadow: 2px 2px 0 black;
+    transition: all 0.2s ease-in-out;
+}
+
+/* 📆 Botón de búsqueda más pequeño */
+#filter-button-completo {
+    padding: 3px 6px; /* 🔹 Reduce aún más el padding */
+    font-size: 0.85rem;
+    box-shadow: 2px 2px 0 black;
+}
+
+/* 📅 Contenedor del rango de fechas (Asegura que se mantenga centrado) */
 .date-range-container {
     display: flex;
     align-items: center;
-    gap: 4px; /* 🔹 Reduce el espacio entre los inputs */
-    font-family: "Bangers", serif;
+    gap: 6px; /* 🔹 Reduce el espacio */
+    justify-content: center; /* 🔹 Centra en el medio */
+    flex: 2; /* 🔹 Permite que crezca más */
 }
 
-/* 📅 Inputs de fecha (más compactos) */
+/* 📅 Inputs de fecha más compactos */
 #start-date, #end-date {
-    padding: 3px; /* 🔹 Reduce el padding */
+    padding: 3px;
     border: 2px solid black;
-    font-size: 0.9rem; /* 🔹 Reduce un poco el tamaño */
-    font-family: "Bangers", serif;
-    background-color: white;
-    color: black;
-    box-shadow: 2px 2px 0 black;
-    transition: all 0.2s ease-in-out;
-    width: 115px; /* 🔹 Reduce el ancho */
+    font-size: 0.85rem; /* 🔹 Reduce más el tamaño */
+    width: 110px; /* 🔹 Reduce el ancho */
 }
 
-/* 📆 Botón de Filtrar por fecha (más compacto) */
+/* 📆 Botón de Filtrar por fecha más pequeño */
 #filter-date-button {
-    background: #f8f9fa;
-    color: black;
-    border: 2px solid black;
-    font-family: "Bangers", serif;
-    font-size: 0.9rem; /* 🔹 Reduce un poco el tamaño */
-    padding: 4px 10px; /* 🔹 Reduce el padding */
-    cursor: pointer;
-    box-shadow: 3px 3px 0 black;
-    transition: all 0.2s ease-in-out;
+    padding: 3px 6px;
+    font-size: 0.85rem;
+    box-shadow: 2px 2px 0 black;
 }
 
-#filter-date-button:hover {
-    background: black;
-    color: white;
-    transform: scale(1.05);
-}
-
-/* 📤 Botón "Exportar Página" (más compacto y alineado) */
+/* 📤 Botón "Exportar Página" más alineado */
 #exportarPaginaCompletos {
-    background: #28a745;
-    color: black;
-    border: 4px solid black;
-    font-family: "Bangers", serif;
-    font-size: 1rem;
-    padding: 8px 16px; /* 🔹 Reduce el tamaño del botón */
-    cursor: pointer;
-    box-shadow: 4px 4px 0 black;
-    transition: all 0.2s ease-in-out;
-    min-width: 160px; /* 🔹 Reduce el ancho */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px; /* 🔹 Reduce el espacio entre icono y texto */
-}
-
-/* 🎯 Hover para el botón de exportar */
-#exportarPaginaCompletos:hover {
-    background: #1e7e34;
-    color: white;
-    transform: scale(1.05);
-}
-
-/* 🟢 Icono de Excel dentro del botón */
-#exportarPaginaCompletos i {
-    font-size: 1rem; /* 🔹 Reduce el tamaño del icono */
-    color: black;
-}
-
-/* 📌 Estilos para los filtros de búsqueda (Reducir tamaño) */
-.filter-container select,
-.filter-container input[type="text"] {
-    width: 140px; /* 🔹 Reduce el ancho */
-    padding: 4px; /* 🔹 Reduce el padding */
-    font-size: 0.9rem; /* 🔹 Reduce el tamaño de fuente */
-    border: 2px solid black;
-    font-family: "Bangers", serif;
-    background-color: white;
-    color: black;
-    box-shadow: 2px 2px 0 black;
-    transition: all 0.2s ease-in-out;
-}
-
-/* 🎯 Asegurar que el botón de búsqueda sigue alineado */
-#filter-button-completo {
-    padding: 4px 8px; /* 🔹 Reduce el padding del botón */
+    min-width: 160px; /* 🔹 Ajuste del ancho */
+    padding: 7px 14px; /* 🔹 Reduce un poco */
     font-size: 0.9rem;
-    box-shadow: 2px 2px 0 black;
 }
 
 

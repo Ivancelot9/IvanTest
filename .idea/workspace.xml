@@ -133,15 +133,7 @@
       <workItem from="1740493297672" duration="12270000" />
       <workItem from="1740579783776" duration="19585000" />
       <workItem from="1740666016124" duration="15175000" />
-      <workItem from="1740752213228" duration="1504000" />
-    </task>
-    <task id="LOCAL-00491" summary="Boton Excel">
-      <option name="closed" value="true" />
-      <created>1740516895194</created>
-      <option name="number" value="00491" />
-      <option name="presentableId" value="LOCAL-00491" />
-      <option name="project" value="LOCAL" />
-      <updated>1740516895194</updated>
+      <workItem from="1740752213228" duration="2054000" />
     </task>
     <task id="LOCAL-00492" summary="Boton Excel">
       <option name="closed" value="true" />
@@ -527,7 +519,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740689806756</updated>
     </task>
-    <option name="localTasksCounter" value="540" />
+    <task id="LOCAL-00540" summary="Agregar Boton Exportar Todo Tabla 2">
+      <option name="closed" value="true" />
+      <created>1740755453128</created>
+      <option name="number" value="00540" />
+      <option name="presentableId" value="LOCAL-00540" />
+      <option name="project" value="LOCAL" />
+      <updated>1740755453129</updated>
+    </task>
+    <option name="localTasksCounter" value="541" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
