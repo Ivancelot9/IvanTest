@@ -233,6 +233,28 @@ button.convertidor:hover{
     color: black;
 }
 
+/* 📌 Estilos para los filtros de búsqueda (Reducir tamaño) */
+.filter-container select,
+.filter-container input[type="text"] {
+    width: 140px; /* 🔹 Reduce el ancho */
+    padding: 4px; /* 🔹 Reduce el padding */
+    font-size: 0.9rem; /* 🔹 Reduce el tamaño de fuente */
+    border: 2px solid black;
+    font-family: "Bangers", serif;
+    background-color: white;
+    color: black;
+    box-shadow: 2px 2px 0 black;
+    transition: all 0.2s ease-in-out;
+}
+
+/* 🎯 Asegurar que el botón de búsqueda sigue alineado */
+#filter-button-completo {
+    padding: 4px 8px; /* 🔹 Reduce el padding del botón */
+    font-size: 0.9rem;
+    box-shadow: 2px 2px 0 black;
+}
+
+
 
 
 
