@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         reportesPagina.forEach(reporte => {
             let fila = document.createElement("tr");
-            fila.classList.add("fade-in"); // Aplica la animación de entrada
+            fila.classList.add("fade-in"); // Aplica la animación de entradaaa
 
             fila.innerHTML = `
                 <td>${reporte.folio}</td>
