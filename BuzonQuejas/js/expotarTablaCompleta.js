@@ -3,10 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     exportarPaginaBtn.addEventListener("click", function () {
         let datosReportesPendientes = JSON.parse(localStorage.getItem("reportesPendientes")) || [];
-
         let reportesVisibles = [];
 
-        // 🔹 Recorremos la tabla 2 para obtener los reportes visibles en la página actual
+        // 🔍 Obtener los folios visibles en la tabla 2
         document.querySelectorAll("#tabla-completos-body tr").forEach(fila => {
             let celdas = fila.getElementsByTagName("td");
             if (celdas.length > 0) {
@@ -15,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // 🔍 Buscamos los reportes completos en la tabla 1 usando los folios obtenidos
+        // 🔎 Buscar reportes completos en la tabla 1 (según los folios de la tabla 2)
         let reportesParaExportar = datosReportesPendientes.filter(reporte => reportesVisibles.includes(reporte.folio));
 
         if (reportesParaExportar.length === 0) {
@@ -23,7 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // 📤 Crear archivo Excel con los reportes completos
+        // 📥 Generar y descargar el archivo Excel
+        generarExcel(reportesParaExportar);
+    });
+
+    // 📌 Función para generar el archivo Excel
+    function generarExcel(reportes) {
         let wb = XLSX.utils.book_new();
         wb.Props = {
             Title: "Reportes Exportados",
@@ -34,13 +38,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         wb.SheetNames.push("Reporte");
 
-        // 📄 Cabeceras del archivo Excel (datos completos)
+        // 📄 Cabeceras del archivo Excel
         let ws_data = [
             ["Folio", "Número de Nómina", "Encargado", "Fecha Registro", "Fecha Finalización", "Descripción", "Comentarios", "Estatus"]
         ];
 
-        // 📌 Agregar los datos de los reportes completos al archivo Excel
-        reportesParaExportar.forEach(reporte => {
+        // 📌 Agregar datos de los reportes completos
+        reportes.forEach(reporte => {
             let comentarios = reporte.comentarios ? reporte.comentarios.join(" | ") : "Sin comentarios";
             ws_data.push([
                 reporte.folio,
@@ -72,5 +76,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 📥 Descargar el archivo Excel
         XLSX.writeFile(wb, `Reporte_Pagina_${document.getElementById("pageIndicator-completo").textContent}.xlsx`);
-    });
+    }
 });

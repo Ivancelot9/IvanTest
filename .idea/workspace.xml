@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Buscador Rango de Fechas">
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/js/expotarTablaCompleta.js" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Expotar Tabla Completa">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,15 +136,7 @@
       <workItem from="1740493297672" duration="12270000" />
       <workItem from="1740579783776" duration="19585000" />
       <workItem from="1740666016124" duration="15175000" />
-      <workItem from="1740752213228" duration="9792000" />
-    </task>
-    <task id="LOCAL-00501" summary="Boton Excel">
-      <option name="closed" value="true" />
-      <created>1740580844443</created>
-      <option name="number" value="00501" />
-      <option name="presentableId" value="LOCAL-00501" />
-      <option name="project" value="LOCAL" />
-      <updated>1740580844443</updated>
+      <workItem from="1740752213228" duration="10975000" />
     </task>
     <task id="LOCAL-00502" summary="Convertidor Reporte a Excel">
       <option name="closed" value="true" />
@@ -532,7 +522,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740764581194</updated>
     </task>
-    <option name="localTasksCounter" value="550" />
+    <task id="LOCAL-00550" summary="Expotar Tabla Completa">
+      <option name="closed" value="true" />
+      <created>1740769267556</created>
+      <option name="number" value="00550" />
+      <option name="presentableId" value="LOCAL-00550" />
+      <option name="project" value="LOCAL" />
+      <updated>1740769267556</updated>
+    </task>
+    <option name="localTasksCounter" value="551" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -584,7 +582,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Boton Sidebar" />
     <MESSAGE value="Modicando Contenido Sidebar" />
     <MESSAGE value="Tabla Reportes" />
     <MESSAGE value="Tabla Reportes Botones" />
@@ -609,6 +606,7 @@
     <MESSAGE value="Agregar Boton Exportar Todo" />
     <MESSAGE value="Agregar Boton Exportar Todo Tabla 2" />
     <MESSAGE value="Buscador Rango de Fechas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Buscador Rango de Fechas" />
+    <MESSAGE value="Expotar Tabla Completa" />
+    <option name="LAST_COMMIT_MESSAGE" value="Expotar Tabla Completa" />
   </component>
 </project>
