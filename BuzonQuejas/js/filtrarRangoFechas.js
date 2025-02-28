@@ -12,30 +12,38 @@ document.addEventListener("DOMContentLoaded", function () {
     const filasPorPagina = 10;
     let datosFiltradosCompletos = [...datosReportesCompletos];
 
-    // 📌 Función para mostrar reportes en la tabla de completados
+    // 📌 Función para mostrar reportes en la tabla de completados con animación
     function mostrarReportesCompletos(pagina, reportes = datosFiltradosCompletos) {
         tablaCompletosBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
         const fin = inicio + filasPorPagina;
         const reportesPagina = reportes.slice(inicio, fin);
 
+        if (reportesPagina.length === 0) {
+            tablaCompletosBody.innerHTML = `<tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
+            return;
+        }
+
         reportesPagina.forEach(reporte => {
             let fila = document.createElement("tr");
+            fila.classList.add("fade-in"); // Aplica la animación de entrada
+
             fila.innerHTML = `
                 <td>${reporte.folio}</td>
                 <td>${reporte.nomina}</td>
                 <td>${reporte.encargado}</td>
-                <td>${reporte.fechaFinalizacion}</td>
+                <td class="fecha-finalizacion">${reporte.fechaFinalizacion}</td>
                 <td>${reporte.estatus}</td>
                 <td><button class="convertidor"><i class="fas fa-file-excel"></i> Convertir a Excel</button></td>
             `;
 
-            let btnConvertir = fila.querySelector(".convertidor");
-            btnConvertir.addEventListener("click", function () {
-                exportarExcel(reporte);
-            });
-
             tablaCompletosBody.appendChild(fila);
+
+            // 🟡 Resaltar filas filtradas por 1 segundo
+            fila.classList.add("highlighted");
+            setTimeout(() => {
+                fila.classList.remove("highlighted");
+            }, 1000);
         });
 
         // 📌 Actualizar paginación
