@@ -158,22 +158,22 @@ button.convertidor:hover{
 /* 🔎 Contenedor del filtro */
 .filter-container {
     display: flex;
-    gap: 5px;
+    gap: 4px; /* 🔹 Menos espacio entre elementos */
     align-items: center;
     flex: 1;
 }
 
 /* 📌 Label "Filtrar por" más pequeño */
 .filter-container label {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 /* 📌 Select e Input de búsqueda más compactos */
 .filter-container select,
 .filter-container input[type="text"] {
-    width: 110px;
-    padding: 3px;
-    font-size: 0.85rem;
+    width: 100px; /* 🔹 Reducimos más el ancho */
+    padding: 2px; /* 🔹 Más compacto */
+    font-size: 0.8rem; /* 🔹 Reducimos más el tamaño de fuente */
     border: 2px solid black;
     font-family: "Bangers", serif;
     background-color: white;
@@ -182,38 +182,38 @@ button.convertidor:hover{
     transition: all 0.2s ease-in-out;
 }
 
-/* 🎯 Asegurar que el botón de búsqueda sigue alineado */
+/* 🎯 Asegurar que el botón de búsqueda sigue alineado y más pequeño */
 #filter-button-completo {
-    padding: 3px 6px;
-    font-size: 0.85rem;
+    padding: 3px 5px;
+    font-size: 0.8rem;
     box-shadow: 2px 2px 0 black;
 }
 
-/* 📅 Contenedor del rango de fechas (Movido más a la izquierda) */
+/* 📅 Contenedor del rango de fechas (Ajustamos más el espacio) */
 .date-range-container {
     display: flex;
     align-items: center;
-    gap: 6px;
-    justify-content: flex-start; /* 🔹 Lo movemos más a la izquierda */
-    flex: 1.5; /* 🔹 Permite que crezca más */
+    gap: 4px; /* 🔹 Reducimos el espacio */
+    justify-content: flex-start;
+    flex: 1.5;
 }
 
 /* 📅 Inputs de fecha más compactos */
 #start-date, #end-date {
-    padding: 3px;
+    padding: 2px;
     border: 2px solid black;
-    font-size: 0.85rem;
-    width: 110px;
+    font-size: 0.8rem;
+    width: 95px; /* 🔹 Más pequeños */
 }
 
 /* 📆 Botón de Filtrar por fecha más pequeño */
 #filter-date-button {
-    padding: 3px 6px;
-    font-size: 0.85rem;
+    padding: 3px 5px;
+    font-size: 0.8rem;
     box-shadow: 2px 2px 0 black;
 }
 
-/* 📤 Botón "Exportar Página" (Regresa el color verde) */
+/* 📤 Botón "Exportar Página" (Mantiene su tamaño y color verde) */
 #exportarPaginaCompletos {
     background: #28a745 !important; /* ✅ Verde */
     color: black !important;
@@ -243,6 +243,7 @@ button.convertidor:hover{
     font-size: 1rem;
     color: black;
 }
+
 
 
 
