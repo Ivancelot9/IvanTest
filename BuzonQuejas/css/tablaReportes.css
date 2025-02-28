@@ -151,29 +151,29 @@ button.convertidor:hover{
     display: flex;
     justify-content: space-between; /* 🔹 Separa los elementos */
     align-items: center;
-    margin-bottom: 5px; /* 🔹 Reducimos el espacio vertical */
-    flex-wrap: wrap; /* 🔹 Permite mejor distribución en pantallas pequeñas */
+    margin-bottom: 5px;
+    flex-wrap: wrap;
 }
 
 /* 🔎 Contenedor del filtro */
 .filter-container {
     display: flex;
-    gap: 5px; /* 🔹 Reduce el espacio entre elementos */
+    gap: 5px;
     align-items: center;
-    flex: 1; /* 🔹 Hace que el filtro ocupe menos espacio */
+    flex: 1;
 }
 
 /* 📌 Label "Filtrar por" más pequeño */
 .filter-container label {
-    font-size: 0.9rem; /* 🔹 Reduce el tamaño */
+    font-size: 0.9rem;
 }
 
 /* 📌 Select e Input de búsqueda más compactos */
 .filter-container select,
 .filter-container input[type="text"] {
-    width: 110px; /* 🔹 Reduce más el ancho */
-    padding: 3px; /* 🔹 Reduce el padding */
-    font-size: 0.85rem; /* 🔹 Reduce el tamaño de fuente */
+    width: 110px;
+    padding: 3px;
+    font-size: 0.85rem;
     border: 2px solid black;
     font-family: "Bangers", serif;
     background-color: white;
@@ -182,28 +182,28 @@ button.convertidor:hover{
     transition: all 0.2s ease-in-out;
 }
 
-/* 📆 Botón de búsqueda más pequeño */
+/* 🎯 Asegurar que el botón de búsqueda sigue alineado */
 #filter-button-completo {
-    padding: 3px 6px; /* 🔹 Reduce aún más el padding */
+    padding: 3px 6px;
     font-size: 0.85rem;
     box-shadow: 2px 2px 0 black;
 }
 
-/* 📅 Contenedor del rango de fechas (Asegura que se mantenga centrado) */
+/* 📅 Contenedor del rango de fechas (Movido más a la izquierda) */
 .date-range-container {
     display: flex;
     align-items: center;
-    gap: 6px; /* 🔹 Reduce el espacio */
-    justify-content: center; /* 🔹 Centra en el medio */
-    flex: 2; /* 🔹 Permite que crezca más */
+    gap: 6px;
+    justify-content: flex-start; /* 🔹 Lo movemos más a la izquierda */
+    flex: 1.5; /* 🔹 Permite que crezca más */
 }
 
 /* 📅 Inputs de fecha más compactos */
 #start-date, #end-date {
     padding: 3px;
     border: 2px solid black;
-    font-size: 0.85rem; /* 🔹 Reduce más el tamaño */
-    width: 110px; /* 🔹 Reduce el ancho */
+    font-size: 0.85rem;
+    width: 110px;
 }
 
 /* 📆 Botón de Filtrar por fecha más pequeño */
@@ -213,12 +213,37 @@ button.convertidor:hover{
     box-shadow: 2px 2px 0 black;
 }
 
-/* 📤 Botón "Exportar Página" más alineado */
+/* 📤 Botón "Exportar Página" (Regresa el color verde) */
 #exportarPaginaCompletos {
-    min-width: 160px; /* 🔹 Ajuste del ancho */
-    padding: 7px 14px; /* 🔹 Reduce un poco */
-    font-size: 0.9rem;
+    background: #28a745 !important; /* ✅ Verde */
+    color: black !important;
+    border: 4px solid black !important;
+    font-family: "Bangers", serif;
+    font-size: 1rem;
+    padding: 8px 16px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 black;
+    transition: all 0.2s ease-in-out;
+    min-width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 }
+
+/* 🎯 Hover para el botón de exportar */
+#exportarPaginaCompletos:hover {
+    background: #1e7e34 !important;
+    color: white !important;
+    transform: scale(1.05);
+}
+
+/* 🟢 Icono de Excel dentro del botón */
+#exportarPaginaCompletos i {
+    font-size: 1rem;
+    color: black;
+}
+
 
 
 
