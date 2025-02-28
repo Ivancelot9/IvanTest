@@ -12,7 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const filasPorPagina = 10;
     let datosFiltradosCompletos = [...datosReportesCompletos];
 
-    // 📌 Función para mostrar reportes en la tabla de completados con animación
+    // 📌 Bloquear la escritura manual en los inputs de fecha
+    startDateInput.setAttribute("onkeydown", "return false;");
+    endDateInput.setAttribute("onkeydown", "return false;");
+
+    // 📌 Mostrar reportes en la tabla con animación
     function mostrarReportesCompletos(pagina, reportes = datosFiltradosCompletos) {
         tablaCompletosBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
@@ -20,7 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const reportesPagina = reportes.slice(inicio, fin);
 
         if (reportesPagina.length === 0) {
-            tablaCompletosBody.innerHTML = `<tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
+            tablaCompletosBody.innerHTML = `
+                <tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
             return;
         }
 
@@ -39,11 +44,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
             tablaCompletosBody.appendChild(fila);
 
-            // 🟡 Resaltar filas filtradas por 1 segundo
+            // 🟡 Resaltar filas filtradas por 1.5 segundos
             fila.classList.add("highlighted");
             setTimeout(() => {
                 fila.classList.remove("highlighted");
-            }, 1000);
+            }, 1500);
         });
 
         // 📌 Actualizar paginación
@@ -52,13 +57,14 @@ document.addEventListener("DOMContentLoaded", function () {
         nextPageBtnCompleto.disabled = fin >= reportes.length;
     }
 
-    // 📅 Función para filtrar reportes por rango de fechas
+    // 📅 Filtrar reportes por rango de fechas
     function filtrarPorRango() {
         const startDate = startDateInput.value ? new Date(startDateInput.value) : null;
         const endDate = endDateInput.value ? new Date(endDateInput.value) : null;
 
         datosFiltradosCompletos = datosReportesCompletos.filter(reporte => {
             const fechaReporte = new Date(reporte.fechaFinalizacion.split('/').reverse().join('-')); // Convierte dd/mm/yyyy a yyyy-mm-dd
+
             if (startDate && endDate) {
                 return fechaReporte >= startDate && fechaReporte <= endDate;
             } else if (startDate) {
