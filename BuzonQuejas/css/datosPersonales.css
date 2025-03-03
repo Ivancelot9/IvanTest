@@ -12,15 +12,6 @@
     margin: 20px auto;
 }
 
-/* 🎭 Título */
-#datos-personales .comic-title {
-    font-size: 2rem;
-    color: black;
-    text-transform: uppercase;
-    text-align: center;
-    text-shadow: -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black, 3px 3px 0 black;
-}
-
 /* 🔹 Contenedor de la información */
 .personal-info {
     display: flex;

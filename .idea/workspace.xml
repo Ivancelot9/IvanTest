@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Expotar Tabla Completa">
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/css/datosPersonales.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Datos Personales">
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/datosPersonales.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/datosPersonales.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,15 +136,7 @@
       <workItem from="1740493297672" duration="12270000" />
       <workItem from="1740579783776" duration="19585000" />
       <workItem from="1740666016124" duration="15175000" />
-      <workItem from="1740752213228" duration="19930000" />
-    </task>
-    <task id="LOCAL-00505" summary="Convertidor Reporte a Excel">
-      <option name="closed" value="true" />
-      <created>1740584030850</created>
-      <option name="number" value="00505" />
-      <option name="presentableId" value="LOCAL-00505" />
-      <option name="project" value="LOCAL" />
-      <updated>1740584030850</updated>
+      <workItem from="1740752213228" duration="20035000" />
     </task>
     <task id="LOCAL-00506" summary="Convertidor Reporte a Excel">
       <option name="closed" value="true" />
@@ -533,7 +522,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741014818266</updated>
     </task>
-    <option name="localTasksCounter" value="554" />
+    <task id="LOCAL-00554" summary="Datos Personales">
+      <option name="closed" value="true" />
+      <created>1741021927883</created>
+      <option name="number" value="00554" />
+      <option name="presentableId" value="LOCAL-00554" />
+      <option name="project" value="LOCAL" />
+      <updated>1741021927884</updated>
+    </task>
+    <option name="localTasksCounter" value="555" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -585,7 +582,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modicando Contenido Sidebar" />
     <MESSAGE value="Tabla Reportes" />
     <MESSAGE value="Tabla Reportes Botones" />
     <MESSAGE value="Tabla Reportes Filtrador de Busqueda" />
@@ -610,6 +606,7 @@
     <MESSAGE value="Agregar Boton Exportar Todo Tabla 2" />
     <MESSAGE value="Buscador Rango de Fechas" />
     <MESSAGE value="Expotar Tabla Completa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Expotar Tabla Completa" />
+    <MESSAGE value="Datos Personales" />
+    <option name="LAST_COMMIT_MESSAGE" value="Datos Personales" />
   </component>
 </project>
