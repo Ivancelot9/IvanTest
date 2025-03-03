@@ -61,13 +61,20 @@ document.addEventListener("DOMContentLoaded", function () {
     tablaCompletosBody.addEventListener("click", function (event) {
         if (event.target.closest(".convertidor")) {
             const folio = event.target.closest(".convertidor").getAttribute("data-folio");
-            const reporte = datosReportesCompletos.find(rep => rep.folio === folio);
+            const reporte = datosFiltradosCompletos.find(rep => rep.folio === folio);
+
+            if (!reporte) {
+                console.error("No se encontró el reporte con folio:", folio);
+                Swal.fire("Error", "No se encontró el reporte en la tabla completados.", "error");
+                return;
+            }
+
             exportarExcel(reporte);
         }
     });
 
     function exportarExcel(reporte) {
-        if (!reporte) {
+        if (!reporte || Object.keys(reporte).length === 0) {
             Swal.fire("Error", "No se encontró el reporte en la tabla completados.", "error");
             return;
         }
@@ -142,5 +149,8 @@ document.addEventListener("DOMContentLoaded", function () {
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
 
-    mostrarReportesCompletos(paginaActualCompleto);
+    // 🔹 Mostrar reportes desde el inicio (para que siempre funcione)
+    if (datosReportesCompletos.length > 0) {
+        mostrarReportesCompletos(paginaActualCompleto);
+    }
 });
