@@ -13,27 +13,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const filasPorPagina = 10;
     let datosFiltradosCompletos = [...datosReportesCompletos];
 
-    // ✅ 🔄 Guardar reportes en localStorage (RESTAURADO)
     function guardarReportesCompletos() {
         localStorage.setItem("reportesCompletos", JSON.stringify(datosReportesCompletos));
         localStorage.setItem("comentariosPorReporte", JSON.stringify(comentariosPorReporte));
     }
 
-    // ✅ 🔄 Función global para mover el reporte a la tabla de completados (RESTAURADO)
     window.moverReporteACompletados = function (reporte) {
         datosReportesCompletos.push(reporte);
-        guardarReportesCompletos(); // 🔹 Se vuelve a llamar para guardar cambios
+        guardarReportesCompletos();
         filtrarReportesCompletos();
     };
 
-    // 🔎 Función para resaltar texto filtrado
     function resaltarTexto(texto, filtro) {
         if (!filtro || filtro.trim() === "") return texto;
         const regex = new RegExp(`(${filtro})`, "gi");
         return texto.replace(regex, `<span class="highlight">$1</span>`);
     }
 
-    // 📌 Función para mostrar reportes en la tabla de completados
     function mostrarReportesCompletos(pagina, reportes = datosFiltradosCompletos) {
         tablaCompletosBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
@@ -50,13 +46,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${columnaSeleccionada === "encargado" ? resaltarTexto(reporte.encargado, valorFiltro) : reporte.encargado}</td>
                 <td>${columnaSeleccionada === "fechaFinalizacion" ? resaltarTexto(reporte.fechaFinalizacion, valorFiltro) : reporte.fechaFinalizacion}</td>
                 <td>${columnaSeleccionada === "estatus" ? resaltarTexto(reporte.estatus, valorFiltro) : reporte.estatus}</td>
-                <td><button class="convertidor"><i class="fas fa-file-excel"></i> Convertir a Excel</button></td>
+                <td><button class="convertidor" data-folio="${reporte.folio}"><i class="fas fa-file-excel"></i> Convertir a Excel</button></td>
             `;
-
-            let btnConvertir = fila.querySelector(".convertidor");
-            btnConvertir.addEventListener("click", function () {
-                exportarExcel(reporte);
-            });
 
             tablaCompletosBody.appendChild(fila);
         });
@@ -66,7 +57,15 @@ document.addEventListener("DOMContentLoaded", function () {
         nextPageBtnCompleto.disabled = fin >= reportes.length;
     }
 
-    // 📌 Función para exportar reporte a Excel incluyendo comentarios
+    // 📌 Delegación de eventos para el botón "Convertir a Excel"
+    tablaCompletosBody.addEventListener("click", function (event) {
+        if (event.target.closest(".convertidor")) {
+            const folio = event.target.closest(".convertidor").getAttribute("data-folio");
+            const reporte = datosReportesCompletos.find(rep => rep.folio === folio);
+            exportarExcel(reporte);
+        }
+    });
+
     function exportarExcel(reporte) {
         if (!reporte) {
             Swal.fire("Error", "No se encontró el reporte en la tabla completados.", "error");
@@ -118,7 +117,6 @@ document.addEventListener("DOMContentLoaded", function () {
         XLSX.writeFile(wb, `Reporte_${reporte.folio}.xlsx`);
     }
 
-    // 📌 Función para filtrar reportes completados
     function filtrarReportesCompletos() {
         const valorFiltro = filterInputCompleto.value.toLowerCase();
         const columna = filterColumnCompleto.value;

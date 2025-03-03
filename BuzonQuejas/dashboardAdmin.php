@@ -223,7 +223,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 <script src="js/fechaFinalizacion.js"></script>
 <script src="js/tablaReportesCompletos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src = "js/estatusEditor.js"></script>
+<script src="js/estatusEditor.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="js/filtrarRangoFechas.js"></script>
 <script src="js/expotarTablaCompleta.js"></script>

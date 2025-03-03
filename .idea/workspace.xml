@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Datos Personales">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modificar Datos Personales">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/modificarDatosPersonales.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/modificarDatosPersonales.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/modificarDatosPersonales.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/modificarDatosPersonales.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportesCompletos.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportesCompletos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,15 +138,7 @@
       <workItem from="1740493297672" duration="12270000" />
       <workItem from="1740579783776" duration="19585000" />
       <workItem from="1740666016124" duration="15175000" />
-      <workItem from="1740752213228" duration="26707000" />
-    </task>
-    <task id="LOCAL-00512" summary="Pruebas Excel">
-      <option name="closed" value="true" />
-      <created>1740588854687</created>
-      <option name="number" value="00512" />
-      <option name="presentableId" value="LOCAL-00512" />
-      <option name="project" value="LOCAL" />
-      <updated>1740588854687</updated>
+      <workItem from="1740752213228" duration="29885000" />
     </task>
     <task id="LOCAL-00513" summary="Correcion Comentarios">
       <option name="closed" value="true" />
@@ -533,7 +524,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741028370688</updated>
     </task>
-    <option name="localTasksCounter" value="561" />
+    <task id="LOCAL-00561" summary="Modificar Datos Personales">
+      <option name="closed" value="true" />
+      <created>1741028959552</created>
+      <option name="number" value="00561" />
+      <option name="presentableId" value="LOCAL-00561" />
+      <option name="project" value="LOCAL" />
+      <updated>1741028959552</updated>
+    </task>
+    <option name="localTasksCounter" value="562" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -585,7 +584,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tabla Reportes" />
     <MESSAGE value="Tabla Reportes Botones" />
     <MESSAGE value="Tabla Reportes Filtrador de Busqueda" />
     <MESSAGE value="Tabla Reportes (Reportes Vista)" />
@@ -610,6 +608,7 @@
     <MESSAGE value="Buscador Rango de Fechas" />
     <MESSAGE value="Expotar Tabla Completa" />
     <MESSAGE value="Datos Personales" />
-    <option name="LAST_COMMIT_MESSAGE" value="Datos Personales" />
+    <MESSAGE value="Modificar Datos Personales" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modificar Datos Personales" />
   </component>
 </project>
