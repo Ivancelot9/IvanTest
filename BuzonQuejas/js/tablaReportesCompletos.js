@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {};
     let paginaActualCompleto = 1;
     const filasPorPagina = 10;
-    let datosFiltradosCompletos = [...datosReportesCompletos];
+    let datosFiltradosCompletos = [...datosReportesCompletos]; // 🔹 Inicialización correcta
 
     function guardarReportesCompletos() {
         localStorage.setItem("reportesCompletos", JSON.stringify(datosReportesCompletos));
@@ -30,11 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
         return texto.replace(regex, `<span class="highlight">$1</span>`);
     }
 
-    function mostrarReportesCompletos(pagina, reportes = datosFiltradosCompletos) {
+    function mostrarReportesCompletos(pagina) {
+        datosFiltradosCompletos = [...datosReportesCompletos]; // 🔹 Sincronizar datos siempre
         tablaCompletosBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
         const fin = inicio + filasPorPagina;
-        const reportesPagina = reportes.slice(inicio, fin);
+        const reportesPagina = datosFiltradosCompletos.slice(inicio, fin);
         const valorFiltro = filterInputCompleto.value.toLowerCase();
         const columnaSeleccionada = filterColumnCompleto.value;
 
@@ -54,14 +55,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         pageIndicatorCompleto.textContent = `Página ${pagina}`;
         prevPageBtnCompleto.disabled = pagina === 1;
-        nextPageBtnCompleto.disabled = fin >= reportes.length;
+        nextPageBtnCompleto.disabled = fin >= datosFiltradosCompletos.length;
     }
 
     // 📌 Delegación de eventos para el botón "Convertir a Excel"
     tablaCompletosBody.addEventListener("click", function (event) {
         if (event.target.closest(".convertidor")) {
             const folio = event.target.closest(".convertidor").getAttribute("data-folio");
-            const reporte = datosFiltradosCompletos.find(rep => rep.folio === folio);
+            const reporte = datosReportesCompletos.find(rep => rep.folio === folio);
 
             if (!reporte) {
                 console.error("No se encontró el reporte con folio:", folio);
@@ -79,7 +80,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {};
         let comentarios = reporte.comentarios && reporte.comentarios.length > 0
             ? reporte.comentarios.join(" | ")
             : (comentariosPorReporte[reporte.folio] ? comentariosPorReporte[reporte.folio].join(" | ") : "Sin comentarios");
@@ -149,8 +149,6 @@ document.addEventListener("DOMContentLoaded", function () {
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
 
-    // 🔹 Mostrar reportes desde el inicio (para que siempre funcione)
-    if (datosReportesCompletos.length > 0) {
-        mostrarReportesCompletos(paginaActualCompleto);
-    }
+    // 🔹 Forzar que la tabla se sincronice y cargue los datos correctamente desde el inicio
+    mostrarReportesCompletos(paginaActualCompleto);
 });
