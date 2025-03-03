@@ -50,7 +50,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <div class="profile">
         <img src="imagenes/user.png" alt="Profile Picture">
         <div class="username-bubble">
-            <h4>Iván Alejandro Medina Cerritos</h4>
+            <h4 id="sidebar-nombre">Iván Alejandro Medina Cerritos</h4>
         </div>
     </div>
     <!-- 🔹 Nuevo contenedor para los botones de navegación -->
@@ -79,13 +79,13 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
             <!-- 👤 Nombre -->
             <div class="info-item">
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" value="Iván Alejandro Medina" readonly>
+                <input type="text" id="nombre" name="nombre" value="" readonly>
             </div>
 
             <!-- 🆔 Número de Nómina -->
             <div class="info-item">
                 <label for="nomina">Número de Nómina:</label>
-                <input type="text" id="nomina" name="nomina" value="123456" readonly>
+                <input type="text" id="nomina" name="nomina" value="" readonly>
             </div>
         </div>
 
@@ -228,6 +228,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="js/filtrarRangoFechas.js"></script>
 <script src="js/expotarTablaCompleta.js"></script>
+<script src="js/datosUsuario.js"></script>
 
 
 </body>
