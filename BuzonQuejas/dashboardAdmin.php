@@ -24,6 +24,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/datosPersonales.css">
 
     <!-- SheetJS (xlsx.js) para generar archivos Excel -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -72,17 +73,27 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <!-- Datos Personales -->
     <div id="datos-personales" class="content comic-container">
         <h2 class="comic-title">Datos Personales</h2>
+
+        <!-- 🎭 Tarjeta de Información Personal -->
         <div class="personal-info">
+            <!-- 👤 Nombre -->
             <div class="info-item">
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" value="Iván Alejandro Medina" readonly>
             </div>
+
+            <!-- 🆔 Número de Nómina -->
             <div class="info-item">
                 <label for="nomina">Número de Nómina:</label>
                 <input type="text" id="nomina" name="nomina" value="123456" readonly>
             </div>
         </div>
-        <button type="button" id="editar-btn" class="submit-btn">Editar Datos</button>
+
+        <!-- 🎛 Botones de acción -->
+        <div class="botones-accion">
+            <button type="button" id="editar-btn" class="submit-btn">✏ Editar</button>
+            <button type="button" id="guardar-btn" class="submit-btn guardar-btn" style="display: none;">💾 Guardar</button>
+        </div>
     </div>
 
     <!-- 🏢 Historial de Reportes -->

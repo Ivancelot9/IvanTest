@@ -1,0 +1,109 @@
+/* 📌 Contenedor de Datos Personales */
+#datos-personales {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    border: 5px solid #1094e0; /* Borde azul estilo cómic */
+    box-shadow: 5px 5px 0 black; /* Sombra tipo cómic */
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 450px; /* Ajuste del tamaño */
+    margin: 20px auto;
+}
+
+/* 🎭 Título */
+#datos-personales .comic-title {
+    font-size: 2rem;
+    color: black;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black, 3px 3px 0 black;
+}
+
+/* 🔹 Contenedor de la información */
+.personal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+/* 📝 Cada campo de información */
+.info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: "Bangers", serif;
+    font-size: 1.3rem;
+}
+
+/* 🎯 Etiquetas */
+.info-item label {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #1094e0;
+    text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
+    margin-bottom: 5px;
+}
+
+/* 📌 Inputs */
+.personal-info input {
+    background: #f0f0f0;
+    border: 3px solid black;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-family: "Bangers", serif;
+    color: black;
+    border-radius: 5px;
+    text-align: center;
+    outline: none;
+    width: 100%;
+}
+
+/* 🔒 Input bloqueado */
+.personal-info input[readonly] {
+    background: #e0e0e0;
+    color: gray;
+    cursor: not-allowed;
+}
+
+/* 🎛 Contenedor de botones */
+.botones-accion {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* 📌 Botones */
+.submit-btn {
+    background: #1094e0;
+    border: 3px solid black;
+    color: black;
+    font-family: "Bangers", serif;
+    font-size: 1.3rem;
+    padding: 8px 15px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 black;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* 🔥 Hover */
+.submit-btn:hover {
+    background: black;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* 🟢 Estilos para el botón Guardar */
+.guardar-btn {
+    background: #28a745 !important;
+}
+
+/* 🎯 Hover del botón Guardar */
+.guardar-btn:hover {
+    background: #1e7e34 !important;
+}

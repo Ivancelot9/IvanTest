@@ -326,58 +326,6 @@ body {
     height: auto;
 }
 
-/* Estilo para la sección de Datos Personales */
-.personal-info {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-    background: white;
-    border: 5px solid #1094e0; /* Borde azul tipo cómic */
-    border-radius: 10px;
-    box-shadow: 3px 3px 0 #1094e0; /* Sombra estilo cómic */
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-/* Estilos de cada campo */
-.info-item {
-    display: flex;
-    flex-direction: column;
-    font-family: "Bangers", serif;
-    font-size: 1.5rem;
-    color: black;
-}
-
-.info-item label {
-    font-size: 1.5rem; /* Tamaño del texto */
-    text-align: left;
-    color: rgba(23, 102, 209, 0.88); /* Color principal del texto */
-    text-transform: uppercase; /* Convierte el texto a mayúsculas */
-    margin-bottom: 5px; /* Espaciado debajo del título */
-
-    text-shadow:
-            -2px -2px 0 #000, /* Contorno negro en la parte superior izquierda */
-            2px -2px 0 #000, /* Contorno negro en la parte superior derecha */
-            -2px  2px 0 #000, /* Contorno negro en la parte inferior izquierda */
-            2px  2px 0 #000; /* Contorno negro en la parte inferior derecha */
-}
-
-/* Inputs de solo lectura */
-.personal-info input {
-    background: #f0f0f0;
-    border: 2px solid black;
-    padding: 10px;
-    font-size: 1.2rem;
-    font-family: "Bangers", serif;
-    color: black;
-    border-radius: 5px;
-    text-align: center;
-    outline: none;
-}
-
-
-
 /* Main Content (ajustado con espacio a la izquierda) */
 .main-content {
     margin-left: auto; /* Espacio entre la sidebar y el contenido */
