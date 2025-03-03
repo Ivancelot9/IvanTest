@@ -222,13 +222,13 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 <script src="js/tablaReportes.js"></script>
 <script src="js/fechaFinalizacion.js"></script>
 <script src="js/tablaReportesCompletos.js"></script>
-<!-- Flatpickr JS -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src = "js/estatusEditor.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="js/filtrarRangoFechas.js"></script>
 <script src="js/expotarTablaCompleta.js"></script>
 <script src="js/datosUsuario.js"></script>
+<script src="js/modificarDatosPersonales.js"></script>
 
 
 </body>
