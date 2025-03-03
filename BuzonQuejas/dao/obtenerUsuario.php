@@ -1,6 +1,6 @@
 <?php
 session_start(); // Iniciar sesión
-include_once("conexion.php");
+include_once("conexion.php"); // Asegurarnos de incluir la conexión
 header('Content-Type: application/json');
 
 // Verificar si el usuario ha iniciado sesión
@@ -12,8 +12,8 @@ if (!isset($_SESSION['NumNomina'])) {
 $NumNomina = $_SESSION['NumNomina']; // Obtener el número de nómina de la sesión
 
 try {
-    // Conectar a la base de datos
-    $con = new Conexion();
+    // Conectar a la base de datos con LocalConector
+    $con = new LocalConector();
     $conex = $con->conectar();
 
     // Consultar datos del usuario en la tabla `Usuario`
