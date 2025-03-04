@@ -43,11 +43,15 @@ document.addEventListener("DOMContentLoaded", function () {
             let fila = document.createElement("tr");
             fila.innerHTML = `
                 <td>${columnaSeleccionada === "folio" ? resaltarTexto(reporte.folio, valorFiltro) : reporte.folio}</td>
-                <td>${columnaSeleccionada === "nomina" ? resaltarTexto(reporte.nomina, valorFiltro) : reporte.nomina}</td>
-                <td>${columnaSeleccionada === "encargado" ? resaltarTexto(reporte.encargado, valorFiltro) : reporte.encargado}</td>
-                <td>${columnaSeleccionada === "fechaFinalizacion" ? resaltarTexto(reporte.fechaFinalizacion, valorFiltro) : reporte.fechaFinalizacion}</td>
-                <td>${columnaSeleccionada === "estatus" ? resaltarTexto(reporte.estatus, valorFiltro) : reporte.estatus}</td>
-                <td><button class="convertidor" data-folio="${reporte.folio}"><i class="fas fa-file-excel"></i> Convertir a Excel</button></td>
+            <td>${columnaSeleccionada === "nomina" ? resaltarTexto(reporte.nomina, valorFiltro) : reporte.nomina}</td>
+            <td>${columnaSeleccionada === "encargado" ? resaltarTexto(reporte.encargado, valorFiltro) : reporte.encargado}</td>
+            <td>${columnaSeleccionada === "fechaFinalizacion" ? resaltarTexto(reporte.fechaFinalizacion, valorFiltro) : reporte.fechaFinalizacion}</td>
+            <td>${columnaSeleccionada === "estatus" ? resaltarTexto(reporte.estatus, valorFiltro) : reporte.estatus}</td>
+            <td>
+                <button class="convertidor" data-folio="${reporte.folio ? reporte.folio : 'ERROR_FOLIO'}">
+                    <i class="fas fa-file-excel"></i> Convertir a Excel
+                </button>
+            </td>
             `;
 
             tablaCompletosBody.appendChild(fila);
