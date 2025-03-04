@@ -36,17 +36,17 @@ body {
 
 /* Título estilo cómic */
 .comic-title {
-    font-size: 2.5rem;
+    font-size: 2.5rem; /* Tamaño del texto */
     text-align: center;
-    color: rgba(23, 102, 209, 0.88);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
+    color: rgba(23, 102, 209, 0.88); /* Color principal del texto */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    margin-bottom: 20px; /* Espaciado debajo del título */
+    letter-spacing: 2px; /* Añade espacio entre las letras */
     text-shadow:
-            -2px -2px 0 #000,
-            2px -2px 0 #000,
-            -2px  2px 0 #000,
-            2px  2px 0 #000;
+            -2px -2px 0 #000, /* Contorno negro en la parte superior izquierda */
+            2px -2px 0 #000, /* Contorno negro en la parte superior derecha */
+            -2px  2px 0 #000, /* Contorno negro en la parte inferior izquierda */
+            2px  2px 0 #000; /* Contorno negro en la parte inferior derecha */
 }
 
 /* Estilos de pestañas */
