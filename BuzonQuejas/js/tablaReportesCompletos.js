@@ -32,8 +32,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function mostrarReportesCompletos(pagina) {
         console.log("🔄 Cargando reportes en la tabla...");
-        datosFiltradosCompletos = [...datosReportesCompletos]; // 🔹 Sincronizar datos siempre
+
+        datosFiltradosCompletos = JSON.parse(JSON.stringify(datosReportesCompletos)); // 🔹 Forzar copia real
+
         console.log("📋 Reportes a mostrar en la tabla:", datosFiltradosCompletos);
+
         tablaCompletosBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
         const fin = inicio + filasPorPagina;
@@ -45,26 +48,34 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("📄 Reporte generado en la tabla:", reporte, "➡ Folio:", reporte.folio);
 
             let fila = document.createElement("tr");
+
             fila.innerHTML = `
-                <td>${columnaSeleccionada === "folio" ? resaltarTexto(reporte.folio, valorFiltro) : reporte.folio}</td>
+            <td>${columnaSeleccionada === "folio" ? resaltarTexto(reporte.folio, valorFiltro) : reporte.folio}</td>
             <td>${columnaSeleccionada === "nomina" ? resaltarTexto(reporte.nomina, valorFiltro) : reporte.nomina}</td>
             <td>${columnaSeleccionada === "encargado" ? resaltarTexto(reporte.encargado, valorFiltro) : reporte.encargado}</td>
             <td>${columnaSeleccionada === "fechaFinalizacion" ? resaltarTexto(reporte.fechaFinalizacion, valorFiltro) : reporte.fechaFinalizacion}</td>
             <td>${columnaSeleccionada === "estatus" ? resaltarTexto(reporte.estatus, valorFiltro) : reporte.estatus}</td>
-            <td>
-                <button class="convertidor" data-folio="${reporte.folio ? reporte.folio : 'ERROR_FOLIO'}">
-                    <i class="fas fa-file-excel"></i> Convertir a Excel
-                </button>
-            </td>
-            `;
+        `;
+
+            // 🔹 CREAR EL BOTÓN MANUALMENTE PARA EVITAR ERRORES CON INNERHTML
+            let boton = document.createElement("button");
+            boton.classList.add("convertidor");
+            boton.setAttribute("data-folio", reporte.folio ? reporte.folio : "ERROR_FOLIO");
+            boton.innerHTML = `<i class="fas fa-file-excel"></i> Convertir a Excel`;
+
+            // 🔹 Agregar el botón manualmente a la última celda de la fila
+            let celdaBoton = document.createElement("td");
+            celdaBoton.appendChild(boton);
+            fila.appendChild(celdaBoton);
 
             tablaCompletosBody.appendChild(fila);
-            console.log("✅ Reportes generados en la tabla.");
         });
 
         pageIndicatorCompleto.textContent = `Página ${pagina}`;
         prevPageBtnCompleto.disabled = pagina === 1;
         nextPageBtnCompleto.disabled = fin >= datosFiltradosCompletos.length;
+
+        console.log("✅ Reportes generados en la tabla.");
     }
 
     // 📌 Delegación de eventos para el botón "Convertir a Excel"
