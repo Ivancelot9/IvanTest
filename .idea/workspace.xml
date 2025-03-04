@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Dashboard Usuario">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyleUsuario.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyleUsuario.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,15 +138,7 @@
       <workItem from="1740579783776" duration="19585000" />
       <workItem from="1740666016124" duration="15175000" />
       <workItem from="1740752213228" duration="30638000" />
-      <workItem from="1741098419902" duration="10751000" />
-    </task>
-    <task id="LOCAL-00523" summary="Agregar Comentarios a Excel">
-      <option name="closed" value="true" />
-      <created>1740603228062</created>
-      <option name="number" value="00523" />
-      <option name="presentableId" value="LOCAL-00523" />
-      <option name="project" value="LOCAL" />
-      <updated>1740603228062</updated>
+      <workItem from="1741098419902" duration="11319000" />
     </task>
     <task id="LOCAL-00524" summary="Agregar Comentarios a Excel">
       <option name="closed" value="true" />
@@ -531,7 +524,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741112622137</updated>
     </task>
-    <option name="localTasksCounter" value="572" />
+    <task id="LOCAL-00572" summary="Dashboard Usuario">
+      <option name="closed" value="true" />
+      <created>1741112685920</created>
+      <option name="number" value="00572" />
+      <option name="presentableId" value="LOCAL-00572" />
+      <option name="project" value="LOCAL" />
+      <updated>1741112685920</updated>
+    </task>
+    <option name="localTasksCounter" value="573" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
