@@ -21,15 +21,15 @@
 
     <!-- 🔹 Pestañas Rectangulares Simuladas -->
     <div class="tabs-container">
-        <div class="tab-item active">Datos</div>
-        <div class="tab-item">Área</div>
-        <div class="tab-item">Queja</div>
+        <div class="tab-item active" data-step="0">Datos</div>
+        <div class="tab-item" data-step="1">Área</div>
+        <div class="tab-item" data-step="2">Queja</div>
     </div>
 
     <!-- 🔹 Cuadro con Contenido -->
     <div class="content-box">
         <!-- Paso 1: Datos del Usuario -->
-        <div id="step1" class="content active">
+        <div id="step1" class="content">
             <p><strong>Nombre:</strong> <span id="nombreUsuario">Juan Pérez</span></p>
             <p><strong>Nómina:</strong> <span id="nominaUsuario">123456</span></p>
         </div>

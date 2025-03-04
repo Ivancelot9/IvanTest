@@ -166,6 +166,16 @@ textarea {
     display: none;
 }
 
+/* Asegura que solo la pestaña activa sea visible */
+.content {
+    display: none;
+}
+
+.content.active {
+    display: block;
+}
+
+
 
 
 /* 📌 Media Query para pantallas grandes (Laptops & PC) */
