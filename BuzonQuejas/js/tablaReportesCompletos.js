@@ -9,20 +9,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let datosReportesCompletos = JSON.parse(localStorage.getItem("reportesCompletos")) || [];
     let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {};
-    let paginaActualCompleto = 1;
-    const filasPorPagina = 10;
-    let datosFiltradosCompletos = [...datosReportesCompletos]; // 🔹 Inicialización correcta
 
-    function guardarReportesCompletos() {
-        localStorage.setItem("reportesCompletos", JSON.stringify(datosReportesCompletos));
-        localStorage.setItem("comentariosPorReporte", JSON.stringify(comentariosPorReporte));
+    if (!Array.isArray(datosReportesCompletos)) {
+        datosReportesCompletos = [];
     }
 
-    window.moverReporteACompletados = function (reporte) {
-        datosReportesCompletos.push(reporte);
-        guardarReportesCompletos();
-        filtrarReportesCompletos();
-    };
+    let paginaActualCompleto = 1;
+    const filasPorPagina = 10;
+    let datosFiltradosCompletos = [...datosReportesCompletos];
 
     function resaltarTexto(texto, filtro) {
         if (!filtro || filtro.trim() === "") return texto;
@@ -31,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function mostrarReportesCompletos(pagina) {
-        datosFiltradosCompletos = [...datosReportesCompletos]; // 🔹 Sincronizar datos siempre
+        datosFiltradosCompletos = [...datosReportesCompletos];
         tablaCompletosBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
         const fin = inicio + filasPorPagina;
@@ -53,26 +47,29 @@ document.addEventListener("DOMContentLoaded", function () {
             tablaCompletosBody.appendChild(fila);
         });
 
+        asignarEventosConvertidor();
+
         pageIndicatorCompleto.textContent = `Página ${pagina}`;
         prevPageBtnCompleto.disabled = pagina === 1;
         nextPageBtnCompleto.disabled = fin >= datosFiltradosCompletos.length;
     }
 
-    // 📌 Delegación de eventos para el botón "Convertir a Excel"
-    tablaCompletosBody.addEventListener("click", function (event) {
-        if (event.target.closest(".convertidor")) {
-            const folio = event.target.closest(".convertidor").getAttribute("data-folio");
-            const reporte = datosReportesCompletos.find(rep => rep.folio === folio);
+    function asignarEventosConvertidor() {
+        document.querySelectorAll(".convertidor").forEach(button => {
+            button.addEventListener("click", function () {
+                const folio = this.getAttribute("data-folio");
+                const reporte = datosReportesCompletos.find(rep => rep.folio === folio);
 
-            if (!reporte) {
-                console.error("No se encontró el reporte con folio:", folio);
-                Swal.fire("Error", "No se encontró el reporte en la tabla completados.", "error");
-                return;
-            }
+                if (!reporte) {
+                    console.error("No se encontró el reporte con folio:", folio);
+                    Swal.fire("Error", "No se encontró el reporte en la tabla completados.", "error");
+                    return;
+                }
 
-            exportarExcel(reporte);
-        }
-    });
+                exportarExcel(reporte);
+            });
+        });
+    }
 
     function exportarExcel(reporte) {
         if (!reporte || Object.keys(reporte).length === 0) {
@@ -96,12 +93,12 @@ document.addEventListener("DOMContentLoaded", function () {
         let ws_data = [
             ["Folio", "Número de Nómina", "Encargado", "Fecha Registro", "Fecha Finalización", "Descripción", "Estatus", "Comentarios"],
             [
-                reporte.folio,
-                reporte.nomina,
-                reporte.encargado,
-                reporte.fechaRegistro,
-                reporte.fechaFinalizacion,
-                reporte.descripcion,
+                reporte.folio || "N/A",
+                reporte.nomina || "N/A",
+                reporte.encargado || "N/A",
+                reporte.fechaRegistro || "N/A",
+                reporte.fechaFinalizacion || "N/A",
+                reporte.descripcion || "N/A",
                 "Completado",
                 comentarios
             ]
@@ -149,6 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
 
-    // 🔹 Forzar que la tabla se sincronice y cargue los datos correctamente desde el inicio
+    // Cargar y mostrar los reportes al inicio
     mostrarReportesCompletos(paginaActualCompleto);
 });
