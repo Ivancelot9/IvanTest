@@ -138,23 +138,7 @@
       <workItem from="1740579783776" duration="19585000" />
       <workItem from="1740666016124" duration="15175000" />
       <workItem from="1740752213228" duration="30638000" />
-      <workItem from="1741098419902" duration="1531000" />
-    </task>
-    <task id="LOCAL-00515" summary="Agregar Comentarios a Excel">
-      <option name="closed" value="true" />
-      <created>1740593805366</created>
-      <option name="number" value="00515" />
-      <option name="presentableId" value="LOCAL-00515" />
-      <option name="project" value="LOCAL" />
-      <updated>1740593805366</updated>
-    </task>
-    <task id="LOCAL-00516" summary="Agregar Comentarios a Excel">
-      <option name="closed" value="true" />
-      <created>1740594460214</created>
-      <option name="number" value="00516" />
-      <option name="presentableId" value="LOCAL-00516" />
-      <option name="project" value="LOCAL" />
-      <updated>1740594460214</updated>
+      <workItem from="1741098419902" duration="3316000" />
     </task>
     <task id="LOCAL-00517" summary="Agregar Comentarios a Excel">
       <option name="closed" value="true" />
@@ -532,7 +516,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741035597189</updated>
     </task>
-    <option name="localTasksCounter" value="564" />
+    <task id="LOCAL-00564" summary="Arreglando Excel Individual">
+      <option name="closed" value="true" />
+      <created>1741099977679</created>
+      <option name="number" value="00564" />
+      <option name="presentableId" value="LOCAL-00564" />
+      <option name="project" value="LOCAL" />
+      <updated>1741099977679</updated>
+    </task>
+    <task id="LOCAL-00565" summary="Arreglando Excel Individual">
+      <option name="closed" value="true" />
+      <created>1741100101176</created>
+      <option name="number" value="00565" />
+      <option name="presentableId" value="LOCAL-00565" />
+      <option name="project" value="LOCAL" />
+      <updated>1741100101176</updated>
+    </task>
+    <option name="localTasksCounter" value="566" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

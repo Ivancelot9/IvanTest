@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const filterInputCompleto = document.getElementById("filter-input-completo");
     const filterButtonCompleto = document.getElementById("filter-button-completo");
 
-    let datosReportesCompletos = JSON.parse(localStorage.getItem("reportesCompletos")) || [];
+    window.datosReportesCompletos = JSON.parse(localStorage.getItem("reportesCompletos")) || [];
     let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {};
     let paginaActualCompleto = 1;
     const filasPorPagina = 10;
