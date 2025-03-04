@@ -13,22 +13,29 @@
 </head>
 <body>
 
-    <div class="comic-container">
+<div class="comic-container">
+    <div class="logo-title-container">
         <img src="imagenes/GrameLogo2.png" alt="Logo" class="logo">
-        <div class="comic-title">Quéjate</div>
+        <div class="comic-title-usuario" data-text="¡QUÉJATE!">¡QUÉJATE!</div>
+    </div>
 
-        <div class="tabs">
-            <div class="tab active"></div>
-            <div class="tab"></div>
-            <div class="tab"></div>
-        </div>
+    <!-- 🔹 Pestañas Rectangulares Simuladas -->
+    <div class="tabs-container">
+        <div class="tab-item active">Datos</div>
+        <div class="tab-item">Área</div>
+        <div class="tab-item">Queja</div>
+    </div>
 
+    <!-- 🔹 Cuadro con Contenido -->
+    <div class="content-box">
+        <!-- Paso 1: Datos del Usuario -->
         <div id="step1" class="content active">
             <p><strong>Nombre:</strong> <span id="nombreUsuario">Juan Pérez</span></p>
             <p><strong>Nómina:</strong> <span id="nominaUsuario">123456</span></p>
         </div>
 
-        <div id="step2" class="content">
+        <!-- Paso 2: Selección de Área (Oculto por defecto) -->
+        <div id="step2" class="content hidden">
             <label for="area">Área de Queja:</label>
             <select id="area">
                 <option value="Producción">Producción</option>
@@ -43,13 +50,17 @@
             </select>
         </div>
 
-        <div id="step3" class="content">
+        <!-- Paso 3: Reporte de Queja (Oculto por defecto) -->
+        <div id="step3" class="content hidden">
             <label for="reporte">Escribe tu queja:</label>
-            <textarea id="reporte" rows="4" placeholder="Escribe aquí..."></textarea>
+            <textarea id="reporte" rows="6" placeholder="Escribe aquí..."></textarea>
         </div>
 
+        <!-- 🔹 Botón "Siguiente" en la esquina inferior derecha -->
         <button id="btnSiguiente" class="btn-next">Siguiente</button>
     </div>
+</div>
 
+<script src = "js/pestanasReporte.js"></script>
 </body>
 </html>

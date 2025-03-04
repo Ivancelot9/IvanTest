@@ -28,86 +28,145 @@ body {
     text-align: center;
 }
 
-/* Ajuste del logo */
-.logo {
-    width: 80px; /* Se reduce en laptops */
+/* Contenedor del logo y título */
+.logo-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 10px;
 }
 
-/* Título estilo cómic */
-.comic-title {
-    font-size: 2.5rem; /* Tamaño del texto */
-    text-align: center;
-    color: rgba(23, 102, 209, 0.88); /* Color principal del texto */
-    text-transform: uppercase; /* Convierte el texto a mayúsculas */
-    margin-bottom: 20px; /* Espaciado debajo del título */
-    letter-spacing: 2px; /* Añade espacio entre las letras */
-    text-shadow:
-            -2px -2px 0 #000, /* Contorno negro en la parte superior izquierda */
-            2px -2px 0 #000, /* Contorno negro en la parte superior derecha */
-            -2px  2px 0 #000, /* Contorno negro en la parte inferior izquierda */
-            2px  2px 0 #000; /* Contorno negro en la parte inferior derecha */
-}
-
-/* Estilos de pestañas */
-.tabs {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 15px;
-}
-
-.tab {
-    width: 18px;
-    height: 18px;
-    background: gray;
-    border-radius: 50%;
-    margin: 5px;
-}
-
-.tab.active {
-    background: #1094e0;
-}
-
-/* Contenido de cada pestaña */
-.content {
-    display: none;
-}
-
-.content.active {
+/* Ajuste del logo */
+.logo {
+    width: 90px; /* Ajustado para mantener buena proporción */
     display: block;
+    margin: 0 auto;
 }
 
-/* Botón de navegación */
-.btn-next {
-    margin-top: 20px;
+/* Estilo cómic para el título */
+.comic-title-usuario {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #0056b3;
+    text-transform: uppercase;
+    font-family: "Bangers", sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    display: inline-block;
+    position: relative;
+    transform: skew(-5deg);
+    margin-top: 15px; /* Espacio entre logo y título */
+}
+
+/* Efecto de explosión en el fondo */
+.comic-title-usuario::before {
+    content: attr(data-text); /* Replica el texto */
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: transparent;
+    text-shadow:
+            -3px -3px 0 #002b5c,
+            3px -3px 0 #002b5c,
+            -3px  3px 0 #002b5c,
+            3px  3px 0 #002b5c;
+    z-index: -1;
+}
+
+
+
+/* 🔹 Contenedor de pestañas simuladas */
+.tabs-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 8%;
+    padding-left: 15px;
+    margin-bottom: -5px;
+}
+
+/* 🔹 Estilos de cada pestaña */
+.tab-item {
     background: #007bff;
     color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 10px;
-    font-size: 18px;
+    padding: 8px 15px;
+    border-radius: 10px 10px 0 0;
+    margin-right: 5px;
+    font-family: "Bangers", sans-serif;
+    font-size: 1.2rem;
     cursor: pointer;
+    border: 2px solid black;
+    box-shadow: 3px 3px 0 black;
+}
+
+/* 🔹 Pestaña activa */
+.tab-item.active {
+    background: #0056b3;
+}
+
+/* 🔹 Contenedor del cuadro: Más alto, menos ancho */
+.content-box {
+    position: relative;
+    background: white;
+    padding: 25px;
+    border: 3px solid black;
+    border-radius: 20px;
+    min-height: 420px; /* 🔹 Más alto */
+    max-width: 70%; /* 🔹 Más angosto */
+    text-align: left;
+    margin: 0 auto;
+}
+
+/* 🔹 Botón en la esquina inferior derecha */
+.btn-next {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: #007bff;
+    color: white;
+    border: 2px solid black;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "Bangers", sans-serif;
     text-transform: uppercase;
-    transition: all 0.3s ease;
+    box-shadow: 3px 3px 0 black;
 }
 
 .btn-next:hover {
     background: #0056b3;
 }
 
-/* Inputs y selects */
+/* 🔹 Ajuste de los elementos internos */
+#step1, #step2, #step3 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
 input, select, textarea {
     width: 100%;
     padding: 10px;
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    margin-bottom: 15px;
 }
 
 textarea {
     resize: none;
+    height: 80px; /* 🔹 Más alto */
 }
+
+.hidden {
+    display: none;
+}
+
+
 
 /* 📌 Media Query para pantallas grandes (Laptops & PC) */
 @media screen and (min-width: 1024px) {
