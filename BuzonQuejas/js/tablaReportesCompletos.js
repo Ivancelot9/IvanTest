@@ -33,8 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function mostrarReportesCompletos(pagina) {
         console.log("🔄 Cargando reportes en la tabla...");
 
-        datosFiltradosCompletos = JSON.parse(JSON.stringify(datosReportesCompletos)); // 🔹 Forzar copia real
-
+        datosFiltradosCompletos = JSON.parse(JSON.stringify(datosReportesCompletos)); // 🔹 Copia real para evitar referencias
         console.log("📋 Reportes a mostrar en la tabla:", datosFiltradosCompletos);
 
         tablaCompletosBody.innerHTML = "";
@@ -57,13 +56,13 @@ document.addEventListener("DOMContentLoaded", function () {
             <td>${columnaSeleccionada === "estatus" ? resaltarTexto(reporte.estatus, valorFiltro) : reporte.estatus}</td>
         `;
 
-            // 🔹 CREAR EL BOTÓN MANUALMENTE PARA EVITAR ERRORES CON INNERHTML
+            // 🔹 CREAR EL BOTÓN CON `createElement` PARA EVITAR ERRORES
             let boton = document.createElement("button");
             boton.classList.add("convertidor");
             boton.setAttribute("data-folio", reporte.folio ? reporte.folio : "ERROR_FOLIO");
             boton.innerHTML = `<i class="fas fa-file-excel"></i> Convertir a Excel`;
 
-            // 🔹 Agregar el botón manualmente a la última celda de la fila
+            // 🔹 Agregar el botón a la celda
             let celdaBoton = document.createElement("td");
             celdaBoton.appendChild(boton);
             fila.appendChild(celdaBoton);
@@ -76,6 +75,20 @@ document.addEventListener("DOMContentLoaded", function () {
         nextPageBtnCompleto.disabled = fin >= datosFiltradosCompletos.length;
 
         console.log("✅ Reportes generados en la tabla.");
+
+        // 🔹 FORZAR UNA SEGUNDA ACTUALIZACIÓN PARA CORREGIR LOS BOTONES
+        setTimeout(() => {
+            console.log("🔄 Segunda actualización para corregir botones...");
+            document.querySelectorAll(".convertidor").forEach(btn => {
+                let folio = btn.getAttribute("data-folio");
+                if (!folio || folio === "ERROR_FOLIO") {
+                    let fila = btn.closest("tr");
+                    let folioReal = fila ? fila.children[0].innerText.trim() : "SIN_FOLIO";
+                    btn.setAttribute("data-folio", folioReal);
+                    console.log(`🛠 Botón corregido: ${btn} ➡ Nuevo data-folio: ${folioReal}`);
+                }
+            });
+        }, 500); // 🔹 Se ejecuta medio segundo después para asegurar que la tabla ya está cargada
     }
 
     // 📌 Delegación de eventos para el botón "Convertir a Excel"
