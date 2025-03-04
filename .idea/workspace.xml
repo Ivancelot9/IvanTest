@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Arreglando Excel Individual">
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportesCompletos.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportesCompletos.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyleUsuario.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardUsuario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -137,15 +139,7 @@
       <workItem from="1740579783776" duration="19585000" />
       <workItem from="1740666016124" duration="15175000" />
       <workItem from="1740752213228" duration="30638000" />
-      <workItem from="1741098419902" duration="5584000" />
-    </task>
-    <task id="LOCAL-00521" summary="Agregar Comentarios a Excel">
-      <option name="closed" value="true" />
-      <created>1740601822543</created>
-      <option name="number" value="00521" />
-      <option name="presentableId" value="LOCAL-00521" />
-      <option name="project" value="LOCAL" />
-      <updated>1740601822543</updated>
+      <workItem from="1741098419902" duration="10684000" />
     </task>
     <task id="LOCAL-00522" summary="Agregar Comentarios a Excel">
       <option name="closed" value="true" />
@@ -531,7 +525,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741104513853</updated>
     </task>
-    <option name="localTasksCounter" value="570" />
+    <task id="LOCAL-00570" summary="Arreglando Excel Individual">
+      <option name="closed" value="true" />
+      <created>1741104929505</created>
+      <option name="number" value="00570" />
+      <option name="presentableId" value="LOCAL-00570" />
+      <option name="project" value="LOCAL" />
+      <updated>1741104929505</updated>
+    </task>
+    <option name="localTasksCounter" value="571" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
