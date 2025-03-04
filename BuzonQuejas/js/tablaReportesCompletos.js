@@ -31,7 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function mostrarReportesCompletos(pagina) {
+        console.log("🔄 Cargando reportes en la tabla...");
         datosFiltradosCompletos = [...datosReportesCompletos]; // 🔹 Sincronizar datos siempre
+        console.log("📋 Reportes a mostrar en la tabla:", datosFiltradosCompletos);
         tablaCompletosBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
         const fin = inicio + filasPorPagina;
@@ -40,6 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const columnaSeleccionada = filterColumnCompleto.value;
 
         reportesPagina.forEach(reporte => {
+            console.log("📄 Reporte generado en la tabla:", reporte, "➡ Folio:", reporte.folio);
+
             let fila = document.createElement("tr");
             fila.innerHTML = `
                 <td>${columnaSeleccionada === "folio" ? resaltarTexto(reporte.folio, valorFiltro) : reporte.folio}</td>
@@ -55,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
 
             tablaCompletosBody.appendChild(fila);
+            console.log("✅ Reportes generados en la tabla.");
         });
 
         pageIndicatorCompleto.textContent = `Página ${pagina}`;
