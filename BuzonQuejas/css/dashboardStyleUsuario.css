@@ -1,3 +1,48 @@
+/* Fondo general tipo cómic */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../imagenes/fondoazul.jpg'); /* Ruta de la imagen */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: "Bangers", serif;
+}
+
+/* Contenedor principal estilo cómic */
+.comic-container {
+    position: relative;
+    width: 90%;
+    max-width: 450px;
+    border: 8px solid #1094e0;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    min-height: 600px;
+    text-align: center;
+}
+
+/* Título estilo cómic */
+.comic-title {
+    font-size: 2.5rem;
+    text-align: center;
+    color: rgba(23, 102, 209, 0.88);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-shadow:
+            -2px -2px 0 #000,
+            2px -2px 0 #000,
+            -2px  2px 0 #000,
+            2px  2px 0 #000;
+}
+
 /* Estilos de pestañas */
 .tabs {
     display: flex;

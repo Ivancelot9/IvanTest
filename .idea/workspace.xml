@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Arreglando Excel Individual">
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyleUsuario.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardUsuario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Dashboard Usuario">
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyleUsuario.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyleUsuario.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,15 +137,7 @@
       <workItem from="1740579783776" duration="19585000" />
       <workItem from="1740666016124" duration="15175000" />
       <workItem from="1740752213228" duration="30638000" />
-      <workItem from="1741098419902" duration="10684000" />
-    </task>
-    <task id="LOCAL-00522" summary="Agregar Comentarios a Excel">
-      <option name="closed" value="true" />
-      <created>1740602203138</created>
-      <option name="number" value="00522" />
-      <option name="presentableId" value="LOCAL-00522" />
-      <option name="project" value="LOCAL" />
-      <updated>1740602203138</updated>
+      <workItem from="1741098419902" duration="10751000" />
     </task>
     <task id="LOCAL-00523" summary="Agregar Comentarios a Excel">
       <option name="closed" value="true" />
@@ -533,7 +523,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741104929505</updated>
     </task>
-    <option name="localTasksCounter" value="571" />
+    <task id="LOCAL-00571" summary="Dashboard Usuario">
+      <option name="closed" value="true" />
+      <created>1741112622137</created>
+      <option name="number" value="00571" />
+      <option name="presentableId" value="LOCAL-00571" />
+      <option name="project" value="LOCAL" />
+      <updated>1741112622137</updated>
+    </task>
+    <option name="localTasksCounter" value="572" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -585,7 +583,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tabla Reportes Filtrador de Busqueda" />
     <MESSAGE value="Tabla Reportes (Reportes Vista)" />
     <MESSAGE value="Tabla Reportes (Reacomodando Filas)" />
     <MESSAGE value="Tabla Reportes Calendario" />
@@ -610,6 +607,7 @@
     <MESSAGE value="Datos Personales" />
     <MESSAGE value="Modificar Datos Personales" />
     <MESSAGE value="Arreglando Excel Individual" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglando Excel Individual" />
+    <MESSAGE value="Dashboard Usuario" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dashboard Usuario" />
   </component>
 </project>
