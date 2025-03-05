@@ -28,13 +28,13 @@
 
     <!-- 🔹 Cuadro con Contenido -->
     <div class="content-box">
-        <!-- Paso 1: Datos del Usuario -->
-        <div id="step1" class="content">
+        <!-- Paso 1: Datos del Usuario (Debe estar visible al inicio) -->
+        <div id="step1" class="content active">
             <p><strong>Nombre:</strong> <span id="nombreUsuario">Juan Pérez</span></p>
             <p><strong>Nómina:</strong> <span id="nominaUsuario">123456</span></p>
         </div>
 
-        <!-- Paso 2: Selección de Área (Oculto por defecto) -->
+        <!-- Paso 2: Selección de Área (Debe estar oculto al inicio) -->
         <div id="step2" class="content hidden">
             <label for="area">Área de Queja:</label>
             <select id="area">
@@ -50,7 +50,7 @@
             </select>
         </div>
 
-        <!-- Paso 3: Reporte de Queja (Oculto por defecto) -->
+        <!-- Paso 3: Reporte de Queja (Debe estar oculto al inicio) -->
         <div id="step3" class="content hidden">
             <label for="reporte">Escribe tu queja:</label>
             <textarea id="reporte" rows="6" placeholder="Escribe aquí..."></textarea>
