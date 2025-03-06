@@ -46,17 +46,17 @@ body {
 
 /* Estilo cómic para el título */
 .comic-title-usuario {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     text-align: center;
-    color: #0056b3;
+    color: #2976ca;
     text-transform: uppercase;
     font-family: "Bangers", sans-serif;
     font-weight: bold;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     display: inline-block;
     position: relative;
-    transform: skew(-5deg);
-    margin-top: 15px; /* Espacio entre logo y título */
+    transform: skew(-3deg);
+    margin-top: 25px; /* Espacio entre logo y título */
 }
 
 /* Efecto de explosión en el fondo */
@@ -97,11 +97,17 @@ body {
     cursor: pointer;
     border: 2px solid black;
     box-shadow: 3px 3px 0 black;
+    transition: transform 0.2s ease; /* 🔹 Suaviza la animación */
 }
 
 /* 🔹 Pestaña activa */
 .tab-item.active {
     background: #0056b3;
+}
+
+/* 🔹 Efecto de vibración y crecimiento al pasar el mouse */
+.tab-item:hover {
+    animation: vibrate-grow 0.2s ease forwards;
 }
 
 /* 🔹 Contenedor del cuadro: Más alto, menos ancho */
@@ -117,26 +123,242 @@ body {
     margin: 0 auto;
 }
 
-/* 🔹 Botón en la esquina inferior derecha */
-.btn-next {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    background: #007bff;
-    color: white;
-    border: 2px solid black;
-    padding: 10px 20px;
+
+
+
+/* 🔹 Título de bienvenida con efecto cómic */
+.welcome-title {
+    font-size: 2rem; /* 🔹 Tamaño adecuado */
+    text-align: center;
+    color: #0056b3; /* 🔹 Azul más definido */
+    font-family: "Bangers", sans-serif;
+    text-transform: uppercase;
+    padding: 12px 25px;
+    background: rgba(240, 248, 255, 0.8); /* 🔹 Fondo azul claro */
+    border: 4px solid #0056b3; /* 🔹 Borde más grueso */
+    border-radius: 12px; /* 🔹 Bordes redondeados */
+    display: block;
+    width: fit-content;
+    margin: 0 auto 15px auto; /* 🔹 Centrado horizontalmente */
+    box-shadow: 4px 4px 0 black; /* 🔹 Sombra estilo cómic */
+}
+
+/* 🔹 Contenedor de información del usuario */
+.user-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* 🔹 Un poco más compacto */
+    align-items: center;
+}
+
+/* 🔹 Etiqueta (NOMBRE, NÓMINA) con estilo cómic */
+.user-label {
+    font-size: 1.6rem;
+    font-family: "Bangers", sans-serif;
+    color: #2273cd;
+    text-transform: uppercase;
+    display: block;
+    letter-spacing: 1px;
+    text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
+    text-align: left;
+    width: 85%;
+    max-width: 400px;
+    margin-left: 8px; /* 🔹 Se movió más a la izquierda */
+    margin-bottom: -5px; /* 🔹 Reduce la separación con el box */
+}
+
+/* 🔹 Caja donde se muestra el nombre y número de nómina */
+.user-data-box {
+    background: #d3d3d3;
+    font-size: 1.2rem; /* 🔹 Se redujo ligeramente */
+    font-family: "Bangers", sans-serif;
+    font-style: italic;
+    color: black;
+    text-align: center;
+    padding: 10px;
     border-radius: 10px;
+    border: 3px solid black;
+    box-shadow: 3px 3px 0 black;
+    width: 90%; /* 🔹 Se hizo un poco más angosto */
+    max-width: 400px;
+}
+
+
+
+
+
+.step-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* 🔹 Estilos para Formularios */
+.form-group {
+    margin-bottom: 15px;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.hidden {
+    display: none;
+}
+
+/* 🔹 Etiquetas */
+.step-label {
+    display: block;
     font-size: 16px;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+/* 🔹 Campos Select */
+.step-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease-in-out;
+}
+
+.step-select:focus {
+    border-color: #007bff;
+    background-color: #fff;
+    outline: none;
+}
+
+
+
+
+
+/* 🔹 Estilos generales del Paso 3 */
+#step3 {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 10px; /* Reducimos padding para subir más */
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* 🔹 Estilo del Label ('Escribe tu queja:') */
+#step3 label {
+    font-family: 'Bangers', cursive;
+    font-size: 22px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 5px;
+    color: #222;
+    text-align: left;
+    margin-left: 10px;
+    position: relative;
+    top: -15px; /* Subimos el label */
+}
+
+/* 🔹 Estilo del Textarea con Borde de Cómic */
+#step3 textarea {
+    width: 90%;
+    height: 320px;
+    padding: 12px;
+    font-size: 16px;
+    font-family: 'Bangers', cursive;
+    color: #333;
+    background: #fff;
+    border: 4px solid #000;
+    outline: none;
+    display: block;
+    margin: 0 auto 50px auto; /* Aumentamos el margen inferior para despegar del botón */
+    position: relative;
+    top: -20px; /* Subimos más el textarea */
+    box-shadow:
+            0 0 0 8px white,
+            0 0 0 12px black;
+    resize: none;
+    transition: all 0.2s ease-in-out;
+}
+
+/* 🔹 Efecto cuando el usuario hace clic en el Textarea */
+#step3 textarea:focus {
+    box-shadow:
+            0 0 0 8px white,
+            0 0 0 14px black,
+            0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 🔹 Botón estilo cómic en la esquina inferior derecha */
+.btn-next {
+    background: #1094e0; /* Azul vibrante */
+    color: black; /* Texto negro */
+    border: 4px solid black; /* 🔥 Borde más grueso */
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 2rem; /* 🔹 Aumentamos el tamaño del texto */
+    font-weight: bold;
     cursor: pointer;
     font-family: "Bangers", sans-serif;
     text-transform: uppercase;
-    box-shadow: 3px 3px 0 black;
+    box-shadow: 4px 4px 0 black; /* 🔹 Sombra negra gruesa */
+    transition: transform 0.2s ease;
+    display: flex;  /* 🔥 Forzamos que el contenido crezca */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: auto; /* 🔥 Evita restricciones de tamaño */
+    min-width: 150px; /* 🔹 Asegura que no se haga muy pequeño */
+    height: auto; /* 🔥 Permite que crezca con el texto */
+    white-space: nowrap; /* 🔥 Evita que el texto se divida en varias líneas */
+
+    /* 🔹 Ajuste de posición */
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 }
 
+/* Efecto de vibración y crecimiento al pasar el mouse */
 .btn-next:hover {
-    background: #0056b3;
+    animation: vibrate-grow 0.2s ease forwards;
+    transform: scale(1.1);
+
 }
+/* Efecto de presión al hacer clic */
+.btn-next:active {
+    transform: scale(1.05);
+}
+
+/* 🔹 Animación de vibración y crecimiento */
+@keyframes vibrate-grow {
+    0% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-2px, -2px) scale(1.03); }
+    50% { transform: translate(2px, -2px) scale(1.05); }
+    75% { transform: translate(2px, 2px) scale(1.07); }
+    100% { transform: translate(-2px, 2px) scale(1.07); }
+}
+
+
+
+
+
+
 
 /* 🔹 Ajuste de los elementos internos */
 #step1, #step2, #step3 {
@@ -145,22 +367,19 @@ body {
     gap: 10px;
 }
 
-label {
-    font-weight: bold;
-}
 
-input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
 
-textarea {
-    resize: none;
-    height: 80px; /* 🔹 Más alto */
-}
+
+
+
+
+
+
+
+
+
+
+
 
 .hidden {
     display: none !important;
@@ -174,6 +393,12 @@ textarea {
 .content.active {
     display: block;
 }
+
+
+
+
+
+
 
 
 

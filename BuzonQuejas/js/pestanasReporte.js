@@ -22,13 +22,30 @@ document.addEventListener("DOMContentLoaded", function () {
         if (pasoActual < steps.length - 1) {
             pasoActual++; // Avanzar al siguiente paso
         } else {
+            // 🔹 Antes de enviar, validar los datos obligatorios
+            if (!validarReporte()) {
+                return; // ⛔ Si falta un dato, no avanza ni envía
+            }
+
+            // 🔹 Mostrar opciones después de enviar el reporte (botones intercambiados)
             Swal.fire({
-                title: "¡Reporte listo!",
-                text: "Has completado tu reporte.",
+                title: "¡Reporte enviado!",
+                text: "¿Qué deseas hacer ahora?",
                 icon: "success",
-                confirmButtonText: "Aceptar"
+                showCancelButton: true,
+                cancelButtonText: "Cerrar sesión", // 🔹 Ahora "Cerrar sesión" es el secundario
+                confirmButtonText: "Escribir otro reporte", // 🔹 Ahora "Escribir otro reporte" es el principal
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // 🔹 Reiniciar el formulario y regresar al primer paso
+                    reiniciarFormulario();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    // 🔹 Cerrar sesión (redirigir a la página de login)
+                    window.location.href = "loginUsuario.php"; // Cambia esto a la URL de tu login
+                }
             });
-            return; // Detener ejecución para evitar avanzar más
+
+            return;
         }
         actualizarVista();
     });
@@ -40,6 +57,17 @@ document.addEventListener("DOMContentLoaded", function () {
             actualizarVista();
         });
     });
+
+    // 🔹 Función para reiniciar el formulario y volver al primer paso
+    function reiniciarFormulario() {
+        document.getElementById("reporte").value = ""; // Limpiar la queja
+        document.getElementById("area").value = ""; // Limpiar selección de área
+        document.getElementById("supervisor").value = ""; // Limpiar supervisor
+        document.getElementById("shiftLeader").value = ""; // Limpiar shift leader
+
+        pasoActual = 0; // Volver al primer paso
+        actualizarVista();
+    }
 
     // 🔹 Inicializar la vista correctamente
     actualizarVista();
