@@ -1,0 +1,106 @@
+.hidden {
+    display: none !important; /* 🔹 Fuerza que el elemento no se muestre */
+}
+/* 🔹 Contenedor del bot */
+#bot {
+    position: fixed;
+    bottom: 30px; /* 📌 Ajustado para estar bien en la esquina */
+    left: 80px; /* 📌 Pegado al borde izquierdo */
+    width: auto;
+    height: auto;
+    z-index: 1000;
+}
+
+/* 🔹 Imagen del bot (Más grande) */
+#bot img {
+    width: 180px; /* 📌 Aumentamos el tamaño */
+    height: auto;
+    display: block;
+}
+
+@keyframes flotacion {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); } /* 🔹 Sube un poco */
+    100% { transform: translateY(0); } /* 🔹 Regresa a su posición */
+}
+
+/* 🔹 Globo de diálogo */
+#dialogo {
+    position: fixed;
+    bottom: 270px;
+    left: 120px;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 15px;
+    font-size: 18px;
+    font-family: "Bangers", sans-serif;
+    box-shadow: 4px 4px 0 black;
+    text-align: center;
+    max-width: 220px;
+    border: 3px solid black;
+    animation: flotacion 1s ease-in-out infinite;
+}
+
+/* 🔹 Puntero tipo cómic */
+#dialogo::after {
+    content: "";
+    position: absolute;
+    bottom: -20px; /* 📌 Ajustamos la colita */
+    left: 30px; /* 📌 Que salga bien hacia el bot */
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 20px solid black;
+}
+
+/* 🔹 Contorno animado más sutil y continuo */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 0 #00ff66;
+    }
+    50% {
+        box-shadow: 0 0 8px #00ff66, 0 0 12px #00ff66;
+    }
+    100% {
+        box-shadow: 0 0 0 #00ff66;
+    }
+}
+
+/* 🔹 La clase glowing hará que la pestaña parpadee infinitamente */
+.tab-item.glowing {
+    animation: glow 1s ease-in-out infinite;
+}
+
+
+@keyframes vibrarSuave {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); } /* 🔹 Sube un poco */
+    100% { transform: translateY(0); } /* 🔹 Regresa a su posición */
+}
+
+/* 🔹 Estilos del botón "?" */
+#btnAyuda {
+    position: fixed;
+    bottom: 30px; /* 📌 Mismo lugar donde estaba el bot */
+    left: 80px;
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border: 3px solid black;
+    border-radius: 50%; /* 🔹 Lo hace circular */
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 black;
+    transition: transform 0.2s ease-in-out;
+    animation: vibrarSuave 1.5s ease-in-out infinite; /* 🔹 Le damos el efecto */
+}
+
+/* 🔹 Efecto al pasar el mouse */
+#btnAyuda:hover {
+    transform: scale(1.1);
+}
+
+

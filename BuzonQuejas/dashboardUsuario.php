@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="css/dashboardStyleUsuario.css">
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bot.css">
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
@@ -77,11 +79,11 @@
                 <label for="supervisor" class="step-label">Supervisor:</label>
                 <select id="supervisor" class="step-select">
                     <option value="" disabled selected>Selecciona un supervisor</option>
-                    <option value="Supervisor 1">Supervisor 1</option>
-                    <option value="Supervisor 2">Supervisor 2</option>
-                    <option value="Supervisor 3">Supervisor 3</option>
-                    <option value="Supervisor 4">Supervisor 4</option>
-                    <option value="Supervisor 5">Supervisor 5</option>
+                    <option value="Supervisor 1">Abigail Ortega</option>
+                    <option value="Supervisor 2">Alberto Ordoñez</option>
+                    <option value="Supervisor 3">Brayan Granados</option>
+                    <option value="Supervisor 4">Mónica Aguila</option>
+                    <option value="Supervisor 5">Uziel Landa</option>
                 </select>
             </div>
 
@@ -90,16 +92,27 @@
                 <label for="shiftLeader" class="step-label">Shift Leader:</label>
                 <select id="shiftLeader" class="step-select">
                     <option value="" disabled selected>Selecciona un líder</option>
-                    <option value="Lider 1">Líder 1</option>
-                    <option value="Lider 2">Líder 2</option>
-                    <option value="Lider 3">Líder 3</option>
-                    <option value="Lider 4">Líder 4</option>
-                    <option value="Lider 5">Líder 5</option>
-                    <option value="Lider 6">Líder 6</option>
-                    <option value="Lider 7">Líder 7</option>
-                    <option value="Lider 8">Líder 8</option>
-                    <option value="Lider 9">Líder 9</option>
-                    <option value="Lider 10">Líder 10</option>
+                    <option value="Lider 1">Abner de Jesus Aparicio</option>
+                    <option value="Lider 2">Alejandra Martínez</option>
+                    <option value="Lider 3">Arleth García</option>
+                    <option value="Lider 4">Benjamin Luna</option>
+                    <option value="Lider 5">Citlali del Rocio</option>
+                    <option value="Lider 6">David Solano</option>
+                    <option value="Lider 7">Ernesto Martinez</option>
+                    <option value="Lider 8">Jorge Alfredo Brito</option>
+                    <option value="Lider 9">José Antonio García</option>
+                    <option value="Lider 10">José Germán Garcia</option>
+                    <option value="Lider 11">Julia Jasso</option>
+                    <option value="Lider 12">Leonardo Castillo</option>
+                    <option value="Lider 13">Luis Ángel Navarro</option>
+                    <option value="Lider 14">Marcela Dorantes</option>
+                    <option value="Lider 15">Monserrat Juárez</option>
+                    <option value="Lider 16">Noemi Salinas</option>
+                    <option value="Lider 17">Pamela Gómez</option>
+                    <option value="Lider 18">Roberto Medellín</option>
+                    <option value="Lider 19">Rosendo Santos</option>
+                    <option value="Lider 20">Sandra Martínez</option>
+                    <option value="Lider 21">Yaquelin Arteaga</option>
                 </select>
             </div>
         </div>
@@ -116,9 +129,29 @@
     </div>
 </div>
 
+<!-- 🔹 Contenedor del Bot (Inicialmente Oculto) -->
+<div id="bot" class="hidden">
+    <img id="botSprite" src="imagenes/gatilloMamon1.png" alt="Bot Caminando">
+</div>
+
+<!-- 🔹 Globo de Diálogo (Inicialmente Oculto) -->
+<div id="dialogo" class="hidden">
+    ¡Puedes retroceder a cualquier pestaña dándole click!
+</div>
+
+<!-- 🔹 Botón de ayuda (inicialmente oculto) -->
+<button id="btnAyuda" class="hidden">?</button>
+
+
+
 <script src = "js/pestanasReporte.js"></script>
 <script src = "js/areaProduccion.js"></script>
 <script src = "js/validacionesReporte.js"></script>
+<script src=  "js/bot.js"></script>
+
+
+
+
 
 
 </body>

@@ -239,12 +239,14 @@ body {
 /* 🔹 Estilos generales del Paso 3 */
 #step3 {
     max-width: 500px;
+    max-height: 450px; /* 🔹 Evita que `#step3` crezca más de lo necesario */
     margin: 0 auto;
-    padding: 10px; /* Reducimos padding para subir más */
+    padding: 10px;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
+    overflow: hidden; /* 🔹 Previene el scroll en `#step3` */
 }
 
 /* 🔹 Estilo del Label ('Escribe tu queja:') */
@@ -258,13 +260,14 @@ body {
     text-align: left;
     margin-left: 10px;
     position: relative;
-    top: -15px; /* Subimos el label */
+    top: 0; /* Subimos el label */
 }
 
 /* 🔹 Estilo del Textarea con Borde de Cómic */
 #step3 textarea {
     width: 90%;
-    height: 320px;
+    height: 250px; /* 🔹 Se redujo para que no empuje otros elementos */
+    max-height: 250px; /* 🔹 Evita que el textarea crezca demasiado */
     padding: 12px;
     font-size: 16px;
     font-family: 'Bangers', cursive;
@@ -273,23 +276,18 @@ body {
     border: 4px solid #000;
     outline: none;
     display: block;
-    margin: 0 auto 50px auto; /* Aumentamos el margen inferior para despegar del botón */
+    margin: 0 auto 20px auto; /* 🔹 Se redujo margen para que no baje mucho */
     position: relative;
-    top: -20px; /* Subimos más el textarea */
+    top: 0; /* 🔹 Eliminado `top: -20px;` para evitar que desajuste */
     box-shadow:
             0 0 0 8px white,
             0 0 0 12px black;
-    resize: none;
+    resize: none; /* 🔹 Evita redimensionado */
+    overflow-y: auto; /* 🔹 Scroll solo dentro del textarea */
     transition: all 0.2s ease-in-out;
 }
 
-/* 🔹 Efecto cuando el usuario hace clic en el Textarea */
-#step3 textarea:focus {
-    box-shadow:
-            0 0 0 8px white,
-            0 0 0 14px black,
-            0 0 8px rgba(0, 0, 0, 0.3);
-}
+
 
 
 
@@ -365,6 +363,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    max-height: 100%; /* 🔹 Evita que los pasos crezcan más allá del tamaño del contenedor */
+    overflow: hidden; /* 🔹 Previene el scroll interno */
 }
 
 

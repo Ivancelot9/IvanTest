@@ -13,10 +13,13 @@ class LocalConector{
 
     //Metodo para establecer la conexion
     public function conectar(){
+        date_default_timezone_set('America/Mexico_City'); // 🔥 Forzar la zona horaria en PHP
         $this->conexion = mysqli_connect($this->host, $this->usuario, $this->password, $this->database);
         if($this->conexion->connect_error){
             die("Error al conectar con la base de datos"); //Detiene si hay error
         }
+        // 🔥 Ajustar la zona horaria SOLO en esta conexión
+        $this->conexion->query("SET time_zone = '-06:00'");
         return $this->conexion;//Retorna el objeto de conexión
     }
 }

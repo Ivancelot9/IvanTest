@@ -4,13 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Dashboard Usuario">
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/js/areaProduccion.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/js/validacionesReporte.js" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Dashboard Usuario Text Area">
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/css/bot.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/dao/obtenerEncargados.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/SpriteFlashRun1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/gatilloMamon-removebg-preview.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/gatilloMamon1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/gatilloMamon2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/gatilloMamon3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/spidermanSpriteremove.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/js/bot.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyleUsuario.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyleUsuario.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/conexion.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/conexion.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardUsuario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/pestanasReporte.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/pestanasReporte.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,15 +151,10 @@
       <workItem from="1740752213228" duration="30638000" />
       <workItem from="1741098419902" duration="23781000" />
       <workItem from="1741193807087" duration="8960000" />
-      <workItem from="1741270326727" duration="16618000" />
-    </task>
-    <task id="LOCAL-00529" summary="Agregar Boton Exportar Todo">
-      <option name="closed" value="true" />
-      <created>1740678766075</created>
-      <option name="number" value="00529" />
-      <option name="presentableId" value="LOCAL-00529" />
-      <option name="project" value="LOCAL" />
-      <updated>1740678766075</updated>
+      <workItem from="1741270326727" duration="16671000" />
+      <workItem from="1741357151601" duration="10687000" />
+      <workItem from="1741616115005" duration="16515000" />
+      <workItem from="1741702495822" duration="5723000" />
     </task>
     <task id="LOCAL-00530" summary="Agregar Boton Exportar Todo">
       <option name="closed" value="true" />
@@ -538,7 +540,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741185351927</updated>
     </task>
-    <option name="localTasksCounter" value="578" />
+    <task id="LOCAL-00578" summary="Dashboard Usuario Text Area">
+      <option name="closed" value="true" />
+      <created>1741294308915</created>
+      <option name="number" value="00578" />
+      <option name="presentableId" value="LOCAL-00578" />
+      <option name="project" value="LOCAL" />
+      <updated>1741294308916</updated>
+    </task>
+    <option name="localTasksCounter" value="579" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,7 +600,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tabla Reportes (Reportes Vista)" />
     <MESSAGE value="Tabla Reportes (Reacomodando Filas)" />
     <MESSAGE value="Tabla Reportes Calendario" />
     <MESSAGE value="Tabla Reportes Calendario Colores" />
@@ -615,6 +624,7 @@
     <MESSAGE value="Modificar Datos Personales" />
     <MESSAGE value="Arreglando Excel Individual" />
     <MESSAGE value="Dashboard Usuario" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dashboard Usuario" />
+    <MESSAGE value="Dashboard Usuario Text Area" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dashboard Usuario Text Area" />
   </component>
 </project>
