@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch('dao/obtenerEncargados.php')
+    fetch('https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerEncargados.php')
         .then(response => response.json())
         .then(data => {
             let supervisorSelect = document.getElementById("supervisor");
