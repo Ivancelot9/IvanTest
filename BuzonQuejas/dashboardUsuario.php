@@ -54,23 +54,12 @@
         <div id="step2" class="content hidden">
             <h2 class="step-title">Selecciona tu Área</h2>
 
-            <!-- 🔹 Selección de Área -->
+            <!-- 🔹 Selección de Área (Se llenará dinámicamente con JavaScript) -->
             <div class="form-group">
                 <label for="area" class="step-label">Área:</label>
                 <select id="area" class="step-select">
                     <option value="" disabled selected>Selecciona un área</option>
-                    <option value="Producción">Producción</option>
-                    <option value="Calidad">Calidad</option>
-                    <option value="Mantenimiento">Mantenimiento</option>
-                    <option value="Recursos Humanos">Recursos Humanos</option>
-                    <option value="IT">IT</option>
-                    <option value="Logística">Logística</option>
-                    <option value="Finanzas">Finanzas</option>
-                    <option value="Compras">Compras</option>
-                    <option value="Almacén">Almacén</option>
-                    <option value="Seguridad">Seguridad</option>
-                    <option value="Ingeniería">Ingeniería</option>
-                    <option value="Ventas">Ventas</option>
+                    <!-- 🔥 Opciones cargadas desde la BD con JS -->
                 </select>
             </div>
 
@@ -121,8 +110,9 @@
 <script src = "js/pestanasReporte.js"></script>
 <script src = "js/areaProduccion.js"></script>
 <script src = "js/validacionesReporte.js"></script>
-<script src=  "js/bot.js"></script>
+<script src = "js/bot.js"></script>
 <script src = "js/cargarEncargados.js"></script>
+<script src = "js/cargarAreas.js"></script>
 
 
 
