@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Dashboard Usuario Text Area">
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/css/bot.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/dao/obtenerEncargados.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/SpriteFlashRun1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/gatilloMamon-removebg-preview.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/gatilloMamon1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/gatilloMamon2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/gatilloMamon3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/spidermanSpriteremove.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/js/bot.js" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Conectar BD a ADmin/Usuario">
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/js/cargarEncargados.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyleUsuario.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyleUsuario.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/conexion.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/conexion.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardUsuario.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -154,15 +144,7 @@
       <workItem from="1741270326727" duration="16671000" />
       <workItem from="1741357151601" duration="10687000" />
       <workItem from="1741616115005" duration="16515000" />
-      <workItem from="1741702495822" duration="5723000" />
-    </task>
-    <task id="LOCAL-00530" summary="Agregar Boton Exportar Todo">
-      <option name="closed" value="true" />
-      <created>1740678842844</created>
-      <option name="number" value="00530" />
-      <option name="presentableId" value="LOCAL-00530" />
-      <option name="project" value="LOCAL" />
-      <updated>1740678842844</updated>
+      <workItem from="1741702495822" duration="6117000" />
     </task>
     <task id="LOCAL-00531" summary="Agregar Boton Exportar Todo">
       <option name="closed" value="true" />
@@ -548,7 +530,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741294308916</updated>
     </task>
-    <option name="localTasksCounter" value="579" />
+    <task id="LOCAL-00579" summary="Conectar BD a ADmin/Usuario">
+      <option name="closed" value="true" />
+      <created>1741713272114</created>
+      <option name="number" value="00579" />
+      <option name="presentableId" value="LOCAL-00579" />
+      <option name="project" value="LOCAL" />
+      <updated>1741713272114</updated>
+    </task>
+    <option name="localTasksCounter" value="580" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,7 +590,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tabla Reportes (Reacomodando Filas)" />
     <MESSAGE value="Tabla Reportes Calendario" />
     <MESSAGE value="Tabla Reportes Calendario Colores" />
     <MESSAGE value="Tabla Reportes Calendario Colores 1.0" />
@@ -625,6 +614,7 @@
     <MESSAGE value="Arreglando Excel Individual" />
     <MESSAGE value="Dashboard Usuario" />
     <MESSAGE value="Dashboard Usuario Text Area" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dashboard Usuario Text Area" />
+    <MESSAGE value="Conectar BD a ADmin/Usuario" />
+    <option name="LAST_COMMIT_MESSAGE" value="Conectar BD a ADmin/Usuario" />
   </component>
 </project>

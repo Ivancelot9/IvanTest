@@ -74,45 +74,19 @@
                 </select>
             </div>
 
-            <!-- 🔹 Selección de Supervisor (Solo para Producción) -->
+            <!-- 🔹 Selección de Supervisor (Cargado dinámicamente) -->
             <div class="form-group hidden" id="supervisor-container">
                 <label for="supervisor" class="step-label">Supervisor:</label>
                 <select id="supervisor" class="step-select">
                     <option value="" disabled selected>Selecciona un supervisor</option>
-                    <option value="Supervisor 1">Abigail Ortega</option>
-                    <option value="Supervisor 2">Alberto Ordoñez</option>
-                    <option value="Supervisor 3">Brayan Granados</option>
-                    <option value="Supervisor 4">Mónica Aguila</option>
-                    <option value="Supervisor 5">Uziel Landa</option>
                 </select>
             </div>
 
-            <!-- 🔹 Selección de Shift Leader (Solo para Producción) -->
+            <!-- 🔹 Selección de Shift Leader (Cargado dinámicamente) -->
             <div class="form-group hidden" id="shiftLeader-container">
                 <label for="shiftLeader" class="step-label">Shift Leader:</label>
                 <select id="shiftLeader" class="step-select">
                     <option value="" disabled selected>Selecciona un líder</option>
-                    <option value="Lider 1">Abner de Jesus Aparicio</option>
-                    <option value="Lider 2">Alejandra Martínez</option>
-                    <option value="Lider 3">Arleth García</option>
-                    <option value="Lider 4">Benjamin Luna</option>
-                    <option value="Lider 5">Citlali del Rocio</option>
-                    <option value="Lider 6">David Solano</option>
-                    <option value="Lider 7">Ernesto Martinez</option>
-                    <option value="Lider 8">Jorge Alfredo Brito</option>
-                    <option value="Lider 9">José Antonio García</option>
-                    <option value="Lider 10">José Germán Garcia</option>
-                    <option value="Lider 11">Julia Jasso</option>
-                    <option value="Lider 12">Leonardo Castillo</option>
-                    <option value="Lider 13">Luis Ángel Navarro</option>
-                    <option value="Lider 14">Marcela Dorantes</option>
-                    <option value="Lider 15">Monserrat Juárez</option>
-                    <option value="Lider 16">Noemi Salinas</option>
-                    <option value="Lider 17">Pamela Gómez</option>
-                    <option value="Lider 18">Roberto Medellín</option>
-                    <option value="Lider 19">Rosendo Santos</option>
-                    <option value="Lider 20">Sandra Martínez</option>
-                    <option value="Lider 21">Yaquelin Arteaga</option>
                 </select>
             </div>
         </div>
@@ -148,6 +122,7 @@
 <script src = "js/areaProduccion.js"></script>
 <script src = "js/validacionesReporte.js"></script>
 <script src=  "js/bot.js"></script>
+<script src = "js/cargarEncargados.js"></script>
 
 
 
