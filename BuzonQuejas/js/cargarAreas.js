@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch('https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerAreas.php')
+    fetch('https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerArea.php')
         .then(response => response.json())
         .then(data => {
             console.log("Áreas recibidas:", data); // 🔥 Depuración
