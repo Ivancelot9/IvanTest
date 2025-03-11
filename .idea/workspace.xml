@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Conectar BD a ADmin/Usuario">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/cargarEncargados.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/cargarEncargados.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,15 +143,7 @@
       <workItem from="1741270326727" duration="16671000" />
       <workItem from="1741357151601" duration="10687000" />
       <workItem from="1741616115005" duration="16515000" />
-      <workItem from="1741702495822" duration="7640000" />
-    </task>
-    <task id="LOCAL-00533" summary="Agregar Boton Exportar Todo">
-      <option name="closed" value="true" />
-      <created>1740679456998</created>
-      <option name="number" value="00533" />
-      <option name="presentableId" value="LOCAL-00533" />
-      <option name="project" value="LOCAL" />
-      <updated>1740679456998</updated>
+      <workItem from="1741702495822" duration="8030000" />
     </task>
     <task id="LOCAL-00534" summary="Agregar Boton Exportar Todo">
       <option name="closed" value="true" />
@@ -536,7 +529,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741714846291</updated>
     </task>
-    <option name="localTasksCounter" value="582" />
+    <task id="LOCAL-00582" summary="Conectar BD a ADmin/Usuario">
+      <option name="closed" value="true" />
+      <created>1741715495910</created>
+      <option name="number" value="00582" />
+      <option name="presentableId" value="LOCAL-00582" />
+      <option name="project" value="LOCAL" />
+      <updated>1741715495910</updated>
+    </task>
+    <option name="localTasksCounter" value="583" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
