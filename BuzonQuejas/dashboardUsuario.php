@@ -113,6 +113,7 @@
 <script src = "js/bot.js"></script>
 <script src = "js/cargarEncargados.js"></script>
 <script src = "js/cargarAreas.js"></script>
+<script src = "js/enviarReporte.js"></script>
 
 
 
