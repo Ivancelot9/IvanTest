@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const reporteText = document.getElementById("reporte").value.trim();
         const supervisorSelect = document.getElementById("supervisor");
         const shiftLeaderSelect = document.getElementById("shiftLeader");
+        const numNomina = "00030318"; // 🔥 DE MOMENTO FIJO, LUEGO SE TOMARÁ DE LA SESIÓN
 
         if (areaSelect.value === "" || reporteText === "") {
             alert("Debes seleccionar un área y escribir tu queja.");
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const reporteData = {
+            NumNomina: numNomina,
             IdArea: areaSelect.value,
             Descripcion: reporteText,
             IdEncargado: IdEncargado

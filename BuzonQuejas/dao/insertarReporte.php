@@ -1,25 +1,17 @@
 <?php
-session_start();
 include_once("conexion.php"); // 🔥 Conexión a la BD
-
 header('Content-Type: application/json');
-
-// 🔹 Verificar si el usuario está autenticado
-if (!isset($_SESSION['NumNomina'])) {
-    echo json_encode(["status" => "error", "message" => "No has iniciado sesión."]);
-    exit;
-}
 
 // 🔹 Obtener los datos enviados desde el frontend
 $data = json_decode(file_get_contents("php://input"), true);
 
-if (!isset($data['IdArea'], $data['Descripcion']) || empty(trim($data['Descripcion']))) {
+if (!isset($data['NumNomina'], $data['IdArea'], $data['Descripcion']) || empty(trim($data['Descripcion']))) {
     echo json_encode(["status" => "error", "message" => "Faltan datos obligatorios."]);
     exit;
 }
 
-// 🔹 Datos del usuario
-$NumNomina = $_SESSION['NumNomina'];
+// 🔹 Datos del usuario (recibidos desde el frontend)
+$NumNomina = trim($data['NumNomina']);
 $IdArea = intval($data['IdArea']);
 $Descripcion = trim($data['Descripcion']);
 $IdEncargado = isset($data['IdEncargado']) ? intval($data['IdEncargado']) : NULL;
@@ -48,4 +40,4 @@ try {
 } catch (Exception $e) {
     echo json_encode(["status" => "error", "message" => "Error en el servidor: " . $e->getMessage()]);
 }
-
+?>
