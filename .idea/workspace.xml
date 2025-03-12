@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Conectar BD a ADmin/Usuario">
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/cargarAreas.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/cargarAreas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardUsuario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/areaProduccion.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/areaProduccion.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,15 +144,8 @@
       <workItem from="1741270326727" duration="16671000" />
       <workItem from="1741357151601" duration="10687000" />
       <workItem from="1741616115005" duration="16515000" />
-      <workItem from="1741702495822" duration="12505000" />
-    </task>
-    <task id="LOCAL-00536" summary="Agregar Boton Exportar Todo">
-      <option name="closed" value="true" />
-      <created>1740688115845</created>
-      <option name="number" value="00536" />
-      <option name="presentableId" value="LOCAL-00536" />
-      <option name="project" value="LOCAL" />
-      <updated>1740688115845</updated>
+      <workItem from="1741702495822" duration="12824000" />
+      <workItem from="1741788822032" duration="1825000" />
     </task>
     <task id="LOCAL-00537" summary="Agregar Boton Exportar Todo">
       <option name="closed" value="true" />
@@ -536,7 +531,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741727668669</updated>
     </task>
-    <option name="localTasksCounter" value="585" />
+    <task id="LOCAL-00585" summary="Conectar BD a ADmin/Usuario">
+      <option name="closed" value="true" />
+      <created>1741727927444</created>
+      <option name="number" value="00585" />
+      <option name="presentableId" value="LOCAL-00585" />
+      <option name="project" value="LOCAL" />
+      <updated>1741727927444</updated>
+    </task>
+    <option name="localTasksCounter" value="586" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

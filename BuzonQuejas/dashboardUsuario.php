@@ -58,7 +58,7 @@
             <div class="form-group">
                 <label for="area" class="step-label">Área:</label>
                 <select id="area" class="step-select">
-                    <option value="" disabled selected>Selecciona un área</option>
+                    <option value="" disabled selected>Selecciona tu área</option>
                     <!-- 🔥 Opciones cargadas desde la BD con JS -->
                 </select>
             </div>
