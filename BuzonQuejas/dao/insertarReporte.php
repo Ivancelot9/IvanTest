@@ -1,7 +1,6 @@
 <?php
 include_once("conexion.php"); // 🔥 Conexión a la BD
-header('Content-Type: application/json');
-
+date_default_timezone_set('America/Mexico_City');
 // 🔹 Obtener los datos enviados desde el frontend
 $data = json_decode(file_get_contents("php://input"), true);
 

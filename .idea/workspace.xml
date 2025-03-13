@@ -7,7 +7,6 @@
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Conectar BD a ADmin/Usuario">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/insertarReporte.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/insertarReporte.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/enviarReporte.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/enviarReporte.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,15 +145,7 @@
       <workItem from="1741616115005" duration="16515000" />
       <workItem from="1741702495822" duration="12824000" />
       <workItem from="1741788822032" duration="8368000" />
-      <workItem from="1741876376224" duration="5862000" />
-    </task>
-    <task id="LOCAL-00540" summary="Agregar Boton Exportar Todo Tabla 2">
-      <option name="closed" value="true" />
-      <created>1740755453128</created>
-      <option name="number" value="00540" />
-      <option name="presentableId" value="LOCAL-00540" />
-      <option name="project" value="LOCAL" />
-      <updated>1740755453129</updated>
+      <workItem from="1741876376224" duration="8975000" />
     </task>
     <task id="LOCAL-00541" summary="Agregar Boton Exportar Todo Tabla 2">
       <option name="closed" value="true" />
@@ -540,7 +531,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741888939306</updated>
     </task>
-    <option name="localTasksCounter" value="589" />
+    <task id="LOCAL-00589" summary="Conectar BD a ADmin/Usuario">
+      <option name="closed" value="true" />
+      <created>1741890501913</created>
+      <option name="number" value="00589" />
+      <option name="presentableId" value="LOCAL-00589" />
+      <option name="project" value="LOCAL" />
+      <updated>1741890501913</updated>
+    </task>
+    <option name="localTasksCounter" value="590" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
