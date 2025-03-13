@@ -14,9 +14,9 @@ if (!isset($data['NumNomina'], $data['IdArea'], $data['Descripcion']) || empty(t
 $NumNomina = trim($data['NumNomina']);
 $IdArea = intval($data['IdArea']);
 $Descripcion = trim($data['Descripcion']);
-$IdEncargado = isset($data['IdEncargado']) ? intval($data['IdEncargado']) : NULL;
+$IdEncargado = !empty($data['IdEncargado']) ? intval($data['IdEncargado']) : NULL;
 $FechaRegistro = date("Y-m-d H:i:s"); // Hora actual
-$IdEstatus = 1; // Estado inicial (ejemplo: 1 = "Pendiente")
+$IdEstatus = 1; // Estado inicial (Pendiente)
 $Comentarios = NULL;
 
 // 🔹 Insertar el reporte en la base de datos
@@ -27,12 +27,17 @@ try {
     $query = $conn->prepare("INSERT INTO Reporte (NumeroNomina, IdEncargado, FechaRegistro, Descripcion, IdEstatus, IdArea, Comentarios) 
                              VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-    $query->bind_param("iisssis", $NumNomina, $IdEncargado, $FechaRegistro, $Descripcion, $IdEstatus, $IdArea, $Comentarios);
+    // 🔥 NUEVO: Si `IdEncargado` es NULL, usamos `NULL` explícito
+    if ($IdEncargado === NULL) {
+        $query->bind_param("isssiss", $NumNomina, $IdEncargado, $FechaRegistro, $Descripcion, $IdEstatus, $IdArea, $Comentarios);
+    } else {
+        $query->bind_param("iisssis", $NumNomina, $IdEncargado, $FechaRegistro, $Descripcion, $IdEstatus, $IdArea, $Comentarios);
+    }
 
     if ($query->execute()) {
         echo json_encode(["status" => "success", "message" => "Reporte enviado correctamente."]);
     } else {
-        echo json_encode(["status" => "error", "message" => "Error al enviar el reporte."]);
+        echo json_encode(["status" => "error", "message" => "Error al enviar el reporte: " . $query->error]);
     }
 
     $query->close();
@@ -40,4 +45,3 @@ try {
 } catch (Exception $e) {
     echo json_encode(["status" => "error", "message" => "Error en el servidor: " . $e->getMessage()]);
 }
-?>
