@@ -10,21 +10,23 @@ try {
     $con = new LocalConector();
     $conn = $con->conectar();
 
-    // 🔍 Consulta corregida
+    // 🔍 Consulta mejorada para incluir Supervisor y Shift Leader en la misma celda
     $query = "SELECT 
                     r.FolioReportes, 
                     r.FechaRegistro, 
                     r.NumeroNomina, 
-                    IFNULL(e.NombreEncargado, 'N/A') AS Encargado,  
                     r.Descripcion, 
                     r.Comentarios, 
                     s.NombreEstatus, 
-                    a.NombreArea AS Area
+                    a.NombreArea AS Area,
+                    -- 🔥 Combinar Supervisor y Shift Leader en una sola celda
+                    GROUP_CONCAT(CONCAT(e.NombreEncargado, ' (', e.Tipo, ')') SEPARATOR ', ') AS Encargado
               FROM Reporte r
               LEFT JOIN Encargado e ON r.IdEncargado = e.IdEncargado
               LEFT JOIN Estatus s ON r.IdEstatus = s.IdEstatus
               LEFT JOIN Area a ON r.IdArea = a.IdArea
-              WHERE r.IdEstatus = 1";
+              WHERE r.IdEstatus = 1
+              GROUP BY r.FolioReportes";  // Agrupar para evitar duplicados
 
     $result = $conn->query($query);
 

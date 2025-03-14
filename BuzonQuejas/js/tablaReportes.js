@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const columnaSeleccionada = filterColumn.value;
 
         reportesPagina.forEach(reporte => {
+            // 📌 Si no tiene supervisor ni shift leader, muestra "N/A"
             let encargadoTexto = reporte.Encargado ? reporte.Encargado : "N/A";
 
             let fila = document.createElement("tr");
@@ -50,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${columnaSeleccionada === "FolioReportes" ? resaltarTexto(reporte.FolioReportes, valorFiltro) : reporte.FolioReportes}</td>
                 <td>${columnaSeleccionada === "FechaRegistro" ? resaltarTexto(reporte.FechaRegistro, valorFiltro) : reporte.FechaRegistro}</td>
                 <td>${columnaSeleccionada === "NumeroNomina" ? resaltarTexto(reporte.NumeroNomina, valorFiltro) : reporte.NumeroNomina}</td>
-                <td>${columnaSeleccionada === "Area" ? resaltarTexto(reporte.Area, valorFiltro) : reporte.Area}</td> <!-- 🔹 Nueva celda para Área -->
+                <td>${columnaSeleccionada === "Area" ? resaltarTexto(reporte.Area, valorFiltro) : reporte.Area}</td>
                 <td>${columnaSeleccionada === "Encargado" ? resaltarTexto(encargadoTexto, valorFiltro) : encargadoTexto}</td>
                 <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion}">Mostrar Descripción</button></td>
                 <td><button class="agregar-comentario" data-folio="${reporte.FolioReportes}">Agregar Comentario</button></td>
@@ -65,13 +66,15 @@ document.addEventListener("DOMContentLoaded", function () {
         nextPageBtn.disabled = fin >= datosFiltrados.length;
     }
 
-    // 🔹 Filtrar reportes
+    // 🔹 Filtrar reportes en tiempo real
     function filtrarReportes() {
         const valorFiltro = filterInput.value.toLowerCase();
         const columna = filterColumn.value;
 
+        // 📌 Verificar si la columna existe en los reportes
         datosFiltrados = datosReportes.filter(reporte => {
-            return String(reporte[columna]).toLowerCase().includes(valorFiltro);
+            let valor = reporte[columna] ? String(reporte[columna]).toLowerCase() : "";
+            return valor.includes(valorFiltro);
         });
 
         paginaActual = 1;
@@ -89,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 if (data.status === "success") {
                     alert("Reporte finalizado correctamente.");
-                    cargarReportes(); // 🔄 Recargar la lista después de finalizar un reporte
+                    cargarReportes();
                 } else {
                     alert("Error: " + data.message);
                 }
