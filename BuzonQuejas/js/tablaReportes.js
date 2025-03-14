@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${columnaSeleccionada === "FolioReportes" ? resaltarTexto(reporte.FolioReportes, valorFiltro) : reporte.FolioReportes}</td>
                 <td>${columnaSeleccionada === "FechaRegistro" ? resaltarTexto(reporte.FechaRegistro, valorFiltro) : reporte.FechaRegistro}</td>
                 <td>${columnaSeleccionada === "NumeroNomina" ? resaltarTexto(reporte.NumeroNomina, valorFiltro) : reporte.NumeroNomina}</td>
-                <td>${columnaSeleccionada === "Area" ? resaltarTexto(reporte.Area, valorFiltro) : reporte.Area}</td>
+                <td>${columnaSeleccionada === "Area" ? resaltarTexto(reporte.Area, valorFiltro) : reporte.Area}</td> <!-- 🔹 Nueva celda para Área -->
                 <td>${columnaSeleccionada === "Encargado" ? resaltarTexto(encargadoTexto, valorFiltro) : encargadoTexto}</td>
                 <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion}">Mostrar Descripción</button></td>
                 <td><button class="agregar-comentario" data-folio="${reporte.FolioReportes}">Agregar Comentario</button></td>

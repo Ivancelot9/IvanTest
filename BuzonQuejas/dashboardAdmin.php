@@ -123,6 +123,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                     <th>Folio</th>
                     <th>Fecha Registro</th>
                     <th>Número de Nómina</th>
+                    <th>Área</th>  <!-- 🔹 Se agrega la nueva columna -->
                     <th>Encargado</th>
                     <th>Descripción</th>
                     <th>Comentarios</th>
