@@ -22,21 +22,21 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        let IdEncargado = null;
-        if (parseInt(areaSelect.value) === 1) { // Si es Producción
-            IdEncargado = supervisorSelect.value || shiftLeaderSelect.value;
+        let reporteData = {
+            NumNomina: numNomina,
+            IdArea: areaSelect.value,
+            Descripcion: reporteText
+        };
+
+        // 🔥 Solo agregar `IdEncargado` si el usuario seleccionó Producción (IdArea = 1)
+        if (parseInt(areaSelect.value) === 1) {
+            let IdEncargado = supervisorSelect.value || shiftLeaderSelect.value;
             if (!IdEncargado) {
                 alert("Debes seleccionar un Supervisor o Shift Leader.");
                 return;
             }
+            reporteData.IdEncargado = IdEncargado;
         }
-
-        const reporteData = {
-            NumNomina: numNomina, // Ahora lo obtiene del HTML dinámicamente
-            IdArea: areaSelect.value,
-            Descripcion: reporteText,
-            IdEncargado: IdEncargado
-        };
 
         fetch('https://grammermx.com/IvanTest/BuzonQuejas/dao/insertarReporte.php', {
             method: "POST",
