@@ -5,30 +5,27 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.innerHTML = `
     <div class="modal-content comic-bubble">
         <span class="close-modal">&times;</span>
-        <div class="modal-inner">
-            <div id="pregunta-dias">
-                <h2>¿Cuántos días crees tardar en evaluar el reporte?</h2>
-                <input type="number" id="dias-evaluacion" min="1" max="10" placeholder="Ingresa días">
-                <button id="continuar-btn" class="comic-button">Continuar</button>
-            </div>
-            <div id="configurar-estatus" style="display:none;">
-                <h2>CONFIGURAR ESTATUS DEL REPORTE</h2>
-                <p><strong>DÍAS PARA EVALUAR:</strong> <span id="dias-seleccionados">0</span></p>
-                
-                <div class="progress-section">
-                    <div>
-                        <h3>PROGRESO AUTOMÁTICO</h3>
-                        <div class="progress-circle auto" id="auto-circle">100%</div>
-                    </div>
-                    <div>
-                        <h3>PROGRESO MANUAL</h3>
-                        <input type="text" id="input-manual" maxlength="1" placeholder="G / B / Y / R">
-                        <div class="progress-circle manual" id="manual-circle">100%</div>
-                    </div>
-                </div>
+        <h2 class="comic-title">CONFIGURAR ESTATUS DEL REPORTE</h2>
 
-                <button id="guardar-estatus" class="comic-button">Guardar Estatus</button>
+        <div id="pregunta-dias">
+            <h3>¿Cuántos días crees tardar en evaluar el reporte?</h3>
+            <input type="number" id="dias-evaluacion" min="1" max="10" placeholder="Ingresa días">
+            <button id="continuar-btn" class="comic-button">Continuar</button>
+        </div>
+
+        <div id="configurar-estatus" style="display:none;">
+            <h3>Estatus Recomendado:</h3>
+            <div class="progress-wrapper">
+                <div class="progress-circle auto" id="auto-circle">100%</div>
+                <p><strong><span id="color-recomendado">Green</span></strong></p>
+                <p><small>Tiempo para lograrlo: <span id="tiempo-recomendado">2 días</span></small></p>
             </div>
+
+            <h3>Tu avance:</h3>
+            <input type="text" id="input-manual" maxlength="1" placeholder="G / B / Y / R">
+            <div class="progress-circle manual" id="manual-circle">100%</div>
+
+            <button id="guardar-estatus" class="comic-button">Guardar Estatus</button>
         </div>
     </div>`;
 
@@ -43,7 +40,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let manualCircle = modal.querySelector("#manual-circle");
     let inputManual = modal.querySelector("#input-manual");
     let guardarBtn = modal.querySelector("#guardar-estatus");
-    let diasSeleccionados = modal.querySelector("#dias-seleccionados");
+    let colorRecomendado = modal.querySelector("#color-recomendado");
+    let tiempoRecomendado = modal.querySelector("#tiempo-recomendado");
 
     let progresoAutomatico = 100;
     let progresoManual = 100;
@@ -55,20 +53,26 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        diasSeleccionados.textContent = `${dias}`;
-
         if (dias <= 2) {
             progresoAutomatico = 100;
             autoCircle.style.backgroundColor = "green";
+            colorRecomendado.textContent = "Green";
+            tiempoRecomendado.textContent = "2 días";
         } else if (dias <= 4) {
             progresoAutomatico = 75;
             autoCircle.style.backgroundColor = "blue";
+            colorRecomendado.textContent = "Blue";
+            tiempoRecomendado.textContent = "4 días";
         } else if (dias <= 6) {
             progresoAutomatico = 50;
             autoCircle.style.backgroundColor = "yellow";
+            colorRecomendado.textContent = "Yellow";
+            tiempoRecomendado.textContent = "6 días";
         } else {
             progresoAutomatico = 25;
             autoCircle.style.backgroundColor = "red";
+            colorRecomendado.textContent = "Red";
+            tiempoRecomendado.textContent = "Más de 6 días";
         }
 
         autoCircle.textContent = `${progresoAutomatico}%`;
@@ -106,7 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.style.display = "none";
     });
 
-    // ✅ **Delegación de eventos para abrir el modal**
     document.body.addEventListener("click", function (event) {
         if (event.target.classList.contains("ver-estatus-btn")) {
             modal.style.display = "flex";
