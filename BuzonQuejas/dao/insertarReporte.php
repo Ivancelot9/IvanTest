@@ -2,7 +2,6 @@
 include_once("conexion.php"); // 🔥 Conexión a la BD
 date_default_timezone_set('America/Mexico_City');
 
-
 // 🔹 Obtener los datos enviados desde el frontend
 $data = json_decode(file_get_contents("php://input"), true);
 
@@ -17,19 +16,18 @@ $IdArea = intval($data['IdArea']);
 $Descripcion = trim($data['Descripcion']);
 $IdEncargado = !empty($data['IdEncargado']) ? intval($data['IdEncargado']) : NULL;
 $FechaRegistro = date("Y-m-d H:i:s"); // Hora actual
-$IdEstatus = 1; // Estado inicial (Pendiente)
 $Comentarios = NULL;
 
 try {
     $con = new LocalConector();
     $conn = $con->conectar();
 
-    // 🔹 Insertar el reporte en la base de datos
-    $query = $conn->prepare("INSERT INTO Reporte (NumeroNomina, IdEncargado, FechaRegistro, Descripcion, IdEstatus, IdArea, Comentarios) 
-                             VALUES (?, ?, ?, ?, ?, ?, ?)");
+    // 🔹 Insertar el reporte en la base de datos (sin `IdEstatus`)
+    $query = $conn->prepare("INSERT INTO Reporte (NumeroNomina, IdEncargado, FechaRegistro, Descripcion, IdArea, Comentarios) 
+                             VALUES (?, ?, ?, ?, ?, ?)");
 
     // 🔥 `bind_param` se maneja igual en ambos casos, ya que NULL es aceptable en `i`
-    $query->bind_param("sisssis", $NumNomina, $IdEncargado, $FechaRegistro, $Descripcion, $IdEstatus, $IdArea, $Comentarios);
+    $query->bind_param("sissis", $NumNomina, $IdEncargado, $FechaRegistro, $Descripcion, $IdArea, $Comentarios);
 
     if ($query->execute()) {
         echo json_encode(["status" => "success", "message" => "Reporte enviado correctamente."]);
