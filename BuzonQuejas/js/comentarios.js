@@ -25,10 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let lastClickedButton = null;
     let currentFolio = null;
 
-    // 🔄 Cargar comentarios desde `localStorage`
-    let comentariosPorReporte = JSON.parse(localStorage.getItem("comentariosPorReporte")) || {};
-    console.log("Comentarios al cargar:", comentariosPorReporte); // ✅ DEPURACIÓN
-
     // 🔹 Función para animar el modal
     function animarModal(abrir) {
         if (abrir) {
@@ -63,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
         lastClickedButton = event.target;
         currentFolio = lastClickedButton.getAttribute("data-folio");
         animarModal(true);
-        cargarComentarios(currentFolio);
+        cargarComentarios(currentFolio); // 📌 Carga los comentarios desde la BD
     }
 
     // ✅ **Delegación de eventos**: Asignamos el evento a un contenedor en vez de cada botón individualmente.
@@ -81,36 +77,48 @@ document.addEventListener("DOMContentLoaded", function () {
     btnGuardar.addEventListener("click", function () {
         let textoComentario = inputComentario.value.trim();
         if (textoComentario !== "" && currentFolio) {
-            if (!comentariosPorReporte[currentFolio]) {
-                comentariosPorReporte[currentFolio] = [];
-            }
-            comentariosPorReporte[currentFolio].push(textoComentario);
-
-            // 🔄 Guardar en `localStorage`
-            localStorage.setItem("comentariosPorReporte", JSON.stringify(comentariosPorReporte));
-
-            console.log(`Comentario agregado a folio ${currentFolio}:`, textoComentario); // ✅ DEPURACIÓN
-            console.log("Comentarios actualizados en `localStorage`:", comentariosPorReporte); // ✅ DEPURACIÓN
-
-            inputComentario.value = "";
-            cargarComentarios(currentFolio);
+            // 🔹 Enviar comentario a la base de datos
+            fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/agregarComentario.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ FolioReportes: currentFolio, Comentario: textoComentario })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "success") {
+                        console.log(`✅ Comentario agregado a folio ${currentFolio}:`, textoComentario);
+                        inputComentario.value = "";
+                        cargarComentarios(currentFolio);
+                    } else {
+                        console.error("❌ Error al agregar comentario:", data.message);
+                    }
+                })
+                .catch(error => console.error("❌ Error en el servidor:", error));
         }
     });
 
-    // 🔹 Función para cargar comentarios del folio actual
+    // 🔹 Función para cargar comentarios desde la BD
     function cargarComentarios(folio) {
-        listaComentarios.innerHTML = "";
+        listaComentarios.innerHTML = "Cargando...";
 
-        // ✅ DEPURACIÓN: Verificar si los comentarios existen
-        console.log(`Cargando comentarios para folio ${folio}:`, comentariosPorReporte[folio]);
-
-        if (comentariosPorReporte[folio]) {
-            comentariosPorReporte[folio].forEach((comentario) => {
-                let nuevoComentario = document.createElement("div");
-                nuevoComentario.classList.add("comentario");
-                nuevoComentario.textContent = comentario;
-                listaComentarios.appendChild(nuevoComentario);
+        fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerComentarios.php?FolioReportes=${folio}`)
+            .then(response => response.json())
+            .then(data => {
+                listaComentarios.innerHTML = "";
+                if (data.status === "success" && data.comentarios.length > 0) {
+                    data.comentarios.forEach(comentario => {
+                        let nuevoComentario = document.createElement("div");
+                        nuevoComentario.classList.add("comentario");
+                        nuevoComentario.textContent = comentario;
+                        listaComentarios.appendChild(nuevoComentario);
+                    });
+                } else {
+                    listaComentarios.innerHTML = "<p>No hay comentarios.</p>";
+                }
+            })
+            .catch(error => {
+                console.error("❌ Error al obtener comentarios:", error);
+                listaComentarios.innerHTML = "<p>Error al cargar comentarios.</p>";
             });
-        }
     }
 });
