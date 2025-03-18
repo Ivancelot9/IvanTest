@@ -19,6 +19,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <link rel="stylesheet" href="css/dashboardStyle.css"> <!-- Vincula el CSS externo -->
     <link rel="stylesheet" href="css/modalComentarios.css">
     <link rel="stylesheet" href="css/modalDescripcion.css">
+    <link rel="stylesheet" href="css/modalEstatus.css">
     <link rel="stylesheet" href="css/tablaReportes.css">
     <link rel="stylesheet" href="css/modalFechaFinalizacion.css">
     <!-- Flatpickr CSS -->
