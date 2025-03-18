@@ -50,7 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         diasSeleccionados.textContent = `${dias}`;
 
-
         if (dias <= 2) {
             progresoAutomatico = 100;
             autoCircle.style.backgroundColor = "green";
@@ -100,11 +99,12 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.style.display = "none";
     });
 
-    document.querySelectorAll('.estatus-cell button').forEach(btn => {
-        btn.addEventListener('click', function () {
+    // ✅ **Delegación de eventos para asegurar que los botones sean detectados**
+    document.body.addEventListener("click", function (event) {
+        if (event.target.classList.contains("ver-estatus-btn")) {
             modal.style.display = "flex";
             preguntaDias.style.display = "block";
             configurarEstatus.style.display = "none";
-        });
+        }
     });
 });
