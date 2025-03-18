@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Estatus">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalEstatus.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalEstatus.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/estatusEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/estatusEditor.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -147,15 +148,7 @@
       <workItem from="1741788822032" duration="8368000" />
       <workItem from="1741876376224" duration="11197000" />
       <workItem from="1741961703085" duration="11195000" />
-      <workItem from="1742307374892" duration="11800000" />
-    </task>
-    <task id="LOCAL-00556" summary="Datos Personales">
-      <option name="closed" value="true" />
-      <created>1741022230557</created>
-      <option name="number" value="00556" />
-      <option name="presentableId" value="LOCAL-00556" />
-      <option name="project" value="LOCAL" />
-      <updated>1741022230557</updated>
+      <workItem from="1742307374892" duration="12460000" />
     </task>
     <task id="LOCAL-00557" summary="Datos Personales">
       <option name="closed" value="true" />
@@ -541,7 +534,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742325291440</updated>
     </task>
-    <option name="localTasksCounter" value="605" />
+    <task id="LOCAL-00605" summary="Modal Estatus">
+      <option name="closed" value="true" />
+      <created>1742325869416</created>
+      <option name="number" value="00605" />
+      <option name="presentableId" value="LOCAL-00605" />
+      <option name="project" value="LOCAL" />
+      <updated>1742325869416</updated>
+    </task>
+    <option name="localTasksCounter" value="606" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

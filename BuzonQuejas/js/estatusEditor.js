@@ -5,23 +5,30 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.innerHTML = `
     <div class="modal-content comic-bubble">
         <span class="close-modal">&times;</span>
-        <div id="pregunta-dias">
-            <h2>¿Cuántos días crees tardar en evaluar el reporte?</h2>
-            <input type="number" id="dias-evaluacion" min="1" max="10" placeholder="Ingresa días">
-            <button id="continuar-btn" class="comic-button">Continuar</button>
-        </div>
-        <div id="configurar-estatus" style="display:none;">
-            <h2>CONFIGURAR ESTATUS DEL REPORTE</h2>
-            <p><strong>DÍAS PARA EVALUAR:</strong> <span id="dias-seleccionados">0</span></p>
-            
-            <h3>PROGRESO AUTOMÁTICO</h3>
-            <div class="progress-circle auto" id="auto-circle">100%</div>
+        <div class="modal-inner">
+            <div id="pregunta-dias">
+                <h2>¿Cuántos días crees tardar en evaluar el reporte?</h2>
+                <input type="number" id="dias-evaluacion" min="1" max="10" placeholder="Ingresa días">
+                <button id="continuar-btn" class="comic-button">Continuar</button>
+            </div>
+            <div id="configurar-estatus" style="display:none;">
+                <h2>CONFIGURAR ESTATUS DEL REPORTE</h2>
+                <p><strong>DÍAS PARA EVALUAR:</strong> <span id="dias-seleccionados">0</span></p>
+                
+                <div class="progress-section">
+                    <div>
+                        <h3>PROGRESO AUTOMÁTICO</h3>
+                        <div class="progress-circle auto" id="auto-circle">100%</div>
+                    </div>
+                    <div>
+                        <h3>PROGRESO MANUAL</h3>
+                        <input type="text" id="input-manual" maxlength="1" placeholder="G / B / Y / R">
+                        <div class="progress-circle manual" id="manual-circle">100%</div>
+                    </div>
+                </div>
 
-            <h3>PROGRESO MANUAL</h3>
-            <input type="text" id="input-manual" maxlength="1" placeholder="G / B / Y / R">
-            <div class="progress-circle manual" id="manual-circle">100%</div>
-
-            <button id="guardar-estatus" class="comic-button">Guardar Estatus</button>
+                <button id="guardar-estatus" class="comic-button">Guardar Estatus</button>
+            </div>
         </div>
     </div>`;
 
@@ -67,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
         autoCircle.textContent = `${progresoAutomatico}%`;
 
         preguntaDias.style.display = "none";
-        configurarEstatus.style.display = "block";
+        configurarEstatus.style.display = "flex";
     });
 
     inputManual.addEventListener("input", function () {
@@ -99,11 +106,11 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.style.display = "none";
     });
 
-    // ✅ **Delegación de eventos para asegurar que los botones sean detectados**
+    // ✅ **Delegación de eventos para abrir el modal**
     document.body.addEventListener("click", function (event) {
         if (event.target.classList.contains("ver-estatus-btn")) {
             modal.style.display = "flex";
-            preguntaDias.style.display = "block";
+            preguntaDias.style.display = "flex";
             configurarEstatus.style.display = "none";
         }
     });

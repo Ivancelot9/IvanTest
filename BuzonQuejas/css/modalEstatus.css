@@ -4,57 +4,76 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1000;
 }
 
 .modal-content {
     background: white;
+    width: 450px;
+    max-width: 90%;
     padding: 20px;
     border-radius: 15px;
     text-align: center;
-    width: 400px;
-    position: relative;
-    animation: pop-in 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-@keyframes pop-in {
-    0% { transform: scale(0.5); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+.modal-inner {
+    width: 100%;
 }
 
-.comic-bubble {
-    border: 4px solid black;
-    box-shadow: 5px 5px 0 black;
-    font-family: "Comic Sans MS", cursive, sans-serif;
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.comic-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 10px;
+    text-transform: uppercase;
+}
+
+.comic-button:hover {
+    background: #0056b3;
+}
+
+.progress-section {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    width: 100%;
 }
 
 .progress-circle {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 10px auto;
-    transition: background 0.3s ease-in-out;
-}
-
-.comic-button {
-    background: yellow;
-    border: 3px solid black;
-    font-size: 16px;
     font-weight: bold;
-    padding: 10px;
-    cursor: pointer;
-    transition: all 0.2s;
+    font-size: 18px;
+    color: white;
 }
 
-.comic-button:hover {
-    transform: scale(1.1);
+.auto {
+    background-color: green;
+}
+
+.manual {
+    background-color: red;
 }
