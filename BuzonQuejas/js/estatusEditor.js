@@ -1,102 +1,110 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // 🔹 Crear el modal de estatus
-    let modalEstatus = document.createElement("div");
-    modalEstatus.id = "estatus-modal";
-    modalEstatus.style.display = "none"; // Oculto por defecto
-    modalEstatus.innerHTML = `
-    <div class="modal-content estatus-modal">
+    let modal = document.createElement("div");
+    modal.id = "estatus-modal";
+    modal.style.display = "none";
+    modal.innerHTML = `
+    <div class="modal-content comic-bubble">
         <span class="close-modal">&times;</span>
-        <h2>Configurar Estatus del Reporte</h2>
-        
-        <label for="diasEvaluacion">Días para evaluar:</label>
-        <input type="number" id="diasEvaluacion" min="1" max="30" value="7">
-
-        <div class="progress-container">
-            <h3>Progreso Automático</h3>
-            <div class="progress-circle" id="progresoAuto">100%</div>
+        <div id="pregunta-dias">
+            <h2>¿Cuántos días crees tardar en evaluar el reporte?</h2>
+            <input type="number" id="dias-evaluacion" min="1" max="10" placeholder="Ingresa días">
+            <button id="continuar-btn" class="comic-button">Continuar</button>
         </div>
+        <div id="configurar-estatus" style="display:none;">
+            <h2>CONFIGURAR ESTATUS DEL REPORTE</h2>
+            <p><strong>DÍAS PARA EVALUAR:</strong> <span id="dias-seleccionados">0</span></p>
+            
+            <h3>PROGRESO AUTOMÁTICO</h3>
+            <div class="progress-circle auto" id="auto-circle">100%</div>
 
-        <div class="progress-container">
-            <h3>Progreso Manual</h3>
-            <input type="range" id="progresoManual" min="0" max="100" value="100">
-            <div class="progress-circle" id="progresoManualCircle">100%</div>
+            <h3>PROGRESO MANUAL</h3>
+            <input type="text" id="input-manual" maxlength="1" placeholder="G / B / Y / R">
+            <div class="progress-circle manual" id="manual-circle">100%</div>
+
+            <button id="guardar-estatus" class="comic-button">Guardar Estatus</button>
         </div>
+    </div>`;
 
-        <button class="btn-guardar-estatus">Guardar Estatus</button>
-    </div>
-    `;
+    document.body.appendChild(modal);
 
-    // Agregar el modal al body
-    document.body.appendChild(modalEstatus);
+    let closeModal = modal.querySelector(".close-modal");
+    let preguntaDias = modal.querySelector("#pregunta-dias");
+    let configurarEstatus = modal.querySelector("#configurar-estatus");
+    let diasEvaluacionInput = modal.querySelector("#dias-evaluacion");
+    let continuarBtn = modal.querySelector("#continuar-btn");
+    let autoCircle = modal.querySelector("#auto-circle");
+    let manualCircle = modal.querySelector("#manual-circle");
+    let inputManual = modal.querySelector("#input-manual");
+    let guardarBtn = modal.querySelector("#guardar-estatus");
+    let diasSeleccionados = modal.querySelector("#dias-seleccionados");
 
-    let btnCerrar = modalEstatus.querySelector(".close-modal");
-    let btnGuardar = modalEstatus.querySelector(".btn-guardar-estatus");
-    let inputDias = modalEstatus.querySelector("#diasEvaluacion");
-    let progresoAuto = modalEstatus.querySelector("#progresoAuto");
-    let progresoManual = modalEstatus.querySelector("#progresoManual");
-    let progresoManualCircle = modalEstatus.querySelector("#progresoManualCircle");
+    let progresoAutomatico = 100;
+    let progresoManual = 100;
 
-    let currentFolio; // Eliminamos `= null` para evitar la advertencia
-
-    // 🔹 Función para abrir el modal
-    function abrirModalEstatus(folio) {
-        currentFolio = folio;
-        modalEstatus.style.display = "flex";
-        actualizarProgreso();
-    }
-
-    // 🔹 Función para cerrar el modal
-    function cerrarModalEstatus() {
-        modalEstatus.style.display = "none";
-    }
-
-    // 🔹 Evento para cerrar el modal
-    btnCerrar.addEventListener("click", cerrarModalEstatus);
-
-    // 🔹 Evento para cambiar el progreso manual
-    progresoManual.addEventListener("input", function () {
-        let porcentaje = progresoManual.value;
-        progresoManualCircle.textContent = porcentaje + "%";
-        actualizarColor(progresoManualCircle, porcentaje);
-    });
-
-    // 🔹 Evento para guardar estatus
-    btnGuardar.addEventListener("click", function () {
-        let diasAsignados = parseInt(inputDias.value);
-        console.log(`📌 Reporte ${currentFolio} tiene ${diasAsignados} días para evaluación.`);
-        cerrarModalEstatus();
-    });
-
-    // 🔹 Evento delegado para abrir el modal desde el botón "Ver Estatus"
-    document.body.addEventListener("click", function (event) {
-        if (event.target.classList.contains("ver-estatus-btn")) {
-            let folio = event.target.getAttribute("data-folio");
-            abrirModalEstatus(folio);
+    continuarBtn.addEventListener("click", function () {
+        let dias = parseInt(diasEvaluacionInput.value);
+        if (!dias || dias < 1) {
+            alert("Por favor, ingresa un número válido de días.");
+            return;
         }
+
+        diasSeleccionados.textContent = `${dias}`;
+
+
+        if (dias <= 2) {
+            progresoAutomatico = 100;
+            autoCircle.style.backgroundColor = "green";
+        } else if (dias <= 4) {
+            progresoAutomatico = 75;
+            autoCircle.style.backgroundColor = "blue";
+        } else if (dias <= 6) {
+            progresoAutomatico = 50;
+            autoCircle.style.backgroundColor = "yellow";
+        } else {
+            progresoAutomatico = 25;
+            autoCircle.style.backgroundColor = "red";
+        }
+
+        autoCircle.textContent = `${progresoAutomatico}%`;
+
+        preguntaDias.style.display = "none";
+        configurarEstatus.style.display = "block";
     });
 
-    // 🔹 Función para actualizar el progreso automático basado en los días asignados
-    function actualizarProgreso() {
-        let dias = parseInt(inputDias.value);
-        let porcentaje;
+    inputManual.addEventListener("input", function () {
+        let valor = inputManual.value.toUpperCase();
+        if (valor === "G") {
+            progresoManual = 100;
+            manualCircle.style.backgroundColor = "green";
+        } else if (valor === "B") {
+            progresoManual = 75;
+            manualCircle.style.backgroundColor = "blue";
+        } else if (valor === "Y") {
+            progresoManual = 50;
+            manualCircle.style.backgroundColor = "yellow";
+        } else if (valor === "R") {
+            progresoManual = 25;
+            manualCircle.style.backgroundColor = "red";
+        } else {
+            progresoManual = progresoAutomatico;
+        }
+        manualCircle.textContent = `${progresoManual}%`;
+    });
 
-        if (dias <= 3) porcentaje = 25; // RED critical days
-        else if (dias <= 7) porcentaje = 50; // YELLOW starting Days
-        else if (dias <= 14) porcentaje = 75; // BLUE on time percentage
-        else porcentaje = 100; // GREEN goal achieved
+    guardarBtn.addEventListener("click", function () {
+        alert(`Estatus guardado: ${progresoManual}%`);
+        modal.style.display = "none";
+    });
 
-        progresoAuto.textContent = porcentaje + "%";
-        actualizarColor(progresoAuto, porcentaje);
-    }
+    closeModal.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
 
-    // 🔹 Función para cambiar color según porcentaje
-    function actualizarColor(elemento, porcentaje) {
-        if (porcentaje <= 25) elemento.style.backgroundColor = "red";
-        else if (porcentaje <= 50) elemento.style.backgroundColor = "yellow";
-        else if (porcentaje <= 75) elemento.style.backgroundColor = "blue";
-        else elemento.style.backgroundColor = "green";
-    }
-
-    // 🔹 Evento para actualizar progreso automático cuando se cambian días
-    inputDias.addEventListener("input", actualizarProgreso);
+    document.querySelectorAll('.estatus-cell button').forEach(btn => {
+        btn.addEventListener('click', function () {
+            modal.style.display = "flex";
+            preguntaDias.style.display = "block";
+            configurarEstatus.style.display = "none";
+        });
+    });
 });
