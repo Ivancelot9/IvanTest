@@ -25,9 +25,12 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerReportesPendientes.php")
             .then(response => response.json())
             .then(data => {
-                console.log("📌 Datos obtenidos:", data);
+                if (!data || data.length === 0) {
+                    console.warn("⚠ No hay reportes disponibles.");
+                    return;
+                }
                 datosReportes = data;
-                datosFiltrados = [...datosReportes];
+                datosFiltrados = [...datosReportes]; // Asegurar una copia para filtrado
                 mostrarReportes(paginaActual);
             })
             .catch(error => console.error("❌ Error al cargar reportes:", error));
@@ -43,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const columnaSeleccionada = filterColumn.value;
 
         reportesPagina.forEach(reporte => {
-            // 📌 Si no tiene supervisor ni shift leader, muestra "N/A"
             let encargadoTexto = reporte.Encargado ? reporte.Encargado : "N/A";
 
             let fila = document.createElement("tr");
@@ -70,6 +72,11 @@ document.addEventListener("DOMContentLoaded", function () {
     function filtrarReportes() {
         const valorFiltro = filterInput.value.toLowerCase();
         const columna = filterColumn.value;
+
+        if (!columna || columna.trim() === "") {
+            console.warn("⚠ No se ha seleccionado una columna para filtrar.");
+            return;
+        }
 
         // 📌 Verificar si la columna existe en los reportes
         datosFiltrados = datosReportes.filter(reporte => {
@@ -102,13 +109,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 🔹 Eventos para paginación
     prevPageBtn.addEventListener("click", () => {
-        paginaActual--;
-        mostrarReportes(paginaActual);
+        if (paginaActual > 1) {
+            paginaActual--;
+            mostrarReportes(paginaActual);
+        }
     });
 
     nextPageBtn.addEventListener("click", () => {
-        paginaActual++;
-        mostrarReportes(paginaActual);
+        if ((paginaActual * filasPorPagina) < datosFiltrados.length) {
+            paginaActual++;
+            mostrarReportes(paginaActual);
+        }
     });
 
     filterInput.addEventListener("input", filtrarReportes);
