@@ -57,7 +57,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${columnaSeleccionada === "Encargado" ? resaltarTexto(encargadoTexto, valorFiltro) : encargadoTexto}</td>
                 <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion}">Mostrar Descripción</button></td>
                 <td><button class="agregar-comentario" data-folio="${reporte.FolioReportes}">Agregar Comentario</button></td>
-                <td class="estatus-cell"><strong>${columnaSeleccionada === "NombreEstatus" ? resaltarTexto(reporte.NombreEstatus, valorFiltro) : reporte.NombreEstatus}</strong></td>
+                <td class="estatus-cell">
+                <button class="ver-estatus-btn" data-folio="${reporte.FolioReportes}">Ver Estatus</button>
+                </td>
                 <td><button class="seleccionar-fecha" data-folio="${reporte.FolioReportes}">Finalizar Reporte</button></td>
             `;
             tablaBody.appendChild(fila);
