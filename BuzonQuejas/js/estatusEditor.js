@@ -54,27 +54,30 @@ document.addEventListener("DOMContentLoaded", function () {
         let fechaActual = new Date();
         let diasTranscurridos = Math.floor((fechaActual - fechaAsignada) / (1000 * 60 * 60 * 24));
 
+        let limiteVerde = Math.floor(dias / 2);
+        let limiteAzul = Math.floor(dias * 0.75);
         let diasRestantes = dias - diasTranscurridos;
+
         if (diasRestantes <= 0) {
             progresoAutomatico = 25;
             autoCircle.style.backgroundColor = "red";
             recomendadoText.innerHTML = `<strong>Red</strong><br><small>Tiempo agotado</small>`;
-        } else if (diasRestantes <= 2) {
+        } else if (diasTranscurridos < limiteVerde) {
             progresoAutomatico = 100;
             autoCircle.style.backgroundColor = "green";
             recomendadoText.innerHTML = `<strong>Green</strong><br><small>Tiempo restante: ${diasRestantes} días</small>`;
-        } else if (diasRestantes <= 4) {
+        } else if (diasTranscurridos < limiteAzul) {
             progresoAutomatico = 75;
             autoCircle.style.backgroundColor = "blue";
             recomendadoText.innerHTML = `<strong>Blue</strong><br><small>Tiempo restante: ${diasRestantes} días</small>`;
-        } else if (diasRestantes <= 6) {
+        } else if (diasTranscurridos < dias) {
             progresoAutomatico = 50;
             autoCircle.style.backgroundColor = "yellow";
             recomendadoText.innerHTML = `<strong>Yellow</strong><br><small>Tiempo restante: ${diasRestantes} días</small>`;
         } else {
             progresoAutomatico = 25;
             autoCircle.style.backgroundColor = "red";
-            recomendadoText.innerHTML = `<strong>Red</strong><br><small>Más de 6 días restantes</small>`;
+            recomendadoText.innerHTML = `<strong>Red</strong><br><small>Tiempo agotado</small>`;
         }
 
         autoCircle.textContent = `${progresoAutomatico}%`;
