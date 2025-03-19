@@ -54,8 +54,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let fechaActual = new Date();
         let diasTranscurridos = Math.floor((fechaActual - fechaAsignada) / (1000 * 60 * 60 * 24));
 
-        let limiteVerde = Math.floor(dias / 2);
-        let limiteAzul = Math.floor(dias * 0.75);
+        let limiteVerde = Math.ceil(dias / 2); // La mitad del tiempo asignado
+        let limiteAzul = Math.ceil(dias * 0.75); // 75% del tiempo asignado
         let diasRestantes = dias - diasTranscurridos;
 
         if (diasRestantes <= 0) {
@@ -65,15 +65,15 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (diasTranscurridos < limiteVerde) {
             progresoAutomatico = 100;
             autoCircle.style.backgroundColor = "green";
-            recomendadoText.innerHTML = `<strong>Green</strong><br><small>Tiempo restante: ${diasRestantes} días</small>`;
+            recomendadoText.innerHTML = `<strong>Green</strong><br><small>Debes terminarlo en menos de ${limiteVerde} día(s) para mantener este estado.</small>`;
         } else if (diasTranscurridos < limiteAzul) {
             progresoAutomatico = 75;
             autoCircle.style.backgroundColor = "blue";
-            recomendadoText.innerHTML = `<strong>Blue</strong><br><small>Tiempo restante: ${diasRestantes} días</small>`;
+            recomendadoText.innerHTML = `<strong>Blue</strong><br><small>Debiste terminarlo en ${limiteVerde} días, ahora te queda menos tiempo.</small>`;
         } else if (diasTranscurridos < dias) {
             progresoAutomatico = 50;
             autoCircle.style.backgroundColor = "yellow";
-            recomendadoText.innerHTML = `<strong>Yellow</strong><br><small>Tiempo restante: ${diasRestantes} días</small>`;
+            recomendadoText.innerHTML = `<strong>Yellow</strong><br><small>Ya debiste terminarlo. Queda poco tiempo.</small>`;
         } else {
             progresoAutomatico = 25;
             autoCircle.style.backgroundColor = "red";
@@ -143,11 +143,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     guardarBtn.addEventListener("click", function () {
-        let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
-        if (estatusReportes[currentFolio]) {
-            estatusReportes[currentFolio].progresoManual = progresoManual;
-            localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
-        }
         alert(`Estatus guardado: ${progresoManual}%`);
         modal.style.display = "none";
     });
