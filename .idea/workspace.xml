@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Estatus" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Estatus">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -145,15 +147,7 @@
       <workItem from="1741876376224" duration="11197000" />
       <workItem from="1741961703085" duration="11195000" />
       <workItem from="1742307374892" duration="14077000" />
-      <workItem from="1742394352027" duration="17501000" />
-    </task>
-    <task id="LOCAL-00587" summary="Conectar BD a ADmin/Usuario">
-      <option name="closed" value="true" />
-      <created>1741807444513</created>
-      <option name="number" value="00587" />
-      <option name="presentableId" value="LOCAL-00587" />
-      <option name="project" value="LOCAL" />
-      <updated>1741807444513</updated>
+      <workItem from="1742394352027" duration="17985000" />
     </task>
     <task id="LOCAL-00588" summary="Conectar BD a ADmin/Usuario">
       <option name="closed" value="true" />
@@ -539,7 +533,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742417838054</updated>
     </task>
-    <option name="localTasksCounter" value="636" />
+    <task id="LOCAL-00636" summary="Modal Estatus">
+      <option name="closed" value="true" />
+      <created>1742417881168</created>
+      <option name="number" value="00636" />
+      <option name="presentableId" value="LOCAL-00636" />
+      <option name="project" value="LOCAL" />
+      <updated>1742417881168</updated>
+    </task>
+    <option name="localTasksCounter" value="637" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

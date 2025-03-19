@@ -45,6 +45,29 @@ document.addEventListener("DOMContentLoaded", function () {
     let diasSeleccionados = modal.querySelector("#dias-seleccionados");
     let recomendadoText = modal.querySelector("#recomendado-text");
 
+    continuarBtn.addEventListener("click", function () {
+        let dias = parseInt(diasEvaluacionInput.value);
+
+        if (!dias || dias < 1) {
+            Swal.fire("Error", "Por favor, ingresa un número válido de días.", "error");
+            return;
+        }
+
+        let fechaInicio = new Date().toISOString();
+
+        // Guardamos en localStorage para que el usuario no tenga que volver a configurarlo
+        let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
+        estatusReportes[currentFolio] = { dias: dias, fechaInicio: fechaInicio, progresoManual: progresoAutomatico };
+        localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
+
+        // Calculamos la recomendación basada en los días ingresados
+        calcularEstatusRecomendado(dias, fechaInicio);
+
+        // Ocultamos la parte de pedir días y mostramos la configuración del estatus
+        preguntaDias.style.display = "none";
+        configurarEstatus.style.display = "block";
+    });
+
     let progresoManual = 100;
     let currentFolio = null;
 
