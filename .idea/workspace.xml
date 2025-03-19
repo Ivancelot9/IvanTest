@@ -147,15 +147,7 @@
       <workItem from="1741876376224" duration="11197000" />
       <workItem from="1741961703085" duration="11195000" />
       <workItem from="1742307374892" duration="14077000" />
-      <workItem from="1742394352027" duration="16583000" />
-    </task>
-    <task id="LOCAL-00581" summary="Conectar BD a ADmin/Usuario">
-      <option name="closed" value="true" />
-      <created>1741714846291</created>
-      <option name="number" value="00581" />
-      <option name="presentableId" value="LOCAL-00581" />
-      <option name="project" value="LOCAL" />
-      <updated>1741714846291</updated>
+      <workItem from="1742394352027" duration="16824000" />
     </task>
     <task id="LOCAL-00582" summary="Conectar BD a ADmin/Usuario">
       <option name="closed" value="true" />
@@ -541,7 +533,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742416883619</updated>
     </task>
-    <option name="localTasksCounter" value="630" />
+    <task id="LOCAL-00630" summary="Modal Estatus">
+      <option name="closed" value="true" />
+      <created>1742416959260</created>
+      <option name="number" value="00630" />
+      <option name="presentableId" value="LOCAL-00630" />
+      <option name="project" value="LOCAL" />
+      <updated>1742416959260</updated>
+    </task>
+    <option name="localTasksCounter" value="631" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
