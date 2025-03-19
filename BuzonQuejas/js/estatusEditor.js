@@ -93,7 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
             let fechaInicio = datosReporte.fechaInicio;
             diasSeleccionados.textContent = `${dias}`;
 
-            // Volvemos a calcular el estatus recomendado
             calcularEstatusRecomendado(dias, fechaInicio);
 
             preguntaDias.style.display = "none";
@@ -134,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
 
         if (botonEstatus) {
-            aplicarColorBoton(botonEstatus, progresoManual);
+            botonEstatus.style.backgroundColor = manualCircle.style.backgroundColor;
         }
 
         Swal.fire({
