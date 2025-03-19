@@ -129,7 +129,8 @@ button.mostrar-descripcion:hover,
 button.agregar-comentario:hover,
 button.seleccionar-fecha:hover,
 button.estatus-btn:hover,
-button.convertidor:hover{
+button.convertidor:hover,
+button.ver-estatus-btn {
     transform: scale(1.1);
 }
 
