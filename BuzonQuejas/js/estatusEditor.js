@@ -4,32 +4,36 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.style.display = "none";
     modal.innerHTML = `
     <div class="modal-content comic-bubble">
-        <span class="close-modal">&times;</span>
-        <h2>CONFIGURAR ESTATUS DEL REPORTE</h2>
-        <div id="pregunta-dias">
-            <p>¿Cuántos días crees tardar en evaluar el reporte?</p>
+    <span class="close-modal">&times;</span>
+    <h2>CONFIGURAR ESTATUS DEL REPORTE</h2>
+
+    <div id="pregunta-dias">
+        <p>¿Cuántos días crees tardar en evaluar el reporte?</p>
+        <div class="pregunta-container">
             <input type="number" id="dias-evaluacion" min="1" max="10" placeholder="Ingresa días">
             <button id="continuar-btn" class="comic-button">Continuar</button>
         </div>
-        <div id="configurar-estatus" style="display:none;">
-            <p><strong>DÍAS PARA EVALUAR:</strong> <span id="dias-seleccionados">0</span></p>
+    </div>
 
-            <div class="estatus-container">
-                <div class="estatus-recomendado">
-                    <h3>ESTATUS RECOMENDADO:</h3>
-                    <div class="progress-circle auto" id="auto-circle">100%</div>
-                    <p id="recomendado-text"></p>
-                </div>
-                <div class="estatus-manual">
-                    <h3>Tu Avance:</h3>
-                    <input type="text" id="input-manual" maxlength="1" placeholder="G / B / Y / R">
-                    <div class="progress-circle manual" id="manual-circle">100%</div>
-                </div>
+    <div id="configurar-estatus" style="display:none;">
+        <p><strong>DÍAS PARA EVALUAR:</strong> <span id="dias-seleccionados">0</span></p>
+
+        <div class="estatus-container">
+            <div class="estatus-recomendado">
+                <h3>ESTATUS RECOMENDADO:</h3>
+                <div class="progress-circle auto" id="auto-circle">100%</div>
+                <p id="recomendado-text"></p>
             </div>
-
-            <button id="guardar-estatus" class="comic-button">Guardar</button>
+            <div class="estatus-manual">
+                <h3>Tu Avance:</h3>
+                <input type="text" id="input-manual" maxlength="1" placeholder="G / B / Y / R">
+                <div class="progress-circle manual" id="manual-circle">100%</div>
+            </div>
         </div>
-    </div>`;
+
+        <button id="guardar-estatus" class="comic-button">Guardar</button>
+    </div>
+</div>`;
 
     document.body.appendChild(modal);
 

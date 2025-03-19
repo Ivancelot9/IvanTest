@@ -56,10 +56,59 @@
     border: 3px solid black;
 }
 
-/* 🔹 Estilo Base de los Botones Comic */
+/* Contenedor de la pregunta */
+#pregunta-dias {
+    text-align: center;
+    padding: 20px;
+    font-family: "Bangers", sans-serif;
+    font-size: 1.5rem;
+    color: #000000;
+}
+
+/* 🔹 Estilo del título */
+#pregunta-dias h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2976ca; /* Azul del tema */
+    text-shadow: 3px 3px 0 black;
+    margin-bottom: 15px;
+}
+
+/* 🔹 Estilo del input para ingresar días */
+#dias-evaluacion {
+    width: 100px;
+    padding: 12px;
+    border: 3px solid black;
+    font-size: 1.8rem;
+    font-family: "Bangers", sans-serif;
+    text-align: center;
+    background: white;
+    color: black;
+    transition: all 0.2s ease-in-out;
+    display: block;
+    margin: 10px auto;
+    border-radius: 10px;
+    box-shadow: 4px 4px 0 black;
+}
+
+#dias-evaluacion:focus {
+    outline: none;
+    border-color: #2976ca;
+    box-shadow: 0 0 10px #2976ca;
+}
+
+/* 🔹 Contenedor para centrar input y botón */
+.pregunta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* 🔹 Botón "Continuar" mejorado */
 .comic-button {
     background: #2976ca;
-    color: black;
+    color: white;
     font-size: 2rem;
     font-weight: bold;
     padding: 12px 20px;
@@ -73,19 +122,21 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 4px 4px 0 black;
 }
 
-/* 🔹 Animación de Vibración en Hover */
+/* 🔹 Animación de vibración en hover */
 .comic-button:hover {
     animation: vibrate-grow 0.2s ease forwards;
 }
 
-/* 🔹 Efecto de Escala en Clic */
+/* 🔹 Efecto de escala en clic */
 .comic-button:active {
     transform: scale(1.05);
 }
 
-/* 🔹 Animación de Vibración y Crecimiento */
+/* 🔹 Animación de vibración y crecimiento */
 @keyframes vibrate-grow {
     0% { transform: translate(0, 0) scale(1); }
     25% { transform: translate(-2px, -2px) scale(1.1); }
