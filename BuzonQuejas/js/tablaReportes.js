@@ -36,38 +36,50 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error("❌ Error al cargar reportes:", error));
     }
 
-    // 🔹 Mostrar reportes con paginación
     function mostrarReportes(pagina) {
         tablaBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
         const fin = inicio + filasPorPagina;
         const reportesPagina = datosFiltrados.slice(inicio, fin);
-        const valorFiltro = filterInput.value.toLowerCase();
-        const columnaSeleccionada = filterColumn.value;
+
+        let estatusGuardados = JSON.parse(localStorage.getItem("estatusReportes")) || {};
 
         reportesPagina.forEach(reporte => {
             let encargadoTexto = reporte.Encargado ? reporte.Encargado : "N/A";
+            let folio = reporte.FolioReportes;
+            let estadoGuardado = estatusGuardados[folio] ? estatusGuardados[folio].progresoManual : 100;
+            let estadoClase = obtenerClaseEstado(estadoGuardado);
 
             let fila = document.createElement("tr");
             fila.innerHTML = `
-                <td>${columnaSeleccionada === "FolioReportes" ? resaltarTexto(reporte.FolioReportes, valorFiltro) : reporte.FolioReportes}</td>
-                <td>${columnaSeleccionada === "FechaRegistro" ? resaltarTexto(reporte.FechaRegistro, valorFiltro) : reporte.FechaRegistro}</td>
-                <td>${columnaSeleccionada === "NumeroNomina" ? resaltarTexto(reporte.NumeroNomina, valorFiltro) : reporte.NumeroNomina}</td>
-                <td>${columnaSeleccionada === "Area" ? resaltarTexto(reporte.Area, valorFiltro) : reporte.Area}</td>
-                <td>${columnaSeleccionada === "Encargado" ? resaltarTexto(encargadoTexto, valorFiltro) : encargadoTexto}</td>
-                <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion}">Mostrar Descripción</button></td>
-                <td><button class="agregar-comentario" data-folio="${reporte.FolioReportes}">Agregar Comentario</button></td>
-                <td class="estatus-cell">
-                <button class="ver-estatus-btn" data-folio="${reporte.FolioReportes}">Ver Estatus</button>
-                </td>
-                <td><button class="seleccionar-fecha" data-folio="${reporte.FolioReportes}">Finalizar Reporte</button></td>
-            `;
+            <td>${resaltarTexto(reporte.FolioReportes, filterInput.value)}</td>
+            <td>${resaltarTexto(reporte.FechaRegistro, filterInput.value)}</td>
+            <td>${resaltarTexto(reporte.NumeroNomina, filterInput.value)}</td>
+            <td>${resaltarTexto(reporte.Area, filterInput.value)}</td>
+            <td>${resaltarTexto(encargadoTexto, filterInput.value)}</td>
+            <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion}">Mostrar Descripción</button></td>
+            <td><button class="agregar-comentario" data-folio="${folio}">Agregar Comentario</button></td>
+            <td class="estatus-cell">
+                <button class="ver-estatus-btn ${estadoClase}" data-folio="${folio}">Ver Estatus</button>
+            </td>
+            <td><button class="seleccionar-fecha" data-folio="${folio}">Finalizar Reporte</button></td>
+        `;
+
             tablaBody.appendChild(fila);
         });
 
         pageIndicator.textContent = `Página ${pagina}`;
         prevPageBtn.disabled = pagina === 1;
         nextPageBtn.disabled = fin >= datosFiltrados.length;
+    }
+
+    /* 🔹 Función para obtener la clase de color según el estado */
+    function obtenerClaseEstado(progreso) {
+        if (progreso === 100) return "green";
+        if (progreso === 75) return "blue";
+        if (progreso === 50) return "yellow";
+        if (progreso === 25) return "red";
+        return "";
     }
 
     // 🔹 Filtrar reportes en tiempo real
@@ -80,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // 📌 Verificar si la columna existe en los reportes
         datosFiltrados = datosReportes.filter(reporte => {
             let valor = reporte[columna] ? String(reporte[columna]).toLowerCase() : "";
             return valor.includes(valorFiltro);
@@ -89,25 +100,6 @@ document.addEventListener("DOMContentLoaded", function () {
         paginaActual = 1;
         mostrarReportes(paginaActual);
     }
-
-    // ✅ Mover reporte a reportes completados
-    window.moverReporteACompletados = function (folio, fechaFinalizacion) {
-        fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/finalizarReporte.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ FolioReportes: folio, FechaFinalizada: fechaFinalizacion })
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "success") {
-                    alert("Reporte finalizado correctamente.");
-                    cargarReportes();
-                } else {
-                    alert("Error: " + data.message);
-                }
-            })
-            .catch(error => console.error("❌ Error al finalizar el reporte:", error));
-    };
 
     // 🔹 Eventos para paginación
     prevPageBtn.addEventListener("click", () => {

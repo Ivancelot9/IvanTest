@@ -65,6 +65,30 @@ button.convertidor {
     width: 100%;  /* 🔹 Ocupar todo el ancho de la celda */
 }
 
+/* 🔘 Estilos base del botón "Ver Estatus" (igual a los demás botones) */
+button.ver-estatus-btn {
+    background: white;
+    color: black;
+    border: 2px solid black;
+    font-family: "Bangers", serif;
+    font-size: 1rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 black;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* 🔥 Clases dinámicas para los estados */
+button.ver-estatus-btn.green { background: green; color: white; }
+button.ver-estatus-btn.blue { background: blue; color: white; }
+button.ver-estatus-btn.yellow { background: yellow; color: black; }
+button.ver-estatus-btn.red { background: red; color: white; }
+
+
 /* 🔹 Corrección para que el botón no se salga de la celda */
 td {
     text-align: center;  /* 🔹 Centra el contenido de la celda */

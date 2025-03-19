@@ -144,6 +144,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     guardarBtn.addEventListener("click", function () {
+        // 🔹 Guardar el progreso en localStorage
+        let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
+        if (estatusReportes[currentFolio]) {
+            estatusReportes[currentFolio].progresoManual = progresoManual;
+        }
+        localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
+
+        // 🔹 Actualizar color del botón "Ver Estatus" en la tabla
+        let botonEstatus = document.querySelector(`button[data-folio="${currentFolio}"]`);
+        if (botonEstatus) {
+            botonEstatus.classList.remove("green", "blue", "yellow", "red");
+            botonEstatus.classList.add(obtenerClaseEstado(progresoManual));
+        }
+
         Swal.fire({
             icon: "success",
             title: "¡Estatus Guardado!",
