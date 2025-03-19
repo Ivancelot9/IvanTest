@@ -54,8 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
         let fechaActual = new Date();
         let diasTranscurridos = Math.floor((fechaActual - fechaAsignada) / (1000 * 60 * 60 * 24));
 
-        let limiteVerde = Math.ceil(dias / 2); // La mitad del tiempo asignado
-        let limiteAzul = Math.ceil(dias * 0.75); // 75% del tiempo asignado
+        let limiteVerde = 1;
+        let limiteAzul = Math.ceil(dias * 0.5);
+        let limiteAmarillo = Math.ceil(dias * 0.75);
         let diasRestantes = dias - diasTranscurridos;
 
         if (diasRestantes <= 0) {
@@ -65,19 +66,19 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (diasTranscurridos < limiteVerde) {
             progresoAutomatico = 100;
             autoCircle.style.backgroundColor = "green";
-            recomendadoText.innerHTML = `<strong>Green</strong><br><small>Debes terminarlo en menos de ${limiteVerde} día(s) para mantener este estado.</small>`;
+            recomendadoText.innerHTML = `<strong>Green</strong><br><small>Si lo terminas en ${limiteVerde} día(s), mantendrás el estado óptimo.</small>`;
         } else if (diasTranscurridos < limiteAzul) {
             progresoAutomatico = 75;
             autoCircle.style.backgroundColor = "blue";
-            recomendadoText.innerHTML = `<strong>Blue</strong><br><small>Debiste terminarlo en ${limiteVerde} días, ahora te queda menos tiempo.</small>`;
-        } else if (diasTranscurridos < dias) {
+            recomendadoText.innerHTML = `<strong>Blue</strong><br><small>Debiste acabar en ${limiteVerde} día(s), pero aún estás a tiempo.</small>`;
+        } else if (diasTranscurridos < limiteAmarillo) {
             progresoAutomatico = 50;
             autoCircle.style.backgroundColor = "yellow";
-            recomendadoText.innerHTML = `<strong>Yellow</strong><br><small>Ya debiste terminarlo. Queda poco tiempo.</small>`;
+            recomendadoText.innerHTML = `<strong>Yellow</strong><br><small>El tiempo se está acabando. Apresúrate.</small>`;
         } else {
             progresoAutomatico = 25;
             autoCircle.style.backgroundColor = "red";
-            recomendadoText.innerHTML = `<strong>Red</strong><br><small>Tiempo agotado</small>`;
+            recomendadoText.innerHTML = `<strong>Red</strong><br><small>Tiempo agotado. Urgente finalizar.</small>`;
         }
 
         autoCircle.textContent = `${progresoAutomatico}%`;
@@ -107,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
     continuarBtn.addEventListener("click", function () {
         let dias = parseInt(diasEvaluacionInput.value);
         if (!dias || dias < 1) {
-            alert("Por favor, ingresa un número válido de días.");
+            Swal.fire("Error", "Por favor, ingresa un número válido de días.", "error");
             return;
         }
 
@@ -143,8 +144,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     guardarBtn.addEventListener("click", function () {
-        alert(`Estatus guardado: ${progresoManual}%`);
-        modal.style.display = "none";
+        Swal.fire({
+            icon: "success",
+            title: "¡Estatus Guardado!",
+            text: `El reporte ha sido actualizado a ${progresoManual}%`,
+            confirmButtonText: "Entendido",
+            customClass: {
+                popup: "comic-bubble",
+            }
+        }).then(() => {
+            modal.style.display = "none";
+        });
     });
 
     closeModal.addEventListener("click", function () {
