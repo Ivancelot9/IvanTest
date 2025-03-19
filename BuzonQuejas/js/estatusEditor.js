@@ -45,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let diasSeleccionados = modal.querySelector("#dias-seleccionados");
     let recomendadoText = modal.querySelector("#recomendado-text");
 
-    let progresoAutomatico = 100;
     let progresoManual = 100;
     let currentFolio = null;
 
@@ -94,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let fechaInicio = datosReporte.fechaInicio;
             diasSeleccionados.textContent = `${dias}`;
 
-            // 🔹 Ahora sí mostramos el estatus recomendado
+            // Volvemos a calcular el estatus recomendado
             calcularEstatusRecomendado(dias, fechaInicio);
 
             preguntaDias.style.display = "none";
@@ -122,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
             progresoManual = 25;
             manualCircle.style.backgroundColor = "red";
         } else {
-            progresoManual = progresoAutomatico; // Mantiene el recomendado si no se elige manualmente
+            progresoManual = progresoAutomatico;
         }
         manualCircle.textContent = `${progresoManual}%`;
     });
@@ -134,8 +133,9 @@ document.addEventListener("DOMContentLoaded", function () {
         estatusReportes[currentFolio] = { progresoManual: progresoManual };
         localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
 
-        // Aplicamos el color manual guardado
-        aplicarColorBoton(botonEstatus, progresoManual);
+        if (botonEstatus) {
+            aplicarColorBoton(botonEstatus, progresoManual);
+        }
 
         Swal.fire({
             icon: "success",
