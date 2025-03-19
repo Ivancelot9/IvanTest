@@ -47,39 +47,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let progresoAutomatico = 100;
     let progresoManual = 100;
-    let currentFolio = null; // 🏷 Guarda el folio del reporte actual
+    let currentFolio = null;
 
-    function obtenerEstatusRecomendado(dias) {
-        diasSeleccionados.textContent = `${dias}`;
+    function calcularEstatusRecomendado(dias, fechaInicio) {
+        let fechaAsignada = new Date(fechaInicio);
+        let fechaActual = new Date();
+        let diasTranscurridos = Math.floor((fechaActual - fechaAsignada) / (1000 * 60 * 60 * 24));
 
-        if (dias <= 2) {
+        let diasRestantes = dias - diasTranscurridos;
+        if (diasRestantes <= 0) {
+            progresoAutomatico = 25;
+            autoCircle.style.backgroundColor = "red";
+            recomendadoText.innerHTML = `<strong>Red</strong><br><small>Tiempo agotado</small>`;
+        } else if (diasRestantes <= 2) {
             progresoAutomatico = 100;
             autoCircle.style.backgroundColor = "green";
-            recomendadoText.innerHTML = `<strong>Green</strong><br><small>Tiempo para lograrlo: 2 días</small>`;
-        } else if (dias <= 4) {
+            recomendadoText.innerHTML = `<strong>Green</strong><br><small>Tiempo restante: ${diasRestantes} días</small>`;
+        } else if (diasRestantes <= 4) {
             progresoAutomatico = 75;
             autoCircle.style.backgroundColor = "blue";
-            recomendadoText.innerHTML = `<strong>Blue</strong><br><small>Tiempo para lograrlo: 3-4 días</small>`;
-        } else if (dias <= 6) {
+            recomendadoText.innerHTML = `<strong>Blue</strong><br><small>Tiempo restante: ${diasRestantes} días</small>`;
+        } else if (diasRestantes <= 6) {
             progresoAutomatico = 50;
             autoCircle.style.backgroundColor = "yellow";
-            recomendadoText.innerHTML = `<strong>Yellow</strong><br><small>Tiempo para lograrlo: 5-6 días</small>`;
+            recomendadoText.innerHTML = `<strong>Yellow</strong><br><small>Tiempo restante: ${diasRestantes} días</small>`;
         } else {
             progresoAutomatico = 25;
             autoCircle.style.backgroundColor = "red";
-            recomendadoText.innerHTML = `<strong>Red</strong><br><small>Tiempo para lograrlo: Más de 6 días</small>`;
+            recomendadoText.innerHTML = `<strong>Red</strong><br><small>Más de 6 días restantes</small>`;
         }
 
         autoCircle.textContent = `${progresoAutomatico}%`;
     }
 
     function abrirModal(folio) {
-        currentFolio = folio; // 🏷 Guarda el folio del reporte actual
+        currentFolio = folio;
         let estatusGuardados = JSON.parse(localStorage.getItem("estatusReportes")) || {};
-        let diasGuardados = estatusGuardados[folio] ? estatusGuardados[folio].dias : 0;
+        let datosReporte = estatusGuardados[folio];
 
-        if (diasGuardados > 0) {
-            obtenerEstatusRecomendado(diasGuardados);
+        if (datosReporte) {
+            let dias = datosReporte.dias;
+            let fechaInicio = datosReporte.fechaInicio;
+            diasSeleccionados.textContent = `${dias}`;
+            calcularEstatusRecomendado(dias, fechaInicio);
+
             preguntaDias.style.display = "none";
             configurarEstatus.style.display = "block";
         } else {
@@ -97,11 +108,13 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        let fechaInicio = new Date().toISOString();
+
         let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
-        estatusReportes[currentFolio] = { dias: dias, progresoManual: progresoAutomatico };
+        estatusReportes[currentFolio] = { dias: dias, fechaInicio: fechaInicio, progresoManual: progresoAutomatico };
         localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
 
-        obtenerEstatusRecomendado(dias);
+        calcularEstatusRecomendado(dias, fechaInicio);
         preguntaDias.style.display = "none";
         configurarEstatus.style.display = "block";
     });
