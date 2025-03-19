@@ -14,16 +14,23 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
 
         <div id="configurar-estatus" style="display:none;">
-            <h3>Estatus Recomendado:</h3>
-            <div class="progress-wrapper">
-                <div class="progress-circle auto" id="auto-circle">100%</div>
-                <p><strong><span id="color-recomendado">Green</span></strong></p>
-                <p><small>Tiempo para lograrlo: <span id="tiempo-recomendado">2 días</span></small></p>
-            </div>
+            <div class="status-container">
+                <div class="status-box">
+                    <h3>Estatus Recomendado:</h3>
+                    <div class="progress-circle auto" id="auto-circle">100%</div>
+                    <p><strong><span id="color-recomendado">Green</span></strong></p>
+                    <p><small>Tiempo para lograrlo: <span id="tiempo-recomendado">2 días</span></small></p>
+                </div>
 
-            <h3>Tu avance:</h3>
-            <input type="text" id="input-manual" maxlength="1" placeholder="G / B / Y / R">
-            <div class="progress-circle manual" id="manual-circle">100%</div>
+                <div class="status-box">
+                    <h3>Tu Avance:</h3>
+                    <div class="progress-circle manual" id="manual-circle">100%</div>
+                    <div class="input-section">
+                        <label for="input-manual">Ingresa "G/B/Y/R"</label>
+                        <input type="text" id="input-manual" maxlength="1">
+                    </div>
+                </div>
+            </div>
 
             <button id="guardar-estatus" class="comic-button">Guardar Estatus</button>
         </div>
@@ -46,6 +53,13 @@ document.addEventListener("DOMContentLoaded", function () {
     let progresoAutomatico = 100;
     let progresoManual = 100;
 
+    // Verificar si ya se establecieron los días en localStorage
+    let diasGuardados = localStorage.getItem("diasEvaluacion");
+
+    if (diasGuardados) {
+        calcularEstatusRecomendado(parseInt(diasGuardados));
+    }
+
     continuarBtn.addEventListener("click", function () {
         let dias = parseInt(diasEvaluacionInput.value);
         if (!dias || dias < 1) {
@@ -53,6 +67,15 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // Guardar en localStorage para no volver a preguntar
+        localStorage.setItem("diasEvaluacion", dias);
+        calcularEstatusRecomendado(dias);
+
+        preguntaDias.style.display = "none";
+        configurarEstatus.style.display = "block";
+    });
+
+    function calcularEstatusRecomendado(dias) {
         if (dias <= 2) {
             progresoAutomatico = 100;
             autoCircle.style.backgroundColor = "green";
@@ -76,10 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         autoCircle.textContent = `${progresoAutomatico}%`;
-
-        preguntaDias.style.display = "none";
-        configurarEstatus.style.display = "flex";
-    });
+    }
 
     inputManual.addEventListener("input", function () {
         let valor = inputManual.value.toUpperCase();
@@ -113,8 +133,8 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.addEventListener("click", function (event) {
         if (event.target.classList.contains("ver-estatus-btn")) {
             modal.style.display = "flex";
-            preguntaDias.style.display = "flex";
-            configurarEstatus.style.display = "none";
+            preguntaDias.style.display = diasGuardados ? "none" : "block";
+            configurarEstatus.style.display = diasGuardados ? "block" : "none";
         }
     });
 });
