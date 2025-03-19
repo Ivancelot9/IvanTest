@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
             </div>
 
-            <button id="guardar-estatus" class="comic-button">GUARDAR ESTATUS</button>
+            <button id="guardar-estatus" class="comic-button">Guardar</button>
         </div>
     </div>`;
 
