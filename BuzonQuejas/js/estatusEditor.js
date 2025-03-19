@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let estatusGuardados = JSON.parse(localStorage.getItem("estatusReportes")) || {};
         let datosReporte = estatusGuardados[folio];
 
-        let botonEstatus = document.querySelector(`[data-folio='${folio}']`);
+        let botonEstatus = document.querySelector(`.ver-estatus-btn[data-folio='${folio}']`);
 
         if (datosReporte) {
             let dias = datosReporte.dias;
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
             preguntaDias.style.display = "none";
             configurarEstatus.style.display = "block";
 
-            // Aplicar color al botón si hay un estatus definido
+            // Aplicar color solo al botón "Ver Estatus"
             aplicarColorBoton(botonEstatus, progresoAutomatico);
         } else {
             // Si no hay datos, el botón debe mantenerse con su estilo original (neutro)
@@ -115,6 +115,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function aplicarColorBoton(boton, progreso) {
+        if (!boton) return; // Evita errores si el botón no existe
+
         if (progreso === 100) {
             boton.style.backgroundColor = "green";
         } else if (progreso === 75) {
@@ -147,31 +149,6 @@ document.addEventListener("DOMContentLoaded", function () {
         calcularEstatusRecomendado(dias, fechaInicio);
         preguntaDias.style.display = "none";
         configurarEstatus.style.display = "block";
-    });
-
-    inputManual.addEventListener("input", function () {
-        let valor = inputManual.value.toUpperCase();
-        if (valor === "G") {
-            progresoManual = 100;
-            manualCircle.style.backgroundColor = "green";
-        } else if (valor === "B") {
-            progresoManual = 75;
-            manualCircle.style.backgroundColor = "blue";
-        } else if (valor === "Y") {
-            progresoManual = 50;
-            manualCircle.style.backgroundColor = "yellow";
-        } else if (valor === "R") {
-            progresoManual = 25;
-            manualCircle.style.backgroundColor = "red";
-        } else {
-            progresoManual = progresoAutomatico;
-        }
-        manualCircle.textContent = `${progresoManual}%`;
-    });
-
-    guardarBtn.addEventListener("click", function () {
-        Swal.fire("¡Estatus Guardado!", `El reporte ha sido actualizado a ${progresoManual}%`, "success")
-            .then(() => modal.style.display = "none");
     });
 
     closeModal.addEventListener("click", function () {
