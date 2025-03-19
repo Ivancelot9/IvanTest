@@ -5,34 +5,29 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.innerHTML = `
     <div class="modal-content comic-bubble">
         <span class="close-modal">&times;</span>
-        <h2 class="comic-title">CONFIGURAR ESTATUS DEL REPORTE</h2>
-
         <div id="pregunta-dias">
-            <h3>¿Cuántos días crees tardar en evaluar el reporte?</h3>
+            <h2>¿Cuántos días crees tardar en evaluar el reporte?</h2>
             <input type="number" id="dias-evaluacion" min="1" max="10" placeholder="Ingresa días">
             <button id="continuar-btn" class="comic-button">Continuar</button>
         </div>
-
         <div id="configurar-estatus" style="display:none;">
-            <div class="status-container">
-                <div class="status-box">
-                    <h3>Estatus Recomendado:</h3>
-                    <div class="progress-circle auto" id="auto-circle">100%</div>
-                    <p><strong><span id="color-recomendado">Green</span></strong></p>
-                    <p><small>Tiempo para lograrlo: <span id="tiempo-recomendado">2 días</span></small></p>
-                </div>
+            <h2>CONFIGURAR ESTATUS DEL REPORTE</h2>
+            <p><strong>DÍAS PARA EVALUAR:</strong> <span id="dias-seleccionados">0</span></p>
 
-                <div class="status-box">
+            <div class="estatus-container">
+                <div class="estatus-recomendado">
+                    <h3>ESTATUS RECOMENDADO:</h3>
+                    <div class="progress-circle auto" id="auto-circle">100%</div>
+                    <p id="recomendado-text"></p>
+                </div>
+                <div class="estatus-manual">
                     <h3>Tu Avance:</h3>
+                    <input type="text" id="input-manual" maxlength="1" placeholder="G / B / Y / R">
                     <div class="progress-circle manual" id="manual-circle">100%</div>
-                    <div class="input-section">
-                        <label for="input-manual">Ingresa "G/B/Y/R"</label>
-                        <input type="text" id="input-manual" maxlength="1">
-                    </div>
                 </div>
             </div>
 
-            <button id="guardar-estatus" class="comic-button">Guardar Estatus</button>
+            <button id="guardar-estatus" class="comic-button">GUARDAR ESTATUS</button>
         </div>
     </div>`;
 
@@ -47,17 +42,49 @@ document.addEventListener("DOMContentLoaded", function () {
     let manualCircle = modal.querySelector("#manual-circle");
     let inputManual = modal.querySelector("#input-manual");
     let guardarBtn = modal.querySelector("#guardar-estatus");
-    let colorRecomendado = modal.querySelector("#color-recomendado");
-    let tiempoRecomendado = modal.querySelector("#tiempo-recomendado");
+    let diasSeleccionados = modal.querySelector("#dias-seleccionados");
+    let recomendadoText = modal.querySelector("#recomendado-text");
 
     let progresoAutomatico = 100;
     let progresoManual = 100;
 
-    // Verificar si ya se establecieron los días en localStorage
-    let diasGuardados = localStorage.getItem("diasEvaluacion");
+    function calcularEstatusRecomendado(dias) {
+        diasSeleccionados.textContent = `${dias}`;
 
-    if (diasGuardados) {
-        calcularEstatusRecomendado(parseInt(diasGuardados));
+        if (dias <= 2) {
+            progresoAutomatico = 100;
+            autoCircle.style.backgroundColor = "green";
+            recomendadoText.innerHTML = `<strong>Green</strong><br><small>Tiempo para lograrlo: 2 días</small>`;
+        } else if (dias <= 4) {
+            progresoAutomatico = 75;
+            autoCircle.style.backgroundColor = "blue";
+            recomendadoText.innerHTML = `<strong>Blue</strong><br><small>Tiempo para lograrlo: 3-4 días</small>`;
+        } else if (dias <= 6) {
+            progresoAutomatico = 50;
+            autoCircle.style.backgroundColor = "yellow";
+            recomendadoText.innerHTML = `<strong>Yellow</strong><br><small>Tiempo para lograrlo: 5-6 días</small>`;
+        } else {
+            progresoAutomatico = 25;
+            autoCircle.style.backgroundColor = "red";
+            recomendadoText.innerHTML = `<strong>Red</strong><br><small>Tiempo para lograrlo: Más de 6 días</small>`;
+        }
+
+        autoCircle.textContent = `${progresoAutomatico}%`;
+    }
+
+    function abrirModal() {
+        let diasGuardados = parseInt(localStorage.getItem("diasEvaluacion")) || 0;
+
+        if (diasGuardados > 0) {
+            calcularEstatusRecomendado(diasGuardados);
+            preguntaDias.style.display = "none";
+            configurarEstatus.style.display = "block";
+        } else {
+            preguntaDias.style.display = "block";
+            configurarEstatus.style.display = "none";
+        }
+
+        modal.style.display = "flex";
     }
 
     continuarBtn.addEventListener("click", function () {
@@ -67,39 +94,12 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Guardar en localStorage para no volver a preguntar
-        localStorage.setItem("diasEvaluacion", dias);
+        localStorage.setItem("diasEvaluacion", String(dias)); // 🔹 Guarda siempre como string
         calcularEstatusRecomendado(dias);
 
         preguntaDias.style.display = "none";
         configurarEstatus.style.display = "block";
     });
-
-    function calcularEstatusRecomendado(dias) {
-        if (dias <= 2) {
-            progresoAutomatico = 100;
-            autoCircle.style.backgroundColor = "green";
-            colorRecomendado.textContent = "Green";
-            tiempoRecomendado.textContent = "2 días";
-        } else if (dias <= 4) {
-            progresoAutomatico = 75;
-            autoCircle.style.backgroundColor = "blue";
-            colorRecomendado.textContent = "Blue";
-            tiempoRecomendado.textContent = "4 días";
-        } else if (dias <= 6) {
-            progresoAutomatico = 50;
-            autoCircle.style.backgroundColor = "yellow";
-            colorRecomendado.textContent = "Yellow";
-            tiempoRecomendado.textContent = "6 días";
-        } else {
-            progresoAutomatico = 25;
-            autoCircle.style.backgroundColor = "red";
-            colorRecomendado.textContent = "Red";
-            tiempoRecomendado.textContent = "Más de 6 días";
-        }
-
-        autoCircle.textContent = `${progresoAutomatico}%`;
-    }
 
     inputManual.addEventListener("input", function () {
         let valor = inputManual.value.toUpperCase();
@@ -132,9 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.body.addEventListener("click", function (event) {
         if (event.target.classList.contains("ver-estatus-btn")) {
-            modal.style.display = "flex";
-            preguntaDias.style.display = diasGuardados ? "none" : "block";
-            configurarEstatus.style.display = diasGuardados ? "block" : "none";
+            abrirModal();
         }
     });
 });
