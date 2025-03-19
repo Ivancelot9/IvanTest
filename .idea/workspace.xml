@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Estatus">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalEstatus.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalEstatus.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -148,15 +147,7 @@
       <workItem from="1741876376224" duration="11197000" />
       <workItem from="1741961703085" duration="11195000" />
       <workItem from="1742307374892" duration="14077000" />
-      <workItem from="1742394352027" duration="16505000" />
-    </task>
-    <task id="LOCAL-00580" summary="Conectar BD a ADmin/Usuario">
-      <option name="closed" value="true" />
-      <created>1741713616953</created>
-      <option name="number" value="00580" />
-      <option name="presentableId" value="LOCAL-00580" />
-      <option name="project" value="LOCAL" />
-      <updated>1741713616953</updated>
+      <workItem from="1742394352027" duration="16583000" />
     </task>
     <task id="LOCAL-00581" summary="Conectar BD a ADmin/Usuario">
       <option name="closed" value="true" />
@@ -542,7 +533,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742412348019</updated>
     </task>
-    <option name="localTasksCounter" value="629" />
+    <task id="LOCAL-00629" summary="Modal Estatus">
+      <option name="closed" value="true" />
+      <created>1742416883603</created>
+      <option name="number" value="00629" />
+      <option name="presentableId" value="LOCAL-00629" />
+      <option name="project" value="LOCAL" />
+      <updated>1742416883619</updated>
+    </task>
+    <option name="localTasksCounter" value="630" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
