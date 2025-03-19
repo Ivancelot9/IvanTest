@@ -5,13 +5,13 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.innerHTML = `
     <div class="modal-content comic-bubble">
         <span class="close-modal">&times;</span>
+        <h2>CONFIGURAR ESTATUS DEL REPORTE</h2>
         <div id="pregunta-dias">
-            <h2>¿Cuántos días crees tardar en evaluar el reporte?</h2>
+            <p>¿Cuántos días crees tardar en evaluar el reporte?</p>
             <input type="number" id="dias-evaluacion" min="1" max="10" placeholder="Ingresa días">
             <button id="continuar-btn" class="comic-button">Continuar</button>
         </div>
         <div id="configurar-estatus" style="display:none;">
-            <h2>CONFIGURAR ESTATUS DEL REPORTE</h2>
             <p><strong>DÍAS PARA EVALUAR:</strong> <span id="dias-seleccionados">0</span></p>
 
             <div class="estatus-container">
@@ -47,8 +47,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let progresoAutomatico = 100;
     let progresoManual = 100;
+    let currentFolio = null; // 🏷 Guarda el folio del reporte actual
 
-    function calcularEstatusRecomendado(dias) {
+    function obtenerEstatusRecomendado(dias) {
         diasSeleccionados.textContent = `${dias}`;
 
         if (dias <= 2) {
@@ -72,11 +73,13 @@ document.addEventListener("DOMContentLoaded", function () {
         autoCircle.textContent = `${progresoAutomatico}%`;
     }
 
-    function abrirModal() {
-        let diasGuardados = parseInt(localStorage.getItem("diasEvaluacion")) || 0;
+    function abrirModal(folio) {
+        currentFolio = folio; // 🏷 Guarda el folio del reporte actual
+        let estatusGuardados = JSON.parse(localStorage.getItem("estatusReportes")) || {};
+        let diasGuardados = estatusGuardados[folio] ? estatusGuardados[folio].dias : 0;
 
         if (diasGuardados > 0) {
-            calcularEstatusRecomendado(diasGuardados);
+            obtenerEstatusRecomendado(diasGuardados);
             preguntaDias.style.display = "none";
             configurarEstatus.style.display = "block";
         } else {
@@ -94,9 +97,11 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        localStorage.setItem("diasEvaluacion", String(dias)); // 🔹 Guarda siempre como string
-        calcularEstatusRecomendado(dias);
+        let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
+        estatusReportes[currentFolio] = { dias: dias, progresoManual: progresoAutomatico };
+        localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
 
+        obtenerEstatusRecomendado(dias);
         preguntaDias.style.display = "none";
         configurarEstatus.style.display = "block";
     });
@@ -122,6 +127,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     guardarBtn.addEventListener("click", function () {
+        let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
+        if (estatusReportes[currentFolio]) {
+            estatusReportes[currentFolio].progresoManual = progresoManual;
+            localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
+        }
         alert(`Estatus guardado: ${progresoManual}%`);
         modal.style.display = "none";
     });
@@ -132,7 +142,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.body.addEventListener("click", function (event) {
         if (event.target.classList.contains("ver-estatus-btn")) {
-            abrirModal();
+            let folio = event.target.getAttribute("data-folio");
+            abrirModal(folio);
         }
     });
 });
