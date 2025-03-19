@@ -71,8 +71,23 @@ document.addEventListener("DOMContentLoaded", function () {
         pageIndicator.textContent = `Página ${pagina}`;
         prevPageBtn.disabled = pagina === 1;
         nextPageBtn.disabled = fin >= datosFiltrados.length;
+
+        // 🔹 **Reinicializar eventos para abrir el modal de estatus**
+        document.querySelectorAll(".ver-estatus-btn").forEach(btn => {
+            btn.addEventListener("click", function () {
+                let folio = btn.getAttribute("data-folio");
+                abrirModal(folio); // 🔹 Función de `estatusEditor.js`
+            });
+        });
     }
 
+    window.obtenerClaseEstado = function (progreso) {
+        if (progreso === 100) return "green";
+        if (progreso === 75) return "blue";
+        if (progreso === 50) return "yellow";
+        if (progreso === 25) return "red";
+        return "";
+    };
     /* 🔹 Función para obtener la clase de color según el estado */
     function obtenerClaseEstado(progreso) {
         if (progreso === 100) return "green";
