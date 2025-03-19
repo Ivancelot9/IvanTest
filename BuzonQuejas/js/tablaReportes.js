@@ -20,6 +20,15 @@ document.addEventListener("DOMContentLoaded", function () {
         return texto.replace(regex, `<span class="highlight">$1</span>`);
     }
 
+    // 🔹 Función global para asignar colores a los botones
+    window.obtenerClaseEstado = function (progreso) {
+        if (progreso === 100) return "green";
+        if (progreso === 75) return "blue";
+        if (progreso === 50) return "yellow";
+        if (progreso === 25) return "red";
+        return "";
+    };
+
     // 🔹 Cargar reportes desde la base de datos
     function cargarReportes() {
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerReportesPendientes.php")
@@ -30,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
                 datosReportes = data;
-                datosFiltrados = [...datosReportes]; // Asegurar una copia para filtrado
+                datosFiltrados = [...datosReportes]; // Copia para filtrado
                 mostrarReportes(paginaActual);
             })
             .catch(error => console.error("❌ Error al cargar reportes:", error));
@@ -47,8 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
         reportesPagina.forEach(reporte => {
             let encargadoTexto = reporte.Encargado ? reporte.Encargado : "N/A";
             let folio = reporte.FolioReportes;
-            let estadoGuardado = estatusGuardados[folio] ? estatusGuardados[folio].progresoManual : 100;
-            let estadoClase = obtenerClaseEstado(estadoGuardado);
+            let estadoGuardado = estatusGuardados[folio] ? estatusGuardados[folio].progresoManual : null;
+            let estadoClase = estadoGuardado ? obtenerClaseEstado(estadoGuardado) : "";
 
             let fila = document.createElement("tr");
             fila.innerHTML = `
@@ -79,41 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 abrirModal(folio); // 🔹 Función de `estatusEditor.js`
             });
         });
-    }
-
-    window.obtenerClaseEstado = function (progreso) {
-        if (progreso === 100) return "green";
-        if (progreso === 75) return "blue";
-        if (progreso === 50) return "yellow";
-        if (progreso === 25) return "red";
-        return "";
-    };
-    /* 🔹 Función para obtener la clase de color según el estado */
-    function obtenerClaseEstado(progreso) {
-        if (progreso === 100) return "green";
-        if (progreso === 75) return "blue";
-        if (progreso === 50) return "yellow";
-        if (progreso === 25) return "red";
-        return "";
-    }
-
-    // 🔹 Filtrar reportes en tiempo real
-    function filtrarReportes() {
-        const valorFiltro = filterInput.value.toLowerCase();
-        const columna = filterColumn.value;
-
-        if (!columna || columna.trim() === "") {
-            console.warn("⚠ No se ha seleccionado una columna para filtrar.");
-            return;
-        }
-
-        datosFiltrados = datosReportes.filter(reporte => {
-            let valor = reporte[columna] ? String(reporte[columna]).toLowerCase() : "";
-            return valor.includes(valorFiltro);
-        });
-
-        paginaActual = 1;
-        mostrarReportes(paginaActual);
     }
 
     // 🔹 Eventos para paginación
