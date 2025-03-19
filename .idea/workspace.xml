@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Estatus">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalEstatus.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalEstatus.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/estatusEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/estatusEditor.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -149,15 +147,7 @@
       <workItem from="1741876376224" duration="11197000" />
       <workItem from="1741961703085" duration="11195000" />
       <workItem from="1742307374892" duration="14077000" />
-      <workItem from="1742394352027" duration="17206000" />
-    </task>
-    <task id="LOCAL-00584" summary="Conectar BD a ADmin/Usuario">
-      <option name="closed" value="true" />
-      <created>1741727668669</created>
-      <option name="number" value="00584" />
-      <option name="presentableId" value="LOCAL-00584" />
-      <option name="project" value="LOCAL" />
-      <updated>1741727668669</updated>
+      <workItem from="1742394352027" duration="17332000" />
     </task>
     <task id="LOCAL-00585" summary="Conectar BD a ADmin/Usuario">
       <option name="closed" value="true" />
@@ -543,7 +533,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742417282581</updated>
     </task>
-    <option name="localTasksCounter" value="633" />
+    <task id="LOCAL-00633" summary="Modal Estatus">
+      <option name="closed" value="true" />
+      <created>1742417626606</created>
+      <option name="number" value="00633" />
+      <option name="presentableId" value="LOCAL-00633" />
+      <option name="project" value="LOCAL" />
+      <updated>1742417626606</updated>
+    </task>
+    <option name="localTasksCounter" value="634" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
