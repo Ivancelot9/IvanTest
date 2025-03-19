@@ -45,29 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let diasSeleccionados = modal.querySelector("#dias-seleccionados");
     let recomendadoText = modal.querySelector("#recomendado-text");
 
-    continuarBtn.addEventListener("click", function () {
-        let dias = parseInt(diasEvaluacionInput.value);
-
-        if (!dias || dias < 1) {
-            Swal.fire("Error", "Por favor, ingresa un número válido de días.", "error");
-            return;
-        }
-
-        let fechaInicio = new Date().toISOString();
-
-        // Guardamos en localStorage para que el usuario no tenga que volver a configurarlo
-        let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
-        estatusReportes[currentFolio] = { dias: dias, fechaInicio: fechaInicio, progresoManual: progresoAutomatico };
-        localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
-
-        // Calculamos la recomendación basada en los días ingresados
-        calcularEstatusRecomendado(dias, fechaInicio);
-
-        // Ocultamos la parte de pedir días y mostramos la configuración del estatus
-        preguntaDias.style.display = "none";
-        configurarEstatus.style.display = "block";
-    });
-
     let progresoManual = 100;
     let currentFolio = null;
 
@@ -107,7 +84,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function abrirModal(folio) {
-        currentFolio = folio;
+        currentFolio = folio; // ✅ Asegurar que el folio se asigna correctamente
+
         let estatusGuardados = JSON.parse(localStorage.getItem("estatusReportes")) || {};
         let datosReporte = estatusGuardados[folio];
 
@@ -128,31 +106,39 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.style.display = "flex";
     }
 
-    inputManual.addEventListener("input", function () {
-        let valor = inputManual.value.toUpperCase();
-        if (valor === "G") {
-            progresoManual = 100;
-            manualCircle.style.backgroundColor = "green";
-        } else if (valor === "B") {
-            progresoManual = 75;
-            manualCircle.style.backgroundColor = "blue";
-        } else if (valor === "Y") {
-            progresoManual = 50;
-            manualCircle.style.backgroundColor = "yellow";
-        } else if (valor === "R") {
-            progresoManual = 25;
-            manualCircle.style.backgroundColor = "red";
-        } else {
-            progresoManual = progresoAutomatico;
+    continuarBtn.addEventListener("click", function () {
+        let dias = parseInt(diasEvaluacionInput.value);
+
+        if (!dias || dias < 1) {
+            Swal.fire("Error", "Por favor, ingresa un número válido de días.", "error");
+            return;
         }
-        manualCircle.textContent = `${progresoManual}%`;
+
+        let fechaInicio = new Date().toISOString();
+
+        let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
+        estatusReportes[currentFolio] = { dias: dias, fechaInicio: fechaInicio, progresoManual: progresoAutomatico };
+        localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
+
+        calcularEstatusRecomendado(dias, fechaInicio);
+
+        preguntaDias.style.display = "none";
+        configurarEstatus.style.display = "block";
     });
 
     guardarBtn.addEventListener("click", function () {
-        let botonEstatus = document.querySelector(`.ver-estatus-btn[data-folio='${currentFolio}']`);
+        if (!currentFolio) {
+            Swal.fire("Error", "No se pudo identificar el reporte. Intenta de nuevo.", "error");
+            return;
+        }
 
+        let botonEstatus = document.querySelector(`.ver-estatus-btn[data-folio='${currentFolio}']`);
         let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
-        estatusReportes[currentFolio] = { progresoManual: progresoManual };
+
+        let datosActuales = estatusReportes[currentFolio] || {};
+        datosActuales.progresoManual = progresoManual;
+
+        estatusReportes[currentFolio] = datosActuales;
         localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
 
         if (botonEstatus) {
