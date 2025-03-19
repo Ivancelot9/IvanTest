@@ -56,12 +56,42 @@
     border: 3px solid black;
 }
 
+/* 🔹 Estilo Base de los Botones Comic */
 .comic-button {
     background: blue;
     color: white;
-    font-size: 18px;
+    font-size: 2rem;
     font-weight: bold;
-    padding: 10px;
-    border: 3px solid black;
+    padding: 12px 20px;
+    border: 4px solid black;
     cursor: pointer;
+    font-family: "Bangers", sans-serif;
+    text-transform: uppercase;
+    transition: transform 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
+
+/* 🔹 Animación de Vibración en Hover */
+.comic-button:hover {
+    animation: vibrate-grow 0.2s ease forwards;
+}
+
+/* 🔹 Efecto de Escala en Clic */
+.comic-button:active {
+    transform: scale(1.05);
+}
+
+/* 🔹 Animación de Vibración y Crecimiento */
+@keyframes vibrate-grow {
+    0% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-2px, -2px) scale(1.1); }
+    50% { transform: translate(2px, -2px) scale(1.15); }
+    75% { transform: translate(2px, 2px) scale(1.2); }
+    100% { transform: translate(-2px, 2px) scale(1.2); }
+}
+
+
