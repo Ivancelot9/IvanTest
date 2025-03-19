@@ -125,10 +125,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     inputManual.addEventListener("input", function () {
         let valor = inputManual.value.toUpperCase();
-        let botonEstatus = document.querySelector(`button[data-folio="${currentFolio}"]`);
-
-        if (!botonEstatus) return; // Si no existe el botón, salir
-
         if (valor === "G") {
             progresoManual = 100;
             manualCircle.style.backgroundColor = "green";
@@ -144,29 +140,10 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             progresoManual = progresoAutomatico;
         }
-
         manualCircle.textContent = `${progresoManual}%`;
-
-        // 🔹 Aplicar clase al botón en la tabla
-        botonEstatus.classList.remove("green", "blue", "yellow", "red");
-        botonEstatus.classList.add(obtenerClaseEstado(progresoManual));
     });
 
     guardarBtn.addEventListener("click", function () {
-        let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
-
-        if (estatusReportes[currentFolio]) {
-            estatusReportes[currentFolio].progresoManual = progresoManual;
-        }
-
-        localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
-
-        let botonEstatus = document.querySelector(`button[data-folio="${currentFolio}"]`);
-        if (botonEstatus) {
-            botonEstatus.classList.remove("green", "blue", "yellow", "red");
-            botonEstatus.classList.add(obtenerClaseEstado(progresoManual));
-        }
-
         Swal.fire({
             icon: "success",
             title: "¡Estatus Guardado!",
