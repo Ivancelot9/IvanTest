@@ -47,8 +47,11 @@ document.addEventListener("DOMContentLoaded", function () {
         reportesPagina.forEach(reporte => {
             let encargadoTexto = reporte.Encargado ? reporte.Encargado : "N/A";
             let folio = reporte.FolioReportes;
-            let estadoGuardado = estatusGuardados[folio] ? estatusGuardados[folio].progresoManual : 100;
-            let estadoClase = obtenerClaseEstado(estadoGuardado);
+            let datosReporte = estatusGuardados[folio];
+
+            // Si hay datos guardados, asigna el color del progreso manual. Si no, deja el botón en neutro.
+            let progresoManual = datosReporte ? datosReporte.progresoManual : null;
+            let estadoClase = progresoManual !== null ? obtenerClaseEstado(progresoManual) : "";
 
             let fila = document.createElement("tr");
             fila.innerHTML = `
@@ -60,7 +63,10 @@ document.addEventListener("DOMContentLoaded", function () {
             <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion}">Mostrar Descripción</button></td>
             <td><button class="agregar-comentario" data-folio="${folio}">Agregar Comentario</button></td>
             <td class="estatus-cell">
-                <button class="ver-estatus-btn ${estadoClase}" data-folio="${folio}">Ver Estatus</button>
+                <button class="ver-estatus-btn ${estadoClase}" data-folio="${folio}" 
+                    style="${progresoManual !== null ? '' : 'background: white; color: black; border: 2px solid black;'}">
+                    Ver Estatus
+                </button>
             </td>
             <td><button class="seleccionar-fecha" data-folio="${folio}">Finalizar Reporte</button></td>
         `;
