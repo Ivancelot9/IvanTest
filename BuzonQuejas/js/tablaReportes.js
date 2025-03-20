@@ -28,6 +28,15 @@ document.addEventListener("DOMContentLoaded", function () {
         return texto.replace(regex, `<span class="highlight">$1</span>`);
     }
 
+    // 🔹 Función para obtener la clase de color según el estado (RESTAURADA)
+    function obtenerClaseEstado(progreso) {
+        if (progreso === 100) return "green";
+        if (progreso === 75) return "blue";
+        if (progreso === 50) return "yellow";
+        if (progreso === 25) return "red";
+        return "";
+    }
+
     // 🔹 Cargar reportes desde la base de datos
     function cargarReportes() {
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerReportesPendientes.php")
@@ -50,8 +59,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const fin = inicio + filasPorPagina;
         const reportesPagina = datosFiltrados.slice(inicio, fin);
 
+        let estatusGuardados = JSON.parse(localStorage.getItem("estatusReportes")) || {};
+
         reportesPagina.forEach(reporte => {
             let encargadoTexto = reporte.Encargado ? reporte.Encargado : "N/A";
+            let folio = reporte.FolioReportes;
+            let datosReporte = estatusGuardados[folio];
+
+            // 🟢🔵🟡🔴 Restaurar el color del botón según el progreso guardado
+            let progresoManual = datosReporte ? datosReporte.progresoManual : null;
+            let estadoClase = obtenerClaseEstado(progresoManual);
 
             let fila = document.createElement("tr");
             fila.innerHTML = `
@@ -61,13 +78,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${resaltarTexto(reporte.Area, filterInput.value)}</td>
                 <td>${resaltarTexto(encargadoTexto, filterInput.value)}</td>
                 <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion}">Mostrar Descripción</button></td>
-                <td><button class="agregar-comentario" data-folio="${reporte.FolioReportes}">Agregar Comentario</button></td>
+                <td><button class="agregar-comentario" data-folio="${folio}">Agregar Comentario</button></td>
                 <td class="estatus-cell">
-                    <button class="ver-estatus-btn" data-folio="${reporte.FolioReportes}">
+                    <button class="ver-estatus-btn ${estadoClase}" data-folio="${folio}" 
+                        style="${progresoManual !== null ? '' : 'background: white; color: black; border: 2px solid black;'}">
                         Ver Estatus
                     </button>
                 </td>
-                <td><button class="seleccionar-fecha" data-folio="${reporte.FolioReportes}">Finalizar Reporte</button></td>
+                <td><button class="seleccionar-fecha" data-folio="${folio}">Finalizar Reporte</button></td>
             `;
 
             tablaBody.appendChild(fila);
@@ -76,15 +94,6 @@ document.addEventListener("DOMContentLoaded", function () {
         pageIndicator.textContent = `Página ${pagina}`;
         prevPageBtn.disabled = pagina === 1;
         nextPageBtn.disabled = fin >= datosFiltrados.length;
-    }
-
-    /* 🔹 Función para obtener la clase de color según el estado */
-    function obtenerClaseEstado(progreso) {
-        if (progreso === 100) return "green";
-        if (progreso === 75) return "blue";
-        if (progreso === 50) return "yellow";
-        if (progreso === 25) return "red";
-        return "";
     }
 
     // 🔹 Filtrar reportes en tiempo real
