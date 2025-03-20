@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
             </div>
 
-            <button id="guardar-estatus" class="comic-button">Guardar</button>
+            <button id="guardar-estatus" class="comic-button">GUARDAR ESTATUS</button>
         </div>
     </div>`;
 
@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let diasSeleccionados = modal.querySelector("#dias-seleccionados");
     let recomendadoText = modal.querySelector("#recomendado-text");
 
+    let progresoAutomatico = 100;
     let progresoManual = 100;
     let currentFolio = null;
 
@@ -84,31 +85,54 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function abrirModal(folio) {
-        currentFolio = folio; // ✅ Asegurar que el folio se asigna correctamente
-
+        currentFolio = folio;
         let estatusGuardados = JSON.parse(localStorage.getItem("estatusReportes")) || {};
         let datosReporte = estatusGuardados[folio];
+
+        let botonEstatus = document.querySelector(`[data-folio='${folio}']`);
 
         if (datosReporte) {
             let dias = datosReporte.dias;
             let fechaInicio = datosReporte.fechaInicio;
             diasSeleccionados.textContent = `${dias}`;
-
             calcularEstatusRecomendado(dias, fechaInicio);
 
             preguntaDias.style.display = "none";
             configurarEstatus.style.display = "block";
+
+            // Aplicar color al botón si hay un estatus definido
+            aplicarColorBoton(botonEstatus, progresoAutomatico);
         } else {
+            // Si no hay datos, el botón debe mantenerse con su estilo original (neutro)
             preguntaDias.style.display = "block";
             configurarEstatus.style.display = "none";
+            botonEstatus.style.backgroundColor = "white";
+            botonEstatus.style.color = "black";
+            botonEstatus.style.border = "2px solid black";
         }
 
         modal.style.display = "flex";
     }
 
+    function aplicarColorBoton(boton, progreso) {
+        if (progreso === 100) {
+            boton.style.backgroundColor = "green";
+        } else if (progreso === 75) {
+            boton.style.backgroundColor = "blue";
+        } else if (progreso === 50) {
+            boton.style.backgroundColor = "yellow";
+        } else if (progreso === 25) {
+            boton.style.backgroundColor = "red";
+        } else {
+            // En caso de que no haya progreso definido, mantenerlo neutro
+            boton.style.backgroundColor = "white";
+            boton.style.color = "black";
+            boton.style.border = "2px solid black";
+        }
+    }
+
     continuarBtn.addEventListener("click", function () {
         let dias = parseInt(diasEvaluacionInput.value);
-
         if (!dias || dias < 1) {
             Swal.fire("Error", "Por favor, ingresa un número válido de días.", "error");
             return;
@@ -121,41 +145,33 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
 
         calcularEstatusRecomendado(dias, fechaInicio);
-
         preguntaDias.style.display = "none";
         configurarEstatus.style.display = "block";
     });
 
+    inputManual.addEventListener("input", function () {
+        let valor = inputManual.value.toUpperCase();
+        if (valor === "G") {
+            progresoManual = 100;
+            manualCircle.style.backgroundColor = "green";
+        } else if (valor === "B") {
+            progresoManual = 75;
+            manualCircle.style.backgroundColor = "blue";
+        } else if (valor === "Y") {
+            progresoManual = 50;
+            manualCircle.style.backgroundColor = "yellow";
+        } else if (valor === "R") {
+            progresoManual = 25;
+            manualCircle.style.backgroundColor = "red";
+        } else {
+            progresoManual = progresoAutomatico;
+        }
+        manualCircle.textContent = `${progresoManual}%`;
+    });
+
     guardarBtn.addEventListener("click", function () {
-        if (!currentFolio) {
-            Swal.fire("Error", "No se pudo identificar el reporte. Intenta de nuevo.", "error");
-            return;
-        }
-
-        let botonEstatus = document.querySelector(`.ver-estatus-btn[data-folio='${currentFolio}']`);
-        let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
-
-        let datosActuales = estatusReportes[currentFolio] || {};
-        datosActuales.progresoManual = progresoManual;
-
-        estatusReportes[currentFolio] = datosActuales;
-        localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
-
-        if (botonEstatus) {
-            botonEstatus.style.backgroundColor = manualCircle.style.backgroundColor;
-        }
-
-        Swal.fire({
-            icon: "success",
-            title: "¡Estatus Guardado!",
-            text: `El reporte ha sido actualizado a ${progresoManual}%`,
-            confirmButtonText: "Entendido",
-            customClass: {
-                popup: "comic-bubble",
-            }
-        }).then(() => {
-            modal.style.display = "none";
-        });
+        Swal.fire("¡Estatus Guardado!", `El reporte ha sido actualizado a ${progresoManual}%`, "success")
+            .then(() => modal.style.display = "none");
     });
 
     closeModal.addEventListener("click", function () {
