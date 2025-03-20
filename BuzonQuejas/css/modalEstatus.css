@@ -123,18 +123,20 @@
 
 .status-container {
     display: flex;
-    justify-content: space-between; /* Separa los elementos de manera uniforme */
-    align-items: center;
+    flex-direction: column; /* Cambia a columna para evitar que los elementos se expandan horizontalmente */
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos verticalmente */
     width: 100%;
-    gap: 30px; /* Espacio entre los bloques */
+    gap: 30px; /* Espaciado adecuado */
 }
+
 
 /* Ajuste del input para que esté alineado con el círculo */
 .estatus-manual {
     display: flex;
     align-items: center;
     justify-content: center; /* Centra los elementos horizontalmente */
-    gap: 20px; /* Espaciado adecuado entre el input y el círculo */
+    gap: 20px; /* Espaciado entre input y círculo */
 }
 
 .estatus-recomendado {
@@ -152,7 +154,11 @@
 
 /* Ajuste del botón "Guardar" para que no esté tan pegado */
 #guardar-estatus {
-    margin-top: 25px; /* Mayor separación del contenido */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    margin: 20px auto; /* Centra el botón horizontalmente */
 }
 
 .progress-circle {
