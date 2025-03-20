@@ -27,18 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // ▪ Función para actualizar el tema según el mes
     function updateTheme(monthIndex) {
         const themes = [
-            'theme-january',
-            'theme-february',
-            'theme-march',
-            'theme-april',
-            'theme-may',
-            'theme-june',
-            'theme-july',
-            'theme-august',
-            'theme-september',
-            'theme-october',
-            'theme-november',
-            'theme-december'
+            'theme-january', 'theme-february', 'theme-march', 'theme-april',
+            'theme-may', 'theme-june', 'theme-july', 'theme-august',
+            'theme-september', 'theme-october', 'theme-november', 'theme-december'
         ];
         // Remover cualquier clase de tema existente
         themes.forEach(theme => {
@@ -51,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 🔹 Inicializar Flatpickr con eventos para actualizar el tema
     flatpickr("#calendario-container", {
         inline: true,               // Mostrar calendario siempre visible
-        dateFormat: "d/m/Y",         // Formato de fecha
+        dateFormat: "Y-m-d",         // **Formato compatible con MySQL**
         defaultDate: new Date(),     // Fecha actual por defecto
         minDate: "today",            // No permite fechas pasadas
         locale: "es",                // Idioma en español
@@ -67,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
             updateTheme(instance.currentMonth);
         },
         onChange: function (selectedDates, dateStr) {
-            fechaSeleccionada.value = dateStr;  // Actualizar input cuando se seleccione fecha
+            fechaSeleccionada.value = dateStr;  // **Actualizar el input con la fecha seleccionada**
         }
     });
 
@@ -80,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 🔹 Evento para guardar la fecha seleccionada y mover el reporte
+    // 🔹 Evento para guardar la fecha seleccionada y enviarla a la BD
     btnGuardar.addEventListener("click", function () {
         if (lastClickedButton) {
             let fecha = fechaSeleccionada.value;
@@ -89,23 +80,33 @@ document.addEventListener("DOMContentLoaded", function () {
                     <span class="fecha-final">${fecha}</span>
                 `;
 
-                // 🔄 Aquí es donde se transfiere el reporte a la segunda tabla
-                let reporte = window.getReportePorFolio(folioSeleccionado);
-                if (reporte) {
-                    reporte.fechaFinalizacion = fecha;
-                    reporte.estatus = "Completado";
+                // **Enviar la fecha a la base de datos**
+                fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/insertarFechaFinalizacion.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        folio: folioSeleccionado,
+                        fechaFinalizada: fecha
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === "success") {
+                            Swal.fire("Éxito", "El reporte ha sido finalizado correctamente.", "success");
+                        } else {
+                            Swal.fire("Error", "Hubo un problema al finalizar el reporte.", "error");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error al finalizar el reporte:", error);
+                        Swal.fire("Error", "No se pudo conectar con el servidor.", "error");
+                    });
 
-                    // ✅ Mover a la tabla de reportes completados
-                    window.moverReporteACompletados(reporte);
-
-                    // ❌ Eliminar el reporte de la tabla de pendientes
-                    window.eliminarReportePorFolio(folioSeleccionado);
-                }
-
-                modalFecha.style.display = "none"; // Cerrar el modal
+                modalFecha.style.display = "none"; // **Cerrar el modal**
             } else {
-                alert("Por favor selecciona una fecha antes de finalizar el reporte.");
-
+                Swal.fire("Error", "Por favor selecciona una fecha antes de finalizar el reporte.", "error");
             }
         }
     });
