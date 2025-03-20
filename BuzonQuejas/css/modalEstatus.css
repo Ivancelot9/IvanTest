@@ -39,10 +39,11 @@
 #pregunta-dias p {
     font-size: 22px;
     font-weight: bold;
-    color: #0074e0;
-    text-shadow: 3px 3px 0 black;
+    color: #0074e0; /* Azul vibrante */
+    text-shadow: none; /* Se elimina la sombra negra */
     display: inline-block;
     padding: 5px 10px;
+    margin-bottom: 15px; /* Separación con el input */
 }
 
 /* Input con estilo similar a los campos de la imagen */
@@ -57,6 +58,7 @@
     background: #d9d9d9;
     font-family: "Bangers", sans-serif;
     color: black;
+    margin-bottom: 15px; /* SEPARACIÓN MÁS AMPLIA CON EL BOTÓN */
 }
 
 
