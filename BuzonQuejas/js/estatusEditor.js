@@ -58,17 +58,10 @@ document.addEventListener("DOMContentLoaded", function () {
         let limiteAmarillo = Math.ceil(dias * 0.75);
         let diasRestantes = dias - diasTranscurridos;
 
-        // 🔹 Nuevo cálculo para menos de un día
-        let horasRestantes = Math.floor((diasRestantes * 24));
-
         if (diasRestantes <= 0) {
             progresoAutomatico = 25;
             autoCircle.style.backgroundColor = "red";
             recomendadoText.innerHTML = `<strong>Red</strong><br><small>Tiempo agotado</small>`;
-        } else if (diasRestantes < 1) {
-            progresoAutomatico = 100;
-            autoCircle.style.backgroundColor = "green";
-            recomendadoText.innerHTML = `<strong>Green</strong><br><small>Te queda menos de un día (${horasRestantes} horas). Apresúrate.</small>`;
         } else if (diasTranscurridos < limiteVerde) {
             progresoAutomatico = 100;
             autoCircle.style.backgroundColor = "green";
