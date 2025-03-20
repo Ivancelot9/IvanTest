@@ -52,23 +52,14 @@ document.addEventListener("DOMContentLoaded", function () {
         let fechaAsignada = new Date(fechaInicio);
         let fechaActual = new Date();
         let diasTranscurridos = Math.floor((fechaActual - fechaAsignada) / (1000 * 60 * 60 * 24));
-        let diasRestantes = dias - diasTranscurridos;
-
-        // 🔹 Actualizar la UI con los días restantes
-        if (diasRestantes > 1) {
-            diasSeleccionados.textContent = `Te quedan ${diasRestantes} de ${dias} días`;
-        } else if (diasRestantes === 1) {
-            diasSeleccionados.textContent = `Te queda menos de un día`;
-        } else if (diasRestantes < 1 && diasRestantes > 0) {
-            let horasRestantes = Math.ceil(diasRestantes * 24);
-            diasSeleccionados.textContent = `Te quedan ${horasRestantes} horas`;
-        } else {
-            diasSeleccionados.textContent = `Tiempo agotado`;
-        }
 
         let limiteVerde = 1;
         let limiteAzul = Math.ceil(dias * 0.5);
         let limiteAmarillo = Math.ceil(dias * 0.75);
+        let diasRestantes = dias - diasTranscurridos;
+
+        // 🔹 Nuevo cálculo para menos de un día
+        let horasRestantes = Math.floor((diasRestantes * 24));
 
         if (diasRestantes <= 0) {
             progresoAutomatico = 25;
@@ -77,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (diasRestantes < 1) {
             progresoAutomatico = 100;
             autoCircle.style.backgroundColor = "green";
-            recomendadoText.innerHTML = `<strong>Green</strong><br><small>Te queda menos de un día. Apresúrate.</small>`;
+            recomendadoText.innerHTML = `<strong>Green</strong><br><small>Te queda menos de un día (${horasRestantes} horas). Apresúrate.</small>`;
         } else if (diasTranscurridos < limiteVerde) {
             progresoAutomatico = 100;
             autoCircle.style.backgroundColor = "green";
