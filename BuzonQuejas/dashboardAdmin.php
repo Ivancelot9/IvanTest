@@ -110,7 +110,6 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                     <option value="nomina">Número de Nómina</option>
                     <option value="encargado">Encargado</option>
                     <option value="fechaRegistro">Fecha Registro</option>
-                    <option value="estatus">Estatus</option>
                 </select>
                 <input type="text" id="filter-input" placeholder="Buscar...">
                 <button id="filter-button">🔍 Buscar</button> <!-- 🔹 Justo al lado del input -->
