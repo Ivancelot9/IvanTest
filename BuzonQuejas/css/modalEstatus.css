@@ -133,7 +133,8 @@
 .estatus-manual {
     display: flex;
     align-items: center;
-    gap: 15px; /* Espacio entre el input y el círculo */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    gap: 20px; /* Espaciado adecuado entre el input y el círculo */
 }
 
 .estatus-recomendado {
