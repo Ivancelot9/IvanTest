@@ -13,11 +13,12 @@
     font-family: "Bangers", sans-serif;
     text-align: center;
     z-index: 1000;
-    border: 5px solid black; /* Borde sólido */
+    border: 6px solid black; /* Borde negro más grueso y uniforme */
 
-    /* Se elimina box-shadow negativo y se añade outline para mayor claridad */
-    outline: 8px solid white; /* Línea blanca para efecto cómic */
-    box-shadow: 10px 10px 0 black; /* Sombra uniforme */
+    /* Se eliminó outline blanco, ahora ambas líneas negras son del mismo tamaño */
+    box-shadow:
+            -10px -10px 0 black,
+            10px 10px 0 black;
 }
 
 /* Estilo del título (inspirado en la imagen) */
