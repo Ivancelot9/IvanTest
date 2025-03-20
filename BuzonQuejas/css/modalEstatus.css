@@ -30,10 +30,12 @@
     color: white;
     background: #0074e0;
     padding: 12px 20px;
-    display: inline-block;
+    display: block;
     border: 4px solid black;
     text-shadow: 3px 3px 0 black;
     letter-spacing: 1px;
+    margin: 0 auto; /* Centra el título en el modal */
+    text-align: center; /* Asegura que el texto esté alineado */
 }
 
 /* Pregunta con el mismo estilo que las etiquetas en la imagen */
@@ -132,6 +134,14 @@
     display: flex;
     align-items: center;
     gap: 15px; /* Espacio entre el input y el círculo */
+}
+
+.estatus-recomendado {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido horizontalmente */
+    justify-content: center;
+    width: 100%;
 }
 
 .status-box {
