@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <h2>CONFIGURAR ESTATUS DEL REPORTE</h2>
         <div id="pregunta-dias">
             <p>¿Cuántos días crees tardar en evaluar el reporte?</p>
-            <input type="number" id="dias-evaluacion" min="1" max="10" placeholder="Ingresa días">
+            <input type="number" id="dias-evaluacion" min="1" max="30" placeholder="Ingresa días">
             <button id="continuar-btn" class="comic-button">Continuar</button>
         </div>
         <div id="configurar-estatus" style="display:none;">
@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let guardarBtn = modal.querySelector("#guardar-estatus");
     let diasSeleccionados = modal.querySelector("#dias-seleccionados");
     let recomendadoText = modal.querySelector("#recomendado-text");
+
     let progresoAutomatico = 100;
     let progresoManual = 100;
     let currentFolio = null;
@@ -65,27 +66,24 @@ document.addEventListener("DOMContentLoaded", function () {
             diasSeleccionados.textContent = `Tiempo agotado`;
         }
 
-        let limiteVerde = 1;
-        let limiteAzul = Math.ceil(dias * 0.5);
-        let limiteAmarillo = Math.ceil(dias * 0.75);
+        // 🔥 **Nuevo cálculo basado en los días ingresados por el usuario**
+        let limiteVerde = Math.ceil(dias * 0.25);   // 25% del total de días
+        let limiteAzul = Math.ceil(dias * 0.50);    // 50% del total de días
+        let limiteAmarillo = Math.ceil(dias * 0.75); // 75% del total de días
 
         if (diasRestantes <= 0) {
             progresoAutomatico = 25;
             autoCircle.style.backgroundColor = "red";
             recomendadoText.innerHTML = `<strong>Red</strong><br><small>Tiempo agotado</small>`;
-        } else if (diasRestantes < 1) {
+        } else if (diasRestantes <= limiteVerde) {
             progresoAutomatico = 100;
             autoCircle.style.backgroundColor = "green";
-            recomendadoText.innerHTML = `<strong>Green</strong><br><small>Te queda menos de un día. Apresúrate.</small>`;
-        } else if (diasTranscurridos < limiteVerde) {
-            progresoAutomatico = 100;
-            autoCircle.style.backgroundColor = "green";
-            recomendadoText.innerHTML = `<strong>Green</strong><br><small>Si lo terminas en ${limiteVerde} día(s), mantendrás el estado óptimo.</small>`;
-        } else if (diasTranscurridos < limiteAzul) {
+            recomendadoText.innerHTML = `<strong>Green</strong><br><small>Si lo terminas en ${limiteVerde} días, mantendrás el estado óptimo.</small>`;
+        } else if (diasRestantes <= limiteAzul) {
             progresoAutomatico = 75;
             autoCircle.style.backgroundColor = "blue";
-            recomendadoText.innerHTML = `<strong>Blue</strong><br><small>Debiste acabar en ${limiteVerde} día(s), pero aún estás a tiempo.</small>`;
-        } else if (diasTranscurridos < limiteAmarillo) {
+            recomendadoText.innerHTML = `<strong>Blue</strong><br><small>Debiste acabar en ${limiteVerde} días, pero aún estás a tiempo.</small>`;
+        } else if (diasRestantes <= limiteAmarillo) {
             progresoAutomatico = 50;
             autoCircle.style.backgroundColor = "yellow";
             recomendadoText.innerHTML = `<strong>Yellow</strong><br><small>El tiempo se está acabando. Apresúrate.</small>`;
