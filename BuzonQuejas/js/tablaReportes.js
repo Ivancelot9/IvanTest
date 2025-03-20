@@ -13,9 +13,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const filterInput = document.getElementById("filter-input");
     const filterButton = document.getElementById("filter-button");
 
+    // 🔹 Correlación entre los valores del SELECT y los campos de la BD
+    const columnasBD = {
+        folio: "FolioReportes",
+        nomina: "NumeroNomina",
+        encargado: "Encargado",
+        fechaRegistro: "FechaRegistro"
+    };
+
     // 🔹 Función para resaltar texto en la búsqueda
     function resaltarTexto(texto, filtro) {
-        if (!filtro || filtro.trim() === "") return texto; // Evita errores si el filtro está vacío
+        if (!filtro || filtro.trim() === "") return texto;
         const regex = new RegExp(`(${filtro})`, "gi");
         return texto.replace(regex, `<span class="highlight">$1</span>`);
     }
@@ -42,16 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const fin = inicio + filasPorPagina;
         const reportesPagina = datosFiltrados.slice(inicio, fin);
 
-        let estatusGuardados = JSON.parse(localStorage.getItem("estatusReportes")) || {};
-
         reportesPagina.forEach(reporte => {
             let encargadoTexto = reporte.Encargado ? reporte.Encargado : "N/A";
-            let folio = reporte.FolioReportes;
-            let datosReporte = estatusGuardados[folio];
-
-            // Si hay datos guardados, asigna el color del progreso manual. Si no, deja el botón en neutro.
-            let progresoManual = datosReporte ? datosReporte.progresoManual : null;
-            let estadoClase = progresoManual !== null ? obtenerClaseEstado(progresoManual) : "";
 
             let fila = document.createElement("tr");
             fila.innerHTML = `
@@ -61,14 +61,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${resaltarTexto(reporte.Area, filterInput.value)}</td>
                 <td>${resaltarTexto(encargadoTexto, filterInput.value)}</td>
                 <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion}">Mostrar Descripción</button></td>
-                <td><button class="agregar-comentario" data-folio="${folio}">Agregar Comentario</button></td>
+                <td><button class="agregar-comentario" data-folio="${reporte.FolioReportes}">Agregar Comentario</button></td>
                 <td class="estatus-cell">
-                    <button class="ver-estatus-btn ${estadoClase}" data-folio="${folio}" 
-                        style="${progresoManual !== null ? '' : 'background: white; color: black; border: 2px solid black;'}">
+                    <button class="ver-estatus-btn" data-folio="${reporte.FolioReportes}">
                         Ver Estatus
                     </button>
                 </td>
-                <td><button class="seleccionar-fecha" data-folio="${folio}">Finalizar Reporte</button></td>
+                <td><button class="seleccionar-fecha" data-folio="${reporte.FolioReportes}">Finalizar Reporte</button></td>
             `;
 
             tablaBody.appendChild(fila);
@@ -79,28 +78,25 @@ document.addEventListener("DOMContentLoaded", function () {
         nextPageBtn.disabled = fin >= datosFiltrados.length;
     }
 
-    /* 🔹 Función para obtener la clase de color según el estado */
-    function obtenerClaseEstado(progreso) {
-        if (progreso === 100) return "green";
-        if (progreso === 75) return "blue";
-        if (progreso === 50) return "yellow";
-        if (progreso === 25) return "red";
-        return "";
-    }
-
     // 🔹 Filtrar reportes en tiempo real
     function filtrarReportes() {
         const valorFiltro = filterInput.value.trim().toLowerCase();
-        const columna = filterColumn.value;
+        const columnaSeleccionada = filterColumn.value;
 
-        if (!columna || columna.trim() === "") {
+        if (!columnaSeleccionada) {
             console.warn("⚠ No se ha seleccionado una columna para filtrar.");
             return;
         }
 
-        // ✅ Asegurarse de que estamos trabajando con datos de la BD
+        const columnaBD = columnasBD[columnaSeleccionada];
+
+        if (!columnaBD) {
+            console.warn("⚠ No se encontró la columna en la base de datos.");
+            return;
+        }
+
         datosFiltrados = datosReportes.filter(reporte => {
-            let valor = reporte[columna] ? String(reporte[columna]).toLowerCase() : "";
+            let valor = reporte[columnaBD] ? String(reporte[columnaBD]).toLowerCase() : "";
             return valor.includes(valorFiltro);
         });
 
@@ -123,12 +119,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // ✅ Evento para búsqueda en tiempo real con cada letra ingresada
-    filterInput.addEventListener("input", () => {
-        console.log("🔎 Buscando:", filterInput.value); // 🔥 Debugging para ver si detecta el input
-        filtrarReportes();
-    });
-
+    // 🔹 Evento para búsqueda en tiempo real con cada letra ingresada
+    filterInput.addEventListener("input", filtrarReportes);
     filterButton.addEventListener("click", filtrarReportes);
 
     // 🔹 Cargar los reportes al iniciar
