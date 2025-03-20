@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
             </div>
 
-            <button id="guardar-estatus" class="comic-button">GUARDAR ESTATUS</button>
+            <button id="guardar-estatus" class="comic-button">Guardar</button>
         </div>
     </div>`;
 
@@ -45,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let diasSeleccionados = modal.querySelector("#dias-seleccionados");
     let recomendadoText = modal.querySelector("#recomendado-text");
 
-    let progresoAutomatico = 100;
     let progresoManual = 100;
     let currentFolio = null;
 
@@ -53,16 +52,31 @@ document.addEventListener("DOMContentLoaded", function () {
         let fechaAsignada = new Date(fechaInicio);
         let fechaActual = new Date();
         let diasTranscurridos = Math.floor((fechaActual - fechaAsignada) / (1000 * 60 * 60 * 24));
+        let diasRestantes = dias - diasTranscurridos;
+
+        if (diasRestantes > 1) {
+            diasSeleccionados.textContent = `Te quedan ${diasRestantes} de ${dias} días`;
+        } else if (diasRestantes === 1) {
+            diasSeleccionados.textContent = `Te queda menos de un día`;
+        } else if (diasRestantes < 1 && diasRestantes > 0) {
+            let horasRestantes = Math.ceil(diasRestantes * 24);
+            diasSeleccionados.textContent = `Te quedan ${horasRestantes} horas`;
+        } else {
+            diasSeleccionados.textContent = `Tiempo agotado`;
+        }
 
         let limiteVerde = 1;
         let limiteAzul = Math.ceil(dias * 0.5);
         let limiteAmarillo = Math.ceil(dias * 0.75);
-        let diasRestantes = dias - diasTranscurridos;
 
         if (diasRestantes <= 0) {
             progresoAutomatico = 25;
             autoCircle.style.backgroundColor = "red";
             recomendadoText.innerHTML = `<strong>Red</strong><br><small>Tiempo agotado</small>`;
+        } else if (diasRestantes < 1) {
+            progresoAutomatico = 100;
+            autoCircle.style.backgroundColor = "green";
+            recomendadoText.innerHTML = `<strong>Green</strong><br><small>Te queda menos de un día. Apresúrate.</small>`;
         } else if (diasTranscurridos < limiteVerde) {
             progresoAutomatico = 100;
             autoCircle.style.backgroundColor = "green";
@@ -86,49 +100,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function abrirModal(folio) {
         currentFolio = folio;
+
         let estatusGuardados = JSON.parse(localStorage.getItem("estatusReportes")) || {};
         let datosReporte = estatusGuardados[folio];
-
-        let botonEstatus = document.querySelector(`[data-folio='${folio}']`);
 
         if (datosReporte) {
             let dias = datosReporte.dias;
             let fechaInicio = datosReporte.fechaInicio;
-            diasSeleccionados.textContent = `${dias}`;
             calcularEstatusRecomendado(dias, fechaInicio);
 
             preguntaDias.style.display = "none";
             configurarEstatus.style.display = "block";
-
-            // Aplicar color al botón si hay un estatus definido
-            aplicarColorBoton(botonEstatus, progresoAutomatico);
         } else {
-            // Si no hay datos, el botón debe mantenerse con su estilo original (neutro)
             preguntaDias.style.display = "block";
             configurarEstatus.style.display = "none";
-            botonEstatus.style.backgroundColor = "white";
-            botonEstatus.style.color = "black";
-            botonEstatus.style.border = "2px solid black";
         }
 
         modal.style.display = "flex";
-    }
-
-    function aplicarColorBoton(boton, progreso) {
-        if (progreso === 100) {
-            boton.style.backgroundColor = "green";
-        } else if (progreso === 75) {
-            boton.style.backgroundColor = "blue";
-        } else if (progreso === 50) {
-            boton.style.backgroundColor = "yellow";
-        } else if (progreso === 25) {
-            boton.style.backgroundColor = "red";
-        } else {
-            // En caso de que no haya progreso definido, mantenerlo neutro
-            boton.style.backgroundColor = "white";
-            boton.style.color = "black";
-            boton.style.border = "2px solid black";
-        }
     }
 
     continuarBtn.addEventListener("click", function () {
@@ -139,48 +127,32 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         let fechaInicio = new Date().toISOString();
-
         let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
         estatusReportes[currentFolio] = { dias: dias, fechaInicio: fechaInicio, progresoManual: progresoAutomatico };
         localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
 
         calcularEstatusRecomendado(dias, fechaInicio);
+
         preguntaDias.style.display = "none";
         configurarEstatus.style.display = "block";
     });
 
     inputManual.addEventListener("input", function () {
         let valor = inputManual.value.toUpperCase();
-        if (valor === "G") {
-            progresoManual = 100;
-            manualCircle.style.backgroundColor = "green";
-        } else if (valor === "B") {
-            progresoManual = 75;
-            manualCircle.style.backgroundColor = "blue";
-        } else if (valor === "Y") {
-            progresoManual = 50;
-            manualCircle.style.backgroundColor = "yellow";
-        } else if (valor === "R") {
-            progresoManual = 25;
-            manualCircle.style.backgroundColor = "red";
-        } else {
-            progresoManual = progresoAutomatico;
-        }
+        let colores = { G: "green", B: "blue", Y: "yellow", R: "red" };
+        progresoManual = { G: 100, B: 75, Y: 50, R: 25 }[valor] || progresoAutomatico;
+        manualCircle.style.backgroundColor = colores[valor] || autoCircle.style.backgroundColor;
         manualCircle.textContent = `${progresoManual}%`;
     });
 
     guardarBtn.addEventListener("click", function () {
-        Swal.fire("¡Estatus Guardado!", `El reporte ha sido actualizado a ${progresoManual}%`, "success")
-            .then(() => modal.style.display = "none");
-    });
-
-    closeModal.addEventListener("click", function () {
+        let botonEstatus = document.querySelector(`.ver-estatus-btn[data-folio='${currentFolio}']`);
+        if (botonEstatus) botonEstatus.style.backgroundColor = manualCircle.style.backgroundColor;
+        Swal.fire("¡Estatus Guardado!", `El reporte ha sido actualizado a ${progresoManual}%`, "success");
         modal.style.display = "none";
     });
 
     document.body.addEventListener("click", function (event) {
-        if (event.target.classList.contains("ver-estatus-btn")) {
-            abrirModal(event.target.getAttribute("data-folio"));
-        }
+        if (event.target.classList.contains("ver-estatus-btn")) abrirModal(event.target.getAttribute("data-folio"));
     });
 });
