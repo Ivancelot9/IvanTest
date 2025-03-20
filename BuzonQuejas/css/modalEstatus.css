@@ -14,14 +14,14 @@
     text-align: center;
     z-index: 1000;
 
-    /* Primera línea negra interna */
-    border: 8px solid black;
+    /* 1️⃣ Primera línea negra interna */
+    border: 5px solid black;
 
-    /* Segunda capa blanca más ancha */
-    outline: 12px solid white;
+    /* 2️⃣ Contorno blanco más ancho */
+    outline: 10px solid white;
 
-    /* Tercera línea negra externa gruesa */
-    box-shadow: 0 0 0 8px black;
+    /* 3️⃣ Segunda línea negra externa */
+    box-shadow: 0 0 0 15px black;
 }
 
 /* Estilo del título (inspirado en la imagen) */
