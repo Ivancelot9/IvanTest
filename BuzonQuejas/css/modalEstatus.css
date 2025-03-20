@@ -1,6 +1,6 @@
 /* ====== MODIFICACIONES ====== */
 
-/* Estilo de "Explosión de Cómic" en el modal */
+/* Modal con bordes gruesos y efecto cómic */
 #estatus-modal {
     display: none;
     position: fixed;
@@ -15,78 +15,49 @@
     border-radius: 20px;
     z-index: 1000;
 
-    /* Contorno doble del mismo tamaño */
+    /* Contorno negro-blanco-negro bien proporcionado */
     box-shadow:
-            -6px -6px 0 black, 6px 6px 0 black, /* Línea negra exterior */
-            -12px -12px 0 white, 12px 12px 0 white, /* Línea blanca en medio */
-            -18px -18px 0 black, 18px 18px 0 black; /* Línea negra interna */
-
-    /* Agregar un fondo en forma de explosión */
-    clip-path: polygon(10% 0%, 90% 0%, 100% 20%, 100% 80%, 90% 100%, 10% 100%, 0% 80%, 0% 20%);
+            -5px -5px 0 black, 5px 5px 0 black,
+            -10px -10px 0 white, 10px 10px 0 white,
+            -15px -15px 0 black, 15px 15px 0 black;
 }
 
-/* Estilo del título con fondo llamativo */
+/* Estilo del título (inspirado en la imagen) */
 #estatus-modal h2 {
-    font-size: 26px;
-    background: yellow;
-    padding: 10px;
+    font-size: 28px;
+    color: white;
+    background: #0074e0;
+    padding: 12px 20px;
     display: inline-block;
-    border-radius: 8px;
-    border: 3px solid black;
+    border-radius: 10px;
+    border: 4px solid black;
     text-shadow: 3px 3px 0 black;
+    letter-spacing: 1px;
 }
 
-/* Bocadillo para la pregunta */
-#pregunta-dias {
-    display: inline-block;
-    padding: 15px 20px;
-    background: white;
-    border-radius: 10px;
+/* Pregunta con el mismo estilo que las etiquetas en la imagen */
+#pregunta-dias p {
     font-size: 22px;
     font-weight: bold;
-    font-family: "Bangers", sans-serif;
+    color: #0074e0;
     text-shadow: 3px 3px 0 black;
-    margin-bottom: 15px;
-    position: relative;
-    box-shadow:
-            -3px -3px 0 black, 3px 3px 0 black,
-            -6px -6px 0 white, 6px 6px 0 white,
-            -9px -9px 0 black, 9px 9px 0 black;
+    display: inline-block;
+    padding: 5px 10px;
 }
 
-/* Triángulo estilo bocadillo */
-#pregunta-dias::after {
-    content: "";
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 15px;
-    border-style: solid;
-    border-color: white transparent transparent transparent;
-    filter: drop-shadow(2px 2px 0 black);
-}
-
-/* Input mejorado */
+/* Input con estilo similar a los campos de la imagen */
 #dias-evaluacion {
     width: 80%;
     font-size: 22px;
     padding: 10px;
     text-align: center;
-    border: 3px solid black;
+    border: 4px solid black;
     border-radius: 10px;
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
-    background: #f0f0f0;
+    box-shadow: 5px 5px 0 black;
+    background: #d9d9d9;
     font-family: "Bangers", sans-serif;
+    color: black;
 }
-
-#dias-evaluacion:focus {
-    outline: none;
-    border-color: blue;
-}
-
-
-
 
 
 
