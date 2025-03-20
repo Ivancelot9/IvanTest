@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let guardarBtn = modal.querySelector("#guardar-estatus");
     let diasSeleccionados = modal.querySelector("#dias-seleccionados");
     let recomendadoText = modal.querySelector("#recomendado-text");
-
+    let progresoAutomatico = 100;
     let progresoManual = 100;
     let currentFolio = null;
 
