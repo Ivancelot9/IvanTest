@@ -152,6 +152,10 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.style.display = "none";
     });
 
+    closeModal.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
     document.body.addEventListener("click", function (event) {
         if (event.target.classList.contains("ver-estatus-btn")) abrirModal(event.target.getAttribute("data-folio"));
     });
