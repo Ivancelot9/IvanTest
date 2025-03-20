@@ -1,3 +1,6 @@
+/* ====== MODIFICACIONES ====== */
+
+/* Estilo de "Explosión de Cómic" en el modal */
 #estatus-modal {
     display: none;
     position: fixed;
@@ -6,43 +9,62 @@
     transform: translate(-50%, -50%);
     width: 500px;
     background: white;
-    border: 5px solid black;
-    box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.2);
     padding: 25px;
     font-family: "Bangers", sans-serif;
     text-align: center;
     border-radius: 20px;
     z-index: 1000;
 
+    /* Contorno doble del mismo tamaño */
     box-shadow:
-            -4px -4px 0 #000, /* Línea negra exterior */
-            4px 4px 0 #000,
-            -8px -8px 0 white, /* Línea blanca en medio */
-            8px 8px 0 white,
-            -12px -12px 0 #000, /* Línea negra interna */
-            12px 12px 0 #000;
+            -6px -6px 0 black, 6px 6px 0 black, /* Línea negra exterior */
+            -12px -12px 0 white, 12px 12px 0 white, /* Línea blanca en medio */
+            -18px -18px 0 black, 18px 18px 0 black; /* Línea negra interna */
+
+    /* Agregar un fondo en forma de explosión */
+    clip-path: polygon(10% 0%, 90% 0%, 100% 20%, 100% 80%, 90% 100%, 10% 100%, 0% 80%, 0% 20%);
 }
 
-.modal-content {
-    position: relative;
-    width: 100%;
-}
-
-.close-modal {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    cursor: pointer;
+/* Estilo del título con fondo llamativo */
+#estatus-modal h2 {
     font-size: 26px;
-    color: red;
-    font-weight: bold;
+    background: yellow;
+    padding: 10px;
+    display: inline-block;
+    border-radius: 8px;
+    border: 3px solid black;
+    text-shadow: 3px 3px 0 black;
 }
 
-#pregunta-dias p {
-    font-size: 20px;
+/* Bocadillo para la pregunta */
+#pregunta-dias {
+    display: inline-block;
+    padding: 15px 20px;
+    background: white;
+    border-radius: 10px;
+    font-size: 22px;
     font-weight: bold;
-    text-shadow: 2px 2px 0 black;
+    font-family: "Bangers", sans-serif;
+    text-shadow: 3px 3px 0 black;
     margin-bottom: 15px;
+    position: relative;
+    box-shadow:
+            -3px -3px 0 black, 3px 3px 0 black,
+            -6px -6px 0 white, 6px 6px 0 white,
+            -9px -9px 0 black, 9px 9px 0 black;
+}
+
+/* Triángulo estilo bocadillo */
+#pregunta-dias::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 15px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+    filter: drop-shadow(2px 2px 0 black);
 }
 
 /* Input mejorado */
@@ -55,13 +77,22 @@
     border-radius: 10px;
     box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
     background: #f0f0f0;
-    font-family: inherit;
+    font-family: "Bangers", sans-serif;
 }
 
 #dias-evaluacion:focus {
     outline: none;
     border-color: blue;
 }
+
+
+
+
+
+
+
+
+
 
 /* Botón cómic con animación */
 .comic-button {
