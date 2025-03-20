@@ -13,12 +13,15 @@
     font-family: "Bangers", sans-serif;
     text-align: center;
     z-index: 1000;
-    border: 6px solid black; /* Borde negro más grueso y uniforme */
 
-    /* Se eliminó outline blanco, ahora ambas líneas negras son del mismo tamaño */
-    box-shadow:
-            -10px -10px 0 black,
-            10px 10px 0 black;
+    /* Primera línea negra interna */
+    border: 8px solid black;
+
+    /* Segunda capa blanca más ancha */
+    outline: 12px solid white;
+
+    /* Tercera línea negra externa gruesa */
+    box-shadow: 0 0 0 8px black;
 }
 
 /* Estilo del título (inspirado en la imagen) */
