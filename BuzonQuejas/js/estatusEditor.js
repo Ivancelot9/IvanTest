@@ -71,19 +71,20 @@ document.addEventListener("DOMContentLoaded", function () {
         let limiteAzul = Math.ceil(dias * 0.50);    // 50% del total de días
         let limiteAmarillo = Math.ceil(dias * 0.75); // 75% del total de días
 
-        if (diasRestantes <= 0) {
-            progresoAutomatico = 25;
-            autoCircle.style.backgroundColor = "red";
-            recomendadoText.innerHTML = `<strong>Red</strong><br><small>Tiempo agotado</small>`;
-        } else if (diasRestantes <= limiteVerde) {
+        // 🔥 **Corrección: SIEMPRE inicia en Green (100%) cuando el reporte es nuevo**
+        if (diasTranscurridos === 0) {
+            progresoAutomatico = 100;
+            autoCircle.style.backgroundColor = "green";
+            recomendadoText.innerHTML = `<strong>Green</strong><br><small>Acabas de iniciar. Tienes ${limiteVerde} días para mantener este estado óptimo.</small>`;
+        } else if (diasRestantes > limiteVerde) {
             progresoAutomatico = 100;
             autoCircle.style.backgroundColor = "green";
             recomendadoText.innerHTML = `<strong>Green</strong><br><small>Si lo terminas en ${limiteVerde} días, mantendrás el estado óptimo.</small>`;
-        } else if (diasRestantes <= limiteAzul) {
+        } else if (diasRestantes > limiteAzul) {
             progresoAutomatico = 75;
             autoCircle.style.backgroundColor = "blue";
             recomendadoText.innerHTML = `<strong>Blue</strong><br><small>Debiste acabar en ${limiteVerde} días, pero aún estás a tiempo.</small>`;
-        } else if (diasRestantes <= limiteAmarillo) {
+        } else if (diasRestantes > limiteAmarillo) {
             progresoAutomatico = 50;
             autoCircle.style.backgroundColor = "yellow";
             recomendadoText.innerHTML = `<strong>Yellow</strong><br><small>El tiempo se está acabando. Apresúrate.</small>`;
