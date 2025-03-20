@@ -13,6 +13,14 @@
     text-align: center;
     border-radius: 20px;
     z-index: 1000;
+
+    box-shadow:
+            -4px -4px 0 #000, /* Línea negra exterior */
+            4px 4px 0 #000,
+            -8px -8px 0 white, /* Línea blanca en medio */
+            8px 8px 0 white,
+            -12px -12px 0 #000, /* Línea negra interna */
+            12px 12px 0 #000;
 }
 
 .modal-content {
@@ -100,6 +108,9 @@
         transform: translate(-2px, 2px) scale(1.2);
     }
 }
+
+
+
 
 
 
