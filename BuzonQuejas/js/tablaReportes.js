@@ -78,6 +78,15 @@ document.addEventListener("DOMContentLoaded", function () {
         nextPageBtn.disabled = fin >= datosFiltrados.length;
     }
 
+    /* 🔹 Función para obtener la clase de color según el estado */
+    function obtenerClaseEstado(progreso) {
+        if (progreso === 100) return "green";
+        if (progreso === 75) return "blue";
+        if (progreso === 50) return "yellow";
+        if (progreso === 25) return "red";
+        return "";
+    }
+
     // 🔹 Filtrar reportes en tiempo real
     function filtrarReportes() {
         const valorFiltro = filterInput.value.trim().toLowerCase();
