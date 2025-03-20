@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 🔹 Función para resaltar texto en la búsqueda
     function resaltarTexto(texto, filtro) {
-        if (!filtro || filtro.trim() === "") return texto;
+        if (!filtro || filtro.trim() === "") return texto; // Evita errores si el filtro está vacío
         const regex = new RegExp(`(${filtro})`, "gi");
         return texto.replace(regex, `<span class="highlight">$1</span>`);
     }
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
                 datosReportes = data;
-                datosFiltrados = [...datosReportes]; // Asegurar una copia para filtrado
+                datosFiltrados = [...datosReportes]; // Copia para filtrado sin modificar datos originales
                 mostrarReportes(paginaActual);
             })
             .catch(error => console.error("❌ Error al cargar reportes:", error));
@@ -55,21 +55,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let fila = document.createElement("tr");
             fila.innerHTML = `
-            <td>${resaltarTexto(reporte.FolioReportes, filterInput.value)}</td>
-            <td>${resaltarTexto(reporte.FechaRegistro, filterInput.value)}</td>
-            <td>${resaltarTexto(reporte.NumeroNomina, filterInput.value)}</td>
-            <td>${resaltarTexto(reporte.Area, filterInput.value)}</td>
-            <td>${resaltarTexto(encargadoTexto, filterInput.value)}</td>
-            <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion}">Mostrar Descripción</button></td>
-            <td><button class="agregar-comentario" data-folio="${folio}">Agregar Comentario</button></td>
-            <td class="estatus-cell">
-                <button class="ver-estatus-btn ${estadoClase}" data-folio="${folio}" 
-                    style="${progresoManual !== null ? '' : 'background: white; color: black; border: 2px solid black;'}">
-                    Ver Estatus
-                </button>
-            </td>
-            <td><button class="seleccionar-fecha" data-folio="${folio}">Finalizar Reporte</button></td>
-        `;
+                <td>${resaltarTexto(reporte.FolioReportes, filterInput.value)}</td>
+                <td>${resaltarTexto(reporte.FechaRegistro, filterInput.value)}</td>
+                <td>${resaltarTexto(reporte.NumeroNomina, filterInput.value)}</td>
+                <td>${resaltarTexto(reporte.Area, filterInput.value)}</td>
+                <td>${resaltarTexto(encargadoTexto, filterInput.value)}</td>
+                <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion}">Mostrar Descripción</button></td>
+                <td><button class="agregar-comentario" data-folio="${folio}">Agregar Comentario</button></td>
+                <td class="estatus-cell">
+                    <button class="ver-estatus-btn ${estadoClase}" data-folio="${folio}" 
+                        style="${progresoManual !== null ? '' : 'background: white; color: black; border: 2px solid black;'}">
+                        Ver Estatus
+                    </button>
+                </td>
+                <td><button class="seleccionar-fecha" data-folio="${folio}">Finalizar Reporte</button></td>
+            `;
 
             tablaBody.appendChild(fila);
         });
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 🔹 Filtrar reportes en tiempo real
     function filtrarReportes() {
-        const valorFiltro = filterInput.value.toLowerCase();
+        const valorFiltro = filterInput.value.trim().toLowerCase();
         const columna = filterColumn.value;
 
         if (!columna || columna.trim() === "") {
@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // ✅ Asegurarse de que estamos trabajando con datos de la BD
         datosFiltrados = datosReportes.filter(reporte => {
             let valor = reporte[columna] ? String(reporte[columna]).toLowerCase() : "";
             return valor.includes(valorFiltro);
@@ -122,7 +123,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    filterInput.addEventListener("input", filtrarReportes);
+    // ✅ Evento para búsqueda en tiempo real con cada letra ingresada
+    filterInput.addEventListener("input", () => {
+        console.log("🔎 Buscando:", filterInput.value); // 🔥 Debugging para ver si detecta el input
+        filtrarReportes();
+    });
+
     filterButton.addEventListener("click", filtrarReportes);
 
     // 🔹 Cargar los reportes al iniciar
