@@ -121,15 +121,27 @@
 
 .status-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between; /* Separa los elementos de manera uniforme */
     align-items: center;
     width: 100%;
-    gap: 20px;
+    gap: 30px; /* Espacio entre los bloques */
+}
+
+/* Ajuste del input para que esté alineado con el círculo */
+.estatus-manual {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espacio entre el input y el círculo */
 }
 
 .status-box {
     flex: 1;
     text-align: center;
+}
+
+/* Ajuste del botón "Guardar" para que no esté tan pegado */
+#guardar-estatus {
+    margin-top: 25px; /* Mayor separación del contenido */
 }
 
 .progress-circle {
