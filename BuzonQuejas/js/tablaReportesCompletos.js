@@ -12,24 +12,25 @@ document.addEventListener("DOMContentLoaded", function () {
     let paginaActualCompleto = 1;
     const filasPorPagina = 10;
 
-    // ✅ Resaltar coincidencias en filtros
     function resaltarTexto(texto, filtro) {
         if (!filtro || filtro.trim() === "") return texto;
         const regex = new RegExp(`(${filtro})`, "gi");
         return texto.replace(regex, `<span class="highlight">$1</span>`);
     }
 
-    // ✅ Obtener datos desde la BD
     function cargarReportesCompletos() {
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/conseguirReportesCompletos.php")
             .then(res => res.json())
             .then(data => {
                 if (!Array.isArray(data)) {
-                    console.error("❌ Respuesta inesperada de la BD:", data);
+                    console.error("❌ Respuesta inesperada:", data);
                     return;
                 }
 
-                datosReportesCompletos = data;
+                // Filtrar solo reportes con fecha válida
+                datosReportesCompletos = data.filter(rep =>
+                    rep.fechaFinalizacion && rep.fechaFinalizacion !== "0000-00-00 00:00:00"
+                );
                 datosFiltradosCompletos = [...datosReportesCompletos];
                 mostrarReportesCompletos(paginaActualCompleto);
             })
@@ -38,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    // ✅ Mostrar tabla con paginación
     function mostrarReportesCompletos(pagina) {
         const inicio = (pagina - 1) * filasPorPagina;
         const fin = inicio + filasPorPagina;
@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
         nextPageBtnCompleto.disabled = fin >= datosFiltradosCompletos.length;
     }
 
-    // ✅ Filtro con texto resaltado
     function filtrarReportesCompletos() {
         const valorFiltro = filterInputCompleto.value.toLowerCase();
         const columna = filterColumnCompleto.value;
@@ -89,7 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportesCompletos(paginaActualCompleto);
     }
 
-    // ✅ Exportar un solo reporte a Excel
     function exportarExcel(reporte) {
         let wb = XLSX.utils.book_new();
         wb.Props = {
@@ -122,21 +120,19 @@ document.addEventListener("DOMContentLoaded", function () {
         XLSX.writeFile(wb, `Reporte_${reporte.folio}.xlsx`);
     }
 
-    // ✅ Delegar eventos para exportar
     tablaCompletosBody.addEventListener("click", function (event) {
         if (event.target.closest(".convertidor")) {
             const folio = event.target.closest(".convertidor").getAttribute("data-folio");
-            const reporte = datosReportesCompletos.find(rep => Number(rep.folio) === Number(folio));
+            const reporte = datosReportesCompletos.find(rep => String(rep.folio) === String(folio));
 
             if (reporte) {
                 exportarExcel(reporte);
             } else {
-                Swal.fire("Error", "No se encontró el reporte a exportar.", "error");
+                Swal.fire("Error", "No se encontró el reporte para exportar.", "error");
             }
         }
     });
 
-    // 📌 Eventos de navegación y filtro
     prevPageBtnCompleto.addEventListener("click", () => {
         if (paginaActualCompleto > 1) {
             paginaActualCompleto--;
@@ -154,6 +150,5 @@ document.addEventListener("DOMContentLoaded", function () {
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
 
-    // 🚀 Iniciar carga
     cargarReportesCompletos();
 });
