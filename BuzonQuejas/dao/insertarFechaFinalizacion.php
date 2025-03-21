@@ -20,7 +20,7 @@ try {
     }
 
     // **Verificar si el folio existe en la BD**
-    $checkQuery = $conn->prepare("SELECT FolioReporte FROM Reporte WHERE FolioReporte = ?");
+    $checkQuery = $conn->prepare("SELECT FolioReportes FROM Reporte WHERE FolioReportes = ?");
     $checkQuery->bind_param("i", $folio);
     $checkQuery->execute();
     $checkQuery->store_result();
@@ -32,7 +32,7 @@ try {
     $checkQuery->close();
 
     // **Actualizar la fecha de finalización en la BD**
-    $query = $conn->prepare("UPDATE Reporte SET FechaFinalizada = ? WHERE FolioReporte = ?");
+    $query = $conn->prepare("UPDATE Reporte SET FechaFinalizada = ? WHERE FolioReportes = ?");
     $query->bind_param("si", $fechaFinalizada, $folio);
 
     if ($query->execute()) {
@@ -51,4 +51,4 @@ try {
 } catch (Exception $e) {
     echo json_encode(["status" => "error", "message" => "Error en el servidor: " . $e->getMessage()]);
 }
-?>
+
