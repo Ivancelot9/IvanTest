@@ -70,7 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(res => res.json())
             .then(data => {
                 if (data.status === "success") {
-                    // Obtener fila actual y extraer info útil
                     let fila = lastClickedButton.closest("tr");
                     if (!fila) return;
 
@@ -83,17 +82,22 @@ document.addEventListener("DOMContentLoaded", function () {
                         area: celda(3),
                         encargado: celda(4),
                         descripcion: lastClickedButton.dataset.descripcion || "Sin descripción",
-                        comentarios: "Sin comentarios", // Podrías agregar lógica si manejas comentarios en localStorage
+                        comentarios: "Sin comentarios",
                         fechaFinalizacion: fecha,
                         estatus: "Completado"
                     };
 
-                    // Opcional: agregar a tabla 2 si quieres que se vea en tiempo real
+                    // ✅ Agregar a tabla 2 en tiempo real (opcional)
                     if (window.moverReporteACompletados) {
                         window.moverReporteACompletados(reporte);
                     }
 
-                    fila.remove(); // Eliminar de la tabla 1
+                    // ✅ Forzar recarga de la tabla de completados
+                    if (typeof cargarReportesCompletos === "function") {
+                        cargarReportesCompletos(); // ← ESTA LÍNEA ES LA CLAVE
+                    }
+
+                    fila.remove();
                     Swal.fire("Éxito", "El reporte fue finalizado correctamente.", "success");
                 } else {
                     Swal.fire("Error", data.message || "No se pudo guardar en BD.", "error");
