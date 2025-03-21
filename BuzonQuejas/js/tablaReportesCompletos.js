@@ -12,30 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let paginaActualCompleto = 1;
     const filasPorPagina = 10;
 
-    function resaltarTexto(texto, filtro) {
-        if (!filtro || filtro.trim() === "") return texto;
-        const regex = new RegExp(`(${filtro})`, "gi");
-        return texto.replace(regex, `<span class="highlight">$1</span>`);
-    }
-
-    function cargarReportesCompletos() {
-        fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/conseguirReportesCompletos.php")
-            .then(res => res.json())
-            .then(data => {
-                if (!Array.isArray(data)) {
-                    console.error("❌ Respuesta inesperada:", data);
-                    return;
-                }
-                datosReportesCompletos = data;
-                datosFiltradosCompletos = [...datosReportesCompletos];
-                mostrarReportesCompletos(paginaActualCompleto);
-            })
-            .catch(err => {
-                console.error("❌ Error al cargar reportes completados:", err);
-            });
-    }
-
-    function mostrarReportesCompletos(pagina) {
+    // 🔹 Exponer para uso desde fechaFinalizacion.js
+    window.mostrarReportesCompletos = function (pagina = 1) {
         const inicio = (pagina - 1) * filasPorPagina;
         const fin = inicio + filasPorPagina;
         const reportesPagina = datosFiltradosCompletos.slice(inicio, fin);
@@ -69,6 +47,32 @@ document.addEventListener("DOMContentLoaded", function () {
         pageIndicatorCompleto.textContent = `Página ${pagina}`;
         prevPageBtnCompleto.disabled = pagina === 1;
         nextPageBtnCompleto.disabled = fin >= datosFiltradosCompletos.length;
+
+        paginaActualCompleto = pagina;
+    };
+
+    function resaltarTexto(texto, filtro) {
+        if (!filtro || filtro.trim() === "") return texto;
+        const regex = new RegExp(`(${filtro})`, "gi");
+        return texto.replace(regex, `<span class="highlight">$1</span>`);
+    }
+
+    function cargarReportesCompletos() {
+        fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/conseguirReportesCompletos.php")
+            .then(res => res.json())
+            .then(data => {
+                if (!Array.isArray(data)) {
+                    console.error("❌ Respuesta inesperada:", data);
+                    return;
+                }
+
+                datosReportesCompletos = data;
+                datosFiltradosCompletos = [...datosReportesCompletos];
+                mostrarReportesCompletos(1);
+            })
+            .catch(err => {
+                console.error("❌ Error al cargar reportes completados:", err);
+            });
     }
 
     function filtrarReportesCompletos() {
@@ -80,8 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return valor.includes(valorFiltro);
         });
 
-        paginaActualCompleto = 1;
-        mostrarReportesCompletos(paginaActualCompleto);
+        mostrarReportesCompletos(1);
     }
 
     function exportarExcel(reporte) {
@@ -116,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
         XLSX.writeFile(wb, `Reporte_${reporte.folio}.xlsx`);
     }
 
+    // 🟢 Exportar por botón individual
     tablaCompletosBody.addEventListener("click", function (event) {
         if (event.target.closest(".convertidor")) {
             const folio = event.target.closest(".convertidor").getAttribute("data-folio");
@@ -129,6 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // 🟡 Navegación entre páginas
     prevPageBtnCompleto.addEventListener("click", () => {
         if (paginaActualCompleto > 1) {
             paginaActualCompleto--;
@@ -146,5 +151,9 @@ document.addEventListener("DOMContentLoaded", function () {
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
 
+    // 🚀 Al cargar la página
     cargarReportesCompletos();
+
+    // 🔁 Para que fechaFinalizacion.js también pueda llamar esta función directamente
+    window.cargarReportesCompletos = cargarReportesCompletos;
 });
