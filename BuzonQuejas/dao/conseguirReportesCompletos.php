@@ -1,27 +1,25 @@
 <?php
-include_once("conexion.php"); // 🔥 Conexión a la BD
-
+include_once("conexion.php");
 header("Content-Type: application/json");
 
 try {
     $con = new LocalConector();
     $conn = $con->conectar();
 
-    // 🔹 Consulta para obtener solo reportes con FechaFinalizada (completados)
     $query = $conn->prepare("
         SELECT 
-            R.FolioReportes AS folio,
-            R.NumeroNomina AS nomina,
-            CONCAT(E.Nombre, ' ', E.Apellidos) AS encargado,
-            R.FechaRegistro AS fechaRegistro,
-            R.FechaFinalizada AS fechaFinalizacion,
-            R.Descripcion AS descripcion,
-            COALESCE(R.Comentarios, 'Sin comentarios') AS comentarios,
+            r.FolioReportes AS folio,
+            r.NumeroNomina AS nomina,
+            COALESCE(e.NombreEncargado, 'N/A') AS encargado,
+            r.FechaRegistro AS fechaRegistro,
+            r.FechaFinalizada AS fechaFinalizacion,
+            r.Descripcion AS descripcion,
+            COALESCE(r.Comentarios, 'Sin comentarios') AS comentarios,
             'Completado' AS estatus
-        FROM Reporte R
-        LEFT JOIN Empleado E ON R.IdEncargado = E.IdEmpleado
-        WHERE R.FechaFinalizada IS NOT NULL
-        ORDER BY R.FechaFinalizada DESC
+        FROM Reporte r
+        LEFT JOIN Encargado e ON r.IdEncargado = e.IdEncargado
+        WHERE r.FechaFinalizada IS NOT NULL
+        ORDER BY r.FechaFinalizada DESC
     ");
 
     $query->execute();
@@ -38,8 +36,5 @@ try {
     $query->close();
     $conn->close();
 } catch (Exception $e) {
-    echo json_encode([
-        "status" => "error",
-        "message" => "Error en el servidor: " . $e->getMessage()
-    ]);
+    echo json_encode(["status" => "error", "message" => "Error en el servidor: " . $e->getMessage()]);
 }
