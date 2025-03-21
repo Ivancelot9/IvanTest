@@ -1,6 +1,5 @@
 <?php
-include_once("conexion.php"); // 🔥 Conexión a la BD
-
+include_once("conexion.php");
 header("Content-Type: application/json");
 
 try {
@@ -11,21 +10,20 @@ try {
         SELECT 
             r.FolioReportes AS folio,
             r.NumeroNomina AS nomina,
-            IFNULL(CONCAT(e.Nombre, ' ', e.Apellidos), 'N/A') AS encargado,
+            IFNULL(CONCAT(e.Nombre, ' ', e.Apellido), 'N/A') AS encargado,
             r.FechaRegistro AS fechaRegistro,
             r.FechaFinalizada AS fechaFinalizacion,
             r.Descripcion AS descripcion,
             IFNULL(r.Comentarios, 'Sin comentarios') AS comentarios,
             'Completado' AS estatus
         FROM Reporte r
-        LEFT JOIN Empleado e ON e.NumeroNomina = r.IdEncargado
+        LEFT JOIN Empleado e ON r.IdEncargado = e.IdEmpleado
         WHERE r.FechaFinalizada IS NOT NULL AND r.FechaFinalizada != '0000-00-00 00:00:00'
         ORDER BY r.FechaFinalizada DESC
     ");
-
     $query->execute();
-    $result = $query->get_result();
 
+    $result = $query->get_result();
     $reportes = [];
 
     while ($row = $result->fetch_assoc()) {
@@ -37,8 +35,5 @@ try {
     $query->close();
     $conn->close();
 } catch (Exception $e) {
-    echo json_encode([
-        "status" => "error",
-        "message" => "Error en el servidor: " . $e->getMessage()
-    ]);
+    echo json_encode(["status" => "error", "message" => "Error en el servidor: " . $e->getMessage()]);
 }

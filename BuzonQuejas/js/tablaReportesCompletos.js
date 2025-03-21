@@ -26,11 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.error("❌ Respuesta inesperada:", data);
                     return;
                 }
-
-                // Filtrar solo reportes con fecha válida
-                datosReportesCompletos = data.filter(rep =>
-                    rep.fechaFinalizacion && rep.fechaFinalizacion !== "0000-00-00 00:00:00"
-                );
+                datosReportesCompletos = data;
                 datosFiltradosCompletos = [...datosReportesCompletos];
                 mostrarReportesCompletos(paginaActualCompleto);
             })
