@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
 
                 // **Enviar la fecha a la base de datos**
-                fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/insertarFechaFinalizacion.php", {
+                fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/insertaFechaFinalizacion.php", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -93,14 +93,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                     .then(response => response.json())
                     .then(data => {
+                        console.log("📌 Respuesta del servidor:", data); // **Ver en consola qué responde PHP**
+
                         if (data.status === "success") {
                             Swal.fire("Éxito", "El reporte ha sido finalizado correctamente.", "success");
                         } else {
-                            Swal.fire("Error", "Hubo un problema al finalizar el reporte.", "error");
+                            Swal.fire("Error", data.message, "error"); // **Mostrar error detallado**
                         }
                     })
                     .catch(error => {
-                        console.error("Error al finalizar el reporte:", error);
+                        console.error("❌ Error en la petición:", error);
                         Swal.fire("Error", "No se pudo conectar con el servidor.", "error");
                     });
 

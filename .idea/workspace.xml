@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Estatus">
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/dao/insertarFechaFinalizacion.php" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Insertar Fecha Finalizacion en la BD">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/fechaFinalizacion.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/fechaFinalizacion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/insertarFechaFinalizacion.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/insertarFechaFinalizacion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,15 +149,8 @@
       <workItem from="1741961703085" duration="11195000" />
       <workItem from="1742307374892" duration="14077000" />
       <workItem from="1742394352027" duration="18613000" />
-      <workItem from="1742480205103" duration="19452000" />
-    </task>
-    <task id="LOCAL-00621" summary="Modal Estatus">
-      <option name="closed" value="true" />
-      <created>1742410140175</created>
-      <option name="number" value="00621" />
-      <option name="presentableId" value="LOCAL-00621" />
-      <option name="project" value="LOCAL" />
-      <updated>1742410140175</updated>
+      <workItem from="1742480205103" duration="19900000" />
+      <workItem from="1742566982715" duration="1775000" />
     </task>
     <task id="LOCAL-00622" summary="Modal Estatus">
       <option name="closed" value="true" />
@@ -544,7 +536,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742501934501</updated>
     </task>
-    <option name="localTasksCounter" value="670" />
+    <task id="LOCAL-00670" summary="Insertar Fecha Finalizacion en la BD">
+      <option name="closed" value="true" />
+      <created>1742504301337</created>
+      <option name="number" value="00670" />
+      <option name="presentableId" value="LOCAL-00670" />
+      <option name="project" value="LOCAL" />
+      <updated>1742504301337</updated>
+    </task>
+    <option name="localTasksCounter" value="671" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -596,7 +596,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tabla Reportes Calendario Colores" />
     <MESSAGE value="Tabla Reportes Calendario Colores 1.0" />
     <MESSAGE value="Tabla Reportes Calendario Colores 2.0" />
     <MESSAGE value="Tabla Reportes Calendario Colores 3.0" />
@@ -621,6 +620,7 @@
     <MESSAGE value="Dashboard Usuario Text Area" />
     <MESSAGE value="Conectar BD a ADmin/Usuario" />
     <MESSAGE value="Modal Estatus" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modal Estatus" />
+    <MESSAGE value="Insertar Fecha Finalizacion en la BD" />
+    <option name="LAST_COMMIT_MESSAGE" value="Insertar Fecha Finalizacion en la BD" />
   </component>
 </project>

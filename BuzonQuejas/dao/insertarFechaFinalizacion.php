@@ -15,20 +15,34 @@ try {
 
     // **Validar que los datos no estén vacíos**
     if (!$folio || !$fechaFinalizada) {
-        echo json_encode(["status" => "error", "message" => "Datos inválidos"]);
+        echo json_encode(["status" => "error", "message" => "Datos inválidos: Faltan parámetros"]);
         exit;
     }
+
+    // **Verificar si el folio existe en la BD**
+    $checkQuery = $conn->prepare("SELECT FolioReporte FROM Reporte WHERE FolioReporte = ?");
+    $checkQuery->bind_param("i", $folio);
+    $checkQuery->execute();
+    $checkQuery->store_result();
+
+    if ($checkQuery->num_rows === 0) {
+        echo json_encode(["status" => "error", "message" => "El reporte con ese folio no existe"]);
+        exit;
+    }
+    $checkQuery->close();
 
     // **Actualizar la fecha de finalización en la BD**
     $query = $conn->prepare("UPDATE Reporte SET FechaFinalizada = ? WHERE FolioReporte = ?");
     $query->bind_param("si", $fechaFinalizada, $folio);
-    $query->execute();
 
-    // **Verificar si se actualizó correctamente**
-    if ($query->affected_rows > 0) {
-        echo json_encode(["status" => "success", "message" => "Fecha de finalización guardada correctamente"]);
+    if ($query->execute()) {
+        if ($query->affected_rows > 0) {
+            echo json_encode(["status" => "success", "message" => "Fecha de finalización guardada correctamente"]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "No se realizaron cambios en la base de datos"]);
+        }
     } else {
-        echo json_encode(["status" => "error", "message" => "No se encontró el reporte o ya estaba actualizado"]);
+        echo json_encode(["status" => "error", "message" => "Error en la consulta: " . $query->error]);
     }
 
     // **Cerrar conexiones**
@@ -37,5 +51,4 @@ try {
 } catch (Exception $e) {
     echo json_encode(["status" => "error", "message" => "Error en el servidor: " . $e->getMessage()]);
 }
-
-
+?>
