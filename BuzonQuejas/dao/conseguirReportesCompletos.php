@@ -12,11 +12,13 @@ try {
             r.NumeroNomina AS nomina,
             IFNULL(r.IdEncargado, 'N/A') AS encargado,
             r.FechaRegistro AS fechaRegistro,
+            r.FechaFinalizada AS fechaFinalizacion,
             r.Descripcion AS descripcion,
-            IFNULL(r.Comentarios, 'Sin comentarios') AS comentarios
+            IFNULL(r.Comentarios, 'Sin comentarios') AS comentarios,
+            'Completado' AS estatus
         FROM Reporte r
-        WHERE r.FechaFinalizada IS NULL OR r.FechaFinalizada = '0000-00-00 00:00:00'
-        ORDER BY r.FechaRegistro DESC
+        WHERE r.FechaFinalizada IS NOT NULL AND r.FechaFinalizada != '0000-00-00 00:00:00'
+        ORDER BY r.FechaFinalizada DESC
     ");
     $query->execute();
 
