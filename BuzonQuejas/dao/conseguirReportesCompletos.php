@@ -12,17 +12,18 @@ try {
             r.NumeroNomina AS nomina,
             IFNULL(r.IdEncargado, 'N/A') AS encargado,
             r.FechaRegistro AS fechaRegistro,
-            r.FechaFinalizada AS fechaFinalizacion,
             r.Descripcion AS descripcion,
             IFNULL(r.Comentarios, 'Sin comentarios') AS comentarios,
-            'Completado' AS estatus
+            r.IdArea AS idArea,
+            r.IdEstatus AS estatus
         FROM Reporte r
-        WHERE r.FechaFinalizada IS NOT NULL AND r.FechaFinalizada != '0000-00-00 00:00:00'
-        ORDER BY r.FechaFinalizada DESC
+        WHERE r.FechaFinalizada IS NULL OR r.FechaFinalizada = '0000-00-00 00:00:00'
+        ORDER BY r.FechaRegistro DESC
     ");
-    $query->execute();
 
+    $query->execute();
     $result = $query->get_result();
+
     $reportes = [];
 
     while ($row = $result->fetch_assoc()) {
@@ -34,5 +35,9 @@ try {
     $query->close();
     $conn->close();
 } catch (Exception $e) {
-    echo json_encode(["status" => "error", "message" => "Error en el servidor: " . $e->getMessage()]);
+    echo json_encode([
+        "status" => "error",
+        "message" => "Error en el servidor: " . $e->getMessage()
+    ]);
 }
+
