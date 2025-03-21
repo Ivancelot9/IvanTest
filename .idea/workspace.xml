@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Insertar Fecha Finalizacion en la BD">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/conseguirReportesCompletos.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/conseguirReportesCompletos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/obtenerReportesPendientes.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/obtenerReportesPendientes.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,15 +150,7 @@
       <workItem from="1742307374892" duration="14077000" />
       <workItem from="1742394352027" duration="18613000" />
       <workItem from="1742480205103" duration="19900000" />
-      <workItem from="1742566982715" duration="12468000" />
-    </task>
-    <task id="LOCAL-00635" summary="Modal Estatus">
-      <option name="closed" value="true" />
-      <created>1742417838054</created>
-      <option name="number" value="00635" />
-      <option name="presentableId" value="LOCAL-00635" />
-      <option name="project" value="LOCAL" />
-      <updated>1742417838054</updated>
+      <workItem from="1742566982715" duration="14156000" />
     </task>
     <task id="LOCAL-00636" summary="Modal Estatus">
       <option name="closed" value="true" />
@@ -544,7 +536,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742579547849</updated>
     </task>
-    <option name="localTasksCounter" value="684" />
+    <task id="LOCAL-00684" summary="Insertar Fecha Finalizacion en la BD">
+      <option name="closed" value="true" />
+      <created>1742580014406</created>
+      <option name="number" value="00684" />
+      <option name="presentableId" value="LOCAL-00684" />
+      <option name="project" value="LOCAL" />
+      <updated>1742580014406</updated>
+    </task>
+    <option name="localTasksCounter" value="685" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

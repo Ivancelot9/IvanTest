@@ -12,18 +12,18 @@ try {
 
     // 🔍 Consulta mejorada para incluir Supervisor y Shift Leader en la misma celda
     $query = "SELECT 
-                    r.FolioReportes, 
-                    r.FechaRegistro, 
-                    r.NumeroNomina, 
-                    r.Descripcion, 
-                    r.Comentarios, 
-                    a.NombreArea AS Area,
-                    -- 🔥 Combinar Supervisor y Shift Leader en una sola celda
-                    GROUP_CONCAT(CONCAT(e.NombreEncargado, ' (', e.Tipo, ')') SEPARATOR ', ') AS Encargado
-              FROM Reporte r
-              LEFT JOIN Encargado e ON r.IdEncargado = e.IdEncargado
-              LEFT JOIN Area a ON r.IdArea = a.IdArea
-              GROUP BY r.FolioReportes";  // Agrupar para evitar duplicados
+              r.FolioReportes, 
+              r.FechaRegistro, 
+              r.NumeroNomina, 
+              r.Descripcion, 
+              r.Comentarios, 
+              a.NombreArea AS Area,
+              GROUP_CONCAT(CONCAT(e.NombreEncargado, ' (', e.Tipo, ')') SEPARATOR ', ') AS Encargado
+          FROM Reporte r
+          LEFT JOIN Encargado e ON r.IdEncargado = e.IdEncargado
+          LEFT JOIN Area a ON r.IdArea = a.IdArea
+          WHERE r.FechaFinalizada IS NULL OR r.FechaFinalizada = '0000-00-00 00:00:00'
+          GROUP BY r.FolioReportes";
 
     $result = $conn->query($query);
 
