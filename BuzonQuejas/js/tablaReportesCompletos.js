@@ -24,13 +24,17 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/conseguirReportesCompletos.php")
             .then(res => res.json())
             .then(data => {
+                if (!Array.isArray(data)) {
+                    console.error("❌ Respuesta inesperada de la BD:", data);
+                    return;
+                }
+
                 datosReportesCompletos = data;
                 datosFiltradosCompletos = [...datosReportesCompletos];
                 mostrarReportesCompletos(paginaActualCompleto);
             })
             .catch(err => {
-                console.error("Error al cargar reportes completados:", err);
-                Swal.fire("Error", "No se pudo cargar la tabla de reportes completados.", "error");
+                console.error("❌ Error al cargar reportes completados:", err);
             });
     }
 
