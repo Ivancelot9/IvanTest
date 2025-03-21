@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
 
                 // **Enviar la fecha a la base de datos**
-                fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/insertaFechaFinalizacion.php", {
+                fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/insertarFechaFinalizacion.php", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
