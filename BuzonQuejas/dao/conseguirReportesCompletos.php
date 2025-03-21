@@ -10,14 +10,13 @@ try {
         SELECT 
             r.FolioReportes AS folio,
             r.NumeroNomina AS nomina,
-            IFNULL(CONCAT(e.Nombre, ' ', e.Apellido), 'N/A') AS encargado,
+            IFNULL(r.IdEncargado, 'N/A') AS encargado,
             r.FechaRegistro AS fechaRegistro,
             r.FechaFinalizada AS fechaFinalizacion,
             r.Descripcion AS descripcion,
             IFNULL(r.Comentarios, 'Sin comentarios') AS comentarios,
             'Completado' AS estatus
         FROM Reporte r
-        LEFT JOIN Empleado e ON r.IdEncargado = e.IdEmpleado
         WHERE r.FechaFinalizada IS NOT NULL AND r.FechaFinalizada != '0000-00-00 00:00:00'
         ORDER BY r.FechaFinalizada DESC
     ");
