@@ -70,19 +70,28 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(res => res.json())
             .then(data => {
                 if (data.status === "success") {
-                    // Traer datos de la fila actual
+                    // Obtener fila actual y extraer info útil
                     let fila = lastClickedButton.closest("tr");
-                    let folio = fila.children[0].textContent.trim();
-                    let nomina = fila.children[2].textContent.trim();
-                    let encargado = fila.children[4].textContent.trim();
+                    if (!fila) return;
 
-                    window.moverReporteACompletados({
-                        folio,
-                        nomina,
-                        encargado,
+                    const celda = index => fila.children[index]?.textContent.trim() || "";
+
+                    let reporte = {
+                        folio: celda(0),
+                        fechaRegistro: celda(1),
+                        nomina: celda(2),
+                        area: celda(3),
+                        encargado: celda(4),
+                        descripcion: lastClickedButton.dataset.descripcion || "Sin descripción",
+                        comentarios: "Sin comentarios", // Podrías agregar lógica si manejas comentarios en localStorage
                         fechaFinalizacion: fecha,
                         estatus: "Completado"
-                    });
+                    };
+
+                    // Opcional: agregar a tabla 2 si quieres que se vea en tiempo real
+                    if (window.moverReporteACompletados) {
+                        window.moverReporteACompletados(reporte);
+                    }
 
                     fila.remove(); // Eliminar de la tabla 1
                     Swal.fire("Éxito", "El reporte fue finalizado correctamente.", "success");
