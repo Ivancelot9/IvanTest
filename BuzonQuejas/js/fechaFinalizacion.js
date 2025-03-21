@@ -87,15 +87,16 @@ document.addEventListener("DOMContentLoaded", function () {
                         estatus: "Completado"
                     };
 
-                    // ✅ Eliminar de la tabla 1
+                    // ✅ Quitar de la tabla 1
                     fila.remove();
 
-                    // ✅ Agregar a tabla 2 al instante sin recargar
+                    // ✅ Insertar en la tabla 2 inmediatamente (si la función global existe)
                     if (typeof datosReportesCompletos !== "undefined") {
                         datosReportesCompletos.push(reporte);
                         datosFiltradosCompletos = [...datosReportesCompletos];
+
                         if (typeof mostrarReportesCompletos === "function") {
-                            mostrarReportesCompletos(1);
+                            mostrarReportesCompletos(1); // Refresca la tabla de completados
                         }
                     }
 
