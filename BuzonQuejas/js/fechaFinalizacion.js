@@ -87,19 +87,20 @@ document.addEventListener("DOMContentLoaded", function () {
                         estatus: "Completado"
                     };
 
-                    // ✅ Quitar de la tabla 1
-                    fila.remove();
+                    // ✅ Mover a la tabla 2 en tiempo real
+                    if (window.moverReporteACompletados) {
+                        window.moverReporteACompletados(reporte);
+                    }
 
-                    // ✅ Insertar en la tabla 2 inmediatamente (si la función global existe)
-                    if (typeof datosReportesCompletos !== "undefined") {
-                        datosReportesCompletos.push(reporte);
-                        datosFiltradosCompletos = [...datosReportesCompletos];
-
-                        if (typeof mostrarReportesCompletos === "function") {
-                            mostrarReportesCompletos(1); // Refresca la tabla de completados
+                    // ✅ Forzar actualización visual de tabla 2 si está visible
+                    const tablaCompletos = document.getElementById("reportes-completos");
+                    if (tablaCompletos && tablaCompletos.style.display !== "none") {
+                        if (typeof window.mostrarReportesCompletos === "function") {
+                            window.mostrarReportesCompletos(1);
                         }
                     }
 
+                    fila.remove();
                     Swal.fire("Éxito", "El reporte fue finalizado correctamente.", "success");
                 } else {
                     Swal.fire("Error", data.message || "No se pudo guardar en BD.", "error");
