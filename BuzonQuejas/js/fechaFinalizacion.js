@@ -87,17 +87,18 @@ document.addEventListener("DOMContentLoaded", function () {
                         estatus: "Completado"
                     };
 
-                    // ✅ Agregar a tabla 2 en tiempo real (opcional)
-                    if (window.moverReporteACompletados) {
-                        window.moverReporteACompletados(reporte);
-                    }
-
-                    // ✅ Forzar recarga de la tabla de completados
-                    if (typeof cargarReportesCompletos === "function") {
-                        cargarReportesCompletos(); // ← ESTA LÍNEA ES LA CLAVE
-                    }
-
+                    // ✅ Eliminar de la tabla 1
                     fila.remove();
+
+                    // ✅ Agregar a tabla 2 al instante sin recargar
+                    if (typeof datosReportesCompletos !== "undefined") {
+                        datosReportesCompletos.push(reporte);
+                        datosFiltradosCompletos = [...datosReportesCompletos];
+                        if (typeof mostrarReportesCompletos === "function") {
+                            mostrarReportesCompletos(1);
+                        }
+                    }
+
                     Swal.fire("Éxito", "El reporte fue finalizado correctamente.", "success");
                 } else {
                     Swal.fire("Error", data.message || "No se pudo guardar en BD.", "error");
