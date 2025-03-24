@@ -103,8 +103,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (badge) {
                     badge.textContent = "";
                     badge.style.display = "none";
+                    localStorage.removeItem("contadorCompletos"); // 🧽 Borrar del almacenamiento
                 }
             }
         });
     });
+
+    // 🔁 Restaurar contador desde localStorage al cargar
+    const badge = document.getElementById("contador-completos");
+    let countGuardado = parseInt(localStorage.getItem("contadorCompletos") || "0");
+
+    if (badge && countGuardado > 0) {
+        badge.textContent = countGuardado.toString();
+        badge.style.display = "inline-block";
+    }
 });

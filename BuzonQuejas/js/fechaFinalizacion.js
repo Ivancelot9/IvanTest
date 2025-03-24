@@ -94,9 +94,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     // ✅ Actualizar contador visual (estilo Messenger)
                     const badge = document.getElementById("contador-completos");
                     if (badge) {
-                        let count = parseInt(badge.textContent || "0");
-                        badge.textContent = (count + 1).toString();
+                        let count = parseInt(localStorage.getItem("contadorCompletos") || "0");
+                        count++;
+                        badge.textContent = count.toString();
                         badge.style.display = "inline-block";
+                        localStorage.setItem("contadorCompletos", count); // 🔴 Guardar en localStorage
                     }
 
                     // ✅ Forzar actualización visual de tabla 2 si está visible
