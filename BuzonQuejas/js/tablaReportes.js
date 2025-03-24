@@ -143,4 +143,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 🔹 Cargar los reportes al iniciar
     cargarReportes();
+
+    // 🟢 Agregar nuevo reporte al historial desde enviarReporte.js
+    window.agregarReporteAHistorial = function (nuevoReporte) {
+        datosReportes.unshift(nuevoReporte); // Lo metes al inicio de la lista
+        datosFiltrados = [...datosReportes]; // Refrescas el filtrado
+        mostrarReportes(1); // Actualizas la tabla a la página 1
+    };
 });

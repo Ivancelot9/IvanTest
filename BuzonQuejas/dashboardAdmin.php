@@ -57,7 +57,10 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <!-- 🔹 Nuevo contenedor para los botones de navegación -->
     <div class="sidebar-links">
         <a href="#" id="btn-datos-personales" class="active">Datos Personales</a>
-        <a href="#" id="btn-historial-reportes">Historial de Reportes</a>
+        <a href="#" id="btn-historial-reportes">
+            Historial de Reportes
+            <span id="contador-historial" class="badge" style="display: none;">0</span>
+        </a>
         <a href="#" id="btn-reportes-completos">
             Reportes Completos
             <span id="contador-completos" class="badge" style="display: none;">0</span>

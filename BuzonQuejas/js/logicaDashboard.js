@@ -1,24 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
     const sidebar = document.querySelector(".sidebar");
-    const mainContent = document.querySelector(".main-content"); // 🔥 Se agregó esta referencia
+    const mainContent = document.querySelector(".main-content");
     const toggleBtn = document.getElementById("toggleSidebar");
     const hero = document.querySelector(".hero-animation");
 
-    let animationInProgress = false; // 🔒 Evita interrupciones en la animación
+    let animationInProgress = false;
 
     toggleBtn.addEventListener("click", function () {
         if (animationInProgress) return;
         animationInProgress = true;
 
-        // 🔄 Reiniciar la animación eliminando todas las clases activas antes de iniciar
         hero.classList.remove("hero-fly-left", "hero-fly-left-end", "hero-fly-right", "hero-fly-right-end");
         hero.style.opacity = "1";
         hero.style.transform = "scale(1)";
-
-        void hero.offsetWidth; // 🔥 Truco para reiniciar la animación correctamente
+        void hero.offsetWidth;
 
         if (sidebar.classList.contains("hidden")) {
-            // 🟢 Mostrar sidebar y animar el héroe de IZQUIERDA → DERECHA
             hero.style.transform = "rotateY(0deg) scale(1)";
             hero.classList.add("hero-fly-right");
 
@@ -28,18 +25,15 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 100);
 
             sidebar.classList.remove("hidden");
-            mainContent.classList.remove("expanded"); // 🔥 Asegurar que vuelva a la derecha cuando sidebar esté visible
+            mainContent.classList.remove("expanded");
 
             setTimeout(() => {
                 hero.style.opacity = "0";
                 animationInProgress = false;
             }, 1500);
 
-            // 🔹 Cambiar icono del botón
             toggleBtn.innerHTML = "☰";
-
         } else {
-            // 🔵 Ocultar sidebar y animar el héroe de DERECHA → IZQUIERDA
             hero.style.transform = "rotateY(180deg) scale(1)";
             hero.classList.add("hero-fly-left");
 
@@ -50,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             setTimeout(() => {
                 sidebar.classList.add("hidden");
-                mainContent.classList.add("expanded"); // 🔥 Ahora el contenido se centrará cuando sidebar esté oculta
+                mainContent.classList.add("expanded");
             }, 200);
 
             setTimeout(() => {
@@ -58,29 +52,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 animationInProgress = false;
             }, 1500);
 
-            // 🔹 Cambiar icono del botón
             toggleBtn.innerHTML = "❯";
         }
     });
 
-    // 🔥 FUNCIÓN RECUPERADA: Manejo de botones para cambiar secciones
+    // 🔥 Navegación entre secciones
     const botones = document.querySelectorAll(".sidebar a");
     const secciones = document.querySelectorAll(".main-content .content");
 
-    // Función para mostrar una sección y ocultar las demás
     function mostrarSeccion(idSeccion) {
-        // Ocultar todas las secciones
         secciones.forEach((seccion) => {
             seccion.style.display = "none";
         });
 
-        // Mostrar la sección seleccionada
         const seccionActiva = document.getElementById(idSeccion);
         if (seccionActiva) {
             seccionActiva.style.display = "block";
         }
 
-        // Cambiar el estilo del botón activo
         botones.forEach((boton) => boton.classList.remove("active"));
         const botonActivo = document.querySelector(`#btn-${idSeccion}`);
         if (botonActivo) {
@@ -88,33 +77,53 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Mostrar la sección inicial por defecto
+    // Mostrar sección por defecto
     mostrarSeccion("datos-personales");
 
+    // 🟢 Manejo de clics en los botones del sidebar
     botones.forEach((boton) => {
         boton.addEventListener("click", (e) => {
             e.preventDefault();
             const idSeccion = boton.id.replace("btn-", "");
             mostrarSeccion(idSeccion);
 
-            // ✅ Si el usuario abrió "Reportes Completos", limpiar contador tipo Messenger
+            // ✅ Limpiar contador de "Reportes Completos"
             if (idSeccion === "reportes-completos") {
                 const badge = document.getElementById("contador-completos");
                 if (badge) {
                     badge.textContent = "";
                     badge.style.display = "none";
-                    localStorage.removeItem("contadorCompletos"); // 🧽 Borrar del almacenamiento
+                    localStorage.removeItem("contadorCompletos");
+                }
+            }
+
+            // ✅ Limpiar contador de "Historial de Reportes"
+            if (idSeccion === "historial-reportes") {
+                const badgeHistorial = document.getElementById("contador-historial");
+                if (badgeHistorial) {
+                    badgeHistorial.textContent = "";
+                    badgeHistorial.style.display = "none";
+                    localStorage.removeItem("contadorHistorial");
                 }
             }
         });
     });
 
-    // 🔁 Restaurar contador desde localStorage al cargar
+    // 🔁 Restaurar contador de "Reportes Completos" al cargar
     const badge = document.getElementById("contador-completos");
     let countGuardado = parseInt(localStorage.getItem("contadorCompletos") || "0");
 
     if (badge && countGuardado > 0) {
         badge.textContent = countGuardado.toString();
         badge.style.display = "inline-block";
+    }
+
+    // 🔁 Restaurar contador de "Historial de Reportes" al cargar
+    const badgeHistorial = document.getElementById("contador-historial");
+    let countHistorial = parseInt(localStorage.getItem("contadorHistorial") || "0");
+
+    if (badgeHistorial && countHistorial > 0) {
+        badgeHistorial.textContent = countHistorial.toString();
+        badgeHistorial.style.display = "inline-block";
     }
 });

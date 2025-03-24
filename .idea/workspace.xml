@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Insertar Fecha Finalizacion en la BD">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Integrando Notificaciones">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/fechaFinalizacion.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/fechaFinalizacion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/logicaDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/logicaDashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/enviarReporte.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/enviarReporte.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,15 +154,7 @@
       <workItem from="1742394352027" duration="18613000" />
       <workItem from="1742480205103" duration="19900000" />
       <workItem from="1742566982715" duration="17363000" />
-      <workItem from="1742825490374" duration="5717000" />
-    </task>
-    <task id="LOCAL-00644" summary="Modal Estatus">
-      <option name="closed" value="true" />
-      <created>1742481783823</created>
-      <option name="number" value="00644" />
-      <option name="presentableId" value="LOCAL-00644" />
-      <option name="project" value="LOCAL" />
-      <updated>1742481783823</updated>
+      <workItem from="1742825490374" duration="8167000" />
     </task>
     <task id="LOCAL-00645" summary="Modal Estatus">
       <option name="closed" value="true" />
@@ -546,7 +540,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742836042271</updated>
     </task>
-    <option name="localTasksCounter" value="693" />
+    <task id="LOCAL-00693" summary="Integrando Notificaciones">
+      <option name="closed" value="true" />
+      <created>1742836633814</created>
+      <option name="number" value="00693" />
+      <option name="presentableId" value="LOCAL-00693" />
+      <option name="project" value="LOCAL" />
+      <updated>1742836633814</updated>
+    </task>
+    <option name="localTasksCounter" value="694" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,7 +600,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tabla Reportes Calendario Colores 1.0" />
     <MESSAGE value="Tabla Reportes Calendario Colores 2.0" />
     <MESSAGE value="Tabla Reportes Calendario Colores 3.0" />
     <MESSAGE value="Estatus Tabla" />
@@ -623,6 +624,7 @@
     <MESSAGE value="Conectar BD a ADmin/Usuario" />
     <MESSAGE value="Modal Estatus" />
     <MESSAGE value="Insertar Fecha Finalizacion en la BD" />
-    <option name="LAST_COMMIT_MESSAGE" value="Insertar Fecha Finalizacion en la BD" />
+    <MESSAGE value="Integrando Notificaciones" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integrando Notificaciones" />
   </component>
 </project>

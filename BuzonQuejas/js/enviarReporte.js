@@ -49,11 +49,46 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 if (data.status === "success") {
                     alert("¡Reporte enviado correctamente!");
-                    window.location.reload(); // 🔥 Recargar la página después de enviar
+
+                    // ✅ Crear objeto simulado del nuevo reporte
+                    let nuevoReporte = {
+                        folio: data.folio || "N/A", // Usa "N/A" si el backend no devuelve folio
+                        fechaRegistro: new Date().toISOString().split("T")[0],
+                        nomina: reporteData.NumNomina,
+                        area: areaSelect.options[areaSelect.selectedIndex].text,
+                        encargado: reporteData.IdEncargado || "Sin asignar",
+                        descripcion: reporteData.Descripcion,
+                        comentarios: "Sin comentarios",
+                        estatus: "Pendiente",
+                        fechaFinalizacion: ""
+                    };
+
+                    // ✅ Agregar a la tabla en tiempo real si está disponible
+                    if (typeof window.agregarReporteAHistorial === "function") {
+                        window.agregarReporteAHistorial(nuevoReporte);
+                    }
+
+                    // ✅ Actualizar contador tipo Messenger
+                    const badge = document.getElementById("contador-historial");
+                    let count = parseInt(localStorage.getItem("contadorHistorial") || "0");
+                    count++;
+                    badge.textContent = count.toString();
+                    badge.style.display = "inline-block";
+                    localStorage.setItem("contadorHistorial", count.toString());
+
+
+                    // ✅ Limpiar campos del formulario
+                    document.getElementById("reporte").value = "";
+                    areaSelect.value = "";
+                    supervisorSelect.value = "";
+                    shiftLeaderSelect.value = "";
                 } else {
                     alert("Error: " + data.message);
                 }
             })
-            .catch(error => console.error("Error al enviar el reporte:", error));
+            .catch(error => {
+                console.error("Error al enviar el reporte:", error);
+                alert("Ocurrió un error al enviar el reporte.");
+            });
     });
 });
