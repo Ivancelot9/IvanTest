@@ -75,18 +75,21 @@ document.addEventListener("DOMContentLoaded", function () {
                         fechaFinalizacion: ""
                     };
 
-                    // ✅ Agregar a la tabla en tiempo real
+                    // ✅ Agregar a la tabla en tiempo real si está disponible
                     if (typeof window.agregarReporteAHistorial === "function") {
                         window.agregarReporteAHistorial(nuevoReporte);
                     }
 
-                    // ✅ Actualizar contador estilo Messenger
+                    // ✅ Actualizar contador estilo Messenger solo si existe el badge
                     const badge = document.getElementById("contador-historial");
                     let count = parseInt(localStorage.getItem("contadorHistorial") || "0");
                     count++;
-                    badge.textContent = count.toString();
-                    badge.style.display = "inline-block";
                     localStorage.setItem("contadorHistorial", count.toString());
+
+                    if (badge) {
+                        badge.textContent = count.toString();
+                        badge.style.display = "inline-block";
+                    }
 
                     // ✅ Limpiar campos del formulario
                     document.getElementById("reporte").value = "";
