@@ -91,12 +91,20 @@ document.addEventListener("DOMContentLoaded", function () {
     // Mostrar la sección inicial por defecto
     mostrarSeccion("datos-personales");
 
-    // Agregar eventos de clic a los botones
     botones.forEach((boton) => {
         boton.addEventListener("click", (e) => {
-            e.preventDefault(); // Prevenir comportamiento predeterminado del enlace
-            const idSeccion = boton.id.replace("btn-", ""); // Obtener el ID de la sección
+            e.preventDefault();
+            const idSeccion = boton.id.replace("btn-", "");
             mostrarSeccion(idSeccion);
+
+            // ✅ Si el usuario abrió "Reportes Completos", limpiar contador tipo Messenger
+            if (idSeccion === "reportes-completos") {
+                const badge = document.getElementById("contador-completos");
+                if (badge) {
+                    badge.textContent = "";
+                    badge.style.display = "none";
+                }
+            }
         });
     });
 });

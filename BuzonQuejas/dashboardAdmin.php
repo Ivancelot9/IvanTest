@@ -58,7 +58,10 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <div class="sidebar-links">
         <a href="#" id="btn-datos-personales" class="active">Datos Personales</a>
         <a href="#" id="btn-historial-reportes">Historial de Reportes</a>
-        <a href="#" id="btn-reportes-completos">Reportes Completos</a>
+        <a href="#" id="btn-reportes-completos">
+            Reportes Completos
+            <span id="contador-completos" class="badge" style="display: none;">0</span>
+        </a>
     </div>
 
     <!-- 🔴 Este botón queda fuera del contenedor de navegación -->

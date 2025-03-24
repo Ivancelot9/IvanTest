@@ -91,6 +91,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (window.moverReporteACompletados) {
                         window.moverReporteACompletados(reporte);
                     }
+                    // ✅ Actualizar contador visual (estilo Messenger)
+                    const badge = document.getElementById("contador-completos");
+                    if (badge) {
+                        let count = parseInt(badge.textContent || "0");
+                        badge.textContent = (count + 1).toString();
+                        badge.style.display = "inline-block";
+                    }
 
                     // ✅ Forzar actualización visual de tabla 2 si está visible
                     const tablaCompletos = document.getElementById("reportes-completos");
