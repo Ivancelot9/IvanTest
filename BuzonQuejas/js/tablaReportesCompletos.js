@@ -156,4 +156,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 🔁 Para que fechaFinalizacion.js también pueda llamar esta función directamente
     window.cargarReportesCompletos = cargarReportesCompletos;
+
+    // 🟢 Agregar reporte dinámicamente desde fechaFinalizacion.js
+    window.moverReporteACompletados = function (nuevoReporte) {
+        // Lo agregamos al inicio del arreglo completo
+        datosReportesCompletos.unshift(nuevoReporte);
+
+        // Actualizamos el arreglo filtrado también
+        datosFiltradosCompletos = [...datosReportesCompletos];
+
+        // Refrescamos la tabla (puedes quedarte en la misma página si prefieres)
+        mostrarReportesCompletos(1);
+    };
 });
