@@ -1,4 +1,16 @@
+// 🔹 Variable global para guardar el número de nómina
+let numeroNominaGlobal = null;
+
 document.addEventListener("DOMContentLoaded", function () {
+    // ✅ Guardar el número de nómina al cargar la página
+    const nominaSpan = document.getElementById("nominaUsuario");
+    if (nominaSpan) {
+        numeroNominaGlobal = nominaSpan.textContent.trim();
+        console.log("✅ Número de nómina detectado:", numeroNominaGlobal);
+    } else {
+        console.warn("❌ No se encontró el elemento nominaUsuario");
+    }
+
     const btnSiguiente = document.getElementById("btnSiguiente");
 
     btnSiguiente.addEventListener("click", function () {
@@ -7,10 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const supervisorSelect = document.getElementById("supervisor");
         const shiftLeaderSelect = document.getElementById("shiftLeader");
 
-        // 🔹 Obtener número de nómina desde el HTML
-        const numNomina = document.getElementById("nominaUsuario")
-            ? document.getElementById("nominaUsuario").textContent.trim()
-            : null;
+        // ✅ Usar la variable global
+        const numNomina = numeroNominaGlobal;
 
         if (!numNomina) {
             alert("Error: No se encontró el número de nómina.");
@@ -38,6 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
             reporteData.IdEncargado = IdEncargado;
         }
 
+        console.log("Datos que se enviarán al backend:", reporteData);
+
         fetch('https://grammermx.com/IvanTest/BuzonQuejas/dao/insertarReporte.php', {
             method: "POST",
             headers: {
@@ -52,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // ✅ Crear objeto simulado del nuevo reporte
                     let nuevoReporte = {
-                        folio: data.folio || "N/A", // Usa "N/A" si el backend no devuelve folio
+                        folio: data.folio || "N/A",
                         fechaRegistro: new Date().toISOString().split("T")[0],
                         nomina: reporteData.NumNomina,
                         area: areaSelect.options[areaSelect.selectedIndex].text,
@@ -63,19 +75,18 @@ document.addEventListener("DOMContentLoaded", function () {
                         fechaFinalizacion: ""
                     };
 
-                    // ✅ Agregar a la tabla en tiempo real si está disponible
+                    // ✅ Agregar a la tabla en tiempo real
                     if (typeof window.agregarReporteAHistorial === "function") {
                         window.agregarReporteAHistorial(nuevoReporte);
                     }
 
-                    // ✅ Actualizar contador tipo Messenger
+                    // ✅ Actualizar contador estilo Messenger
                     const badge = document.getElementById("contador-historial");
                     let count = parseInt(localStorage.getItem("contadorHistorial") || "0");
                     count++;
                     badge.textContent = count.toString();
                     badge.style.display = "inline-block";
                     localStorage.setItem("contadorHistorial", count.toString());
-
 
                     // ✅ Limpiar campos del formulario
                     document.getElementById("reporte").value = "";
