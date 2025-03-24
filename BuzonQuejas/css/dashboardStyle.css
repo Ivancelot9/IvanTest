@@ -549,12 +549,19 @@ body {
     background-color: red;
     color: white;
     border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 12px;
-    top: 8px;
-    right: 8px;
-    display: inline-block;
+    padding: 4px 8px; /* 🔹 Más grande */
+    font-size: 16px; /* 🔹 Más grande */
     font-weight: bold;
+    top: 5px;
+    right: 10px;
+    display: inline-block;
+
+    /* 🔲 Contorno negro */
+    text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px  1px 0 #000,
+            1px  1px 0 #000;
 }
 #btn-reportes-completos {
     position: relative;
