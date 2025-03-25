@@ -37,7 +37,10 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerReportesPendientes.php")
             .then(response => response.json())
             .then(data => {
-                if (!data || data.length === 0) return;
+                if (!data || data.length === 0) {
+                    console.warn("⚠ No hay reportes disponibles.");
+                    return;
+                }
                 datosReportes = data;
                 datosFiltrados = [...datosReportes];
                 mostrarReportes(paginaActual);
@@ -54,28 +57,29 @@ document.addEventListener("DOMContentLoaded", function () {
         let estatusGuardados = JSON.parse(localStorage.getItem("estatusReportes")) || {};
 
         reportesPagina.forEach(reporte => {
-            let encargadoTexto = reporte.Encargado || "N/A";
-            let folio = reporte.FolioReportes;
+            let encargadoTexto = reporte.Encargado || reporte.encargado || "N/A";
+            let folio = reporte.FolioReportes || reporte.folio || "S/F";
             let progresoManual = estatusGuardados[folio]?.progresoManual || null;
             let estadoClase = obtenerClaseEstado(progresoManual);
 
             let fila = document.createElement("tr");
             fila.innerHTML = `
                 <td>${resaltarTexto(folio, filterInput.value)}</td>
-                <td>${resaltarTexto(reporte.FechaRegistro, filterInput.value)}</td>
-                <td>${resaltarTexto(reporte.NumeroNomina, filterInput.value)}</td>
-                <td>${resaltarTexto(reporte.Area, filterInput.value)}</td>
+                <td>${resaltarTexto(reporte.FechaRegistro || reporte.fechaRegistro || "Sin fecha", filterInput.value)}</td>
+                <td>${resaltarTexto(reporte.NumeroNomina || reporte.nomina || "Sin nómina", filterInput.value)}</td>
+                <td>${resaltarTexto(reporte.Area || reporte.area || "Sin área", filterInput.value)}</td>
                 <td>${resaltarTexto(encargadoTexto, filterInput.value)}</td>
-                <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion}">Mostrar Descripción</button></td>
+                <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion || reporte.descripcion || 'Sin descripción'}">Mostrar Descripción</button></td>
                 <td><button class="agregar-comentario" data-folio="${folio}">Agregar Comentario</button></td>
                 <td class="estatus-cell">
-                    <button class="ver-estatus-btn ${estadoClase}" data-folio="${folio}"
+                    <button class="ver-estatus-btn ${estadoClase}" data-folio="${folio}" 
                         style="${progresoManual !== null ? '' : 'background: white; color: black; border: 2px solid black;'}">
                         Ver Estatus
                     </button>
                 </td>
                 <td><button class="seleccionar-fecha" data-folio="${folio}">Finalizar Reporte</button></td>
             `;
+
             tablaBody.appendChild(fila);
         });
 
@@ -119,31 +123,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     cargarReportes();
 
-    // 🔁 NUEVO: Agregar reporte directamente desde base de datos por folio
+    // 🟢 Agregar reporte desde BroadcastChannel o frontend en tiempo real
+    window.agregarReporteAHistorial = function (nuevoReporte) {
+        // Validar que el reporte tenga datos mínimos necesarios
+        if (!nuevoReporte || !nuevoReporte.folio || !nuevoReporte.fechaRegistro || !nuevoReporte.nomina) {
+            console.warn("❌ Reporte recibido incompleto:", nuevoReporte);
+            return;
+        }
+
+        datosReportes.unshift(nuevoReporte);
+        datosFiltrados = [...datosReportes];
+        mostrarReportes(1);
+    };
+
+    // 🟢 Escuchar canal de BroadcastChannel para recibir reportes en tiempo real
     const canal = new BroadcastChannel("canalReportes");
     canal.addEventListener("message", (event) => {
-        if (event.data?.tipo === "nuevo-reporte" && event.data.folio) {
-            fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerReportesPorFolio.php?folio=${event.data.folio}`)
-                .then(res => res.json())
-                .then(data => {
-                    if (data && data.FolioReportes) {
-                        datosReportes.unshift(data);
-                        datosFiltrados = [...datosReportes];
-                        mostrarReportes(1);
+        if (event.data?.tipo === "nuevo-reporte") {
+            console.log("📬 Nuevo reporte recibido:", event.data.data);
+            window.agregarReporteAHistorial(event.data.data);
 
-                        // 🔁 Actualizar contador si no está en vista
-                        const currentSection = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
-                        if (currentSection !== "historial-reportes") {
-                            const badge = document.getElementById("contador-historial");
-                            let count = parseInt(localStorage.getItem("contadorHistorial") || "0");
-                            count++;
-                            badge.textContent = count.toString();
-                            badge.style.display = "inline-block";
-                            localStorage.setItem("contadorHistorial", count.toString());
-                        }
-                    }
-                })
-                .catch(err => console.error("❌ Error al obtener el nuevo reporte:", err));
+            // Actualizar contador si aún no está en vista
+            const currentSection = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
+            if (currentSection !== "historial-reportes") {
+                const badge = document.getElementById("contador-historial");
+                let count = parseInt(localStorage.getItem("contadorHistorial") || "0");
+                count++;
+                badge.textContent = count.toString();
+                badge.style.display = "inline-block";
+                localStorage.setItem("contadorHistorial", count.toString());
+            }
         }
     });
 });
