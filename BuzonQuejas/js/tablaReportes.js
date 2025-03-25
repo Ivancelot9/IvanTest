@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let datosReportes = [];
     let datosFiltrados = [];
 
-    // ✅ Elementos del DOM
     const tablaBody = document.getElementById("tabla-body");
     const prevPageBtn = document.getElementById("prevPage");
     const nextPageBtn = document.getElementById("nextPage");
@@ -13,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const filterInput = document.getElementById("filter-input");
     const filterButton = document.getElementById("filter-button");
 
-    // 🔹 Correlación entre los valores del SELECT y los campos de la BD
     const columnasBD = {
         folio: "FolioReportes",
         nomina: "NumeroNomina",
@@ -21,14 +19,12 @@ document.addEventListener("DOMContentLoaded", function () {
         fechaRegistro: "FechaRegistro"
     };
 
-    // 🔹 Función para resaltar texto en la búsqueda
     function resaltarTexto(texto, filtro) {
         if (!filtro || filtro.trim() === "") return texto;
         const regex = new RegExp(`(${filtro})`, "gi");
         return texto.replace(regex, `<span class="highlight">$1</span>`);
     }
 
-    // 🔹 Función para obtener la clase de color según el estado (RESTAURADA)
     function obtenerClaseEstado(progreso) {
         if (progreso === 100) return "green";
         if (progreso === 75) return "blue";
@@ -37,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return "";
     }
 
-    // 🔹 Cargar reportes desde la base de datos
     function cargarReportes() {
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerReportesPendientes.php")
             .then(response => response.json())
@@ -47,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
                 datosReportes = data;
-                datosFiltrados = [...datosReportes]; // Copia para filtrado sin modificar datos originales
+                datosFiltrados = [...datosReportes];
                 mostrarReportes(paginaActual);
             })
             .catch(error => console.error("❌ Error al cargar reportes:", error));
@@ -65,8 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
             let encargadoTexto = reporte.Encargado ? reporte.Encargado : "N/A";
             let folio = reporte.FolioReportes;
             let datosReporte = estatusGuardados[folio];
-
-            // 🟢🔵🟡🔴 Restaurar el color del botón según el progreso guardado
             let progresoManual = datosReporte ? datosReporte.progresoManual : null;
             let estadoClase = obtenerClaseEstado(progresoManual);
 
@@ -96,22 +89,12 @@ document.addEventListener("DOMContentLoaded", function () {
         nextPageBtn.disabled = fin >= datosFiltrados.length;
     }
 
-    // 🔹 Filtrar reportes en tiempo real
     function filtrarReportes() {
         const valorFiltro = filterInput.value.trim().toLowerCase();
         const columnaSeleccionada = filterColumn.value;
-
-        if (!columnaSeleccionada) {
-            console.warn("⚠ No se ha seleccionado una columna para filtrar.");
-            return;
-        }
-
         const columnaBD = columnasBD[columnaSeleccionada];
 
-        if (!columnaBD) {
-            console.warn("⚠ No se encontró la columna en la base de datos.");
-            return;
-        }
+        if (!columnaBD) return;
 
         datosFiltrados = datosReportes.filter(reporte => {
             let valor = reporte[columnaBD] ? String(reporte[columnaBD]).toLowerCase() : "";
@@ -122,7 +105,6 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportes(paginaActual);
     }
 
-    // 🔹 Eventos para paginación
     prevPageBtn.addEventListener("click", () => {
         if (paginaActual > 1) {
             paginaActual--;
@@ -137,17 +119,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 🔹 Evento para búsqueda en tiempo real con cada letra ingresada
     filterInput.addEventListener("input", filtrarReportes);
     filterButton.addEventListener("click", filtrarReportes);
 
-    // 🔹 Cargar los reportes al iniciar
     cargarReportes();
 
-    // 🟢 Agregar nuevo reporte al historial desde enviarReporte.js
     window.agregarReporteAHistorial = function (nuevoReporte) {
-        datosReportes.unshift(nuevoReporte); // Lo metes al inicio de la lista
-        datosFiltrados = [...datosReportes]; // Refrescas el filtrado
-        mostrarReportes(1); // Actualizas la tabla a la página 1
+        datosReportes.unshift(nuevoReporte);
+        datosFiltrados = [...datosReportes];
+        mostrarReportes(1);
     };
 });

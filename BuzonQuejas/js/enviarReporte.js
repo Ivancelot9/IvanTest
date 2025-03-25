@@ -62,17 +62,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (data.status === "success") {
                     alert("¡Reporte enviado correctamente!");
 
-                    // ✅ Crear objeto del nuevo reporte con todos los datos completos
                     let nuevoReporte = {
-                        folio: data.folio || "N/A",
-                        fechaRegistro: data.fechaRegistro || new Date().toISOString().split("T")[0],
-                        nomina: reporteData.NumNomina,
-                        area: areaSelect.options[areaSelect.selectedIndex].text,
-                        encargado: reporteData.IdEncargado || "Sin asignar",
-                        descripcion: reporteData.Descripcion,
-                        comentarios: "Sin comentarios",
-                        estatus: "Pendiente",
-                        fechaFinalizacion: ""
+                        FolioReportes: data.folio || "N/A",
+                        FechaRegistro: new Date().toISOString().split("T")[0],
+                        NumeroNomina: reporteData.NumNomina,
+                        Area: areaSelect.options[areaSelect.selectedIndex].text,
+                        Encargado: reporteData.IdEncargado || "Sin asignar",
+                        Descripcion: reporteData.Descripcion,
+                        Comentarios: "Sin comentarios",
+                        Estatus: "Pendiente",
+                        FechaFinalizacion: ""
                     };
 
                     // ✅ Agregar visualmente si aplica
