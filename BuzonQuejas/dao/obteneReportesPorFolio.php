@@ -1,46 +1,37 @@
 <?php
-header('Content-Type: application/json');
-include_once("conexion.php");
+include_once 'conexion.php'; // Asegúrate que aquí sí se defina $conn
 
 if (!isset($_GET['folio'])) {
-    echo json_encode(["status" => "error", "message" => "Folio no especificado."]);
+    echo json_encode(["error" => "Folio no especificado"]);
     exit;
 }
 
-$folio = intval($_GET['folio']);
+$folio = intval($_GET['folio']); // Asegura que sea un número entero
 
-try {
-    $con = new LocalConector();
-    $conn = $con->conectar();
+if (!isset($conn)) {
+    echo json_encode(["error" => "No se pudo establecer conexión con la base de datos"]);
+    exit;
+}
 
-    $query = "SELECT 
-                r.FolioReportes AS folio,
-                r.FechaRegistro AS fechaRegistro,
-                r.NumeroNomina AS nomina,
-                r.Descripcion AS descripcion,
-                r.Comentarios AS comentarios,
-                a.NombreArea AS area,
-                GROUP_CONCAT(CONCAT(e.NombreEncargado, ' (', e.Tipo, ')') SEPARATOR ', ') AS encargado
-              FROM Reporte r
-              LEFT JOIN Encargado e ON r.IdEncargado = e.IdEncargado
-              LEFT JOIN Area a ON r.IdArea = a.IdArea
-              WHERE r.FolioReportes = ?
-              GROUP BY r.FolioReportes";
+$sql = "SELECT * FROM Reporte WHERE FolioReportes = ?";
+$stmt = $conn->prepare($sql);
 
-    $stmt = $conn->prepare($query);
+if ($stmt) {
     $stmt->bind_param("i", $folio);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($reporte = $result->fetch_assoc()) {
-        echo json_encode(["status" => "success", "data" => $reporte]);
+    if ($result && $result->num_rows > 0) {
+        $reporte = $result->fetch_assoc();
+        echo json_encode($reporte);
     } else {
-        echo json_encode(["status" => "error", "message" => "Reporte no encontrado."]);
+        echo json_encode(["error" => "Reporte no encontrado"]);
     }
 
     $stmt->close();
-    $conn->close();
-} catch (Exception $e) {
-    echo json_encode(["status" => "error", "message" => "Error en el servidor: " . $e->getMessage()]);
+} else {
+    echo json_encode(["error" => "Error al preparar la consulta"]);
 }
+
+$conn->close();
 

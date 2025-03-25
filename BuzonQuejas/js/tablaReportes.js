@@ -136,23 +136,36 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportes(1);
     };
 
-    // 🟢 Escuchar canal de BroadcastChannel para recibir reportes en tiempo real
-    const canal = new BroadcastChannel("canalReportes");
     canal.addEventListener("message", (event) => {
-        if (event.data?.tipo === "nuevo-reporte") {
-            console.log("📬 Nuevo reporte recibido:", event.data.data);
-            window.agregarReporteAHistorial(event.data.data);
+        if (event.data?.tipo === "nuevo-reporte" && event.data.folio) {
+            const folioNuevo = event.data.folio;
 
-            // Actualizar contador si aún no está en vista
-            const currentSection = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
-            if (currentSection !== "historial-reportes") {
-                const badge = document.getElementById("contador-historial");
-                let count = parseInt(localStorage.getItem("contadorHistorial") || "0");
-                count++;
-                badge.textContent = count.toString();
-                badge.style.display = "inline-block";
-                localStorage.setItem("contadorHistorial", count.toString());
-            }
+            console.log("📬 Recibido folio nuevo por canal:", folioNuevo);
+
+            fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerReportesPorFolio.php?folio=${folioNuevo}`)
+                .then(resp => resp.json())
+                .then(reporte => {
+                    if (reporte && reporte.FolioReportes) {
+                        window.agregarReporteAHistorial(reporte);
+
+                        // Actualizar contador si aún no está en vista
+                        const currentSection = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
+                        if (currentSection !== "historial-reportes") {
+                            const badge = document.getElementById("contador-historial");
+                            let count = parseInt(localStorage.getItem("contadorHistorial") || "0");
+                            count++;
+                            badge.textContent = count.toString();
+                            badge.style.display = "inline-block";
+                            localStorage.setItem("contadorHistorial", count.toString());
+                        }
+                    } else {
+                        console.warn("❌ No se pudo cargar el reporte por folio:", folioNuevo);
+                    }
+                })
+                .catch(error => {
+                    console.error("❌ Error al obtener reporte por folio:", error);
+                });
         }
+
     });
 });
