@@ -46,9 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
             reporteData.IdEncargado = IdEncargado;
         }
 
-        console.log("📤 Enviando datos al backend:", reporteData);
-
-        fetch('https://grammermx.com/IvanTest/BuzonQuejas/dao/insertarReporte.php', {
+        fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/insertarReporte.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -57,45 +55,18 @@ document.addEventListener("DOMContentLoaded", function () {
         })
             .then(response => response.json())
             .then(data => {
-                console.log("📥 Respuesta del backend:", data);
-
                 if (data.status === "success") {
                     alert("¡Reporte enviado correctamente!");
 
-                    let nuevoReporte = {
-                        FolioReportes: data.folio || "N/A",
-                        FechaRegistro: new Date().toISOString().split("T")[0],
-                        NumeroNomina: reporteData.NumNomina,
-                        Area: areaSelect.options[areaSelect.selectedIndex].text,
-                        Encargado: reporteData.IdEncargado || "Sin asignar",
-                        Descripcion: reporteData.Descripcion,
-                        Comentarios: "Sin comentarios",
-                        Estatus: "Pendiente",
-                        FechaFinalizacion: ""
-                    };
-
-                    // ✅ Agregar visualmente si aplica
-                    if (typeof window.agregarReporteAHistorial === "function") {
-                        window.agregarReporteAHistorial(nuevoReporte);
-                    }
-
-                    // ✅ Enviar al admin en tiempo real
+                    // 🔴 Solo enviamos el FOLIO al canal
                     const canal = new BroadcastChannel("canalReportes");
-                    canal.postMessage({ tipo: "nuevo-reporte", data: nuevoReporte });
+                    canal.postMessage({
+                        tipo: "nuevo-reporte",
+                        folio: data.folio
+                    });
                     canal.close();
 
-                    // ✅ Actualizar contador tipo Messenger
-                    const badge = document.getElementById("contador-historial");
-                    let count = parseInt(localStorage.getItem("contadorHistorial") || "0");
-                    count++;
-                    localStorage.setItem("contadorHistorial", count.toString());
-
-                    if (badge) {
-                        badge.textContent = count.toString();
-                        badge.style.display = "inline-block";
-                    }
-
-                    // ✅ Limpiar campos del formulario
+                    // Limpiar campos
                     document.getElementById("reporte").value = "";
                     areaSelect.value = "";
                     supervisorSelect.value = "";
@@ -105,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             })
             .catch(error => {
-                console.error("❌ Error al enviar el reporte:", error);
+                console.error("Error al enviar el reporte:", error);
                 alert("Ocurrió un error al enviar el reporte.");
             });
     });

@@ -53,29 +53,24 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // 🔹 Manejo de secciones
     const botones = document.querySelectorAll(".sidebar a");
     const secciones = document.querySelectorAll(".main-content .content");
 
     function mostrarSeccion(idSeccion) {
-        secciones.forEach((seccion) => {
-            seccion.style.display = "none";
-        });
+        secciones.forEach(seccion => seccion.style.display = "none");
 
         const seccionActiva = document.getElementById(idSeccion);
-        if (seccionActiva) {
-            seccionActiva.style.display = "block";
-        }
+        if (seccionActiva) seccionActiva.style.display = "block";
 
-        botones.forEach((boton) => boton.classList.remove("active"));
+        botones.forEach(boton => boton.classList.remove("active"));
         const botonActivo = document.querySelector(`#btn-${idSeccion}`);
-        if (botonActivo) {
-            botonActivo.classList.add("active");
-        }
+        if (botonActivo) botonActivo.classList.add("active");
     }
 
     mostrarSeccion("datos-personales");
 
-    botones.forEach((boton) => {
+    botones.forEach(boton => {
         boton.addEventListener("click", (e) => {
             e.preventDefault();
             const idSeccion = boton.id.replace("btn-", "");
@@ -101,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // 🔁 Restaurar contadores al cargar
+    // 🔁 Restaurar contadores
     const badge = document.getElementById("contador-completos");
     let countGuardado = parseInt(localStorage.getItem("contadorCompletos") || "0");
     if (badge && countGuardado > 0) {
@@ -116,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
         badgeHistorial.style.display = "inline-block";
     }
 
-    // ✅ BroadcastChannel para recibir reportes en tiempo real
+    // ✅ Recibir reportes nuevos desde dashboardUsuario
     const canal = new BroadcastChannel("canalReportes");
 
     canal.addEventListener("message", (event) => {
@@ -125,15 +120,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if (mensaje.tipo === "nuevo-reporte" && mensaje.data) {
             const nuevo = mensaje.data;
 
-            // Solo actualizamos si existe la función y los datos clave no son undefined
-            if (
-                typeof window.agregarReporteAHistorial === "function" &&
-                nuevo.folio !== undefined &&
-                nuevo.nomina !== undefined
-            ) {
+            // Validación extra para evitar que lleguen como "undefined"
+            const camposEsperados = ["folio", "fechaRegistro", "nomina", "area", "encargado", "descripcion"];
+            const tieneTodosLosCampos = camposEsperados.every(campo => nuevo[campo] !== undefined && nuevo[campo] !== "");
+
+            if (typeof window.agregarReporteAHistorial === "function" && tieneTodosLosCampos) {
                 window.agregarReporteAHistorial(nuevo);
 
-                // ✅ Actualizar contador de historial
                 let count = parseInt(localStorage.getItem("contadorHistorial") || "0");
                 count++;
                 localStorage.setItem("contadorHistorial", count.toString());
@@ -143,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     badgeHistorial.style.display = "inline-block";
                 }
             } else {
-                console.warn("⚠ Reporte recibido sin datos válidos:", mensaje.data);
+                console.warn("⚠ Reporte recibido incompleto o inválido:", nuevo);
             }
         }
     });
