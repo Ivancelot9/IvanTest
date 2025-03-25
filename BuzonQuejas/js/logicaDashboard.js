@@ -110,34 +110,4 @@ document.addEventListener("DOMContentLoaded", function () {
         badgeHistorial.textContent = countHistorial.toString();
         badgeHistorial.style.display = "inline-block";
     }
-
-    // ✅ Recibir reportes nuevos desde dashboardUsuario
-    const canal = new BroadcastChannel("canalReportes");
-
-    canal.addEventListener("message", (event) => {
-        const mensaje = event.data;
-
-        if (mensaje.tipo === "nuevo-reporte" && mensaje.data) {
-            const nuevo = mensaje.data;
-
-            // Validación extra para evitar que lleguen como "undefined"
-            const camposEsperados = ["folio", "fechaRegistro", "nomina", "area", "encargado", "descripcion"];
-            const tieneTodosLosCampos = camposEsperados.every(campo => nuevo[campo] !== undefined && nuevo[campo] !== "");
-
-            if (typeof window.agregarReporteAHistorial === "function" && tieneTodosLosCampos) {
-                window.agregarReporteAHistorial(nuevo);
-
-                let count = parseInt(localStorage.getItem("contadorHistorial") || "0");
-                count++;
-                localStorage.setItem("contadorHistorial", count.toString());
-
-                if (badgeHistorial) {
-                    badgeHistorial.textContent = count.toString();
-                    badgeHistorial.style.display = "inline-block";
-                }
-            } else {
-                console.warn("⚠ Reporte recibido incompleto o inválido:", nuevo);
-            }
-        }
-    });
 });

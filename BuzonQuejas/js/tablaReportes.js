@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const canal = new BroadcastChannel("canalReportes"); // 🔧 AÑADIDO AQUÍ
+
     const filasPorPagina = 10;
     let paginaActual = 1;
     let datosReportes = [];
@@ -125,8 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 🟢 Agregar reporte desde BroadcastChannel o frontend en tiempo real
     window.agregarReporteAHistorial = function (nuevoReporte) {
-        // Validar que el reporte tenga datos mínimos necesarios
-        if (!nuevoReporte || !nuevoReporte.folio || !nuevoReporte.fechaRegistro || !nuevoReporte.nomina) {
+        if (!nuevoReporte || !nuevoReporte.FolioReportes || !nuevoReporte.FechaRegistro || !nuevoReporte.NumeroNomina) {
             console.warn("❌ Reporte recibido incompleto:", nuevoReporte);
             return;
         }
@@ -136,19 +137,17 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportes(1);
     };
 
+    // ✅ Listener real con fetch al recibir folio
     canal.addEventListener("message", (event) => {
         if (event.data?.tipo === "nuevo-reporte" && event.data.folio) {
             const folioNuevo = event.data.folio;
 
-            console.log("📬 Recibido folio nuevo por canal:", folioNuevo);
-
-            fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerReportesPorFolio.php?folio=${folioNuevo}`)
+            fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerReportePorFolio.php?folio=${folioNuevo}`)
                 .then(resp => resp.json())
                 .then(reporte => {
                     if (reporte && reporte.FolioReportes) {
                         window.agregarReporteAHistorial(reporte);
 
-                        // Actualizar contador si aún no está en vista
                         const currentSection = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
                         if (currentSection !== "historial-reportes") {
                             const badge = document.getElementById("contador-historial");
@@ -166,6 +165,5 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.error("❌ Error al obtener reporte por folio:", error);
                 });
         }
-
     });
 });
