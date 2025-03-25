@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const supervisorSelect = document.getElementById("supervisor");
         const shiftLeaderSelect = document.getElementById("shiftLeader");
 
-        // ✅ Usar la variable global
         const numNomina = numeroNominaGlobal;
 
         if (!numNomina) {
@@ -38,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
             Descripcion: reporteText
         };
 
-        // 🔥 Solo agregar `IdEncargado` si el usuario seleccionó Producción (IdArea = 1)
         if (parseInt(areaSelect.value) === 1) {
             let IdEncargado = supervisorSelect.value || shiftLeaderSelect.value;
             if (!IdEncargado) {
@@ -62,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (data.status === "success") {
                     alert("¡Reporte enviado correctamente!");
 
-                    // ✅ Crear objeto simulado del nuevo reporte
+                    // Crear objeto simulado del nuevo reporte
                     let nuevoReporte = {
                         folio: data.folio || "N/A",
                         fechaRegistro: new Date().toISOString().split("T")[0],
@@ -75,12 +73,17 @@ document.addEventListener("DOMContentLoaded", function () {
                         fechaFinalizacion: ""
                     };
 
-                    // ✅ Agregar a la tabla en tiempo real si está disponible
+                    // Agregar localmente si aplica
                     if (typeof window.agregarReporteAHistorial === "function") {
                         window.agregarReporteAHistorial(nuevoReporte);
                     }
 
-                    // ✅ Actualizar contador estilo Messenger solo si existe el badge
+                    // 🟢 Notificar al admin en tiempo real con BroadcastChannel
+                    const canal = new BroadcastChannel("canalReportes");
+                    canal.postMessage({ tipo: "nuevo-reporte", data: nuevoReporte });
+                    canal.close();
+
+                    // Actualizar contador tipo Messenger
                     const badge = document.getElementById("contador-historial");
                     let count = parseInt(localStorage.getItem("contadorHistorial") || "0");
                     count++;
@@ -91,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         badge.style.display = "inline-block";
                     }
 
-                    // ✅ Limpiar campos del formulario
+                    // Limpiar campos del formulario
                     document.getElementById("reporte").value = "";
                     areaSelect.value = "";
                     supervisorSelect.value = "";

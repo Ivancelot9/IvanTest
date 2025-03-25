@@ -112,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // 🔁 Restaurar contador de "Reportes Completos" al cargar
     const badge = document.getElementById("contador-completos");
     let countGuardado = parseInt(localStorage.getItem("contadorCompletos") || "0");
-
     if (badge && countGuardado > 0) {
         badge.textContent = countGuardado.toString();
         badge.style.display = "inline-block";
@@ -121,9 +120,31 @@ document.addEventListener("DOMContentLoaded", function () {
     // 🔁 Restaurar contador de "Historial de Reportes" al cargar
     const badgeHistorial = document.getElementById("contador-historial");
     let countHistorial = parseInt(localStorage.getItem("contadorHistorial") || "0");
-
     if (badgeHistorial && countHistorial > 0) {
         badgeHistorial.textContent = countHistorial.toString();
         badgeHistorial.style.display = "inline-block";
     }
+
+    // 🟢 Escuchar mensajes de otros contextos con BroadcastChannel
+    const canal = new BroadcastChannel("canalReportes");
+    canal.onmessage = function (event) {
+        if (event.data.tipo === "nuevo-reporte") {
+            const nuevoReporte = event.data.data;
+
+            // Agregar a tabla si la función global está disponible
+            if (typeof window.agregarReporteAHistorial === "function") {
+                window.agregarReporteAHistorial(nuevoReporte);
+            }
+
+            // Actualizar contador de notificación
+            let count = parseInt(localStorage.getItem("contadorHistorial") || "0");
+            count++;
+            localStorage.setItem("contadorHistorial", count.toString());
+
+            if (badgeHistorial) {
+                badgeHistorial.textContent = count.toString();
+                badgeHistorial.style.display = "inline-block";
+            }
+        }
+    };
 });
