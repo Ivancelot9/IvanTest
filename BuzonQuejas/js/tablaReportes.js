@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (event.data?.tipo === "nuevo-reporte" && event.data.folio) {
             const folioNuevo = event.data.folio;
 
-            fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerReportePorFolio.php?folio=${folioNuevo}`)
+            fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerReportesPorFolio.php?folio=${folioNuevo}`)
                 .then(resp => resp.json())
                 .then(reporte => {
                     if (reporte && reporte.FolioReportes) {
