@@ -571,5 +571,18 @@ body {
     position: relative;
 }
 
+/* 🔔 Estilo para fila recién insertada */
+.nueva-fila {
+    animation: parpadeo 0.4s ease-in-out 3;
+    background-color: #fff8c4 !important; /* amarillo claro */
+}
+
+/* 🔁 Animación */
+@keyframes parpadeo {
+    0%, 100% { background-color: #fff8c4; }
+    50% { background-color: #ffeb7a; }
+}
+
+
 
 

@@ -135,6 +135,15 @@ document.addEventListener("DOMContentLoaded", function () {
         datosReportes.unshift(nuevoReporte);
         datosFiltrados = [...datosReportes];
         mostrarReportes(1);
+
+        // ✨ Efecto visual en la primera fila
+        const primeraFila = tablaBody.querySelector("tr");
+        if (primeraFila) {
+            primeraFila.classList.add("nueva-fila");
+            setTimeout(() => {
+                primeraFila.classList.remove("nueva-fila");
+            }, 2000);
+        }
     };
 
     // ✅ Listener real con fetch al recibir folio
