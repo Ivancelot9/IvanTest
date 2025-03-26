@@ -1,22 +1,43 @@
 <?php
-include_once 'conexion.php'; // Asegúrate que aquí sí se defina $conn
+// 🔥 Mostrar errores detallados
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+header('Content-Type: application/json');
+
+include_once("conexion.php");
 
 if (!isset($_GET['folio'])) {
     echo json_encode(["error" => "Folio no especificado"]);
     exit;
 }
 
-$folio = intval($_GET['folio']); // Asegura que sea un número entero
+$folio = intval($_GET['folio']);
 
-if (!isset($conn)) {
-    echo json_encode(["error" => "No se pudo establecer conexión con la base de datos"]);
-    exit;
-}
+try {
+    $con = new LocalConector();
+    $conn = $con->conectar();
 
-$sql = "SELECT * FROM Reporte WHERE FolioReportes = ?";
-$stmt = $conn->prepare($sql);
+    $query = "SELECT 
+                r.FolioReportes, 
+                r.FechaRegistro, 
+                r.NumeroNomina, 
+                r.Descripcion, 
+                r.Comentarios, 
+                a.NombreArea AS Area,
+                GROUP_CONCAT(CONCAT(e.NombreEncargado, ' (', e.Tipo, ')') SEPARATOR ', ') AS Encargado
+              FROM Reporte r
+              LEFT JOIN Encargado e ON r.IdEncargado = e.IdEncargado
+              LEFT JOIN Area a ON r.IdArea = a.IdArea
+              WHERE r.FolioReportes = ?
+              GROUP BY r.FolioReportes";
 
-if ($stmt) {
+    $stmt = $conn->prepare($query);
+
+    if (!$stmt) {
+        echo json_encode(["error" => "Error al preparar la consulta: " . $conn->error]);
+        exit;
+    }
+
     $stmt->bind_param("i", $folio);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -29,9 +50,7 @@ if ($stmt) {
     }
 
     $stmt->close();
-} else {
-    echo json_encode(["error" => "Error al preparar la consulta"]);
+    $conn->close();
+} catch (Exception $e) {
+    echo json_encode(["error" => "Error del servidor: " . $e->getMessage()]);
 }
-
-$conn->close();
-
