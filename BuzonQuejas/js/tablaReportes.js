@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function cargarReportes() {
-        fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerReportesPendientes.php")
+        fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/obteneReportesPendientes.php")
             .then(response => response.json())
             .then(data => {
                 if (!data || data.length === 0) {
