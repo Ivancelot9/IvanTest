@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function cargarReportes() {
-        fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/obteneReportesPendientes.php")
+        fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerReportesPendientes.php")
             .then(response => response.json())
             .then(data => {
                 if (!data || data.length === 0) {
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (event.data?.tipo === "nuevo-reporte" && event.data.folio) {
             const folioNuevo = event.data.folio;
 
-            fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerReportesPorFolio.php?folio=${folioNuevo}`)
+            fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obteneReportesPorFolio.php?folio=${folioNuevo}`)
                 .then(resp => resp.json())
                 .then(reporte => {
                     if (reporte && reporte.FolioReportes) {
