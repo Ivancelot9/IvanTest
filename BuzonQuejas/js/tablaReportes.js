@@ -132,7 +132,10 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        datosReportes.unshift(nuevoReporte);
+        datosReportes.push(nuevoReporte); // Agrega al final temporalmente
+
+// 🔁 Ordenar por FechaRegistro (de más reciente a más antiguo)
+        datosReportes.sort((a, b) => new Date(b.FechaRegistro) - new Date(a.FechaRegistro));
         datosFiltrados = [...datosReportes];
         mostrarReportes(1);
 
