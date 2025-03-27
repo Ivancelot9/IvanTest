@@ -4,6 +4,8 @@ function validarReporte() {
     const selectShiftLeader = document.getElementById("shiftLeader");
     const inputQueja = document.getElementById("reporte");
 
+    const ID_PRODUCCION = "1"; // 👈 ID real de Producción (ajusta si cambia)
+
     // 🔹 Validación del Paso 2 (Área)
     if (!selectArea.value) {
         Swal.fire({
@@ -15,8 +17,8 @@ function validarReporte() {
         return false;
     }
 
-    // 🔹 Si eligió Producción, verificar Supervisor y Shift Leader
-    if (selectArea.value === "Producción") {
+    // 🔹 Si eligió Producción (por ID), verificar Supervisor y Shift Leader
+    if (selectArea.value === ID_PRODUCCION) {
         if (!selectSupervisor.value) {
             Swal.fire({
                 title: "¡Falta el Supervisor!",
@@ -48,6 +50,6 @@ function validarReporte() {
         return false;
     }
 
-    // ✅ Si todo está completo, permitir el envío
+    // ✅ Todo bien, permitir envío
     return true;
 }
