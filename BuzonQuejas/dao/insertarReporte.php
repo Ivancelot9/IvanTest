@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 header("Content-Type: application/json");
 include_once("conexion.php");
 date_default_timezone_set('America/Mexico_City');
@@ -25,13 +27,15 @@ try {
     $con = new LocalConector();
     $conn = $con->conectar();
 
-    // Insertar el nuevo reporte
-    $query = $conn->prepare("INSERT INTO Reporte (NumeroNomina, IdEncargado, IdShiftLeader, FechaRegistro, Descripcion, IdArea, Comentarios) 
-                             VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $query->bind_param("siissis", $NumNomina, $IdEncargado, $IdShiftLeader, $Descripcion, $IdArea, $Comentarios);
+    // ✅ Insertar el nuevo reporte con 7 campos
+    $query = $conn->prepare("INSERT INTO Reporte 
+        (NumeroNomina, IdEncargado, IdShiftLeader, FechaRegistro, Descripcion, IdArea, Comentarios) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+    $query->bind_param("siissis", $NumNomina, $IdEncargado, $IdShiftLeader, $FechaRegistro, $Descripcion, $IdArea, $Comentarios);
 
     if ($query->execute()) {
-        $folioGenerado = $conn->insert_id; // Recuperar el folio generado automáticamente
+        $folioGenerado = $conn->insert_id;
         echo json_encode([
             "status" => "success",
             "message" => "Reporte enviado correctamente.",
