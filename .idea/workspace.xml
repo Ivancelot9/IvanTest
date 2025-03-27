@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Arreglando Filtrador Reportes Completos">
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/obtenerReportesCompletos.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/obtenerReportesCompletos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/insertarReporte.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/insertarReporte.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,15 +154,7 @@
       <workItem from="1742911968116" duration="15266000" />
       <workItem from="1742998840741" duration="9475000" />
       <workItem from="1743023164575" duration="1389000" />
-      <workItem from="1743084876445" duration="4805000" />
-    </task>
-    <task id="LOCAL-00666" summary="Modal Estatus">
-      <option name="closed" value="true" />
-      <created>1742498304314</created>
-      <option name="number" value="00666" />
-      <option name="presentableId" value="LOCAL-00666" />
-      <option name="project" value="LOCAL" />
-      <updated>1742498304315</updated>
+      <workItem from="1743084876445" duration="5787000" />
     </task>
     <task id="LOCAL-00667" summary="Modal Estatus">
       <option name="closed" value="true" />
@@ -548,7 +540,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743090617076</updated>
     </task>
-    <option name="localTasksCounter" value="715" />
+    <task id="LOCAL-00715" summary="Arreglando Filtrador Reportes Completos">
+      <option name="closed" value="true" />
+      <created>1743090776795</created>
+      <option name="number" value="00715" />
+      <option name="presentableId" value="LOCAL-00715" />
+      <option name="project" value="LOCAL" />
+      <updated>1743090776795</updated>
+    </task>
+    <option name="localTasksCounter" value="716" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -27,7 +27,7 @@ try {
 
     // Insertar el nuevo reporte
     $query = $conn->prepare("INSERT INTO Reporte (NumeroNomina, IdEncargado, IdShiftLeader, FechaRegistro, Descripcion, IdArea, Comentarios) 
-                             VALUES (?, ?, ?, ?, ?, ?)");
+                             VALUES (?, ?, ?, ?, ?, ?, ?)");
     $query->bind_param("siissis", $NumNomina, $IdEncargado, $IdShiftLeader, $Descripcion, $IdArea, $Comentarios);
 
     if ($query->execute()) {
