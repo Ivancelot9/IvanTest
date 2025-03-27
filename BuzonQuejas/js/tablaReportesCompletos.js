@@ -12,24 +12,42 @@ document.addEventListener("DOMContentLoaded", function () {
     let paginaActualCompleto = 1;
     const filasPorPagina = 10;
 
-    // 🔹 Exponer para uso desde fechaFinalizacion.js
+    // 🟡 Diccionario para mapear columnas
+    const columnasBDCompletos = {
+        folio: "folio",
+        nomina: "nomina",
+        encargado: "encargado",
+        fechaFinalizacion: "fechaFinalizacion",
+        estatus: "estatus"
+    };
+
+    function resaltarTexto(texto, filtro) {
+        if (!filtro || filtro.trim() === "") return texto;
+        const regex = new RegExp(`(${filtro})`, "gi");
+        return texto.replace(regex, `<span class="highlight">$1</span>`);
+    }
+
+    function aplicarResaltado(valorCampo, campo, filtro, columnaSeleccionada) {
+        return columnaSeleccionada === campo ? resaltarTexto(valorCampo, filtro) : valorCampo;
+    }
+
     window.mostrarReportesCompletos = function (pagina = 1) {
         const inicio = (pagina - 1) * filasPorPagina;
         const fin = inicio + filasPorPagina;
         const reportesPagina = datosFiltradosCompletos.slice(inicio, fin);
         const valorFiltro = filterInputCompleto.value.toLowerCase();
-        const columna = filterColumnCompleto.value;
+        const columnaSeleccionada = filterColumnCompleto.value;
 
         tablaCompletosBody.innerHTML = "";
 
         reportesPagina.forEach(reporte => {
             let fila = document.createElement("tr");
             fila.innerHTML = `
-                <td>${columna === "folio" ? resaltarTexto(reporte.folio, valorFiltro) : reporte.folio}</td>
-                <td>${columna === "nomina" ? resaltarTexto(reporte.nomina, valorFiltro) : reporte.nomina}</td>
-                <td>${columna === "encargado" ? resaltarTexto(reporte.encargado, valorFiltro) : reporte.encargado}</td>
-                <td>${columna === "fechaFinalizacion" ? resaltarTexto(reporte.fechaFinalizacion, valorFiltro) : reporte.fechaFinalizacion}</td>
-                <td>${columna === "estatus" ? resaltarTexto(reporte.estatus, valorFiltro) : reporte.estatus}</td>
+                <td>${aplicarResaltado(reporte.folio, "folio", valorFiltro, columnaSeleccionada)}</td>
+                <td>${aplicarResaltado(reporte.nomina, "nomina", valorFiltro, columnaSeleccionada)}</td>
+                <td>${aplicarResaltado(reporte.encargado, "encargado", valorFiltro, columnaSeleccionada)}</td>
+                <td>${aplicarResaltado(reporte.fechaFinalizacion, "fechaFinalizacion", valorFiltro, columnaSeleccionada)}</td>
+                <td>${aplicarResaltado(reporte.estatus, "estatus", valorFiltro, columnaSeleccionada)}</td>
             `;
 
             let boton = document.createElement("button");
@@ -51,12 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
         paginaActualCompleto = pagina;
     };
 
-    function resaltarTexto(texto, filtro) {
-        if (!filtro || filtro.trim() === "") return texto;
-        const regex = new RegExp(`(${filtro})`, "gi");
-        return texto.replace(regex, `<span class="highlight">$1</span>`);
-    }
-
     function cargarReportesCompletos() {
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/conseguirReportesCompletos.php")
             .then(res => res.json())
@@ -77,10 +89,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function filtrarReportesCompletos() {
         const valorFiltro = filterInputCompleto.value.toLowerCase();
-        const columna = filterColumnCompleto.value;
+        const columnaSeleccionada = filterColumnCompleto.value;
+        const columnaBD = columnasBDCompletos[columnaSeleccionada];
 
         datosFiltradosCompletos = datosReportesCompletos.filter(reporte => {
-            const valor = (reporte[columna] || "").toString().toLowerCase();
+            const valor = (reporte[columnaBD] || "").toString().toLowerCase();
             return valor.includes(valorFiltro);
         });
 
@@ -119,7 +132,6 @@ document.addEventListener("DOMContentLoaded", function () {
         XLSX.writeFile(wb, `Reporte_${reporte.folio}.xlsx`);
     }
 
-    // 🟢 Exportar por botón individual
     tablaCompletosBody.addEventListener("click", function (event) {
         if (event.target.closest(".convertidor")) {
             const folio = event.target.closest(".convertidor").getAttribute("data-folio");
@@ -133,7 +145,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 🟡 Navegación entre páginas
     prevPageBtnCompleto.addEventListener("click", () => {
         if (paginaActualCompleto > 1) {
             paginaActualCompleto--;
@@ -151,21 +162,13 @@ document.addEventListener("DOMContentLoaded", function () {
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
 
-    // 🚀 Al cargar la página
     cargarReportesCompletos();
 
-    // 🔁 Para que fechaFinalizacion.js también pueda llamar esta función directamente
     window.cargarReportesCompletos = cargarReportesCompletos;
 
-    // 🟢 Agregar reporte dinámicamente desde fechaFinalizacion.js
     window.moverReporteACompletados = function (nuevoReporte) {
-        // Lo agregamos al inicio del arreglo completo
         datosReportesCompletos.unshift(nuevoReporte);
-
-        // Actualizamos el arreglo filtrado también
         datosFiltradosCompletos = [...datosReportesCompletos];
-
-        // Refrescamos la tabla (puedes quedarte en la misma página si prefieres)
         mostrarReportesCompletos(1);
     };
 });
