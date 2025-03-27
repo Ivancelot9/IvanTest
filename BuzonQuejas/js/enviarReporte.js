@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const supervisorSelect = document.getElementById("supervisor");
         const shiftLeaderSelect = document.getElementById("shiftLeader");
 
-
         let reporteData = {
             NumNomina: numeroNominaGlobal,
             IdArea: areaSelect.value,
@@ -43,14 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.status === "success") {
-                    Swal.fire({
-                        icon: "success",
-                        title: "¡Reporte enviado!",
-                        text: "Tu reporte fue enviado correctamente.",
-                        timer: 2000,
-                        showConfirmButton: false
-                    });
-
+                    // 🔊 Emitir mensaje por canal
                     const canal = new BroadcastChannel("canalReportes");
                     canal.postMessage({
                         tipo: "nuevo-reporte",
@@ -63,6 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     areaSelect.value = "";
                     supervisorSelect.value = "";
                     shiftLeaderSelect.value = "";
+
+                    // No se ejecuta ningún Swal aquí. Solo lo que tú ya tengas definido.
                 } else {
                     Swal.fire("Error", data.message || "Ocurrió un error al enviar el reporte.", "error");
                 }
