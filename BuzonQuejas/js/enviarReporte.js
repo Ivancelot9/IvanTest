@@ -11,37 +11,28 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnSiguiente = document.getElementById("btnSiguiente");
 
     btnSiguiente.addEventListener("click", function () {
+        // 🛑 Validar antes de continuar (esto usa validacionesReportes.js)
+        if (!validarReporte()) return;
+
         const areaSelect = document.getElementById("area");
         const reporteText = document.getElementById("reporte").value.trim();
         const supervisorSelect = document.getElementById("supervisor");
         const shiftLeaderSelect = document.getElementById("shiftLeader");
 
-        const numNomina = numeroNominaGlobal;
-
-        if (!numNomina || areaSelect.value === "" || reporteText === "") {
-            return; // ❌ Datos esenciales faltantes, detenemos
-        }
 
         let reporteData = {
-            NumNomina: numNomina,
+            NumNomina: numeroNominaGlobal,
             IdArea: areaSelect.value,
             Descripcion: reporteText
         };
 
-        // Si es Producción, validar ambos encargados
+        // 🟡 Solo incluir estos campos si el área es Producción
         if (parseInt(areaSelect.value) === 1) {
-            const IdEncargado = supervisorSelect.value;
-            const IdShiftLeader = shiftLeaderSelect.value;
-
-            if (!IdEncargado || !IdShiftLeader) {
-                return;
-            }
-
-            reporteData.IdEncargado = IdEncargado;
-            reporteData.IdShiftLeader = IdShiftLeader;
+            reporteData.IdEncargado = supervisorSelect.value;
+            reporteData.IdShiftLeader = shiftLeaderSelect.value;
         }
 
-        // Enviar a la API
+        // Enviar reporte al backend
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/insertarReporte.php", {
             method: "POST",
             headers: {
@@ -52,7 +43,14 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.status === "success") {
-                    // Emitir el nuevo reporte por BroadcastChannel
+                    Swal.fire({
+                        icon: "success",
+                        title: "¡Reporte enviado!",
+                        text: "Tu reporte fue enviado correctamente.",
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+
                     const canal = new BroadcastChannel("canalReportes");
                     canal.postMessage({
                         tipo: "nuevo-reporte",
@@ -60,15 +58,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
                     canal.close();
 
-                    // Limpiar campos
+                    // 🔄 Limpiar campos
                     document.getElementById("reporte").value = "";
                     areaSelect.value = "";
                     supervisorSelect.value = "";
                     shiftLeaderSelect.value = "";
+                } else {
+                    Swal.fire("Error", data.message || "Ocurrió un error al enviar el reporte.", "error");
                 }
             })
             .catch(() => {
-                // No mostramos errores de red
+                Swal.fire("Error", "No se pudo conectar con el servidor.", "error");
             });
     });
 });
