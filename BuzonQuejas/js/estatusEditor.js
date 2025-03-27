@@ -148,22 +148,15 @@ document.addEventListener("DOMContentLoaded", function () {
         let botonEstatus = document.querySelector(`.ver-estatus-btn[data-folio='${currentFolio}']`);
 
         if (botonEstatus) {
-            // 1. Aplicar estilos de círculo visual
-            botonEstatus.classList.remove("ver-estatus-btn"); // Quitamos estilo original si lo deseas
-            botonEstatus.classList.add("progress-circle");
+            botonEstatus.classList.add("ver-estatus-circulo"); // ✅ Transforma en círculo
+            botonEstatus.style.backgroundColor = manualCircle.style.backgroundColor; // ✅ Color del círculo
+            botonEstatus.textContent = `${progresoManual}%`; // ✅ Muestra porcentaje
 
-            // 2. Aplicar el mismo color y porcentaje
-            botonEstatus.style.backgroundColor = manualCircle.style.backgroundColor;
-            botonEstatus.textContent = `${progresoManual}%`;
-
-            // 3. Ajustar otros estilos para que no se vea el borde feo (si los hay)
-            botonEstatus.style.border = "6px solid black";
-            botonEstatus.style.color = "white";
-            botonEstatus.style.fontWeight = "bold";
-            botonEstatus.style.textShadow = "3px 3px 0 black, -3px -3px 0 black, 3px -3px 0 black, -3px 3px 0 black";
+            // ⚠️ Asegura que siga teniendo la clase original para abrir modal
+            botonEstatus.classList.add("ver-estatus-btn");
         }
 
-        Swal.fire("\u00a1Estatus Guardado!", `El reporte ha sido actualizado a ${progresoManual}%`, "success");
+        Swal.fire("¡Estatus Guardado!", `El reporte ha sido actualizado a ${progresoManual}%`, "success");
         modal.style.display = "none";
     });
 

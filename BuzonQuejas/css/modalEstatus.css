@@ -191,4 +191,21 @@
     -3px 3px 0 black;
 }
 
+/* Botón circular pequeño que sigue siendo funcional */
+.ver-estatus-btn.ver-estatus-circulo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    border: 3px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 1px 1px 0 black;
+    padding: 0;
+}
+
+
 
