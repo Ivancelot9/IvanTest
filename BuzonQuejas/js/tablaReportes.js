@@ -68,7 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
         reportesPagina.forEach(reporte => {
             let encargadoTexto = reporte.Encargado || reporte.encargado || "N/A";
             let folio = reporte.FolioReportes || reporte.folio || "S/F";
-            let progresoManual = estatusGuardados[folio]?.progresoManual || null;
+            let progresoManual = estatusGuardados[folio] ? estatusGuardados[folio].progresoManual : null;
+
             let estadoClase = obtenerClaseEstado(progresoManual);
 
             const porcentajeTexto = progresoManual !== null ? `${progresoManual}%` : "Ver Estatus";
