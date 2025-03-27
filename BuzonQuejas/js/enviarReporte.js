@@ -6,9 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const nominaSpan = document.getElementById("nominaUsuario");
     if (nominaSpan) {
         numeroNominaGlobal = nominaSpan.textContent.trim();
-        console.log("✅ Número de nómina detectado:", numeroNominaGlobal);
-    } else {
-        console.warn("❌ No se encontró el elemento nominaUsuario");
     }
 
     const btnSiguiente = document.getElementById("btnSiguiente");
@@ -21,14 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const numNomina = numeroNominaGlobal;
 
-        if (!numNomina) {
-            alert("Error: No se encontró el número de nómina.");
-            return;
-        }
-
-        if (areaSelect.value === "" || reporteText === "") {
-            alert("Debes seleccionar un área y escribir tu queja.");
-            return;
+        if (!numNomina || areaSelect.value === "" || reporteText === "") {
+            return; // ❌ Datos esenciales faltantes, detenemos
         }
 
         let reporteData = {
@@ -37,12 +28,12 @@ document.addEventListener("DOMContentLoaded", function () {
             Descripcion: reporteText
         };
 
+        // Si es Producción, validar ambos encargados
         if (parseInt(areaSelect.value) === 1) {
             const IdEncargado = supervisorSelect.value;
             const IdShiftLeader = shiftLeaderSelect.value;
 
             if (!IdEncargado || !IdShiftLeader) {
-                alert("Debes seleccionar tanto el Supervisor como el Shift Leader.");
                 return;
             }
 
@@ -50,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
             reporteData.IdShiftLeader = IdShiftLeader;
         }
 
+        // Enviar a la API
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/insertarReporte.php", {
             method: "POST",
             headers: {
@@ -60,9 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.status === "success") {
-                    alert("¡Reporte enviado correctamente!");
-
-                    // 🔴 Solo enviamos el FOLIO al canal
+                    // Emitir el nuevo reporte por BroadcastChannel
                     const canal = new BroadcastChannel("canalReportes");
                     canal.postMessage({
                         tipo: "nuevo-reporte",
@@ -75,13 +65,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     areaSelect.value = "";
                     supervisorSelect.value = "";
                     shiftLeaderSelect.value = "";
-                } else {
-                    alert("Error: " + data.message);
                 }
             })
-            .catch(error => {
-                console.error("Error al enviar el reporte:", error);
-                alert("Ocurrió un error al enviar el reporte.");
+            .catch(() => {
+                // No mostramos errores de red
             });
     });
 });
