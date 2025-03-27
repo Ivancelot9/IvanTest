@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const canal = new BroadcastChannel("canalReportes"); // 🔧 AÑADIDO AQUÍ
+    const canal = new BroadcastChannel("canalReportes");
 
     const filasPorPagina = 10;
     let paginaActual = 1;
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${resaltarTexto(reporte.FechaRegistro || reporte.fechaRegistro || "Sin fecha", filterInput.value)}</td>
                 <td>${resaltarTexto(reporte.NumeroNomina || reporte.nomina || "Sin nómina", filterInput.value)}</td>
                 <td>${resaltarTexto(reporte.Area || reporte.area || "Sin área", filterInput.value)}</td>
-                <td>${resaltarTexto(encargadoTexto, filterInput.value)}</td>
+                <td class="celda-encargado"></td>
                 <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion || reporte.descripcion || 'Sin descripción'}">Mostrar Descripción</button></td>
                 <td><button class="agregar-comentario" data-folio="${folio}">Agregar Comentario</button></td>
                 <td class="estatus-cell">
@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td><button class="seleccionar-fecha" data-folio="${folio}">Finalizar Reporte</button></td>
             `;
 
+            fila.querySelector(".celda-encargado").innerHTML = resaltarTexto(encargadoTexto, filterInput.value);
             tablaBody.appendChild(fila);
         });
 
@@ -125,21 +126,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     cargarReportes();
 
-    // 🟢 Agregar reporte desde BroadcastChannel o frontend en tiempo real
     window.agregarReporteAHistorial = function (nuevoReporte) {
         if (!nuevoReporte || !nuevoReporte.FolioReportes || !nuevoReporte.FechaRegistro || !nuevoReporte.NumeroNomina) {
             console.warn("❌ Reporte recibido incompleto:", nuevoReporte);
             return;
         }
 
-        datosReportes.push(nuevoReporte); // Agrega al final temporalmente
-
-// 🔁 Ordenar por FechaRegistro (de más reciente a más antiguo)
+        datosReportes.push(nuevoReporte);
         datosReportes.sort((a, b) => new Date(b.FechaRegistro) - new Date(a.FechaRegistro));
         datosFiltrados = [...datosReportes];
         mostrarReportes(1);
 
-        // ✨ Efecto visual en la primera fila
         const primeraFila = tablaBody.querySelector("tr");
         if (primeraFila) {
             primeraFila.classList.add("nueva-fila");
@@ -149,7 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    // ✅ Listener real con fetch al recibir folio
     canal.addEventListener("message", (event) => {
         if (event.data?.tipo === "nuevo-reporte" && event.data.folio) {
             const folioNuevo = event.data.folio;

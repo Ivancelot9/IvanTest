@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Arreglando Filtrador Reportes Completos">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Mostrar ShiftLeader y Supervisor en la tabla">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/obtenerReportesPendientes.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/obtenerReportesPendientes.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,15 +154,7 @@
       <workItem from="1742911968116" duration="15266000" />
       <workItem from="1742998840741" duration="9475000" />
       <workItem from="1743023164575" duration="1389000" />
-      <workItem from="1743084876445" duration="7603000" />
-    </task>
-    <task id="LOCAL-00670" summary="Insertar Fecha Finalizacion en la BD">
-      <option name="closed" value="true" />
-      <created>1742504301337</created>
-      <option name="number" value="00670" />
-      <option name="presentableId" value="LOCAL-00670" />
-      <option name="project" value="LOCAL" />
-      <updated>1742504301337</updated>
+      <workItem from="1743084876445" duration="8491000" />
     </task>
     <task id="LOCAL-00671" summary="Insertar Fecha Finalizacion en la BD">
       <option name="closed" value="true" />
@@ -549,7 +540,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743094122736</updated>
     </task>
-    <option name="localTasksCounter" value="719" />
+    <task id="LOCAL-00719" summary="Mostrar ShiftLeader y Supervisor en la tabla">
+      <option name="closed" value="true" />
+      <created>1743094575147</created>
+      <option name="number" value="00719" />
+      <option name="presentableId" value="LOCAL-00719" />
+      <option name="project" value="LOCAL" />
+      <updated>1743094575147</updated>
+    </task>
+    <option name="localTasksCounter" value="720" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -601,7 +600,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tabla Reportes Calendario Colores 3.0" />
     <MESSAGE value="Estatus Tabla" />
     <MESSAGE value="Estatus Tabla 1.0" />
     <MESSAGE value="Tabla Reportes Completos" />
@@ -626,6 +624,7 @@
     <MESSAGE value="Insertar Fecha Finalizacion en la BD" />
     <MESSAGE value="Integrando Notificaciones" />
     <MESSAGE value="Arreglando Filtrador Reportes Completos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglando Filtrador Reportes Completos" />
+    <MESSAGE value="Mostrar ShiftLeader y Supervisor en la tabla" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mostrar ShiftLeader y Supervisor en la tabla" />
   </component>
 </project>
