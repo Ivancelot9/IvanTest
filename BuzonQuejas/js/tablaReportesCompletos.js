@@ -22,9 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     function resaltarTexto(texto, filtro) {
-        if (!filtro || filtro.trim() === "") return texto;
+        if (!filtro || filtro.trim() === "") return String(texto ?? ""); // convierte a texto si es null/undefined
+        const safeText = String(texto ?? ""); // protección contra undefined/null/number
         const regex = new RegExp(`(${filtro})`, "gi");
-        return texto.replace(regex, `<span class="highlight">$1</span>`);
+        return safeText.replace(regex, `<span class="highlight">$1</span>`);
     }
 
     function aplicarResaltado(valorCampo, campo, filtro, columnaSeleccionada) {
