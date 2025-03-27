@@ -64,25 +64,53 @@ document.addEventListener("DOMContentLoaded", function () {
             let progresoManual = estatusGuardados[folio]?.progresoManual || null;
             let estadoClase = obtenerClaseEstado(progresoManual);
 
+            const porcentajeTexto = progresoManual !== null ? `${progresoManual}%` : "Ver Estatus";
+            const esCirculo = progresoManual !== null;
+            const color = estadoClase || "white";
+
+            const botonEstatusHTML = `
+            <button class="ver-estatus-btn ${estadoClase}" data-folio="${folio}"
+                style="
+                    ${esCirculo ? `
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        background-color: ${color};
+                        color: white;
+                        font-weight: bold;
+                        font-size: 14px;
+                        text-shadow: 2px 2px 0 black;
+                        border: 3px solid black;
+                        margin: auto;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    ` : `
+                        background: white;
+                        color: black;
+                        border: 2px solid black;
+                        font-weight: bold;
+                        padding: 4px 10px;
+                        margin: auto;
+                    `}
+                ">
+                ${porcentajeTexto}
+            </button>
+        `;
+
             let fila = document.createElement("tr");
             fila.innerHTML = `
-                <td>${resaltarTexto(folio, filterInput.value)}</td>
-                <td>${resaltarTexto(reporte.FechaRegistro || reporte.fechaRegistro || "Sin fecha", filterInput.value)}</td>
-                <td>${resaltarTexto(reporte.NumeroNomina || reporte.nomina || "Sin nómina", filterInput.value)}</td>
-                <td>${resaltarTexto(reporte.Area || reporte.area || "Sin área", filterInput.value)}</td>
-                <td class="celda-encargado"></td>
-                <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion || reporte.descripcion || 'Sin descripción'}">Mostrar Descripción</button></td>
-                <td><button class="agregar-comentario" data-folio="${folio}">Agregar Comentario</button></td>
-                <td class="estatus-cell">
-                    <button class="ver-estatus-btn ${estadoClase}" data-folio="${folio}" 
-                        style="${progresoManual !== null ? '' : 'background: white; color: black; border: 2px solid black;'}">
-                        Ver Estatus
-                    </button>
-                </td>
-                <td><button class="seleccionar-fecha" data-folio="${folio}">Finalizar Reporte</button></td>
-            `;
+            <td>${resaltarTexto(folio, filterInput.value)}</td>
+            <td>${resaltarTexto(reporte.FechaRegistro || "Sin fecha", filterInput.value)}</td>
+            <td>${resaltarTexto(reporte.NumeroNomina || "Sin nómina", filterInput.value)}</td>
+            <td>${resaltarTexto(reporte.Area || "Sin área", filterInput.value)}</td>
+            <td class="celda-encargado">${resaltarTexto(encargadoTexto, filterInput.value)}</td>
+            <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion || 'Sin descripción'}">Mostrar Descripción</button></td>
+            <td><button class="agregar-comentario" data-folio="${folio}">Agregar Comentario</button></td>
+            <td class="estatus-cell">${botonEstatusHTML}</td>
+            <td><button class="seleccionar-fecha" data-folio="${folio}">Finalizar Reporte</button></td>
+        `;
 
-            fila.querySelector(".celda-encargado").innerHTML = resaltarTexto(encargadoTexto, filterInput.value);
             tablaBody.appendChild(fila);
         });
 
