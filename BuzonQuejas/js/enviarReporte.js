@@ -38,12 +38,16 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         if (parseInt(areaSelect.value) === 1) {
-            let IdEncargado = supervisorSelect.value || shiftLeaderSelect.value;
-            if (!IdEncargado) {
-                alert("Debes seleccionar un Supervisor o Shift Leader.");
+            const IdEncargado = supervisorSelect.value;
+            const IdShiftLeader = shiftLeaderSelect.value;
+
+            if (!IdEncargado || !IdShiftLeader) {
+                alert("Debes seleccionar tanto el Supervisor como el Shift Leader.");
                 return;
             }
+
             reporteData.IdEncargado = IdEncargado;
+            reporteData.IdShiftLeader = IdShiftLeader;
         }
 
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/insertarReporte.php", {
