@@ -28,11 +28,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function obtenerClaseEstado(progreso) {
-        if (progreso === 100) return "green";
-        if (progreso === 75) return "blue";
-        if (progreso === 50) return "yellow";
-        if (progreso === 25) return "red";
-        return "";
+        switch (parseInt(progreso)) {
+            case 100:
+                return "green";
+            case 75:
+                return "blue";
+            case 50:
+                return "yellow";
+            case 25:
+                return "red";
+            default:
+                return "";
+        }
     }
 
     function cargarReportes() {

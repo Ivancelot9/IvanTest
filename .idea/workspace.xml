@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Mostrar ShiftLeader y Supervisor en la tabla">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalEstatus.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalEstatus.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Mostrar ShiftLeader y Supervisor en la tabla" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -156,15 +152,7 @@
       <workItem from="1742911968116" duration="15266000" />
       <workItem from="1742998840741" duration="9475000" />
       <workItem from="1743023164575" duration="1389000" />
-      <workItem from="1743084876445" duration="17034000" />
-    </task>
-    <task id="LOCAL-00681" summary="Insertar Fecha Finalizacion en la BD">
-      <option name="closed" value="true" />
-      <created>1742578525262</created>
-      <option name="number" value="00681" />
-      <option name="presentableId" value="LOCAL-00681" />
-      <option name="project" value="LOCAL" />
-      <updated>1742578525263</updated>
+      <workItem from="1743084876445" duration="17360000" />
     </task>
     <task id="LOCAL-00682" summary="Insertar Fecha Finalizacion en la BD">
       <option name="closed" value="true" />
@@ -550,7 +538,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743103034014</updated>
     </task>
-    <option name="localTasksCounter" value="730" />
+    <task id="LOCAL-00730" summary="Mostrar ShiftLeader y Supervisor en la tabla">
+      <option name="closed" value="true" />
+      <created>1743108043229</created>
+      <option name="number" value="00730" />
+      <option name="presentableId" value="LOCAL-00730" />
+      <option name="project" value="LOCAL" />
+      <updated>1743108043229</updated>
+    </task>
+    <option name="localTasksCounter" value="731" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
