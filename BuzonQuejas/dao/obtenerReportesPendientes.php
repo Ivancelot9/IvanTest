@@ -19,8 +19,8 @@ try {
               r.Comentarios, 
               a.NombreArea AS Area,
               CONCAT(
-                  'Supervisor: ', IFNULL(enc.NombreEncargado, 'N/A'), 
-                  '<br>Shift Leader: ', IFNULL(sl.NombreEncargado, 'N/A')
+                  '<strong>SUPERVISOR:</strong> <span class=\"nombre-encargado\">', IFNULL(enc.NombreEncargado, 'N/A'), '</span><br>',
+                  '<strong>SHIFT LEADER:</strong> <span class=\"nombre-encargado\">', IFNULL(sl.NombreEncargado, 'N/A'), '</span>'
               ) AS Encargado
           FROM Reporte r
           LEFT JOIN Encargado enc ON r.IdEncargado = enc.IdEncargado

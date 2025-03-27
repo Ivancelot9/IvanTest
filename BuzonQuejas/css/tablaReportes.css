@@ -291,7 +291,11 @@ button.ver-estatus-btn:hover {
     animation: fadeIn 0.5s ease-in-out;
 }
 
-
+.nombre-encargado {
+    color: #444;
+    font-weight: normal;
+    font-style: italic;
+}
 
 
 
