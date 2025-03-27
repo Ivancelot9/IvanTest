@@ -24,12 +24,15 @@ try {
                 r.Descripcion, 
                 r.Comentarios, 
                 a.NombreArea AS Area,
-                GROUP_CONCAT(CONCAT(e.NombreEncargado, ' (', e.Tipo, ')') SEPARATOR ', ') AS Encargado
+                CONCAT(
+                    '<strong>SUPERVISOR:</strong> <span class=\"nombre-encargado\">', IFNULL(sup.NombreEncargado, 'N/A'), '</span><br>',
+                    '<strong>SHIFT LEADER:</strong> <span class=\"nombre-encargado\">', IFNULL(shift.NombreEncargado, 'N/A'), '</span>'
+                ) AS Encargado
               FROM Reporte r
-              LEFT JOIN Encargado e ON r.IdEncargado = e.IdEncargado
               LEFT JOIN Area a ON r.IdArea = a.IdArea
-              WHERE r.FolioReportes = ?
-              GROUP BY r.FolioReportes";
+              LEFT JOIN Encargado sup ON r.IdEncargado = sup.IdEncargado
+              LEFT JOIN Encargado shift ON r.IdShiftLeader = shift.IdEncargado
+              WHERE r.FolioReportes = ?";
 
     $stmt = $conn->prepare($query);
 
