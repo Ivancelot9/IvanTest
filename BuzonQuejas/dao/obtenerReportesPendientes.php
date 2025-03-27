@@ -10,7 +10,7 @@ try {
     $con = new LocalConector();
     $conn = $con->conectar();
 
-    // 🔍 Consulta mejorada para incluir Supervisor y Shift Leader en la misma celda
+    // ✅ CONSULTA ACTUALIZADA
     $query = "SELECT 
               r.FolioReportes, 
               r.FechaRegistro, 
@@ -18,16 +18,19 @@ try {
               r.Descripcion, 
               r.Comentarios, 
               a.NombreArea AS Area,
-              GROUP_CONCAT(CONCAT(e.NombreEncargado, ' (', e.Tipo, ')') SEPARATOR ', ') AS Encargado
+              CONCAT(
+                  'Supervisor: ', IFNULL(enc.NombreEncargado, 'N/A'), 
+                  '<br>Shift Leader: ', IFNULL(sl.NombreEncargado, 'N/A')
+              ) AS Encargado
           FROM Reporte r
-          LEFT JOIN Encargado e ON r.IdEncargado = e.IdEncargado
+          LEFT JOIN Encargado enc ON r.IdEncargado = enc.IdEncargado
+          LEFT JOIN Encargado sl ON r.IdShiftLeader = sl.IdEncargado
           LEFT JOIN Area a ON r.IdArea = a.IdArea
           WHERE r.FechaFinalizada IS NULL OR r.FechaFinalizada = '0000-00-00 00:00:00'
-          GROUP BY r.FolioReportes";
+          ORDER BY r.FechaRegistro DESC";
 
     $result = $conn->query($query);
 
-    // 🚨 **Verificar si la consulta falló**
     if (!$result) {
         echo json_encode(["status" => "error", "message" => "Error en la consulta: " . $conn->error]);
         exit;
@@ -38,7 +41,6 @@ try {
         $reportes[] = $row;
     }
 
-    // 🚀 **Si todo está bien, devuelve el JSON**
     echo json_encode($reportes);
 } catch (Exception $e) {
     echo json_encode(["status" => "error", "message" => "Error en el servidor: " . $e->getMessage()]);
