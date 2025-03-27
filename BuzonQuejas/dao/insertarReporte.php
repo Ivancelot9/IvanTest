@@ -17,6 +17,7 @@ $NumNomina = trim($data['NumNomina']);
 $IdArea = intval($data['IdArea']);
 $Descripcion = trim($data['Descripcion']);
 $IdEncargado = !empty($data['IdEncargado']) ? intval($data['IdEncargado']) : null;
+$IdShiftLeader = !empty($data['IdShiftLeader']) ? intval($data['IdShiftLeader']) : null;
 $FechaRegistro = date("Y-m-d H:i:s");
 $Comentarios = null;
 
@@ -25,9 +26,9 @@ try {
     $conn = $con->conectar();
 
     // Insertar el nuevo reporte
-    $query = $conn->prepare("INSERT INTO Reporte (NumeroNomina, IdEncargado, FechaRegistro, Descripcion, IdArea, Comentarios) 
+    $query = $conn->prepare("INSERT INTO Reporte (NumeroNomina, IdEncargado, IdShiftLeader, FechaRegistro, Descripcion, IdArea, Comentarios) 
                              VALUES (?, ?, ?, ?, ?, ?)");
-    $query->bind_param("sissis", $NumNomina, $IdEncargado, $FechaRegistro, $Descripcion, $IdArea, $Comentarios);
+    $query->bind_param("siissis", $NumNomina, $IdEncargado, $IdShiftLeader, $Descripcion, $IdArea, $Comentarios);
 
     if ($query->execute()) {
         $folioGenerado = $conn->insert_id; // Recuperar el folio generado automáticamente
