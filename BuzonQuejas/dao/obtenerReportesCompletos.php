@@ -6,13 +6,25 @@ try {
     $con = new LocalConector();
     $conn = $con->conectar();
 
-    $sql = "SELECT r.FolioReportes, r.NumeroNomina, r.FechaRegistro, r.FechaFinalizada, r.Descripcion, r.Comentarios, e.NombreEstatus, 
-                   a.NombreArea, IFNULL(enc.NombreEncargado, 'N/A') AS Encargado
-            FROM Reporte r
-            LEFT JOIN Estatus e ON r.IdEstatus = e.IdEstatus
-            LEFT JOIN Area a ON r.IdArea = a.IdArea
-            LEFT JOIN Encargado enc ON r.IdEncargado = enc.IdEncargado
-            WHERE r.FechaFinalizada != '0000-00-00 00:00:00'";
+    $sql = "SELECT 
+    r.FolioReportes, 
+    r.NumeroNomina, 
+    r.FechaRegistro, 
+    r.FechaFinalizada, 
+    r.Descripcion, 
+    r.Comentarios, 
+    e.NombreEstatus, 
+    a.NombreArea,
+    CONCAT(
+        'Supervisor: ', IFNULL(enc.NombreEncargado, 'N/A'), 
+        '<br>Shift Leader: ', IFNULL(shift.NombreEncargado, 'N/A')
+    ) AS Encargado
+FROM Reporte r
+LEFT JOIN Estatus e ON r.IdEstatus = e.IdEstatus
+LEFT JOIN Area a ON r.IdArea = a.IdArea
+LEFT JOIN Encargado enc ON r.IdEncargado = enc.IdEncargado
+LEFT JOIN Encargado shift ON r.IdShiftLeader = shift.IdEncargado
+WHERE r.FechaFinalizada != '0000-00-00 00:00:00'";
 
     $result = $conn->query($sql);
     $reportes = $result->fetch_all(MYSQLI_ASSOC);
