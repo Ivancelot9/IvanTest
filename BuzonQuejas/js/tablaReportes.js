@@ -90,25 +90,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 style="
                     ${esCirculo ? `
                         width: 50px;
-                        height: 50px;
-                        border-radius: 50%;
-                        background-color: ${color};
-                        color: white;
-                        font-weight: bold;
-                        font-size: 14px;
-                        text-shadow: 2px 2px 0 black;
-                        border: 3px solid black;
-                        margin: auto;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    ` : `
-                        background: white;
-                        color: black;
-                        border: 2px solid black;
-                        font-weight: bold;
-                        padding: 4px 10px;
-                        margin: auto;
+    height: 50px;
+    border-radius: 50%;
+    background-color: ${color};
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-shadow: 
+        -1px -1px 0 black,
+         1px -1px 0 black,
+        -1px  1px 0 black,
+         1px  1px 0 black;
+    border: 3px solid black;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+` : `
+    background: white;
+    color: black;
+    border: 2px solid black;
+    font-weight: bold;
+    padding: 4px 10px;
+    margin: auto;
                     `}
                 ">
                 ${porcentajeTexto}
