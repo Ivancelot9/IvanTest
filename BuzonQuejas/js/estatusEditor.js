@@ -66,12 +66,10 @@ document.addEventListener("DOMContentLoaded", function () {
             diasSeleccionados.textContent = `Tiempo agotado`;
         }
 
-        // 🔥 **Nuevo cálculo basado en los días ingresados por el usuario**
-        let limiteVerde = Math.ceil(dias * 0.25);   // 25% del total de días
-        let limiteAzul = Math.ceil(dias * 0.50);    // 50% del total de días
-        let limiteAmarillo = Math.ceil(dias * 0.75); // 75% del total de días
+        let limiteVerde = Math.ceil(dias * 0.25);
+        let limiteAzul = Math.ceil(dias * 0.50);
+        let limiteAmarillo = Math.ceil(dias * 0.75);
 
-        // 🔥 **Corrección: SIEMPRE inicia en Green (100%) cuando el reporte es nuevo**
         if (diasTranscurridos === 0) {
             progresoAutomatico = 100;
             autoCircle.style.backgroundColor = "green";
@@ -147,12 +145,19 @@ document.addEventListener("DOMContentLoaded", function () {
     guardarBtn.addEventListener("click", function () {
         let botonEstatus = document.querySelector(`.ver-estatus-btn[data-folio='${currentFolio}']`);
 
-        if (botonEstatus) {
-            botonEstatus.classList.add("ver-estatus-circulo"); // ✅ Transforma en círculo
-            botonEstatus.style.backgroundColor = manualCircle.style.backgroundColor; // ✅ Color del círculo
-            botonEstatus.textContent = `${progresoManual}%`; // ✅ Muestra porcentaje
+        let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
+        let letraManual = inputManual.value.toUpperCase();
 
-            // ⚠️ Asegura que siga teniendo la clase original para abrir modal
+        if (!estatusReportes[currentFolio]) estatusReportes[currentFolio] = {};
+
+        estatusReportes[currentFolio].progresoManual = progresoManual;
+        estatusReportes[currentFolio].colorManual = letraManual; // ✅ Guardamos la letra
+        localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
+
+        if (botonEstatus) {
+            botonEstatus.classList.add("ver-estatus-circulo");
+            botonEstatus.style.backgroundColor = manualCircle.style.backgroundColor;
+            botonEstatus.textContent = `${progresoManual}%`;
             botonEstatus.classList.add("ver-estatus-btn");
         }
 
@@ -165,6 +170,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.body.addEventListener("click", function (event) {
-        if (event.target.classList.contains("ver-estatus-btn")) abrirModal(event.target.getAttribute("data-folio"));
+        if (event.target.classList.contains("ver-estatus-btn")) {
+            abrirModal(event.target.getAttribute("data-folio"));
+        }
     });
 });

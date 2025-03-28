@@ -68,9 +68,18 @@ document.addEventListener("DOMContentLoaded", function () {
         reportesPagina.forEach(reporte => {
             let encargadoTexto = reporte.Encargado || reporte.encargado || "N/A";
             let folio = reporte.FolioReportes || reporte.folio || "S/F";
-            let progresoManual = estatusGuardados[folio] ? estatusGuardados[folio].progresoManual : null;
 
-            let estadoClase = obtenerClaseEstado(progresoManual);
+            let estatus = estatusGuardados[folio];
+            let progresoManual = estatus ? estatus.progresoManual : null;
+            let colorManual = estatus ? estatus.colorManual : null;
+
+            let estadoClase;
+            if (colorManual) {
+                let mapaColores = { G: "green", B: "blue", Y: "yellow", R: "red" };
+                estadoClase = mapaColores[colorManual] || obtenerClaseEstado(progresoManual);
+            } else {
+                estadoClase = obtenerClaseEstado(progresoManual);
+            }
 
             const porcentajeTexto = progresoManual !== null ? `${progresoManual}%` : "Ver Estatus";
             const esCirculo = progresoManual !== null;
