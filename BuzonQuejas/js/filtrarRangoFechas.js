@@ -63,7 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const endDate = endDateInput.value ? new Date(endDateInput.value) : null;
 
         datosFiltradosCompletos = datosReportesCompletos.filter(reporte => {
-            const fechaReporte = new Date(reporte.fechaFinalizacion.split('/').reverse().join('-')); // Convierte dd/mm/yyyy a yyyy-mm-dd
+            // 🟡 Extraer solo la fecha sin hora (yyyy-mm-dd)
+            const fechaStr = reporte.fechaFinalizacion.split(' ')[0];
+            const fechaReporte = new Date(fechaStr);
 
             if (startDate && endDate) {
                 return fechaReporte >= startDate && fechaReporte <= endDate;

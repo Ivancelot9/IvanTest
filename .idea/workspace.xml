@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Mostrar ShiftLeader y Supervisor en la tabla">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/estatusEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/estatusEditor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/filtrarRangoFechas.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/filtrarRangoFechas.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,15 +156,7 @@
       <workItem from="1742998840741" duration="9475000" />
       <workItem from="1743023164575" duration="1389000" />
       <workItem from="1743084876445" duration="18372000" />
-      <workItem from="1743171516579" duration="8731000" />
-    </task>
-    <task id="LOCAL-00687" summary="Insertar Fecha Finalizacion en la BD">
-      <option name="closed" value="true" />
-      <created>1742589706262</created>
-      <option name="number" value="00687" />
-      <option name="presentableId" value="LOCAL-00687" />
-      <option name="project" value="LOCAL" />
-      <updated>1742589706262</updated>
+      <workItem from="1743171516579" duration="10701000" />
     </task>
     <task id="LOCAL-00688" summary="Insertar Fecha Finalizacion en la BD">
       <option name="closed" value="true" />
@@ -550,7 +542,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743186807807</updated>
     </task>
-    <option name="localTasksCounter" value="736" />
+    <task id="LOCAL-00736" summary="Mostrar ShiftLeader y Supervisor en la tabla">
+      <option name="closed" value="true" />
+      <created>1743190643189</created>
+      <option name="number" value="00736" />
+      <option name="presentableId" value="LOCAL-00736" />
+      <option name="project" value="LOCAL" />
+      <updated>1743190643189</updated>
+    </task>
+    <option name="localTasksCounter" value="737" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
