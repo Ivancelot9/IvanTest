@@ -156,9 +156,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (botonEstatus) {
             botonEstatus.classList.add("ver-estatus-circulo");
-            botonEstatus.style.backgroundColor = manualCircle.style.backgroundColor;
-            botonEstatus.textContent = `${progresoManual}%`;
             botonEstatus.classList.add("ver-estatus-btn");
+            botonEstatus.style.backgroundColor = manualCircle.style.backgroundColor;
+            botonEstatus.style.color = "white";
+            botonEstatus.style.textShadow = `
+        -1px -1px 0 black,
+         1px -1px 0 black,
+        -1px  1px 0 black,
+         1px  1px 0 black
+    `;
+            botonEstatus.style.fontWeight = "bold";
+            botonEstatus.style.fontSize = "14px";
+            botonEstatus.style.textAlign = "center";
+            botonEstatus.textContent = `${progresoManual}%`;
         }
 
         Swal.fire("¡Estatus Guardado!", `El reporte ha sido actualizado a ${progresoManual}%`, "success");
