@@ -12,8 +12,8 @@ try {
           r.FolioReportes AS folio,
     r.NumeroNomina AS nomina,
     CONCAT(
-        '<strong>SUPERVISOR:</strong> <span class=\"nombre-encargado\">', IFNULL(sup.NombreEncargado, 'N/A'), '</span><br>',
-        '<strong>SHIFT LEADER:</strong> <span class=\"nombre-encargado\">', IFNULL(shift.NombreEncargado, 'N/A'), '</span>'
+        'SUPERVISOR: ', IFNULL(sup.NombreEncargado, 'N/A'), '\n',
+    'SHIFT LEADER: ', IFNULL(shift.NombreEncargado, 'N/A')
     ) AS encargado,
     r.FechaRegistro AS fechaRegistro,
     r.FechaFinalizada AS fechaFinalizacion,

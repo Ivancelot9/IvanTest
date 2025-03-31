@@ -184,16 +184,6 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportesCompletos(paginaActualCompleto);
     }
 
-    function limpiarEncargadoHTML(html) {
-        const temporal = document.createElement("div");
-        // Asegura que los <br> se conviertan en \n antes de procesar
-        html = html.replace(/<br\s*\/?>/gi, '\n');
-        temporal.innerHTML = html;
-        let textoPlano = temporal.textContent || temporal.innerText || "";
-
-        // Reemplaza múltiples espacios/saltos innecesarios
-        return textoPlano.replace(/\n\s+/g, '\n').replace(/\s+\n/g, '\n').trim();
-    }
 
     function exportarExcel(reporte) {
         let wb = XLSX.utils.book_new();
@@ -211,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
             [
                 reporte.folio,
                 reporte.nomina,
-                limpiarEncargadoHTML(reporte.encargado), // ✅ Texto legible para Excel
+                reporte.encargado,
                 reporte.fechaRegistro,
                 reporte.fechaFinalizacion,
                 reporte.descripcion || "-",

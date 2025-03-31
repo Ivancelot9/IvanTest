@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Arreglando supervisor en tabla 2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportesCompletos.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportesCompletos.js" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Ajustando Excel Individual">
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/conseguirReportesCompletos.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/conseguirReportesCompletos.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,15 +156,7 @@
       <workItem from="1743023164575" duration="1389000" />
       <workItem from="1743084876445" duration="18372000" />
       <workItem from="1743171516579" duration="13671000" />
-      <workItem from="1743430470672" duration="12187000" />
-    </task>
-    <task id="LOCAL-00705" summary="Integrando Notificaciones">
-      <option name="closed" value="true" />
-      <created>1742935101289</created>
-      <option name="number" value="00705" />
-      <option name="presentableId" value="LOCAL-00705" />
-      <option name="project" value="LOCAL" />
-      <updated>1742935101289</updated>
+      <workItem from="1743430470672" duration="12544000" />
     </task>
     <task id="LOCAL-00706" summary="Integrando Notificaciones">
       <option name="closed" value="true" />
@@ -551,7 +542,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743445230788</updated>
     </task>
-    <option name="localTasksCounter" value="754" />
+    <task id="LOCAL-00754" summary="Ajustando Excel Individual">
+      <option name="closed" value="true" />
+      <created>1743445618946</created>
+      <option name="number" value="00754" />
+      <option name="presentableId" value="LOCAL-00754" />
+      <option name="project" value="LOCAL" />
+      <updated>1743445618946</updated>
+    </task>
+    <option name="localTasksCounter" value="755" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -603,7 +602,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tabla Reportes Completos" />
     <MESSAGE value="Tabla Reportes Completos Conexion" />
     <MESSAGE value="Correcion Estatus" />
     <MESSAGE value="Boton Excel" />
@@ -628,6 +626,7 @@
     <MESSAGE value="Mostrar ShiftLeader y Supervisor en la tabla" />
     <MESSAGE value="Arreglando Rango" />
     <MESSAGE value="Arreglando supervisor en tabla 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglando supervisor en tabla 2" />
+    <MESSAGE value="Ajustando Excel Individual" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustando Excel Individual" />
   </component>
 </project>
