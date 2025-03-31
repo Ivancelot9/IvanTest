@@ -137,10 +137,19 @@ document.addEventListener("DOMContentLoaded", function () {
             return true;
         });
 
+        // 🟢 Ordenar del más antiguo al más reciente
+        datosFiltradosCompletos.sort((a, b) => new Date(a.fechaFinalizacion) - new Date(b.fechaFinalizacion));
+
         // Limpiar búsqueda por texto
         filterInputCompleto.value = "";
         paginaActualCompleto = 1;
         mostrarReportesCompletos(paginaActualCompleto);
+
+        // Mostrar mensaje si no hay nada
+        if (datosFiltradosCompletos.length === 0) {
+            tablaCompletosBody.innerHTML = `
+            <tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
+        }
     }
 
     function exportarExcel(reporte) {
