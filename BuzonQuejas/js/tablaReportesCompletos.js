@@ -184,6 +184,12 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportesCompletos(paginaActualCompleto);
     }
 
+    function limpiarEncargadoHTML(html) {
+        const temporal = document.createElement("div");
+        temporal.innerHTML = html;
+        return temporal.textContent.replace(/\s+/g, ' ').trim(); // Elimina saltos y espacios excesivos
+    }
+
     function exportarExcel(reporte) {
         let wb = XLSX.utils.book_new();
         wb.Props = {
@@ -200,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
             [
                 reporte.folio,
                 reporte.nomina,
-                obtenerTextoEncargado(reporte.encargado), // ✅ Texto legible para Excel
+                limpiarEncargadoHTML(reporte.encargado), // ✅ Texto legible para Excel
                 reporte.fechaRegistro,
                 reporte.fechaFinalizacion,
                 reporte.descripcion || "-",
