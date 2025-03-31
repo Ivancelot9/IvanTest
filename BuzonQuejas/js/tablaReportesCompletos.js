@@ -69,12 +69,11 @@ document.addEventListener("DOMContentLoaded", function () {
         reportesPagina.forEach(reporte => {
             let fila = document.createElement("tr");
 
-            const encargadoTexto = obtenerTextoEncargado(reporte.encargado);
 
             fila.innerHTML = `
                 <td>${aplicarResaltado(reporte.folio, "folio", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.nomina, "nomina", valorFiltro, columnaSeleccionada)}</td>
-                <td>${aplicarResaltado(encargadoTexto, "encargado", valorFiltro, columnaSeleccionada)}</td>
+                <td>${aplicarResaltado(reporte.encargado, "encargado", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.fechaFinalizacion.split(" ")[0], "fechaFinalizacion", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.estatus, "estatus", valorFiltro, columnaSeleccionada)}</td>
             `;
