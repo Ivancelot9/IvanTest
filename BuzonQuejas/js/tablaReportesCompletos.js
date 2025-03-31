@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const filterColumnCompleto = document.getElementById("filter-column-completo");
     const filterInputCompleto = document.getElementById("filter-input-completo");
     const filterButtonCompleto = document.getElementById("filter-button-completo");
+    const startDateInput = document.getElementById("start-date");
+    const endDateInput = document.getElementById("end-date");
+    const filterDateButton = document.getElementById("filter-date-button");
 
     let datosReportesCompletos = [];
     let datosFiltradosCompletos = [];
@@ -21,9 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
         estatus: "estatus"
     };
 
+    // ❗ Evitar escritura manual en inputs de fecha
+    startDateInput.setAttribute("onkeydown", "return false;");
+    endDateInput.setAttribute("onkeydown", "return false;");
+
     function resaltarTexto(texto, filtro) {
-        if (!filtro || filtro.trim() === "") return String(texto ?? ""); // convierte a texto si es null/undefined
-        const safeText = String(texto ?? ""); // protección contra undefined/null/number
+        if (!filtro || filtro.trim() === "") return String(texto ?? "");
+        const safeText = String(texto ?? "");
         const regex = new RegExp(`(${filtro})`, "gi");
         return safeText.replace(regex, `<span class="highlight">$1</span>`);
     }
@@ -40,6 +47,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const columnaSeleccionada = filterColumnCompleto.value;
 
         tablaCompletosBody.innerHTML = "";
+
+        if (reportesPagina.length === 0) {
+            tablaCompletosBody.innerHTML = `
+                <tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
+            return;
+        }
 
         reportesPagina.forEach(reporte => {
             let fila = document.createElement("tr");
@@ -98,7 +111,36 @@ document.addEventListener("DOMContentLoaded", function () {
             return valor.includes(valorFiltro);
         });
 
+        paginaActualCompleto = 1;
         mostrarReportesCompletos(1);
+    }
+
+    function filtrarPorRangoDeFechas() {
+        const startDate = startDateInput.value;
+        const endDate = endDateInput.value;
+
+        const start = startDate ? new Date(startDate) : null;
+        const end = endDate ? new Date(endDate) : null;
+
+        datosFiltradosCompletos = datosReportesCompletos.filter(reporte => {
+            const fechaStr = reporte.fechaFinalizacion?.split(" ")[0];
+            if (!fechaStr) return false;
+            const fecha = new Date(fechaStr);
+
+            if (start && end) {
+                return fecha >= start && fecha <= end;
+            } else if (start) {
+                return fecha >= start;
+            } else if (end) {
+                return fecha <= end;
+            }
+            return true;
+        });
+
+        // Limpiar búsqueda por texto
+        filterInputCompleto.value = "";
+        paginaActualCompleto = 1;
+        mostrarReportesCompletos(paginaActualCompleto);
     }
 
     function exportarExcel(reporte) {
@@ -162,6 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
+    filterDateButton.addEventListener("click", filtrarPorRangoDeFechas);
 
     cargarReportesCompletos();
 
