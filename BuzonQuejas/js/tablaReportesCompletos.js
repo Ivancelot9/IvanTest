@@ -25,21 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
         estatus: "estatus"
     };
 
-    // ✅ Función para convertir el número del encargado a texto
-    function obtenerTextoEncargado(valor) {
-        switch (String(valor)) {
-            case "1":
-                return "Supervisor";
-            case "2":
-                return "Shift Leader";
-            default:
-                return "N/A";
-        }
-    }
-
-    startDateInput.setAttribute("onkeydown", "return false;");
-    endDateInput.setAttribute("onkeydown", "return false;");
-
     function resaltarTexto(texto, filtro) {
         if (!filtro || filtro.trim() === "") return String(texto ?? "");
         const safeText = String(texto ?? "");
@@ -67,14 +52,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         reportesPagina.forEach(reporte => {
+            const textoEncargado = `SUPERVISOR: ${reporte.nombreSupervisor || "N/A"}<br>SHIFT LEADER: ${reporte.nombreShiftLeader || "N/A"}`;
+
             let fila = document.createElement("tr");
-
-            const encargadoTexto = obtenerTextoEncargado(reporte.encargado);
-
             fila.innerHTML = `
                 <td>${aplicarResaltado(reporte.folio, "folio", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.nomina, "nomina", valorFiltro, columnaSeleccionada)}</td>
-                <td>${aplicarResaltado(encargadoTexto, "encargado", valorFiltro, columnaSeleccionada)}</td>
+                <td>${aplicarResaltado(textoEncargado, "encargado", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.fechaFinalizacion.split(" ")[0], "fechaFinalizacion", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.estatus, "estatus", valorFiltro, columnaSeleccionada)}</td>
             `;
@@ -124,17 +108,19 @@ document.addEventListener("DOMContentLoaded", function () {
     function filtrarReportesCompletos() {
         const valorFiltro = filterInputCompleto.value.toLowerCase();
         const columnaSeleccionada = filterColumnCompleto.value;
-        const columnaBD = columnasBDCompletos[columnaSeleccionada];
 
         datosFiltradosCompletos = datosReportesCompletos.filter(reporte => {
-            let valor = reporte[columnaBD];
+            let valor;
 
-            if (columnaBD === "encargado") {
-                valor = obtenerTextoEncargado(valor);
+            if (columnaSeleccionada === "encargado") {
+                const supervisor = reporte.nombreSupervisor || "N/A";
+                const shiftLeader = reporte.nombreShiftLeader || "N/A";
+                valor = `SUPERVISOR: ${supervisor} SHIFT LEADER: ${shiftLeader}`;
+            } else {
+                valor = (reporte[columnasBDCompletos[columnaSeleccionada]] || "").toString();
             }
 
-            valor = (valor || "").toString().toLowerCase();
-            return valor.includes(valorFiltro);
+            return valor.toLowerCase().includes(valorFiltro);
         });
 
         resaltarFechas = false;
@@ -143,24 +129,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function filtrarPorRangoDeFechas() {
-        const startDate = startDateInput.value;
-        const endDate = endDateInput.value;
-
-        const start = startDate ? new Date(startDate) : null;
-        const end = endDate ? new Date(endDate) : null;
+        const start = startDateInput.value ? new Date(startDateInput.value) : null;
+        const end = endDateInput.value ? new Date(endDateInput.value) : null;
 
         datosFiltradosCompletos = datosReportesCompletos.filter(reporte => {
             const fechaStr = reporte.fechaFinalizacion?.split(" ")[0];
             if (!fechaStr) return false;
             const fecha = new Date(fechaStr);
 
-            if (start && end) {
-                return fecha >= start && fecha <= end;
-            } else if (start) {
-                return fecha >= start;
-            } else if (end) {
-                return fecha <= end;
-            }
+            if (start && end) return fecha >= start && fecha <= end;
+            if (start) return fecha >= start;
+            if (end) return fecha <= end;
             return true;
         });
 
@@ -169,11 +148,6 @@ document.addEventListener("DOMContentLoaded", function () {
         filterInputCompleto.value = "";
         paginaActualCompleto = 1;
         mostrarReportesCompletos(paginaActualCompleto);
-
-        if (datosFiltradosCompletos.length === 0) {
-            tablaCompletosBody.innerHTML = `
-                <tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
-        }
     }
 
     function limpiarRangoFechas() {
@@ -201,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
             [
                 reporte.folio,
                 reporte.nomina,
-                obtenerTextoEncargado(reporte.encargado), // ✅ Texto legible para Excel
+                `SUPERVISOR: ${reporte.nombreSupervisor || 'N/A'} / SHIFT LEADER: ${reporte.nombreShiftLeader || 'N/A'}`,
                 reporte.fechaRegistro,
                 reporte.fechaFinalizacion,
                 reporte.descripcion || "-",
