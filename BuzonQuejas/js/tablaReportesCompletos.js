@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const startDateInput = document.getElementById("start-date");
     const endDateInput = document.getElementById("end-date");
     const filterDateButton = document.getElementById("filter-date-button");
-    const clearDateButton = document.getElementById("clear-date-button"); // 🧹 Nuevo botón
+    const clearDateButton = document.getElementById("clear-date-button");
 
     let datosReportesCompletos = [];
     let datosFiltradosCompletos = [];
@@ -24,6 +24,18 @@ document.addEventListener("DOMContentLoaded", function () {
         fechaFinalizacion: "fechaFinalizacion",
         estatus: "estatus"
     };
+
+    // ✅ Función para convertir el número del encargado a texto
+    function obtenerTextoEncargado(valor) {
+        switch (String(valor)) {
+            case "1":
+                return "Supervisor";
+            case "2":
+                return "Shift Leader";
+            default:
+                return "N/A";
+        }
+    }
 
     startDateInput.setAttribute("onkeydown", "return false;");
     endDateInput.setAttribute("onkeydown", "return false;");
@@ -56,10 +68,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         reportesPagina.forEach(reporte => {
             let fila = document.createElement("tr");
+
+            const encargadoTexto = obtenerTextoEncargado(reporte.encargado);
+
             fila.innerHTML = `
                 <td>${aplicarResaltado(reporte.folio, "folio", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.nomina, "nomina", valorFiltro, columnaSeleccionada)}</td>
-                <td>${aplicarResaltado(reporte.encargado, "encargado", valorFiltro, columnaSeleccionada)}</td>
+                <td>${aplicarResaltado(encargadoTexto, "encargado", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.fechaFinalizacion.split(" ")[0], "fechaFinalizacion", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.estatus, "estatus", valorFiltro, columnaSeleccionada)}</td>
             `;
@@ -76,7 +91,6 @@ document.addEventListener("DOMContentLoaded", function () {
             tablaCompletosBody.appendChild(fila);
         });
 
-        // 🔥 Si estamos en modo de rango, resaltar la columna de Fecha Finalización
         if (resaltarFechas) {
             const celdasFecha = tablaCompletosBody.querySelectorAll("td:nth-child(4)");
             celdasFecha.forEach(celda => celda.classList.add("highlight"));
@@ -113,11 +127,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const columnaBD = columnasBDCompletos[columnaSeleccionada];
 
         datosFiltradosCompletos = datosReportesCompletos.filter(reporte => {
-            const valor = (reporte[columnaBD] || "").toString().toLowerCase();
+            let valor = reporte[columnaBD];
+
+            if (columnaBD === "encargado") {
+                valor = obtenerTextoEncargado(valor);
+            }
+
+            valor = (valor || "").toString().toLowerCase();
             return valor.includes(valorFiltro);
         });
 
-        resaltarFechas = false; // 🔕 Apagar resaltado si es búsqueda por texto
+        resaltarFechas = false;
         paginaActualCompleto = 1;
         mostrarReportesCompletos(1);
     }
@@ -181,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
             [
                 reporte.folio,
                 reporte.nomina,
-                reporte.encargado,
+                obtenerTextoEncargado(reporte.encargado), // ✅ Texto legible para Excel
                 reporte.fechaRegistro,
                 reporte.fechaFinalizacion,
                 reporte.descripcion || "-",
@@ -227,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function () {
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
     filterDateButton.addEventListener("click", filtrarPorRangoDeFechas);
-    clearDateButton.addEventListener("click", limpiarRangoFechas); // ✅ Nuevo evento
+    clearDateButton.addEventListener("click", limpiarRangoFechas);
 
     cargarReportesCompletos();
 
