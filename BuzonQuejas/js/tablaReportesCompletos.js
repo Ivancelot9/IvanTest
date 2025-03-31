@@ -145,10 +145,18 @@ document.addEventListener("DOMContentLoaded", function () {
         paginaActualCompleto = 1;
         mostrarReportesCompletos(paginaActualCompleto);
 
-        // Mostrar mensaje si no hay nada
         if (datosFiltradosCompletos.length === 0) {
             tablaCompletosBody.innerHTML = `
             <tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
+        } else {
+            // 🟡 Aplicar resaltado a la columna de fecha finalización
+            const celdasFecha = tablaCompletosBody.querySelectorAll("td:nth-child(4)");
+            celdasFecha.forEach(celda => celda.classList.add("highlight"));
+
+            // 🔄 Quitar el resaltado después de 2 segundos
+            setTimeout(() => {
+                celdasFecha.forEach(celda => celda.classList.remove("highlight"));
+            }, 2000);
         }
     }
 
