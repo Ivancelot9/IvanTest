@@ -186,8 +186,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function limpiarEncargadoHTML(html) {
         const temporal = document.createElement("div");
+        // Convertir <br> a saltos de línea reales antes de parsear el texto
+        html = html.replace(/<br\s*\/?>/gi, "\n");
         temporal.innerHTML = html;
-        return temporal.textContent.replace(/\s+/g, ' ').trim(); // Elimina saltos y espacios excesivos
+        return temporal.textContent.replace(/\s+\n/g, '\n').trim(); // Limpia espacios antes de saltos
     }
 
     function exportarExcel(reporte) {
