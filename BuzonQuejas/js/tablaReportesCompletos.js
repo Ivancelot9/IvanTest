@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ws["!cols"] = [
             { wch: 15 }, // Folio
             { wch: 20 }, // Nómina
-            { wch: 50 }, // Encargado
+            { wch: 80 }, // Encargado
             { wch: 20 }, // Fecha Registro
             { wch: 20 }, // Fecha Finalización
             { wch: 30 }, // Descripción
