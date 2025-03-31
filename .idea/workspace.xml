@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Ajustando Excel Individual">
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/conseguirReportesCompletos.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/conseguirReportesCompletos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportesCompletos.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportesCompletos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,15 +156,7 @@
       <workItem from="1743023164575" duration="1389000" />
       <workItem from="1743084876445" duration="18372000" />
       <workItem from="1743171516579" duration="13671000" />
-      <workItem from="1743430470672" duration="12544000" />
-    </task>
-    <task id="LOCAL-00706" summary="Integrando Notificaciones">
-      <option name="closed" value="true" />
-      <created>1743003331972</created>
-      <option name="number" value="00706" />
-      <option name="presentableId" value="LOCAL-00706" />
-      <option name="project" value="LOCAL" />
-      <updated>1743003331972</updated>
+      <workItem from="1743430470672" duration="12849000" />
     </task>
     <task id="LOCAL-00707" summary="Integrando Notificaciones">
       <option name="closed" value="true" />
@@ -550,7 +542,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743445618946</updated>
     </task>
-    <option name="localTasksCounter" value="755" />
+    <task id="LOCAL-00755" summary="Ajustando Excel Individual">
+      <option name="closed" value="true" />
+      <created>1743446045801</created>
+      <option name="number" value="00755" />
+      <option name="presentableId" value="LOCAL-00755" />
+      <option name="project" value="LOCAL" />
+      <updated>1743446045801</updated>
+    </task>
+    <option name="localTasksCounter" value="756" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

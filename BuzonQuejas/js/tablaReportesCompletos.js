@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
             fila.innerHTML = `
                 <td>${aplicarResaltado(reporte.folio, "folio", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.nomina, "nomina", valorFiltro, columnaSeleccionada)}</td>
-                <td>${aplicarResaltado(reporte.encargado, "encargado", valorFiltro, columnaSeleccionada)}</td>
+                <td>${formatearEncargadoParaVista(aplicarResaltado(reporte.encargado, "encargado", valorFiltro, columnaSeleccionada))}</td>
                 <td>${aplicarResaltado(reporte.fechaFinalizacion.split(" ")[0], "fechaFinalizacion", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.estatus, "estatus", valorFiltro, columnaSeleccionada)}</td>
             `;
@@ -184,7 +184,17 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportesCompletos(paginaActualCompleto);
     }
 
+    function formatearEncargadoParaVista(textoPlano) {
+        if (!textoPlano) return "N/A";
 
+        // Convertir saltos de línea a <br>
+        const conSaltos = textoPlano.replace(/\n/g, "<br>");
+
+        // Convertir las etiquetas "SUPERVISOR:" y "SHIFT LEADER:" a negritas
+        return conSaltos
+            .replace(/SUPERVISOR:/gi, "<strong>SUPERVISOR:</strong>")
+            .replace(/SHIFT LEADER:/gi, "<strong>SHIFT LEADER:</strong>");
+    }
     function exportarExcel(reporte) {
         let wb = XLSX.utils.book_new();
         wb.Props = {
