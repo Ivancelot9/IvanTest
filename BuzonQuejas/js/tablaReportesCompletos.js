@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
             [
                 reporte.folio,
                 reporte.nomina,
-                reporte.encargado,
+                reporte.encargado, // Ya viene con \n desde PHP
                 reporte.fechaRegistro,
                 reporte.fechaFinalizacion,
                 reporte.descripcion || "-",
@@ -221,14 +221,30 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
 
         const ws = XLSX.utils.aoa_to_sheet(ws_data);
-        ws["!cols"] = Array(ws_data[0].length).fill({ wch: 25 });
-        // 🟢 Forzar wrapText en la celda de Encargado (C2)
-        ws["C2"].s = {
-            alignment: { wrapText: true }
-        };
+
+        // 📏 Ancho personalizado para cada columna
+        ws["!cols"] = [
+            { wch: 15 }, // Folio
+            { wch: 20 }, // Nómina
+            { wch: 40 }, // Encargado
+            { wch: 20 }, // Fecha Registro
+            { wch: 20 }, // Fecha Finalización
+            { wch: 30 }, // Descripción
+            { wch: 15 }, // Estatus
+            { wch: 25 }  // Comentarios
+        ];
+
+        // 🧼 Forzar wrap text en TODAS las filas de la columna "Encargado" (columna C)
+        for (let i = 2; i <= ws_data.length + 1; i++) {
+            const celda = `C${i}`;
+            if (ws[celda]) {
+                ws[celda].s = { alignment: { wrapText: true } };
+            }
+        }
 
         wb.Sheets["Reporte"] = ws;
-        // 🔥 Exportar con estilos activos
+
+        // 🟢 Exportar con estilos activados
         XLSX.writeFile(wb, `Reporte_${reporte.folio}.xlsx`, { bookType: "xlsx", cellStyles: true });
     }
 
