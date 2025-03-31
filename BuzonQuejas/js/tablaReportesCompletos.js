@@ -186,10 +186,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function limpiarEncargadoHTML(html) {
         const temporal = document.createElement("div");
-        // Convertir <br> a saltos de línea reales antes de parsear el texto
-        html = html.replace(/<br\s*\/?>/gi, "\n");
+        // Asegura que los <br> se conviertan en \n antes de procesar
+        html = html.replace(/<br\s*\/?>/gi, '\n');
         temporal.innerHTML = html;
-        return temporal.textContent.replace(/\s+\n/g, '\n').trim(); // Limpia espacios antes de saltos
+        let textoPlano = temporal.textContent || temporal.innerText || "";
+
+        // Reemplaza múltiples espacios/saltos innecesarios
+        return textoPlano.replace(/\n\s+/g, '\n').replace(/\s+\n/g, '\n').trim();
     }
 
     function exportarExcel(reporte) {
@@ -219,9 +222,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const ws = XLSX.utils.aoa_to_sheet(ws_data);
         ws["!cols"] = Array(ws_data[0].length).fill({ wch: 25 });
+        // 🟢 Forzar wrapText en la celda de Encargado (C2)
+        ws["C2"].s = {
+            alignment: { wrapText: true }
+        };
 
         wb.Sheets["Reporte"] = ws;
-        XLSX.writeFile(wb, `Reporte_${reporte.folio}.xlsx`);
+        // 🔥 Exportar con estilos activos
+        XLSX.writeFile(wb, `Reporte_${reporte.folio}.xlsx`, { bookType: "xlsx", cellStyles: true });
     }
 
     tablaCompletosBody.addEventListener("click", function (event) {
