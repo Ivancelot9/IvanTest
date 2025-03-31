@@ -9,13 +9,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const startDateInput = document.getElementById("start-date");
     const endDateInput = document.getElementById("end-date");
     const filterDateButton = document.getElementById("filter-date-button");
+    const clearDateButton = document.getElementById("clear-date-button"); // 🧹 Nuevo botón
 
     let datosReportesCompletos = [];
     let datosFiltradosCompletos = [];
     let paginaActualCompleto = 1;
     const filasPorPagina = 10;
-
-    let resaltarFechas = false; // ✅ Bandera para resaltar fechas
+    let resaltarFechas = false;
 
     const columnasBDCompletos = {
         folio: "folio",
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
             tablaCompletosBody.appendChild(fila);
         });
 
-        // ✅ Aplicar resaltado si estamos en modo de rango
+        // 🔥 Si estamos en modo de rango, resaltar la columna de Fecha Finalización
         if (resaltarFechas) {
             const celdasFecha = tablaCompletosBody.querySelectorAll("td:nth-child(4)");
             celdasFecha.forEach(celda => celda.classList.add("highlight"));
@@ -145,9 +145,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         datosFiltradosCompletos.sort((a, b) => new Date(a.fechaFinalizacion) - new Date(b.fechaFinalizacion));
-
-        resaltarFechas = true; // ✅ Activar resaltado para fechas
-        filterInputCompleto.value = ""; // Limpiar filtro por texto
+        resaltarFechas = true;
+        filterInputCompleto.value = "";
         paginaActualCompleto = 1;
         mostrarReportesCompletos(paginaActualCompleto);
 
@@ -155,6 +154,15 @@ document.addEventListener("DOMContentLoaded", function () {
             tablaCompletosBody.innerHTML = `
                 <tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
         }
+    }
+
+    function limpiarRangoFechas() {
+        startDateInput.value = "";
+        endDateInput.value = "";
+        resaltarFechas = false;
+        datosFiltradosCompletos = [...datosReportesCompletos];
+        paginaActualCompleto = 1;
+        mostrarReportesCompletos(paginaActualCompleto);
     }
 
     function exportarExcel(reporte) {
@@ -219,6 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
     filterDateButton.addEventListener("click", filtrarPorRangoDeFechas);
+    clearDateButton.addEventListener("click", limpiarRangoFechas); // ✅ Nuevo evento
 
     cargarReportesCompletos();
 

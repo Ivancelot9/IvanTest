@@ -176,6 +176,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 <span> a </span>
                 <input type="date" id="end-date">
                 <button id="filter-date-button">📆 Filtrar</button>
+                <button id="clear-date-button">🧹 Limpiar Rango</button>
             </div>
 
             <!-- 📤 Botón "Exportar Página" con icono de Excel -->
