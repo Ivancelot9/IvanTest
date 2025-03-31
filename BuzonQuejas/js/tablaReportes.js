@@ -199,8 +199,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then(resp => resp.json())
                 .then(reporte => {
                     if (reporte && reporte.FolioReportes) {
-                        reporte.nombreSupervisor = reporte.NombreSupervisor || "N/A";
-                        reporte.nombreShiftLeader = reporte.NombreShiftLeader || "N/A";
                         window.agregarReporteAHistorial(reporte);
 
                         const currentSection = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
