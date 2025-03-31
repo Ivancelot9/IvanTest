@@ -1,3 +1,4 @@
+let resaltarFechas = false;
 document.addEventListener("DOMContentLoaded", function () {
     const tablaCompletosBody = document.getElementById("tabla-completos-body");
     const prevPageBtnCompleto = document.getElementById("prevPage-completo");
@@ -102,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function filtrarReportesCompletos() {
+        resaltarFechas = false;
         const valorFiltro = filterInputCompleto.value.toLowerCase();
         const columnaSeleccionada = filterColumnCompleto.value;
         const columnaBD = columnasBDCompletos[columnaSeleccionada];
@@ -113,9 +115,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         paginaActualCompleto = 1;
         mostrarReportesCompletos(1);
+        if (resaltarFechas) {
+            const celdasFecha = tablaCompletosBody.querySelectorAll("td:nth-child(4)");
+            celdasFecha.forEach(celda => celda.classList.add("highlight"));
+        }
     }
 
     function filtrarPorRangoDeFechas() {
+        resaltarFechas = true;
         const startDate = startDateInput.value;
         const endDate = endDateInput.value;
 
