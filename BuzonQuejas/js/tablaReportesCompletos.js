@@ -153,10 +153,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const celdasFecha = tablaCompletosBody.querySelectorAll("td:nth-child(4)");
             celdasFecha.forEach(celda => celda.classList.add("highlight"));
 
-            // 🔄 Quitar el resaltado después de 2 segundos
-            setTimeout(() => {
-                celdasFecha.forEach(celda => celda.classList.remove("highlight"));
-            }, 2000);
         }
     }
 
