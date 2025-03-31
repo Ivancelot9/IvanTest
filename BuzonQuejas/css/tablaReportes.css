@@ -238,6 +238,13 @@ button.ver-estatus-btn:hover {
     box-shadow: 2px 2px 0 black;
 }
 
+/* 📆 Botón de Filtrar por fecha más pequeño */
+#clear-date-button {
+    padding: 3px 5px;
+    font-size: 0.8rem;
+    box-shadow: 2px 2px 0 black;
+}
+
 /* 📤 Botón "Exportar Página" (Mantiene su tamaño y color verde) */
 #exportarPaginaCompletos {
     background: #28a745 !important; /* ✅ Verde */
