@@ -183,7 +183,13 @@ document.addEventListener("DOMContentLoaded", function () {
         paginaActualCompleto = 1;
         mostrarReportesCompletos(paginaActualCompleto);
     }
-
+    function limpiarHTMLParaExcel(html) {
+        if (!html) return "N/A";
+        const temporal = document.createElement("div");
+        html = html.replace(/<br\s*\/?>/gi, '\n'); // Convertir <br> a \n
+        temporal.innerHTML = html;
+        return temporal.textContent.trim(); // Extraer solo el texto plano
+    }
     function formatearEncargadoParaVista(textoPlano) {
         if (!textoPlano) return "N/A";
 
@@ -211,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
             [
                 reporte.folio,
                 reporte.nomina,
-                reporte.encargado, // Ya viene con \n desde PHP
+                limpiarHTMLParaExcel(reporte.encargado),
                 reporte.fechaRegistro,
                 reporte.fechaFinalizacion,
                 reporte.descripcion || "-",
