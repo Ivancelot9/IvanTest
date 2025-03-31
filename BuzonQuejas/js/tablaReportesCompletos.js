@@ -1,4 +1,3 @@
-let resaltarFechas = false;
 document.addEventListener("DOMContentLoaded", function () {
     const tablaCompletosBody = document.getElementById("tabla-completos-body");
     const prevPageBtnCompleto = document.getElementById("prevPage-completo");
@@ -16,7 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let paginaActualCompleto = 1;
     const filasPorPagina = 10;
 
-    // 🟡 Diccionario para mapear columnas
+    let resaltarFechas = false; // ✅ Bandera para resaltar fechas
+
     const columnasBDCompletos = {
         folio: "folio",
         nomina: "nomina",
@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
         estatus: "estatus"
     };
 
-    // ❗ Evitar escritura manual en inputs de fecha
     startDateInput.setAttribute("onkeydown", "return false;");
     endDateInput.setAttribute("onkeydown", "return false;");
 
@@ -61,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${aplicarResaltado(reporte.folio, "folio", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.nomina, "nomina", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.encargado, "encargado", valorFiltro, columnaSeleccionada)}</td>
-                <td>${aplicarResaltado(reporte.fechaFinalizacion, "fechaFinalizacion", valorFiltro, columnaSeleccionada)}</td>
+                <td>${aplicarResaltado(reporte.fechaFinalizacion.split(" ")[0], "fechaFinalizacion", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.estatus, "estatus", valorFiltro, columnaSeleccionada)}</td>
             `;
 
@@ -76,6 +75,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             tablaCompletosBody.appendChild(fila);
         });
+
+        // ✅ Aplicar resaltado si estamos en modo de rango
+        if (resaltarFechas) {
+            const celdasFecha = tablaCompletosBody.querySelectorAll("td:nth-child(4)");
+            celdasFecha.forEach(celda => celda.classList.add("highlight"));
+        }
 
         pageIndicatorCompleto.textContent = `Página ${pagina}`;
         prevPageBtnCompleto.disabled = pagina === 1;
@@ -103,7 +108,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function filtrarReportesCompletos() {
-        resaltarFechas = false;
         const valorFiltro = filterInputCompleto.value.toLowerCase();
         const columnaSeleccionada = filterColumnCompleto.value;
         const columnaBD = columnasBDCompletos[columnaSeleccionada];
@@ -113,16 +117,12 @@ document.addEventListener("DOMContentLoaded", function () {
             return valor.includes(valorFiltro);
         });
 
+        resaltarFechas = false; // 🔕 Apagar resaltado si es búsqueda por texto
         paginaActualCompleto = 1;
         mostrarReportesCompletos(1);
-        if (resaltarFechas) {
-            const celdasFecha = tablaCompletosBody.querySelectorAll("td:nth-child(4)");
-            celdasFecha.forEach(celda => celda.classList.add("highlight"));
-        }
     }
 
     function filtrarPorRangoDeFechas() {
-        resaltarFechas = true;
         const startDate = startDateInput.value;
         const endDate = endDateInput.value;
 
@@ -144,22 +144,16 @@ document.addEventListener("DOMContentLoaded", function () {
             return true;
         });
 
-        // 🟢 Ordenar del más antiguo al más reciente
         datosFiltradosCompletos.sort((a, b) => new Date(a.fechaFinalizacion) - new Date(b.fechaFinalizacion));
 
-        // Limpiar búsqueda por texto
-        filterInputCompleto.value = "";
+        resaltarFechas = true; // ✅ Activar resaltado para fechas
+        filterInputCompleto.value = ""; // Limpiar filtro por texto
         paginaActualCompleto = 1;
         mostrarReportesCompletos(paginaActualCompleto);
 
         if (datosFiltradosCompletos.length === 0) {
             tablaCompletosBody.innerHTML = `
-            <tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
-        } else {
-            // 🟡 Aplicar resaltado a la columna de fecha finalización
-            const celdasFecha = tablaCompletosBody.querySelectorAll("td:nth-child(4)");
-            celdasFecha.forEach(celda => celda.classList.add("highlight"));
-
+                <tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
         }
     }
 
