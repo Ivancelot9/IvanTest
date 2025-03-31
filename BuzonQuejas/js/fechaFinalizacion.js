@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         fechaRegistro: celda(1),
                         nomina: celda(2),
                         area: celda(3),
-                        encargado: fila.children[4]?.innerHTML || "N/A",
+                        encargado: fila.querySelector(".celda-encargado")?.innerHTML || "N/A",
                         descripcion: lastClickedButton.dataset.descripcion || "Sin descripción",
                         comentarios: "Sin comentarios",
                         fechaFinalizacion: fecha,
