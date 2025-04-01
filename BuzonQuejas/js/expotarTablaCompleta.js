@@ -2,39 +2,47 @@ document.addEventListener("DOMContentLoaded", function () {
     const exportarPaginaBtn = document.getElementById("exportarPaginaCompletos");
 
     exportarPaginaBtn.addEventListener("click", function () {
-        let datosReportesCompletos = JSON.parse(localStorage.getItem("reportesCompletos")) || []; // 🔹 Usar la tabla correcta
+        let reportesParaExportar = [];
 
-        let reportesVisibles = [];
-
-        // 🔍 Obtener los folios visibles en la tabla de reportes completados (página actual)
+        // 🔍 Recorremos las filas visibles de la tabla completados
         document.querySelectorAll("#tabla-completos-body tr").forEach(fila => {
             let celdas = fila.getElementsByTagName("td");
-            if (celdas.length > 0) {
+
+            if (celdas.length >= 7) {
                 let folio = celdas[0].textContent.trim();
-                reportesVisibles.push(folio);
+                let nomina = celdas[1].textContent.trim();
+                let encargado = celdas[2].textContent.trim();
+                let fechaRegistro = celdas[3].textContent.trim();
+                let fechaFinalizacion = celdas[4].textContent.trim();
+                let estatus = celdas[5].textContent.trim();
+
+                // ✅ Obtenemos descripción y comentarios desde atributos del botón
+                let botonConvertidor = fila.querySelector(".convertidor");
+                let descripcion = botonConvertidor?.getAttribute("data-descripcion") || "Sin descripción";
+                let comentarios = botonConvertidor?.getAttribute("data-comentarios") || "Sin comentarios";
+
+                reportesParaExportar.push({
+                    folio,
+                    nomina,
+                    encargado,
+                    fechaRegistro,
+                    fechaFinalizacion,
+                    descripcion,
+                    comentarios,
+                    estatus
+                });
             }
         });
-
-        console.log("Folios visibles en la tabla 2:", reportesVisibles);
-        console.log("Reportes en localStorage (Completos):", datosReportesCompletos);
-
-        // 🔎 Buscar los reportes completos según los folios de la tabla 2
-        let reportesParaExportar = datosReportesCompletos.filter(reporte =>
-            reportesVisibles.includes(reporte.folio.toString().trim())
-        );
-
-        console.log("Reportes encontrados para exportar:", reportesParaExportar);
 
         if (reportesParaExportar.length === 0) {
             Swal.fire("Error", "No se encontraron reportes completos para exportar.", "error");
             return;
         }
 
-        // 📥 Generar y descargar el archivo Excel
         generarExcel(reportesParaExportar);
     });
 
-    // 📌 Función para generar el archivo Excel
+    // 📦 Función para generar el archivo Excel
     function generarExcel(reportes) {
         let wb = XLSX.utils.book_new();
         wb.Props = {
@@ -46,14 +54,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         wb.SheetNames.push("Reporte");
 
-        // 📄 Cabeceras del archivo Excel
         let ws_data = [
             ["Folio", "Número de Nómina", "Encargado", "Fecha Registro", "Fecha Finalización", "Descripción", "Comentarios", "Estatus"]
         ];
 
-        // 📌 Agregar datos de los reportes completos
         reportes.forEach(reporte => {
-            let comentarios = reporte.comentarios ? reporte.comentarios.join(" | ") : "Sin comentarios";
             ws_data.push([
                 reporte.folio,
                 reporte.nomina,
@@ -61,28 +66,28 @@ document.addEventListener("DOMContentLoaded", function () {
                 reporte.fechaRegistro,
                 reporte.fechaFinalizacion || "-",
                 reporte.descripcion,
-                comentarios,
+                reporte.comentarios,
                 reporte.estatus
             ]);
         });
 
-        let ws = XLSX.utils.aoa_to_sheet(ws_data);
+        const ws = XLSX.utils.aoa_to_sheet(ws_data);
 
-        // 📌 Ajustar ancho de columnas automáticamente
+        // 📏 Ajuste del ancho de columnas
         ws["!cols"] = [
             { wch: 12 },  // Folio
-            { wch: 18 },  // Número de Nómina
-            { wch: 22 },  // Encargado
-            { wch: 15 },  // Fecha Registro
-            { wch: 15 },  // Fecha Finalización
-            { wch: 50 },  // Descripción
-            { wch: 50 },  // Comentarios
+            { wch: 18 },  // Nómina
+            { wch: 30 },  // Encargado
+            { wch: 18 },  // Fecha Registro
+            { wch: 18 },  // Fecha Finalización
+            { wch: 60 },  // Descripción
+            { wch: 60 },  // Comentarios
             { wch: 15 }   // Estatus
         ];
 
         wb.Sheets["Reporte"] = ws;
 
-        // 📥 Descargar el archivo Excel
-        XLSX.writeFile(wb, `Reportes_Completos_Pagina_${document.getElementById("pageIndicator-completo").textContent}.xlsx`);
+        // 📤 Descargar archivo con nombre dinámico
+        XLSX.writeFile(wb, `Reportes_Completos_${new Date().toLocaleDateString().replace(/\//g, '-')}.xlsx`);
     }
 });
