@@ -179,8 +179,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         datosReportes.push(nuevoReporte);
         datosReportes.sort((a, b) => new Date(b.FechaRegistro) - new Date(a.FechaRegistro));
-        datosFiltrados = [...datosReportes];
-        mostrarReportes(1);
+        filtrarReportes();
+
 
         const primeraFila = tablaBody.querySelector("tr");
         if (primeraFila) {
