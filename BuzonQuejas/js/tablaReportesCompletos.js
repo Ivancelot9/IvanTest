@@ -291,6 +291,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.cargarReportesCompletos = cargarReportesCompletos;
 
     window.moverReporteACompletados = function (nuevoReporte) {
+        console.log("📩 Reporte recibido en moverReporteACompletados:", nuevoReporte);
         datosReportesCompletos.unshift(nuevoReporte);
         datosFiltradosCompletos = [...datosReportesCompletos];
         mostrarReportesCompletos(1);
