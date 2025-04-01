@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Ajustando Excel Tabla Completa">
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/dao/daoUsuario.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/dao/db.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BuzonQuejas/dao/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/loginUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/loginUsuario.php" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Inicio Sesion Usuario">
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardUsuario.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,15 +157,7 @@
       <workItem from="1743084876445" duration="18372000" />
       <workItem from="1743171516579" duration="13671000" />
       <workItem from="1743430470672" duration="14853000" />
-      <workItem from="1743516464747" duration="12348000" />
-    </task>
-    <task id="LOCAL-00720" summary="Mostrar ShiftLeader y Supervisor en la tabla">
-      <option name="closed" value="true" />
-      <created>1743095492044</created>
-      <option name="number" value="00720" />
-      <option name="presentableId" value="LOCAL-00720" />
-      <option name="project" value="LOCAL" />
-      <updated>1743095492044</updated>
+      <workItem from="1743516464747" duration="12762000" />
     </task>
     <task id="LOCAL-00721" summary="Mostrar ShiftLeader y Supervisor en la tabla">
       <option name="closed" value="true" />
@@ -555,7 +543,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743532089933</updated>
     </task>
-    <option name="localTasksCounter" value="769" />
+    <task id="LOCAL-00769" summary="Inicio Sesion Usuario">
+      <option name="closed" value="true" />
+      <created>1743541316706</created>
+      <option name="number" value="00769" />
+      <option name="presentableId" value="LOCAL-00769" />
+      <option name="project" value="LOCAL" />
+      <updated>1743541316707</updated>
+    </task>
+    <option name="localTasksCounter" value="770" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -607,7 +603,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Boton Excel" />
     <MESSAGE value="Convertidor Reporte a Excel" />
     <MESSAGE value="Pruebas Excel" />
     <MESSAGE value="Correcion Comentarios" />
@@ -632,6 +627,7 @@
     <MESSAGE value="Ajustando Excel Individual" />
     <MESSAGE value="Ajustando Excel Comentarios y Descripcion" />
     <MESSAGE value="Ajustando Excel Tabla Completa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajustando Excel Tabla Completa" />
+    <MESSAGE value="Inicio Sesion Usuario" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inicio Sesion Usuario" />
   </component>
 </project>

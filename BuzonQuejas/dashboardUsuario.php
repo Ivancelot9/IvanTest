@@ -1,6 +1,13 @@
 <?php
-?>
+session_start();
 
+if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
+    echo "<META HTTP-EQUIV='REFRESH' CONTENT='1; URL=loginUsuario.php'>";
+    session_destroy();
+}else{
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -43,7 +50,7 @@
 
                 <label class="user-label">Número de nómina:</label>
                 <div class="user-data-box">
-                    <span id="nominaUsuario">00030318</span>
+                    <span id="nominaUsuario"><?php echo $_SESSION["nomina"];?></span>
                 </div>
             </div>
 
