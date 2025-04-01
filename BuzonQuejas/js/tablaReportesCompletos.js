@@ -112,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 datosReportesCompletos = data;
+                window.datosReportesCompletos = data; // ✅ Exponemos globalmente
                 datosFiltradosCompletos = [...datosReportesCompletos];
                 mostrarReportesCompletos(1);
             })

@@ -3,38 +3,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     exportarPaginaBtn.addEventListener("click", function () {
         console.log("🟢 Botón de exportar página fue clickeado");
-        let reportesParaExportar = [];
 
-        // 🔍 Recorremos las filas visibles de la tabla completados
+        let foliosVisibles = [];
+
         document.querySelectorAll("#tabla-completos-body tr").forEach(fila => {
-            console.log("🔍 Fila HTML encontrada:", fila);
-            let celdas = fila.getElementsByTagName("td");
-
-            if (celdas.length >= 7) {
-                let folio = celdas[0].textContent.trim();
-                let nomina = celdas[1].textContent.trim();
-                let encargado = celdas[2].textContent.trim();
-                let fechaRegistro = celdas[3].textContent.trim();
-                let fechaFinalizacion = celdas[4].textContent.trim();
-                let estatus = celdas[5].textContent.trim();
-
-                // ✅ Obtenemos descripción y comentarios desde atributos del botón
-                let botonConvertidor = fila.querySelector(".convertidor");
-                let descripcion = botonConvertidor?.getAttribute("data-descripcion") || "Sin descripción";
-                let comentarios = botonConvertidor?.getAttribute("data-comentarios") || "Sin comentarios";
-
-                reportesParaExportar.push({
-                    folio,
-                    nomina,
-                    encargado,
-                    fechaRegistro,
-                    fechaFinalizacion,
-                    descripcion,
-                    comentarios,
-                    estatus
-                });
+            const celdaFolio = fila.querySelector("td");
+            if (celdaFolio) {
+                const folio = celdaFolio.textContent.trim();
+                foliosVisibles.push(folio);
+                console.log("🔍 Fila con folio visible:", folio);
             }
         });
+
+        if (typeof datosReportesCompletos === "undefined") {
+            Swal.fire("Error", "No se pudieron encontrar los datos en memoria.", "error");
+            return;
+        }
+
+        const reportesParaExportar = datosReportesCompletos.filter(rep =>
+            foliosVisibles.includes(rep.folio.toString())
+        );
+
+        console.log("📦 Reportes a exportar:", reportesParaExportar);
 
         if (reportesParaExportar.length === 0) {
             Swal.fire("Error", "No se encontraron reportes completos para exportar.", "error");
@@ -44,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
         generarExcel(reportesParaExportar);
     });
 
-    // 📦 Función para generar el archivo Excel
     function generarExcel(reportes) {
         let wb = XLSX.utils.book_new();
         wb.Props = {
@@ -56,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         wb.SheetNames.push("Reporte");
 
-        let ws_data = [
+        const ws_data = [
             ["Folio", "Número de Nómina", "Encargado", "Fecha Registro", "Fecha Finalización", "Descripción", "Comentarios", "Estatus"]
         ];
 
@@ -67,15 +56,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 reporte.encargado,
                 reporte.fechaRegistro,
                 reporte.fechaFinalizacion || "-",
-                reporte.descripcion,
-                reporte.comentarios,
+                reporte.descripcion || "Sin descripción",
+                reporte.comentarios || "Sin comentarios",
                 reporte.estatus
             ]);
         });
 
         const ws = XLSX.utils.aoa_to_sheet(ws_data);
 
-        // 📏 Ajuste del ancho de columnas
         ws["!cols"] = [
             { wch: 12 },  // Folio
             { wch: 18 },  // Nómina
@@ -89,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         wb.Sheets["Reporte"] = ws;
 
-        // 📤 Descargar archivo con nombre dinámico
         XLSX.writeFile(wb, `Reportes_Completos_${new Date().toLocaleDateString().replace(/\//g, '-')}.xlsx`);
     }
 });
