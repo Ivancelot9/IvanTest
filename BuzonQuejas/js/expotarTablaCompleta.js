@@ -2,10 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const exportarPaginaBtn = document.getElementById("exportarPaginaCompletos");
 
     exportarPaginaBtn.addEventListener("click", function () {
+        console.log("🟢 Botón de exportar página fue clickeado");
         let reportesParaExportar = [];
 
         // 🔍 Recorremos las filas visibles de la tabla completados
         document.querySelectorAll("#tabla-completos-body tr").forEach(fila => {
+            console.log("🔍 Fila HTML encontrada:", fila);
             let celdas = fila.getElementsByTagName("td");
 
             if (celdas.length >= 7) {
