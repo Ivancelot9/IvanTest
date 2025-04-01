@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obteneReportesPorFolio.php?folio=${folioSeleccionado}`)
                         .then(res => res.json())
                         .then(reporteBD => {
+                            console.log("📦 Respuesta desde obteneReportesPorFolio.php:", reporteBD);
                             if (!reporteBD || !reporteBD.FolioReportes) {
                                 Swal.fire("Error", "No se pudo obtener el reporte actualizado.", "error");
                                 return;

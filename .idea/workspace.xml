@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Ajustando Excel Individual">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Ajustando Excel Comentarios y Descripcion">
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/fechaFinalizacion.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/fechaFinalizacion.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -158,15 +157,7 @@
       <workItem from="1743084876445" duration="18372000" />
       <workItem from="1743171516579" duration="13671000" />
       <workItem from="1743430470672" duration="14853000" />
-      <workItem from="1743516464747" duration="1728000" />
-    </task>
-    <task id="LOCAL-00712" summary="Arreglando Filtrador Reportes Completos">
-      <option name="closed" value="true" />
-      <created>1743086696026</created>
-      <option name="number" value="00712" />
-      <option name="presentableId" value="LOCAL-00712" />
-      <option name="project" value="LOCAL" />
-      <updated>1743086696026</updated>
+      <workItem from="1743516464747" duration="2580000" />
     </task>
     <task id="LOCAL-00713" summary="Arreglando Filtrador Reportes Completos">
       <option name="closed" value="true" />
@@ -552,7 +543,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743447269880</updated>
     </task>
-    <option name="localTasksCounter" value="761" />
+    <task id="LOCAL-00761" summary="Ajustando Excel Comentarios y Descripcion">
+      <option name="closed" value="true" />
+      <created>1743520022028</created>
+      <option name="number" value="00761" />
+      <option name="presentableId" value="LOCAL-00761" />
+      <option name="project" value="LOCAL" />
+      <updated>1743520022028</updated>
+    </task>
+    <option name="localTasksCounter" value="762" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -604,7 +603,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tabla Reportes Completos Conexion" />
     <MESSAGE value="Correcion Estatus" />
     <MESSAGE value="Boton Excel" />
     <MESSAGE value="Convertidor Reporte a Excel" />
@@ -629,6 +627,7 @@
     <MESSAGE value="Arreglando Rango" />
     <MESSAGE value="Arreglando supervisor en tabla 2" />
     <MESSAGE value="Ajustando Excel Individual" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajustando Excel Individual" />
+    <MESSAGE value="Ajustando Excel Comentarios y Descripcion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustando Excel Comentarios y Descripcion" />
   </component>
 </project>
