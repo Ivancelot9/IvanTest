@@ -70,47 +70,57 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(res => res.json())
             .then(data => {
                 if (data.status === "success") {
-                    let fila = lastClickedButton.closest("tr");
-                    if (!fila) return;
+                    // Luego de guardar fecha, obtener reporte actualizado completo
+                    fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obteneReportesPorFolio.php?folio=${folioSeleccionado}`)
+                        .then(res => res.json())
+                        .then(reporteBD => {
+                            if (!reporteBD || !reporteBD.FolioReportes) {
+                                Swal.fire("Error", "No se pudo obtener el reporte actualizado.", "error");
+                                return;
+                            }
 
-                    const celda = index => fila.children[index]?.textContent.trim() || "";
+                            const reporte = {
+                                folio: reporteBD.FolioReportes,
+                                fechaRegistro: reporteBD.FechaRegistro,
+                                nomina: reporteBD.NumeroNomina,
+                                area: reporteBD.Area || "Sin área",
+                                encargado: reporteBD.Encargado || "N/A",
+                                descripcion: reporteBD.Descripcion || "Sin descripción",
+                                comentarios: reporteBD.Comentarios || "Sin comentarios",
+                                fechaFinalizacion: fecha,
+                                estatus: "Completado"
+                            };
 
-                    let reporte = {
-                        folio: celda(0),
-                        fechaRegistro: celda(1),
-                        nomina: celda(2),
-                        area: celda(3),
-                        encargado: fila.querySelector(".celda-encargado")?.innerHTML || "N/A",
-                        descripcion: lastClickedButton.dataset.descripcion || "Sin descripción",
-                        comentarios: "Sin comentarios",
-                        fechaFinalizacion: fecha,
-                        estatus: "Completado"
-                    };
+                            // ✅ Mover a la tabla 2 en tiempo real
+                            if (window.moverReporteACompletados) {
+                                window.moverReporteACompletados(reporte);
+                            }
 
-                    // ✅ Mover a la tabla 2 en tiempo real
-                    if (window.moverReporteACompletados) {
-                        window.moverReporteACompletados(reporte);
-                    }
-                    // ✅ Actualizar contador visual (estilo Messenger)
-                    const badge = document.getElementById("contador-completos");
-                    if (badge) {
-                        let count = parseInt(localStorage.getItem("contadorCompletos") || "0");
-                        count++;
-                        badge.textContent = count.toString();
-                        badge.style.display = "inline-block";
-                        localStorage.setItem("contadorCompletos", count); // 🔴 Guardar en localStorage
-                    }
+                            // ✅ Actualizar contador visual (estilo Messenger)
+                            const badge = document.getElementById("contador-completos");
+                            if (badge) {
+                                let count = parseInt(localStorage.getItem("contadorCompletos") || "0");
+                                count++;
+                                badge.textContent = count.toString();
+                                badge.style.display = "inline-block";
+                                localStorage.setItem("contadorCompletos", count);
+                            }
 
-                    // ✅ Forzar actualización visual de tabla 2 si está visible
-                    const tablaCompletos = document.getElementById("reportes-completos");
-                    if (tablaCompletos && tablaCompletos.style.display !== "none") {
-                        if (typeof window.mostrarReportesCompletos === "function") {
-                            window.mostrarReportesCompletos(1);
-                        }
-                    }
+                            // ✅ Forzar actualización visual de tabla 2 si está visible
+                            const tablaCompletos = document.getElementById("reportes-completos");
+                            if (tablaCompletos && tablaCompletos.style.display !== "none") {
+                                if (typeof window.mostrarReportesCompletos === "function") {
+                                    window.mostrarReportesCompletos(1);
+                                }
+                            }
 
-                    fila.remove();
-                    Swal.fire("Éxito", "El reporte fue finalizado correctamente.", "success");
+                            // ✅ Eliminar de la tabla 1
+                            const fila = lastClickedButton.closest("tr");
+                            if (fila) fila.remove();
+
+                            Swal.fire("Éxito", "El reporte fue finalizado correctamente.", "success");
+                        })
+                        .catch(() => Swal.fire("Error", "No se pudo obtener el reporte actualizado desde la base de datos.", "error"));
                 } else {
                     Swal.fire("Error", data.message || "No se pudo guardar en BD.", "error");
                 }
