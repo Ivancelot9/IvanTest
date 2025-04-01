@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     function resaltarTexto(texto, filtro) {
+        texto = String(texto ?? ""); // 🔒 asegura que sea string aunque sea null/undefined
         if (!filtro || filtro.trim() === "") return texto;
         const regex = new RegExp(`(${filtro})`, "gi");
         return texto.replace(regex, `<span class="highlight">$1</span>`);
