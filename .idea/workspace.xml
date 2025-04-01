@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Ajustando Excel Tabla Completa">
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/dao/daoUsuario.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/dao/db.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/dao/login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/expotarTablaCompleta.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/expotarTablaCompleta.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/loginUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/loginUsuario.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,15 +161,7 @@
       <workItem from="1743084876445" duration="18372000" />
       <workItem from="1743171516579" duration="13671000" />
       <workItem from="1743430470672" duration="14853000" />
-      <workItem from="1743516464747" duration="7508000" />
-    </task>
-    <task id="LOCAL-00719" summary="Mostrar ShiftLeader y Supervisor en la tabla">
-      <option name="closed" value="true" />
-      <created>1743094575147</created>
-      <option name="number" value="00719" />
-      <option name="presentableId" value="LOCAL-00719" />
-      <option name="project" value="LOCAL" />
-      <updated>1743094575147</updated>
+      <workItem from="1743516464747" duration="12348000" />
     </task>
     <task id="LOCAL-00720" summary="Mostrar ShiftLeader y Supervisor en la tabla">
       <option name="closed" value="true" />
@@ -552,7 +547,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743531086366</updated>
     </task>
-    <option name="localTasksCounter" value="768" />
+    <task id="LOCAL-00768" summary="Ajustando Excel Tabla Completa">
+      <option name="closed" value="true" />
+      <created>1743532089933</created>
+      <option name="number" value="00768" />
+      <option name="presentableId" value="LOCAL-00768" />
+      <option name="project" value="LOCAL" />
+      <updated>1743532089933</updated>
+    </task>
+    <option name="localTasksCounter" value="769" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -22,15 +22,15 @@
             <div class="welcome-box">
                 <button class="toggle-btn">¡Bienvenido!</button>
             </div>
-            <form id="userLoginForm" class="form">
+            <form id="userLoginForm" action="dao/login.php" method="post"  class="form">
                 <div id="dynamicFields">
                     <!-- Campo para el Número de Nómina -->
                     <div class="input-group">
                         <i class="fa-solid fa-id-badge"></i>
-                        <input type="text" id="userNomina" placeholder="Número de Nómina" required>
+                        <input type="text" id="userNomina" name="nomina"  placeholder="Número de Nómina" required>
                     </div>
                 </div>
-                <button type="submit" class="submit-btn">Entrar</button>
+                <button type="submit" class="submit-btn" name="btnEntrar">Entrar</button>
             </form>
         </div>
     </div>
