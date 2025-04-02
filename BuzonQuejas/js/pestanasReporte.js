@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
             actualizarVista(); // ← asegúrate de actualizar la vista aquí
         } else {
             // 🔹 Solo validar en el paso final (cuando pasoActual ya es el último)
-            if (!validarReporte(pasoActual)) {
+            if (!validarReporte()) {
                 return; // Detener si falta algo
             }
 
