@@ -36,13 +36,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const esUltimoPaso = pasoActual === steps.length - 1;
 
         if (esUltimoPaso) {
-            console.log("✅ Estás en el último paso, ahora se valida.");
+            console.log("✅ Estás en el último paso. Ejecutando validación...");
+
             if (!validarReporte()) {
-                console.log("❌ Validación fallida.");
+                console.log("❌ Validación fallida, no se envía.");
                 return;
             }
 
-            console.log("✅ Validación exitosa, mostrando Swal.");
             Swal.fire({
                 title: "¡Reporte enviado!",
                 text: "¿Qué deseas hacer ahora?",
@@ -73,11 +73,9 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
         } else {
-            console.log("⏭️ No estás en el último paso. Avanzando.");
             pasoActual++;
             actualizarVista();
         }
-
 
     });
 
