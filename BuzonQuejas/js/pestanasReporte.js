@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let pasoActual = 0; // Inicia en la pestaña "Datos"
 
     function cerrarSesion() {
-        fetch("cerrarSesionUsuario.php")
+        fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/cerrarSesionUsuario.php")
             .then(() => {
                 window.location.href = "loginUsuario.php";
             })
