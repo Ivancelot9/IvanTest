@@ -1,5 +1,6 @@
 function validarReporte(pasoActual) {
     console.log("⚠️ Validando paso:", pasoActual);
+    console.trace("🔍 Llamada a validarReporte");
 
     const selectArea = document.getElementById("area");
     const selectSupervisor = document.getElementById("supervisor");
