@@ -31,14 +31,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     btnSiguiente.addEventListener("click", function () {
         if (pasoActual < steps.length - 1) {
-            pasoActual++; // Avanzar al siguiente paso
+            pasoActual++; // 🔹 Avanza sin validar
+            actualizarVista(); // ← asegúrate de actualizar la vista aquí
         } else {
-            // 🔹 Antes de enviar, validar los datos obligatorios
+            // 🔹 Solo validar en el paso final (cuando pasoActual ya es el último)
             if (!validarReporte()) {
-                return; // ⛔ Si falta un dato, no avanza ni envía
+                return; // Detener si falta algo
             }
 
-            // 🔹 Mostrar opciones después de enviar el reporte (botones intercambiados)
+            // 🔹 Mostrar Swal de opciones al finalizar
             Swal.fire({
                 title: "¡Reporte enviado!",
                 text: "¿Qué deseas hacer ahora?",
@@ -46,27 +47,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 showCancelButton: true,
                 cancelButtonText: "Cerrar sesión",
                 confirmButtonText: "Escribir otro reporte",
-                timer: 120000, // ⏳ 2 minutos
+                timer: 120000,
                 timerProgressBar: true,
                 allowOutsideClick: false,
-                allowEscapeKey: false,
-                allowEnterKey: false
+                allowEscapeKey: false
             }).then((result) => {
                 if (result.isConfirmed) {
                     reiniciarFormulario();
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    cerrarSesion(); // ← función para cerrar sesión correctamente
+                    cerrarSesion();
                 } else if (result.dismiss === Swal.DismissReason.timer) {
-                    // ⏱ Tiempo agotado, cerrar sesión automáticamente
                     Swal.fire({
                         icon: 'info',
                         title: 'Sesión cerrada por inactividad',
-                        text: 'Fuiste redirigido al login por inactividad.',
+                        text: 'Fuiste redirigido al login por estar inactivo.',
                         showConfirmButton: false,
                         timer: 2500
                     }).then(() => {
                         cerrarSesion();
                     });
+
                 }
             });
 
