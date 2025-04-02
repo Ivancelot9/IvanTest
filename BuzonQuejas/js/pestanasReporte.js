@@ -30,16 +30,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     btnSiguiente.addEventListener("click", function () {
-        if (pasoActual < steps.length - 1) {
-            pasoActual++; // 🔹 Avanza sin validar
-            actualizarVista(); // ← solo se actualiza aquí
-        } else {
-            // 🔹 Solo validar en el paso final
-            if (!validarReporte()) {
-                return; // 🔸 Detener todo si hay errores
-            }
+        // Verificamos si ya estamos en el último paso
+        const esUltimoPaso = pasoActual === steps.length - 1;
 
-            // 🔹 Mostrar Swal de opciones al finalizar
+        if (esUltimoPaso) {
+            // Solo validar si ya estamos en el último paso
+            if (!validarReporte()) return;
+
+            // Mostrar Swal si todo está bien
             Swal.fire({
                 title: "¡Reporte enviado!",
                 text: "¿Qué deseas hacer ahora?",
@@ -66,13 +64,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     }).then(() => {
                         cerrarSesion();
                     });
-
                 }
             });
 
-            return;
+        } else {
+            // Si NO es el último paso, simplemente avanzar sin validar
+            pasoActual++;
+            actualizarVista();
         }
-        actualizarVista();
     });
 
     // 🔹 Permitir que las pestañas sean botones para navegar
