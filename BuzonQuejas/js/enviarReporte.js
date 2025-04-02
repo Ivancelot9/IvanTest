@@ -14,9 +14,19 @@ document.addEventListener("DOMContentLoaded", function () {
         const esUltimoPaso = btnSiguiente.textContent === "Finalizar";
         if (!esUltimoPaso) return; // ⛔ No hacemos nada si aún no es el último paso
 
-        // 🛑 Validar antes de continuar (esto usa validacionesReportes.js)
-        if (!validarReporte()) return;
+        // ✅ Detectar paso actual desde el DOM
+        const steps = document.querySelectorAll(".content");
+        let pasoActual = 0;
+        steps.forEach((step, index) => {
+            if (!step.classList.contains("hidden")) {
+                pasoActual = index;
+            }
+        });
 
+        // 🛑 Validar antes de continuar (esto usa validacionesReportes.js)
+        if (!validarReporte(pasoActual)) return;
+
+        // ✅ Recolectar datos del formulario
         const areaSelect = document.getElementById("area");
         const reporteText = document.getElementById("reporte").value.trim();
         const supervisorSelect = document.getElementById("supervisor");
@@ -34,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
             reporteData.IdShiftLeader = shiftLeaderSelect.value;
         }
 
-        // Enviar reporte al backend
+        // 📤 Enviar reporte al backend
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/insertarReporte.php", {
             method: "POST",
             headers: {
@@ -45,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.status === "success") {
-                    // 🔊 Emitir mensaje por canal
+                    // 📡 Emitir mensaje por canal
                     const canal = new BroadcastChannel("canalReportes");
                     canal.postMessage({
                         tipo: "nuevo-reporte",
@@ -59,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     supervisorSelect.value = "";
                     shiftLeaderSelect.value = "";
 
-                    // No se ejecuta ningún Swal aquí. Solo lo que tú ya tengas definido.
+                    // (Swal de éxito lo haces tú desde pestanasReporte.js)
                 } else {
                     Swal.fire("Error", data.message || "Ocurrió un error al enviar el reporte.", "error");
                 }
