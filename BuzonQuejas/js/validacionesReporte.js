@@ -1,4 +1,5 @@
 function validarReporte() {
+    console.trace("🚨 validarReporte() fue llamado");
     const selectArea = document.getElementById("area");
     const selectSupervisor = document.getElementById("supervisor");
     const selectShiftLeader = document.getElementById("shiftLeader");
