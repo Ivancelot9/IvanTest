@@ -32,11 +32,11 @@ document.addEventListener("DOMContentLoaded", function () {
     btnSiguiente.addEventListener("click", function () {
         if (pasoActual < steps.length - 1) {
             pasoActual++; // 🔹 Avanza sin validar
-            actualizarVista(); // ← asegúrate de actualizar la vista aquí
+            actualizarVista(); // ← solo se actualiza aquí
         } else {
-            // 🔹 Solo validar en el paso final (cuando pasoActual ya es el último)
+            // 🔹 Solo validar en el paso final
             if (!validarReporte()) {
-                return; // Detener si falta algo
+                return; // 🔸 Detener todo si hay errores
             }
 
             // 🔹 Mostrar Swal de opciones al finalizar
