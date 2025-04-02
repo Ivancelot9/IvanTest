@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function cerrarSesion() {
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/cerrarSesionUsuario.php")
             .then(() => {
-                window.location.href = "loginUsuario.php";
+                window.location.href = "https://grammermx.com/IvanTest/BuzonQuejas/loginUsuario.php";
             })
             .catch((error) => {
                 console.error("Error al cerrar sesión:", error);

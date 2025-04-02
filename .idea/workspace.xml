@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Inicio Sesion Usuario">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/pestanasReporte.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/pestanasReporte.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -159,15 +158,7 @@
       <workItem from="1743171516579" duration="13671000" />
       <workItem from="1743430470672" duration="14853000" />
       <workItem from="1743516464747" duration="12762000" />
-      <workItem from="1743603284056" duration="7177000" />
-    </task>
-    <task id="LOCAL-00723" summary="Mostrar ShiftLeader y Supervisor en la tabla">
-      <option name="closed" value="true" />
-      <created>1743097079820</created>
-      <option name="number" value="00723" />
-      <option name="presentableId" value="LOCAL-00723" />
-      <option name="project" value="LOCAL" />
-      <updated>1743097079820</updated>
+      <workItem from="1743603284056" duration="7478000" />
     </task>
     <task id="LOCAL-00724" summary="Mostrar ShiftLeader y Supervisor en la tabla">
       <option name="closed" value="true" />
@@ -553,7 +544,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743613852093</updated>
     </task>
-    <option name="localTasksCounter" value="772" />
+    <task id="LOCAL-00772" summary="Inicio Sesion Usuario">
+      <option name="closed" value="true" />
+      <created>1743614496236</created>
+      <option name="number" value="00772" />
+      <option name="presentableId" value="LOCAL-00772" />
+      <option name="project" value="LOCAL" />
+      <updated>1743614496236</updated>
+    </task>
+    <option name="localTasksCounter" value="773" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
