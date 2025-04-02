@@ -5,6 +5,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let pasoActual = 0; // Inicia en la pestaña "Datos"
 
+    function cerrarSesion() {
+        fetch("cerrarSesionUsuario.php")
+            .then(() => {
+                window.location.href = "loginUsuario.php";
+            })
+            .catch((error) => {
+                console.error("Error al cerrar sesión:", error);
+            });
+    }
+
+
     function actualizarVista() {
         // 🔹 Ocultar todas las pestañas y contenidos
         tabs.forEach(tab => tab.classList.remove("active"));
@@ -33,15 +44,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 text: "¿Qué deseas hacer ahora?",
                 icon: "success",
                 showCancelButton: true,
-                cancelButtonText: "Cerrar sesión", // 🔹 Ahora "Cerrar sesión" es el secundario
-                confirmButtonText: "Escribir otro reporte", // 🔹 Ahora "Escribir otro reporte" es el principal
+                cancelButtonText: "Cerrar sesión",
+                confirmButtonText: "Escribir otro reporte",
+                timer: 120000, // ⏳ 2 minutos
+                timerProgressBar: true,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // 🔹 Reiniciar el formulario y regresar al primer paso
                     reiniciarFormulario();
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    // 🔹 Cerrar sesión (redirigir a la página de login)
-                    window.location.href = "loginUsuario.php"; // Cambia esto a la URL de tu login
+                    cerrarSesion(); // ← función para cerrar sesión correctamente
+                } else if (result.dismiss === Swal.DismissReason.timer) {
+                    // ⏱ Tiempo agotado, cerrar sesión automáticamente
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Sesión cerrada por inactividad',
+                        text: 'Fuiste redirigido al login por inactividad.',
+                        showConfirmButton: false,
+                        timer: 2500
+                    }).then(() => {
+                        cerrarSesion();
+                    });
                 }
             });
 
