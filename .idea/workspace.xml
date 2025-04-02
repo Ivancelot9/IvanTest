@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Inicio Sesion Usuario">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Arreglar navegacion de pestanas">
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/enviarReporte.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/enviarReporte.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -159,15 +158,7 @@
       <workItem from="1743171516579" duration="13671000" />
       <workItem from="1743430470672" duration="14853000" />
       <workItem from="1743516464747" duration="12762000" />
-      <workItem from="1743603284056" duration="13467000" />
-    </task>
-    <task id="LOCAL-00733" summary="Mostrar ShiftLeader y Supervisor en la tabla">
-      <option name="closed" value="true" />
-      <created>1743178689453</created>
-      <option name="number" value="00733" />
-      <option name="presentableId" value="LOCAL-00733" />
-      <option name="project" value="LOCAL" />
-      <updated>1743178689453</updated>
+      <workItem from="1743603284056" duration="13585000" />
     </task>
     <task id="LOCAL-00734" summary="Mostrar ShiftLeader y Supervisor en la tabla">
       <option name="closed" value="true" />
@@ -553,7 +544,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743621747627</updated>
     </task>
-    <option name="localTasksCounter" value="782" />
+    <task id="LOCAL-00782" summary="Arreglar navegacion de pestanas">
+      <option name="closed" value="true" />
+      <created>1743625374115</created>
+      <option name="number" value="00782" />
+      <option name="presentableId" value="LOCAL-00782" />
+      <option name="project" value="LOCAL" />
+      <updated>1743625374115</updated>
+    </task>
+    <option name="localTasksCounter" value="783" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -605,7 +604,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Convertidor Reporte a Excel" />
     <MESSAGE value="Pruebas Excel" />
     <MESSAGE value="Correcion Comentarios" />
     <MESSAGE value="Agregar Comentarios a Excel" />
@@ -630,6 +628,7 @@
     <MESSAGE value="Ajustando Excel Comentarios y Descripcion" />
     <MESSAGE value="Ajustando Excel Tabla Completa" />
     <MESSAGE value="Inicio Sesion Usuario" />
-    <option name="LAST_COMMIT_MESSAGE" value="Inicio Sesion Usuario" />
+    <MESSAGE value="Arreglar navegacion de pestanas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglar navegacion de pestanas" />
   </component>
 </project>

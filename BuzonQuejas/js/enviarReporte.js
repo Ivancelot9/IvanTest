@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnSiguiente = document.getElementById("btnSiguiente");
 
     btnSiguiente.addEventListener("click", function () {
-        const pasoActual = document.querySelectorAll(".tab-item.active")[0]; // O usa una variable global si ya la tienes
         const esUltimoPaso = btnSiguiente.textContent === "Finalizar";
         if (!esUltimoPaso) return; // ⛔ No hacemos nada si aún no es el último paso
 
