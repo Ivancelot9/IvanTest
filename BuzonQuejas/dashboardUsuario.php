@@ -45,7 +45,7 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
             <div class="user-info-container">
                 <label class="user-label">Nombre:</label>
                 <div class="user-data-box">
-                    <span id="nombreUsuario">Ivan Alejandro Cerritos</span>
+                    <span id="nombreUsuario"><?php echo $_SESSION["nombre"]; ?></span>
                 </div>
 
                 <label class="user-label">Número de nómina:</label>

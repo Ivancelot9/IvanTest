@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Inicio Sesion Usuario">
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardUsuario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/daoUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/daoUsuario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/login.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,6 +159,7 @@
       <workItem from="1743171516579" duration="13671000" />
       <workItem from="1743430470672" duration="14853000" />
       <workItem from="1743516464747" duration="12762000" />
+      <workItem from="1743603284056" duration="1648000" />
     </task>
     <task id="LOCAL-00721" summary="Mostrar ShiftLeader y Supervisor en la tabla">
       <option name="closed" value="true" />
