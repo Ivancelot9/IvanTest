@@ -30,14 +30,19 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     btnSiguiente.addEventListener("click", function () {
-        // Verificamos si ya estamos en el último paso
+        console.log("👉 Click en botón. Paso actual:", pasoActual);
+        console.log("👉 Texto actual del botón:", btnSiguiente.textContent);
+
         const esUltimoPaso = pasoActual === steps.length - 1;
 
         if (esUltimoPaso) {
-            // Solo validar si ya estamos en el último paso
-            if (!validarReporte()) return;
+            console.log("✅ Estás en el último paso, ahora se valida.");
+            if (!validarReporte()) {
+                console.log("❌ Validación fallida.");
+                return;
+            }
 
-            // Mostrar Swal si todo está bien
+            console.log("✅ Validación exitosa, mostrando Swal.");
             Swal.fire({
                 title: "¡Reporte enviado!",
                 text: "¿Qué deseas hacer ahora?",
@@ -68,10 +73,12 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
         } else {
-            // Si NO es el último paso, simplemente avanzar sin validar
+            console.log("⏭️ No estás en el último paso. Avanzando.");
             pasoActual++;
             actualizarVista();
         }
+
+
     });
 
     // 🔹 Permitir que las pestañas sean botones para navegar
