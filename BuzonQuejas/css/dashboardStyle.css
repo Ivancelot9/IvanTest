@@ -214,9 +214,10 @@ body {
 
 /* Cuando la sidebar está oculta, mantiene un pequeño espacio */
 .main-content.expanded {
-    margin-left: auto; /* Centra el contenido */
-    width: 80%; /* Deja un 20% de espacio */
-    max-width: 75%; /* Respetar el máximo */
+    margin-left: 0; /* Elimina el margen izquierdo */
+    width: 100%; /* El contenido ocupa el 100% del ancho */
+    max-width: 100%; /* Asegura que no se limite el ancho */
+    margin: 0 auto; /* Centra el contenido */
 }
 
 /* Header */
