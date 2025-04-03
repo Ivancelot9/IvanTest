@@ -1,4 +1,15 @@
 /* ====== MODIFICACIONES ====== */
+/* Fondo oscuro que cubre toda la página */
+#estatus-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Fondo oscuro semi-transparente */
+    z-index: 999; /* Justo por debajo del modal */
+}
 
 /* Modal con bordes gruesos y efecto cómic */
 #estatus-modal {

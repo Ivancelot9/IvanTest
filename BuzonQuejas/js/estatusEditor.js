@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // 🔹 Crear el fondo oscuro (overlay)
+    let modalOverlay = document.createElement("div");
+    modalOverlay.id = "estatus-modal-overlay";
+    document.body.appendChild(modalOverlay);
+
     let modal = document.createElement("div");
     modal.id = "estatus-modal";
     modal.style.display = "none";
@@ -49,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let progresoManual = 100;
     let currentFolio = null;
 
+    // Función para calcular el estatus recomendado
     function calcularEstatusRecomendado(dias, fechaInicio) {
         let fechaAsignada = new Date(fechaInicio);
         let fechaActual = new Date();
@@ -114,6 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         modal.style.display = "flex";
+        modalOverlay.style.display = "block"; // Mostrar el overlay
     }
 
     continuarBtn.addEventListener("click", function () {
@@ -159,12 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
             botonEstatus.classList.add("ver-estatus-btn");
             botonEstatus.style.backgroundColor = manualCircle.style.backgroundColor;
             botonEstatus.style.color = "white";
-            botonEstatus.style.textShadow = `
-        -1px -1px 0 black,
-         1px -1px 0 black,
-        -1px  1px 0 black,
-         1px  1px 0 black
-    `;
+            botonEstatus.style.textShadow = `-1px -1px 0 black, 1px -1px 0 black, -1px  1px 0 black, 1px  1px 0 black`;
             botonEstatus.style.fontWeight = "bold";
             botonEstatus.style.fontSize = "14px";
             botonEstatus.style.textAlign = "center";
@@ -173,10 +175,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         Swal.fire("¡Estatus Guardado!", `El reporte ha sido actualizado a ${progresoManual}%`, "success");
         modal.style.display = "none";
+        modalOverlay.style.display = "none"; // Ocultar el overlay
     });
 
     closeModal.addEventListener("click", function () {
         modal.style.display = "none";
+        modalOverlay.style.display = "none"; // Ocultar el overlay
     });
 
     document.body.addEventListener("click", function (event) {
