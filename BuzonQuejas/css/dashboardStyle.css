@@ -562,5 +562,87 @@ body {
 }
 
 
+/* Media Query para tabletas y pantallas pequeñas (como iPad) */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 250px; /* Reducir el tamaño de la barra lateral en pantallas más pequeñas */
+    }
+
+    .main-content {
+        margin-left: 300px; /* Ajustar el contenido cuando la sidebar esté visible */
+        width: calc(100% - 320px); /* Ajustar el espacio disponible */
+    }
+
+    .sidebar a {
+        font-size: 1.2rem; /* Reducir el tamaño de los botones */
+        padding: 8px 15px;
+    }
+
+    .submit-btn {
+        font-size: 1.8rem; /* Reducir el tamaño del botón */
+    }
+}
+
+/* Media Query para dispositivos móviles (como iPhone, Android) */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px; /* Reducir aún más el tamaño de la barra lateral */
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%; /* El contenido ocupa todo el espacio disponible */
+        padding: 10px; /* Reducir el padding para pantallas pequeñas */
+    }
+
+    .header h1 {
+        font-size: 1.8rem; /* Reducir el tamaño del título */
+    }
+
+    .username-bubble {
+        font-size: 1rem; /* Reducir el tamaño de la burbuja del nombre */
+    }
+
+    .sidebar a {
+        font-size: 1rem; /* Reducir el tamaño de los botones */
+        padding: 6px 12px;
+    }
+
+    .submit-btn {
+        font-size: 1.6rem; /* Reducir el tamaño del botón */
+    }
+}
+
+/* Media Query para pantallas extra pequeñas (dispositivos móviles más pequeños) */
+@media (max-width: 480px) {
+    .sidebar {
+        width: 180px; /* Aún más pequeño para dispositivos muy pequeños */
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 8px;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .username-bubble {
+        font-size: 0.9rem;
+    }
+
+    .sidebar a {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+    }
+
+    .submit-btn {
+        font-size: 1.5rem;
+    }
+}
+
+
 
 
