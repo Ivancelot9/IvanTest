@@ -385,3 +385,33 @@ button.ver-estatus-btn:hover {
         font-size: 0.75rem;
     }
 }
+
+/* Media Query para pantallas pequeñas (1366x768 y menores) */
+@media (max-width: 1366px) {
+    /* Asegurar que los botones no se amontonen */
+    .table-controls {
+        display: flex;
+        flex-wrap: wrap; /* Esto permite que los botones se acomoden en varias líneas */
+        justify-content: space-between;
+    }
+
+    .table-controls button {
+        margin: 5px;
+        padding: 6px 12px;
+        font-size: 0.85rem; /* Reducir el tamaño de los botones */
+        width: auto; /* Para evitar que se estiren */
+    }
+
+    /* Ajustes para los inputs de fecha y búsqueda */
+    .filter-container select,
+    .filter-container input[type="text"] {
+        font-size: 0.85rem;
+        padding: 3px;
+        width: 100px;
+    }
+
+    #filter-button-completo {
+        font-size: 0.85rem;
+        padding: 5px;
+    }
+}
