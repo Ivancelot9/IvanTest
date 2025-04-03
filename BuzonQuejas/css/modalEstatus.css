@@ -8,7 +8,7 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6); /* Fondo oscuro semi-transparente */
-    z-index: 9999; /* Justo por debajo del modal */
+    z-index: 1000; /* Justo por debajo del modal */
 }
 
 /* Modal con bordes gruesos y efecto cómic */
