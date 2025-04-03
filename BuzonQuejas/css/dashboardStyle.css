@@ -197,21 +197,26 @@ body {
 
 /* Main Content */
 .main-content {
-    padding: 15px;
+    padding: 20px;
     border: 15px solid #1094e0;
     background: white;
-    margin: 3% auto;
     border-radius: 15px;
     transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
-    width: calc(100% - 380px);
-    max-width: 70%;
-
-    /* 🔥 Dale un tamaño mínimo para que no crezca infinitamente */
-    min-height: 80vh;
+    margin-left: 370px; /* Empuja el contenido cuando la sidebar está visible */
+    width: calc(100% - 400px); /* Ancho calculado con sidebar visible */
+    max-width: 75%; /* Limita el ancho máximo */
+    min-height: 80vh; /* Altura mínima */
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden; /* ✅ Evita que se salga */
+    overflow: hidden;
+}
+
+/* Cuando la sidebar está oculta, mantiene un pequeño espacio */
+.main-content.expanded {
+    margin-left: auto;
+    width: 80%; /* Deja un 20% de espacio */
+    max-width: 75%; /* Respetar el máximo */
 }
 
 /* Header */
@@ -324,22 +329,6 @@ body {
 .logo-img {
     max-width: 300px; /* Ajusta el tamaño según sea necesario */
     height: auto;
-}
-
-/* Main Content (ajustado con espacio a la izquierda) */
-.main-content {
-    margin-left: auto; /* Espacio entre la sidebar y el contenido */
-    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
-    width: 80%;
-    max-width: 75%;
-
-}
-
-/* Cuando la sidebar está oculta, mantiene un pequeño espacio */
-.main-content.expanded {
-    margin-left: auto; /* Se centra */
-    width: 80%; /* Deja un 20% de margen a la izquierda y derecha */
-    max-height: 80%; /* Deja un 20% de margen arriba y abajo */
 }
 
 /* Contenedor del botón */
@@ -528,20 +517,6 @@ body {
     to {
         opacity: 1;
     }
-}
-
-/* 🔹 AJUSTES PARA EL MAIN CONTENT */
-.main-content {
-    padding: 20px;
-    border: 15px solid #1094e0;
-    background: white;
-    border-radius: 15px;
-    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
-
-    /* 🔹 El contenido respeta la sidebar (Empujado a la derecha) */
-    margin-left: 370px; /* 🔹 Sidebar empuja el contenido */
-    width: calc(100% - 400px);
-    max-width: 75%;
 }
 
 .badge {
