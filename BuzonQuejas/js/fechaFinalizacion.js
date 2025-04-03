@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     let modalFecha = document.createElement("div");
     modalFecha.id = "modal-fecha";
-    modalFecha.style.display = "none";
+    modalFecha.style.display = "none";  // Inicialmente oculto
     modalFecha.innerHTML = `
     <div class="modal-fecha">
         <h2>Seleccionar Fecha de Finalización</h2>
@@ -13,6 +13,12 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
     </div>
     `;
+
+    // Crear el overlay
+    let modalOverlay = document.createElement("div");
+    modalOverlay.id = "estatus-modal-overlay";
+    document.body.appendChild(modalOverlay);
+
     document.body.appendChild(modalFecha);
 
     let fechaSeleccionada = document.getElementById("fecha-seleccionada");
@@ -52,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
             lastClickedButton = event.target;
             folioSeleccionado = lastClickedButton.getAttribute("data-folio");
             modalFecha.style.display = "flex";
+            modalOverlay.style.display = "block"; // Mostrar el overlay
         }
     });
 
@@ -129,10 +136,18 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(() => Swal.fire("Error", "No se pudo conectar con el servidor.", "error"));
 
         modalFecha.style.display = "none";
+        modalOverlay.style.display = "none"; // Ocultar el overlay
     });
 
-    btnCerrar.addEventListener("click", () => modalFecha.style.display = "none");
+    btnCerrar.addEventListener("click", () => {
+        modalFecha.style.display = "none";
+        modalOverlay.style.display = "none"; // Ocultar el overlay
+    });
+
     window.addEventListener("click", e => {
-        if (e.target === modalFecha) modalFecha.style.display = "none";
+        if (e.target === modalFecha || e.target === modalOverlay) {
+            modalFecha.style.display = "none";
+            modalOverlay.style.display = "none"; // Ocultar el overlay
+        }
     });
 });
