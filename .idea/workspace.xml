@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Agregandfo Foto del Usuario">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Detalles CSS Main Content">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" afterDir="false" />
     </list>
@@ -160,15 +160,7 @@
       <workItem from="1743430470672" duration="14853000" />
       <workItem from="1743516464747" duration="12762000" />
       <workItem from="1743603284056" duration="15685000" />
-      <workItem from="1743690113088" duration="4536000" />
-    </task>
-    <task id="LOCAL-00739" summary="Arreglando Rango">
-      <option name="closed" value="true" />
-      <created>1743433322936</created>
-      <option name="number" value="00739" />
-      <option name="presentableId" value="LOCAL-00739" />
-      <option name="project" value="LOCAL" />
-      <updated>1743433322936</updated>
+      <workItem from="1743690113088" duration="5093000" />
     </task>
     <task id="LOCAL-00740" summary="Arreglando Rango">
       <option name="closed" value="true" />
@@ -554,7 +546,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743693418622</updated>
     </task>
-    <option name="localTasksCounter" value="788" />
+    <task id="LOCAL-00788" summary="Detalles CSS Main Content">
+      <option name="closed" value="true" />
+      <created>1743698284424</created>
+      <option name="number" value="00788" />
+      <option name="presentableId" value="LOCAL-00788" />
+      <option name="project" value="LOCAL" />
+      <updated>1743698284424</updated>
+    </task>
+    <option name="localTasksCounter" value="789" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -606,7 +606,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Correcion Comentarios" />
     <MESSAGE value="Agregar Comentarios a Excel" />
     <MESSAGE value="Agregar Boton Exportar Todo" />
     <MESSAGE value="Agregar Boton Exportar Todo Tabla 2" />
@@ -631,6 +630,7 @@
     <MESSAGE value="Inicio Sesion Usuario" />
     <MESSAGE value="Arreglar navegacion de pestanas" />
     <MESSAGE value="Agregandfo Foto del Usuario" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregandfo Foto del Usuario" />
+    <MESSAGE value="Detalles CSS Main Content" />
+    <option name="LAST_COMMIT_MESSAGE" value="Detalles CSS Main Content" />
   </component>
 </project>
