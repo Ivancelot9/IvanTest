@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     let modal = document.createElement("div");
     modal.id = "estatus-modal";
-    modal.style.display = "none";  // Mantenerlo oculto por defecto
+    modal.style.display = "none";
     modal.innerHTML = `
-    <div class="modal-overlay"></div> <!-- Overlay de fondo -->
     <div class="modal-content comic-bubble">
         <span class="close-modal">&times;</span>
         <h2>CONFIGURAR ESTATUS DEL REPORTE</h2>
@@ -35,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(modal);
 
     let closeModal = modal.querySelector(".close-modal");
-    let modalOverlay = modal.querySelector(".modal-overlay");  // Referencia al overlay
     let preguntaDias = modal.querySelector("#pregunta-dias");
     let configurarEstatus = modal.querySelector("#configurar-estatus");
     let diasEvaluacionInput = modal.querySelector("#dias-evaluacion");
@@ -116,7 +114,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         modal.style.display = "flex";
-        modalOverlay.style.display = "block"; // Mostrar overlay al abrir el modal
     }
 
     continuarBtn.addEventListener("click", function () {
@@ -176,12 +173,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         Swal.fire("¡Estatus Guardado!", `El reporte ha sido actualizado a ${progresoManual}%`, "success");
         modal.style.display = "none";
-        modalOverlay.style.display = "none"; // Ocultar overlay cuando el modal se cierre
     });
 
     closeModal.addEventListener("click", function () {
         modal.style.display = "none";
-        modalOverlay.style.display = "none"; // Ocultar overlay cuando se cierre el modal
     });
 
     document.body.addEventListener("click", function (event) {
