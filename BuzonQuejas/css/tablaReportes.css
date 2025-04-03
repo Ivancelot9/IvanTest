@@ -88,7 +88,6 @@ button.ver-estatus-btn.blue { background: blue; color: white; }
 button.ver-estatus-btn.yellow { background: yellow; color: black; }
 button.ver-estatus-btn.red { background: red; color: white; }
 
-
 /* 🔹 Corrección para que el botón no se salga de la celda */
 td {
     text-align: center;  /* 🔹 Centra el contenido de la celda */
@@ -304,5 +303,85 @@ button.ver-estatus-btn:hover {
     font-style: italic;
 }
 
+/* 📌 Media Query para pantallas de tabletas (max-width: 1024px) */
+@media (max-width: 1024px) {
+    .table-container {
+        height: 200px; /* Reducimos la altura de la tabla en pantallas pequeñas */
+        max-height: 40vh; /* Asegura que la tabla no se expanda demasiado */
+    }
 
+    table th,
+    table td {
+        padding: 10px; /* Reducir el padding para que quepan más celdas */
+    }
 
+    button.mostrar-descripcion,
+    button.agregar-comentario,
+    button.seleccionar-fecha,
+    button.estatus-btn,
+    button.convertidor {
+        font-size: 0.9rem; /* Reducido para pantallas más pequeñas */
+        padding: 4px 8px; /* Reducir el padding de los botones */
+        width: auto; /* Ajustar el tamaño de los botones */
+    }
+
+    /* Hacer más compacto el filtro y el rango de fechas */
+    .filter-container select,
+    .filter-container input[type="text"],
+    .date-range-container input {
+        width: 80px; /* Reducir el tamaño de los campos de entrada */
+        font-size: 0.8rem; /* Reducir el tamaño de fuente */
+    }
+
+    #filter-button-completo {
+        padding: 3px 6px;
+        font-size: 0.8rem;
+    }
+
+    /* Ajustar paginación */
+    .pagination button {
+        padding: 4px 8px;
+        font-size: 0.85rem; /* Más pequeño para pantallas más pequeñas */
+    }
+}
+
+/* 📌 Media Query para pantallas de dispositivos móviles (max-width: 768px) */
+@media (max-width: 768px) {
+    .table-container {
+        height: 150px; /* Hacer la tabla aún más compacta */
+        max-height: 35vh; /* Limitar el tamaño de la tabla */
+    }
+
+    table th,
+    table td {
+        padding: 8px; /* Reducir más el padding de las celdas */
+    }
+
+    button.mostrar-descripcion,
+    button.agregar-comentario,
+    button.seleccionar-fecha,
+    button.estatus-btn,
+    button.convertidor {
+        font-size: 0.85rem; /* Reducir aún más el tamaño de la fuente */
+        padding: 4px 6px; /* Reducir padding para más compacidad */
+    }
+
+    /* Ajustar los controles de filtro y rango de fechas */
+    .filter-container select,
+    .filter-container input[type="text"],
+    .date-range-container input {
+        width: 70px; /* Hacer más pequeño el campo de entrada */
+        font-size: 0.7rem; /* Reducir el tamaño de fuente */
+    }
+
+    #filter-button-completo {
+        padding: 3px 5px;
+        font-size: 0.7rem;
+    }
+
+    /* Paginación más compacta */
+    .pagination button {
+        padding: 3px 6px;
+        font-size: 0.75rem;
+    }
+}
