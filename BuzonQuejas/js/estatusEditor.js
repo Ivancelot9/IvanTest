@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let modal = document.createElement("div");
     modal.id = "estatus-modal";
-    modal.style.display = "none";
+    modal.style.display = "none";  // Inicialmente oculto
     modal.innerHTML = `
     <div class="modal-content comic-bubble">
         <span class="close-modal">&times;</span>
@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let progresoManual = 100;
     let currentFolio = null;
 
-    // Función para calcular el estatus recomendado
     function calcularEstatusRecomendado(dias, fechaInicio) {
         let fechaAsignada = new Date(fechaInicio);
         let fechaActual = new Date();
