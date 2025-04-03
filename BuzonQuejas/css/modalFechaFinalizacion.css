@@ -1,5 +1,15 @@
 /* ▪ Variables y clases de tema para cada mes con más “coco” */
-
+/* Overlay de fondo oscuro */
+#estatus-modal-overlay {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Fondo oscuro semi-transparente */
+    z-index: 1000; /* Overlay debajo del modal */
+}
 /* Valores por defecto */
 :root {
     --theme-header-bg: #0055AA;
