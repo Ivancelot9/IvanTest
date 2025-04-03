@@ -22,6 +22,10 @@
 
     /* 3️⃣ Segunda línea negra externa */
     box-shadow: 0 0 0 15px black;
+
+    /* Fondo oscuro semi-transparente para bloquear la interacción con el fondo */
+    background: rgba(0, 0, 0, 0.6);  /* Esto cubre el fondo con color negro semi-transparente */
+    backdrop-filter: blur(5px); /* Aplica un desenfoque de fondo */
 }
 
 /* ✅ Centrar los elementos en el modal */
@@ -31,6 +35,7 @@
     align-items: center; /* 🔥 Centra todos los elementos dentro del modal */
     justify-content: center;
     width: 100%;
+    z-index: 1010; /* Asegura que el contenido del modal esté encima del fondo */
 }
 
 /* Estilo del título (inspirado en la imagen) */
