@@ -210,14 +210,19 @@ body {
     flex-direction: column;
     align-items: center;
     overflow: hidden;
+    margin-right: 20px; /* Añade espacio a la derecha */
+    margin-top: 20px; /* Añade espacio arriba */
+    margin-bottom: 20px; /* Añade espacio abajo */
 }
 
 /* Cuando la sidebar está oculta, mantiene un pequeño espacio */
 .main-content.expanded {
-    margin-left: 0; /* Elimina el margen izquierdo */
-    width: 100%; /* El contenido ocupa el 100% del ancho */
-    max-width: 100%; /* Asegura que no se limite el ancho */
-    margin: 0 auto; /* Centra el contenido */
+    margin-left: auto; /* Elimina el margen izquierdo */
+    margin-right: auto; /* Añade margen automático a la derecha para centrar */
+    width: 80%; /* Ancho ajustado */
+    max-width: 75%; /* Limita el ancho máximo */
+    margin-top: 20px; /* Añade separación arriba */
+    margin-bottom: 20px; /* Añade separación abajo */
 }
 
 /* Header */
