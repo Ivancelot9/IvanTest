@@ -22,8 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const esUltimoPaso = pasoActual === steps.length - 1;
         if (!esUltimoPaso) return;
 
-        // Validar el paso final
-        if (!validarReporte(pasoActual)) return;
+        // ✅ Validar paso 2 (Área) y paso 3 (Queja) aunque te hayas saltado con las pestañas
+        if (!validarReporte(1)) return; // Paso 2
+        if (!validarReporte(2)) return; // Paso 3
 
         // Recolectar datos
         const areaSelect = document.getElementById("area");
@@ -68,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     supervisorSelect.value = "";
                     shiftLeaderSelect.value = "";
 
-                    // Mostrar Swal aquí (opcional) o dejarlo en pestanasReporte.js
+                    // Mostrar Swal de éxito
                     Swal.fire({
                         title: "¡Reporte enviado!",
                         text: "¿Qué deseas hacer ahora?",
