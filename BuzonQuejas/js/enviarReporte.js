@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnFinalizar = document.getElementById("btnFinalizar");
 
     btnFinalizar.addEventListener("click", function () {
+        console.log("🧪 Área seleccionada:", document.getElementById("area").value);
+        console.log("🧪 Queja escrita:", document.getElementById("reporte").value);
+        console.log("🧪 Supervisor:", document.getElementById("supervisor").value);
+        console.log("🧪 Shift Leader:", document.getElementById("shiftLeader").value);
         // 🔒 Validar TODO directamente, sin confiar en pasoActual
         const areaSelect = document.getElementById("area");
         const reporteText = document.getElementById("reporte").value.trim();
