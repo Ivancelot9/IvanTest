@@ -96,6 +96,7 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
 
         <!-- 🔹 Botón "Siguiente" en la esquina inferior derecha -->
         <button id="btnSiguiente" class="btn-next">Siguiente</button>
+        <button id="btnFinalizar" class="btn-next hidden">Finalizar</button>
     </div>
 </div>
 

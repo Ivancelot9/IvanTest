@@ -2,16 +2,15 @@
 let numeroNominaGlobal = null;
 
 document.addEventListener("DOMContentLoaded", function () {
-    // ✅ Guardar el número de nómina al cargar la página
     const nominaSpan = document.getElementById("nominaUsuario");
     if (nominaSpan) {
         numeroNominaGlobal = nominaSpan.textContent.trim();
     }
 
-    const btnSiguiente = document.getElementById("btnSiguiente");
+    const btnFinalizar = document.getElementById("btnFinalizar");
 
-    btnSiguiente.addEventListener("click", function () {
-        // ✅ Detectar paso actual desde el DOM (más confiable que leer el texto del botón)
+    btnFinalizar.addEventListener("click", function () {
+        // Detectar paso actual desde el DOM
         const steps = document.querySelectorAll(".content");
         let pasoActual = 0;
         steps.forEach((step, index) => {
@@ -21,11 +20,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         const esUltimoPaso = pasoActual === steps.length - 1;
-        if (!esUltimoPaso) return; // ⛔ No hacemos nada si aún no es el último paso
+        if (!esUltimoPaso) return;
 
-        // 🧠 Ya se validó antes de este punto, así que solo enviamos
+        // Validar el paso final
+        if (!validarReporte(pasoActual)) return;
 
-        // ✅ Recolectar datos del formulario
+        // Recolectar datos
         const areaSelect = document.getElementById("area");
         const reporteText = document.getElementById("reporte").value.trim();
         const supervisorSelect = document.getElementById("supervisor");
@@ -37,13 +37,12 @@ document.addEventListener("DOMContentLoaded", function () {
             Descripcion: reporteText
         };
 
-        // 🟡 Solo incluir estos campos si el área es Producción
         if (parseInt(areaSelect.value) === 1) {
             reporteData.IdEncargado = supervisorSelect.value;
             reporteData.IdShiftLeader = shiftLeaderSelect.value;
         }
 
-        // 📤 Enviar reporte al backend
+        // Enviar al backend
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/insertarReporte.php", {
             method: "POST",
             headers: {
@@ -56,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("📥 Respuesta del servidor:", data);
 
                 if (data.status === "success") {
-                    // 📡 Emitir mensaje por canal
                     const canal = new BroadcastChannel("canalReportes");
                     canal.postMessage({
                         tipo: "nuevo-reporte",
@@ -64,13 +62,42 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
                     canal.close();
 
-                    // 🔄 Limpiar campos
+                    // Limpiar campos
                     document.getElementById("reporte").value = "";
                     areaSelect.value = "";
                     supervisorSelect.value = "";
                     shiftLeaderSelect.value = "";
 
-                    // ✅ El Swal de éxito ya lo muestra pestanasReporte.js
+                    // Mostrar Swal aquí (opcional) o dejarlo en pestanasReporte.js
+                    Swal.fire({
+                        title: "¡Reporte enviado!",
+                        text: "¿Qué deseas hacer ahora?",
+                        icon: "success",
+                        showCancelButton: true,
+                        cancelButtonText: "Cerrar sesión",
+                        confirmButtonText: "Escribir otro reporte",
+                        timer: 120000,
+                        timerProgressBar: true,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.reiniciarFormulario();
+                        } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            window.cerrarSesion();
+                        } else if (result.dismiss === Swal.DismissReason.timer) {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Sesión cerrada por inactividad',
+                                text: 'Fuiste redirigido al login por estar inactivo.',
+                                showConfirmButton: false,
+                                timer: 2500
+                            }).then(() => {
+                                window.cerrarSesion();
+                            });
+                        }
+                    });
+
                 } else {
                     Swal.fire("Error", data.message || "Ocurrió un error al enviar el reporte.", "error");
                 }

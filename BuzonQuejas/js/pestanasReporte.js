@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const tabs = document.querySelectorAll(".tab-item");
     const steps = document.querySelectorAll(".content");
     const btnSiguiente = document.getElementById("btnSiguiente");
+    const btnFinalizar = document.getElementById("btnFinalizar");
 
     let pasoActual = 0; // Inicia en la pestaña "Datos"
 
@@ -15,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-
     function actualizarVista() {
         // 🔹 Ocultar todas las pestañas y contenidos
         tabs.forEach(tab => tab.classList.remove("active"));
@@ -25,74 +25,49 @@ document.addEventListener("DOMContentLoaded", function () {
         tabs[pasoActual].classList.add("active");
         steps[pasoActual].classList.remove("hidden");
 
-        // 🔹 Cambiar el texto del botón en la última pestaña
-        btnSiguiente.textContent = pasoActual === steps.length - 1 ? "Finalizar" : "Siguiente";
+        // 🔹 Mostrar el botón adecuado (Finalizar solo en último paso)
+        if (pasoActual === steps.length - 1) {
+            btnSiguiente.classList.add("hidden");
+            btnFinalizar.classList.remove("hidden");
+        } else {
+            btnSiguiente.classList.remove("hidden");
+            btnFinalizar.classList.add("hidden");
+        }
     }
 
     btnSiguiente.addEventListener("click", function () {
         console.log("👉 Click en botón. Paso actual:", pasoActual);
-        console.log("👉 Texto actual del botón:", btnSiguiente.textContent);
 
-        const esUltimoPaso = pasoActual === steps.length - 1;
-
-        // ✅ Validar el paso actual antes de avanzar
+        // Validar el paso actual antes de avanzar
         if (!validarReporte(pasoActual)) return;
 
-        if (esUltimoPaso) {
-            // ✅ Mostrar Swal solo en el paso final
-            Swal.fire({
-                title: "¡Reporte enviado!",
-                text: "¿Qué deseas hacer ahora?",
-                icon: "success",
-                showCancelButton: true,
-                cancelButtonText: "Cerrar sesión",
-                confirmButtonText: "Escribir otro reporte",
-                timer: 120000,
-                timerProgressBar: true,
-                allowOutsideClick: false,
-                allowEscapeKey: false
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    reiniciarFormulario();
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    cerrarSesion();
-                } else if (result.dismiss === Swal.DismissReason.timer) {
-                    Swal.fire({
-                        icon: 'info',
-                        title: 'Sesión cerrada por inactividad',
-                        text: 'Fuiste redirigido al login por estar inactivo.',
-                        showConfirmButton: false,
-                        timer: 2500
-                    }).then(() => {
-                        cerrarSesion();
-                    });
-                }
-            });
-        } else {
-            pasoActual++;
-            actualizarVista();
-        }
-
+        // Avanzar al siguiente paso
+        pasoActual++;
+        actualizarVista();
     });
 
     // 🔹 Permitir que las pestañas sean botones para navegar
     tabs.forEach((tab, index) => {
         tab.addEventListener("click", function () {
-            pasoActual = index; // Cambia al paso correspondiente según la pestaña clickeada
+            pasoActual = index;
             actualizarVista();
         });
     });
 
     // 🔹 Función para reiniciar el formulario y volver al primer paso
     function reiniciarFormulario() {
-        document.getElementById("reporte").value = ""; // Limpiar la queja
-        document.getElementById("area").value = ""; // Limpiar selección de área
-        document.getElementById("supervisor").value = ""; // Limpiar supervisor
-        document.getElementById("shiftLeader").value = ""; // Limpiar shift leader
+        document.getElementById("reporte").value = "";
+        document.getElementById("area").value = "";
+        document.getElementById("supervisor").value = "";
+        document.getElementById("shiftLeader").value = "";
 
-        pasoActual = 0; // Volver al primer paso
+        pasoActual = 0;
         actualizarVista();
     }
+
+    // 🔹 Exponer reinicio globalmente si lo usas en otro archivo
+    window.reiniciarFormulario = reiniciarFormulario;
+    window.cerrarSesion = cerrarSesion;
 
     // 🔹 Inicializar la vista correctamente
     actualizarVista();
