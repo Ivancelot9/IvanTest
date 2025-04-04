@@ -11,10 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnSiguiente = document.getElementById("btnSiguiente");
 
     btnSiguiente.addEventListener("click", function () {
-        const esUltimoPaso = btnSiguiente.textContent === "Finalizar";
-        if (!esUltimoPaso) return; // ⛔ No hacemos nada si aún no es el último paso
-
-        // ✅ Detectar paso actual desde el DOM (solo para seguridad)
+        // ✅ Detectar paso actual desde el DOM (más confiable que leer el texto del botón)
         const steps = document.querySelectorAll(".content");
         let pasoActual = 0;
         steps.forEach((step, index) => {
@@ -23,7 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // 🧠 Ya no se valida aquí, eso se hace en pestanasReporte.js
+        const esUltimoPaso = pasoActual === steps.length - 1;
+        if (!esUltimoPaso) return; // ⛔ No hacemos nada si aún no es el último paso
+
+        // 🧠 Ya se validó antes de este punto, así que solo enviamos
 
         // ✅ Recolectar datos del formulario
         const areaSelect = document.getElementById("area");
@@ -53,6 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
         })
             .then(response => response.json())
             .then(data => {
+                console.log("📥 Respuesta del servidor:", data);
+
                 if (data.status === "success") {
                     // 📡 Emitir mensaje por canal
                     const canal = new BroadcastChannel("canalReportes");
