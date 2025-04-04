@@ -33,16 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("👉 Click en botón. Paso actual:", pasoActual);
         console.log("👉 Texto actual del botón:", btnSiguiente.textContent);
 
+        // Validar solo si el paso actual requiere validación
+        if (!validarReporte(pasoActual)) return;
+
         const esUltimoPaso = pasoActual === steps.length - 1;
 
         if (esUltimoPaso) {
-            console.log("✅ Estás en el último paso. Ejecutando validación...");
-
-            if (!validarReporte()) {
-                console.log("❌ Validación fallida, no se envía.");
-                return;
-            }
-
+            // Mostrar Swal aquí si lo deseas
             Swal.fire({
                 title: "¡Reporte enviado!",
                 text: "¿Qué deseas hacer ahora?",
@@ -71,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
                 }
             });
-
         } else {
             pasoActual++;
             actualizarVista();
