@@ -10,30 +10,58 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnFinalizar = document.getElementById("btnFinalizar");
 
     btnFinalizar.addEventListener("click", function () {
-        // Detectar si estamos en el último paso
-        const steps = document.querySelectorAll(".content");
-        let pasoActual = 0;
-        steps.forEach((step, index) => {
-            if (!step.classList.contains("hidden")) {
-                pasoActual = index;
-            }
-        });
-
-        const esUltimoPaso = pasoActual === steps.length - 1;
-        if (!esUltimoPaso) return;
-
-        // 🔒 Validar paso 2 y paso 3 independientemente del paso actual
-        const paso2Valido = validarReporte(1); // Área y encargados
-        const paso3Valido = validarReporte(2); // Queja
-
-        if (!paso2Valido || !paso3Valido) return;
-
-        // ✅ Recolectar datos
+        // 🔒 Validar TODO directamente, sin confiar en pasoActual
         const areaSelect = document.getElementById("area");
         const reporteText = document.getElementById("reporte").value.trim();
         const supervisorSelect = document.getElementById("supervisor");
         const shiftLeaderSelect = document.getElementById("shiftLeader");
+        const ID_PRODUCCION = "1";
 
+        // 🔸 Validar área
+        if (!areaSelect.value) {
+            Swal.fire({
+                title: "¡Falta seleccionar el área!",
+                text: "Debes seleccionar un área antes de continuar.",
+                icon: "warning",
+                confirmButtonText: "Aceptar"
+            });
+            return;
+        }
+
+        // 🔸 Validar encargados si Producción
+        if (areaSelect.value === ID_PRODUCCION) {
+            if (!supervisorSelect.value) {
+                Swal.fire({
+                    title: "¡Falta el Supervisor!",
+                    text: "Si seleccionaste Producción, debes elegir un Supervisor.",
+                    icon: "warning",
+                    confirmButtonText: "Aceptar"
+                });
+                return;
+            }
+            if (!shiftLeaderSelect.value) {
+                Swal.fire({
+                    title: "¡Falta el Shift Leader!",
+                    text: "Si seleccionaste Producción, debes elegir un Shift Leader.",
+                    icon: "warning",
+                    confirmButtonText: "Aceptar"
+                });
+                return;
+            }
+        }
+
+        // 🔸 Validar queja
+        if (!reporteText) {
+            Swal.fire({
+                title: "¡Falta escribir la queja!",
+                text: "Escribe tu queja antes de finalizar.",
+                icon: "warning",
+                confirmButtonText: "Aceptar"
+            });
+            return;
+        }
+
+        // ✅ Recolectar datos
         let reporteData = {
             NumNomina: numeroNominaGlobal,
             IdArea: areaSelect.value,
@@ -71,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     supervisorSelect.value = "";
                     shiftLeaderSelect.value = "";
 
-                    // Swal final
+                    // Mostrar Swal de éxito
                     Swal.fire({
                         title: "¡Reporte enviado!",
                         text: "¿Qué deseas hacer ahora?",
