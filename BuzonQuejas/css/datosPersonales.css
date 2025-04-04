@@ -4,11 +4,11 @@
     flex-direction: column;
     align-items: center;
     background: white;
-    border: 3px solid #1D75D8; /* Azul suave profesional */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra más suave */
-    border-radius: 10px; /* Bordes más suaves */
+    border: 3px solid #1094e0; /* Borde azul limpio */
+    box-shadow: none; /* Sin sombra para un estilo más limpio */
+    border-radius: 10px;
     padding: 20px 25px;
-    max-width: 450px; /* Ajuste del tamaño */
+    max-width: 450px;
     margin: 20px auto;
 }
 
@@ -16,7 +16,7 @@
 .personal-info {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Espaciado entre los inputs */
+    gap: 20px;
     width: 100%;
 }
 
@@ -25,40 +25,39 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-family: "Roboto", sans-serif; /* Fuente más formal */
+    font-family: 'Arial', sans-serif; /* Fuente más simple y profesional */
     font-size: 1.1rem;
-    color: #333; /* Texto más suave */
+    color: #333; /* Color del texto más suave */
 }
 
 /* 🎯 Etiquetas */
 .info-item label {
     font-size: 1rem;
     text-transform: uppercase;
-    color: #1D75D8;
-    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.1), 1px 1px 0 rgba(0, 0, 0, 0.1);
+    color: #1094e0;
     margin-bottom: 8px;
 }
 
 /* 📌 Inputs */
 .personal-info input {
-    background: #f9f9f9;
-    border: 2px solid #ddd; /* Borde más suave */
+    background: #f8f8f8;
+    border: 2px solid #1094e0; /* Borde simple azul */
     padding: 12px;
     font-size: 1rem;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Arial', sans-serif;
     color: #333;
     border-radius: 8px;
     text-align: center;
     outline: none;
     width: 100%;
     box-sizing: border-box;
-    transition: border-color 0.3s ease; /* Transición suave */
+    transition: border-color 0.3s ease; /* Suaviza el cambio de color del borde */
 }
 
 /* 🔒 Input bloqueado */
 .personal-info input[readonly] {
-    background: #e9e9e9;
-    color: #999;
+    background: #e0e0e0;
+    color: gray;
     cursor: not-allowed;
 }
 
@@ -73,13 +72,13 @@
 .submit-btn {
     flex: 1;
     padding: 12px 20px;
-    border: 2px solid #1D75D8; /* Azul profesional */
-    background: #1D75D8;
+    border: 2px solid #1094e0;
+    background: #1094e0;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Arial', sans-serif;
     font-size: 1.2rem;
     transition: transform 0.3s ease, background-color 0.3s ease;
     display: inline-flex;
@@ -91,16 +90,16 @@
 
 /* 🔥 Hover */
 .submit-btn:hover {
-    background-color: #125F9A; /* Azul más oscuro */
+    background-color: #2a82d0; /* Azul más oscuro */
     transform: scale(1.05);
 }
 
 /* 🟢 Estilos para el botón Guardar */
 .guardar-btn {
-    background: #4CAF50; /* Verde profesional */
+    background: #4CAF50; /* Verde más neutral */
 }
 
 /* 🎯 Hover del botón Guardar */
 .guardar-btn:hover {
-    background: #388E3C; /* Verde más oscuro */
+    background: #388E3C;
 }
