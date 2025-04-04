@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const esUltimoPaso = btnSiguiente.textContent === "Finalizar";
         if (!esUltimoPaso) return; // ⛔ No hacemos nada si aún no es el último paso
 
-        // ✅ Detectar paso actual desde el DOM
+        // ✅ Detectar paso actual desde el DOM (solo para seguridad)
         const steps = document.querySelectorAll(".content");
         let pasoActual = 0;
         steps.forEach((step, index) => {
@@ -23,8 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // 🛑 Validar antes de continuar (esto usa validacionesReportes.js)
-        if (!validarReporte(pasoActual)) return;
+        // 🧠 Ya no se valida aquí, eso se hace en pestanasReporte.js
 
         // ✅ Recolectar datos del formulario
         const areaSelect = document.getElementById("area");
@@ -69,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     supervisorSelect.value = "";
                     shiftLeaderSelect.value = "";
 
-                    // (Swal de éxito lo haces tú desde pestanasReporte.js)
+                    // ✅ El Swal de éxito ya lo muestra pestanasReporte.js
                 } else {
                     Swal.fire("Error", data.message || "Ocurrió un error al enviar el reporte.", "error");
                 }

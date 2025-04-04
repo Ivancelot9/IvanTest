@@ -33,13 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("👉 Click en botón. Paso actual:", pasoActual);
         console.log("👉 Texto actual del botón:", btnSiguiente.textContent);
 
-        // Validar solo si el paso actual requiere validación
-        if (!validarReporte(pasoActual)) return;
-
         const esUltimoPaso = pasoActual === steps.length - 1;
 
+        // ✅ Validar el paso actual antes de avanzar
+        if (!validarReporte(pasoActual)) return;
+
         if (esUltimoPaso) {
-            // Mostrar Swal aquí si lo deseas
+            // ✅ Mostrar Swal solo en el paso final
             Swal.fire({
                 title: "¡Reporte enviado!",
                 text: "¿Qué deseas hacer ahora?",
