@@ -18,7 +18,7 @@ table {
 
 /* 🎭 Estilos para encabezados */
 table th {
-    background-color: #007BFF; /* Azul más suave */
+    background-color: rgba(5, 59, 129, 0.88); /* Azul más suave */
     color: white;
     font-size: 1.4rem;
     text-shadow: none; /* Sin sombras para hacerlo más moderno */
