@@ -1,12 +1,9 @@
 /* 🎨 Estilos de la tabla de reportes */
-
 .table-container {
     max-width: 100%;
     overflow-x: auto; /* Scroll horizontal si es necesario */
     overflow-y: auto; /* Scroll vertical activado */
-    border: 3px solid black;
-
-    /* 🔥 Ahora solo se ven 2 filas, pero los demás están dentro con scroll */
+    border: 2px solid #ccc; /* Borde gris suave */
     height: 250px;
     min-height: 230px;
     max-height: 50vh;
@@ -21,27 +18,23 @@ table {
 
 /* 🎭 Estilos para encabezados */
 table th {
-    background-color: #1094e0;
+    background-color: #007BFF; /* Azul más suave */
     color: white;
-    font-size: 1.5rem;
-    text-shadow:
-            -3px -3px 0 black, 3px -3px 0 black,
-            -3px 3px 0 black, 3px 3px 0 black,
-            -3px 0 0 black, 3px 0 0 black,
-            0 -3px 0 black, 0 3px 0 black;
+    font-size: 1.4rem;
+    text-shadow: none; /* Sin sombras para hacerlo más moderno */
     padding: 12px;
     text-align: center;
-    border: 2px solid black;
+    border: 2px solid #ddd; /* Borde gris suave */
 }
 
 /* 📝 Estilos para las celdas */
 table td {
-    background-color: #eaf3fa;
-    border: 2px solid black;
-    padding: 10px;
+    background-color: #f9f9f9; /* Fondo más suave */
+    border: 2px solid #ddd; /* Bordes suaves */
+    padding: 12px;
     text-align: center;
-    font-size: 1.2rem;
-    font-family: "Bangers", serif;
+    font-size: 1.1rem;
+    font-family: "Arial", sans-serif; /* Fuente más neutral */
 }
 
 /* 🔘 Estilos para los botones de la tabla */
@@ -50,77 +43,36 @@ button.agregar-comentario,
 button.seleccionar-fecha,
 button.estatus-btn,
 button.convertidor {
-    background: white;
+    background: #ffffff;
     color: black;
-    border: 2px solid black;
-    font-family: "Bangers", serif;
+    border: 2px solid #ccc; /* Borde más suave */
+    font-family: "Arial", sans-serif; /* Fuente más neutra */
     font-size: 1rem;
-    padding: 5px 10px;
+    padding: 6px 12px;
     cursor: pointer;
-    box-shadow: 3px 3px 0 black;
-    transition: all 0.2s ease-in-out;
-    display: inline-flex;  /* 🔹 Para que se alinee bien con el icono */
-    align-items: center;  /* 🔹 Centrar contenido */
-    justify-content: center;  /* 🔹 Asegurar alineación */
-    width: 100%;  /* 🔹 Ocupar todo el ancho de la celda */
-}
-
-/* 🔘 Estilos base del botón "Ver Estatus" (igual a los demás botones) */
-button.ver-estatus-btn {
-    background: white;
-    color: black;
-    border: 2px solid black;
-    font-family: "Bangers", serif;
-    font-size: 1rem;
-    padding: 5px 10px;
-    cursor: pointer;
-    box-shadow: 3px 3px 0 black;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1); /* Sombra sutil */
     transition: all 0.2s ease-in-out;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: auto;
 }
 
-/* 🔥 Clases dinámicas para los estados */
-button.ver-estatus-btn.green { background: green; color: white; }
-button.ver-estatus-btn.blue { background: blue; color: white; }
-button.ver-estatus-btn.yellow { background: yellow; color: black; }
-button.ver-estatus-btn.red { background: red; color: white; }
-
-/* 🔹 Corrección para que el botón no se salga de la celda */
-td {
-    text-align: center;  /* 🔹 Centra el contenido de la celda */
-    vertical-align: middle;  /* 🔹 Asegura que el botón quede alineado */
-    padding: 5px;  /* 🔹 Un poco de espacio */
-}
-
-/* 🎯 Asegurar que el botón esté bien alineado dentro de la celda */
-td.convertidor-cell {
-    display: flex;  /* 🔹 Permite centrar el botón dentro del td */
-    justify-content: center;  /* 🔹 Lo coloca en el centro horizontalmente */
-    align-items: center;  /* 🔹 Lo centra verticalmente */
-    padding:0;  /* 🔹 Asegurar que el botón no se desborde */
-}
-
-/* 🎨 Estilo específico para el botón "Convertir a Excel" */
-button.convertidor {
-    background: #28a745 !important; /* ✅ Verde estilo Excel */
-    border: 2px solid black !important; /* ✅ Borde negro */
-    color: black !important; /* ✅ Letras negras */
-    box-shadow: 3px 3px 0 black !important; /* ✅ Sombra negra */
-    width: auto !important; /* 🔹 No ocupará todo el ancho */
-    padding: 8px 15px !important; /* 🔹 Ajuste de padding */
-    display: flex !important; /* 🔹 Asegurar alineación correcta */
-    justify-content: center !important;
-    align-items: center !important;
-    min-width: 140px !important;
-}
-
-/* 🔹 Corrección para el icono de Excel dentro del botón */
-button.convertidor i {
-    margin-right: 5px !important;
-    font-size: 1.2rem !important;
+/* 🔘 Estilos base del botón "Ver Estatus" */
+button.ver-estatus-btn {
+    background: white;
+    color: black;
+    border: 2px solid #ccc;
+    font-family: "Arial", sans-serif;
+    font-size: 1rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
 }
 
 /* 🔥 Efecto hover en botones */
@@ -131,6 +83,8 @@ button.estatus-btn:hover,
 button.convertidor:hover,
 button.ver-estatus-btn:hover {
     transform: scale(1.1);
+    background: #007BFF; /* Azul de hover */
+    color: white;
 }
 
 /* 📌 Paginaciónn */
@@ -144,104 +98,17 @@ button.ver-estatus-btn:hover {
     padding: 20px 0;
     z-index: 10;
     width: 100%;
-    background: white;
+    background: #fff;
 }
 
 .pagination button {
     background: white;
-    border: 2px solid black;
+    border: 2px solid #ccc;
     padding: 5px 12px;
-    font-family: "Bangers", serif;
+    font-family: "Arial", sans-serif;
     cursor: pointer;
-    box-shadow: 2px 2px 0 black;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
     transition: all 0.2s ease-in-out;
-}
-
-.pagination button:hover {
-    transform: scale(1.1);
-}
-
-/* 🔥 Resaltado de texto al filtrar */
-.highlight {
-    background-color: yellow;
-    color: black;
-    font-weight: bold;
-    padding: 2px 4px;
-    border-radius: 3px;
-}
-
-/* 📌 Contenedor de controles (Filtro + Rango de Fechas + Exportar) */
-.table-controls {
-    display: flex;
-    justify-content: space-between; /* 🔹 Separa los elementos */
-    align-items: center;
-    margin-bottom: 5px;
-    flex-wrap: wrap;
-}
-
-/* 🔎 Contenedor del filtro */
-.filter-container {
-    display: flex;
-    gap: 4px; /* 🔹 Menos espacio entre elementos */
-    align-items: center;
-    flex: 1;
-}
-
-/* 📌 Label "Filtrar por" más pequeño */
-.filter-container label {
-    font-size: 0.85rem;
-}
-
-/* 📌 Select e Input de búsqueda más compactos */
-.filter-container select,
-.filter-container input[type="text"] {
-    width: 100px; /* 🔹 Reducimos más el ancho */
-    padding: 2px; /* 🔹 Más compacto */
-    font-size: 0.8rem; /* 🔹 Reducimos más el tamaño de fuente */
-    border: 2px solid black;
-    font-family: "Bangers", serif;
-    background-color: white;
-    color: black;
-    box-shadow: 2px 2px 0 black;
-    transition: all 0.2s ease-in-out;
-}
-
-/* 🎯 Asegurar que el botón de búsqueda sigue alineado y más pequeño */
-#filter-button-completo {
-    padding: 3px 5px;
-    font-size: 0.8rem;
-    box-shadow: 2px 2px 0 black;
-}
-
-/* 📅 Contenedor del rango de fechas (Ajustamos más el espacio) */
-.date-range-container {
-    display: flex;
-    align-items: center;
-    gap: 4px; /* 🔹 Reducimos el espacio */
-    justify-content: flex-start;
-    flex: 1.5;
-}
-
-/* 📅 Inputs de fecha más compactos */
-#start-date, #end-date {
-    padding: 2px;
-    border: 2px solid black;
-    font-size: 0.8rem;
-    width: 95px; /* 🔹 Más pequeños */
-}
-
-/* 📆 Botón de Filtrar por fecha más pequeño */
-#filter-date-button {
-    padding: 3px 5px;
-    font-size: 0.8rem;
-    box-shadow: 2px 2px 0 black;
-}
-
-/* 📆 Botón de Filtrar por fecha más pequeño */
-#clear-date-button {
-    padding: 3px 5px;
-    font-size: 0.8rem;
-    box-shadow: 2px 2px 0 black;
 }
 
 /* 📤 Botón "Exportar Página" (Mantiene su tamaño y color verde) */
@@ -249,7 +116,7 @@ button.ver-estatus-btn:hover {
     background: #28a745 !important; /* ✅ Verde */
     color: black !important;
     border: 4px solid black !important;
-    font-family: "Bangers", serif;
+    font-family: "Arial", sans-serif;
     font-size: 1rem;
     padding: 8px 16px;
     cursor: pointer;
@@ -262,17 +129,17 @@ button.ver-estatus-btn:hover {
     gap: 6px;
 }
 
+/* 🔹 Corrección para el icono de Excel dentro del botón */
+button.convertidor i {
+    margin-right: 5px;
+    font-size: 1.2rem;
+}
+
 /* 🎯 Hover para el botón de exportar */
 #exportarPaginaCompletos:hover {
     background: #1e7e34 !important;
     color: white !important;
     transform: scale(1.05);
-}
-
-/* 🟢 Icono de Excel dentro del botón */
-#exportarPaginaCompletos i {
-    font-size: 1rem;
-    color: black;
 }
 
 /* 🎨 Efecto de resaltado cuando se filtra */
@@ -297,121 +164,18 @@ button.ver-estatus-btn:hover {
     animation: fadeIn 0.5s ease-in-out;
 }
 
-.nombre-encargado {
-    color: #444;
-    font-weight: normal;
-    font-style: italic;
+/* 📌 Ajustes para los filtros en pantallas más pequeñas */
+.filter-container select,
+.filter-container input[type="text"] {
+    width: 90px;
+    font-size: 0.85rem;
+    padding: 4px;
+    border: 2px solid #ccc;
+    font-family: "Arial", sans-serif;
 }
 
-/* 📌 Media Query para pantallas de tabletas (max-width: 1024px) */
-@media (max-width: 1024px) {
-    .table-container {
-        height: 200px; /* Reducimos la altura de la tabla en pantallas pequeñas */
-        max-height: 40vh; /* Asegura que la tabla no se expanda demasiado */
-    }
-
-    table th,
-    table td {
-        padding: 10px; /* Reducir el padding para que quepan más celdas */
-    }
-
-    button.mostrar-descripcion,
-    button.agregar-comentario,
-    button.seleccionar-fecha,
-    button.estatus-btn,
-    button.convertidor {
-        font-size: 0.9rem; /* Reducido para pantallas más pequeñas */
-        padding: 4px 8px; /* Reducir el padding de los botones */
-        width: auto; /* Ajustar el tamaño de los botones */
-    }
-
-    /* Hacer más compacto el filtro y el rango de fechas */
-    .filter-container select,
-    .filter-container input[type="text"],
-    .date-range-container input {
-        width: 80px; /* Reducir el tamaño de los campos de entrada */
-        font-size: 0.8rem; /* Reducir el tamaño de fuente */
-    }
-
-    #filter-button-completo {
-        padding: 3px 6px;
-        font-size: 0.8rem;
-    }
-
-    /* Ajustar paginación */
-    .pagination button {
-        padding: 4px 8px;
-        font-size: 0.85rem; /* Más pequeño para pantallas más pequeñas */
-    }
-}
-
-/* 📌 Media Query para pantallas de dispositivos móviles (max-width: 768px) */
-@media (max-width: 768px) {
-    .table-container {
-        height: 150px; /* Hacer la tabla aún más compacta */
-        max-height: 35vh; /* Limitar el tamaño de la tabla */
-    }
-
-    table th,
-    table td {
-        padding: 8px; /* Reducir más el padding de las celdas */
-    }
-
-    button.mostrar-descripcion,
-    button.agregar-comentario,
-    button.seleccionar-fecha,
-    button.estatus-btn,
-    button.convertidor {
-        font-size: 0.85rem; /* Reducir aún más el tamaño de la fuente */
-        padding: 4px 6px; /* Reducir padding para más compacidad */
-    }
-
-    /* Ajustar los controles de filtro y rango de fechas */
-    .filter-container select,
-    .filter-container input[type="text"],
-    .date-range-container input {
-        width: 70px; /* Hacer más pequeño el campo de entrada */
-        font-size: 0.7rem; /* Reducir el tamaño de fuente */
-    }
-
-    #filter-button-completo {
-        padding: 3px 5px;
-        font-size: 0.7rem;
-    }
-
-    /* Paginación más compacta */
-    .pagination button {
-        padding: 3px 6px;
-        font-size: 0.75rem;
-    }
-}
-
-/* Media Query para pantallas pequeñas (1366x768 y menores) */
-@media (max-width: 1366px) {
-    /* Asegurar que los botones no se amontonen */
-    .table-controls {
-        display: flex;
-        flex-wrap: wrap; /* Esto permite que los botones se acomoden en varias líneas */
-        justify-content: space-between;
-    }
-
-    .table-controls button {
-        margin: 5px;
-        padding: 6px 12px;
-        font-size: 0.85rem; /* Reducir el tamaño de los botones */
-        width: auto; /* Para evitar que se estiren */
-    }
-
-    /* Ajustes para los inputs de fecha y búsqueda */
-    .filter-container select,
-    .filter-container input[type="text"] {
-        font-size: 0.85rem;
-        padding: 3px;
-        width: 100px;
-    }
-
-    #filter-button-completo {
-        font-size: 0.85rem;
-        padding: 5px;
-    }
+/* 📌 Botón de filtro más pequeño */
+#filter-button-completo {
+    font-size: 0.8rem;
+    padding: 4px 6px;
 }
