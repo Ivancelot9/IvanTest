@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnFinalizar = document.getElementById("btnFinalizar");
 
     btnFinalizar.addEventListener("click", function () {
-        // Detectar paso actual desde el DOM
+        // Detectar si estamos en el último paso
         const steps = document.querySelectorAll(".content");
         let pasoActual = 0;
         steps.forEach((step, index) => {
@@ -22,11 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const esUltimoPaso = pasoActual === steps.length - 1;
         if (!esUltimoPaso) return;
 
-        // ✅ Validar paso 2 (Área) y paso 3 (Queja) aunque te hayas saltado con las pestañas
-        if (!validarReporte(1)) return; // Paso 2
-        if (!validarReporte(2)) return; // Paso 3
+        // 🔒 Validar paso 2 y paso 3 independientemente del paso actual
+        const paso2Valido = validarReporte(1); // Área y encargados
+        const paso3Valido = validarReporte(2); // Queja
 
-        // Recolectar datos
+        if (!paso2Valido || !paso3Valido) return;
+
+        // ✅ Recolectar datos
         const areaSelect = document.getElementById("area");
         const reporteText = document.getElementById("reporte").value.trim();
         const supervisorSelect = document.getElementById("supervisor");
@@ -43,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
             reporteData.IdShiftLeader = shiftLeaderSelect.value;
         }
 
-        // Enviar al backend
+        // 📤 Enviar al backend
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/insertarReporte.php", {
             method: "POST",
             headers: {
@@ -69,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     supervisorSelect.value = "";
                     shiftLeaderSelect.value = "";
 
-                    // Mostrar Swal de éxito
+                    // Swal final
                     Swal.fire({
                         title: "¡Reporte enviado!",
                         text: "¿Qué deseas hacer ahora?",
