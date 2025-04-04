@@ -7,7 +7,7 @@
     border: 5px solid #1094e0; /* Borde azul estilo cómic */
     box-shadow: 5px 5px 0 black; /* Sombra tipo cómic */
     border-radius: 15px;
-    padding: 20px;
+    padding: 20px 25px;
     max-width: 450px; /* Ajuste del tamaño */
     margin: 20px auto;
 }
@@ -50,6 +50,11 @@
     text-align: center;
     outline: none;
     width: 100%;
+}
+/* Evitar que los inputs se salgan del contenedor visualmente */
+.personal-info input {
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 /* 🔒 Input bloqueado */
