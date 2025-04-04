@@ -10,19 +10,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnFinalizar = document.getElementById("btnFinalizar");
 
     btnFinalizar.addEventListener("click", function () {
-        console.log("🧪 Área seleccionada:", document.getElementById("area").value);
-        console.log("🧪 Queja escrita:", document.getElementById("reporte").value);
-        console.log("🧪 Supervisor:", document.getElementById("supervisor").value);
-        console.log("🧪 Shift Leader:", document.getElementById("shiftLeader").value);
-        // 🔒 Validar TODO directamente, sin confiar en pasoActual
         const areaSelect = document.getElementById("area");
         const reporteText = document.getElementById("reporte").value.trim();
         const supervisorSelect = document.getElementById("supervisor");
         const shiftLeaderSelect = document.getElementById("shiftLeader");
         const ID_PRODUCCION = "1";
 
-        // 🔸 Validar área
-        if (!areaSelect.value) {
+        // 🔍 Debug opcional
+        console.log("🧪 Área seleccionada:", areaSelect.value);
+        console.log("🧪 Queja escrita:", reporteText);
+        console.log("🧪 Supervisor:", supervisorSelect.value);
+        console.log("🧪 Shift Leader:", shiftLeaderSelect.value);
+
+        // 🔒 Validar área
+        if (!areaSelect.value || areaSelect.value === "") {
             Swal.fire({
                 title: "¡Falta seleccionar el área!",
                 text: "Debes seleccionar un área antes de continuar.",
@@ -32,9 +33,9 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // 🔸 Validar encargados si Producción
+        // 🔒 Validar encargados si Producción
         if (areaSelect.value === ID_PRODUCCION) {
-            if (!supervisorSelect.value) {
+            if (!supervisorSelect.value || supervisorSelect.value === "") {
                 Swal.fire({
                     title: "¡Falta el Supervisor!",
                     text: "Si seleccionaste Producción, debes elegir un Supervisor.",
@@ -43,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
                 return;
             }
-            if (!shiftLeaderSelect.value) {
+            if (!shiftLeaderSelect.value || shiftLeaderSelect.value === "") {
                 Swal.fire({
                     title: "¡Falta el Shift Leader!",
                     text: "Si seleccionaste Producción, debes elegir un Shift Leader.",
@@ -54,8 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        // 🔸 Validar queja
-        if (!reporteText) {
+        // 🔒 Validar queja
+        if (!reporteText || reporteText === "") {
             Swal.fire({
                 title: "¡Falta escribir la queja!",
                 text: "Escribe tu queja antes de finalizar.",
