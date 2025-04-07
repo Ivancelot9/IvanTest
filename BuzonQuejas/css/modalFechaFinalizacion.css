@@ -36,7 +36,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 /* 🔹 Estilo del calendario */
@@ -109,6 +109,7 @@
     border-radius: 6px;
     color: #333;
     cursor: pointer;
+    margin-top: 30px;
 }
 
 /* 🔹 Botones de acción con estilo sobrio y contorno negro */
