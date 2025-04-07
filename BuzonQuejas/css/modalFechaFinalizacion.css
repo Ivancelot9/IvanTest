@@ -111,14 +111,15 @@
     cursor: pointer;
 }
 
-/* 🔹 Botones de acción con estilo sobrio */
+/* 🔹 Botones de acción con altura igualada */
 #cerrar-fecha, #guardar-fecha {
     font-family: 'Bangers', sans-serif;
     font-size: 1.1rem;
     font-weight: bold;
     text-transform: uppercase;
-    padding: 12px 20px; /* Igualamos el padding para que tengan la misma altura */
+    padding: 12px 20px; /* Padding lateral igualado */
     width: 45%;
+    height: 50px; /* Altura fija para asegurar que ambos botones tengan la misma altura */
     border: 2px solid #ccc;
     border-radius: 6px;
     cursor: pointer;
