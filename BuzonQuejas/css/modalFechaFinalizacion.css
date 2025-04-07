@@ -1,3 +1,14 @@
+/* 🔹 Fondo del modal con efecto de desenfoque */
+#modal-fecha {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    animation: desplegar 0.4s ease-in-out;
+}
+
 /* 🔹 Contenedor del modal con estilo sobrio */
 .modal-fecha {
     background: #f7f7f7; /* Fondo gris suave */
@@ -13,12 +24,19 @@
     text-align: center;
 }
 
+/* 🔹 Título con color neutro */
+.modal-fecha h2 {
+    color: #333; /* Gris oscuro */
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
 /* 🔹 Contenedor del calendario centrado */
 #calendario-container {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 30px; /* Aumenté el margen inferior para separar el calendario del input */
+    margin-bottom: 20px;
 }
 
 /* 🔹 Estilo del calendario */
@@ -83,7 +101,7 @@
 
 /* 🔹 Estilo del input de fecha (solo texto) */
 #fecha-seleccionada {
-    padding: 12px;
+    padding: 10px;
     font-size: 1rem;
     width: 80%;
     background: #f4f4f4;
@@ -91,7 +109,6 @@
     border-radius: 6px;
     color: #333;
     cursor: pointer;
-    margin-bottom: 30px; /* Aumenté el margen para crear más espacio entre el input y los botones */
 }
 
 /* 🔹 Botones de acción con estilo sobrio y contorno negro */
