@@ -110,6 +110,7 @@
     color: #333;
     cursor: pointer;
     margin-top: 30px;
+    text-align: center; /* Centra el texto dentro del input */
 }
 
 /* 🔹 Botones de acción con estilo sobrio y contorno negro */
