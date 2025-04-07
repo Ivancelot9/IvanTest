@@ -111,20 +111,30 @@
     cursor: pointer;
 }
 
-/* 🔹 Botones de acción con altura igualada */
+/* 🔹 Botones de acción con estilo sobrio y contorno negro */
 #cerrar-fecha, #guardar-fecha {
     font-family: 'Bangers', sans-serif;
     font-size: 1.1rem;
     font-weight: bold;
     text-transform: uppercase;
-    padding: 12px 20px; /* Padding lateral igualado */
-    width: 45%;
-    height: 50px; /* Altura fija para asegurar que ambos botones tengan la misma altura */
+    padding: 12px 20px; /* Igualamos el padding */
+    width: 45%; /* Ocupa el 45% del contenedor */
+    height: 50px; /* Altura fija para igualar los botones */
     border: 2px solid #ccc;
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.2s ease;
     margin-top: 20px;
+    margin-right: 10px; /* Espacio entre los botones */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    border: 2px solid black; /* Contorno negro alrededor de los botones */
+}
+
+/* 🔹 Alinear los botones en una sola línea */
+.botones-container {
+    display: flex;
+    justify-content: space-between; /* Alinea los botones a los lados */
+    width: 100%;
 }
 
 /* 🔹 Botón cancelar (rojo) */
