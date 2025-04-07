@@ -16,7 +16,7 @@
 /* 🔹 Contenedor del modal con estilo profesional */
 .comentarios-modal {
     background: #ffffff; /* Fondo blanco limpio */
-    border: 15px solid black; /* 1️⃣ Primera línea negra */
+    border: 5px solid black; /* 1️⃣ Primera línea negra */
     outline: 10px solid white; /* 2️⃣ Contorno blanco más ancho */
     box-shadow: 0 0 0 15px black; /* 3️⃣ Segunda línea negra */
     width: 40%;
