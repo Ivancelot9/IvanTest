@@ -113,11 +113,11 @@
 
 /* 🔹 Botones de acción con estilo sobrio */
 #cerrar-fecha, #guardar-fecha {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Bangers', sans-serif;
     font-size: 1.1rem;
     font-weight: bold;
     text-transform: uppercase;
-    padding: 12px;
+    padding: 12px 20px; /* Igualamos el padding para que tengan la misma altura */
     width: 45%;
     border: 2px solid #ccc;
     border-radius: 6px;
