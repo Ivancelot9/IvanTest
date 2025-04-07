@@ -21,7 +21,7 @@
     max-width: 420px; /* Tamaño moderado */
     padding: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra sutil */
-    font-family: 'Arial', sans-serif; /* Fuente profesional */
+    font-family: 'Arial', sans-serif; /* Fuente profesional para el contenido */
     border-radius: 10px;
     position: relative;
     display: flex;
@@ -60,6 +60,7 @@
     background: #007BFF; /* Azul profesional */
     color: white;
     font-size: 1.1rem;
+    font-family: 'Bangers', cursive; /* Cambiado a Bangers */
     border: 2px solid #0056b3; /* Azul más oscuro */
     border-radius: 6px;
     cursor: pointer;
@@ -70,6 +71,15 @@
 .btn-guardar:hover {
     transform: scale(1.05);
     background: #0056b3; /* Azul oscuro */
+}
+
+/* 🔹 Títulos dentro del modal */
+.comentarios-modal h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #333;
+    font-family: 'Bangers', cursive; /* Cambiado a Bangers */
 }
 
 /* 🔹 Contenedor de comentarios (estilo moderno) */
