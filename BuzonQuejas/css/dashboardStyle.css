@@ -1,227 +1,644 @@
-/* Fondo general tipo cómic, pero más profesional */
+/* Fondo general tipo cómic */
 body {
     margin: 0;
     padding: 0;
     height: 100vh;
     display: flex;
-    background-image: url('https://source.unsplash.com/1600x900/?abstract'); /* Cambiar a un fondo más suave */
+    background-image: url('../imagenes/fondoazul.jpg'); /* Cambia esto por la ruta de tu fondo */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    font-family: Arial, sans-serif; /* Fuente más neutral y profesional */
+    font-family: "Bangers", serif;
 }
 
-/* Sidebar con un tono más profesional */
+/* Sidebar */
 .sidebar {
     width: 280px;
-    height: 90vh;
-    background: #283593; /* Azul oscuro más sobrio */
-    color: white;
+    height: 90vh; /* Mantiene la altura reducida */
+    background: rgba(5, 59, 129, 0.88);
+    color: #1094e0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 15px 0;
-    border: 5px solid #1a237e; /* Azul metálico para un borde más sutil */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+    /* 1️⃣ Primera línea negraa */
+    border: 5px solid black;
+
+    /* 2️⃣ Contorno blanco más ancho */
+    outline: 10px solid white;
+
+    /* 3️⃣ Segunda línea negra */
+    box-shadow:
+            0 0 0 15px black;
+
+    box-sizing: border-box;
     position: fixed;
-    left: 10px;
-    top: 5vh;
+    left: 10px; /* 🔥 Ajustado más a la derecha */
+    top: 5vh; /* Mantiene la posición */
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
 }
 
-/* Mejorar el perfil con un estilo más elegante */
+
 .sidebar .profile {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    position: relative;
+    margin-top: 15px; /* 🔥 Aumenta este valor para bajar más */
+    margin-bottom: 15px; /* 🔹 Ajuste de espacio */
 }
 
 .sidebar .profile img {
-    width: 100px; /* Imagen ajustada */
-    height: 100px;
+    width: 120px; /* 🔹 Imagen más pequeña */
+    height: 120px;
     border-radius: 50%;
-    border: 3px solid white; /* Borde limpio y sutil */
+    border: 3px solid black;
     object-fit: cover;
+    z-index: 1;
+}
+/* Halo animado */
+.sidebar .profile {
+    position: relative; /* Crea un contexto para el pseudo-elemento */
 }
 
-/* Botones en la barra lateral */
+.sidebar .profile::after {
+    content: "";
+    position: absolute;
+    top: -5px; /* Ajusta para que rodee el borde negro */
+    left: 42px;
+    width: 122px; /* Tamaño total del contorno */
+    height: 122px;
+    border-radius: 50%; /* Hace el borde animado redondo */
+    border: 5px solid transparent; /* Borde inicial transparente */
+    border-top: 5px solid #1094e0; /* Parte azul que se mueve */
+    border-right: 5px solid #1094e0;
+    animation: halo-spin 2s linear infinite; /* Animación de giro */
+    z-index: 2; /* Detrás de la imagen */
+}
+
+/* Animación de giro */
+@keyframes halo-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 🎭 Burbuja de diálogo para el nombre */
+.username-bubble {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white; /* 💭 Fondo de la burbuja */
+    padding: 6px 15px; /* 🏗️ Aumentamos el padding */
+    border: 3px solid black; /* 🎯 Contorno negro */
+    outline: 6px solid white; /* ✨ Contorno blanco extra */
+    box-shadow: 0 0 0 6px black; /* 🔹 Segunda línea negra externa */
+    border-radius: 12px; /* 🌀 Bordes suavemente redondeados */
+    position: relative;
+    max-width: 220px; /* 📏 Se agranda para nombres más largos */
+    min-width: 180px; /* 🔹 Evita que se haga demasiado pequeña */
+    text-align: center;
+    margin-top: 35px; /* 📌 Más espacio respecto a la imagen */
+    word-wrap: break-word; /* 🛠️ Permite que el texto haga salto de línea */
+}
+
+/* ✨ Ajuste del texto dentro de la burbuja */
+.username-bubble h4 {
+    font-size: 0.85rem; /* 🔹 Más pequeño para nombres largos */
+    color: black; /* 🎯 Mantiene la letra negra */
+    font-weight: bold;
+    text-transform: uppercase; /* 🔥 Resalta el nombre */
+    letter-spacing: 1px;
+    margin: 0;
+    text-align: center;
+    line-height: 1.2; /* 📌 Evita que el texto quede demasiado pegado */
+    white-space: normal; /* ✅ Permite salto de línea si es necesario */
+}
+
+
+/* 🔹 Contenedor de botones normales */
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-top: -30px;
+}
+
+/* 🎨 Estilos para los botones de la barra lateral */
 .sidebar a {
-    padding: 12px 20px;
-    border: 2px solid #1a237e; /* Borde de un tono más oscuro */
-    background: #3f51b5; /* Azul profesional */
-    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 2px solid black;
+    background: #1094e0;
+    color: black;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 1.4rem;
-    transition: background 0.3s ease, transform 0.3s ease;
+    font-family: "Bangers", sans-serif;
+    font-size: 1.5rem;
+    transition: transform 0.2s ease-in-out;
     cursor: pointer;
-    text-decoration: none;
+    box-shadow: 3px 3px 0 black;
+    text-decoration: none; /* Elimina subrayado */
     margin: 10px 0;
-    width: 85%;
+    width: 80%;
     text-align: center;
-    border-radius: 8px; /* Bordes redondeados */
+    border-radius: 10px;
 }
 
-/* Efecto de hover más suave */
+/* 🔥 Efecto al pasar el mouse */
 .sidebar a:hover {
-    background: #1a237e;
-    transform: scale(1.05);
+    animation: vibrate-grow 0.2s ease forwards;
+
 }
 
-/* Estilo para el botón activo */
+/* 📌 Botón activo */
 .sidebar a.active {
     background: white;
-    color: #283593;
-    border: 2px solid #1a237e;
-    box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
+    color: #1094e0;
+    border: 2px solid black;
+    transform: scale(1);
+    box-shadow: 5px 5px 0 black;
 }
 
-/* Main Content con bordes suaves */
+/* Espacio entre la sidebar y el main-content */
+.sidebar::after {
+    content: "";
+    display: block;
+    width: 10px; /* Espacio entre la sidebar y el contenido */
+}
+
+/* Cuando la sidebar está oculta */
+.sidebar.hidden {
+    transform: translateX(-103%);
+}
+
+/* 🔹 Cuando la sidebar está oculta, mover el botón al borde derecho */
+.sidebar.hidden + .toggle-btn {
+    left: 300px; /* 🔥 Se mueve al borde derecho donde estaba la sidebar */
+}
+
+
+/* 🎯 Vibración del botón */
+@keyframes vibrate-grow {
+    0% { transform: scale(1.03) translateX(-2px); }
+    50% { transform: scale(1.03) translateX(2px); }
+    100% { transform: scale(1.03) translateX(-2px); }
+}
+
+/* Main Content */
 .main-content {
     padding: 20px;
-    border: 15px solid #283593;
+    border: 15px solid #1094e0;
     background: white;
     border-radius: 15px;
-    width: calc(100% - 350px);
-    margin-left: 350px;
+    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+    margin-left: 370px; /* Empuja el contenido cuando la sidebar está visible */
+    width: calc(100% - 400px); /* Ancho calculado con sidebar visible */
+    max-width: 75%; /* Limita el ancho máximo */
+    min-height: 80vh; /* Altura mínima */
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+    margin: 20px 20px 20px 370px; /* Abreviación de margen */
 }
 
-/* Ajustar el tamaño de los botones */
+/* Cuando la sidebar está oculta, mantiene un pequeño espacio */
+.main-content.expanded {
+    margin-left: auto; /* Elimina el margen izquierdo */
+    margin-right: auto; /* Añade margen automático a la derecha para centrar */
+    width: 80%; /* Ancho ajustado */
+    max-width: 75%; /* Limita el ancho máximo */
+    margin: 20px auto; /* Usa abreviación para centrar y margen vertical */
+}
+
+/* Header */
+.header h1 {
+    font-size: 2.5rem; /* Tamaño del texto */
+    text-align: center;
+    color: rgba(23, 102, 209, 0.88); /* Color principal del texto */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    margin-bottom: 20px; /* Espaciado debajo del título */
+    letter-spacing: 2px; /* Añade espacio entre las letras */
+    text-shadow:
+            -2px -2px 0 #000, /* Contorno negro en la parte superior izquierda */
+            2px -2px 0 #000, /* Contorno negro en la parte superior derecha */
+            -2px  2px 0 #000, /* Contorno negro en la parte inferior izquierda */
+            2px  2px 0 #000; /* Contorno negro en la parte inferior derecha */
+}
+
+/* Comic Container */
+.comic-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* ✅ Evita que crezca más allá de `main-content` */
+}
+
+/* Opcional: Ajusta los elementos internos para que crezcan junto con el contenedor */
+.comic-title {
+    margin-bottom: 20px;
+}
+
+.comic-content {
+    flex-grow: 1; /* Se expande dentro del comic-container */
+    display: flex;
+    flex-direction: column; /* Distribuye los elementos en columna */
+    justify-content: space-between; /* Se distribuyen uniformemente */
+}
+
+/* Comic Title */
+.comic-title {
+    font-size: 2.5rem; /* Tamaño del texto */
+    text-align: center;
+    color: rgba(23, 102, 209, 0.88); /* Color principal del texto */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    margin-bottom: 20px; /* Espaciado debajo del título */
+    letter-spacing: 2px; /* Añade espacio entre las letras */
+    text-shadow:
+            -2px -2px 0 #000, /* Contorno negro en la parte superior izquierda */
+            2px -2px 0 #000, /* Contorno negro en la parte superior derecha */
+            -2px  2px 0 #000, /* Contorno negro en la parte inferior izquierda */
+            2px  2px 0 #000; /* Contorno negro en la parte inferior derecha */
+}
+
+/* Button estilo cómic */
 .submit-btn {
     flex: 1;
-    padding: 8px;
-    border: 2px solid #1a237e;
-    background: #3f51b5;
-    color: white;
+    padding: 6px;
+    border: 2px solid #000000;
+    background: #1094e0;
+    color: #000000;
     font-weight: bold;
-    font-size: 1.4rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease-in-out;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-}
-
-/* Efecto hover de los botones */
-.submit-btn:hover {
-    background: #283593;
-    transform: scale(1.05);
-}
-
-/* Paginación con un diseño más limpio */
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 10px 0;
-    width: 100%;
-}
-
-.pagination button {
-    background: #fff;
-    border: 2px solid #1a237e;
-    padding: 6px 12px;
-    color: #1a237e;
-    font-family: Arial, sans-serif;
-    font-size: 1rem;
-    cursor: pointer;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease, background 0.3s ease;
-}
-
-.pagination button:hover {
-    background: #1a237e;
-    color: white;
-    transform: scale(1.05);
-}
-
-/* Estilo para los encabezados de la tabla */
-table th {
-    background-color: #283593;
-    color: white;
-    font-size: 1.3rem;
-    padding: 10px;
-    text-align: center;
-    border: 2px solid #ddd;
     text-transform: uppercase;
-}
-
-/* Estilo para las celdas de la tabla */
-table td {
-    background-color: #f5f5f5;
-    border: 2px solid #ddd;
-    padding: 10px;
-    text-align: center;
-    font-size: 1rem;
-}
-
-/* Botones en la tabla */
-table button {
-    background-color: #3f51b5;
-    color: white;
-    padding: 6px 12px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-family: "Bangers", sans-serif; /* Aplica la fuente Bangers */
+    font-size: 2rem;
+    transition: transform 0.2s ease; /* Transición suave para volver al estado original */
+    display: inline-flex; /* Alinea el texto centrado */
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Efecto hover en los botones de la tabla */
-table button:hover {
-    background-color: #283593;
+.submit-btn:hover {
+    animation: vibrate-grow 0.2s ease forwards; /* Vibra más rápido y crece */
 }
 
-/* Botón de cerrar sesión */
-.logout-btn {
-    background: #d9534f;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    border: 2px solid #b52d3e;
-    cursor: pointer;
-    font-size: 1.2rem;
+.submit-btn:active {
+    transform: scale(1.05); /* Se reduce ligeramente al hacer clic */
+}
+
+@keyframes vibrate-grow {
+    0% {
+        transform: translate(0, 0) scale(1); /* Tamaño inicial */
+    }
+    25% {
+        transform: translate(-2px, -2px) scale(1.03); /* Esquina superior izquierda y ligeramente más grande */
+    }
+    50% {
+        transform: translate(2px, -2px) scale(1.05); /* Esquina superior derecha y más grande */
+    }
+    75% {
+        transform: translate(2px, 2px) scale(1.07); /* Esquina inferior derecha y más grande */
+    }
+    100% {
+        transform: translate(-2px, 2px) scale(1.07); /* Esquina inferior izquierda y tamaño final */
+    }
+}
+
+
+.logo-container {
     text-align: center;
     margin-top: 20px;
 }
 
+.logo-img {
+    max-width: 300px; /* Ajusta el tamaño según sea necesario */
+    height: auto;
+}
+
+/* Contenedor del botón */
+.toggle-btn-wrapper {
+    position: fixed;
+    top: 50px; /* 🔹 Mueve el botón más abajo */
+    left: 20px; /* 🔹 Ajusta su posición horizontalmente */
+    z-index: 3000;
+}
+
+/* Estilo cuadrado con contorno cómic */
+.toggle-btn {
+    position: relative;
+    background: rgba(23, 102, 209, 0.88); /* 🟡 Amarillo vibrante */
+    color: white;
+    border: 6px solid black; /* Línea negra interna */
+    padding: 5px 8px; /* 🔹 Hace el botón más pequeño */
+    font-size: 0.9rem; /* 🔹 Reduce el tamaño del icono/texto */
+    font-family: "Bangers", sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    border-radius: 8px; /* 🔹 Esquinas suavemente redondeadas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px; /* 🔹 Tamaño más compacto */
+    height: 35px; /* 🔹 Mantiene forma cuadrada */
+    z-index: 3000;
+
+    /* 🌟 Contornos cómic */
+    outline: 5px solid white; /* 🔹 Contorno blanco */
+    box-shadow: 0 0 0 6px black; /* 🔹 Segunda línea negra externa */
+}
+
+/* 🔹 Efecto de presión al hacer click */
+.toggle-btn:active {
+    transform: scale(0.95);
+}
+
+/* 📌 Ajuste cuando la sidebar está oculta */
+.sidebar.hidden + .toggle-btn-wrapper {
+    left: 270px; /* 🔥 Se mueve a la derecha */
+}
+
+.hero-animation {
+    position: absolute;
+    top: 20px;
+    width: 100px;
+    height: auto;
+    left: -150px; /* Inicia fuera de la pantalla */
+    transition: left 1s cubic-bezier(0.7, 0, 0.3, 1), transform 1.2s ease-in-out;
+    opacity: 0;
+}
+
+/* 🟢 Vuelo de izquierda a derecha al desglosar la sidebar */
+.hero-fly-right {
+    left: 320px;
+    transition: left 0.5s cubic-bezier(0.8, 0, 0.4, 1);
+}
+
+.hero-fly-right-end {
+    left: 100vw;
+    transition: left 1.5s cubic-bezier(0.3, 0, 0.1, 1);
+}
+
+/* 🔵 Vuelo de derecha a izquierda al ocultar la sidebar */
+.hero-fly-left {
+    left: 320px;
+    transform: rotateY(0deg);
+    transition: left 0.5s cubic-bezier(0.8, 0, 0.4, 1), transform 0.6s ease-in-out;
+}
+
+.hero-fly-left-end {
+    left: -150px;
+    transition: left 1.5s cubic-bezier(0.3, 0, 0.1, 1);
+}
+
+
+/* 🎨 Estilos para el botón de Cerrar Sesión */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 20px;
+    border: 2px solid black;
+    background: #d9534f; /* 🔴 Rojo llamativo */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: "Bangers", sans-serif;
+    font-size: 1.5rem;
+    transition: transform 0.2s ease-in-out, background 0.2s;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 black;
+    text-decoration: none;
+    margin-bottom: -50px; /* Espaciado del fondo */
+    width: 80%;
+    text-align: center;
+    border-radius: 10px;
+}
+
+/* 🔥 Efecto al pasar el mouse */
 .logout-btn:hover {
-    background: #c9302c;
+    background: #c9302c; /* 🔴 Rojo más oscuro */
     transform: scale(1.05);
 }
 
-/* Media Queries para pantallas más pequeñas */
-@media (max-width: 1024px) {
-    .sidebar {
-        width: 250px;
-    }
+/* 📌 Cuando se presiona */
+.logout-btn:active {
+    transform: scale(0.95);
+}
 
-    .main-content {
-        margin-left: 250px;
-        width: calc(100% - 270px);
+/* 🔴 Empujar "Cerrar Sesión" hacia abajo */
+.logout-btn {
+    margin-top: auto; /* Ahora sí se irá hasta abajo */
+}
+
+/* 🔵 Pantalla de carga al cerrar sesión */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../imagenes/fondoazul.jpg'); /* Mantiene el fondo */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s;
+}
+
+/* 🦸‍♂️ Animación del superhéroe */
+#hero-loading {
+    position: absolute;
+    left: -200px; /* Inicia más a la izquierda */
+    width: 300px; /* 🔥 Ahora es más grande */
+    height: auto;
+}
+
+/* 🔥 Animación para que el héroe cruce la pantalla */
+@keyframes fly-right {
+    0% {
+        left: -200px;
+        transform: scale(1);
+    }
+    50% {
+        left: 50%;
+        transform: scale(1.3);
+    }
+    100% {
+        left: 100vw;
+        transform: scale(1);
     }
 }
 
+/* 🔥 Estilos del texto en la pantalla de carga */
+.loading-text {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-family: "Bangers", sans-serif;
+    color: white;
+    text-transform: uppercase;
+    text-shadow:
+            -3px -3px 0 black,
+            3px -3px 0 black,
+            -3px 3px 0 black,
+            3px 3px 0 black;
+    letter-spacing: 2px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* 🔄 Animación para que aparezca suavemente */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.badge {
+    position: absolute;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 4px 8px; /* 🔹 Más grande */
+    font-size: 16px; /* 🔹 Más grande */
+    font-weight: bold;
+    top: 5px;
+    right: 10px;
+    display: inline-block;
+
+    /* 🔲 Contorno negro */
+    text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px  1px 0 #000,
+            1px  1px 0 #000;
+}
+#btn-reportes-completos {
+    position: relative;
+}
+
+#btn-historial-reportes {
+    position: relative;
+}
+
+/* 🔔 Estilo para fila recién insertada */
+.nueva-fila {
+    animation: parpadeo 0.4s ease-in-out 3;
+    background-color: #fff8c4 !important; /* amarillo claro */
+}
+
+/* 🔁 Animación */
+@keyframes parpadeo {
+    0%, 100% { background-color: #fff8c4; }
+    50% { background-color: #ffeb7a; }
+}
+
+
+/* Media Query para tabletas y pantallas pequeñas (como iPad) */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 250px; /* Reducir el tamaño de la barra lateral en pantallas más pequeñas */
+    }
+
+    .main-content {
+        margin-left: 300px; /* Ajustar el contenido cuando la sidebar esté visible */
+        width: calc(100% - 320px); /* Ajustar el espacio disponible */
+    }
+
+    .sidebar a {
+        font-size: 1.2rem; /* Reducir el tamaño de los botones */
+        padding: 8px 15px;
+    }
+
+    .submit-btn {
+        font-size: 1.8rem; /* Reducir el tamaño del botón */
+    }
+}
+
+/* Media Query para dispositivos móviles (como iPhone, Android) */
 @media (max-width: 768px) {
     .sidebar {
-        width: 200px;
+        width: 200px; /* Reducir aún más el tamaño de la barra lateral */
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%; /* El contenido ocupa todo el espacio disponible */
+        padding: 10px; /* Reducir el padding para pantallas pequeñas */
+    }
+
+    .header h1 {
+        font-size: 1.8rem; /* Reducir el tamaño del título */
+    }
+
+    .username-bubble {
+        font-size: 1rem; /* Reducir el tamaño de la burbuja del nombre */
+    }
+
+    .sidebar a {
+        font-size: 1rem; /* Reducir el tamaño de los botones */
+        padding: 6px 12px;
+    }
+
+    .submit-btn {
+        font-size: 1.6rem; /* Reducir el tamaño del botón */
+    }
+}
+
+/* Media Query para pantallas extra pequeñas (dispositivos móviles más pequeños) */
+@media (max-width: 480px) {
+    .sidebar {
+        width: 180px; /* Aún más pequeño para dispositivos muy pequeños */
     }
 
     .main-content {
         margin-left: 0;
         width: 100%;
+        padding: 8px;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .username-bubble {
+        font-size: 0.9rem;
+    }
+
+    .sidebar a {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+    }
+
+    .submit-btn {
+        font-size: 1.5rem;
     }
 }
