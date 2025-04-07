@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Rediseño Modal Fecha Finalizacion">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Evitar Inyeccion Agregar Comentario">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/agregarComentario.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/agregarComentario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/conseguirReportesCompletos.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/conseguirReportesCompletos.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,15 +162,7 @@
       <workItem from="1743603284056" duration="15685000" />
       <workItem from="1743690113088" duration="16394000" />
       <workItem from="1743776516117" duration="13041000" />
-      <workItem from="1744035353955" duration="11781000" />
-    </task>
-    <task id="LOCAL-00814" summary="Coreeciones Reportes Pestañas">
-      <option name="closed" value="true" />
-      <created>1743783589160</created>
-      <option name="number" value="00814" />
-      <option name="presentableId" value="LOCAL-00814" />
-      <option name="project" value="LOCAL" />
-      <updated>1743783589160</updated>
+      <workItem from="1744035353955" duration="12825000" />
     </task>
     <task id="LOCAL-00815" summary="Coreeciones Reportes Pestañas">
       <option name="closed" value="true" />
@@ -556,7 +548,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744047712316</updated>
     </task>
-    <option name="localTasksCounter" value="863" />
+    <task id="LOCAL-00863" summary="Evitar Inyeccion Agregar Comentario">
+      <option name="closed" value="true" />
+      <created>1744050603579</created>
+      <option name="number" value="00863" />
+      <option name="presentableId" value="LOCAL-00863" />
+      <option name="project" value="LOCAL" />
+      <updated>1744050603579</updated>
+    </task>
+    <option name="localTasksCounter" value="864" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -608,7 +608,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modificar Datos Personales" />
     <MESSAGE value="Arreglando Excel Individual" />
     <MESSAGE value="Dashboard Usuario" />
     <MESSAGE value="Dashboard Usuario Text Area" />
@@ -633,6 +632,7 @@
     <MESSAGE value="Rediseño Modal Comentarios" />
     <MESSAGE value="Rediseño Modal Estatus" />
     <MESSAGE value="Rediseño Modal Fecha Finalizacion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rediseño Modal Fecha Finalizacion" />
+    <MESSAGE value="Evitar Inyeccion Agregar Comentario" />
+    <option name="LAST_COMMIT_MESSAGE" value="Evitar Inyeccion Agregar Comentario" />
   </component>
 </project>
