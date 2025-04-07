@@ -16,14 +16,13 @@
 /* 🔹 Contenedor del modal con estilo profesional */
 .comentarios-modal {
     background: #ffffff; /* Fondo blanco limpio */
-    border: 5px solid black; /* 1️⃣ Primera línea negra */
+    border: 15px solid black; /* 1️⃣ Primera línea negra */
     outline: 10px solid white; /* 2️⃣ Contorno blanco más ancho */
     box-shadow: 0 0 0 15px black; /* 3️⃣ Segunda línea negra */
     width: 40%;
     max-width: 420px; /* Tamaño moderado */
     padding: 20px;
     font-family: 'Arial', sans-serif; /* Fuente profesional para el contenido */
-    border-radius: 10px;
     position: relative;
     display: flex;
     flex-direction: column;
