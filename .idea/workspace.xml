@@ -161,15 +161,7 @@
       <workItem from="1743603284056" duration="15685000" />
       <workItem from="1743690113088" duration="16394000" />
       <workItem from="1743776516117" duration="13041000" />
-      <workItem from="1744035353955" duration="7583000" />
-    </task>
-    <task id="LOCAL-00804" summary="Adaptabilidad CSS Main Content">
-      <option name="closed" value="true" />
-      <created>1743708296350</created>
-      <option name="number" value="00804" />
-      <option name="presentableId" value="LOCAL-00804" />
-      <option name="project" value="LOCAL" />
-      <updated>1743708296350</updated>
+      <workItem from="1744035353955" duration="7630000" />
     </task>
     <task id="LOCAL-00805" summary="Adaptabilidad CSS Main Content">
       <option name="closed" value="true" />
@@ -555,7 +547,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744045812211</updated>
     </task>
-    <option name="localTasksCounter" value="853" />
+    <task id="LOCAL-00853" summary="Rediseño Modal Fecha Finalizacion">
+      <option name="closed" value="true" />
+      <created>1744045865834</created>
+      <option name="number" value="00853" />
+      <option name="presentableId" value="LOCAL-00853" />
+      <option name="project" value="LOCAL" />
+      <updated>1744045865834</updated>
+    </task>
+    <option name="localTasksCounter" value="854" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

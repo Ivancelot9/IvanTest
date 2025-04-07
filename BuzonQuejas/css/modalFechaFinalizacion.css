@@ -127,7 +127,7 @@
     margin-top: 20px;
     margin-right: 10px; /* Espacio entre los botones */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    border: 5px solid black; /* Contorno negro alrededor de los botones */
+    border: 2px solid black; /* Contorno negro alrededor de los botones */
 }
 
 /* 🔹 Alinear los botones en una sola línea */
