@@ -36,7 +36,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 /* 🔹 Estilo del calendario */
@@ -101,7 +101,7 @@
 
 /* 🔹 Estilo del input de fecha (solo texto) */
 #fecha-seleccionada {
-    padding: 20px;
+    padding: 10px;
     font-size: 1rem;
     width: 80%;
     background: #f4f4f4;
