@@ -20,6 +20,15 @@ if (!isset($data['nombre']) || empty(trim($data['nombre']))) {
 $NumNomina = $_SESSION['NumNomina'];
 $nuevoNombre = trim($data['nombre']);
 
+// Validación adicional para $NumNomina (asegurarnos de que sea numérico)
+if (!is_numeric($NumNomina)) {
+    echo json_encode(["status" => "error", "message" => "Número de nómina inválido."]);
+    exit;
+}
+
+// Sanitizar el nombre para evitar posibles problemas con caracteres especiales
+$nuevoNombre = htmlspecialchars($nuevoNombre, ENT_QUOTES, 'UTF-8');
+
 try {
     $con = new LocalConector();
     $conex = $con->conectar();
@@ -38,4 +47,4 @@ try {
 } catch (Exception $e) {
     echo json_encode(["status" => "error", "message" => "Error en el servidor: " . $e->getMessage()]);
 }
-?>
+
