@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Obtener Reportes Completos php">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/modificarDatosPersonales.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/modificarDatosPersonales.php" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Test: Corrigiendo modifcar datos personales">
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/modificarDatosPersonales.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/modificarDatosPersonales.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,15 +162,7 @@
       <workItem from="1743690113088" duration="16394000" />
       <workItem from="1743776516117" duration="13041000" />
       <workItem from="1744035353955" duration="13783000" />
-      <workItem from="1744122307378" duration="12557000" />
-    </task>
-    <task id="LOCAL-00823" summary="Rediseño Datos Personales Admin">
-      <option name="closed" value="true" />
-      <created>1743795932432</created>
-      <option name="number" value="00823" />
-      <option name="presentableId" value="LOCAL-00823" />
-      <option name="project" value="LOCAL" />
-      <updated>1743795932432</updated>
+      <workItem from="1744122307378" duration="12868000" />
     </task>
     <task id="LOCAL-00824" summary="Rediseño Datos Personales Admin">
       <option name="closed" value="true" />
@@ -559,7 +548,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744131704359</updated>
     </task>
-    <option name="localTasksCounter" value="872" />
+    <task id="LOCAL-00872" summary="Test: Corrigiendo modifcar datos personales">
+      <option name="closed" value="true" />
+      <created>1744137298644</created>
+      <option name="number" value="00872" />
+      <option name="presentableId" value="LOCAL-00872" />
+      <option name="project" value="LOCAL" />
+      <updated>1744137298644</updated>
+    </task>
+    <option name="localTasksCounter" value="873" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -611,7 +608,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Integrando Notificaciones" />
     <MESSAGE value="Arreglando Filtrador Reportes Completos" />
     <MESSAGE value="Mostrar ShiftLeader y Supervisor en la tabla" />
     <MESSAGE value="Arreglando Rango" />
@@ -636,7 +632,8 @@
     <MESSAGE value="Modificar Datos Personales php" />
     <MESSAGE value="Obtener Area php" />
     <MESSAGE value="Obtener Reportes Completos php" />
-    <option name="LAST_COMMIT_MESSAGE" value="Obtener Reportes Completos php" />
+    <MESSAGE value="Test: Corrigiendo modifcar datos personales" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test: Corrigiendo modifcar datos personales" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

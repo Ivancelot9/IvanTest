@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Si pasa la validación, enviar al servidor
-        fetch("dao/modificarDatosPersonales.php", {
+        fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/modificarDatosPersonales.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nombre: nuevoNombre })
