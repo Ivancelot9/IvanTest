@@ -34,4 +34,4 @@ function cliente($Nomina) {
         return null; // No encontrado
     }
 }
-?>
+

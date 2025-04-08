@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Evitar Inyeccion Conseguir Reportes Completos PHP">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Evitar Inyeccion Dao Usuario PHP">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/daoUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/daoUsuario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/insertarReporte.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/insertarReporte.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,15 +164,7 @@
       <workItem from="1743690113088" duration="16394000" />
       <workItem from="1743776516117" duration="13041000" />
       <workItem from="1744035353955" duration="13783000" />
-      <workItem from="1744122307378" duration="1805000" />
-    </task>
-    <task id="LOCAL-00816" summary="Coreeciones Reportes Pestañas">
-      <option name="closed" value="true" />
-      <created>1743784125660</created>
-      <option name="number" value="00816" />
-      <option name="presentableId" value="LOCAL-00816" />
-      <option name="project" value="LOCAL" />
-      <updated>1743784125660</updated>
+      <workItem from="1744122307378" duration="2703000" />
     </task>
     <task id="LOCAL-00817" summary="Coreeciones Reportes Pestañas">
       <option name="closed" value="true" />
@@ -557,7 +550,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744052455793</updated>
     </task>
-    <option name="localTasksCounter" value="865" />
+    <task id="LOCAL-00865" summary="Evitar Inyeccion Dao Usuario PHP">
+      <option name="closed" value="true" />
+      <created>1744124159563</created>
+      <option name="number" value="00865" />
+      <option name="presentableId" value="LOCAL-00865" />
+      <option name="project" value="LOCAL" />
+      <updated>1744124159563</updated>
+    </task>
+    <option name="localTasksCounter" value="866" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -609,7 +610,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Dashboard Usuario" />
     <MESSAGE value="Dashboard Usuario Text Area" />
     <MESSAGE value="Conectar BD a ADmin/Usuario" />
     <MESSAGE value="Modal Estatus" />
@@ -634,6 +634,7 @@
     <MESSAGE value="Rediseño Modal Fecha Finalizacion" />
     <MESSAGE value="Evitar Inyeccion Agregar Comentario" />
     <MESSAGE value="Evitar Inyeccion Conseguir Reportes Completos PHP" />
-    <option name="LAST_COMMIT_MESSAGE" value="Evitar Inyeccion Conseguir Reportes Completos PHP" />
+    <MESSAGE value="Evitar Inyeccion Dao Usuario PHP" />
+    <option name="LAST_COMMIT_MESSAGE" value="Evitar Inyeccion Dao Usuario PHP" />
   </component>
 </project>

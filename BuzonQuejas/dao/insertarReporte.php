@@ -23,6 +23,12 @@ $IdShiftLeader = !empty($data['IdShiftLeader']) ? intval($data['IdShiftLeader'])
 $FechaRegistro = date("Y-m-d H:i:s");
 $Comentarios = null;
 
+// Validar que los valores sean correctos (por ejemplo, que el número de nómina y el área sean enteros positivos)
+if ($NumNomina <= 0 || $IdArea <= 0) {
+    echo json_encode(["status" => "error", "message" => "Datos inválidos: Número de nómina o área incorrectos."]);
+    exit;
+}
+
 try {
     $con = new LocalConector();
     $conn = $con->conectar();
