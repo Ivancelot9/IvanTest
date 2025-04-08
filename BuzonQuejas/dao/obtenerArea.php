@@ -14,8 +14,14 @@ try {
 
     $areas = [];
 
-    while ($row = $result->fetch_assoc()) {
-        $areas[] = $row;
+    // Verificar si hay resultados
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $areas[] = $row;
+        }
+    } else {
+        echo json_encode(["status" => "error", "message" => "No se encontraron áreas."]);
+        exit;
     }
 
     echo json_encode($areas);
@@ -26,4 +32,4 @@ try {
     echo json_encode(["status" => "error", "message" => "Error en el servidor: " . $e->getMessage()]);
 }
 
-
+?>
