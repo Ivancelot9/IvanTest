@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modificar Datos Personales php">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Obtener Area php">
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/obtenerArea.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/obtenerArea.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -162,15 +162,7 @@
       <workItem from="1743690113088" duration="16394000" />
       <workItem from="1743776516117" duration="13041000" />
       <workItem from="1744035353955" duration="13783000" />
-      <workItem from="1744122307378" duration="5698000" />
-    </task>
-    <task id="LOCAL-00820" summary="Rediseño Datos Personales Admin">
-      <option name="closed" value="true" />
-      <created>1743795400884</created>
-      <option name="number" value="00820" />
-      <option name="presentableId" value="LOCAL-00820" />
-      <option name="project" value="LOCAL" />
-      <updated>1743795400884</updated>
+      <workItem from="1744122307378" duration="5901000" />
     </task>
     <task id="LOCAL-00821" summary="Rediseño Datos Personales Admin">
       <option name="closed" value="true" />
@@ -556,7 +548,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744129170366</updated>
     </task>
-    <option name="localTasksCounter" value="869" />
+    <task id="LOCAL-00869" summary="Obtener Area php">
+      <option name="closed" value="true" />
+      <created>1744129448216</created>
+      <option name="number" value="00869" />
+      <option name="presentableId" value="LOCAL-00869" />
+      <option name="project" value="LOCAL" />
+      <updated>1744129448216</updated>
+    </task>
+    <option name="localTasksCounter" value="870" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -608,7 +608,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modal Estatus" />
     <MESSAGE value="Insertar Fecha Finalizacion en la BD" />
     <MESSAGE value="Integrando Notificaciones" />
     <MESSAGE value="Arreglando Filtrador Reportes Completos" />
@@ -633,6 +632,7 @@
     <MESSAGE value="Evitar Inyeccion Dao Usuario PHP" />
     <MESSAGE value="Evitar Inyeccion Insertar Reporte PHP" />
     <MESSAGE value="Modificar Datos Personales php" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modificar Datos Personales php" />
+    <MESSAGE value="Obtener Area php" />
+    <option name="LAST_COMMIT_MESSAGE" value="Obtener Area php" />
   </component>
 </project>
