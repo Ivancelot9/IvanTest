@@ -26,6 +26,12 @@ if (!is_numeric($NumNomina)) {
     exit;
 }
 
+// ✅ Validar que el nombre solo contenga letras y espacios
+if (!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/", $nuevoNombre)) {
+    echo json_encode(["status" => "error", "message" => "El nombre solo puede contener letras y espacios."]);
+    exit;
+}
+
 // Sanitizar el nombre para evitar posibles problemas con caracteres especiales
 $nuevoNombre = htmlspecialchars($nuevoNombre, ENT_QUOTES, 'UTF-8');
 
@@ -47,4 +53,3 @@ try {
 } catch (Exception $e) {
     echo json_encode(["status" => "error", "message" => "Error en el servidor: " . $e->getMessage()]);
 }
-

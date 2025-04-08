@@ -12,8 +12,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Guardar cambios
     guardarBtn.addEventListener("click", function () {
-        const nuevoNombre = nombreInput.value;
+        const nuevoNombre = nombreInput.value.trim();
 
+        // Validar que solo tenga letras y espacios
+        const soloLetrasRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+
+        if (!soloLetrasRegex.test(nuevoNombre)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Nombre inválido',
+                html: `
+                    El nombre solo puede contener <strong>letras</strong> y <strong>espacios</strong>.<br><br>
+                    <u>Ejemplos válidos:</u><br>
+                    - Jonathan Canizo<br>
+                    - Ivan Alejandro Medina Cerritos<br><br>
+                    No se permiten <strong>números</strong> ni <strong>símbolos</strong>.
+                `
+            });
+            return;
+        }
+
+        // Si pasa la validación, enviar al servidor
         fetch("dao/modificarDatosPersonales.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -22,7 +41,14 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.status === "success") {
-                    alert("Nombre actualizado correctamente.");
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Actualizado',
+                        text: 'Nombre actualizado correctamente.',
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
+
                     nombreInput.setAttribute("readonly", "true");
                     editarBtn.style.display = "inline-block";
                     guardarBtn.style.display = "none";
@@ -30,9 +56,20 @@ document.addEventListener("DOMContentLoaded", function () {
                     // También actualizar el nombre en el sidebar
                     document.getElementById("sidebar-nombre").textContent = nuevoNombre;
                 } else {
-                    alert("Error al actualizar: " + data.message);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: data.message
+                    });
                 }
             })
-            .catch(error => console.error("Error en la petición:", error));
+            .catch(error => {
+                console.error("Error en la petición:", error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Ocurrió un problema al intentar actualizar.'
+                });
+            });
     });
 });
