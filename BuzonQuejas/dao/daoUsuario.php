@@ -1,21 +1,37 @@
 <?php
 include_once('db.php');
 
-function cliente($Nomina){
+function cliente($Nomina) {
     $con = new LocalConector();
     $conexion = $con->conectar();
 
-    // Consulta para obtener el nombre del usuario con esa nómina
-    $consP = "SELECT `NomUser` FROM `Empleados` WHERE `IdUser` = '$Nomina'";
-    $rsconsPro = mysqli_query($conexion, $consP);
+    // Validamos que $Nomina sea un número entero positivo
+    if (!is_numeric($Nomina) || $Nomina <= 0) {
+        return null; // Si no es un número válido, retornamos null
+    }
 
-    if (mysqli_num_rows($rsconsPro) == 1) {
-        $fila = mysqli_fetch_assoc($rsconsPro);
+    // Consulta preparada para evitar inyecciones SQL
+    $consP = "SELECT `NomUser` FROM `Empleados` WHERE `IdUser` = ?";
+    $stmt = $conexion->prepare($consP);
+
+    // Vinculamos el parámetro
+    $stmt->bind_param("i", $Nomina); // 'i' significa que $Nomina es un entero
+
+    // Ejecutamos la consulta
+    $stmt->execute();
+
+    // Obtenemos el resultado
+    $result = $stmt->get_result();
+
+    if ($result->num_rows == 1) {
+        $fila = $result->fetch_assoc();
+        $stmt->close();
         mysqli_close($conexion);
         return $fila['NomUser']; // Devuelve el nombre directamente
     } else {
+        $stmt->close();
         mysqli_close($conexion);
         return null; // No encontrado
     }
 }
-
+?>
