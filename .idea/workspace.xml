@@ -162,15 +162,7 @@
       <workItem from="1743690113088" duration="16394000" />
       <workItem from="1743776516117" duration="13041000" />
       <workItem from="1744035353955" duration="13783000" />
-      <workItem from="1744122307378" duration="5332000" />
-    </task>
-    <task id="LOCAL-00819" summary="Rediseño Datos Personales Admin">
-      <option name="closed" value="true" />
-      <created>1743794449691</created>
-      <option name="number" value="00819" />
-      <option name="presentableId" value="LOCAL-00819" />
-      <option name="project" value="LOCAL" />
-      <updated>1743794449691</updated>
+      <workItem from="1744122307378" duration="5698000" />
     </task>
     <task id="LOCAL-00820" summary="Rediseño Datos Personales Admin">
       <option name="closed" value="true" />
@@ -556,7 +548,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744126910304</updated>
     </task>
-    <option name="localTasksCounter" value="868" />
+    <task id="LOCAL-00868" summary="Modificar Datos Personales php">
+      <option name="closed" value="true" />
+      <created>1744129170366</created>
+      <option name="number" value="00868" />
+      <option name="presentableId" value="LOCAL-00868" />
+      <option name="project" value="LOCAL" />
+      <updated>1744129170366</updated>
+    </task>
+    <option name="localTasksCounter" value="869" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
