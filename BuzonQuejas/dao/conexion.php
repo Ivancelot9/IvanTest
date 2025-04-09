@@ -22,4 +22,4 @@ class LocalConector{
         $this->conexion->query("SET time_zone = '-06:00'");
         return $this->conexion;//Retorna el objeto de conexión
     }
-}
+}//
