@@ -39,6 +39,7 @@ body {
     top: 5vh; /* Mantiene la posición */
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
+    overflow-y: auto;
 }
 
 
@@ -640,5 +641,17 @@ body {
 
     .submit-btn {
         font-size: 1.5rem;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-103%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
     }
 }
