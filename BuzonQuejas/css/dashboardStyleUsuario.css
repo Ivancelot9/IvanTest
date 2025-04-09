@@ -44,40 +44,39 @@ body {
     margin: 0 auto;
 }
 
+/* Estilo cómic para el título */
 .comic-title-usuario {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    margin-top: 15px;
-    font-family: "Bangers", sans-serif;
-    font-size: 2rem;
+    font-size: 2.5rem;
+    text-align: center;
+    color: #2976ca;
     text-transform: uppercase;
-    line-height: 1;
-}
-
-.comic-title-usuario span {
+    font-family: "Bangers", sans-serif;
+    font-weight: bold;
+    letter-spacing: 5px; /* 🔹 Más espacio entre letras */
+    display: inline-block;
     position: relative;
-    color: transparent;
-    -webkit-text-stroke: 1.5px black;
-    overflow: hidden;
+    transform: skew(-2deg);
+    margin-top: 25px;
+    padding: 10px 20px;
+    z-index: 1;
 }
 
-.comic-title-usuario span::after {
-    content: attr(data-char);
+/* Efecto de explosión en el fondo */
+.comic-title-usuario::before {
+    content: attr(data-text);
     position: absolute;
     top: 0;
     left: 0;
     color: #2976ca;
-    width: 0%;
-    overflow: hidden;
-    white-space: nowrap;
-    animation: rellenadoSecuencial 5s steps(20) infinite;
+    z-index: -1;
+    text-shadow:
+            -4px -4px 0 #002b5c,
+            4px -4px 0 #002b5c,
+            -4px  4px 0 #002b5c,
+            4px  4px 0 #002b5c;
+    opacity: 0.9;
 }
-@keyframes rellenadoSecuencial {
-    0%, 10% { width: 0%; }
-    20%, 40% { width: 100%; }
-    50%, 100% { width: 0%; }
-}
+
 
 
 /* 🔹 Contenedor de pestañas simuladas */
