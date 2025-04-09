@@ -60,7 +60,7 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
         <!-- Paso 2: Selección de Área -->
         <div id="step2" class="content hidden">
             <h2 class="step-title">Selecciona tu Área</h2>
-            <p class="step-description">Indica tu <strong>área de trabajo actual</strong>. No es el área a la que deseas reportar.</p>
+            <p class="area-explicacion">Indica tu área de trabajo actual.<br>No es el área a la que deseas reportar.</p>
 
             <!-- 🔹 Selección de Área (Se llenará dinámicamente con JavaScript) -->
             <div class="form-group">
