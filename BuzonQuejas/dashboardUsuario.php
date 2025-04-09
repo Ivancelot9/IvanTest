@@ -131,12 +131,29 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
 
         titulo.innerHTML = ""; // Limpiar contenido
 
-        texto.split("").forEach((letra, i) => {
+        texto.split("").forEach((letra, index) => {
             const span = document.createElement("span");
-            span.setAttribute("data-char", letra);
             span.textContent = letra;
-            span.style.animationDelay = `${i * 0.2}s`; // Delay creciente por letra
-            titulo.append(span); // ✅ Usamos append para conservar el orden
+            span.setAttribute("data-char", letra);
+
+            const delay = index * 0.6;
+            span.style.setProperty("--animation-delay", `${delay}s`);
+
+            const estiloAnimacion = `rellenarSecuencial 4s linear infinite ${delay}s`;
+            span.style.setProperty("--animation-delay", `${delay}s`);
+
+            // Aplicar delay manualmente al ::before
+            span.style.setProperty("--before-delay", `${delay}s`);
+            span.style.setProperty("position", "relative");
+
+            const before = document.createElement("style");
+            before.innerHTML = `
+        .comic-title-usuario span:nth-child(${index + 1})::before {
+            animation-delay: ${delay}s;
+        }`;
+            document.head.appendChild(before);
+
+            titulo.appendChild(span);
         });
     });
 </script>
