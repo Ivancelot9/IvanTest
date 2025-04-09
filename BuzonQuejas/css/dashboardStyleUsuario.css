@@ -46,35 +46,32 @@ body {
 
 /* Estilo cómic para el título */
 .comic-title-usuario {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     text-align: center;
     color: #2976ca;
     text-transform: uppercase;
     font-family: "Bangers", sans-serif;
     font-weight: bold;
-    letter-spacing: 5px; /* 🔹 Más espacio entre letras */
+    letter-spacing: 3px;
     display: inline-block;
     position: relative;
-    transform: skew(-2deg);
-    margin-top: 25px;
-    padding: 10px 20px;
-    z-index: 1;
+    transform: skew(-3deg);
+    margin-top: 25px; /* Espacio entre logo y título */
 }
 
 /* Efecto de explosión en el fondo */
 .comic-title-usuario::before {
-    content: attr(data-text);
+    content: attr(data-text); /* Replica el texto */
     position: absolute;
     top: 0;
     left: 0;
-    color: #2976ca;
-    z-index: -1;
+    color: transparent;
     text-shadow:
-            -4px -4px 0 #002b5c,
-            4px -4px 0 #002b5c,
-            -4px  4px 0 #002b5c,
-            4px  4px 0 #002b5c;
-    opacity: 0.9;
+            -3px -3px 0 #002b5c,
+            3px -3px 0 #002b5c,
+            -3px  3px 0 #002b5c,
+            3px  3px 0 #002b5c;
+    z-index: -1;
 }
 
 
