@@ -44,6 +44,7 @@ body {
     margin: 0 auto;
 }
 
+/* Estilo cómic para el título */
 .comic-title-usuario {
     font-size: 2.2rem;
     text-align: center;
@@ -55,13 +56,12 @@ body {
     display: inline-block;
     position: relative;
     transform: skew(-3deg);
-    margin-top: 25px;
-    white-space: nowrap;
+    margin-top: 25px; /* Espacio entre logo y título */
 }
 
-/* Fondo tipo explosión */
+/* Efecto de explosión en el fondo */
 .comic-title-usuario::before {
-    content: attr(data-text);
+    content: attr(data-text); /* Replica el texto */
     position: absolute;
     top: 0;
     left: 0;
@@ -72,34 +72,6 @@ body {
             -3px  3px 0 #002b5c,
             3px  3px 0 #002b5c;
     z-index: -1;
-}
-
-/* Estilo base de cada letra */
-.relleno-letra {
-    position: relative;
-    color: transparent;
-    -webkit-text-stroke: 1.5px #002b5c;
-    overflow: hidden;
-    display: inline-block;
-}
-
-/* Capa animada para el relleno */
-.relleno-letra::after {
-    content: attr(data-char);
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: #2976ca;
-    width: 0%;
-    overflow: hidden;
-    white-space: nowrap;
-    animation: rellenarLetra 1s ease-in-out forwards;
-    animation-delay: inherit; /* 🔥 Se hereda desde JS */
-}
-
-@keyframes rellenarLetra {
-    from { width: 0%; }
-    to { width: 100%; }
 }
 
 
