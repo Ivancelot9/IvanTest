@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let fila = document.createElement("tr");
             fila.innerHTML = `
             <td>${resaltarTexto(folio, filterInput.value)}</td>
-            <td>${resaltarTexto(reporte.FechaRegistro || "Sin fecha", filterInput.value)}</td>
+           <td>${resaltarTexto((reporte.FechaRegistro || "Sin fecha").split(" ")[0], filterInput.value)}</td>
             <td>${resaltarTexto(reporte.NumeroNomina || "Sin nómina", filterInput.value)}</td>
             <td>${resaltarTexto(reporte.Area || "Sin área", filterInput.value)}</td>
             <td class="celda-encargado">${resaltarTexto(encargadoTexto, filterInput.value)}</td>
