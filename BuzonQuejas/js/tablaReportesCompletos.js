@@ -51,6 +51,15 @@ document.addEventListener("DOMContentLoaded", function () {
         return columnaSeleccionada === campo ? resaltarTexto(valorCampo, filtro) : valorCampo;
     }
 
+    function formatearFecha(fechaOriginal) {
+        const partes = fechaOriginal.split(" ")[0].split("-");
+        if (partes.length === 3) {
+            return `${partes[2]}-${partes[1]}-${partes[0]}`; // DD-MM-YYYY
+        }
+        return fechaOriginal; // fallback si no tiene formato válido
+    }
+
+
     window.mostrarReportesCompletos = function (pagina = 1) {
         const inicio = (pagina - 1) * filasPorPagina;
         const fin = inicio + filasPorPagina;
@@ -74,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${aplicarResaltado(reporte.folio, "folio", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.nomina, "nomina", valorFiltro, columnaSeleccionada)}</td>
                 <td>${formatearEncargadoParaVista(aplicarResaltado(reporte.encargado, "encargado", valorFiltro, columnaSeleccionada))}</td>
-                <td>${aplicarResaltado(reporte.fechaFinalizacion.split(" ")[0], "fechaFinalizacion", valorFiltro, columnaSeleccionada)}</td>
+                <td>${aplicarResaltado(formatearFecha(reporte.fechaFinalizacion), "fechaFinalizacion", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.estatus, "estatus", valorFiltro, columnaSeleccionada)}</td>
             `;
 
