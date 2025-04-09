@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Test: Corrigiendo modifcar datos personales">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Corrigiendo advertencias Inicio Sesion">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/inicioSesion.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/inicioSesion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/validacionesAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/validacionesAdmin.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,15 +163,7 @@
       <workItem from="1743690113088" duration="16394000" />
       <workItem from="1743776516117" duration="13041000" />
       <workItem from="1744035353955" duration="13783000" />
-      <workItem from="1744122307378" duration="19661000" />
-    </task>
-    <task id="LOCAL-00826" summary="Rediseño Datos Personales Admin">
-      <option name="closed" value="true" />
-      <created>1743796221572</created>
-      <option name="number" value="00826" />
-      <option name="presentableId" value="LOCAL-00826" />
-      <option name="project" value="LOCAL" />
-      <updated>1743796221572</updated>
+      <workItem from="1744122307378" duration="20439000" />
     </task>
     <task id="LOCAL-00827" summary="Rediseño Datos Personales Admin">
       <option name="closed" value="true" />
@@ -558,7 +549,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744209177619</updated>
     </task>
-    <option name="localTasksCounter" value="875" />
+    <task id="LOCAL-00875" summary="Corrigiendo advertencias Inicio Sesion">
+      <option name="closed" value="true" />
+      <created>1744212852700</created>
+      <option name="number" value="00875" />
+      <option name="presentableId" value="LOCAL-00875" />
+      <option name="project" value="LOCAL" />
+      <updated>1744212852700</updated>
+    </task>
+    <option name="localTasksCounter" value="876" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -610,7 +609,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Arreglando Filtrador Reportes Completos" />
     <MESSAGE value="Mostrar ShiftLeader y Supervisor en la tabla" />
     <MESSAGE value="Arreglando Rango" />
     <MESSAGE value="Arreglando supervisor en tabla 2" />
@@ -635,7 +633,8 @@
     <MESSAGE value="Obtener Area php" />
     <MESSAGE value="Obtener Reportes Completos php" />
     <MESSAGE value="Test: Corrigiendo modifcar datos personales" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test: Corrigiendo modifcar datos personales" />
+    <MESSAGE value="Corrigiendo advertencias Inicio Sesion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrigiendo advertencias Inicio Sesion" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
