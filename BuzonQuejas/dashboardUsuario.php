@@ -82,7 +82,7 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
             <div class="form-group hidden" id="shiftLeader-container">
                 <label for="shiftLeader" class="step-label">Shift Leader:</label>
                 <select id="shiftLeader" class="step-select">
-                    <option value="" disabled selected>Selecciona tu Shiftleader</option>
+                    <option value="" disabled selected>Selecciona tu Shift Leader</option>
                 </select>
             </div>
         </div>
