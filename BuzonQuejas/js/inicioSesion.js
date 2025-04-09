@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
             Swal.fire({
                 icon: 'warning',
                 title: 'Campos inválidos',
-                text: error,
+                html: error, // ⬅️ aquí usamos html en vez de text
                 confirmButtonText: 'Entendido'
             });
             return;

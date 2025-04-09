@@ -6,12 +6,14 @@ export function validarCamposComunes(numeroNomina, contrasena) {
 
     // Verificar que el número de nómina contenga solo números
     if (!/^\d+$/.test(numeroNomina)) {
-        return "El Número de Nómina solo puede contener números.\n\n🔹 Ejemplo: 30318";
+        return "El Número de Nómina solo puede contener números.<br><br>🔹 <strong>Ejemplo:</strong> 30318";
+
     }
 
     // Verificar longitud exacta
     if (numeroNomina.length !== 5) {
-        return "El Número de Nómina debe tener exactamente 5 dígitos, como aparece en tu tarjeta.\n\n🔹 Ejemplo: 30318";
+        return "El Número de Nómina debe tener exactamente 5 dígitos, como aparece en tu tarjeta.<br><br>🔹 <strong>Ejemplo:</strong> 30318";
+
     }
 
     return ""; // Sin errores
