@@ -122,6 +122,23 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
 <script src = "js/cargarEncargados.js"></script>
 <script src = "js/cargarAreas.js"></script>
 <script src = "js/enviarReporte.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const titulo = document.querySelector(".comic-title-usuario");
+        const texto = titulo.dataset.text || titulo.textContent.trim();
+        titulo.innerHTML = "";
+
+        texto.split("").forEach((letra, i) => {
+            /** @type {HTMLSpanElement} */
+            const span = document.createElement("span");
+            span.textContent = letra;
+            span.setAttribute("data-char", letra);
+            span.classList.add("relleno-letra");
+            span.style.animationDelay = `${i * 0.3}s`; // 🔥 NO MÁS ADVERTENCIAS
+            titulo.appendChild(span);
+        });
+    });
+</script>
 
 
 
