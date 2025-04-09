@@ -26,7 +26,7 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
 <div class="comic-container">
     <div class="logo-title-container">
         <img src="imagenes/GrameLogo2.png" alt="Logo" class="logo">
-        <div class="comic-title-usuario" data-text="¡QUÉJATE!">¡QUÉJATE!</div
+        <div class="comic-title-usuario" data-text="¡QUÉJATE!">¡QUÉJATE!</div>
     </div>
 
     <!-- 🔹 Pestañas Rectangulares Simuladas -->
@@ -59,13 +59,13 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
 
         <!-- Paso 2: Selección de Área -->
         <div id="step2" class="content hidden">
-            <h2 class="step-title">Selecciona tu Área Donde Trabajas</h2>
+            <h2 class="step-title">Selecciona tu Área</h2>
 
             <!-- 🔹 Selección de Área (Se llenará dinámicamente con JavaScript) -->
             <div class="form-group">
-                <label for="area" class="step-label">Tu Área:</label>
+                <label for="area" class="step-label">Área:</label>
                 <select id="area" class="step-select">
-                    <option value="" disabled selected>Área</option>
+                    <option value="" disabled selected>Selecciona tu área</option>
                     <!-- 🔥 Opciones cargadas desde la BD con JS -->
                 </select>
             </div>
@@ -74,7 +74,7 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
             <div class="form-group hidden" id="supervisor-container">
                 <label for="supervisor" class="step-label">Supervisor:</label>
                 <select id="supervisor" class="step-select">
-                    <option value="" disabled selected>Selecciona tu supervisor</option>
+                    <option value="" disabled selected>Selecciona un supervisor</option>
                 </select>
             </div>
 
@@ -82,7 +82,7 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
             <div class="form-group hidden" id="shiftLeader-container">
                 <label for="shiftLeader" class="step-label">Shift Leader:</label>
                 <select id="shiftLeader" class="step-select">
-                    <option value="" disabled selected>Selecciona tu Shift Leader</option>
+                    <option value="" disabled selected>Selecciona un líder</option>
                 </select>
             </div>
         </div>
@@ -122,22 +122,6 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
 <script src = "js/cargarEncargados.js"></script>
 <script src = "js/cargarAreas.js"></script>
 <script src = "js/enviarReporte.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const titulo = document.querySelector(".comic-title-usuario");
-        const texto = titulo.dataset.text || titulo.textContent.trim();
-        titulo.innerHTML = "";
-
-        texto.split("").forEach((letra, i) => {
-            const span = document.createElement("span");
-            span.textContent = letra;
-            span.setAttribute("data-char", letra);
-            // ✅ Aquí usamos directamente la propiedad del DOM:
-            span.style.animationDelay = (i * 0.6) + "s";
-            titulo.appendChild(span);
-        });
-    });
-</script>
 
 
 
