@@ -26,9 +26,7 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
 <div class="comic-container">
     <div class="logo-title-container">
         <img src="imagenes/GrameLogo2.png" alt="Logo" class="logo">
-        <div class="comic-title-usuario">
-            <span>¡QUEJATE!</span>
-        </div>
+        <div class="comic-title-usuario" data-text="¡QUÉJATE!">¡QUÉJATE!</div
     </div>
 
     <!-- 🔹 Pestañas Rectangulares Simuladas -->
