@@ -6,8 +6,8 @@ fetch('https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerEncargados.php')
         let supervisorSelect = document.getElementById("supervisor");
         let shiftLeaderSelect = document.getElementById("shiftLeader");
 
-        supervisorSelect.innerHTML = '<option value="" disabled selected>Selecciona un supervisor</option>';
-        shiftLeaderSelect.innerHTML = '<option value="" disabled selected>Selecciona un líder</option>';
+        supervisorSelect.innerHTML = '<option value="" disabled selected>Selecciona tu supervisor</option>';
+        shiftLeaderSelect.innerHTML = '<option value="" disabled selected>Selecciona tu Shift Leader</option>';
 
         data.forEach(encargado => {
             let option = document.createElement("option");
