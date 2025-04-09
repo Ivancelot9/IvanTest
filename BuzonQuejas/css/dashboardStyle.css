@@ -39,7 +39,7 @@ body {
     top: 5vh; /* Mantiene la posición */
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
-    overflow-y: auto;
+
 }
 
 
