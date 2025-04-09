@@ -153,11 +153,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
         let letraManual = inputManual.value.toUpperCase();
+        const letrasValidas = ["G", "B", "Y", "R"];
+
+        if (!letrasValidas.includes(letraManual)) {
+            inputManual.value = ""; // Limpiar el campo inválido
+            manualCircle.style.backgroundColor = "#ccc"; // Opcional: reset visual
+            manualCircle.textContent = "?";
+            Swal.fire({
+                icon: "warning",
+                title: "Valor inválido",
+                html: `
+                Solo puedes ingresar una letra válida para el estatus manual:<br><br>
+                <strong>G</strong> = 100% (Verde)<br>
+                <strong>B</strong> = 75% (Azul)<br>
+                <strong>Y</strong> = 50% (Amarillo)<br>
+                <strong>R</strong> = 25% (Rojo)
+            `,
+                confirmButtonText: "Entendido"
+            });
+            return;
+        }
 
         if (!estatusReportes[currentFolio]) estatusReportes[currentFolio] = {};
 
         estatusReportes[currentFolio].progresoManual = progresoManual;
-        estatusReportes[currentFolio].colorManual = letraManual; // ✅ Guardamos la letra
+        estatusReportes[currentFolio].colorManual = letraManual;
         localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
 
         if (botonEstatus) {
