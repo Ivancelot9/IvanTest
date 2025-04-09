@@ -74,7 +74,7 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
             <div class="form-group hidden" id="supervisor-container">
                 <label for="supervisor" class="step-label">Supervisor:</label>
                 <select id="supervisor" class="step-select">
-                    <option value="" disabled selected>Selecciona un supervisor</option>
+                    <option value="" disabled selected>Selecciona tu supervisor</option>
                 </select>
             </div>
 
@@ -82,7 +82,7 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
             <div class="form-group hidden" id="shiftLeader-container">
                 <label for="shiftLeader" class="step-label">Shift Leader:</label>
                 <select id="shiftLeader" class="step-select">
-                    <option value="" disabled selected>Selecciona un líder</option>
+                    <option value="" disabled selected>Selecciona tu Shiftleader</option>
                 </select>
             </div>
         </div>
