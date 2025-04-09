@@ -16,6 +16,7 @@
 <div class="comic-container">
     <!-- Imagen del logo -->
     <img src="imagenes/GrameLogo2.png" alt="Logo Grammer" class="logo">
+
     <!-- Contenido principal -->
     <div class="comic-panel">
         <h1 class="comic-title">Buzón de Reportes</h1>
@@ -24,16 +25,17 @@
                 <button id="registerBtn" class="toggle-btn">Registrar</button>
                 <button id="loginBtn" class="toggle-btn active">Iniciar Sesión</button>
             </div>
+
             <form id="mainForm" class="form">
                 <div id="dynamicFields">
                     <!-- Campos iniciales para "Iniciar Sesión" -->
                     <div class="input-group">
                         <i class="fa-solid fa-envelope"></i>
-                        <input type="text" id="NumNomina" placeholder="Número de Nómina" required>
+                        <input type="text" id="NumNomina" placeholder="Número de Nómina">
                     </div>
                     <div class="input-group">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" id="Contrasena" placeholder="Contraseña" required>
+                        <input type="password" id="Contrasena" placeholder="Contraseña">
                     </div>
                 </div>
                 <button type="submit" class="submit-btn">Entrar</button>
@@ -41,6 +43,7 @@
         </div>
     </div>
 </div>
+
 <script src="js/inicioSesion.js" type="module" defer></script>
 </body>
 </html>

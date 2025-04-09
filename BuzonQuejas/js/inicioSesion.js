@@ -8,12 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let isLoginMode = true;
 
-    // Crear un mensaje de estado dinámico para validaciones
-    let statusMessage = document.createElement("p");
-    statusMessage.style.color = "red"; // Inicialmente rojo para advertencias
-    statusMessage.style.marginTop = "10px"; // Espaciado superior
-    mainForm.appendChild(statusMessage); // Agregar mensaje al formulario
-
     // Cambiar a "Iniciar Sesión"
     loginBtn.addEventListener("click", function () {
         if (!isLoginMode) {
@@ -24,11 +18,11 @@ document.addEventListener("DOMContentLoaded", function () {
             dynamicFields.innerHTML = `
                 <div class="input-group">
                     <i class="fa-solid fa-envelope"></i>
-                    <input type="text" id="NumNomina" placeholder="Número de Nómina" required>
+                    <input type="text" id="NumNomina" placeholder="Número de Nómina">
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" id="Contrasena" placeholder="Contraseña" required>
+                    <input type="password" id="Contrasena" placeholder="Contraseña">
                 </div>
             `;
             mainForm.querySelector(".submit-btn").textContent = "Entrar";
@@ -45,15 +39,15 @@ document.addEventListener("DOMContentLoaded", function () {
             dynamicFields.innerHTML = `
                 <div class="input-group">
                     <i class="fa-solid fa-envelope"></i>
-                    <input type="text" id="NumNomina" placeholder="Número de Nómina" required>
+                    <input type="text" id="NumNomina" placeholder="Número de Nómina">
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-user"></i>
-                    <input type="text" id="Nombre" placeholder="Nombre" required>
+                    <input type="text" id="Nombre" placeholder="Nombre">
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" id="Contrasena" placeholder="Contraseña" required>
+                    <input type="password" id="Contrasena" placeholder="Contraseña">
                 </div>
             `;
             mainForm.querySelector(".submit-btn").textContent = "Registrar";
@@ -73,11 +67,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const error = validarFormulario({ numeroNomina, contrasena, nombre, isLoginMode });
 
         if (error) {
-            statusMessage.textContent = error;
+            Swal.fire({
+                icon: 'warning',
+                title: 'Campos inválidos',
+                text: error,
+                confirmButtonText: 'Entendido'
+            });
             return;
         }
-
-        statusMessage.textContent = ""; // Sin errores
 
         // Crear un objeto FormData para enviar datos al servidor
         const formData = new FormData();
@@ -86,10 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!isLoginMode) {
             formData.append("Nombre", nombre);
         }
-
-
-
-
 
         // Enviar datos al servidor mediante fetch
         const url = isLoginMode
@@ -102,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
             .then((response) => {
                 if (!response.ok) throw new Error("Error en la respuesta del servidor");
-                return response.json(); // Convertir la respuesta a JSONs
+                return response.json();
             })
             .then((data) => {
                 if (data.status === "success") {
@@ -112,17 +105,24 @@ document.addEventListener("DOMContentLoaded", function () {
                         "success"
                     ).then(() => {
                         if (isLoginMode) {
-                            // Redirigir al usuario al dashboard
                             window.location.href = "dashboardAdmin.php";
                         }
                     });
                 } else {
-                    statusMessage.textContent = data.message || "Hubo un problema al procesar tu solicitud";
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: data.message || "Hubo un problema al procesar tu solicitud"
+                    });
                 }
             })
             .catch((error) => {
                 console.error("Error:", error);
-                statusMessage.textContent = "Error en la comunicación con el servidor";
+                Swal.fire({
+                    icon: "error",
+                    title: "Error de red",
+                    text: "Error en la comunicación con el servidor"
+                });
             });
     });
 });
