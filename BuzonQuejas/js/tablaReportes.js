@@ -58,6 +58,14 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error("❌ Error al cargar reportes:", error));
     }
 
+    function formatearFecha(fechaOriginal) {
+        const partes = fechaOriginal.split(" ")[0].split("-");
+        if (partes.length === 3) {
+            return `${partes[2]}-${partes[1]}-${partes[0]}`; // DD-MM-YYYY
+        }
+        return fechaOriginal; // fallback si no tiene formato válido
+    }
+
     function mostrarReportes(pagina) {
         tablaBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
@@ -119,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let fila = document.createElement("tr");
             fila.innerHTML = `
             <td>${resaltarTexto(folio, filterInput.value)}</td>
-           <td>${resaltarTexto((reporte.FechaRegistro || "Sin fecha").split(" ")[0], filterInput.value)}</td>
+            <td>${resaltarTexto(formatearFecha(reporte.FechaRegistro || "Sin fecha"), filterInput.value)}</td>
             <td>${resaltarTexto(reporte.NumeroNomina || "Sin nómina", filterInput.value)}</td>
             <td>${resaltarTexto(reporte.Area || "Sin área", filterInput.value)}</td>
             <td class="celda-encargado">${resaltarTexto(encargadoTexto, filterInput.value)}</td>

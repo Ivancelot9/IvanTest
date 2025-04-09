@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Corrigiendo advertencias Inicio Sesion">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Corrigiendo Estatus Modal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/estatusEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/estatusEditor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,15 +163,7 @@
       <workItem from="1743690113088" duration="16394000" />
       <workItem from="1743776516117" duration="13041000" />
       <workItem from="1744035353955" duration="13783000" />
-      <workItem from="1744122307378" duration="25421000" />
-    </task>
-    <task id="LOCAL-00835" summary="Rediseño Modal Comentarios">
-      <option name="closed" value="true" />
-      <created>1744040078448</created>
-      <option name="number" value="00835" />
-      <option name="presentableId" value="LOCAL-00835" />
-      <option name="project" value="LOCAL" />
-      <updated>1744040078448</updated>
+      <workItem from="1744122307378" duration="26209000" />
     </task>
     <task id="LOCAL-00836" summary="Rediseño Modal Comentarios">
       <option name="closed" value="true" />
@@ -557,7 +549,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744218712965</updated>
     </task>
-    <option name="localTasksCounter" value="884" />
+    <task id="LOCAL-00884" summary="Corrigiendo Estatus Modal">
+      <option name="closed" value="true" />
+      <created>1744219554956</created>
+      <option name="number" value="00884" />
+      <option name="presentableId" value="LOCAL-00884" />
+      <option name="project" value="LOCAL" />
+      <updated>1744219554956</updated>
+    </task>
+    <option name="localTasksCounter" value="885" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -609,7 +609,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Mostrar ShiftLeader y Supervisor en la tabla" />
     <MESSAGE value="Arreglando Rango" />
     <MESSAGE value="Arreglando supervisor en tabla 2" />
     <MESSAGE value="Ajustando Excel Individual" />
@@ -634,7 +633,8 @@
     <MESSAGE value="Obtener Reportes Completos php" />
     <MESSAGE value="Test: Corrigiendo modifcar datos personales" />
     <MESSAGE value="Corrigiendo advertencias Inicio Sesion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrigiendo advertencias Inicio Sesion" />
+    <MESSAGE value="Corrigiendo Estatus Modal" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrigiendo Estatus Modal" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
