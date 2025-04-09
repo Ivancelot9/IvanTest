@@ -132,7 +132,8 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
             const span = document.createElement("span");
             span.textContent = letra;
             span.setAttribute("data-char", letra);
-            span.style.setProperty("--delay", `${i * 0.6}s`);
+            // ✅ Aquí usamos directamente la propiedad del DOM:
+            span.style.animationDelay = (i * 0.6) + "s";
             titulo.appendChild(span);
         });
     });
