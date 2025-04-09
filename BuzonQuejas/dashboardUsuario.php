@@ -126,15 +126,17 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
 <script src = "js/enviarReporte.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const container = document.querySelector(".comic-title-usuario");
-        const text = container.textContent.trim();
-        container.innerHTML = ""; // Limpiar
-        text.split("").reverse().forEach((char, index) => {
+        const titulo = document.querySelector(".comic-title-usuario");
+        const texto = titulo.dataset.text || titulo.textContent.trim();
+
+        titulo.innerHTML = ""; // Limpiar contenido
+
+        texto.split("").forEach((letra, i) => {
             const span = document.createElement("span");
-            span.setAttribute("data-letter", char);
-            span.style.animationDelay = `${index * 0.2}s`; // Delay por letra
-            span.textContent = char;
-            container.appendChild(span);
+            span.setAttribute("data-char", letra);
+            span.textContent = letra;
+            span.style.animationDelay = `${i * 0.2}s`; // Delay creciente por letra
+            titulo.append(span); // ✅ Usamos append para conservar el orden
         });
     });
 </script>

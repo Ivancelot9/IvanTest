@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Arreglando Insercción de Fechas">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyleUsuario.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyleUsuario.css" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Cambiando Letras">
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardUsuario.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -164,15 +162,7 @@
       <workItem from="1743690113088" duration="16394000" />
       <workItem from="1743776516117" duration="13041000" />
       <workItem from="1744035353955" duration="13783000" />
-      <workItem from="1744122307378" duration="30693000" />
-    </task>
-    <task id="LOCAL-00848" summary="Rediseño Modal Estatus">
-      <option name="closed" value="true" />
-      <created>1744044884724</created>
-      <option name="number" value="00848" />
-      <option name="presentableId" value="LOCAL-00848" />
-      <option name="project" value="LOCAL" />
-      <updated>1744044884724</updated>
+      <workItem from="1744122307378" duration="30811000" />
     </task>
     <task id="LOCAL-00849" summary="Rediseño Modal Fecha Finalizacion">
       <option name="closed" value="true" />
@@ -558,7 +548,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744225224686</updated>
     </task>
-    <option name="localTasksCounter" value="897" />
+    <task id="LOCAL-00897" summary="Cambiando Letras">
+      <option name="closed" value="true" />
+      <created>1744225707163</created>
+      <option name="number" value="00897" />
+      <option name="presentableId" value="LOCAL-00897" />
+      <option name="project" value="LOCAL" />
+      <updated>1744225707163</updated>
+    </task>
+    <option name="localTasksCounter" value="898" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -610,7 +608,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Arreglando supervisor en tabla 2" />
     <MESSAGE value="Ajustando Excel Individual" />
     <MESSAGE value="Ajustando Excel Comentarios y Descripcion" />
     <MESSAGE value="Ajustando Excel Tabla Completa" />
@@ -635,7 +632,8 @@
     <MESSAGE value="Corrigiendo advertencias Inicio Sesion" />
     <MESSAGE value="Corrigiendo Estatus Modal" />
     <MESSAGE value="Arreglando Insercción de Fechas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglando Insercción de Fechas" />
+    <MESSAGE value="Cambiando Letras" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambiando Letras" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
