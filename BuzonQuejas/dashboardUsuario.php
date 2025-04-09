@@ -59,11 +59,11 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
 
         <!-- Paso 2: Selección de Área -->
         <div id="step2" class="content hidden">
-            <h2 class="step-title">Selecciona tu Área</h2>
+            <h2 class="step-title">Selecciona tu Área donde trabajas</h2>
 
             <!-- 🔹 Selección de Área (Se llenará dinámicamente con JavaScript) -->
             <div class="form-group">
-                <label for="area" class="step-label">Área:</label>
+                <label for="area" class="step-label"> Tu Área:</label>
                 <select id="area" class="step-select">
                     <option value="" disabled selected>Selecciona tu área</option>
                     <!-- 🔥 Opciones cargadas desde la BD con JS -->
