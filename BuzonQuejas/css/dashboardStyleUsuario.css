@@ -367,6 +367,14 @@ body {
     overflow: hidden; /* 🔹 Previene el scroll interno */
 }
 
+.step-description {
+    font-size: 0.95rem;
+    color: #333;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
 
 
 
