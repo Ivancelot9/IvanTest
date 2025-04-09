@@ -26,7 +26,9 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
 <div class="comic-container">
     <div class="logo-title-container">
         <img src="imagenes/GrameLogo2.png" alt="Logo" class="logo">
-        <div class="comic-title-usuario" data-text="¡QUÉJATE!">¡QUÉJATE!</div>
+        <div class="comic-title-usuario">
+            <span>¡QUEJATE!</span>
+        </div>
     </div>
 
     <!-- 🔹 Pestañas Rectangulares Simuladas -->
@@ -122,6 +124,20 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
 <script src = "js/cargarEncargados.js"></script>
 <script src = "js/cargarAreas.js"></script>
 <script src = "js/enviarReporte.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const container = document.querySelector(".comic-title-usuario");
+        const text = container.textContent.trim();
+        container.innerHTML = ""; // Limpiar
+        text.split("").reverse().forEach((char, index) => {
+            const span = document.createElement("span");
+            span.setAttribute("data-letter", char);
+            span.style.animationDelay = `${index * 0.2}s`; // Delay por letra
+            span.textContent = char;
+            container.appendChild(span);
+        });
+    });
+</script>
 
 
 
