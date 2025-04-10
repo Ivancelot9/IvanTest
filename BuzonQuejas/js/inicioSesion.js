@@ -22,57 +22,57 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Cambiar a "Iniciar Sesión"
-    loginBtn.addEventListener("click", function () {
-        if (!isLoginMode) {
-            isLoginMode = true;
-            loginBtn.classList.add("active");
-            registerBtn.classList.remove("active");
+    // ✅ Función para cargar la vista de "Iniciar Sesión"
+    function cargarLogin() {
+        isLoginMode = true;
+        loginBtn.classList.add("active");
+        registerBtn.classList.remove("active");
 
-            dynamicFields.innerHTML = `
-                <div class="input-group">
-                    <i class="fa-solid fa-envelope"></i>
-                    <input type="text" id="NumNomina" placeholder="Número de Nómina">
-                </div>
-                <div class="input-group">
-                    <i class="fa-solid fa-lock"></i>
-                    <input type="password" id="Contrasena" placeholder="Contraseña" autocomplete="new-password">
-                    <i class="fa-solid fa-eye" id="togglePassword" style="cursor:pointer;margin-left:10px;"></i>
-                </div>
-            `;
-            mainForm.querySelector(".submit-btn").textContent = "Entrar";
+        dynamicFields.innerHTML = `
+            <div class="input-group">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="text" id="NumNomina" placeholder="Número de Nómina">
+            </div>
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="Contrasena" placeholder="Contraseña" autocomplete="new-password">
+                <i class="fa-solid fa-eye" id="togglePassword" style="cursor:pointer;margin-left:10px;"></i>
+            </div>
+        `;
+        mainForm.querySelector(".submit-btn").textContent = "Entrar";
 
-            activarTogglePassword(); // ✅ Activar toggle
-        }
-    });
+        activarTogglePassword();
+    }
 
-    // Cambiar a "Registrar"
-    registerBtn.addEventListener("click", function () {
-        if (isLoginMode) {
-            isLoginMode = false;
-            registerBtn.classList.add("active");
-            loginBtn.classList.remove("active");
+    // ✅ Función para cargar la vista de "Registrar"
+    function cargarRegistro() {
+        isLoginMode = false;
+        registerBtn.classList.add("active");
+        loginBtn.classList.remove("active");
 
-            dynamicFields.innerHTML = `
-                <div class="input-group">
-                    <i class="fa-solid fa-envelope"></i>
-                    <input type="text" id="NumNomina" placeholder="Número de Nómina">
-                </div>
-                <div class="input-group">
-                    <i class="fa-solid fa-user"></i>
-                    <input type="text" id="Nombre" placeholder="Nombre">
-                </div>
-                <div class="input-group">
-                    <i class="fa-solid fa-lock"></i>
-                    <input type="password" id="Contrasena" placeholder="Contraseña" autocomplete="new-password">
-                    <i class="fa-solid fa-eye" id="togglePassword" style="cursor:pointer;margin-left:10px;"></i>
-                </div>
-            `;
-            mainForm.querySelector(".submit-btn").textContent = "Registrar";
+        dynamicFields.innerHTML = `
+            <div class="input-group">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="text" id="NumNomina" placeholder="Número de Nómina">
+            </div>
+            <div class="input-group">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="Nombre" placeholder="Nombre">
+            </div>
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="Contrasena" placeholder="Contraseña" autocomplete="new-password">
+                <i class="fa-solid fa-eye" id="togglePassword" style="cursor:pointer;margin-left:10px;"></i>
+            </div>
+        `;
+        mainForm.querySelector(".submit-btn").textContent = "Registrar";
 
-            activarTogglePassword(); // ✅ Activar toggle
-        }
-    });
+        activarTogglePassword();
+    }
+
+    // Asignar funciones a los botones
+    loginBtn.addEventListener("click", cargarLogin);
+    registerBtn.addEventListener("click", cargarRegistro);
 
     // Evento que se dispara cuando se envía el formulario
     mainForm.addEventListener("submit", function (event) {
@@ -127,8 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (isLoginMode) {
                             window.location.href = "dashboardAdmin.php";
                         } else {
-                            // ✅ Cambiar automáticamente a la vista de inicio de sesión
-                            loginBtn.click();
+                            cargarLogin(); // ✅ Cambiar a vista de login tras registro
                         }
                     });
                 } else {
@@ -149,6 +148,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 
-    // ✅ Al iniciar la página, mostrar vista "Iniciar Sesión" con campos e ícono listos
-    loginBtn.click();
+    // ✅ Al iniciar la página, mostrar vista "Iniciar Sesión"
+    cargarLogin();
 });
