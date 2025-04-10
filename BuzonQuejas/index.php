@@ -35,7 +35,7 @@
                     </div>
                     <div class="input-group">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" id="Contrasena" placeholder="Contraseña">
+                        <input type="password" id="Contrasena" placeholder="Contraseña" autocomplete="new-password">
                     </div>
                 </div>
                 <button type="submit" class="submit-btn">Entrar</button>
