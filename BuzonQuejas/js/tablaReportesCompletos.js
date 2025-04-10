@@ -228,8 +228,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 reporte.folio,
                 reporte.nomina,
                 limpiarHTMLParaExcel(reporte.encargado),
-                reporte.fechaRegistro,
-                reporte.fechaFinalizacion,
+                formatearFecha(reporte.fechaRegistro),
+                formatearFecha(reporte.fechaFinalizacion),
                 reporte.descripcion || "-",
                 reporte.estatus,
                 reporte.comentarios || "Sin comentarios"
