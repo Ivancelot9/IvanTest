@@ -10,27 +10,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function agregarTogglePassword() {
         const passwordInput = document.getElementById("Contrasena");
-        const toggleIcon = dynamicFields.querySelector(".toggle-password");
 
-        if (!passwordInput || !toggleIcon) return;
+        // Elimina cualquier ícono duplicado
+        const inputGroup = passwordInput.closest(".input-group");
+        const oldToggle = inputGroup.querySelector(".toggle-password");
+        if (oldToggle) oldToggle.remove();
 
-        // Mostrar el ícono si hay texto
-        const actualizarIcono = () => {
-            toggleIcon.style.display = passwordInput.value.length > 0 ? "inline" : "none";
-        };
+        // Crear nuevo ícono
+        const toggleIcon = document.createElement("i");
+        toggleIcon.classList.add("fa-solid", "fa-eye", "toggle-password");
+        toggleIcon.style.cursor = "pointer";
+        toggleIcon.style.marginLeft = "auto";
 
-        // Mostrar/ocultar contraseña
+        inputGroup.appendChild(toggleIcon);
+
         toggleIcon.addEventListener("click", () => {
             const isPassword = passwordInput.type === "password";
             passwordInput.type = isPassword ? "text" : "password";
             toggleIcon.classList.toggle("fa-eye");
             toggleIcon.classList.toggle("fa-eye-slash");
         });
-
-        // Controlar visibilidad al escribir
-        passwordInput.addEventListener("input", actualizarIcono);
-        // Al iniciar también
-        actualizarIcono();
     }
 
     function actualizarCamposHTML(html, submitText) {
@@ -53,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" id="Contrasena" placeholder="Contraseña">
-                    <i class="fa-solid fa-eye toggle-password" style="cursor: pointer; margin-left: auto;"></i>
                 </div>
             `, "Entrar");
         }
@@ -77,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" id="Contrasena" placeholder="Contraseña">
-                    <i class="fa-solid fa-eye toggle-password" style="cursor: pointer; margin-left: auto;"></i>
                 </div>
             `, "Registrar");
         }
@@ -150,6 +147,5 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 
-    // Activar ícono desde inicio
     setTimeout(agregarTogglePassword, 0);
 });
