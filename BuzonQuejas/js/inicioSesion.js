@@ -126,6 +126,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     ).then(() => {
                         if (isLoginMode) {
                             window.location.href = "dashboardAdmin.php";
+                        } else {
+                            // ✅ Cambiar automáticamente a la vista de inicio de sesión
+                            loginBtn.click();
                         }
                     });
                 } else {
