@@ -8,6 +8,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let isLoginMode = true;
 
+    function agregarTogglePassword() {
+        const passwordInput = document.getElementById("Contrasena");
+        const toggleIcon = dynamicFields.querySelector(".toggle-password");
+
+        if (toggleIcon && passwordInput) {
+            toggleIcon.addEventListener("click", () => {
+                const isPassword = passwordInput.type === "password";
+                passwordInput.type = isPassword ? "text" : "password";
+                toggleIcon.classList.toggle("fa-eye");
+                toggleIcon.classList.toggle("fa-eye-slash");
+            });
+        }
+    }
+
     // Cambiar a "Iniciar Sesión"
     loginBtn.addEventListener("click", function () {
         if (!isLoginMode) {
@@ -23,9 +37,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" id="Contrasena" placeholder="Contraseña">
+                    <i class="fa-solid fa-eye toggle-password" style="cursor: pointer; margin-left: auto;"></i>
                 </div>
             `;
             mainForm.querySelector(".submit-btn").textContent = "Entrar";
+
+            setTimeout(agregarTogglePassword, 0);
         }
     });
 
@@ -48,35 +65,35 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" id="Contrasena" placeholder="Contraseña">
+                    <i class="fa-solid fa-eye toggle-password" style="cursor: pointer; margin-left: auto;"></i>
                 </div>
             `;
             mainForm.querySelector(".submit-btn").textContent = "Registrar";
+
+            setTimeout(agregarTogglePassword, 0);
         }
     });
 
     // Evento que se dispara cuando se envía el formulario
     mainForm.addEventListener("submit", function (event) {
-        event.preventDefault(); // Evita el envío tradicional del formulario
+        event.preventDefault();
 
-        // Obtener los valores de los campos dinámicos
         const numeroNomina = document.getElementById("NumNomina").value.trim();
         const contrasena = document.getElementById("Contrasena").value.trim();
         const nombre = document.getElementById("Nombre") ? document.getElementById("Nombre").value.trim() : "";
 
-        // Validar el formulario antes de enviarlo
         const error = validarFormulario({ numeroNomina, contrasena, nombre, isLoginMode });
 
         if (error) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Campos inválidos',
-                html: error, // ⬅️ aquí usamos html en vez de text
+                html: error,
                 confirmButtonText: 'Entendido'
             });
             return;
         }
 
-        // Crear un objeto FormData para enviar datos al servidor
         const formData = new FormData();
         formData.append("NumNomina", numeroNomina.padStart(8, "0"));
         formData.append("Contrasena", contrasena);
@@ -84,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
             formData.append("Nombre", nombre);
         }
 
-        // Enviar datos al servidor mediante fetch
         const url = isLoginMode
             ? "https://grammermx.com/IvanTest/BuzonQuejas/dao/validacionAdmin.php"
             : "https://grammermx.com/IvanTest/BuzonQuejas/dao/registroAdmin.php";
@@ -125,4 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             });
     });
+
+    // Inicialización en el primer render
+    setTimeout(agregarTogglePassword, 0);
 });
