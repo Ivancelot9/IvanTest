@@ -34,7 +34,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function actualizarCamposHTML(html, submitText) {
         dynamicFields.innerHTML = html;
+
+        const passwordInput = dynamicFields.querySelector("#Contrasena");
+
+        const inputGroup = passwordInput.parentElement;
+        const iconoToggle = document.createElement("i");
+        iconoToggle.className = "fa-solid fa-eye toggle-password";
+        iconoToggle.style.cursor = "pointer";
+        iconoToggle.style.marginLeft = "auto";
+
+        inputGroup.appendChild(iconoToggle);
+
         mainForm.querySelector(".submit-btn").textContent = submitText;
+
         setTimeout(agregarTogglePassword, 0);
     }
 
