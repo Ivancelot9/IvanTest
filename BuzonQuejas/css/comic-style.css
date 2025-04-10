@@ -85,6 +85,10 @@ body {
     font-family: "Bangers", sans-serif; /* Aplica la fuente Bangers */
     font-size: 2rem;
 }
+
+.toggle-btn:hover{
+    animation: vibrate-grow 0.2s ease forwards; /* Vibra más rápido y crece */
+}
 .submit-btn {
     flex: 1;
     padding: 6px;
@@ -132,6 +136,7 @@ body {
 
 
 .toggle-btn.active {
+    transform: scale(1.05); /* Se reduce ligeramente al hacer clic */
     background: #1094e0;
     color: #000000;
 }
