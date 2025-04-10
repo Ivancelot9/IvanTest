@@ -1,7 +1,7 @@
 <?php
 session_start(); // Iniciar sesión
 include_once("conexion.php"); // Incluir la conexión a la base de datos
-
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 header('Content-Type: application/json');
 
 // Revisión del método POST
@@ -93,7 +93,10 @@ function registrarAdminEnDB(string $NumNomina, string $Nombre, string $Contrasen
             }
             return ['status' => 'error', 'message' => 'Error al registrar administrador.'];
         }
-    } catch (Exception $e) {
+    }catch (mysqli_sql_exception $e) {
+        if ($e->getCode() === 1062) {
+            return ['status' => 'error', 'message' => 'Ese número de nómina ya está registrado.'];
+        }
         return ['status' => 'error', 'message' => 'Error en el servidor: ' . $e->getMessage()];
     }
 }
