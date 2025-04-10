@@ -34,6 +34,15 @@ document.addEventListener("DOMContentLoaded", function () {
         generarExcel(reportesParaExportar);
     });
 
+    function formatearFecha(fechaOriginal) {
+        if (!fechaOriginal) return "-";
+        const partes = fechaOriginal.split(" ")[0].split("-");
+        if (partes.length === 3) {
+            return `${partes[2]}-${partes[1]}-${partes[0]}`; // DD-MM-YYYY
+        }
+        return fechaOriginal;
+    }
+
     function generarExcel(reportes) {
         let wb = XLSX.utils.book_new();
         wb.Props = {
@@ -54,8 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 reporte.folio,
                 reporte.nomina,
                 reporte.encargado,
-                reporte.fechaRegistro,
-                reporte.fechaFinalizacion || "-",
+                formatearFecha(reporte.fechaRegistro),
+                formatearFecha(reporte.fechaFinalizacion) || "-",
                 reporte.descripcion || "Sin descripción",
                 reporte.comentarios || "Sin comentarios",
                 reporte.estatus

@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Cambiando Letras">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Formatear Fecha">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportesCompletos.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportesCompletos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/expotarTablaCompleta.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/expotarTablaCompleta.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,15 +164,7 @@
       <workItem from="1743776516117" duration="13041000" />
       <workItem from="1744035353955" duration="13783000" />
       <workItem from="1744122307378" duration="34721000" />
-      <workItem from="1744294456799" duration="1720000" />
-    </task>
-    <task id="LOCAL-00865" summary="Evitar Inyeccion Dao Usuario PHP">
-      <option name="closed" value="true" />
-      <created>1744124159563</created>
-      <option name="number" value="00865" />
-      <option name="presentableId" value="LOCAL-00865" />
-      <option name="project" value="LOCAL" />
-      <updated>1744124159563</updated>
+      <workItem from="1744294456799" duration="2176000" />
     </task>
     <task id="LOCAL-00866" summary="Evitar Inyeccion Insertar Reporte PHP">
       <option name="closed" value="true" />
@@ -558,7 +550,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744232683044</updated>
     </task>
-    <option name="localTasksCounter" value="914" />
+    <task id="LOCAL-00914" summary="Formatear Fecha">
+      <option name="closed" value="true" />
+      <created>1744298121369</created>
+      <option name="number" value="00914" />
+      <option name="presentableId" value="LOCAL-00914" />
+      <option name="project" value="LOCAL" />
+      <updated>1744298121369</updated>
+    </task>
+    <option name="localTasksCounter" value="915" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -610,7 +610,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Ajustando Excel Individual" />
     <MESSAGE value="Ajustando Excel Comentarios y Descripcion" />
     <MESSAGE value="Ajustando Excel Tabla Completa" />
     <MESSAGE value="Inicio Sesion Usuario" />
@@ -635,7 +634,8 @@
     <MESSAGE value="Corrigiendo Estatus Modal" />
     <MESSAGE value="Arreglando Insercción de Fechas" />
     <MESSAGE value="Cambiando Letras" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambiando Letras" />
+    <MESSAGE value="Formatear Fecha" />
+    <option name="LAST_COMMIT_MESSAGE" value="Formatear Fecha" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
