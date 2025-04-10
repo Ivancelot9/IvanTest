@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" id="Contrasena" placeholder="Contraseña">
+                    <input type="password" id="Contrasena" placeholder="Contraseña" autocomplete="new-password">
                     <i class="fa-solid fa-eye" id="togglePassword" style="cursor:pointer;margin-left:10px;"></i>
                 </div>
             `;
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" id="Contrasena" placeholder="Contraseña">
+                    <input type="password" id="Contrasena" placeholder="Contraseña" autocomplete="new-password">
                     <i class="fa-solid fa-eye" id="togglePassword" style="cursor:pointer;margin-left:10px;"></i>
                 </div>
             `;
