@@ -172,9 +172,9 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
             <!-- 📅 Filtro por rango de fechas -->
             <div class="date-range-container">
                 <label for="start-date">Rango:</label>
-                <input type="date" id="start-date">
+                <input type="text" id="start-date" placeholder="dd/mm/yyyy">
                 <span> a </span>
-                <input type="date" id="end-date">
+                <input type="text" id="end-date" placeholder="dd/mm/yyyy">
                 <button id="filter-date-button">📆 Filtrar</button>
                 <button id="clear-date-button">🧹 Limpiar Rango</button>
             </div>
@@ -236,6 +236,8 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 <script src="js/expotarTablaCompleta.js"></script>
 <script src="js/datosUsuario.js"></script>
 <script src="js/modificarDatosPersonales.js"></script>
+<!-- Idioma español -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
 
 
 </body>

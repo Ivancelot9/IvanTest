@@ -151,16 +151,23 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportesCompletos(1);
     }
 
+    function parseFechaDMY(fechaStr) {
+        const partes = fechaStr.split("/");
+        if (partes.length !== 3) return null;
+        return new Date(`${partes[2]}-${partes[1]}-${partes[0]}`);
+    }
+
     function filtrarPorRangoDeFechas() {
         const startDate = startDateInput.value;
         const endDate = endDateInput.value;
 
-        const start = startDate ? new Date(startDate) : null;
-        const end = endDate ? new Date(endDate) : null;
+        const start = startDate ? parseFechaDMY(startDate) : null;
+        const end = endDate ? parseFechaDMY(endDate) : null;
 
         datosFiltradosCompletos = datosReportesCompletos.filter(reporte => {
             const fechaStr = reporte.fechaFinalizacion?.split(" ")[0];
             if (!fechaStr) return false;
+
             const fecha = new Date(fechaStr);
 
             if (start && end) {
@@ -181,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (datosFiltradosCompletos.length === 0) {
             tablaCompletosBody.innerHTML = `
-                <tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
+            <tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
         }
     }
 
@@ -306,4 +313,14 @@ document.addEventListener("DOMContentLoaded", function () {
         datosFiltradosCompletos = [...datosReportesCompletos];
         mostrarReportesCompletos(1);
     };
+
+    // 🟢 Flatpickr para inputs de fecha
+    flatpickr("#start-date", {
+        dateFormat: "d/m/Y",
+        locale: "es"
+    });
+    flatpickr("#end-date", {
+        dateFormat: "d/m/Y",
+        locale: "es"
+    });
 });
