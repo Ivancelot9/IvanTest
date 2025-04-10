@@ -8,6 +8,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let isLoginMode = true;
 
+    // 🔁 Función reutilizable para activar el toggle de contraseña
+    function activarTogglePassword() {
+        const inputPwd = document.getElementById("Contrasena");
+        const togglePwd = document.getElementById("togglePassword");
+        if (inputPwd && togglePwd) {
+            togglePwd.addEventListener("click", () => {
+                const isPwd = inputPwd.type === "password";
+                inputPwd.type = isPwd ? "text" : "password";
+                togglePwd.classList.toggle("fa-eye");
+                togglePwd.classList.toggle("fa-eye-slash");
+            });
+        }
+    }
+
     // Cambiar a "Iniciar Sesión"
     loginBtn.addEventListener("click", function () {
         if (!isLoginMode) {
@@ -23,9 +37,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" id="Contrasena" placeholder="Contraseña">
+                    <i class="fa-solid fa-eye" id="togglePassword" style="cursor:pointer;margin-left:10px;"></i>
                 </div>
             `;
             mainForm.querySelector(".submit-btn").textContent = "Entrar";
+
+            activarTogglePassword(); // ✅ Activar toggle
         }
     });
 
@@ -48,9 +65,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="input-group">
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" id="Contrasena" placeholder="Contraseña">
+                    <i class="fa-solid fa-eye" id="togglePassword" style="cursor:pointer;margin-left:10px;"></i>
                 </div>
             `;
             mainForm.querySelector(".submit-btn").textContent = "Registrar";
+
+            activarTogglePassword(); // ✅ Activar toggle
         }
     });
 
@@ -70,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
             Swal.fire({
                 icon: 'warning',
                 title: 'Campos inválidos',
-                html: error, // ⬅️ aquí usamos html en vez de text
+                html: error,
                 confirmButtonText: 'Entendido'
             });
             return;
