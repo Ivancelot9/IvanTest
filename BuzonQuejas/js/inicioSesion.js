@@ -148,4 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             });
     });
+
+    // ✅ Al iniciar la página, mostrar vista "Iniciar Sesión" con campos e ícono listos
+    loginBtn.click();
 });
