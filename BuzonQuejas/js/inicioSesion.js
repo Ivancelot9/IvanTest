@@ -8,55 +8,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let isLoginMode = true;
 
-    function agregarTogglePassword() {
-        const passwordInput = document.getElementById("Contrasena");
-
-        // Elimina cualquier ícono duplicado
-        const inputGroup = passwordInput.closest(".input-group");
-        const oldToggle = inputGroup.querySelector(".toggle-password");
-        if (oldToggle) oldToggle.remove();
-
-        // Crear nuevo ícono
-        const toggleIcon = document.createElement("i");
-        toggleIcon.classList.add("fa-solid", "fa-eye", "toggle-password");
-        toggleIcon.style.cursor = "pointer";
-        toggleIcon.style.marginLeft = "auto";
-
-        inputGroup.appendChild(toggleIcon);
-
-        toggleIcon.addEventListener("click", () => {
-            const isPassword = passwordInput.type === "password";
-            passwordInput.type = isPassword ? "text" : "password";
-            toggleIcon.classList.toggle("fa-eye");
-            toggleIcon.classList.toggle("fa-eye-slash");
-        });
-    }
-
-    function actualizarCamposHTML(html, submitText) {
-        dynamicFields.innerHTML = html;
-
-        const passwordInput = dynamicFields.querySelector("#Contrasena");
-
-        const inputGroup = passwordInput.parentElement;
-        const iconoToggle = document.createElement("i");
-        iconoToggle.className = "fa-solid fa-eye toggle-password";
-        iconoToggle.style.cursor = "pointer";
-        iconoToggle.style.marginLeft = "auto";
-
-        inputGroup.appendChild(iconoToggle);
-
-        mainForm.querySelector(".submit-btn").textContent = submitText;
-
-        setTimeout(agregarTogglePassword, 0);
-    }
-
-    loginBtn.addEventListener("click", () => {
+    // Cambiar a "Iniciar Sesión"
+    loginBtn.addEventListener("click", function () {
         if (!isLoginMode) {
             isLoginMode = true;
             loginBtn.classList.add("active");
             registerBtn.classList.remove("active");
 
-            actualizarCamposHTML(`
+            dynamicFields.innerHTML = `
                 <div class="input-group">
                     <i class="fa-solid fa-envelope"></i>
                     <input type="text" id="NumNomina" placeholder="Número de Nómina">
@@ -65,17 +24,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" id="Contrasena" placeholder="Contraseña">
                 </div>
-            `, "Entrar");
+            `;
+            mainForm.querySelector(".submit-btn").textContent = "Entrar";
         }
     });
 
-    registerBtn.addEventListener("click", () => {
+    // Cambiar a "Registrar"
+    registerBtn.addEventListener("click", function () {
         if (isLoginMode) {
             isLoginMode = false;
             registerBtn.classList.add("active");
             loginBtn.classList.remove("active");
 
-            actualizarCamposHTML(`
+            dynamicFields.innerHTML = `
                 <div class="input-group">
                     <i class="fa-solid fa-envelope"></i>
                     <input type="text" id="NumNomina" placeholder="Número de Nómina">
@@ -88,29 +49,34 @@ document.addEventListener("DOMContentLoaded", function () {
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" id="Contrasena" placeholder="Contraseña">
                 </div>
-            `, "Registrar");
+            `;
+            mainForm.querySelector(".submit-btn").textContent = "Registrar";
         }
     });
 
+    // Evento que se dispara cuando se envía el formulario
     mainForm.addEventListener("submit", function (event) {
-        event.preventDefault();
+        event.preventDefault(); // Evita el envío tradicional del formulario
 
+        // Obtener los valores de los campos dinámicos
         const numeroNomina = document.getElementById("NumNomina").value.trim();
         const contrasena = document.getElementById("Contrasena").value.trim();
         const nombre = document.getElementById("Nombre") ? document.getElementById("Nombre").value.trim() : "";
 
+        // Validar el formulario antes de enviarlo
         const error = validarFormulario({ numeroNomina, contrasena, nombre, isLoginMode });
 
         if (error) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Campos inválidos',
-                html: error,
+                html: error, // ⬅️ aquí usamos html en vez de text
                 confirmButtonText: 'Entendido'
             });
             return;
         }
 
+        // Crear un objeto FormData para enviar datos al servidor
         const formData = new FormData();
         formData.append("NumNomina", numeroNomina.padStart(8, "0"));
         formData.append("Contrasena", contrasena);
@@ -118,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
             formData.append("Nombre", nombre);
         }
 
+        // Enviar datos al servidor mediante fetch
         const url = isLoginMode
             ? "https://grammermx.com/IvanTest/BuzonQuejas/dao/validacionAdmin.php"
             : "https://grammermx.com/IvanTest/BuzonQuejas/dao/registroAdmin.php";
@@ -158,6 +125,4 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             });
     });
-
-    setTimeout(agregarTogglePassword, 0);
 });

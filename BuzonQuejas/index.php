@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <!-- Incluye SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
@@ -34,6 +35,7 @@
                     </div>
                     <div class="input-group">
                         <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="Contrasena" placeholder="Contraseña">
                     </div>
                 </div>
                 <button type="submit" class="submit-btn">Entrar</button>

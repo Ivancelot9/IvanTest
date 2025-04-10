@@ -165,15 +165,7 @@
       <workItem from="1743776516117" duration="13041000" />
       <workItem from="1744035353955" duration="13783000" />
       <workItem from="1744122307378" duration="34721000" />
-      <workItem from="1744294456799" duration="7767000" />
-    </task>
-    <task id="LOCAL-00872" summary="Test: Corrigiendo modifcar datos personales">
-      <option name="closed" value="true" />
-      <created>1744137298644</created>
-      <option name="number" value="00872" />
-      <option name="presentableId" value="LOCAL-00872" />
-      <option name="project" value="LOCAL" />
-      <updated>1744137298644</updated>
+      <workItem from="1744294456799" duration="7855000" />
     </task>
     <task id="LOCAL-00873" summary="Test: Corrigiendo modifcar datos personales">
       <option name="closed" value="true" />
@@ -559,7 +551,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744306741511</updated>
     </task>
-    <option name="localTasksCounter" value="921" />
+    <task id="LOCAL-00921" summary="Corrigiendo Inicio Sesion">
+      <option name="closed" value="true" />
+      <created>1744307190308</created>
+      <option name="number" value="00921" />
+      <option name="presentableId" value="LOCAL-00921" />
+      <option name="project" value="LOCAL" />
+      <updated>1744307190308</updated>
+    </task>
+    <option name="localTasksCounter" value="922" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
