@@ -35,7 +35,6 @@
                     <div class="input-group">
                         <i class="fa-solid fa-lock"></i>
                         <input type="password" id="Contrasena" placeholder="Contraseña">
-                        <i class="fa-solid fa-eye toggle-password" style="cursor: pointer; margin-left: auto;"></i>
                     </div>
                 </div>
                 <button type="submit" class="submit-btn">Entrar</button>
