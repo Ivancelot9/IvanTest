@@ -79,19 +79,20 @@ function registrarAdminEnDB(string $NumNomina, string $Nombre, string $Contrasen
 
         $query->bind_param("sssi", $NumNomina, $Nombre, $Contrasena, $IdRol);
         $resultado = $query->execute();
+
+        // ⚠️ Captura el error ANTES de cerrar
+        $error = $query->errno;
         $query->close();
         $conex->close();
 
         if ($resultado) {
             return ['status' => 'success', 'message' => 'Administrador registrado exitosamente.'];
         } else {
-            // Detectar error de clave duplicada (PRIMARY o UNIQUE)
-            if ($query->errno === 1062) {
+            if ($error === 1062) {
                 return ['status' => 'error', 'message' => 'Ese número de nómina ya está registrado.'];
             }
             return ['status' => 'error', 'message' => 'Error al registrar administrador.'];
         }
-
     } catch (Exception $e) {
         return ['status' => 'error', 'message' => 'Error en el servidor: ' . $e->getMessage()];
     }
