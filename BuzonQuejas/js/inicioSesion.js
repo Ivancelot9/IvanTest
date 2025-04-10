@@ -12,24 +12,40 @@ document.addEventListener("DOMContentLoaded", function () {
         const passwordInput = document.getElementById("Contrasena");
         const toggleIcon = dynamicFields.querySelector(".toggle-password");
 
-        if (toggleIcon && passwordInput) {
-            toggleIcon.addEventListener("click", () => {
-                const isPassword = passwordInput.type === "password";
-                passwordInput.type = isPassword ? "text" : "password";
-                toggleIcon.classList.toggle("fa-eye");
-                toggleIcon.classList.toggle("fa-eye-slash");
-            });
-        }
+        if (!passwordInput || !toggleIcon) return;
+
+        // Mostrar el ícono si hay texto
+        const actualizarIcono = () => {
+            toggleIcon.style.display = passwordInput.value.length > 0 ? "inline" : "none";
+        };
+
+        // Mostrar/ocultar contraseña
+        toggleIcon.addEventListener("click", () => {
+            const isPassword = passwordInput.type === "password";
+            passwordInput.type = isPassword ? "text" : "password";
+            toggleIcon.classList.toggle("fa-eye");
+            toggleIcon.classList.toggle("fa-eye-slash");
+        });
+
+        // Controlar visibilidad al escribir
+        passwordInput.addEventListener("input", actualizarIcono);
+        // Al iniciar también
+        actualizarIcono();
     }
 
-    // Cambiar a "Iniciar Sesión"
-    loginBtn.addEventListener("click", function () {
+    function actualizarCamposHTML(html, submitText) {
+        dynamicFields.innerHTML = html;
+        mainForm.querySelector(".submit-btn").textContent = submitText;
+        setTimeout(agregarTogglePassword, 0);
+    }
+
+    loginBtn.addEventListener("click", () => {
         if (!isLoginMode) {
             isLoginMode = true;
             loginBtn.classList.add("active");
             registerBtn.classList.remove("active");
 
-            dynamicFields.innerHTML = `
+            actualizarCamposHTML(`
                 <div class="input-group">
                     <i class="fa-solid fa-envelope"></i>
                     <input type="text" id="NumNomina" placeholder="Número de Nómina">
@@ -39,21 +55,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     <input type="password" id="Contrasena" placeholder="Contraseña">
                     <i class="fa-solid fa-eye toggle-password" style="cursor: pointer; margin-left: auto;"></i>
                 </div>
-            `;
-            mainForm.querySelector(".submit-btn").textContent = "Entrar";
-
-            setTimeout(agregarTogglePassword, 0);
+            `, "Entrar");
         }
     });
 
-    // Cambiar a "Registrar"
-    registerBtn.addEventListener("click", function () {
+    registerBtn.addEventListener("click", () => {
         if (isLoginMode) {
             isLoginMode = false;
             registerBtn.classList.add("active");
             loginBtn.classList.remove("active");
 
-            dynamicFields.innerHTML = `
+            actualizarCamposHTML(`
                 <div class="input-group">
                     <i class="fa-solid fa-envelope"></i>
                     <input type="text" id="NumNomina" placeholder="Número de Nómina">
@@ -67,14 +79,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     <input type="password" id="Contrasena" placeholder="Contraseña">
                     <i class="fa-solid fa-eye toggle-password" style="cursor: pointer; margin-left: auto;"></i>
                 </div>
-            `;
-            mainForm.querySelector(".submit-btn").textContent = "Registrar";
-
-            setTimeout(agregarTogglePassword, 0);
+            `, "Registrar");
         }
     });
 
-    // Evento que se dispara cuando se envía el formulario
     mainForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -142,6 +150,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 
-    // Inicialización en el primer render
+    // Activar ícono desde inicio
     setTimeout(agregarTogglePassword, 0);
 });
