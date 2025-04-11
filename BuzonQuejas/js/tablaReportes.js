@@ -186,8 +186,12 @@ document.addEventListener("DOMContentLoaded", function () {
             if (columnaBD === "Encargado") {
                 let textoPlano = extraerTextoPlano(valor).toLowerCase();
 
-                // 🔴 Excluir N/A solo si hay filtro activo
-                if (textoPlano.includes("supervisor: n/a") && textoPlano.includes("shift leader: n/a")) {
+                // Solo excluir si el usuario NO está buscando "n/a"
+                if (
+                    textoPlano.includes("supervisor: n/a") &&
+                    textoPlano.includes("shift leader: n/a") &&
+                    !valorFiltro.includes("n/a")
+                ) {
                     return false;
                 }
 
