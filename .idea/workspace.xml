@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Corrigiendo Inicio Sesion">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Corrigiendo Filtrador Tabla 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
     </list>
@@ -165,15 +165,7 @@
       <workItem from="1744035353955" duration="13783000" />
       <workItem from="1744122307378" duration="34721000" />
       <workItem from="1744294456799" duration="16146000" />
-      <workItem from="1744381297604" duration="1965000" />
-    </task>
-    <task id="LOCAL-00885" summary="Arreglando Insercción de Fechas">
-      <option name="closed" value="true" />
-      <created>1744220376860</created>
-      <option name="number" value="00885" />
-      <option name="presentableId" value="LOCAL-00885" />
-      <option name="project" value="LOCAL" />
-      <updated>1744220376860</updated>
+      <workItem from="1744381297604" duration="2790000" />
     </task>
     <task id="LOCAL-00886" summary="Arreglando Insercción de Fechas">
       <option name="closed" value="true" />
@@ -559,7 +551,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744317746752</updated>
     </task>
-    <option name="localTasksCounter" value="934" />
+    <task id="LOCAL-00934" summary="Corrigiendo Filtrador Tabla 1">
+      <option name="closed" value="true" />
+      <created>1744385241882</created>
+      <option name="number" value="00934" />
+      <option name="presentableId" value="LOCAL-00934" />
+      <option name="project" value="LOCAL" />
+      <updated>1744385241882</updated>
+    </task>
+    <option name="localTasksCounter" value="935" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -611,7 +611,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Ajustando Excel Tabla Completa" />
     <MESSAGE value="Inicio Sesion Usuario" />
     <MESSAGE value="Arreglar navegacion de pestanas" />
     <MESSAGE value="Agregandfo Foto del Usuario" />
@@ -636,7 +635,8 @@
     <MESSAGE value="Cambiando Letras" />
     <MESSAGE value="Formatear Fecha" />
     <MESSAGE value="Corrigiendo Inicio Sesion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrigiendo Inicio Sesion" />
+    <MESSAGE value="Corrigiendo Filtrador Tabla 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrigiendo Filtrador Tabla 1" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

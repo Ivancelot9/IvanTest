@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let estatusGuardados = JSON.parse(localStorage.getItem("estatusReportes")) || {};
         const columnaActiva = filterColumn.value;
+        const valorFiltro = filterInput.value;
 
         reportesPagina.forEach(reporte => {
             let encargadoTexto = reporte.Encargado || reporte.encargado || "N/A";
@@ -125,16 +126,30 @@ document.addEventListener("DOMContentLoaded", function () {
             </button>
         `;
 
-            // Utiliza resaltarTexto solo si es la columna activa, si no, muestra valor plano
-            const valorFiltro = filterInput.value;
+            // 🧼 Preparar Supervisor y Shift Leader separadamente para evitar resaltar <br>
+            let supervisorText, shiftLeaderText;
+            if (encargadoTexto.includes("<br>")) {
+                [supervisorText, shiftLeaderText] = encargadoTexto.split("<br>");
+            } else {
+                supervisorText = encargadoTexto;
+                shiftLeaderText = ""; // Por si acaso, para mantener consistencia visual
+            }
 
+            if (columnaActiva === "encargado") {
+                supervisorText = resaltarTexto(supervisorText, valorFiltro);
+                shiftLeaderText = resaltarTexto(shiftLeaderText, valorFiltro);
+            }
+
+            // 🧩 Construir toda la fila
             const fila = document.createElement("tr");
             fila.innerHTML = `
             <td>${columnaActiva === "folio" ? resaltarTexto(folio, valorFiltro) : folio}</td>
             <td>${columnaActiva === "fechaRegistro" ? resaltarTexto(formatearFecha(reporte.FechaRegistro || "Sin fecha"), valorFiltro) : formatearFecha(reporte.FechaRegistro || "Sin fecha")}</td>
             <td>${columnaActiva === "nomina" ? resaltarTexto(reporte.NumeroNomina || "Sin nómina", valorFiltro) : (reporte.NumeroNomina || "Sin nómina")}</td>
             <td>${reporte.Area || "Sin área"}</td>
-            <td class="celda-encargado">${columnaActiva === "encargado" ? resaltarTexto(encargadoTexto, valorFiltro) : encargadoTexto}</td>
+            <td class="celda-encargado">
+                ${supervisorText}<br>${shiftLeaderText}
+            </td>
             <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion || 'Sin descripción'}">Mostrar Descripción</button></td>
             <td><button class="agregar-comentario" data-folio="${folio}">Agregar Comentario</button></td>
             <td class="estatus-cell">${botonEstatusHTML}</td>
