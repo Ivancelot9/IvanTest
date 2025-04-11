@@ -73,6 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const reportesPagina = datosFiltrados.slice(inicio, fin);
 
         let estatusGuardados = JSON.parse(localStorage.getItem("estatusReportes")) || {};
+        const columnaActiva = filterColumn.value;
 
         reportesPagina.forEach(reporte => {
             let encargadoTexto = reporte.Encargado || reporte.encargado || "N/A";
@@ -124,13 +125,16 @@ document.addEventListener("DOMContentLoaded", function () {
             </button>
         `;
 
-            let fila = document.createElement("tr");
+            // Utiliza resaltarTexto solo si es la columna activa, si no, muestra valor plano
+            const valorFiltro = filterInput.value;
+
+            const fila = document.createElement("tr");
             fila.innerHTML = `
-            <td>${resaltarTexto(folio, filterInput.value)}</td>
-            <td>${resaltarTexto(formatearFecha(reporte.FechaRegistro || "Sin fecha"), filterInput.value)}</td>
-            <td>${resaltarTexto(reporte.NumeroNomina || "Sin nómina", filterInput.value)}</td>
-            <td>${resaltarTexto(reporte.Area || "Sin área", filterInput.value)}</td>
-            <td class="celda-encargado">${resaltarTexto(encargadoTexto, filterInput.value)}</td>
+            <td>${columnaActiva === "folio" ? resaltarTexto(folio, valorFiltro) : folio}</td>
+            <td>${columnaActiva === "fechaRegistro" ? resaltarTexto(formatearFecha(reporte.FechaRegistro || "Sin fecha"), valorFiltro) : formatearFecha(reporte.FechaRegistro || "Sin fecha")}</td>
+            <td>${columnaActiva === "nomina" ? resaltarTexto(reporte.NumeroNomina || "Sin nómina", valorFiltro) : (reporte.NumeroNomina || "Sin nómina")}</td>
+            <td>${reporte.Area || "Sin área"}</td>
+            <td class="celda-encargado">${columnaActiva === "encargado" ? resaltarTexto(encargadoTexto, valorFiltro) : encargadoTexto}</td>
             <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion || 'Sin descripción'}">Mostrar Descripción</button></td>
             <td><button class="agregar-comentario" data-folio="${folio}">Agregar Comentario</button></td>
             <td class="estatus-cell">${botonEstatusHTML}</td>
@@ -153,8 +157,14 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!columnaBD) return;
 
         datosFiltrados = datosReportes.filter(reporte => {
-            let valor = reporte[columnaBD] ? String(reporte[columnaBD]).toLowerCase() : "";
-            return valor.includes(valorFiltro);
+            let valor = reporte[columnaBD] ?? "";
+
+            // Si es FechaRegistro, filtrar usando la fecha formateada
+            if (columnaBD === "FechaRegistro") {
+                valor = formatearFecha(valor);
+            }
+
+            return String(valor).toLowerCase().includes(valorFiltro);
         });
 
         paginaActual = 1;
