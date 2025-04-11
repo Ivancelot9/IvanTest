@@ -25,17 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
         estatus: "estatus"
     };
 
-    // ✅ Función para convertir el número del encargado a texto
-    function obtenerTextoEncargado(valor) {
-        switch (String(valor)) {
-            case "1":
-                return "Supervisor";
-            case "2":
-                return "Shift Leader";
-            default:
-                return "N/A";
-        }
-    }
 
     startDateInput.setAttribute("onkeydown", "return false;");
     endDateInput.setAttribute("onkeydown", "return false;");
@@ -59,6 +48,12 @@ document.addEventListener("DOMContentLoaded", function () {
         return fechaOriginal; // fallback si no tiene formato válido
     }
 
+    function extraerTextoPlano(html) {
+        const div = document.createElement("div");
+        div.innerHTML = html;
+        return div.textContent || div.innerText || "";
+    }
+
 
     window.mostrarReportesCompletos = function (pagina = 1) {
         const inicio = (pagina - 1) * filasPorPagina;
@@ -70,8 +65,13 @@ document.addEventListener("DOMContentLoaded", function () {
         tablaCompletosBody.innerHTML = "";
 
         if (reportesPagina.length === 0) {
+            const usandoFiltroFecha = startDateInput.value || endDateInput.value;
+            const mensaje = usandoFiltroFecha
+                ? "❌ No hay reportes en este rango de fechas."
+                : "❌ No hay reportes que coincidan con el filtro.";
+
             tablaCompletosBody.innerHTML = `
-                <tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
+        <tr><td colspan="6" style="color: red; font-weight: bold;">${mensaje}</td></tr>`;
             return;
         }
 
@@ -135,15 +135,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const columnaSeleccionada = filterColumnCompleto.value;
         const columnaBD = columnasBDCompletos[columnaSeleccionada];
 
+        if (!columnaBD) return;
+
         datosFiltradosCompletos = datosReportesCompletos.filter(reporte => {
-            let valor = reporte[columnaBD];
+            let valor = reporte[columnaBD] ?? "";
 
             if (columnaBD === "encargado") {
-                valor = obtenerTextoEncargado(valor);
+                valor = extraerTextoPlano(valor); // ✅ quitar HTML como <br> o <span>
             }
 
-            valor = (valor || "").toString().toLowerCase();
-            return valor.includes(valorFiltro);
+            return valor.toString().toLowerCase().includes(valorFiltro);
         });
 
         resaltarFechas = false;
