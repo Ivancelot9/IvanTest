@@ -146,7 +146,11 @@ document.addEventListener("DOMContentLoaded", function () {
             let valor = reporte[columnaBD] ?? "";
 
             if (columnaBD === "encargado") {
-                valor = extraerTextoPlano(valor); // ✅ quitar HTML como <br> o <span>
+                valor = extraerTextoPlano(valor);
+            }
+
+            if (columnaBD === "fechaFinalizacion") {
+                valor = formatearFecha(valor); // ✅ convertir a DD-MM-YYYY
             }
 
             return valor.toString().toLowerCase().includes(valorFiltro);
