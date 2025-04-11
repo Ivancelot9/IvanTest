@@ -29,12 +29,17 @@ document.addEventListener("DOMContentLoaded", function () {
     startDateInput.setAttribute("onkeydown", "return false;");
     endDateInput.setAttribute("onkeydown", "return false;");
 
+    function escapeRegex(text) {
+        return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
     function resaltarTexto(texto, filtro) {
         if (!filtro || filtro.trim() === "") return String(texto ?? "");
         const safeText = String(texto ?? "");
-        const regex = new RegExp(`(${filtro})`, "gi");
+        const regex = new RegExp(`(${escapeRegex(filtro)})`, "gi");
         return safeText.replace(regex, `<span class="highlight">$1</span>`);
     }
+
 
     function aplicarResaltado(valorCampo, campo, filtro, columnaSeleccionada) {
         return columnaSeleccionada === campo ? resaltarTexto(valorCampo, filtro) : valorCampo;
