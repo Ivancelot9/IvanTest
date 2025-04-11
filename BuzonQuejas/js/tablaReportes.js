@@ -172,14 +172,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!columnaBD) return;
 
+        // 🟢 Si el input está vacío, mostrar todos los datos
+        if (valorFiltro === "") {
+            datosFiltrados = [...datosReportes];
+            paginaActual = 1;
+            mostrarReportes(paginaActual);
+            return;
+        }
+
         datosFiltrados = datosReportes.filter(reporte => {
             let valor = reporte[columnaBD] ?? "";
 
-            // 🧼 Limpieza especial si filtramos "encargado"
             if (columnaBD === "Encargado") {
                 let textoPlano = extraerTextoPlano(valor).toLowerCase();
 
-                // Si ambos son N/A, descartamos este resultado
+                // 🔴 Excluir N/A solo si hay filtro activo
                 if (textoPlano.includes("supervisor: n/a") && textoPlano.includes("shift leader: n/a")) {
                     return false;
                 }
@@ -187,7 +194,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 return textoPlano.includes(valorFiltro);
             }
 
-            // Filtrado normal para otras columnas
             return String(valor).toLowerCase().includes(valorFiltro);
         });
 
