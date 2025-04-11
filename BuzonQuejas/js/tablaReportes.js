@@ -66,6 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
         return fechaOriginal; // fallback si no tiene formato válido
     }
 
+    function extraerTextoPlano(html) {
+        const div = document.createElement("div");
+        div.innerHTML = html;
+        return div.textContent || div.innerText || "";
+    }
+
     function mostrarReportes(pagina) {
         tablaBody.innerHTML = "";
         const inicio = (pagina - 1) * filasPorPagina;
@@ -126,21 +132,16 @@ document.addEventListener("DOMContentLoaded", function () {
             </button>
         `;
 
-            // 🧼 Preparar Supervisor y Shift Leader separadamente para evitar resaltar <br>
-            let supervisorText, shiftLeaderText;
-            if (encargadoTexto.includes("<br>")) {
-                [supervisorText, shiftLeaderText] = encargadoTexto.split("<br>");
-            } else {
-                supervisorText = encargadoTexto;
-                shiftLeaderText = ""; // Por si acaso, para mantener consistencia visual
-            }
+            // 🧼 Limpieza de HTML embebido en Encargado
+            let partes = encargadoTexto.split("<br>");
+            let supervisorText = extraerTextoPlano(partes[0] || "SUPERVISOR: N/A");
+            let shiftLeaderText = extraerTextoPlano(partes[1] || "SHIFT LEADER: N/A");
 
             if (columnaActiva === "encargado") {
                 supervisorText = resaltarTexto(supervisorText, valorFiltro);
                 shiftLeaderText = resaltarTexto(shiftLeaderText, valorFiltro);
             }
 
-            // 🧩 Construir toda la fila
             const fila = document.createElement("tr");
             fila.innerHTML = `
             <td>${columnaActiva === "folio" ? resaltarTexto(folio, valorFiltro) : folio}</td>
