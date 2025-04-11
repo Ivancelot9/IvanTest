@@ -171,6 +171,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const startDate = startDateInput.value;
         const endDate = endDateInput.value;
 
+        // ✅ Validación: no permitir si ambos están vacíos
+        if (!startDate && !endDate) {
+            Swal.fire("Advertencia", "Debes seleccionar al menos una fecha para filtrar.", "warning");
+            return;
+        }
+
         const start = startDate ? parseFechaDMY(startDate) : null;
         const end = endDate ? parseFechaDMY(endDate) : null;
 
@@ -187,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } else if (end) {
                 return fecha <= end;
             }
-            return true;
+            return false; // 🔒 nunca debe llegar aquí si validamos antes
         });
 
         datosFiltradosCompletos.sort((a, b) => new Date(a.fechaFinalizacion) - new Date(b.fechaFinalizacion));
@@ -198,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (datosFiltradosCompletos.length === 0) {
             tablaCompletosBody.innerHTML = `
-            <tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
+        <tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
         }
     }
 
