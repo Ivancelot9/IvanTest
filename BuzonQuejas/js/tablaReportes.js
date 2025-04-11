@@ -175,16 +175,25 @@ document.addEventListener("DOMContentLoaded", function () {
         datosFiltrados = datosReportes.filter(reporte => {
             let valor = reporte[columnaBD] ?? "";
 
-            // Si es FechaRegistro, filtrar usando la fecha formateada
-            if (columnaBD === "FechaRegistro") {
-                valor = formatearFecha(valor);
+            // 🧼 Limpieza especial si filtramos "encargado"
+            if (columnaBD === "Encargado") {
+                let textoPlano = extraerTextoPlano(valor).toLowerCase();
+
+                // Si ambos son N/A, descartamos este resultado
+                if (textoPlano.includes("supervisor: n/a") && textoPlano.includes("shift leader: n/a")) {
+                    return false;
+                }
+
+                return textoPlano.includes(valorFiltro);
             }
 
+            // Filtrado normal para otras columnas
             return String(valor).toLowerCase().includes(valorFiltro);
         });
 
         paginaActual = 1;
         mostrarReportes(paginaActual);
+
     }
 
     prevPageBtn.addEventListener("click", () => {
