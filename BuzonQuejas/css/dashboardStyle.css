@@ -4,7 +4,7 @@ body {
     padding: 0;
     height: 100vh;
     display: flex;
-    background-color: #e9edf1; /* Fondo profesional */
+    background-image: url('../imagenes/fondoazul.jpg'); /* Cambia esto por la ruta de tu fondo */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -14,21 +14,29 @@ body {
 /* Sidebar */
 .sidebar {
     width: 280px;
-    height: 90vh;
-    background: rgba(30, 58, 95, 0.95); /* Azul petróleo */
-    color: #f4f4f4;
+    height: 90vh; /* Mantiene la altura reducida */
+    background: rgba(5, 59, 129, 0.88);
+    color: #1094e0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 15px 0;
-    border: 5px solid #2f2f2f;
-    outline: 10px solid #f4f4f4;
-    box-shadow: 0 0 0 15px #2f2f2f;
+
+    /* 1️⃣ Primera línea negraa */
+    border: 5px solid black;
+
+    /* 2️⃣ Contorno blanco más ancho */
+    outline: 10px solid white;
+
+    /* 3️⃣ Segunda línea negra */
+    box-shadow:
+            0 0 0 15px black;
+
     box-sizing: border-box;
     position: fixed;
-    left: 10px;
-    top: 5vh;
+    left: 10px; /* 🔥 Ajustado más a la derecha */
+    top: 5vh; /* Mantiene la posición */
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
 
@@ -67,8 +75,8 @@ body {
     height: 122px;
     border-radius: 50%; /* Hace el borde animado redondo */
     border: 5px solid transparent; /* Borde inicial transparente */
-    border-top: 5px solid #c9a227;
-    border-right: 5px solid #c9a227;
+    border-top: 5px solid #1094e0; /* Parte azul que se mueve */
+    border-right: 5px solid #1094e0;
     animation: halo-spin 2s linear infinite; /* Animación de giro */
     z-index: 2; /* Detrás de la imagen */
 }
@@ -88,31 +96,31 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f4f4f4;
-    padding: 6px 15px;
-    border: 3px solid #2f2f2f;
-    outline: 6px solid white;
-    box-shadow: 0 0 0 6px #2f2f2f;
-    border-radius: 12px;
+    background: white; /* 💭 Fondo de la burbuja */
+    padding: 6px 15px; /* 🏗️ Aumentamos el padding */
+    border: 3px solid black; /* 🎯 Contorno negro */
+    outline: 6px solid white; /* ✨ Contorno blanco extra */
+    box-shadow: 0 0 0 6px black; /* 🔹 Segunda línea negra externa */
+    border-radius: 12px; /* 🌀 Bordes suavemente redondeados */
     position: relative;
-    max-width: 220px;
-    min-width: 180px;
+    max-width: 220px; /* 📏 Se agranda para nombres más largos */
+    min-width: 180px; /* 🔹 Evita que se haga demasiado pequeña */
     text-align: center;
-    margin-top: 35px;
-    word-wrap: break-word;
+    margin-top: 35px; /* 📌 Más espacio respecto a la imagen */
+    word-wrap: break-word; /* 🛠️ Permite que el texto haga salto de línea */
 }
 
 /* ✨ Ajuste del texto dentro de la burbuja */
 .username-bubble h4 {
-    font-size: 0.85rem;
-    color: #2f2f2f;
+    font-size: 0.85rem; /* 🔹 Más pequeño para nombres largos */
+    color: black; /* 🎯 Mantiene la letra negra */
     font-weight: bold;
-    text-transform: uppercase;
+    text-transform: uppercase; /* 🔥 Resalta el nombre */
     letter-spacing: 1px;
     margin: 0;
     text-align: center;
-    line-height: 1.2;
-    white-space: normal;
+    line-height: 1.2; /* 📌 Evita que el texto quede demasiado pegado */
+    white-space: normal; /* ✅ Permite salto de línea si es necesario */
 }
 
 
@@ -131,17 +139,17 @@ body {
     align-items: center;
     justify-content: center;
     padding: 10px 20px;
-    border: 2px solid #2f2f2f;
-    background: #c9a227;
-    color: #2f2f2f;
+    border: 2px solid black;
+    background: #1094e0;
+    color: black;
     font-weight: bold;
     text-transform: uppercase;
     font-family: "Bangers", sans-serif;
     font-size: 1.5rem;
     transition: transform 0.2s ease-in-out;
     cursor: pointer;
-    box-shadow: 3px 3px 0 #2f2f2f;
-    text-decoration: none;
+    box-shadow: 3px 3px 0 black;
+    text-decoration: none; /* Elimina subrayado */
     margin: 10px 0;
     width: 80%;
     text-align: center;
@@ -156,11 +164,11 @@ body {
 
 /* 📌 Botón activo */
 .sidebar a.active {
-    background: #f4f4f4;
-    color: #1e3a5f;
-    border: 2px solid #2f2f2f;
+    background: white;
+    color: #1094e0;
+    border: 2px solid black;
     transform: scale(1);
-    box-shadow: 5px 5px 0 #2f2f2f;
+    box-shadow: 5px 5px 0 black;
 }
 
 /* Espacio entre la sidebar y el main-content */
@@ -191,19 +199,19 @@ body {
 /* Main Content */
 .main-content {
     padding: 20px;
-    border: 15px solid #c9a227;
+    border: 15px solid #1094e0;
     background: white;
     border-radius: 15px;
     transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
-    margin-left: 370px;
-    width: calc(100% - 400px);
-    max-width: 75%;
-    min-height: 80vh;
+    margin-left: 370px; /* Empuja el contenido cuando la sidebar está visible */
+    width: calc(100% - 400px); /* Ancho calculado con sidebar visible */
+    max-width: 75%; /* Limita el ancho máximo */
+    min-height: 80vh; /* Altura mínima */
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    margin: 20px 20px 20px 370px;
+    margin: 20px 20px 20px 370px; /* Abreviación de margen */
 }
 
 /* Cuando la sidebar está oculta, mantiene un pequeño espacio */
@@ -217,17 +225,17 @@ body {
 
 /* Header */
 .header h1 {
-    font-size: 2.5rem;
+    font-size: 2.5rem; /* Tamaño del texto */
     text-align: center;
-    color: #1e3a5f;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
+    color: rgba(23, 102, 209, 0.88); /* Color principal del texto */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    margin-bottom: 20px; /* Espaciado debajo del título */
+    letter-spacing: 2px; /* Añade espacio entre las letras */
     text-shadow:
-            -2px -2px 0 #2f2f2f,
-            2px -2px 0 #2f2f2f,
-            -2px  2px 0 #2f2f2f,
-            2px  2px 0 #2f2f2f;
+            -2px -2px 0 #000, /* Contorno negro en la parte superior izquierda */
+            2px -2px 0 #000, /* Contorno negro en la parte superior derecha */
+            -2px  2px 0 #000, /* Contorno negro en la parte inferior izquierda */
+            2px  2px 0 #000; /* Contorno negro en la parte inferior derecha */
 }
 
 /* Comic Container */
@@ -240,7 +248,7 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: hidden; /* ✅ Evita que crezca más allá de `main-content` */
 }
 
 /* Opcional: Ajusta los elementos internos para que crezcan junto con el contenedor */
@@ -257,33 +265,33 @@ body {
 
 /* Comic Title */
 .comic-title {
-    font-size: 2.5rem;
+    font-size: 2.5rem; /* Tamaño del texto */
     text-align: center;
-    color: #1e3a5f;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
+    color: rgba(23, 102, 209, 0.88); /* Color principal del texto */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    margin-bottom: 20px; /* Espaciado debajo del título */
+    letter-spacing: 2px; /* Añade espacio entre las letras */
     text-shadow:
-            -2px -2px 0 #2f2f2f,
-            2px -2px 0 #2f2f2f,
-            -2px  2px 0 #2f2f2f,
-            2px  2px 0 #2f2f2f;
+            -2px -2px 0 #000, /* Contorno negro en la parte superior izquierda */
+            2px -2px 0 #000, /* Contorno negro en la parte superior derecha */
+            -2px  2px 0 #000, /* Contorno negro en la parte inferior izquierda */
+            2px  2px 0 #000; /* Contorno negro en la parte inferior derecha */
 }
 
 /* Button estilo cómic */
 .submit-btn {
     flex: 1;
     padding: 6px;
-    border: 2px solid #2f2f2f;
-    background: #c9a227;
-    color: #2f2f2f;
+    border: 2px solid #000000;
+    background: #1094e0;
+    color: #000000;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
-    font-family: "Bangers", sans-serif;
+    font-family: "Bangers", sans-serif; /* Aplica la fuente Bangers */
     font-size: 2rem;
-    transition: transform 0.2s ease;
-    display: inline-flex;
+    transition: transform 0.2s ease; /* Transición suave para volver al estado original */
+    display: inline-flex; /* Alinea el texto centrado */
     align-items: center;
     justify-content: center;
     position: relative;
@@ -291,8 +299,7 @@ body {
 }
 
 .submit-btn:hover {
-    animation: vibrate-grow 0.2s ease forwards;
-    background: #b9901e;
+    animation: vibrate-grow 0.2s ease forwards; /* Vibra más rápido y crece */
 }
 
 .submit-btn:active {
@@ -339,26 +346,26 @@ body {
 /* Estilo cuadrado con contorno cómic */
 .toggle-btn {
     position: relative;
-    background: rgba(30, 58, 95, 0.95);
+    background: rgba(23, 102, 209, 0.88); /* 🟡 Amarillo vibrante */
     color: white;
-    border: 6px solid #2f2f2f;
-    padding: 5px 8px;
-    font-size: 0.9rem;
+    border: 6px solid black; /* Línea negra interna */
+    padding: 5px 8px; /* 🔹 Hace el botón más pequeño */
+    font-size: 0.9rem; /* 🔹 Reduce el tamaño del icono/texto */
     font-family: "Bangers", sans-serif;
     text-transform: uppercase;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
-    border-radius: 8px;
+    border-radius: 8px; /* 🔹 Esquinas suavemente redondeadas */
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 35px;
-    height: 35px;
+    width: 35px; /* 🔹 Tamaño más compacto */
+    height: 35px; /* 🔹 Mantiene forma cuadrada */
     z-index: 3000;
 
     /* 🌟 Contornos cómic */
-    outline: 5px solid #f4f4f4;
-    box-shadow: 0 0 0 6px #2f2f2f;
+    outline: 5px solid white; /* 🔹 Contorno blanco */
+    box-shadow: 0 0 0 6px black; /* 🔹 Segunda línea negra externa */
 }
 
 /* 🔹 Efecto de presión al hacer click */
@@ -411,8 +418,8 @@ body {
     align-items: center;
     justify-content: center;
     padding: 15px 20px;
-    border: 2px solid #2f2f2f;
-    background: #a81d1d;
+    border: 2px solid black;
+    background: #d9534f; /* 🔴 Rojo llamativo */
     color: white;
     font-weight: bold;
     text-transform: uppercase;
@@ -420,9 +427,9 @@ body {
     font-size: 1.5rem;
     transition: transform 0.2s ease-in-out, background 0.2s;
     cursor: pointer;
-    box-shadow: 3px 3px 0 #2f2f2f;
+    box-shadow: 3px 3px 0 black;
     text-decoration: none;
-    margin-bottom: -50px;
+    margin-bottom: -50px; /* Espaciado del fondo */
     width: 80%;
     text-align: center;
     border-radius: 10px;
@@ -430,7 +437,7 @@ body {
 
 /* 🔥 Efecto al pasar el mouse */
 .logout-btn:hover {
-    background: #7f1515;/* 🔴 Rojo más oscuro */
+    background: #c9302c; /* 🔴 Rojo más oscuro */
     transform: scale(1.05);
 }
 
@@ -518,20 +525,22 @@ body {
 
 .badge {
     position: absolute;
-    background-color: #a81d1d;
+    background-color: red;
     color: white;
     border-radius: 50%;
-    padding: 4px 8px;
-    font-size: 16px;
+    padding: 4px 8px; /* 🔹 Más grande */
+    font-size: 16px; /* 🔹 Más grande */
     font-weight: bold;
     top: 5px;
     right: 10px;
     display: inline-block;
+
+    /* 🔲 Contorno negro */
     text-shadow:
-            -1px -1px 0 #2f2f2f,
-            1px -1px 0 #2f2f2f,
-            -1px  1px 0 #2f2f2f,
-            1px  1px 0 #2f2f2f;
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px  1px 0 #000,
+            1px  1px 0 #000;
 }
 #btn-reportes-completos {
     position: relative;
