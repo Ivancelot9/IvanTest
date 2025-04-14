@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Corrigiendo Filtrador Tabla 1" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Corrigiendo Filtrador Tabla 1">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,15 +165,8 @@
       <workItem from="1744035353955" duration="13783000" />
       <workItem from="1744122307378" duration="34721000" />
       <workItem from="1744294456799" duration="16146000" />
-      <workItem from="1744381297604" duration="8442000" />
-    </task>
-    <task id="LOCAL-00894" summary="Arreglando Insercción de Fechas">
-      <option name="closed" value="true" />
-      <created>1744224732812</created>
-      <option name="number" value="00894" />
-      <option name="presentableId" value="LOCAL-00894" />
-      <option name="project" value="LOCAL" />
-      <updated>1744224732812</updated>
+      <workItem from="1744381297604" duration="9554000" />
+      <workItem from="1744640231554" duration="1444000" />
     </task>
     <task id="LOCAL-00895" summary="Arreglando Insercción de Fechas">
       <option name="closed" value="true" />
@@ -556,7 +552,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744401966592</updated>
     </task>
-    <option name="localTasksCounter" value="943" />
+    <task id="LOCAL-00943" summary="Corrigiendo Filtrador Tabla 1">
+      <option name="closed" value="true" />
+      <created>1744402758327</created>
+      <option name="number" value="00943" />
+      <option name="presentableId" value="LOCAL-00943" />
+      <option name="project" value="LOCAL" />
+      <updated>1744402758327</updated>
+    </task>
+    <option name="localTasksCounter" value="944" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

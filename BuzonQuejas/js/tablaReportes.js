@@ -183,6 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
         datosFiltrados = datosReportes.filter(reporte => {
             let valor = reporte[columnaBD] ?? "";
 
+            // 🔍 Caso especial: columna "Encargado"
             if (columnaBD === "Encargado") {
                 let textoPlano = extraerTextoPlano(valor).toLowerCase();
 
@@ -196,6 +197,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 return textoPlano.includes(valorFiltro);
+            }
+
+            // 🔍 Caso especial: columna "FechaRegistro"
+            if (columnaBD === "FechaRegistro") {
+                valor = formatearFecha(valor); // 🔧 Solo toma la parte DD-MM-YYYY
             }
 
             return String(valor).toLowerCase().includes(valorFiltro);
