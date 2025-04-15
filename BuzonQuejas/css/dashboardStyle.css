@@ -85,11 +85,11 @@ body {
     width: 116px;
     height: 116px;
     border-radius: 50%;
-    background: conic-gradient(#ffd500, transparent, #ffd500); /* 💛 Amarillo gamer */
+    background: conic-gradient(#facc15, transparent, #facc15);
     z-index: 1;
     animation: spin 3s linear infinite;
     opacity: 0.45;
-    box-shadow: 0 0 12px #ffd50066; /* 🔆 Glow suave */
+    box-shadow: 0 0 14px #facc1588;
 }
 
 /* Animación de rotación */
