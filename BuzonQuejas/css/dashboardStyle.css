@@ -4,31 +4,30 @@ body {
     padding: 0;
     height: 100vh;
     display: flex;
-    background-color: #0d1117; /* Fondo oscuro GitHub */
-    font-family: "Bangers", serif;
+    background-color: #0d1117; /* GitHub background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente más neutra */
+    color: #c9d1d9; /* Color de texto GitHub */
 }
 
 /* Sidebar */
 .sidebar {
     width: 280px;
     height: 90vh;
-    background: #161b22;
-    color: #f0f6fc;
+    background: #161b22; /* Fondo sidebar GitHub */
+    color: #c9d1d9;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 15px 0;
-    border: 4px solid #0d1117;
-    outline: 6px solid #f0f6fc;
-    box-shadow: 0 0 0 10px #0d1117;
+    border: 1px solid #30363d; /* Borde sutil */
     box-sizing: border-box;
     position: fixed;
     left: 10px;
     top: 5vh;
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
-
+    border-radius: 10px;
 }
 
 
@@ -37,79 +36,36 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    margin: 15px 0;
     position: relative;
-    margin-top: 15px;
-    margin-bottom: 15px;
 }
 
 .sidebar .profile img {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    border: 3px solid #0d1117;
+    border: 2px solid #30363d;
     object-fit: cover;
-    z-index: 1;
-}
-/* Halo animado */
-.sidebar .profile {
-    position: relative; /* Crea un contexto para el pseudo-elemento */
 }
 
-.sidebar .profile::after {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: 42px;
-    width: 122px;
-    height: 122px;
-    border-radius: 50%;
-    border: 5px solid transparent;
-    border-top: 5px solid #58a6ff;
-    border-right: 5px solid #58a6ff;
-    animation: halo-spin 2s linear infinite;
-    z-index: 2;
-}
 
-/* Animación de giro */
-@keyframes halo-spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
+
+
 
 /* 🎭 Burbuja de diálogo para el nombre */
 .username-bubble {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f0f6fc;
-    padding: 6px 15px;
-    border: 2px solid #0d1117;
-    outline: 4px solid #f0f6fc;
-    box-shadow: 0 0 0 4px #0d1117;
-    border-radius: 12px;
-    position: relative;
-    max-width: 220px;
-    min-width: 180px;
-    text-align: center;
-    margin-top: 35px;
-    word-wrap: break-word;
-}
-
-/* ✨ Ajuste del texto dentro de la burbuja */
-.username-bubble h4 {
-    font-size: 0.85rem;
-    color: #0d1117;
+    margin-top: 10px;
+    padding: 6px 12px;
+    background-color: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    font-size: 0.9rem;
     font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0;
+    color: #c9d1d9;
+    max-width: 200px;
     text-align: center;
-    line-height: 1.2;
     white-space: normal;
+    word-break: break-word;
 }
 
 
@@ -128,36 +84,25 @@ body {
     align-items: center;
     justify-content: center;
     padding: 10px 20px;
-    border: 2px solid #0d1117;
-    background: #58a6ff;
-    color: #0d1117;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-family: "Bangers", sans-serif;
-    font-size: 1.5rem;
-    transition: transform 0.2s ease-in-out;
-    cursor: pointer;
-    box-shadow: 3px 3px 0 #0d1117;
+    background-color: #238636; /* Verde de GitHub para botones */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
     text-decoration: none;
-    margin: 10px 0;
     width: 80%;
-    text-align: center;
-    border-radius: 10px;
+    transition: background-color 0.2s ease;
+    box-shadow: none;
 }
 
-/* 🔥 Efecto al pasar el mouse */
 .sidebar a:hover {
-    animation: vibrate-grow 0.2s ease forwards;
-
+    background-color: #2ea043;
 }
 
-/* 📌 Botón activo */
 .sidebar a.active {
-    background: #f0f6fc;
-    color: #58a6ff;
-    border: 2px solid #0d1117;
-    transform: scale(1);
-    box-shadow: 5px 5px 0 #0d1117;
+    background-color: #1f6feb;
+    color: white;
 }
 
 /* Espacio entre la sidebar y el main-content */
@@ -188,11 +133,10 @@ body {
 /* Main Content */
 .main-content {
     padding: 20px;
-    border: 12px solid #58a6ff;
-    background: #0d1117;
-    color: #f0f6fc;
-    border-radius: 15px;
-    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+    background-color: #0d1117; /* Fondo oscuro GitHub */
+    color: #c9d1d9; /* Texto gris claro */
+    border: 3px solid #1f6feb; /* Borde azul tipo GitHub */
+    border-radius: 12px;
     margin-left: 370px;
     width: calc(100% - 400px);
     max-width: 75%;
@@ -200,40 +144,46 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden;
     margin: 20px 20px 20px 370px;
 }
 
 /* Cuando la sidebar está oculta, mantiene un pequeño espacio */
 .main-content.expanded {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto;
     width: 80%;
     max-width: 75%;
-    margin: 20px auto;
 }
 
-/* 🏷️ Título de sección */
-.header h1,
-.comic-title {
-    font-size: 2.5rem;
+/* Encabezado principal */
+.header h1 {
+    font-size: 2.2rem;
     text-align: center;
     color: #58a6ff;
-    text-transform: uppercase;
+    font-weight: bold;
     margin-bottom: 20px;
-    letter-spacing: 2px;
-    text-shadow:
-            -2px -2px 0 #0d1117,
-            2px -2px 0 #0d1117,
-            -2px  2px 0 #0d1117,
-            2px  2px 0 #0d1117;
+    letter-spacing: 1px;
 }
+
+/* Contenedor de datos (títulos y campos) */
+.comic-container {
+    width: 100%;
+    padding: 15px;
+    background-color: #161b22;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 
 
 
 /* Opcional: Ajusta los elementos internos para que crezcan junto con el contenedor */
 .comic-title {
-    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #c9d1d9;
+    text-align: center;
 }
 
 .comic-content {
@@ -243,53 +193,42 @@ body {
     justify-content: space-between; /* Se distribuyen uniformemente */
 }
 
+/* Campos de entrada deshabilitados */
+input[disabled], textarea[disabled] {
+    background-color: #21262d;
+    color: #8b949e;
+    border: 1px solid #30363d;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 100%;
+}
+
 
 
 /* Button estilo cómic */
 .submit-btn {
-    flex: 1;
-    padding: 6px;
-    border: 2px solid #0d1117;
-    background: #58a6ff;
-    color: #0d1117;
-    font-weight: bold;
-    text-transform: uppercase;
+    background-color: #1f6feb;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
-    font-family: "Bangers", sans-serif;
-    font-size: 2rem;
-    transition: transform 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
+    transition: background-color 0.2s ease;
 }
 
 .submit-btn:hover {
-    animation: vibrate-grow 0.2s ease forwards; /* Vibra más rápido y crece */
+    background-color: #388bfd;
 }
 
 .submit-btn:active {
-    transform: scale(1.05); /* Se reduce ligeramente al hacer clic */
+    transform: scale(0.98);
 }
 
-@keyframes vibrate-grow {
-    0% {
-        transform: translate(0, 0) scale(1); /* Tamaño inicial */
-    }
-    25% {
-        transform: translate(-2px, -2px) scale(1.03); /* Esquina superior izquierda y ligeramente más grande */
-    }
-    50% {
-        transform: translate(2px, -2px) scale(1.05); /* Esquina superior derecha y más grande */
-    }
-    75% {
-        transform: translate(2px, 2px) scale(1.07); /* Esquina inferior derecha y más grande */
-    }
-    100% {
-        transform: translate(-2px, 2px) scale(1.07); /* Esquina inferior izquierda y tamaño final */
-    }
-}
+
 
 
 .logo-container {
@@ -312,30 +251,25 @@ body {
 
 /* Estilo cuadrado con contorno cómic */
 .toggle-btn {
-    position: relative;
-    background: #58a6ff;
+    background-color: #21262d;
     color: #f0f6fc;
-    border: 6px solid #0d1117;
+    border: 1px solid #30363d;
     padding: 5px 8px;
     font-size: 0.9rem;
-    font-family: "Bangers", sans-serif;
-    text-transform: uppercase;
+    font-family: sans-serif;
     cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-    border-radius: 8px;
+    border-radius: 6px;
+    width: 35px;
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 35px;
-    height: 35px;
-    z-index: 3000;
-    outline: 5px solid #f0f6fc;
-    box-shadow: 0 0 0 6px #0d1117;
+    transition: background-color 0.2s;
 }
 
 /* 🔹 Efecto de presión al hacer click */
 .toggle-btn:active {
-    transform: scale(0.95);
+    background-color: #30363d;
 }
 
 /* 📌 Ajuste cuando la sidebar está oculta */
@@ -379,37 +313,28 @@ body {
 
 /* 🎨 Estilos para el botón de Cerrar Sesión */
 .logout-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px 20px;
-    border: 2px solid #0d1117;
-    background: #d9534f;
-    color: #f0f6fc;
+    background-color: #da3633;
+    color: white;
     font-weight: bold;
-    text-transform: uppercase;
-    font-family: "Bangers", sans-serif;
-    font-size: 1.5rem;
-    transition: transform 0.2s ease-in-out, background 0.2s;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
-    box-shadow: 3px 3px 0 #0d1117;
-    text-decoration: none;
-    margin-top: auto;
-    margin-bottom: -50px;
+    transition: background-color 0.2s ease;
     width: 80%;
     text-align: center;
-    border-radius: 10px;
+    margin-top: auto;
 }
 
 /* 🔥 Efecto al pasar el mouse */
 .logout-btn:hover {
-    background: #c9302c; /* 🔴 Rojo más oscuro */
-    transform: scale(1.05);
+    background-color: #b62324;
 }
 
 /* 📌 Cuando se presiona */
 .logout-btn:active {
-    transform: scale(0.95);
+    transform: scale(0.97);
 }
 
 /* 🔴 Empujar "Cerrar Sesión" hacia abajo */
@@ -467,14 +392,9 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 2rem;
-    font-family: "Bangers", sans-serif;
-    color: white;
+    font-family: sans-serif;
+    color: #f0f6fc;
     text-transform: uppercase;
-    text-shadow:
-            -3px -3px 0 black,
-            3px -3px 0 black,
-            -3px 3px 0 black,
-            3px 3px 0 black;
     letter-spacing: 2px;
     animation: fadeIn 1s ease-in-out;
 }
@@ -492,20 +412,15 @@ body {
 /* 🔔 Badge de notificación */
 .badge {
     position: absolute;
-    background-color: red;
+    background-color: #da3633;
     color: white;
     border-radius: 50%;
     padding: 4px 8px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     top: 5px;
     right: 10px;
     display: inline-block;
-    text-shadow:
-            -1px -1px 0 #000,
-            1px -1px 0 #000,
-            -1px  1px 0 #000,
-            1px  1px 0 #000;
 }
 
 #btn-reportes-completos,
