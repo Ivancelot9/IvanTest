@@ -74,7 +74,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 <!-- Contenedor Principal -->
 <div class="main-content">
     <div class="logo-container">
-        <img src="imagenes/Grammer_Logo.jpg" alt="Grammer Logo" class="logo-img">
+        <img src="imagenes/Grammer_Logo_Original_White_sRGB_screen_transparent.png" alt="Grammer Logo" class="logo-img">
     </div>
 
     <!-- Datos Personales -->
