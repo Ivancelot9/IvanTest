@@ -22,7 +22,7 @@ table {
 
 /* 🎭 Estilos para encabezados */
 table th {
-    background-color: #238636;
+    background-color: #1f6feb; /* Azul GitHub elegante */
     color: #f0f6fc;
     font-size: 1rem;
     padding: 10px;
@@ -199,15 +199,15 @@ button.ver-estatus-btn:hover {
 #filter-button-completo {
     padding: 4px 8px;
     font-size: 0.8rem;
-    background-color: #21262d;
+    background-color: #1f6feb; /* Mismo azul que encabezado */
     color: #f0f6fc;
-    border: 1px solid #30363d;
+    border: 1px solid #388bfd;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
 #filter-button-completo:hover {
-    background-color: #30363d;
+    background-color: #388bfd;
 }
 
 /* 📅 Contenedor del rango de fechas (Ajustamos más el espacio) */
