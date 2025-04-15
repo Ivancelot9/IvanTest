@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="nuevo estilo git">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/tablaReportes.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/tablaReportes.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,15 +167,7 @@
       <workItem from="1744294456799" duration="16146000" />
       <workItem from="1744381297604" duration="9554000" />
       <workItem from="1744640231554" duration="8471000" />
-      <workItem from="1744726273556" duration="4161000" />
-    </task>
-    <task id="LOCAL-00903" summary="Cambiando Letras">
-      <option name="closed" value="true" />
-      <created>1744230787269</created>
-      <option name="number" value="00903" />
-      <option name="presentableId" value="LOCAL-00903" />
-      <option name="project" value="LOCAL" />
-      <updated>1744230787269</updated>
+      <workItem from="1744726273556" duration="5304000" />
     </task>
     <task id="LOCAL-00904" summary="Cambiando Letras">
       <option name="closed" value="true" />
@@ -560,7 +553,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744729950195</updated>
     </task>
-    <option name="localTasksCounter" value="952" />
+    <task id="LOCAL-00952" summary="nuevo estilo git">
+      <option name="closed" value="true" />
+      <created>1744730640076</created>
+      <option name="number" value="00952" />
+      <option name="presentableId" value="LOCAL-00952" />
+      <option name="project" value="LOCAL" />
+      <updated>1744730640076</updated>
+    </task>
+    <option name="localTasksCounter" value="953" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
