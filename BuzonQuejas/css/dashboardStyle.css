@@ -50,6 +50,44 @@ body {
     margin-bottom: 10px;
 }
 
+/* Contenedor del halo */
+.halo-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+/* Imagen de perfil dentro del halo */
+.halo-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+    border: 2px solid #30363d;
+    object-fit: cover;
+}
+
+/* Halo espiral animado */
+.halo {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: 116px;
+    height: 116px;
+    border-radius: 50%;
+    background: conic-gradient(#58a6ff, transparent, #58a6ff);
+    z-index: 1;
+    animation: spin 3s linear infinite;
+    opacity: 0.4;
+}
+
+/* Animación de rotación */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 
 
 

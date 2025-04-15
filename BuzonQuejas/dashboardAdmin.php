@@ -50,7 +50,10 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <img src="imagenes/superhero-sinfondo.png" class="hero-animation">
 
     <div class="profile">
-        <img src="https://grammermx.com/Fotos/<?php echo $_SESSION["NumNomina"]?>.png" alt="Profile Picture">
+        <div class="halo-container">
+            <div class="halo"></div>
+            <img src="https://grammermx.com/Fotos/<?php echo $_SESSION["NumNomina"]?>.png" alt="Profile Picture" />
+        </div>
         <div class="username-bubble">
             <h4 id="sidebar-nombre"></h4>
         </div>
