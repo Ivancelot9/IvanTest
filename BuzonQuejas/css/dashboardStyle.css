@@ -313,14 +313,14 @@ input[disabled], textarea[disabled] {
     border: 1px solid #30363d;
     border-radius: 6px;
     padding: 10px 15px;
-    width: 90%;               /* 👈 Igual que .sidebar-links */
+    width: 85%; /* 🔧 Antes 90% — ahora un poco más estrecho */
     font-size: 0.95rem;
     font-weight: 500;
     text-align: left;
     text-decoration: none;
     display: flex;
     align-items: center;
-    margin: 12px auto 0 auto; /* 👈 Centrado y con separación arriba */
+    margin: 12px auto 0 auto; /* Centrado horizontal y con espacio arriba */
     transition: background-color 0.2s ease-in-out;
 }
 
@@ -329,7 +329,10 @@ input[disabled], textarea[disabled] {
     background-color: #30363d;
 }
 
-
+/* 📌 Cuando se presiona */
+.logout-btn:active {
+    transform: scale(0.97);
+}
 
 /* 🔴 Empujar "Cerrar Sesión" hacia abajo */
 .logout-btn {
