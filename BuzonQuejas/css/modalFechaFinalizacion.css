@@ -1,4 +1,4 @@
-/* 🔹 Fondo del modal con efecto de desenfoque */
+/* 🔹 Fondo del modal centrado */
 #modal-fecha {
     display: none;
     position: fixed;
@@ -9,176 +9,158 @@
     animation: desplegar 0.4s ease-in-out;
 }
 
-/* 🔹 Contenedor del modal con estilo sobrio */
+/* 🔹 Contenedor principal del modal */
 .modal-fecha {
-    background: #f7f7f7; /* Fondo gris suave */
-    border: 2px solid #888; /* Borde gris suave */
+    background: #161b22;
+    border: 1px solid #30363d;
     width: 550px;
     padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra suave */
-    font-family: 'Arial', sans-serif; /* Fuente profesional */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    font-family: 'Segoe UI', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-/* 🔹 Título con color neutro */
+/* 🔹 Título */
 .modal-fecha h2 {
-    color: #333; /* Gris oscuro */
+    color: #f0f6fc;
     font-size: 1.4rem;
     font-weight: 600;
+    margin-bottom: 25px;
 }
 
-/* 🔹 Contenedor del calendario centrado */
+/* 🔹 Contenedor del calendario */
 #calendario-container {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 /* 🔹 Estilo del calendario */
 .flatpickr-calendar {
-    background: #ffffff; /* Fondo blanco limpio */
-    border: 2px solid #ccc; /* Borde gris suave */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    font-family: 'Arial', sans-serif;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    font-family: 'Segoe UI', sans-serif;
     border-radius: 8px;
 }
 
-/* 🔹 Encabezado del mes con un color gris más profesional */
+/* 🔹 Mes y año */
 .flatpickr-months {
-    background-color: #f1f1f1; /* Fondo gris claro */
-    color: #333; /* Gris oscuro */
-    border-radius: 8px;
+    background-color: #21262d;
+    color: #f0f6fc;
+    border-radius: 8px 8px 0 0;
     font-weight: bold;
     text-transform: uppercase;
-    border: 2px solid #ccc;
+    border-bottom: 1px solid #30363d;
 }
 
-/* 🔹 Días de la semana con un fondo gris claro */
+/* 🔹 Días de la semana */
 .flatpickr-weekdays {
-    background-color: #e0e0e0; /* Fondo gris claro */
-    border-radius: 8px;
-    font-size: 1.1rem;
-    color: #333;
+    background-color: #161b22;
+    border-radius: 0;
+    font-size: 1rem;
+    color: #8b949e;
     font-weight: bold;
 }
 
-/* 🔹 Estilo para los días del calendario */
+/* 🔹 Días individuales */
 .flatpickr-day {
-    border: 2px solid #ddd; /* Borde gris */
+    border: 1px solid #30363d;
     border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
-    background-color: white;
-    color: #333; /* Gris oscuro */
+    background-color: #0d1117;
+    color: #c9d1d9;
+    transition: background-color 0.2s ease;
 }
 
-/* 🔹 Efecto hover sobre los días activos */
 .flatpickr-day:hover {
-    background-color: #cccccc; /* Gris suave */
-    color: #333;
+    background-color: #21262d;
 }
 
-/* 🔹 Día actual con borde más oscuro */
 .flatpickr-day.today {
-    background-color: #007BFF; /* Azul profesional */
-    color: white;
+    background-color: #58a6ff;
+    color: #0d1117;
     font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* 🔹 Días seleccionados con un color más suave */
 .flatpickr-day.selected {
-    background-color: #0056b3; /* Azul más oscuro */
-    color: white;
-    font-weight: bold;
+    background-color: #238636;
+    color: #f0f6fc;
 }
 
-/* 🔹 Estilo del input de fecha (solo texto) */
+/* 🔹 Input de fecha */
 #fecha-seleccionada {
     padding: 10px;
     font-size: 1rem;
     width: 80%;
-    background: #f4f4f4;
-    border: 2px solid #ccc;
+    background: #0d1117;
+    border: 1px solid #30363d;
     border-radius: 6px;
-    color: #333;
-    cursor: pointer;
-    margin-top: 30px;
-    text-align: center; /* Centra el texto dentro del input */
-}
-
-/* 🔹 Botones de acción con estilo sobrio y contorno negro */
-#cerrar-fecha, #guardar-fecha {
-    font-family: 'Bangers', sans-serif;
-    font-size: 1.1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 12px 20px; /* Igualamos el padding */
-    width: 45%; /* Ocupa el 45% del contenedor */
-    height: 50px; /* Altura fija para igualar los botones */
-    border: 2px solid #ccc;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    color: #f0f6fc;
+    text-align: center;
     margin-top: 20px;
-    margin-right: 10px; /* Espacio entre los botones */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    border: 2px solid black; /* Contorno negro alrededor de los botones */
 }
 
-/* 🔹 Alinear los botones en una sola línea */
+/* 🔹 Contenedor de botones */
 .botones-container {
     display: flex;
-    justify-content: space-between; /* Alinea los botones a los lados */
+    justify-content: space-between;
     width: 100%;
+    margin-top: 30px;
+    gap: 20px;
 }
 
-/* 🔹 Botón cancelar (rojo) */
-#cerrar-fecha {
-    background: #f44336;
-    color: white;
-}
-#cerrar-fecha:hover {
-    background: #d32f2f;
-    transform: scale(1.05);
-}
-
-/* 🔹 Botón finalizar (azul) */
+/* 🔹 Botones pill */
+#cerrar-fecha,
 #guardar-fecha {
-    background: #007BFF;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    width: 50%;
+    height: 48px;
+    border: 1px solid #30363d;
+    border-radius: 999px; /* pill */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 🔴 Cancelar (rojo) */
+#cerrar-fecha {
+    background: #f85149;
     color: white;
 }
-#guardar-fecha:hover {
-    background: #0056b3;
+
+#cerrar-fecha:hover {
+    background: #da3633;
     transform: scale(1.05);
 }
 
-/* 🔹 Overlay (fondo oscuro para el modal) */
-#estatus-modal-overlay {
-    display: none; /* Oculto por defecto */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Fondo oscuro semi-transparente */
-    z-index: 999; /* Overlay debajo del modal */
+/* 🟦 Guardar (azul GitHub) */
+#guardar-fecha {
+    background: #238636;
+    color: #f0f6fc;
 }
 
-/* 🔹 Animación para el modal */
+#guardar-fecha:hover {
+    background: #2ea043;
+    transform: scale(1.05);
+}
+
+/* 🔹 Animación de entrada */
 @keyframes desplegar {
     0% {
         transform: translate(-50%, -50%) scale(0.5);
         opacity: 0;
     }
     70% {
-        transform: translate(-50%, -50%) scale(1.1);
+        transform: translate(-50%, -50%) scale(1.05);
     }
     100% {
         transform: translate(-50%, -50%) scale(1);
