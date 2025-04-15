@@ -98,28 +98,6 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* ✨ Halo exterior real al estilo circular para la sidebar */
-.sidebar::before {
-    content: "";
-    position: absolute;
-    top: -12px;
-    left: -12px;
-    width: calc(100% + 24px);
-    height: calc(100% + 24px);
-    border-radius: 20px;
-    background: conic-gradient(#facc15cc, transparent, #facc15cc);
-    animation: sidebarGlow 4s linear infinite;
-    z-index: 0;
-    opacity: 0.3;
-    box-shadow: 0 0 20px 6px #facc1580;
-    pointer-events: none;
-}
-
-/* 🔁 Animación de rotación tipo aura */
-@keyframes sidebarGlow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
 
 
 
