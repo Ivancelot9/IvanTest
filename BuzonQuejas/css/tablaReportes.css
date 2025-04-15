@@ -196,7 +196,7 @@ button.ver-estatus-btn:hover {
     outline: none;
 }
 /* 🎯 Asegurar que el botón de búsqueda sigue alineado y más pequeño */
-#filter-button-completo {
+#filter-button-completo, #filter-button {
     padding: 4px 8px;
     font-size: 0.8rem;
     background-color: #21262d;
@@ -206,7 +206,7 @@ button.ver-estatus-btn:hover {
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
-#filter-button-completo:hover {
+#filter-button-completo:hover, #filter-button:hover {
     background-color: #30363d;
 }
 
