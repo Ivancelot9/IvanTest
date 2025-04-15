@@ -312,14 +312,15 @@ input[disabled], textarea[disabled] {
     color: white;
     border: none;
     border-radius: 6px;
-    padding: 12px;
+    padding: 10px 15px; /* 📏 Igual que los otros botones */
     font-weight: bold;
     font-size: 0.95rem;
     cursor: pointer;
-    margin-top: auto;
-    width: 90%;
-    text-align: center;
+    width: 100%; /* 📏 Igual que los .sidebar a */
+    text-align: left; /* 📌 Igual para que el texto inicie a la izquierda */
     transition: background-color 0.2s ease-in-out;
+    display: flex; /* 🧭 Para alinear contenido como en .sidebar a */
+    align-items: center;
 }
 
 /* 🔥 Efecto al pasar el mouse */
