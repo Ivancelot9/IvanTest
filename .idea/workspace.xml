@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Nuevo estilo modal comentarios git" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Nuevo estilo modal estatus git" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -164,15 +164,7 @@
       <workItem from="1744294456799" duration="16146000" />
       <workItem from="1744381297604" duration="9554000" />
       <workItem from="1744640231554" duration="8471000" />
-      <workItem from="1744726273556" duration="10444000" />
-    </task>
-    <task id="LOCAL-00919" summary="Corrigiendo Inicio Sesion">
-      <option name="closed" value="true" />
-      <created>1744306595344</created>
-      <option name="number" value="00919" />
-      <option name="presentableId" value="LOCAL-00919" />
-      <option name="project" value="LOCAL" />
-      <updated>1744306595344</updated>
+      <workItem from="1744726273556" duration="11083000" />
     </task>
     <task id="LOCAL-00920" summary="Corrigiendo Inicio Sesion">
       <option name="closed" value="true" />
@@ -558,7 +550,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744736890034</updated>
     </task>
-    <option name="localTasksCounter" value="968" />
+    <task id="LOCAL-00968" summary="Nuevo estilo modal estatus git">
+      <option name="closed" value="true" />
+      <created>1744737270464</created>
+      <option name="number" value="00968" />
+      <option name="presentableId" value="LOCAL-00968" />
+      <option name="project" value="LOCAL" />
+      <updated>1744737270464</updated>
+    </task>
+    <option name="localTasksCounter" value="969" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -610,7 +610,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Adaptabilidad CSS Main Content" />
     <MESSAGE value="Coreeciones Reportes Pestañas" />
     <MESSAGE value="Rediseño Datos Personales Admin" />
     <MESSAGE value="Rediseño Modal Comentarios" />
@@ -635,7 +634,8 @@
     <MESSAGE value="nuevo estilo git" />
     <MESSAGE value="Nuevo estilo modal descripcion git" />
     <MESSAGE value="Nuevo estilo modal comentarios git" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nuevo estilo modal comentarios git" />
+    <MESSAGE value="Nuevo estilo modal estatus git" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nuevo estilo modal estatus git" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
