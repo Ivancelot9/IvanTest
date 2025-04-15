@@ -44,8 +44,10 @@
 
 #nueva-nota {
     width: 100%;
+    max-width: 100%;
     height: 120px;
-    padding: 12px;
+    padding: 12px 14px;
+    margin-top: 8px;
     border: 1px solid #30363d;
     border-radius: 6px;
     background: #0d1117;
@@ -53,7 +55,16 @@
     font-size: 0.95rem;
     font-family: 'Segoe UI', sans-serif;
     resize: none;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 0 transparent;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#nueva-nota:focus {
+    border: 1px solid #58a6ff;
+    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.3);
+    outline: none;
 }
 
 .btn-guardar {
