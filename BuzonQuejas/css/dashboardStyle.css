@@ -98,26 +98,27 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* 🔄 Halo animado sutil alrededor de la sidebar */
+/* ✨ Halo exterior real al estilo circular para la sidebar */
 .sidebar::before {
     content: "";
     position: absolute;
-    top: -8px;
-    left: -8px;
-    width: calc(100% + 16px);
-    height: calc(100% + 16px);
-    border-radius: 16px;
-    background: conic-gradient(from 0deg, #f0f6fc00 0%, #f0f6fc55 25%, #f0f6fc00 50%, #f0f6fc55 75%, #f0f6fc00 100%);
-    animation: haloSidebar 6s linear infinite;
-    z-index: -1; /* Detrás de la sidebar */
+    top: -12px;
+    left: -12px;
+    width: calc(100% + 24px);
+    height: calc(100% + 24px);
+    border-radius: 20px;
+    background: conic-gradient(#facc15cc, transparent, #facc15cc);
+    animation: sidebarGlow 4s linear infinite;
+    z-index: 0;
     opacity: 0.3;
+    box-shadow: 0 0 20px 6px #facc1580;
     pointer-events: none;
 }
 
-/* 🌀 Animación de rotación */
-@keyframes haloSidebar {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+/* 🔁 Animación de rotación tipo aura */
+@keyframes sidebarGlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 
