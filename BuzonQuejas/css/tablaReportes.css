@@ -156,16 +156,17 @@ button.ver-estatus-btn:hover {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
-    flex-wrap: wrap;
     background-color: #0d1117;
-    padding: 10px;
+    padding: 8px 10px;
     border-radius: 10px;
+    gap: 8px; /* 🔧 Nuevo: espacio más pequeño entre grupos */
+    flex-wrap: nowrap; /* 🔧 Fuerza que todo esté en una línea */
 }
 
 /* 🔎 Contenedor del filtro */
 .filter-container {
     display: flex;
-    gap: 6px;
+    gap: 4px; /* 🔧 Menor separación entre elementos */
     align-items: center;
     flex: 1;
 }
@@ -214,14 +215,15 @@ button.ver-estatus-btn:hover {
 .date-range-container {
     display: flex;
     align-items: center;
-    gap: 6px;
-    flex: 1.5;
+    gap: 4px; /* 🔧 Compactado */
+    flex: 1.4; /* 🔧 Puedes ajustar esto a 1.2 si aún se amontona */
 }
 
 /* 📅 Inputs de fecha más compactos */
 #start-date, #end-date {
-    padding: 4px 6px;
-    font-size: 0.8rem;
+    width: 100px; /* 🔧 Compactamos un poco */
+    padding: 3px 5px;
+    font-size: 0.75rem;
     border: 1px solid #30363d;
     background-color: #161b22;
     color: #f0f6fc;
@@ -326,8 +328,9 @@ button.ver-estatus-btn:hover {
     .filter-container select,
     .filter-container input[type="text"],
     .date-range-container input {
-        width: 80px; /* Reducir el tamaño de los campos de entrada */
-        font-size: 0.8rem; /* Reducir el tamaño de fuente */
+        width: 100px; /* 🔧 Antes era 110px */
+        padding: 3px 5px; /* 🔧 Más compacto */
+        font-size: 0.75rem;
     }
 
     #filter-button-completo {
@@ -412,4 +415,3 @@ button.ver-estatus-btn:hover {
         padding: 5px;
     }
 }
-
