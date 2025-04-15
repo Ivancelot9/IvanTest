@@ -153,15 +153,13 @@ button.ver-estatus-btn:hover {
 /* 📌 Contenedor de controles (Filtro + Rango de Fechas + Exportar) */
 .table-controls {
     display: flex;
-    flex-wrap: nowrap; /* Evita que se salte de línea */
-    gap: 10px; /* Espaciado entre bloques */
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
+    flex-wrap: wrap;
     background-color: #0d1117;
     padding: 10px;
     border-radius: 10px;
-    overflow-x: auto; /* ✅ Para evitar desbordamiento en pantallas pequeñas */
 }
 
 /* 🔎 Contenedor del filtro */
@@ -415,39 +413,3 @@ button.ver-estatus-btn:hover {
     }
 }
 
-/* 🟥 Contenedor rojo: Filtro por columna */
-.filtro-bloque {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    padding: 6px 8px;
-    background-color: #0d1117;
-    border: 1px solid #8b0000;
-    border-radius: 8px;
-    flex-wrap: nowrap;
-    flex-shrink: 1;
-}
-
-/* 🟨 Contenedor amarillo: Rango de fechas */
-.rango-bloque {
-    display: flex;
-    gap: 4px;
-    align-items: center;
-    padding: 6px 8px;
-    background-color: #0d1117;
-    border: 1px solid #e3b341;
-    border-radius: 8px;
-    flex-wrap: nowrap;
-    flex-shrink: 1;
-}
-
-/* 🟩 Contenedor verde: Botón de exportar */
-.exportar-bloque {
-    display: flex;
-    align-items: center;
-    padding: 6px 8px;
-    background-color: #0d1117;
-    border: 1px solid #2ea043;
-    border-radius: 8px;
-    flex-shrink: 0;
-}

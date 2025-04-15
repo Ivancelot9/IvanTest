@@ -114,7 +114,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 
         <!-- 🔎 Controles superiores (Solo Filtro, SIN Exportar) -->
         <div class="table-controls">
-            <div class="filtro-bloque">
+            <div class="filter-container">
                 <label for="filter-column">Filtrar por:</label>
                 <select id="filter-column">
                     <option value="folio">Folio</option>
@@ -123,7 +123,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                     <option value="fechaRegistro">Fecha Registro</option>
                 </select>
                 <input type="text" id="filter-input" placeholder="Buscar...">
-                <button id="filter-button">🔍 Buscar</button>
+                <button id="filter-button">🔍 Buscar</button> <!-- 🔹 Justo al lado del input -->
             </div>
         </div>
 
@@ -162,7 +162,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 
         <!-- 🔎 Controles superiores (Filtro + Rango de Fechas + Exportar Página) -->
         <div class="table-controls">
-            <div class="filtro-bloque">
+            <div class="filter-container">
                 <label for="filter-column-completo">Filtrar por:</label>
                 <select id="filter-column-completo">
                     <option value="folio">Folio</option>
@@ -174,7 +174,8 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 <button id="filter-button-completo">🔍 Buscar</button>
             </div>
 
-            <div class="rango-bloque">
+            <!-- 📅 Filtro por rango de fechas -->
+            <div class="date-range-container">
                 <label for="start-date">Rango:</label>
                 <input type="text" id="start-date" placeholder="dd/mm/yyyy">
                 <span> a </span>
@@ -183,11 +184,10 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 <button id="clear-date-button">🧹 Limpiar Rango</button>
             </div>
 
-            <div class="exportar-bloque">
-                <button id="exportarPaginaCompletos" class="btn-exportar">
-                    <i class="fas fa-file-excel"></i> Exportar Página
-                </button>
-            </div>
+            <!-- 📤 Botón "Exportar Página" con icono de Excel -->
+            <button id="exportarPaginaCompletos" class="btn-exportar">
+                <i class="fas fa-file-excel"></i> Exportar Página
+            </button>
         </div>
 
         <!-- Tabla de reportes completados -->
