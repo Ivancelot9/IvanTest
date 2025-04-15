@@ -412,3 +412,37 @@ button.ver-estatus-btn:hover {
         padding: 5px;
     }
 }
+
+/* 🟥 Contenedor rojo: Filtro por columna */
+.filtro-bloque {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    padding: 8px 10px;
+    background-color: #0d1117;
+    border: 2px solid #8b0000;
+    border-radius: 10px;
+    flex-wrap: wrap;
+}
+
+/* 🟨 Contenedor amarillo: Rango de fechas */
+.rango-bloque {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    padding: 8px 10px;
+    background-color: #0d1117;
+    border: 2px solid #e3b341;
+    border-radius: 10px;
+    flex-wrap: wrap;
+}
+
+/* 🟩 Contenedor verde: Botón de exportar */
+.exportar-bloque {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    background-color: #0d1117;
+    border: 2px solid #2ea043;
+    border-radius: 10px;
+}
