@@ -166,7 +166,7 @@ body {
 
 /* 🔹 Cuando la sidebar está oculta, mover el botón al borde derecho */
 .sidebar.hidden + .toggle-btn {
-    left: 300px; /* 🔥 Se mueve al borde derecho donde estaba la sidebar */
+    left: 200px; /* 🔥 Se mueve al borde derecho donde estaba la sidebar */
 }
 
 
