@@ -199,15 +199,15 @@ button.ver-estatus-btn:hover {
 #filter-button-completo {
     padding: 4px 8px;
     font-size: 0.8rem;
-    background-color: #1f6feb; /* Mismo azul que encabezado */
+    background-color: #21262d;
     color: #f0f6fc;
-    border: 1px solid #388bfd;
+    border: 1px solid #30363d;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
 #filter-button-completo:hover {
-    background-color: #388bfd;
+    background-color: #30363d;
 }
 
 /* 📅 Contenedor del rango de fechas (Ajustamos más el espacio) */
