@@ -235,7 +235,7 @@ input[disabled], textarea[disabled] {
 }
 
 .logo-img {
-    max-width: 300px; /* Ajusta el tamaño según sea necesario */
+    max-width: 100px; /* Ajusta el tamaño según sea necesario */
     height: auto;
 }
 
