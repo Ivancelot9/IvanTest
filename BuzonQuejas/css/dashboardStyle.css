@@ -13,21 +13,21 @@ body {
 .sidebar {
     width: 280px;
     height: 90vh;
-    background: #161b22; /* Fondo sidebar GitHub */
-    color: #c9d1d9;
+    background-color: #161b22;
+    color: #f0f6fc;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 0;
-    border: 1px solid #30363d; /* Borde sutil */
+    padding: 20px 0;
+    border: 1px solid #30363d;
+    box-shadow: inset 0 0 0 1px #21262d;
     box-sizing: border-box;
     position: fixed;
     left: 10px;
     top: 5vh;
-    transition: transform 0.3s ease-in-out;
     z-index: 1000;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 
@@ -35,9 +35,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    margin: 15px 0;
-    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .sidebar .profile img {
@@ -46,6 +45,7 @@ body {
     border-radius: 50%;
     border: 2px solid #30363d;
     object-fit: cover;
+    margin-bottom: 10px;
 }
 
 
@@ -54,18 +54,14 @@ body {
 
 /* 🎭 Burbuja de diálogo para el nombre */
 .username-bubble {
-    margin-top: 10px;
-    padding: 6px 12px;
-    background-color: #21262d;
-    border: 1px solid #30363d;
+    background: #21262d;
+    color: #f0f6fc;
+    font-weight: 600;
+    padding: 6px 10px;
     border-radius: 6px;
     font-size: 0.9rem;
-    font-weight: bold;
-    color: #c9d1d9;
-    max-width: 200px;
     text-align: center;
-    white-space: normal;
-    word-break: break-word;
+    margin-bottom: 20px;
 }
 
 
@@ -73,36 +69,38 @@ body {
 .sidebar-links {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    gap: 12px;
+    width: 90%;
     align-items: center;
-    margin-top: -30px;
 }
+
 
 /* 🎨 Estilos para los botones de la barra lateral */
 .sidebar a {
+    background-color: #21262d;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 10px 15px;
+    width: 100%;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: left;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    background-color: #238636; /* Verde de GitHub para botones */
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 1rem;
-    text-decoration: none;
-    width: 80%;
-    transition: background-color 0.2s ease;
-    box-shadow: none;
 }
 
 .sidebar a:hover {
-    background-color: #2ea043;
+    background-color: #30363d;
+    color: #58a6ff;
 }
 
 .sidebar a.active {
     background-color: #1f6feb;
     color: white;
+    font-weight: 600;
 }
 
 /* Espacio entre la sidebar y el main-content */
@@ -244,9 +242,9 @@ input[disabled], textarea[disabled] {
 /* Contenedor del botón */
 .toggle-btn-wrapper {
     position: fixed;
-    top: 50px; /* 🔹 Mueve el botón más abajo */
-    left: 20px; /* 🔹 Ajusta su posición horizontalmente */
-    z-index: 3000;
+    top: 20px;
+    left: 20px;
+    z-index: 2000;
 }
 
 /* Estilo cuadrado con contorno cómic */
@@ -254,17 +252,14 @@ input[disabled], textarea[disabled] {
     background-color: #21262d;
     color: #f0f6fc;
     border: 1px solid #30363d;
-    padding: 5px 8px;
-    font-size: 0.9rem;
-    font-family: sans-serif;
-    cursor: pointer;
+    padding: 6px 10px;
     border-radius: 6px;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.toggle-btn:hover {
+    background-color: #30363d;
 }
 
 /* 🔹 Efecto de presión al hacer click */
@@ -313,23 +308,23 @@ input[disabled], textarea[disabled] {
 
 /* 🎨 Estilos para el botón de Cerrar Sesión */
 .logout-btn {
-    background-color: #da3633;
+    background-color: #238636;
     color: white;
-    font-weight: bold;
-    font-size: 1.1rem;
-    padding: 10px 20px;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 0.95rem;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-    width: 80%;
-    text-align: center;
     margin-top: auto;
+    width: 90%;
+    text-align: center;
+    transition: background-color 0.2s ease-in-out;
 }
 
 /* 🔥 Efecto al pasar el mouse */
 .logout-btn:hover {
-    background-color: #b62324;
+    background-color: #2ea043;
 }
 
 /* 📌 Cuando se presiona */
