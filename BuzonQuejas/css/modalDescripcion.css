@@ -1,4 +1,4 @@
-/* 🔹 Modal centrado siempre */
+/* 🔹 Modal centrado */
 #descripcion-modal {
     display: none;
     justify-content: center;
@@ -8,66 +8,68 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Más oscuro */
+    background: rgba(0, 0, 0, 0.6);
     z-index: 1000;
 }
 
 /* 🔹 Contenedor del modal */
 .descripcion-modal {
-    background-color: #161b22; /* Fondo GitHub oscuro */
-    border: 1px solid #30363d;
+    background-color: #161b22;
+    border: 2px solid #30363d;
+    outline: 2px solid #58a6ff; /* Contorno externo azulado */
     width: 40%;
     max-width: 500px;
     height: 85vh;
     min-height: 600px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    padding: 24px;
+    box-shadow: 0 0 15px rgba(88, 166, 255, 0.2); /* Glow azul leve */
     font-family: 'Segoe UI', sans-serif;
-    border-radius: 10px;
+    border-radius: 12px;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     transform: scale(0);
     opacity: 0;
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out, box-shadow 0.3s;
 }
 
-/* 🔹 Activación visual */
+/* Activación */
 .descripcion-modal.active {
     transform: scale(1);
     opacity: 1;
 }
 
-/* 🔹 Contenedor del contenido */
+/* 🔹 Contenedor de texto */
 .descripcion-container {
     width: 100%;
     height: 100%;
     overflow-y: auto;
-    padding: 15px;
+    padding: 18px;
     background-color: #0d1117;
     border: 1px solid #30363d;
     border-radius: 8px;
     font-size: 1rem;
     color: #f0f6fc;
-    line-height: 1.6;
+    line-height: 1.7;
     font-family: 'Segoe UI', sans-serif;
+    box-shadow: inset 0 0 10px rgba(88, 166, 255, 0.08); /* Brillo sutil interno */
+    transition: box-shadow 0.2s ease-in-out;
 }
 
-/* ❌ Eliminamos agujeros y líneas decorativas */
-
-/* 🔹 Botón de cerrar */
+/* Botón cerrar */
 .close-modal {
     position: absolute;
-    top: 10px;
-    right: 16px;
+    top: 12px;
+    right: 18px;
     font-size: 22px;
     cursor: pointer;
     color: #8b949e;
     font-weight: bold;
-    transition: color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, transform 0.2s ease;
 }
 
 .close-modal:hover {
-    color: #f85149; /* Rojo de GitHub */
+    color: #f85149;
+    transform: scale(1.1);
 }
