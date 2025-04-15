@@ -73,3 +73,25 @@
     color: #f85149;
     transform: scale(1.1);
 }
+
+.modal-icon-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #58a6ff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 8px;
+    width: 100%;
+    justify-content: center;
+    background-color: #161b22;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.modal-icon-header i {
+    font-size: 1.3rem;
+    color: #58a6ff;
+}

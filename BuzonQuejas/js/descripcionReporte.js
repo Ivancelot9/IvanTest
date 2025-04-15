@@ -5,12 +5,15 @@ document.addEventListener("DOMContentLoaded", function () {
     descripcionModal.style.display = "none"; // 🔹 Oculto por defecto
     descripcionModal.innerHTML = `
     <div class="modal-content descripcion-modal">
-        <span class="close-modal">&times;</span>
-        <div class="descripcion-container">
-            <h2>Descripción del Reporte</h2>
-            <p id="descripcion-texto"></p>
-        </div>
+    <span class="close-modal">&times;</span>
+    <div class="modal-icon-header">
+        <i class="fas fa-file-alt"></i>
+        <span>Descripción del Reporte</span>
     </div>
+    <div class="descripcion-container">
+        <p id="descripcion-texto"></p>
+    </div>
+</div>
     `;
 
     // Agregar el modal al body
