@@ -39,14 +39,17 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 </head>
 <body>
 
-<!-- Contenedor del botón -->
+<!-- Botón toggle -->
 <div class="toggle-btn-wrapper">
     <button id="toggleSidebar" class="toggle-btn">☰</button>
 </div>
 
 <!-- Sidebar -->
-<!-- Sidebar -->
-<div class="sidebar" id="sidebar">
+<div class="sidebar">
+    <!-- HÉROE VOLADOR (debe estar DENTRO de sidebar) -->
+    <img src="imagenes/superhero-sinfondo.png" class="hero-animation" />
+
+    <!-- Agrupador superior -->
     <div class="sidebar-top">
         <div class="profile">
             <div class="halo-container">
@@ -58,6 +61,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
             </div>
         </div>
 
+        <!-- Botones -->
         <div class="sidebar-links">
             <a href="#" id="btn-datos-personales" class="active">Datos Personales</a>
             <a href="#" id="btn-historial-reportes">
@@ -69,6 +73,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
         </div>
     </div>
 
+    <!-- Botón cerrar sesión -->
     <a href="#" id="btn-cerrar-sesion" class="logout-btn">Cerrar Sesión</a>
 </div>
 <!-- Contenedor Principal -->
