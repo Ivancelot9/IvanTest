@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Nuevo estilo modal comentarios git">
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalComentarios.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalComentarios.css" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Nuevo estilo modal comentarios git" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -166,15 +164,7 @@
       <workItem from="1744294456799" duration="16146000" />
       <workItem from="1744381297604" duration="9554000" />
       <workItem from="1744640231554" duration="8471000" />
-      <workItem from="1744726273556" duration="10070000" />
-    </task>
-    <task id="LOCAL-00918" summary="Corrigiendo Inicio Sesion">
-      <option name="closed" value="true" />
-      <created>1744306305291</created>
-      <option name="number" value="00918" />
-      <option name="presentableId" value="LOCAL-00918" />
-      <option name="project" value="LOCAL" />
-      <updated>1744306305291</updated>
+      <workItem from="1744726273556" duration="10444000" />
     </task>
     <task id="LOCAL-00919" summary="Corrigiendo Inicio Sesion">
       <option name="closed" value="true" />
@@ -560,7 +550,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744736572386</updated>
     </task>
-    <option name="localTasksCounter" value="967" />
+    <task id="LOCAL-00967" summary="Nuevo estilo modal comentarios git">
+      <option name="closed" value="true" />
+      <created>1744736890034</created>
+      <option name="number" value="00967" />
+      <option name="presentableId" value="LOCAL-00967" />
+      <option name="project" value="LOCAL" />
+      <updated>1744736890034</updated>
+    </task>
+    <option name="localTasksCounter" value="968" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

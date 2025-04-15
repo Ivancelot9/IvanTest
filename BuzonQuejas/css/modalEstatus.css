@@ -1,5 +1,5 @@
-/* ====== MODIFICACIONES ====== */
-/* Fondo oscuro que cubre toda la página */
+/* ====== MODIFICACIONES ESTILO GITHUB PARA ESTATUS ====== */
+
 #estatus-modal-overlay {
     display: none;
     position: fixed;
@@ -7,11 +7,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Fondo oscuro semi-transparente */
-    z-index: 1000; /* Justo por debajo del modal */
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
 }
 
-/* Modal con bordes gruesos y efecto cómic */
 #estatus-modal {
     display: none;
     position: fixed;
@@ -19,152 +19,101 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 420px;
-    background: white;
-    padding: 20px;
-    font-family: "Bangers", sans-serif;
+    background: #161b22;
+    padding: 24px;
+    font-family: 'Segoe UI', sans-serif;
     text-align: center;
     z-index: 1000;
-
-    /* 1️⃣ Primera línea negra interna */
-    border: 5px solid black;
-
-    /* 2️⃣ Contorno blanco más ancho */
-    outline: 10px solid white;
-
-    /* 3️⃣ Segunda línea negra externa */
-    box-shadow: 0 0 0 15px black;
+    border: 1px solid #30363d;
+    box-shadow: 0 0 0 4px #0d1117, 0 0 12px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
 }
 
-/* ✅ Centrar los elementos en el modal */
 .modal-content {
     display: flex;
     flex-direction: column;
-    align-items: center; /* 🔥 Centra todos los elementos dentro del modal */
+    align-items: center;
     justify-content: center;
     width: 100%;
 }
 
-/* Estilo del título (inspirado en la imagen) */
 #estatus-modal h2 {
-    font-size: 28px;
-    color: white;
-    background: #0074e0;
-    padding: 12px 20px;
-    display: block;
-    border: 4px solid black;
-    text-shadow: 3px 3px 0 black;
-    letter-spacing: 1px;
-    margin: 0 auto; /* Centra el título en el modal */
-    text-align: center; /* Asegura que el texto esté alineado */
+    font-size: 1.3rem;
+    color: #f0f6fc;
+    background: #238636;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: 1px solid #2ea043;
+    margin-bottom: 15px;
+    width: 100%;
 }
 
-/* Pregunta con el mismo estilo que las etiquetas en la imagen */
 #pregunta-dias p {
-    font-size: 22px;
-    font-weight: bold;
-    color: #0074e0; /* Azul vibrante */
-    text-shadow: none; /* Se elimina la sombra negra */
-    display: inline-block;
-    padding: 5px 10px;
-    margin-bottom: 15px; /* Separación con el input */
+    font-size: 1rem;
+    font-weight: 600;
+    color: #c9d1d9;
+    margin-bottom: 10px;
 }
 
-/* Input con estilo similar a los campos de la imagen */
 #dias-evaluacion {
     width: 80%;
-    font-size: 20px;
-    padding: 15px;
+    font-size: 1rem;
+    padding: 10px;
     text-align: center;
-    border: 4px solid black;
-    border-radius: 10px;
-    box-shadow: 5px 5px 0 black;
-    background: #d9d9d9;
-    font-family: "Arial", sans-serif;
-    color: black;
-    margin-bottom: 15px; /* SEPARACIÓN MÁS AMPLIA CON EL BOTÓN */
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    background: #0d1117;
+    color: #f0f6fc;
+    margin-bottom: 15px;
 }
 
-
-
-
-
-
-
-/* Botón cómic con animación */
 .comic-button {
     flex: 1;
-    padding: 6px;
-    border: 2px solid #000000;
-    background: #1094e0;
-    color: #000000;
+    padding: 10px;
+    background: #238636;
+    color: #f0f6fc;
+    font-size: 1rem;
     font-weight: bold;
-    text-transform: uppercase;
+    font-family: 'Segoe UI', sans-serif;
+    border: 1px solid #2ea043;
+    border-radius: 6px;
     cursor: pointer;
-    font-family: "Bangers", sans-serif;
-    font-size: 2rem;
-    transition: transform 0.2s ease;
+    transition: all 0.2s ease-in-out;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
+    width: 80%;
+    margin-top: 10px;
 }
 
 .comic-button:hover {
-    animation: vibrate-grow 0.2s ease forwards;
+    background: #2ea043;
+    transform: scale(1.03);
 }
-
-.comic-button:active {
-    transform: scale(1.05);
-}
-
-@keyframes vibrate-grow {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-    25% {
-        transform: translate(-2px, -2px) scale(1.1);
-    }
-    50% {
-        transform: translate(2px, -2px) scale(1.15);
-    }
-    75% {
-        transform: translate(2px, 2px) scale(1.2);
-    }
-    100% {
-        transform: translate(-2px, 2px) scale(1.2);
-    }
-}
-
-
-
-
-
 
 .status-container {
     display: flex;
-    flex-direction: column; /* Cambia a columna para evitar que los elementos se expandan horizontalmente */
-    align-items: center; /* Centra los elementos horizontalmente */
-    justify-content: center; /* Centra los elementos verticalmente */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    max-width: 350px; /* 🔥 Limita el ancho del contenido */
-    margin: 0 auto; /* 🔥 Centra el contenido dentro del modal */
-    gap: 20px; /* Espaciado adecuado */
+    max-width: 350px;
+    margin: 0 auto;
+    gap: 20px;
 }
 
-
-/* Ajuste del input para que esté alineado con el círculo */
 .estatus-manual {
     display: flex;
     align-items: center;
-    justify-content: center; /* Centra los elementos horizontalmente */
-    gap: 15px; /* Espaciado entre input y círculo */
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
 }
 
 .estatus-recomendado {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra el contenido horizontalmente */
+    align-items: center;
     justify-content: center;
     width: 100%;
 }
@@ -174,13 +123,12 @@
     text-align: center;
 }
 
-/* Ajuste del botón "Guardar" para que no esté tan pegado */
 #guardar-estatus {
     display: flex;
     align-items: center;
     justify-content: center;
     width: fit-content;
-    margin: 15px auto; /* Centra el botón horizontalmente */
+    margin: 15px auto;
 }
 
 .progress-circle {
@@ -193,16 +141,11 @@
     font-size: 20px;
     font-weight: bold;
     color: white;
-    border: 6px solid black; /* Aumentamos el grosor del contorno */
-
-    /* Contorno negro grueso alrededor del texto */
-    text-shadow: 3px 3px 0 black,
-    -3px -3px 0 black,
-    3px -3px 0 black,
-    -3px 3px 0 black;
+    border: 4px solid #58a6ff;
+    background: #0d1117;
+    box-shadow: 0 0 8px rgba(88, 166, 255, 0.4);
 }
 
-/* Botón circular pequeño que sigue siendo funcional */
 .ver-estatus-btn.ver-estatus-circulo {
     width: 40px;
     height: 40px;
@@ -210,18 +153,10 @@
     font-size: 12px;
     font-weight: bold;
     color: white;
-    border: 3px solid black;
+    border: 2px solid #58a6ff;
+    background-color: #21262d;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
-    text-shadow: 1px 1px 0 black,
-    -1px -1px 0 black,
-    1px -1px 0 black,
-    -1px 1px 0 black; /* Contorno negro */
-
-
 }
-
-
-
