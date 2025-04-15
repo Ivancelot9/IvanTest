@@ -1,15 +1,16 @@
-/* 📌 Contenedor de Datos Personales */
+/* 📌 Contenedor de Datos Personales - estilo GitHub */
 #datos-personales {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: white;
-    border: 5px solid #1094e0; /* Borde azul estilo cómic */
-    box-shadow: 5px 5px 0 black; /* Sombra tipo cómic */
-    border-radius: 15px;
-    padding: 20px 25px;
-    max-width: 450px; /* Ajuste del tamaño */
+    background: #161b22;
+    border: 2px solid #30363d;
+    border-radius: 12px;
+    padding: 25px 30px;
+    max-width: 450px;
     margin: 20px auto;
+    color: #f0f6fc;
+    font-family: system-ui, sans-serif;
 }
 
 /* 🔹 Contenedor de la información */
@@ -25,42 +26,36 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-family: "Bangers", serif;
-    font-size: 1.3rem;
+    font-size: 1rem;
 }
 
 /* 🎯 Etiquetas */
 .info-item label {
-    font-size: 1.2rem;
+    font-size: 0.95rem;
     text-transform: uppercase;
-    color: #1094e0;
-    text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
-    margin-bottom: 5px;
+    color: #58a6ff;
+    font-weight: 600;
+    margin-bottom: 6px;
 }
 
 /* 📌 Inputs */
 .personal-info input {
-    background: #f0f0f0;
-    border: 3px solid black;
+    background: #21262d;
+    border: 1px solid #30363d;
     padding: 10px;
-    font-size: 1.2rem;
-    font-family: "Bangers", serif;
-    color: black;
-    border-radius: 5px;
-    text-align: center;
+    font-size: 1rem;
+    color: #c9d1d9;
+    border-radius: 6px;
     outline: none;
     width: 100%;
-}
-/* Evitar que los inputs se salgan del contenedor visualmente */
-.personal-info input {
+    font-family: system-ui, sans-serif;
     box-sizing: border-box;
-    max-width: 100%;
 }
 
 /* 🔒 Input bloqueado */
 .personal-info input[readonly] {
-    background: #e0e0e0;
-    color: gray;
+    background: #2d333b;
+    color: #8b949e;
     cursor: not-allowed;
 }
 
@@ -68,43 +63,39 @@
 .botones-accion {
     display: flex;
     gap: 15px;
-    margin-top: 20px;
+    margin-top: 25px;
+    width: 100%;
 }
 
-/* 📌 Botones */
+/* 📌 Botón editar estilo GitHub */
 .submit-btn {
     flex: 1;
-    padding: 6px;
-    border: 2px solid #000000;
-    background: #1094e0;
-    color: #000000;
-    font-weight: bold;
+    padding: 12px;
+    background: #238636;
+    border: 1px solid #2ea043;
+    color: #ffffff;
+    font-weight: 600;
     text-transform: uppercase;
+    font-size: 0.95rem;
+    border-radius: 6px;
     cursor: pointer;
-    font-family: "Bangers", sans-serif; /* Aplica la fuente Bangers */
-    font-size: 2rem;
-    transition: transform 0.2s ease; /* Transición suave para volver al estado original */
-    display: inline-flex; /* Alinea el texto centrado */
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    gap: 5px;
+    transition: background 0.2s ease-in-out;
+    font-family: system-ui, sans-serif;
 }
 
-/* 🔥 Hover */
+/* Hover */
 .submit-btn:hover {
-    background: black;
-    color: white;
-    transform: scale(1.1);
+    background: #2ea043;
 }
 
 /* 🟢 Estilos para el botón Guardar */
 .guardar-btn {
-    background: #28a745 !important;
+    background: #0969da !important;
+    border: 1px solid #58a6ff !important;
 }
 
-/* 🎯 Hover del botón Guardar */
+/* Hover del botón Guardar */
 .guardar-btn:hover {
-    background: #1e7e34 !important;
+    background: #58a6ff !important;
+    color: #0d1117 !important;
 }
