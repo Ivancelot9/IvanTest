@@ -32,6 +32,15 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
+/* 🔽 Margen superior para bajar la sección superior de la sidebar */
+.sidebar-top {
+    margin-top: 40px; /* 🔧 Puedes ajustar este valor */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 .sidebar .profile {
     display: flex;
