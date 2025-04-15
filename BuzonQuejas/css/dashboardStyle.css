@@ -313,14 +313,15 @@ input[disabled], textarea[disabled] {
     border: 1px solid #30363d;
     border-radius: 6px;
     padding: 10px 15px;
-    width: 85%; /* 🔧 Antes 90% — ahora un poco más estrecho */
+    width: 100%;
+    max-width: 90%; /* ✅ Se alinea con los demás botones */
     font-size: 0.95rem;
     font-weight: 500;
     text-align: left;
     text-decoration: none;
     display: flex;
     align-items: center;
-    margin: 12px auto 0 auto; /* Centrado horizontal y con espacio arriba */
+    margin: 12px auto 0 auto;
     transition: background-color 0.2s ease-in-out;
 }
 
