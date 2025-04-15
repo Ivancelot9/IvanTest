@@ -4,10 +4,7 @@ body {
     padding: 0;
     height: 100vh;
     display: flex;
-    background-image: url('../imagenes/fondoazul.jpg'); /* Cambia esto por la ruta de tu fondo */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-color: #0d1117; /* Fondo oscuro GitHub */
     font-family: "Bangers", serif;
 }
 
@@ -15,7 +12,7 @@ body {
 .sidebar {
     width: 280px;
     height: 90vh;
-    background: rgba(35, 45, 65, 0.95); /* Azul más sobrio */
+    background: #161b22;
     color: #f0f6fc;
     display: flex;
     flex-direction: column;
@@ -41,8 +38,8 @@ body {
     align-items: center;
     text-align: center;
     position: relative;
-    margin-top: 15px; /* 🔥 Aumenta este valor para bajar más */
-    margin-bottom: 15px; /* 🔹 Ajuste de espacio */
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .sidebar .profile img {
@@ -132,7 +129,7 @@ body {
     justify-content: center;
     padding: 10px 20px;
     border: 2px solid #0d1117;
-    background: #58a6ff; /* Azul GitHub */
+    background: #58a6ff;
     color: #0d1117;
     font-weight: bold;
     text-transform: uppercase;
@@ -167,7 +164,7 @@ body {
 .sidebar::after {
     content: "";
     display: block;
-    width: 10px; /* Espacio entre la sidebar y el contenido */
+    width: 10px;
 }
 
 /* Cuando la sidebar está oculta */
@@ -192,7 +189,8 @@ body {
 .main-content {
     padding: 20px;
     border: 12px solid #58a6ff;
-    background: #f0f6fc;
+    background: #0d1117;
+    color: #f0f6fc;
     border-radius: 15px;
     transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
     margin-left: 370px;
@@ -208,15 +206,16 @@ body {
 
 /* Cuando la sidebar está oculta, mantiene un pequeño espacio */
 .main-content.expanded {
-    margin-left: auto; /* Elimina el margen izquierdo */
-    margin-right: auto; /* Añade margen automático a la derecha para centrar */
-    width: 80%; /* Ancho ajustado */
-    max-width: 75%; /* Limita el ancho máximo */
-    margin: 20px auto; /* Usa abreviación para centrar y margen vertical */
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    max-width: 75%;
+    margin: 20px auto;
 }
 
-/* Header */
-.header h1 {
+/* 🏷️ Título de sección */
+.header h1,
+.comic-title {
     font-size: 2.5rem;
     text-align: center;
     color: #58a6ff;
@@ -230,18 +229,7 @@ body {
             2px  2px 0 #0d1117;
 }
 
-/* Comic Container */
-.comic-container {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 10px;
-    box-sizing: border-box;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden; /* ✅ Evita que crezca más allá de `main-content` */
-}
+
 
 /* Opcional: Ajusta los elementos internos para que crezcan junto con el contenedor */
 .comic-title {
@@ -255,20 +243,7 @@ body {
     justify-content: space-between; /* Se distribuyen uniformemente */
 }
 
-/* Comic Title */
-.comic-title {
-    margin-bottom: 20px;
-    font-size: 2.5rem;
-    text-align: center;
-    color: #58a6ff;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow:
-            -2px -2px 0 #0d1117,
-            2px -2px 0 #0d1117,
-            -2px  2px 0 #0d1117,
-            2px  2px 0 #0d1117;
-}
+
 
 /* Button estilo cómic */
 .submit-btn {
@@ -408,18 +383,19 @@ body {
     align-items: center;
     justify-content: center;
     padding: 15px 20px;
-    border: 2px solid black;
-    background: #d9534f; /* 🔴 Rojo llamativo */
-    color: white;
+    border: 2px solid #0d1117;
+    background: #d9534f;
+    color: #f0f6fc;
     font-weight: bold;
     text-transform: uppercase;
     font-family: "Bangers", sans-serif;
     font-size: 1.5rem;
     transition: transform 0.2s ease-in-out, background 0.2s;
     cursor: pointer;
-    box-shadow: 3px 3px 0 black;
+    box-shadow: 3px 3px 0 #0d1117;
     text-decoration: none;
-    margin-bottom: -50px; /* Espaciado del fondo */
+    margin-top: auto;
+    margin-bottom: -50px;
     width: 80%;
     text-align: center;
     border-radius: 10px;
@@ -513,29 +489,26 @@ body {
     }
 }
 
+/* 🔔 Badge de notificación */
 .badge {
     position: absolute;
     background-color: red;
     color: white;
     border-radius: 50%;
-    padding: 4px 8px; /* 🔹 Más grande */
-    font-size: 16px; /* 🔹 Más grande */
+    padding: 4px 8px;
+    font-size: 16px;
     font-weight: bold;
     top: 5px;
     right: 10px;
     display: inline-block;
-
-    /* 🔲 Contorno negro */
     text-shadow:
             -1px -1px 0 #000,
             1px -1px 0 #000,
             -1px  1px 0 #000,
             1px  1px 0 #000;
 }
-#btn-reportes-completos {
-    position: relative;
-}
 
+#btn-reportes-completos,
 #btn-historial-reportes {
     position: relative;
 }
