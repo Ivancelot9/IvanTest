@@ -308,24 +308,21 @@ input[disabled], textarea[disabled] {
 
 /* 🎨 Estilos para el botón de Cerrar Sesión */
 .logout-btn {
-    background-color: #21262d; /* Igual que los demás */
-    color: #c9d1d9;
-    border: 1px solid #30363d;
+    background-color: #238636;
+    color: white;
+    border: none;
     border-radius: 6px;
-    padding: 10px 15px;
-    font-weight: 500;
+    padding: 10px 15px; /* 📏 Igual que los otros botones */
+    font-weight: bold;
     font-size: 0.95rem;
     cursor: pointer;
-    width: 100%;
-    text-align: left;
-    text-decoration: none;
+    width: 100%; /* 📏 Igual que los .sidebar a */
+    text-align: left; /* 📌 Igual para que el texto inicie a la izquierda */
     transition: background-color 0.2s ease-in-out;
-    display: flex;
+    display: flex; /* 🧭 Para alinear contenido como en .sidebar a */
     align-items: center;
 }
-.logout-btn {
-    width: inherit;
-}
+
 /* 🔥 Efecto al pasar el mouse */
 .logout-btn:hover {
     background-color: #2ea043;

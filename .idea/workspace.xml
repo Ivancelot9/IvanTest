@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Nuevo estilo modal fecha finalizacion git">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,15 +166,7 @@
       <workItem from="1744294456799" duration="16146000" />
       <workItem from="1744381297604" duration="9554000" />
       <workItem from="1744640231554" duration="8471000" />
-      <workItem from="1744726273556" duration="13944000" />
-    </task>
-    <task id="LOCAL-00932" summary="Corrigiendo Inicio Sesion">
-      <option name="closed" value="true" />
-      <created>1744313253129</created>
-      <option name="number" value="00932" />
-      <option name="presentableId" value="LOCAL-00932" />
-      <option name="project" value="LOCAL" />
-      <updated>1744313253129</updated>
+      <workItem from="1744726273556" duration="13999000" />
     </task>
     <task id="LOCAL-00933" summary="Corrigiendo Inicio Sesion">
       <option name="closed" value="true" />
@@ -561,7 +552,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744740977649</updated>
     </task>
-    <option name="localTasksCounter" value="981" />
+    <task id="LOCAL-00981" summary="Nuevo estilo modal fecha finalizacion git">
+      <option name="closed" value="true" />
+      <created>1744741202657</created>
+      <option name="number" value="00981" />
+      <option name="presentableId" value="LOCAL-00981" />
+      <option name="project" value="LOCAL" />
+      <updated>1744741202657</updated>
+    </task>
+    <option name="localTasksCounter" value="982" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
