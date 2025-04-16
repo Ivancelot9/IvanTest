@@ -302,52 +302,7 @@ button.ver-estatus-btn:hover {
     font-style: italic;
 }
 
-/* ✨ Animación de giro */
-@keyframes halo-spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
 
-/* 🌈 Contenedor base para halo */
-.halo-container {
-    position: relative;
-    padding: 10px;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-/* 🔴 Borde rojo giratorio */
-.halo-red::before {
-    content: "";
-    position: absolute;
-    top: -2px; left: -2px; right: -2px; bottom: -2px;
-    border: 2px solid red;
-    border-radius: 10px;
-    animation: halo-spin 3s linear infinite;
-    pointer-events: none;
-}
-
-/* 🟡 Borde amarillo giratorio */
-.halo-yellow::before {
-    content: "";
-    position: absolute;
-    top: -2px; left: -2px; right: -2px; bottom: -2px;
-    border: 2px solid yellow;
-    border-radius: 10px;
-    animation: halo-spin 3s linear infinite;
-    pointer-events: none;
-}
-
-/* 🟢 Borde verde giratorio */
-.halo-green::before {
-    content: "";
-    position: absolute;
-    top: -2px; left: -2px; right: -2px; bottom: -2px;
-    border: 2px solid #2ecc71;
-    border-radius: 10px;
-    animation: halo-spin 3s linear infinite;
-    pointer-events: none;
-}
 
 /* 📌 Media Query para pantallas de tabletas (max-width: 1024px) */
 @media (max-width: 1024px) {
