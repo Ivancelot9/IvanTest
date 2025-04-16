@@ -160,9 +160,11 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <div id="reportes-completos" class="content comic-container" style="display: none">
         <h2 class="comic-title">Reportes Completos</h2>
 
-        <!-- 🔎 Controles superiores (Filtro + Rango de Fechas + Exportar Página) -->
-        <div class="table-controls">
-            <div class="filter-container">
+        <!-- 🔎 Controles superiores organizados en bloques -->
+        <div class="table-controls" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+
+            <!-- 🔴 Búsqueda por columna -->
+            <div class="filter-container halo-red" style="display: flex; gap: 8px; align-items: center; border: 2px solid red; border-radius: 12px; padding: 10px;">
                 <label for="filter-column-completo">Filtrar por:</label>
                 <select id="filter-column-completo">
                     <option value="folio">Folio</option>
@@ -174,20 +176,22 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 <button id="filter-button-completo">🔍 Buscar</button>
             </div>
 
-            <!-- 📅 Filtro por rango de fechas -->
-            <div class="date-range-container">
+            <!-- 🟡 Rango de fechas -->
+            <div class="date-range-container halo-yellow" style="display: flex; gap: 8px; align-items: center; border: 2px solid yellow; border-radius: 12px; padding: 10px;">
                 <label for="start-date">Rango:</label>
                 <input type="text" id="start-date" placeholder="dd/mm/yyyy">
-                <span> a </span>
+                <span>a</span>
                 <input type="text" id="end-date" placeholder="dd/mm/yyyy">
                 <button id="filter-date-button">📆 Filtrar</button>
                 <button id="clear-date-button">🧹 Limpiar Rango</button>
             </div>
 
-            <!-- 📤 Botón "Exportar Página" con icono de Excel -->
-            <button id="exportarPaginaCompletos" class="btn-exportar">
-                <i class="fas fa-file-excel"></i> Exportar Página
-            </button>
+            <!-- 🟢 Exportar -->
+            <div class="export-group halo-green" style="margin-left: auto; border: 2px solid #2ecc71; border-radius: 12px; padding: 10px;">
+                <button id="exportarPaginaCompletos" class="btn-exportar">
+                    <i class="fas fa-file-excel"></i> Exportar Página
+                </button>
+            </div>
         </div>
 
         <!-- Tabla de reportes completados -->
@@ -203,8 +207,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                     <th>Convertidor</th>
                 </tr>
                 </thead>
-                <tbody id="tabla-completos-body">
-                </tbody>
+                <tbody id="tabla-completos-body"></tbody>
             </table>
         </div>
 
