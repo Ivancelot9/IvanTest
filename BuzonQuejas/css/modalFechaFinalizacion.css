@@ -59,15 +59,27 @@
     border-bottom: 1px solid #30363d;
 }
 
-/* ✅ Forzar el color del mes y año (solución al texto oscuro) */
-.flatpickr-months .flatpickr-month {
-    color: #f0f6fc;
+/* ✅ Mostrar correctamente el mes y año */
+.flatpickr-current-month {
+    color: #f0f6fc !important;
+    font-weight: bold !important;
+    font-size: 1.2rem !important;
+}
+.flatpickr-current-month input.cur-year {
+    color: #f0f6fc !important;
+    background: transparent;
+    font-weight: normal;
+    font-size: 1.1rem;
+    border: none;
+    width: 60px;
 }
 
-/* ✅ Flechas de navegación (prev/next) */
-.flatpickr-months .flatpickr-prev-month,
-.flatpickr-months .flatpickr-next-month {
-    color: #f0f6fc;
+/* ✅ Flechas de navegación */
+.flatpickr-prev-month svg,
+.flatpickr-next-month svg {
+    fill: #f0f6fc !important;
+    height: 14px;
+    width: 14px;
 }
 .flatpickr-months .flatpickr-prev-month:hover,
 .flatpickr-months .flatpickr-next-month:hover {
@@ -92,17 +104,14 @@
     color: #c9d1d9;
     transition: background-color 0.2s ease;
 }
-
 .flatpickr-day:hover {
     background-color: #21262d;
 }
-
 .flatpickr-day.today {
     background-color: #58a6ff;
     color: #0d1117;
     font-weight: bold;
 }
-
 .flatpickr-day.selected {
     background-color: #238636;
     color: #f0f6fc;
