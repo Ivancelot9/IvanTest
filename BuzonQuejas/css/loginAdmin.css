@@ -12,13 +12,14 @@ body {
     overflow: hidden;
 }
 
+/* 🎨 Fondo RGB animado */
 body::before {
     content: "";
     position: fixed;
     top: 0; left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(130deg, #0d1117, #1f6feb, #00ffaa, #ff006e);
+    background: linear-gradient(130deg, #0d1117, #1f6feb, #ff66c4, #00ffaa, #ff006e);
     background-size: 400% 400%;
     animation: bgGradientFlow 20s ease infinite;
     z-index: -3;
@@ -31,6 +32,7 @@ body::before {
     100% { background-position: 0% 50%; }
 }
 
+/* 🧩 Líneas diagonales sutiles */
 body::after {
     content: "";
     position: fixed;
@@ -56,19 +58,25 @@ body::before,
 body::after {
     box-shadow: 0 0 10px #58a6ff55, 0 0 40px #58a6ff22;
 }
-
 body::before {
+    content: "";
+    position: absolute;
+    top: 0;
     left: 60px;
+    height: 100%;
+    width: 4px;
     background: linear-gradient(to bottom, #58a6ff33, transparent 80%);
     z-index: -1;
-    width: 4px;
 }
-
 body::after {
+    content: "";
+    position: absolute;
+    top: 0;
     right: 60px;
+    height: 100%;
+    width: 4px;
     background: linear-gradient(to bottom, #58a6ff33, transparent 80%);
     z-index: -1;
-    width: 4px;
 }
 
 /* 📦 Contenedor principal */
@@ -79,43 +87,32 @@ body::after {
     padding: 30px;
     border-radius: 16px;
     border: 1px solid #30363d;
-    box-shadow: 0 0 5px #0d1117, 0 0 20px #1f6feb44, 0 0 60px #58a6ff22, inset 0 0 5px #58a6ff22;
+    box-shadow:
+            0 0 5px #0d1117,
+            0 0 20px #1f6feb44,
+            0 0 60px #58a6ff22,
+            inset 0 0 5px #58a6ff22;
     z-index: 10;
     position: relative;
     transition: box-shadow 0.3s ease-in-out;
-    animation: floatSlow 6s ease-in-out infinite;
 }
 
-@keyframes floatSlow {
-    0%, 100% { transform: translateY(-3px); }
-    50% { transform: translateY(5px); }
-}
-
-/* 🎮 Esquinas tipo RGB gamer animadas */
-@keyframes neonPulse {
-    0%   { box-shadow: 0 0 12px #00ffaa; border-color: #00ffaa; }
-    33%  { box-shadow: 0 0 12px #ff00cc; border-color: #ff00cc; }
-    66%  { box-shadow: 0 0 12px #1f6feb; border-color: #1f6feb; }
-    100% { box-shadow: 0 0 12px #00ffaa; border-color: #00ffaa; }
-}
-
+/* 🎮 Esquinas tipo RGB gamer */
 .comic-container::before,
 .comic-container::after {
     content: "";
     position: absolute;
     width: 18px;
     height: 18px;
-    border: 2px solid #00ffaa;
-    animation: neonPulse 6s infinite ease-in-out;
+    border: 2px solid #ff66c4;
+    box-shadow: 0 0 12px #ff66c499;
 }
-
 .comic-container::before {
     top: -10px;
     left: -10px;
     border-right: none;
     border-bottom: none;
 }
-
 .comic-container::after {
     bottom: -10px;
     right: -10px;
@@ -132,7 +129,6 @@ body::after {
     margin-bottom: 25px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    text-shadow: 0 0 5px #ff66cc, 0 0 10px #1f6feb;
 }
 
 /* 🖼 Logo */
@@ -182,10 +178,9 @@ body::after {
     color: #8b949e;
     transition: border-color 0.3s ease;
 }
-
 .input-group:hover {
-    border-color: #ff66cc;
-    box-shadow: 0 0 8px #ff66cc33;
+    border-color: #58a6ff;
+    box-shadow: 0 0 8px #58a6ff33;
 }
 
 .input-group i {
@@ -203,7 +198,7 @@ input {
     color: #f0f6fc;
 }
 
-/* 🟢 Botón de acción tipo neón verde con glow rosa */
+/* 🟢 Botón de acción tipo neón verde */
 .submit-btn {
     width: 100%;
     padding: 12px 0;
@@ -216,14 +211,6 @@ input {
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
-    animation: greenPulse 4s infinite;
-    box-shadow: 0 0 10px #ff66cc66, 0 0 20px #ff66cc33;
-}
-
-@keyframes greenPulse {
-    0%   { box-shadow: 0 0 10px #ff66cc66; }
-    50%  { box-shadow: 0 0 20px #ff66ccaa; }
-    100% { box-shadow: 0 0 10px #ff66cc66; }
 }
 
 .submit-btn:hover {
