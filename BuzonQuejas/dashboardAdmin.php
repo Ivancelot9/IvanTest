@@ -163,7 +163,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
         <!-- 🔎 Controles superiores organizados en bloques -->
         <div class="table-controls" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
 
-            <div class="filter-container halo-container" style="--halo-color: red; background-color: #0d1117; padding: 10px; border-radius: 12px; display: flex; gap: 8px; align-items: center;">
+            <div class="filter-container halo-container" style="--halo-color: red;">
                 <label for="filter-column-completo">Filtrar por:</label>
                 <select id="filter-column-completo">
                     <option value="folio">Folio</option>
@@ -179,8 +179,9 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 </svg>
             </div>
 
-            <div class="date-range-container halo-container" style="--halo-color: yellow; background-color: #0d1117; padding: 10px; border-radius: 12px; display: flex; gap: 8px; align-items: center;">
-                <label for="start-date">Rango:</label>
+            <div class="date-range-container halo-container" style="--halo-color: yellow;">
+
+            <label for="start-date">Rango:</label>
                 <input type="text" id="start-date" placeholder="dd/mm/yyyy">
                 <span>a</span>
                 <input type="text" id="end-date" placeholder="dd/mm/yyyy">
@@ -192,7 +193,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 </svg>
             </div>
 
-            <div class="export-group halo-container" style="--halo-color: #2ecc71; background-color: #0d1117; padding: 10px; border-radius: 12px; display: flex; gap: 8px; align-items: center;">
+            <div class="export-group halo-container" style="--halo-color: #2ecc71;">
                 <button id="exportarPaginaCompletos" class="btn-exportar">
                     <i class="fas fa-file-excel"></i> Exportar Página
                 </button>
