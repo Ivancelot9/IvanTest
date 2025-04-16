@@ -59,9 +59,9 @@ body::after {
     top: 0;
     height: 100%;
     width: 4px;
-    background: linear-gradient(to bottom, #58a6ff33, transparent 80%);
+    animation: borderRGB 8s linear infinite;
     z-index: -1;
-    box-shadow: 0 0 10px #58a6ff55, 0 0 40px #58a6ff22;
+    border-radius: 2px;
 }
 .hud-line.left { left: 60px; }
 .hud-line.right { right: 60px; }
@@ -232,4 +232,12 @@ input[type="password"]::-ms-clear,
 input::-webkit-credentials-auto-fill-button,
 input::-webkit-password-toggle-button {
     display: none !important;
+}
+
+@keyframes borderRGB {
+    0%   { background: #00ffaa; box-shadow: 0 0 10px #00ffaa88; }
+    25%  { background: #1f6feb; box-shadow: 0 0 10px #1f6feb88; }
+    50%  { background: #ff66c4; box-shadow: 0 0 10px #ff66c488; }
+    75%  { background: #ff006e; box-shadow: 0 0 10px #ff006e88; }
+    100% { background: #00ffaa; box-shadow: 0 0 10px #00ffaa88; }
 }
