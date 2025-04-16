@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla">
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/tablaReportes.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/tablaReportes.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -165,15 +167,7 @@
       <workItem from="1744381297604" duration="9554000" />
       <workItem from="1744640231554" duration="8471000" />
       <workItem from="1744726273556" duration="20930000" />
-      <workItem from="1744812492630" duration="6352000" />
-    </task>
-    <task id="LOCAL-00970" summary="Nuevo estilo modal estatus git">
-      <option name="closed" value="true" />
-      <created>1744738247407</created>
-      <option name="number" value="00970" />
-      <option name="presentableId" value="LOCAL-00970" />
-      <option name="project" value="LOCAL" />
-      <updated>1744738247407</updated>
+      <workItem from="1744812492630" duration="6571000" />
     </task>
     <task id="LOCAL-00971" summary="Nuevo estilo modal estatus git">
       <option name="closed" value="true" />
@@ -559,7 +553,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744818820808</updated>
     </task>
-    <option name="localTasksCounter" value="1019" />
+    <task id="LOCAL-01019" summary="Tabla">
+      <option name="closed" value="true" />
+      <created>1744818902886</created>
+      <option name="number" value="01019" />
+      <option name="presentableId" value="LOCAL-01019" />
+      <option name="project" value="LOCAL" />
+      <updated>1744818902886</updated>
+    </task>
+    <option name="localTasksCounter" value="1020" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
