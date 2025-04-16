@@ -325,58 +325,38 @@ button.ver-estatus-btn:hover {
 
 
 .grupo-controles {
+    position: relative;
     padding: 8px;
     border-radius: 10px;
     margin-right: 8px;
     display: flex;
     align-items: center;
-}
-.grupo-controles::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    border-radius: 10px;
-    z-index: 1;
-    pointer-events: none;
-    border: 2px solid transparent;
-    box-sizing: border-box;
-    animation: borde-serpiente 2s linear infinite;
-    mask:
-            linear-gradient(90deg, #000 80%, transparent) 0 0 / 200% 100% no-repeat,
-            linear-gradient(0deg, #000 80%, transparent) 0 0 / 100% 200% no-repeat;
-    mask-composite: intersect;
-    -webkit-mask-composite: destination-in;
+    z-index: 0;
+    overflow: hidden;
+    border: 4px solid transparent;
+    border-image: conic-gradient(red 0% 10%, transparent 10% 100%) 1;
+    animation: serpienteBorde 3s linear infinite;
 }
 
-@keyframes bordeRecorrido {
-    0% {
-        transform: translateX(-100%) translateY(0);
-    }
-    25% {
-        transform: translateX(0%) translateY(0);
-    }
-    50% {
-        transform: translateX(0%) translateY(100%);
-    }
-    75% {
-        transform: translateX(-100%) translateY(100%);
-    }
-    100% {
-        transform: translateX(-100%) translateY(0);
-    }
-}
-
+/* 🎨 Colores personalizados por clase */
 .filtro-rojo {
-    border-color: red;
+    border-image: conic-gradient(red 0% 10%, transparent 10% 100%) 1;
 }
-
 .rango-amarillo {
-    border-color: gold;
+    border-image: conic-gradient(gold 0% 10%, transparent 10% 100%) 1;
+}
+.exportar-verde {
+    border-image: conic-gradient(#2ea043 0% 10%, transparent 10% 100%) 1;
 }
 
-.exportar-verde {
-    border-color: #2ea043;
+/* 🔁 Animación del contorno tipo vibora */
+@keyframes serpienteBorde {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
 }
 
 
