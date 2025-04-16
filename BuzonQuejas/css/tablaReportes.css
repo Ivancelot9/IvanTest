@@ -302,28 +302,35 @@ button.ver-estatus-btn:hover {
     font-style: italic;
 }
 
-.halo-draw {
+.halo-track {
     position: relative;
     border-radius: 12px;
+    background-color: #0d1117;
     z-index: 0;
-    overflow: hidden;
 }
 
-.halo-draw::before {
+.halo-track::after {
     content: "";
     position: absolute;
-    inset: 0;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
     border-radius: 12px;
     border: 2px solid transparent;
-    border-top: 2px solid var(--halo-color, red); /* solo una línea */
-    animation: border-spinner 2s linear infinite;
+    border-top: 2px solid var(--halo-color, red); /* solo una línea que avanza */
+    animation: draw-line 2s linear infinite;
     pointer-events: none;
     z-index: 1;
 }
 
-@keyframes border-spinner {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+@keyframes draw-line {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 

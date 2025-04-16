@@ -163,8 +163,8 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
         <!-- 🔎 Controles superiores organizados en bloques -->
         <div class="table-controls" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
 
-            <!-- 🔴 Búsqueda por columna -->
-            <div class="filter-container halo-draw" style="--halo-color: red; background-color: #0d1117; padding: 10px; border-radius: 12px; display: flex; gap: 8px; align-items: center;">
+            <!-- 🔴 Filtro -->
+            <div class="halo-track" style="--halo-color: red; padding: 10px; display: flex; gap: 8px; align-items: center;">
                 <label for="filter-column-completo">Filtrar por:</label>
                 <select id="filter-column-completo">
                     <option value="folio">Folio</option>
@@ -176,8 +176,8 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 <button id="filter-button-completo">🔍 Buscar</button>
             </div>
 
-            <!-- 🟡 Rango de fechas -->
-            <div class="date-range-container halo-draw" style="--halo-color: yellow; background-color: #0d1117; padding: 10px; border-radius: 12px; display: flex; gap: 8px; align-items: center;">
+            <!-- 🟡 Fechas -->
+            <div class="halo-track" style="--halo-color: yellow; padding: 10px; display: flex; gap: 8px; align-items: center;">
                 <label for="start-date">Rango:</label>
                 <input type="text" id="start-date" placeholder="dd/mm/yyyy">
                 <span>a</span>
@@ -187,7 +187,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
             </div>
 
             <!-- 🟢 Exportar -->
-            <div class="export-group halo-draw" style="--halo-color: #2ecc71; background-color: #0d1117; padding: 10px; border-radius: 12px;">
+            <div class="halo-track" style="--halo-color: green; padding: 10px; display: flex; gap: 8px; align-items: center;">
                 <button id="exportarPaginaCompletos" class="btn-exportar">
                     <i class="fas fa-file-excel"></i> Exportar Página
                 </button>
