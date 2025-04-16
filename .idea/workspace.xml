@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="cerrar sesion">
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/loginAdmin.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/loginAdmin.css" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="cerrar sesion" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -167,15 +165,7 @@
       <workItem from="1744381297604" duration="9554000" />
       <workItem from="1744640231554" duration="8471000" />
       <workItem from="1744726273556" duration="20930000" />
-      <workItem from="1744812492630" duration="14654000" />
-    </task>
-    <task id="LOCAL-00999" summary="Nuevo Sidebar">
-      <option name="closed" value="true" />
-      <created>1744743646306</created>
-      <option name="number" value="00999" />
-      <option name="presentableId" value="LOCAL-00999" />
-      <option name="project" value="LOCAL" />
-      <updated>1744743646306</updated>
+      <workItem from="1744812492630" duration="14793000" />
     </task>
     <task id="LOCAL-01000" summary="Nuevo Sidebar">
       <option name="closed" value="true" />
@@ -561,7 +551,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744827689824</updated>
     </task>
-    <option name="localTasksCounter" value="1048" />
+    <task id="LOCAL-01048" summary="cerrar sesion">
+      <option name="closed" value="true" />
+      <created>1744827849986</created>
+      <option name="number" value="01048" />
+      <option name="presentableId" value="LOCAL-01048" />
+      <option name="project" value="LOCAL" />
+      <updated>1744827849986</updated>
+    </task>
+    <option name="localTasksCounter" value="1049" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

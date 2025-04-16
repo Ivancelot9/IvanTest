@@ -1,4 +1,4 @@
-/* 🎯 Fondo oscuro GitHub + ambiente sutil neón */
+/* 🌌 Fondo oscuro y limpio */
 body {
     margin: 0;
     padding: 0;
@@ -8,25 +8,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     overflow: hidden;
 }
 
-/* ✨ Líneas decorativas verticales (cyberpunk HUD) */
-body::before,
-body::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 4px;
-    background: linear-gradient(to bottom, #58a6ff55, transparent 80%);
-    box-shadow: 0 0 10px #58a6ff55, 0 0 40px #58a6ff22;
+/* 🌈 Animación RGB cíclica */
+@keyframes borderRGB {
+    0%   { box-shadow: 0 0 10px #ff0059, 0 0 40px #ff0059; }
+    25%  { box-shadow: 0 0 10px #00ffe7, 0 0 40px #00ffe7; }
+    50%  { box-shadow: 0 0 10px #00ff00, 0 0 40px #00ff00; }
+    75%  { box-shadow: 0 0 10px #ffaa00, 0 0 40px #ffaa00; }
+    100% { box-shadow: 0 0 10px #ff0059, 0 0 40px #ff0059; }
 }
-body::before { left: 60px; }
-body::after { right: 60px; }
 
-/* 📦 Contenedor principal con neón */
+/* 🎮 Contenedor principal con efecto RGB */
 .comic-container {
     position: relative;
     width: 90%;
@@ -34,17 +28,39 @@ body::after { right: 60px; }
     background: #161b22;
     padding: 30px;
     border-radius: 16px;
-    border: 1px solid #30363d;
+    border: 2px solid #21262d;
+    animation: borderRGB 5s linear infinite;
     box-shadow:
-            0 0 5px #0d1117,
-            0 0 20px #1f6feb44,
-            0 0 60px #58a6ff22,
-            inset 0 0 5px #58a6ff22;
-    z-index: 1;
-    transition: box-shadow 0.3s ease-in-out;
+            inset 0 0 8px #30363d,
+            0 0 30px rgba(0, 0, 0, 0.4);
 }
 
-/* 🧠 Título central */
+/* 🔹 Esquinas animadas RGB */
+.comic-container::before,
+.comic-container::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid;
+    border-image: linear-gradient(45deg, #00ffe7, #ff00cc, #00ff00, #ffaa00) 1;
+    animation: borderRGB 6s linear infinite;
+}
+
+.comic-container::before {
+    top: -10px;
+    left: -10px;
+    border-right: none;
+    border-bottom: none;
+}
+.comic-container::after {
+    bottom: -10px;
+    right: -10px;
+    border-left: none;
+    border-top: none;
+}
+
+/* 🧠 Título */
 .comic-title {
     font-size: 2rem;
     text-align: center;
@@ -62,7 +78,7 @@ body::after { right: 60px; }
     max-width: 64px;
 }
 
-/* 🔵 Botones de pestañas */
+/* 🔘 Botones de navegación */
 .form-header {
     display: flex;
     justify-content: space-between;
@@ -87,10 +103,10 @@ body::after { right: 60px; }
 .toggle-btn.active {
     background: #1f6feb;
     color: white;
-    box-shadow: 0 0 10px #1f6feb, 0 0 20px #1f6feb55;
+    box-shadow: 0 0 10px #1f6feb, 0 0 20px #1f6feb77;
 }
 
-/* 🧩 Inputs */
+/* 📥 Inputs */
 .input-group {
     display: flex;
     align-items: center;
@@ -103,14 +119,14 @@ body::after { right: 60px; }
     transition: border-color 0.3s ease;
 }
 .input-group:hover {
-    border-color: #58a6ff;
-    box-shadow: 0 0 8px #58a6ff33;
+    border-color: #00ffee;
+    box-shadow: 0 0 8px #00ffee55;
 }
 
 .input-group i {
     margin-right: 10px;
     font-size: 1rem;
-    color: #58a6ff;
+    color: #00ffee;
 }
 
 input {
@@ -122,57 +138,33 @@ input {
     color: #f0f6fc;
 }
 
-/* 🟢 Botón de acción tipo neón verde */
+/* 🎯 Botón submit con glow */
 .submit-btn {
     width: 100%;
     padding: 12px 0;
     border: none;
     border-radius: 6px;
-    background: #238636;
-    color: white;
+    background: #00ff88;
+    color: #0d1117;
     font-weight: bold;
     font-size: 1rem;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow:
-            0 0 10px #23863677,
-            0 0 20px #2ea04344;
+            0 0 10px #00ff88aa,
+            0 0 20px #00ff8855;
 }
 
 .submit-btn:hover {
-    background: #2ea043;
+    background: #00ffaa;
     transform: scale(1.03);
     box-shadow:
-            0 0 15px #2ea043aa,
-            0 0 30px #2ea04355;
+            0 0 20px #00ffaa,
+            0 0 30px #00ffaa55;
 }
 
-/* 🕶 Esquinas decorativas tipo ciber-UI */
-.comic-container::before,
-.comic-container::after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #58a6ff;
-}
-.comic-container::before {
-    top: -10px;
-    left: -10px;
-    border-right: none;
-    border-bottom: none;
-    box-shadow: 0 0 10px #58a6ff88;
-}
-.comic-container::after {
-    bottom: -10px;
-    right: -10px;
-    border-left: none;
-    border-top: none;
-    box-shadow: 0 0 10px #58a6ff88;
-}
-
-/* 🚫 Ocultar íconos de autocompletado */
+/* ❌ Anti autocompletado íconos */
 input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear,
 input::-webkit-credentials-auto-fill-button,
