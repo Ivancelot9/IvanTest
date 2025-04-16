@@ -59,12 +59,19 @@ body::after {
     top: 0;
     height: 100%;
     width: 4px;
-    animation: borderRGB 8s linear infinite;
+    background: #00ffaa;
     z-index: -1;
     border-radius: 2px;
+    animation: hudLineRGB 6s linear infinite;
+    box-shadow: 0 0 10px #00ffaa88, 0 0 40px #00ffaa44;
 }
 .hud-line.left { left: 60px; }
 .hud-line.right { right: 60px; }
+@keyframes hudLineRGB {
+    0%   { filter: hue-rotate(0deg); }
+    50%  { filter: hue-rotate(180deg); }
+    100% { filter: hue-rotate(360deg); }
+}
 
 /* 📦 Contenedor principal */
 .comic-container {
@@ -234,10 +241,4 @@ input::-webkit-password-toggle-button {
     display: none !important;
 }
 
-@keyframes borderRGB {
-    0%   { background: #00ffaa; box-shadow: 0 0 10px #00ffaa88; }
-    25%  { background: #1f6feb; box-shadow: 0 0 10px #1f6feb88; }
-    50%  { background: #ff66c4; box-shadow: 0 0 10px #ff66c488; }
-    75%  { background: #ff006e; box-shadow: 0 0 10px #ff006e88; }
-    100% { background: #00ffaa; box-shadow: 0 0 10px #00ffaa88; }
-}
+
