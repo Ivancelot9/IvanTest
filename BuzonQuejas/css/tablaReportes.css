@@ -337,62 +337,46 @@ button.ver-estatus-btn:hover {
     top: 0; left: 0;
     width: 100%; height: 100%;
     border-radius: 10px;
-    border: 2px solid transparent;
-    pointer-events: none;
     z-index: 1;
-    background:
-            linear-gradient(90deg, red 50%, transparent 0) top left / 200% 2px no-repeat,
-            linear-gradient(90deg, red 50%, transparent 0) bottom left / 200% 2px no-repeat,
-            linear-gradient(0deg, red 50%, transparent 0) top left / 2px 200% no-repeat,
-            linear-gradient(0deg, red 50%, transparent 0) top right / 2px 200% no-repeat;
-    animation: bordeRecorrido 4s linear infinite;
+    pointer-events: none;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    animation: borde-serpiente 2s linear infinite;
+    mask:
+            linear-gradient(90deg, #000 80%, transparent) 0 0 / 200% 100% no-repeat,
+            linear-gradient(0deg, #000 80%, transparent) 0 0 / 100% 200% no-repeat;
+    mask-composite: intersect;
+    -webkit-mask-composite: destination-in;
 }
 
 @keyframes bordeRecorrido {
     0% {
-        background-position:
-                200% 0, 200% 100%, 0 200%, 100% 200%;
+        transform: translateX(-100%) translateY(0);
     }
     25% {
-        background-position:
-                100% 0, 200% 100%, 0 200%, 100% 200%;
+        transform: translateX(0%) translateY(0);
     }
     50% {
-        background-position:
-                0 0, 100% 100%, 0 200%, 100% 200%;
+        transform: translateX(0%) translateY(100%);
     }
     75% {
-        background-position:
-                0 0, 0 100%, 0 100%, 100% 100%;
+        transform: translateX(-100%) translateY(100%);
     }
     100% {
-        background-position:
-                200% 0, 200% 100%, 0 200%, 100% 200%;
+        transform: translateX(-100%) translateY(0);
     }
 }
 
 .filtro-rojo {
-    background:
-            linear-gradient(90deg, red 50%, transparent 0) top left / 200% 2px no-repeat,
-            linear-gradient(90deg, red 50%, transparent 0) bottom left / 200% 2px no-repeat,
-            linear-gradient(0deg, red 50%, transparent 0) top left / 2px 200% no-repeat,
-            linear-gradient(0deg, red 50%, transparent 0) top right / 2px 200% no-repeat;
+    border-color: red;
 }
 
 .rango-amarillo {
-    background:
-            linear-gradient(90deg, gold 50%, transparent 0) top left / 200% 2px no-repeat,
-            linear-gradient(90deg, gold 50%, transparent 0) bottom left / 200% 2px no-repeat,
-            linear-gradient(0deg, gold 50%, transparent 0) top left / 2px 200% no-repeat,
-            linear-gradient(0deg, gold 50%, transparent 0) top right / 2px 200% no-repeat;
+    border-color: gold;
 }
 
 .exportar-verde {
-    background:
-            linear-gradient(90deg, #2ea043 50%, transparent 0) top left / 200% 2px no-repeat,
-            linear-gradient(90deg, #2ea043 50%, transparent 0) bottom left / 200% 2px no-repeat,
-            linear-gradient(0deg, #2ea043 50%, transparent 0) top left / 2px 200% no-repeat,
-            linear-gradient(0deg, #2ea043 50%, transparent 0) top right / 2px 200% no-repeat;
+    border-color: #2ea043;
 }
 
 
