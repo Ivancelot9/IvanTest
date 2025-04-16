@@ -302,37 +302,42 @@ button.ver-estatus-btn:hover {
     font-style: italic;
 }
 
-.halo-track {
+.halo-container {
     position: relative;
     border-radius: 12px;
     background-color: #0d1117;
     z-index: 0;
+    padding: 10px;
+    overflow: hidden;
 }
 
-.halo-track::after {
-    content: "";
+/* SVG línea que recorre el borde */
+.halo-container svg {
     position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border-radius: 12px;
-    border: 2px solid transparent;
-    border-top: 2px solid var(--halo-color, red); /* solo una línea que avanza */
-    animation: draw-line 2s linear infinite;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
     z-index: 1;
 }
 
-@keyframes draw-line {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+.halo-container rect {
+    fill: none;
+    stroke: var(--halo-color, red);
+    stroke-width: 2;
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: trace-border 3s linear infinite;
+    rx: 12;
+    ry: 12;
 }
 
+@keyframes trace-border {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
 
 
 /* 📌 Media Query para pantallas de tabletas (max-width: 1024px) */
