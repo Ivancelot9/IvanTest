@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla">
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/tablaReportes.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/tablaReportes.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,15 +167,7 @@
       <workItem from="1744381297604" duration="9554000" />
       <workItem from="1744640231554" duration="8471000" />
       <workItem from="1744726273556" duration="20930000" />
-      <workItem from="1744812492630" duration="12571000" />
-    </task>
-    <task id="LOCAL-00990" summary="Nuevo Sidebar">
-      <option name="closed" value="true" />
-      <created>1744742671447</created>
-      <option name="number" value="00990" />
-      <option name="presentableId" value="LOCAL-00990" />
-      <option name="project" value="LOCAL" />
-      <updated>1744742671447</updated>
+      <workItem from="1744812492630" duration="12677000" />
     </task>
     <task id="LOCAL-00991" summary="Nuevo Sidebar">
       <option name="closed" value="true" />
@@ -561,7 +553,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744825684503</updated>
     </task>
-    <option name="localTasksCounter" value="1039" />
+    <task id="LOCAL-01039" summary="Tabla">
+      <option name="closed" value="true" />
+      <created>1744825750811</created>
+      <option name="number" value="01039" />
+      <option name="presentableId" value="LOCAL-01039" />
+      <option name="project" value="LOCAL" />
+      <updated>1744825750812</updated>
+    </task>
+    <option name="localTasksCounter" value="1040" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

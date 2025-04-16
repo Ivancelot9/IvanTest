@@ -114,6 +114,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 
         <!-- 🔎 Controles superiores (Solo Filtro, SIN Exportar) -->
         <div class="table-controls">
+            <div class="grupo-controles filtro-rojo">
             <div class="filter-container">
                 <label for="filter-column">Filtrar por:</label>
                 <select id="filter-column">
@@ -124,6 +125,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 </select>
                 <input type="text" id="filter-input" placeholder="Buscar...">
                 <button id="filter-button">🔍 Buscar</button> <!-- 🔹 Justo al lado del input -->
+            </div>
             </div>
         </div>
 
