@@ -324,9 +324,59 @@ button.ver-estatus-btn:hover {
 
 
 
-@keyframes trace-border {
-    to {
-        stroke-dashoffset: 0;
+.grupo-controles {
+    position: relative;
+    padding: 8px;
+    border-radius: 10px;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* 🔴 Contorno animado */
+.grupo-controles::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid;
+    border-radius: 10px;
+    box-sizing: border-box;
+    animation: recorrerBorde 2.5s linear infinite;
+    pointer-events: none;
+}
+
+/* 🎨 Colores individuales para cada contorno animado */
+.filtro-rojo::before {
+    border-color: red;
+}
+
+.rango-amarillo::before {
+    border-color: gold;
+}
+
+.exportar-verde::before {
+    border-color: #2ea043;
+}
+
+/* 🌀 Animación del borde */
+@keyframes recorrerBorde {
+    0% {
+        clip-path: inset(0 100% 100% 0);
+    }
+    25% {
+        clip-path: inset(0 0 100% 0);
+    }
+    50% {
+        clip-path: inset(0 0 0 0);
+    }
+    75% {
+        clip-path: inset(100% 0 0 0);
+    }
+    100% {
+        clip-path: inset(100% 100% 0 0);
     }
 }
 
