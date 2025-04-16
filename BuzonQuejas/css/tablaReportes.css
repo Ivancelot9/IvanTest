@@ -333,30 +333,40 @@ button.ver-estatus-btn:hover {
     align-items: center;
     z-index: 0;
     overflow: hidden;
-    border: 4px solid transparent;
-    border-image: conic-gradient(red 0% 10%, transparent 10% 100%) 1;
-    animation: serpienteBorde 3s linear infinite;
+    border: 2px solid transparent;
 }
 
-/* 🎨 Colores personalizados por clase */
-.filtro-rojo {
-    border-image: conic-gradient(red 0% 10%, transparent 10% 100%) 1;
-}
-.rango-amarillo {
-    border-image: conic-gradient(gold 0% 10%, transparent 10% 100%) 1;
-}
-.exportar-verde {
-    border-image: conic-gradient(#2ea043 0% 10%, transparent 10% 100%) 1;
+/* 🐍 Línea que recorre el borde SIN rotar el contenido */
+.grupo-controles::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border-radius: 10px;
+    z-index: 1;
+    pointer-events: none;
+    border: 2px solid transparent;
+    mask-image: linear-gradient(#000 0 0);
+    background: conic-gradient(red 0% 10%, transparent 10% 100%);
+    animation: serpienteBorde 2s linear infinite;
 }
 
-/* 🔁 Animación del contorno tipo vibora */
+
+.filtro-rojo::before {
+    background: conic-gradient(red 0% 10%, transparent 10% 100%);
+}
+.rango-amarillo::before {
+    background: conic-gradient(gold 0% 10%, transparent 10% 100%);
+}
+.exportar-verde::before {
+    background: conic-gradient(#2ea043 0% 10%, transparent 10% 100%);
+}
+
 @keyframes serpienteBorde {
-    from {
-        transform: rotate(0turn);
-    }
-    to {
-        transform: rotate(1turn);
-    }
+    0% { transform: rotate(0turn); }
+    100% { transform: rotate(1turn); }
 }
 
 
