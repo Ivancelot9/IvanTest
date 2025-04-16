@@ -1,4 +1,4 @@
-/* 🌌 Fondo RGB dinámico + líneas diagonales + verticales tipo HUD */
+/* 🌌 Fondo RGB dinámico + malla + HUD vertical */
 body {
     margin: 0;
     padding: 0;
@@ -8,75 +8,58 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     overflow: hidden;
+    position: relative;
 }
 
-/* 🎨 Fondo RGB animado */
+/* ✨ Fondo combinado con múltiples capas */
 body::before {
     content: "";
     position: fixed;
     top: 0; left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(130deg, #0d1117, #1f6feb, #00ffaa, #ff006e);
-    background-size: 400% 400%;
-    animation: bgGradientFlow 20s ease infinite;
-    z-index: -3;
+    z-index: -1;
+    pointer-events: none;
+
+    background-image:
+        /* HUD lateral izquierdo */
+            linear-gradient(to bottom, #58a6ff33, transparent 80%),
+                /* HUD lateral derecho */
+            linear-gradient(to bottom, #58a6ff33, transparent 80%),
+                /* Líneas diagonales (rejilla) */
+            linear-gradient(45deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+            linear-gradient(-45deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+                /* Gradiente RGB fluido */
+            linear-gradient(130deg, #0d1117, #1f6feb, #00ffaa, #ff006e);
+
+    background-size:
+            4px 100%, 4px 100%,   /* HUD */
+            60px 60px, 60px 60px, /* Rejilla */
+            400% 400%;            /* Gradiente */
+
+    background-position:
+            60px 0, right 60px top,
+            0 0, 0 0,
+            0% 50%;
+
+    background-repeat: no-repeat, no-repeat, repeat, repeat, no-repeat;
+
+    animation:
+            gridFloat 60s linear infinite,
+            bgGradientFlow 20s ease infinite;
     filter: brightness(0.2);
 }
 
-@keyframes bgGradientFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* 🧩 Líneas diagonales sutiles */
-body::after {
-    content: "";
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background-image:
-            linear-gradient(45deg, rgba(255,255,255,0.02) 1px, transparent 1px),
-            linear-gradient(-45deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 60px 60px;
-    z-index: -2;
-    pointer-events: none;
-    animation: gridFloat 60s linear infinite;
-}
-
 @keyframes gridFloat {
-    0% { background-position: 0 0; }
-    100% { background-position: 200px 200px; }
+    0% { background-position: 60px 0, right 60px top, 0 0, 0 0, 0% 50%; }
+    100% { background-position: 60px 0, right 60px top, 200px 200px, 200px 200px, 100% 50%; }
 }
 
-/* ✨ Líneas HUD verticales */
-body::before,
-body::after {
-    box-shadow: 0 0 10px #58a6ff55, 0 0 40px #58a6ff22;
-}
-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 60px;
-    height: 100%;
-    width: 4px;
-    background: linear-gradient(to bottom, #58a6ff33, transparent 80%);
-    z-index: -1;
-}
-body::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 60px;
-    height: 100%;
-    width: 4px;
-    background: linear-gradient(to bottom, #58a6ff33, transparent 80%);
-    z-index: -1;
+@keyframes bgGradientFlow {
+    0% { background-position: 60px 0, right 60px top, 0 0, 0 0, 0% 50%; }
+    50% { background-position: 60px 0, right 60px top, 200px 200px, 200px 200px, 100% 50%; }
+    100% { background-position: 60px 0, right 60px top, 0 0, 0 0, 0% 50%; }
 }
 
 /* 📦 Contenedor principal */
