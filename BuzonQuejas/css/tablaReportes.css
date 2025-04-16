@@ -364,19 +364,19 @@ button.ver-estatus-btn:hover {
 /* 🌀 Animación del borde */
 @keyframes recorrerBorde {
     0% {
-        clip-path: inset(0 100% 100% 0);
+        clip-path: polygon(0% 0%, 0% 0%);
     }
     25% {
-        clip-path: inset(0 0 100% 0);
+        clip-path: polygon(0% 0%, 100% 0%); /* 🔼 Línea superior */
     }
     50% {
-        clip-path: inset(0 0 0 0);
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%); /* ▶️ Lado derecho */
     }
     75% {
-        clip-path: inset(100% 0 0 0);
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); /* 🔽 Línea inferior */
     }
     100% {
-        clip-path: inset(100% 100% 0 0);
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%); /* ◀️ Completa */
     }
 }
 
