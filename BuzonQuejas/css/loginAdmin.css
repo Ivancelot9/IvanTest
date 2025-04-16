@@ -1,0 +1,190 @@
+/* 🌑 Estilo GitHub para fondo general */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0d1117;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Contenedor principal */
+.comic-container {
+    position: relative;
+    width: 90%;
+    max-width: 450px;
+    border: 1px solid #30363d;
+    padding: 20px;
+    background: #161b22;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    min-height: 600px;
+}
+
+/* Animación flotante */
+@keyframes float {
+    0%, 100% { transform: translateY(-5px); }
+    50% { transform: translateY(5px); }
+}
+
+/* Título estilo GitHub */
+.comic-title {
+    font-size: 2rem;
+    text-align: center;
+    color: #58a6ff;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+/* Formulario */
+.form-container {
+    background: #0d1117;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #30363d;
+}
+
+/* Contenedor de botones superiores */
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+/* Botones tipo toggle */
+.toggle-btn {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #30363d;
+    background: #21262d;
+    color: #c9d1d9;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    border-radius: 6px;
+}
+
+.toggle-btn:hover {
+    animation: vibrate-grow 0.2s ease forwards;
+}
+
+.toggle-btn.active {
+    background: #1f6feb;
+    color: white;
+    transform: scale(1.03);
+}
+
+.toggle-btn:first-child {
+    margin-right: 5px;
+}
+
+/* Botón de envío */
+.submit-btn {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #30363d;
+    background: #238636;
+    color: #f0f6fc;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 6px;
+    transition: transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-btn:hover {
+    animation: vibrate-grow 0.2s ease forwards;
+}
+
+.submit-btn:active {
+    transform: scale(1.05);
+}
+
+/* Animación vibración + crecimiento */
+@keyframes vibrate-grow {
+    0%   { transform: translate(0, 0) scale(1); }
+    25%  { transform: translate(-2px, -2px) scale(1.1); }
+    50%  { transform: translate(2px, -2px) scale(1.15); }
+    75%  { transform: translate(2px, 2px) scale(1.2); }
+    100% { transform: translate(-2px, 2px) scale(1.2); }
+}
+
+/* Caja de bienvenida */
+.welcome-box {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.welcome-box .toggle-btn {
+    cursor: default;
+    background: #21262d;
+    color: #58a6ff;
+    border: 1px solid #30363d;
+}
+
+/* Campos de entrada */
+.input-group {
+    display: flex;
+    align-items: center;
+    background: #161b22;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 25px;
+    border: 1px solid #30363d;
+}
+
+.input-group i {
+    color: #58a6ff;
+    margin-right: 10px;
+}
+
+input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 1rem;
+    color: #f0f6fc;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 8px;
+}
+
+.input-group input {
+    padding: 10px;
+    font-size: 1rem;
+}
+
+/* Logo */
+.logo {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 25%;
+    height: auto;
+}
+
+/* Ocultar íconos no deseados en inputs de tipo password */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear,
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-textfield-decoration-container,
+input[type="password"]::-webkit-password-toggle-button,
+input[type="password"]::-webkit-inner-spin-button,
+input[type="password"]::-webkit-contacts-auto-fill-button {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none;
+    height: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+    background: none;
+}
