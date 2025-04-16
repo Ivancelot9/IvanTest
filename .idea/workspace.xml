@@ -168,15 +168,7 @@
       <workItem from="1744381297604" duration="9554000" />
       <workItem from="1744640231554" duration="8471000" />
       <workItem from="1744726273556" duration="20930000" />
-      <workItem from="1744812492630" duration="3951000" />
-    </task>
-    <task id="LOCAL-00959" summary="Nuevo estilo modal descripcion git">
-      <option name="closed" value="true" />
-      <created>1744734477614</created>
-      <option name="number" value="00959" />
-      <option name="presentableId" value="LOCAL-00959" />
-      <option name="project" value="LOCAL" />
-      <updated>1744734477614</updated>
+      <workItem from="1744812492630" duration="4506000" />
     </task>
     <task id="LOCAL-00960" summary="Nuevo estilo modal descripcion git">
       <option name="closed" value="true" />
@@ -562,7 +554,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744815943434</updated>
     </task>
-    <option name="localTasksCounter" value="1008" />
+    <task id="LOCAL-01008" summary="Tabla">
+      <option name="closed" value="true" />
+      <created>1744816486572</created>
+      <option name="number" value="01008" />
+      <option name="presentableId" value="LOCAL-01008" />
+      <option name="project" value="LOCAL" />
+      <updated>1744816486572</updated>
+    </task>
+    <option name="localTasksCounter" value="1009" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

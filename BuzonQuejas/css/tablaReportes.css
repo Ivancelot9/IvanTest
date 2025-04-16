@@ -302,15 +302,15 @@ button.ver-estatus-btn:hover {
     font-style: italic;
 }
 
-/* 🎯 Contorno animado estilo Instagram Story */
-.halo-effect {
+/* Halo que se va "dibujando" alrededor del elemento */
+.halo-loader {
     position: relative;
     border-radius: 12px;
     z-index: 0;
 }
 
-/* Añade un borde giratorio parcial con efecto */
-.halo-effect::before {
+/* Efecto de línea que se va rellenando en el borde */
+.halo-loader::before {
     content: "";
     position: absolute;
     top: -3px;
@@ -318,21 +318,22 @@ button.ver-estatus-btn:hover {
     right: -3px;
     bottom: -3px;
     border-radius: 12px;
-    border: 2px solid transparent;
-    border-top: 2px solid var(--halo-color, red);
-    border-right: 2px solid var(--halo-color, red);
-    animation: halo-spin 2s linear infinite;
+    background: conic-gradient(
+            var(--halo-color, red) 0deg,
+            transparent 0deg 360deg
+    );
+    animation: halo-fill 2s linear infinite;
     z-index: -1;
     pointer-events: none;
 }
 
-/* Animación suave estilo historia IG */
-@keyframes halo-spin {
+/* Avance del "relleno" */
+@keyframes halo-fill {
     0% {
-        transform: rotate(0deg);
+        background: conic-gradient(var(--halo-color, red) 0deg, transparent 0deg 360deg);
     }
     100% {
-        transform: rotate(360deg);
+        background: conic-gradient(var(--halo-color, red) 360deg, transparent 360deg);
     }
 }
 
