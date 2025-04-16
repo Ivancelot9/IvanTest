@@ -15,7 +15,7 @@
 <body>
 <div class="comic-container">
     <!-- Imagen del logo -->
-    <img src="imagenes/GrameLogo2.png" alt="Logo Grammer" class="logo">
+    <img src="imagenes/Grammer_Logo_Original_White_sRGB_screen_transparent.png" alt="Logo Grammer" class="logo">
 
     <!-- Contenido principal -->
     <div class="comic-panel">
