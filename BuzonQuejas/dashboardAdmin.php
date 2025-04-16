@@ -177,7 +177,7 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
             </div>
 
             <!-- 🟡 Filtro de fechas -->
-            <div class="date-range-container halo-loader" style="--halo-color: yellow; padding: 10px; background-color: #0d1117; border-radius: 12px; display: flex; gap: 8px; align-items: center;">
+            <div class="date-range-container halo-loader" style="--halo-color: #c3c312; padding: 10px; background-color: #0d1117; border-radius: 12px; display: flex; gap: 8px; align-items: center;">
                 <label for="start-date">Rango:</label>
                 <input type="text" id="start-date" placeholder="dd/mm/yyyy">
                 <span>a</span>
