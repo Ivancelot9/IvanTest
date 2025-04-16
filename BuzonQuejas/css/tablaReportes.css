@@ -310,24 +310,22 @@ button.ver-estatus-btn:hover {
     padding: 2px 8px;
     border-radius: 12px;
     background-color: #0d1117;
-    overflow: hidden;
-
+    overflow: visible;
     max-width: max-content;
     white-space: nowrap;
-    min-height: 36px;
 }
 
-.halo-container svg {
+.halo-border {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: calc(100% + 2px);  /* 🔧 para evitar que corte esquinas */
+    height: calc(100% + 2px); /* 🔧 solo un pelito más alto */
     pointer-events: none;
     z-index: 0;
 }
 
-.halo-container rect {
+.halo-border rect {
     fill: none;
     stroke: var(--halo-color, red);
     stroke-width: 2;
