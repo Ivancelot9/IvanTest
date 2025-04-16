@@ -198,9 +198,10 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                     <i class="fas fa-file-excel"></i> Exportar Página
                 </button>
 
-                <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <rect x="1" y="1" width="98" height="98" />
+                <svg class="halo-border" viewBox="0 0 200 38" preserveAspectRatio="none">
+                    <rect x="1" y="1" width="198" height="36" />
                 </svg>
+
             </div>
         </div>
 

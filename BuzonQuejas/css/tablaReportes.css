@@ -253,8 +253,8 @@ button.ver-estatus-btn:hover {
     color: #f0f6fc !important;
     border: 2px solid #2ea043 !important;
     font-family: 'Segoe UI', sans-serif;
-    font-size: 0.9rem;
-    padding: 8px 16px;
+    font-size: 0.8rem;
+    padding: 5px 10px;
     cursor: pointer;
     border-radius: 6px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -263,7 +263,8 @@ button.ver-estatus-btn:hover {
     justify-content: center;
     gap: 6px;
     transition: all 0.2s ease-in-out;
-    min-width: 160px;
+    min-width: 150px;
+    height: 32px;
 }
 
 /* 🎯 Hover para el botón de exportar */
@@ -321,7 +322,7 @@ button.ver-estatus-btn:hover {
     top: 0;
     left: 0;
     width: calc(100% + 1px);  /* justo pero sin cortar esquinas */
-    height: 34px;             /* altura mínima sin cortar */
+    height: 36px;             /* altura mínima sin cortar */
     pointer-events: none;
     z-index: 0;
 }
