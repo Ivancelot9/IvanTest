@@ -59,9 +59,10 @@ body::after {
     top: 0;
     height: 100%;
     width: 4px;
-    background: linear-gradient(to bottom, #58a6ff33, transparent 80%);
+    background-color: #00ffaa;
+    border-radius: 2px;
     z-index: -1;
-    box-shadow: 0 0 10px #58a6ff55, 0 0 40px #58a6ff22;
+    animation: borderRGB 6s linear infinite;
 }
 .hud-line.left { left: 60px; }
 .hud-line.right { right: 60px; }
