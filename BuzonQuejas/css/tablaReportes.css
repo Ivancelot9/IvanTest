@@ -331,17 +331,68 @@ button.ver-estatus-btn:hover {
     display: flex;
     align-items: center;
 }
+.grupo-controles::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    pointer-events: none;
+    z-index: 1;
+    background:
+            linear-gradient(90deg, red 50%, transparent 0) top left / 200% 2px no-repeat,
+            linear-gradient(90deg, red 50%, transparent 0) bottom left / 200% 2px no-repeat,
+            linear-gradient(0deg, red 50%, transparent 0) top left / 2px 200% no-repeat,
+            linear-gradient(0deg, red 50%, transparent 0) top right / 2px 200% no-repeat;
+    animation: bordeRecorrido 4s linear infinite;
+}
+
+@keyframes bordeRecorrido {
+    0% {
+        background-position:
+                200% 0, 200% 100%, 0 200%, 100% 200%;
+    }
+    25% {
+        background-position:
+                100% 0, 200% 100%, 0 200%, 100% 200%;
+    }
+    50% {
+        background-position:
+                0 0, 100% 100%, 0 200%, 100% 200%;
+    }
+    75% {
+        background-position:
+                0 0, 0 100%, 0 100%, 100% 100%;
+    }
+    100% {
+        background-position:
+                200% 0, 200% 100%, 0 200%, 100% 200%;
+    }
+}
 
 .filtro-rojo {
-    border: 2px solid red;
+    background:
+            linear-gradient(90deg, red 50%, transparent 0) top left / 200% 2px no-repeat,
+            linear-gradient(90deg, red 50%, transparent 0) bottom left / 200% 2px no-repeat,
+            linear-gradient(0deg, red 50%, transparent 0) top left / 2px 200% no-repeat,
+            linear-gradient(0deg, red 50%, transparent 0) top right / 2px 200% no-repeat;
 }
 
 .rango-amarillo {
-    border: 2px solid gold;
+    background:
+            linear-gradient(90deg, gold 50%, transparent 0) top left / 200% 2px no-repeat,
+            linear-gradient(90deg, gold 50%, transparent 0) bottom left / 200% 2px no-repeat,
+            linear-gradient(0deg, gold 50%, transparent 0) top left / 2px 200% no-repeat,
+            linear-gradient(0deg, gold 50%, transparent 0) top right / 2px 200% no-repeat;
 }
 
 .exportar-verde {
-    border: 2px solid #2ea043;
+    background:
+            linear-gradient(90deg, #2ea043 50%, transparent 0) top left / 200% 2px no-repeat,
+            linear-gradient(90deg, #2ea043 50%, transparent 0) bottom left / 200% 2px no-repeat,
+            linear-gradient(0deg, #2ea043 50%, transparent 0) top left / 2px 200% no-repeat,
+            linear-gradient(0deg, #2ea043 50%, transparent 0) top right / 2px 200% no-repeat;
 }
 
 
