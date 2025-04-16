@@ -163,8 +163,8 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
         <!-- 🔎 Controles superiores organizados en bloques -->
         <div class="table-controls" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
 
-            <!-- 🔴 Búsqueda por columna -->
-            <div class="filter-container halo-red" style="display: flex; gap: 8px; align-items: center; border: 2px solid red; border-radius: 12px; padding: 10px;">
+            <!-- 🔴 Búsqueda -->
+            <div class="filter-container halo-effect" style="--halo-color: red; padding: 10px; background-color: #0d1117; border-radius: 12px; display: flex; gap: 8px; align-items: center;">
                 <label for="filter-column-completo">Filtrar por:</label>
                 <select id="filter-column-completo">
                     <option value="folio">Folio</option>
@@ -176,8 +176,8 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 <button id="filter-button-completo">🔍 Buscar</button>
             </div>
 
-            <!-- 🟡 Rango de fechas -->
-            <div class="date-range-container halo-yellow" style="display: flex; gap: 8px; align-items: center; border: 2px solid yellow; border-radius: 12px; padding: 10px;">
+            <!-- 🟡 Fechas -->
+            <div class="date-range-container halo-effect" style="--halo-color: yellow; padding: 10px; background-color: #0d1117; border-radius: 12px; display: flex; gap: 8px; align-items: center;">
                 <label for="start-date">Rango:</label>
                 <input type="text" id="start-date" placeholder="dd/mm/yyyy">
                 <span>a</span>
@@ -187,12 +187,11 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
             </div>
 
             <!-- 🟢 Exportar -->
-            <div class="export-group halo-green" style="margin-left: auto; border: 2px solid #2ecc71; border-radius: 12px; padding: 10px;">
+            <div class="export-group halo-effect" style="--halo-color: #2ecc71; padding: 10px; background-color: #0d1117; border-radius: 12px;">
                 <button id="exportarPaginaCompletos" class="btn-exportar">
                     <i class="fas fa-file-excel"></i> Exportar Página
                 </button>
             </div>
-        </div>
 
         <!-- Tabla de reportes completados -->
         <div class="table-container">

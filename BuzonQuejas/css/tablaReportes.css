@@ -302,30 +302,39 @@ button.ver-estatus-btn:hover {
     font-style: italic;
 }
 
-@keyframes halo-spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Solo si quieres que el contorno gire (puedes quitar la animación si no) */
-.halo-red, .halo-yellow, .halo-green {
+/* 🎯 Contorno animado estilo Instagram Story */
+.halo-effect {
     position: relative;
+    border-radius: 12px;
+    z-index: 0;
 }
 
-.halo-red::before,
-.halo-yellow::before,
-.halo-green::before {
+/* Añade un borde giratorio parcial con efecto */
+.halo-effect::before {
     content: "";
     position: absolute;
-    top: -3px; left: -3px; right: -3px; bottom: -3px;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
     border-radius: 12px;
-    animation: halo-spin 8s linear infinite;
+    border: 2px solid transparent;
+    border-top: 2px solid var(--halo-color, red);
+    border-right: 2px solid var(--halo-color, red);
+    animation: halo-spin 2s linear infinite;
+    z-index: -1;
     pointer-events: none;
 }
 
-.halo-red::before { border: 2px solid red; }
-.halo-yellow::before { border: 2px solid yellow; }
-.halo-green::before { border: 2px solid #2ecc71; }
+/* Animación suave estilo historia IG */
+@keyframes halo-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 
 
