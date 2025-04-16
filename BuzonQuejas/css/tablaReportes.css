@@ -306,12 +306,14 @@ button.ver-estatus-btn:hover {
     position: relative;
     border-radius: 12px;
     background-color: #0d1117;
-    z-index: 0;
     padding: 10px;
     overflow: hidden;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap; /* por si se reduce el espacio */
 }
 
-/* SVG línea que recorre el borde */
 .halo-container svg {
     position: absolute;
     top: 0;
@@ -319,7 +321,7 @@ button.ver-estatus-btn:hover {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 1;
+    z-index: 0;
 }
 
 .halo-container rect {

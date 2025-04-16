@@ -165,17 +165,18 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 
             <!-- 🔴 Filtro -->
             <div class="halo-container" style="--halo-color: red;">
-                <div style="display: flex; gap: 8px; align-items: center;">
-                    <label for="filter-column-completo">Filtrar por:</label>
-                    <select id="filter-column-completo">
-                        <option value="folio">Folio</option>
-                        <option value="nomina">Número de Nómina</option>
-                        <option value="encargado">Encargado</option>
-                        <option value="fechaFinalizacion">Fecha Finalización</option>
-                    </select>
-                    <input type="text" id="filter-input-completo" placeholder="Buscar...">
-                    <button id="filter-button-completo">🔍 Buscar</button>
-                </div>
+                <!-- ✅ Tu estilo visual aquí directo -->
+                <label for="filter-column-completo">Filtrar por:</label>
+                <select id="filter-column-completo">
+                    <option value="folio">Folio</option>
+                    <option value="nomina">Número de Nómina</option>
+                    <option value="encargado">Encargado</option>
+                    <option value="fechaFinalizacion">Fecha Finalización</option>
+                </select>
+                <input type="text" id="filter-input-completo" placeholder="Buscar...">
+                <button id="filter-button-completo">🔍 Buscar</button>
+
+                <!-- Contorno animado -->
                 <svg viewBox="0 0 100 100" preserveAspectRatio="none">
                     <rect x="1" y="1" width="98" height="98" />
                 </svg>
@@ -183,14 +184,13 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 
             <!-- 🟡 Fechas -->
             <div class="halo-container" style="--halo-color: yellow;">
-                <div style="display: flex; gap: 8px; align-items: center;">
-                    <label for="start-date">Rango:</label>
-                    <input type="text" id="start-date" placeholder="dd/mm/yyyy">
-                    <span>a</span>
-                    <input type="text" id="end-date" placeholder="dd/mm/yyyy">
-                    <button id="filter-date-button">📆 Filtrar</button>
-                    <button id="clear-date-button">🧹 Limpiar Rango</button>
-                </div>
+                <label for="start-date">Rango:</label>
+                <input type="text" id="start-date" placeholder="dd/mm/yyyy">
+                <span>a</span>
+                <input type="text" id="end-date" placeholder="dd/mm/yyyy">
+                <button id="filter-date-button">📆 Filtrar</button>
+                <button id="clear-date-button">🧹 Limpiar Rango</button>
+
                 <svg viewBox="0 0 100 100" preserveAspectRatio="none">
                     <rect x="1" y="1" width="98" height="98" />
                 </svg>
@@ -198,11 +198,10 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 
             <!-- 🟢 Exportar -->
             <div class="halo-container" style="--halo-color: #2ecc71;">
-                <div style="display: flex; gap: 8px; align-items: center;">
-                    <button id="exportarPaginaCompletos" class="btn-exportar">
-                        <i class="fas fa-file-excel"></i> Exportar Página
-                    </button>
-                </div>
+                <button id="exportarPaginaCompletos" class="btn-exportar">
+                    <i class="fas fa-file-excel"></i> Exportar Página
+                </button>
+
                 <svg viewBox="0 0 100 100" preserveAspectRatio="none">
                     <rect x="1" y="1" width="98" height="98" />
                 </svg>
