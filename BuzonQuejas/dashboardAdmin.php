@@ -160,10 +160,9 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
     <div id="reportes-completos" class="content comic-container" style="display: none">
         <h2 class="comic-title">Reportes Completos</h2>
 
-        <!-- 🔎 Controles superiores organizados en bloques -->
-        <div class="table-controls" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
-
-            <div class="filter-container halo-container" style="--halo-color: red;">
+        <!-- 🔎 Controles superiores (Filtro + Rango de Fechas + Exportar Página) -->
+        <div class="table-controls">
+            <div class="filter-container">
                 <label for="filter-column-completo">Filtrar por:</label>
                 <select id="filter-column-completo">
                     <option value="folio">Folio</option>
@@ -173,36 +172,22 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                 </select>
                 <input type="text" id="filter-input-completo" placeholder="Buscar...">
                 <button id="filter-button-completo">🔍 Buscar</button>
-
-                <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <rect x="1" y="1" width="98" height="98" />
-                </svg>
             </div>
 
-            <div class="date-range-container halo-container" style="--halo-color: yellow;">
-
-            <label for="start-date">Rango:</label>
+            <!-- 📅 Filtro por rango de fechas -->
+            <div class="date-range-container">
+                <label for="start-date">Rango:</label>
                 <input type="text" id="start-date" placeholder="dd/mm/yyyy">
-                <span>a</span>
+                <span> a </span>
                 <input type="text" id="end-date" placeholder="dd/mm/yyyy">
                 <button id="filter-date-button">📆 Filtrar</button>
                 <button id="clear-date-button">🧹 Limpiar Rango</button>
-
-                <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <rect x="1" y="1" width="98" height="98" />
-                </svg>
             </div>
 
-            <div class="export-group halo-container" style="--halo-color: #2ecc71;">
-                <button id="exportarPaginaCompletos" class="btn-exportar">
-                    <i class="fas fa-file-excel"></i> Exportar Página
-                </button>
-
-                <svg class="halo-border" viewBox="0 0 200 38" preserveAspectRatio="none">
-                    <rect x="1" y="1" width="198" height="36" />
-                </svg>
-
-            </div>
+            <!-- 📤 Botón "Exportar Página" con icono de Excel -->
+            <button id="exportarPaginaCompletos" class="btn-exportar">
+                <i class="fas fa-file-excel"></i> Exportar Página
+            </button>
         </div>
 
         <!-- Tabla de reportes completados -->
@@ -218,7 +203,8 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                     <th>Convertidor</th>
                 </tr>
                 </thead>
-                <tbody id="tabla-completos-body"></tbody>
+                <tbody id="tabla-completos-body">
+                </tbody>
             </table>
         </div>
 

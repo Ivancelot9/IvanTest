@@ -253,8 +253,8 @@ button.ver-estatus-btn:hover {
     color: #f0f6fc !important;
     border: 2px solid #2ea043 !important;
     font-family: 'Segoe UI', sans-serif;
-    font-size: 0.8rem;
-    padding: 5px 10px;
+    font-size: 0.9rem;
+    padding: 8px 16px;
     cursor: pointer;
     border-radius: 6px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -263,8 +263,7 @@ button.ver-estatus-btn:hover {
     justify-content: center;
     gap: 6px;
     transition: all 0.2s ease-in-out;
-    min-width: 150px;
-    height: 32px;
+    min-width: 160px;
 }
 
 /* 🎯 Hover para el botón de exportar */
@@ -303,47 +302,13 @@ button.ver-estatus-btn:hover {
     font-style: italic;
 }
 
-.halo-container {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 2px 6px; /* aún más compacto */
-    border-radius: 10px;
-    background-color: #0d1117;
-    overflow: visible;
-    max-width: max-content;
-    white-space: nowrap;
-    min-height: auto;
-}
 
-.halo-border {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: calc(100% + 1px);  /* justo pero sin cortar esquinas */
-    height: 36px;             /* altura mínima sin cortar */
-    pointer-events: none;
-    z-index: 0;
-}
-
-.halo-border rect {
-    fill: none;
-    stroke: var(--halo-color, red);
-    stroke-width: 2;
-    stroke-dasharray: 400;
-    stroke-dashoffset: 400;
-    animation: trace-border 3s linear infinite;
-    rx: 10;
-    ry: 10;
-}
 
 @keyframes trace-border {
     to {
         stroke-dashoffset: 0;
     }
 }
-
 
 
 /* 📌 Media Query para pantallas de tabletas (max-width: 1024px) */
