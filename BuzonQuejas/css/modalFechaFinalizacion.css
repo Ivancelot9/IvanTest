@@ -59,6 +59,22 @@
     border-bottom: 1px solid #30363d;
 }
 
+/* ✅ Forzar el color del mes y año (solución al texto oscuro) */
+.flatpickr-months .flatpickr-month {
+    color: #f0f6fc;
+}
+
+/* ✅ Flechas de navegación (prev/next) */
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+    color: #f0f6fc;
+}
+.flatpickr-months .flatpickr-prev-month:hover,
+.flatpickr-months .flatpickr-next-month:hover {
+    background-color: #30363d;
+    border-radius: 4px;
+}
+
 /* 🔹 Días de la semana */
 .flatpickr-weekdays {
     background-color: #161b22;
@@ -125,7 +141,7 @@
     width: 50%;
     height: 48px;
     border: 1px solid #30363d;
-    border-radius: 999px; /* pill */
+    border-radius: 999px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -136,18 +152,16 @@
     background: #f85149;
     color: white;
 }
-
 #cerrar-fecha:hover {
     background: #da3633;
     transform: scale(1.05);
 }
 
-/* 🟦 Guardar (azul GitHub) */
+/* 🟦 Guardar (verde GitHub) */
 #guardar-fecha {
     background: #238636;
     color: #f0f6fc;
 }
-
 #guardar-fecha:hover {
     background: #2ea043;
     transform: scale(1.05);
