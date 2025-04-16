@@ -13,6 +13,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+<div class="hud-line left"></div>
+<div class="hud-line right"></div>
 <div class="comic-container">
     <!-- Imagen del logo -->
     <img src="imagenes/Grammer_Logo_Original_White_sRGB_screen_transparent.png" alt="Logo Grammer" class="logo">
