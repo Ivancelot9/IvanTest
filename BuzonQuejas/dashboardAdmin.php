@@ -162,32 +162,39 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
 
         <!-- 🔎 Controles superiores (Filtro + Rango de Fechas + Exportar Página) -->
         <div class="table-controls">
-            <div class="filter-container">
-                <label for="filter-column-completo">Filtrar por:</label>
-                <select id="filter-column-completo">
-                    <option value="folio">Folio</option>
-                    <option value="nomina">Número de Nómina</option>
-                    <option value="encargado">Encargado</option>
-                    <option value="fechaFinalizacion">Fecha Finalización</option>
-                </select>
-                <input type="text" id="filter-input-completo" placeholder="Buscar...">
-                <button id="filter-button-completo">🔍 Buscar</button>
+            <!-- 🔴 Grupo de Filtro por texto -->
+            <div class="grupo-controles filtro-rojo">
+                <div class="filter-container">
+                    <label for="filter-column-completo">Filtrar por:</label>
+                    <select id="filter-column-completo">
+                        <option value="folio">Folio</option>
+                        <option value="nomina">Número de Nómina</option>
+                        <option value="encargado">Encargado</option>
+                        <option value="fechaFinalizacion">Fecha Finalización</option>
+                    </select>
+                    <input type="text" id="filter-input-completo" placeholder="Buscar...">
+                    <button id="filter-button-completo">🔍 Buscar</button>
+                </div>
             </div>
 
-            <!-- 📅 Filtro por rango de fechas -->
-            <div class="date-range-container">
-                <label for="start-date">Rango:</label>
-                <input type="text" id="start-date" placeholder="dd/mm/yyyy">
-                <span> a </span>
-                <input type="text" id="end-date" placeholder="dd/mm/yyyy">
-                <button id="filter-date-button">📆 Filtrar</button>
-                <button id="clear-date-button">🧹 Limpiar Rango</button>
+            <!-- 🟡 Grupo de Rango de Fechas -->
+            <div class="grupo-controles rango-amarillo">
+                <div class="date-range-container">
+                    <label for="start-date">Rango:</label>
+                    <input type="text" id="start-date" placeholder="dd/mm/yyyy">
+                    <span> a </span>
+                    <input type="text" id="end-date" placeholder="dd/mm/yyyy">
+                    <button id="filter-date-button">📆 Filtrar</button>
+                    <button id="clear-date-button">🧹 Limpiar Rango</button>
+                </div>
             </div>
 
-            <!-- 📤 Botón "Exportar Página" con icono de Excel -->
-            <button id="exportarPaginaCompletos" class="btn-exportar">
-                <i class="fas fa-file-excel"></i> Exportar Página
-            </button>
+            <!-- 🟢 Grupo de Exportar Página -->
+            <div class="grupo-controles exportar-verde">
+                <button id="exportarPaginaCompletos" class="btn-exportar">
+                    <i class="fas fa-file-excel"></i> Exportar Página
+                </button>
+            </div>
         </div>
 
         <!-- Tabla de reportes completados -->

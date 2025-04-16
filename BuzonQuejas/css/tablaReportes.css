@@ -279,6 +279,26 @@ button.ver-estatus-btn:hover {
     color: inherit;
 }
 
+.grupo-controles {
+    padding: 8px;
+    border-radius: 10px;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.filtro-rojo {
+    border: 2px solid red;
+}
+
+.rango-amarillo {
+    border: 2px solid gold;
+}
+
+.exportar-verde {
+    border: 2px solid #2ea043;
+}
+
 
 /* 🎭 Animación de aparición con fade-in */
 @keyframes fadeIn {
