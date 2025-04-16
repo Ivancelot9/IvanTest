@@ -69,7 +69,7 @@ body::after {
 /* 📦 Contenedor principal */
 .comic-container {
     width: 90%;
-    max-width: 460px;
+    max-width: 450px;
     background-color: #161b22;
     padding: 30px;
     border-radius: 16px;
@@ -84,7 +84,7 @@ body::after {
     transition: box-shadow 0.3s ease-in-out;
 }
 
-/* 🎮 Esquinas tipo RGB gamer */
+/* 🎮 Esquinas tipo RGB gamer ANIMADAS */
 .comic-container::before,
 .comic-container::after {
     content: "";
@@ -92,6 +92,7 @@ body::after {
     width: 18px;
     height: 18px;
     border: 2px solid #00ffaa;
+    animation: borderRGB 6s linear infinite;
     box-shadow: 0 0 12px #00ffaa99;
 }
 .comic-container::before {
@@ -105,6 +106,14 @@ body::after {
     right: -10px;
     border-left: none;
     border-top: none;
+}
+
+@keyframes borderRGB {
+    0%   { border-color: #00ffaa; box-shadow: 0 0 8px #00ffaa; }
+    25%  { border-color: #1f6feb; box-shadow: 0 0 8px #1f6feb; }
+    50%  { border-color: #ff66c4; box-shadow: 0 0 8px #ff66c4; }
+    75%  { border-color: #ff006e; box-shadow: 0 0 8px #ff006e; }
+    100% { border-color: #00ffaa; box-shadow: 0 0 8px #00ffaa; }
 }
 
 /* 🧠 Título */
@@ -209,6 +218,11 @@ input {
     box-shadow:
             0 0 15px #2ea043aa,
             0 0 30px #2ea04355;
+}
+
+.submit-btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 /* 🚫 Ocultar íconos de autocompletado */
