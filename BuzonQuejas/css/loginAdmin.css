@@ -1,4 +1,4 @@
-/* 🌌 Fondo RGB dinámico + líneas diagonales + HUD vertical */
+/* 🌌 Fondo RGB dinámico + líneas diagonales + verticales tipo HUD */
 body {
     margin: 0;
     padding: 0;
@@ -12,68 +12,93 @@ body {
     overflow: hidden;
 }
 
-/* 🎨 Fondo animado combinado */
 body::before {
     content: "";
     position: fixed;
     top: 0; left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
-    pointer-events: none;
-
-    background-image:
-            linear-gradient(to bottom, #58a6ff33, transparent 80%),
-            linear-gradient(to bottom, #58a6ff33, transparent 80%),
-            linear-gradient(45deg, rgba(255,255,255,0.02) 1px, transparent 1px),
-            linear-gradient(-45deg, rgba(255,255,255,0.02) 1px, transparent 1px),
-            linear-gradient(130deg, #0d1117, #1f6feb, #00ffaa, #ff006e);
-
-    background-size:
-            4px 100%, 4px 100%,
-            60px 60px, 60px 60px,
-            400% 400%;
-
-    background-position:
-            60px 0, right 60px top,
-            0 0, 0 0,
-            0% 50%;
-
-    background-repeat: no-repeat, no-repeat, repeat, repeat, no-repeat;
-    animation: gridFloat 60s linear infinite, bgGradientFlow 20s ease infinite;
+    background: linear-gradient(130deg, #0d1117, #1f6feb, #00ffaa, #ff006e);
+    background-size: 400% 400%;
+    animation: bgGradientFlow 20s ease infinite;
+    z-index: -3;
     filter: brightness(0.2);
 }
 
-@keyframes gridFloat {
-    0% { background-position: 60px 0, right 60px top, 0 0, 0 0, 0% 50%; }
-    100% { background-position: 60px 0, right 60px top, 200px 200px, 200px 200px, 100% 50%; }
-}
-
 @keyframes bgGradientFlow {
-    0% { background-position: 60px 0, right 60px top, 0 0, 0 0, 0% 50%; }
-    50% { background-position: 60px 0, right 60px top, 200px 200px, 200px 200px, 100% 50%; }
-    100% { background-position: 60px 0, right 60px top, 0 0, 0 0, 0% 50%; }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-/* 📦 Contenedor del formulario estilo GitHub con esquinas gamer */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+            linear-gradient(45deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+            linear-gradient(-45deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: -2;
+    pointer-events: none;
+    animation: gridFloat 60s linear infinite;
+}
+
+@keyframes gridFloat {
+    0% { background-position: 0 0; }
+    100% { background-position: 200px 200px; }
+}
+
+/* ✨ Líneas HUD verticales */
+body::before,
+body::after {
+    box-shadow: 0 0 10px #58a6ff55, 0 0 40px #58a6ff22;
+}
+
+body::before {
+    left: 60px;
+    background: linear-gradient(to bottom, #58a6ff33, transparent 80%);
+    z-index: -1;
+    width: 4px;
+}
+
+body::after {
+    right: 60px;
+    background: linear-gradient(to bottom, #58a6ff33, transparent 80%);
+    z-index: -1;
+    width: 4px;
+}
+
+/* 📦 Contenedor principal */
 .comic-container {
-    position: relative;
     width: 90%;
-    max-width: 450px;
+    max-width: 460px;
+    background-color: #161b22;
+    padding: 30px;
+    border-radius: 16px;
     border: 1px solid #30363d;
-    padding: 20px;
-    background: #161b22;
-    box-shadow:
-            0 0 5px #0d1117,
-            0 0 20px #1f6feb44,
-            0 0 60px #58a6ff22,
-            inset 0 0 5px #58a6ff22;
-    border-radius: 12px;
-    min-height: 600px;
+    box-shadow: 0 0 5px #0d1117, 0 0 20px #1f6feb44, 0 0 60px #58a6ff22, inset 0 0 5px #58a6ff22;
     z-index: 10;
+    position: relative;
+    transition: box-shadow 0.3s ease-in-out;
+    animation: floatSlow 6s ease-in-out infinite;
 }
 
-/* 🎮 Esquinas RGB gamer */
+@keyframes floatSlow {
+    0%, 100% { transform: translateY(-3px); }
+    50% { transform: translateY(5px); }
+}
+
+/* 🎮 Esquinas tipo RGB gamer animadas */
+@keyframes neonPulse {
+    0%   { box-shadow: 0 0 12px #00ffaa; border-color: #00ffaa; }
+    33%  { box-shadow: 0 0 12px #ff00cc; border-color: #ff00cc; }
+    66%  { box-shadow: 0 0 12px #1f6feb; border-color: #1f6feb; }
+    100% { box-shadow: 0 0 12px #00ffaa; border-color: #00ffaa; }
+}
+
 .comic-container::before,
 .comic-container::after {
     content: "";
@@ -81,14 +106,16 @@ body::before {
     width: 18px;
     height: 18px;
     border: 2px solid #00ffaa;
-    box-shadow: 0 0 12px #00ffaa99;
+    animation: neonPulse 6s infinite ease-in-out;
 }
+
 .comic-container::before {
     top: -10px;
     left: -10px;
     border-right: none;
     border-bottom: none;
 }
+
 .comic-container::after {
     bottom: -10px;
     right: -10px;
@@ -96,146 +123,115 @@ body::before {
     border-top: none;
 }
 
-/* Título central */
+/* 🧠 Título */
 .comic-title {
     font-size: 2rem;
     text-align: center;
     color: #58a6ff;
+    font-weight: bold;
+    margin-bottom: 25px;
     text-transform: uppercase;
-    margin-bottom: 20px;
     letter-spacing: 1px;
+    text-shadow: 0 0 5px #ff66cc, 0 0 10px #1f6feb;
 }
 
-/* Logo */
+/* 🖼 Logo */
 .logo {
     display: block;
     margin: 0 auto 20px;
-    max-width: 25%;
-    height: auto;
+    max-width: 64px;
 }
 
-/* Formulario */
-.form-container {
-    background: #0d1117;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #30363d;
-}
-
-/* Botones toggle superiores */
+/* 🔵 Botones de pestañas */
 .form-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .toggle-btn {
     flex: 1;
-    padding: 12px;
-    border: 1px solid #30363d;
+    padding: 12px 0;
+    border: none;
     background: #21262d;
     color: #c9d1d9;
-    font-weight: 600;
+    font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border-radius: 6px;
-}
-
-.toggle-btn:hover {
-    animation: vibrate-grow 0.2s ease forwards;
+    margin: 0 4px;
+    transition: all 0.3s ease;
 }
 
 .toggle-btn.active {
     background: #1f6feb;
     color: white;
-    transform: scale(1.03);
+    box-shadow: 0 0 10px #1f6feb, 0 0 20px #1f6feb55;
 }
 
-.toggle-btn:first-child {
-    margin-right: 5px;
-}
-
-/* Input groups */
+/* 🧩 Inputs */
 .input-group {
     display: flex;
     align-items: center;
-    background: #161b22;
+    background: #21262d;
     border-radius: 6px;
-    padding: 10px;
-    margin-bottom: 25px;
+    padding: 12px 14px;
+    margin-bottom: 18px;
     border: 1px solid #30363d;
+    color: #8b949e;
+    transition: border-color 0.3s ease;
+}
+
+.input-group:hover {
+    border-color: #ff66cc;
+    box-shadow: 0 0 8px #ff66cc33;
 }
 
 .input-group i {
-    color: #58a6ff;
     margin-right: 10px;
-}
-
-.input-group input {
-    flex: 1;
-    border: none;
-    background: transparent;
-    outline: none;
     font-size: 1rem;
-    color: #f0f6fc;
-    font-family: 'Segoe UI', sans-serif;
-    padding: 10px;
+    color: #58a6ff;
 }
 
-/* Botón de envío */
-.submit-btn {
+input {
     flex: 1;
-    padding: 12px;
-    border: 1px solid #30363d;
-    background: #238636;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
     color: #f0f6fc;
-    font-weight: 600;
+}
+
+/* 🟢 Botón de acción tipo neón verde con glow rosa */
+.submit-btn {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    border-radius: 6px;
+    background: #238636;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
     text-transform: uppercase;
     cursor: pointer;
-    font-size: 1.2rem;
-    border-radius: 6px;
-    transition: transform 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow:
-            0 0 10px #23863677,
-            0 0 20px #2ea04344;
+    transition: all 0.3s ease;
+    animation: greenPulse 4s infinite;
+    box-shadow: 0 0 10px #ff66cc66, 0 0 20px #ff66cc33;
+}
+
+@keyframes greenPulse {
+    0%   { box-shadow: 0 0 10px #ff66cc66; }
+    50%  { box-shadow: 0 0 20px #ff66ccaa; }
+    100% { box-shadow: 0 0 10px #ff66cc66; }
 }
 
 .submit-btn:hover {
-    animation: vibrate-grow 0.2s ease forwards;
+    background: #2ea043;
+    transform: scale(1.03);
 }
 
-.submit-btn:active {
-    transform: scale(1.05);
-}
-
-/* Vibración animada */
-@keyframes vibrate-grow {
-    0%   { transform: translate(0, 0) scale(1); }
-    25%  { transform: translate(-2px, -2px) scale(1.1); }
-    50%  { transform: translate(2px, -2px) scale(1.15); }
-    75%  { transform: translate(2px, 2px) scale(1.2); }
-    100% { transform: translate(-2px, 2px) scale(1.2); }
-}
-
-/* Bienvenida */
-.welcome-box {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.welcome-box .toggle-btn {
-    cursor: default;
-    background: #21262d;
-    color: #58a6ff;
-    border: 1px solid #30363d;
-}
-
-/* Ocultar íconos del input password */
+/* 🚫 Ocultar íconos de autocompletado */
 input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear,
 input::-webkit-credentials-auto-fill-button,
