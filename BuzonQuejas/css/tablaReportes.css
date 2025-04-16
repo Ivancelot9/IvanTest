@@ -325,68 +325,23 @@ button.ver-estatus-btn:hover {
 
 
 .grupo-controles {
-    position: relative;
     padding: 8px;
     border-radius: 10px;
     margin-right: 8px;
     display: flex;
     align-items: center;
-    z-index: 0;
-    overflow: hidden;
-    border: 2px solid transparent;
 }
 
-/* 🐍 Línea animada tipo borde dibujado */
-.grupo-controles::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    border: 2px solid red; /* Se reemplaza por color en cada clase */
-    box-sizing: border-box;
-    pointer-events: none;
-    z-index: 1;
-    animation: dibujarBorde 2s linear infinite;
-    border-style: solid;
-    border-width: 2px;
-    border-color: red;
-    border-image: none;
-    mask-image: none;
+.filtro-rojo {
+    border: 2px solid red;
 }
 
-
-.filtro-rojo::before {
-    border-color: red;
-    box-shadow: 0 0 0 2px red inset;
+.rango-amarillo {
+    border: 2px solid gold;
 }
 
-.rango-amarillo::before {
-    border-color: gold;
-    box-shadow: 0 0 0 2px gold inset;
-}
-
-.exportar-verde::before {
-    border-color: #2ea043;
-    box-shadow: 0 0 0 2px #2ea043 inset;
-}
-
-
-@keyframes dibujarBorde {
-    0% {
-        border-color: transparent;
-        box-shadow: 0 0 0 0 red inset;
-    }
-    50% {
-        border-color: red;
-        box-shadow: 0 0 0 2px red inset;
-    }
-    100% {
-        border-color: transparent;
-        box-shadow: 0 0 0 0 red inset;
-    }
+.exportar-verde {
+    border: 2px solid #2ea043;
 }
 
 
