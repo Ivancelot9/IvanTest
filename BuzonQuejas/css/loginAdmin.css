@@ -1,4 +1,4 @@
-/* 🌌 Fondo RGB dinámico + malla animada */
+/* 🌌 Fondo RGB dinámico + líneas diagonales + verticales tipo HUD */
 body {
     margin: 0;
     padding: 0;
@@ -12,6 +12,7 @@ body {
     overflow: hidden;
 }
 
+/* 🎨 Fondo RGB animado */
 body::before {
     content: "";
     position: fixed;
@@ -21,7 +22,7 @@ body::before {
     background: linear-gradient(130deg, #0d1117, #1f6feb, #00ffaa, #ff006e);
     background-size: 400% 400%;
     animation: bgGradientFlow 20s ease infinite;
-    z-index: -2;
+    z-index: -3;
     filter: brightness(0.2);
 }
 
@@ -31,6 +32,7 @@ body::before {
     100% { background-position: 0% 50%; }
 }
 
+/* 🧩 Líneas diagonales sutiles */
 body::after {
     content: "";
     position: fixed;
@@ -41,7 +43,7 @@ body::after {
             linear-gradient(45deg, rgba(255,255,255,0.02) 1px, transparent 1px),
             linear-gradient(-45deg, rgba(255,255,255,0.02) 1px, transparent 1px);
     background-size: 60px 60px;
-    z-index: -1;
+    z-index: -2;
     pointer-events: none;
     animation: gridFloat 60s linear infinite;
 }
@@ -51,75 +53,92 @@ body::after {
     100% { background-position: 200px 200px; }
 }
 
-/* Contenedor principal */
-.comic-container {
-    width: 90%;
-    max-width: 450px;
-    padding: 20px 30px;
-    background-color: #0d1117;
-    border: 2px solid #30363d;
-    border-radius: 16px;
-    box-shadow:
-            0 0 12px #00ffcc66,
-            0 0 18px #ff005566,
-            0 0 28px #ff006e88;
-    position: relative;
-    z-index: 10;
+/* ✨ Líneas HUD verticales */
+body::before,
+body::after {
+    box-shadow: 0 0 10px #58a6ff55, 0 0 40px #58a6ff22;
+}
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 60px;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(to bottom, #58a6ff33, transparent 80%);
+    z-index: -1;
+}
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 60px;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(to bottom, #58a6ff33, transparent 80%);
+    z-index: -1;
 }
 
-/* Esquinas RGB tipo neon */
+/* 📦 Contenedor principal */
+.comic-container {
+    width: 90%;
+    max-width: 460px;
+    background-color: #161b22;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #30363d;
+    box-shadow:
+            0 0 5px #0d1117,
+            0 0 20px #1f6feb44,
+            0 0 60px #58a6ff22,
+            inset 0 0 5px #58a6ff22;
+    z-index: 10;
+    position: relative;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* 🎮 Esquinas tipo RGB gamer */
 .comic-container::before,
 .comic-container::after {
     content: "";
     position: absolute;
-    width: 14px;
-    height: 14px;
-    border: 2px solid #00ffcc;
-    background-color: #0d1117;
-    box-shadow: 0 0 12px #00ffcc;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #00ffaa;
+    box-shadow: 0 0 12px #00ffaa99;
 }
-
 .comic-container::before {
-    top: -7px;
-    left: -7px;
+    top: -10px;
+    left: -10px;
     border-right: none;
     border-bottom: none;
-    border-top-left-radius: 6px;
 }
-
 .comic-container::after {
-    bottom: -7px;
-    right: -7px;
+    bottom: -10px;
+    right: -10px;
     border-left: none;
     border-top: none;
-    border-bottom-right-radius: 6px;
 }
 
-/* Título */
+/* 🧠 Título */
 .comic-title {
     font-size: 2rem;
     text-align: center;
     color: #58a6ff;
+    font-weight: bold;
+    margin-bottom: 25px;
     text-transform: uppercase;
-    margin-bottom: 20px;
     letter-spacing: 1px;
 }
 
-/* Logo */
+/* 🖼 Logo */
 .logo {
     display: block;
-    margin: 0 auto 15px;
-    max-width: 60px;
+    margin: 0 auto 20px;
+    max-width: 64px;
 }
 
-/* Formulario */
-.form-container {
-    background: transparent;
-    padding: 0;
-    border-radius: 10px;
-}
-
-/* Toggle botones superior */
+/* 🔵 Botones de pestañas */
 .form-header {
     display: flex;
     justify-content: space-between;
@@ -129,93 +148,86 @@ body::after {
 .toggle-btn {
     flex: 1;
     padding: 12px 0;
-    font-weight: bold;
-    font-size: 1rem;
     border: none;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    text-transform: uppercase;
+    background: #21262d;
     color: #c9d1d9;
-    background-color: #21262d;
-}
-
-.toggle-btn:first-child {
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
-}
-
-.toggle-btn:last-child {
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 6px;
+    margin: 0 4px;
+    transition: all 0.3s ease;
 }
 
 .toggle-btn.active {
-    background-color: #1f6feb;
+    background: #1f6feb;
     color: white;
+    box-shadow: 0 0 10px #1f6feb, 0 0 20px #1f6feb55;
 }
 
-/* Grupos de input */
+/* 🧩 Inputs */
 .input-group {
-    background-color: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 6px;
     display: flex;
     align-items: center;
-    padding: 10px 12px;
-    margin-bottom: 20px;
+    background: #21262d;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    border: 1px solid #30363d;
+    color: #8b949e;
     transition: border-color 0.3s ease;
+}
+.input-group:hover {
+    border-color: #58a6ff;
+    box-shadow: 0 0 8px #58a6ff33;
 }
 
 .input-group i {
-    color: #58a6ff;
     margin-right: 10px;
     font-size: 1rem;
+    color: #58a6ff;
 }
 
-.input-group input {
+input {
+    flex: 1;
     background: transparent;
     border: none;
-    color: #c9d1d9;
-    font-size: 1rem;
-    flex: 1;
     outline: none;
+    font-size: 0.95rem;
+    color: #f0f6fc;
 }
 
-/* Botón de acción principal */
+/* 🟢 Botón de acción tipo neón verde */
 .submit-btn {
-    background-color: #238636;
-    color: white;
-    font-weight: bold;
-    padding: 12px;
-    font-size: 1.1rem;
+    width: 100%;
+    padding: 12px 0;
     border: none;
     border-radius: 6px;
+    background: #238636;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
     cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 0 10px #00ffaa88;
+    transition: all 0.3s ease;
+    box-shadow:
+            0 0 10px #23863677,
+            0 0 20px #2ea04344;
 }
 
 .submit-btn:hover {
-    background-color: #2ea043;
+    background: #2ea043;
     transform: scale(1.03);
+    box-shadow:
+            0 0 15px #2ea043aa,
+            0 0 30px #2ea04355;
 }
 
-.submit-btn:active {
-    transform: scale(0.98);
-}
-
-/* Ocultar elementos molestos del input password */
+/* 🚫 Ocultar íconos de autocompletado */
 input[type="password"]::-ms-reveal,
-input[type="password"]::-webkit-credentials-auto-fill-button {
+input[type="password"]::-ms-clear,
+input::-webkit-credentials-auto-fill-button,
+input::-webkit-password-toggle-button {
     display: none !important;
-}
-
-/* Animación de vibración suave */
-@keyframes vibrate-grow {
-    0% { transform: translate(0, 0) scale(1); }
-    25% { transform: translate(-1px, -1px) scale(1.02); }
-    50% { transform: translate(1px, -1px) scale(1.04); }
-    75% { transform: translate(1px, 1px) scale(1.06); }
-    100% { transform: translate(-1px, 1px) scale(1.05); }
 }
