@@ -1,4 +1,4 @@
-/* 🌌 Fondo oscuro y limpio */
+/* 🌌 Fondo RGB dinámico + malla animada */
 body {
     margin: 0;
     padding: 0;
@@ -8,77 +8,118 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     overflow: hidden;
 }
 
-/* 🌈 Animación RGB cíclica */
-@keyframes borderRGB {
-    0%   { box-shadow: 0 0 10px #ff0059, 0 0 40px #ff0059; }
-    25%  { box-shadow: 0 0 10px #00ffe7, 0 0 40px #00ffe7; }
-    50%  { box-shadow: 0 0 10px #00ff00, 0 0 40px #00ff00; }
-    75%  { box-shadow: 0 0 10px #ffaa00, 0 0 40px #ffaa00; }
-    100% { box-shadow: 0 0 10px #ff0059, 0 0 40px #ff0059; }
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(130deg, #0d1117, #1f6feb, #00ffaa, #ff006e);
+    background-size: 400% 400%;
+    animation: bgGradientFlow 20s ease infinite;
+    z-index: -2;
+    filter: brightness(0.2);
 }
 
-/* 🎮 Contenedor principal con efecto RGB */
+@keyframes bgGradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+            linear-gradient(45deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+            linear-gradient(-45deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: -1;
+    pointer-events: none;
+    animation: gridFloat 60s linear infinite;
+}
+
+@keyframes gridFloat {
+    0% { background-position: 0 0; }
+    100% { background-position: 200px 200px; }
+}
+
+/* Contenedor principal */
 .comic-container {
-    position: relative;
     width: 90%;
-    max-width: 460px;
-    background: #161b22;
-    padding: 30px;
+    max-width: 450px;
+    padding: 20px 30px;
+    background-color: #0d1117;
+    border: 2px solid #30363d;
     border-radius: 16px;
-    border: 2px solid #21262d;
-    animation: borderRGB 5s linear infinite;
     box-shadow:
-            inset 0 0 8px #30363d,
-            0 0 30px rgba(0, 0, 0, 0.4);
+            0 0 12px #00ffcc66,
+            0 0 18px #ff005566,
+            0 0 28px #ff006e88;
+    position: relative;
+    z-index: 10;
 }
 
-/* 🔹 Esquinas animadas RGB */
+/* Esquinas RGB tipo neon */
 .comic-container::before,
 .comic-container::after {
     content: "";
     position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 2px solid;
-    border-image: linear-gradient(45deg, #00ffe7, #ff00cc, #00ff00, #ffaa00) 1;
-    animation: borderRGB 6s linear infinite;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #00ffcc;
+    background-color: #0d1117;
+    box-shadow: 0 0 12px #00ffcc;
 }
 
 .comic-container::before {
-    top: -10px;
-    left: -10px;
+    top: -7px;
+    left: -7px;
     border-right: none;
     border-bottom: none;
-}
-.comic-container::after {
-    bottom: -10px;
-    right: -10px;
-    border-left: none;
-    border-top: none;
+    border-top-left-radius: 6px;
 }
 
-/* 🧠 Título */
+.comic-container::after {
+    bottom: -7px;
+    right: -7px;
+    border-left: none;
+    border-top: none;
+    border-bottom-right-radius: 6px;
+}
+
+/* Título */
 .comic-title {
     font-size: 2rem;
     text-align: center;
     color: #58a6ff;
-    font-weight: bold;
-    margin-bottom: 25px;
     text-transform: uppercase;
+    margin-bottom: 20px;
     letter-spacing: 1px;
 }
 
-/* 🖼 Logo */
+/* Logo */
 .logo {
     display: block;
-    margin: 0 auto 20px;
-    max-width: 64px;
+    margin: 0 auto 15px;
+    max-width: 60px;
 }
 
-/* 🔘 Botones de navegación */
+/* Formulario */
+.form-container {
+    background: transparent;
+    padding: 0;
+    border-radius: 10px;
+}
+
+/* Toggle botones superior */
 .form-header {
     display: flex;
     justify-content: space-between;
@@ -88,86 +129,93 @@ body {
 .toggle-btn {
     flex: 1;
     padding: 12px 0;
-    border: none;
-    background: #21262d;
-    color: #c9d1d9;
     font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
     font-size: 1rem;
-    border-radius: 6px;
-    margin: 0 4px;
-    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-transform: uppercase;
+    color: #c9d1d9;
+    background-color: #21262d;
+}
+
+.toggle-btn:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.toggle-btn:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
 
 .toggle-btn.active {
-    background: #1f6feb;
+    background-color: #1f6feb;
     color: white;
-    box-shadow: 0 0 10px #1f6feb, 0 0 20px #1f6feb77;
 }
 
-/* 📥 Inputs */
+/* Grupos de input */
 .input-group {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
     display: flex;
     align-items: center;
-    background: #21262d;
-    border-radius: 6px;
-    padding: 12px 14px;
-    margin-bottom: 18px;
-    border: 1px solid #30363d;
-    color: #8b949e;
+    padding: 10px 12px;
+    margin-bottom: 20px;
     transition: border-color 0.3s ease;
-}
-.input-group:hover {
-    border-color: #00ffee;
-    box-shadow: 0 0 8px #00ffee55;
 }
 
 .input-group i {
+    color: #58a6ff;
     margin-right: 10px;
     font-size: 1rem;
-    color: #00ffee;
 }
 
-input {
-    flex: 1;
+.input-group input {
     background: transparent;
     border: none;
+    color: #c9d1d9;
+    font-size: 1rem;
+    flex: 1;
     outline: none;
-    font-size: 0.95rem;
-    color: #f0f6fc;
 }
 
-/* 🎯 Botón submit con glow */
+/* Botón de acción principal */
 .submit-btn {
-    width: 100%;
-    padding: 12px 0;
+    background-color: #238636;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    font-size: 1.1rem;
     border: none;
     border-radius: 6px;
-    background: #00ff88;
-    color: #0d1117;
-    font-weight: bold;
-    font-size: 1rem;
-    text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow:
-            0 0 10px #00ff88aa,
-            0 0 20px #00ff8855;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 0 10px #00ffaa88;
 }
 
 .submit-btn:hover {
-    background: #00ffaa;
+    background-color: #2ea043;
     transform: scale(1.03);
-    box-shadow:
-            0 0 20px #00ffaa,
-            0 0 30px #00ffaa55;
 }
 
-/* ❌ Anti autocompletado íconos */
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* Ocultar elementos molestos del input password */
 input[type="password"]::-ms-reveal,
-input[type="password"]::-ms-clear,
-input::-webkit-credentials-auto-fill-button,
-input::-webkit-password-toggle-button {
+input[type="password"]::-webkit-credentials-auto-fill-button {
     display: none !important;
+}
+
+/* Animación de vibración suave */
+@keyframes vibrate-grow {
+    0% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-1px, -1px) scale(1.02); }
+    50% { transform: translate(1px, -1px) scale(1.04); }
+    75% { transform: translate(1px, 1px) scale(1.06); }
+    100% { transform: translate(-1px, 1px) scale(1.05); }
 }
