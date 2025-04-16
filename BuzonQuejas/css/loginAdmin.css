@@ -166,14 +166,14 @@ body::after {
     transition: border-color 0.3s ease;
 }
 .input-group:hover {
-    border-color: #ff66c4;
-    box-shadow: 0 0 8px #ff66c455;
+    border-color: #1094e0;
+    box-shadow: 0 0 8px #1094e0;
 }
 
 .input-group i {
     margin-right: 10px;
     font-size: 1rem;
-    color: #ff66c4;
+    color: #1094e0;
 }
 
 input {
