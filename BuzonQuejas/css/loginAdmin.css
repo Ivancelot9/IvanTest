@@ -59,14 +59,21 @@ body::after {
     top: 0;
     height: 100%;
     width: 4px;
-    background-color: #00ffaa; /* 🔄 Ahora sí animable */
+    background-color: #00ffaa;
     border-radius: 2px;
     z-index: -1;
-    animation: borderRGB 6s linear infinite; /* 🌈 Usa misma animación RGB */
-    box-shadow: 0 0 10px #00ffaa88, 0 0 40px #00ffaa44;
+    animation: hudLineRGB 6s linear infinite; /* ✅ Nueva animación para color de fondo */
 }
 .hud-line.left { left: 60px; }
 .hud-line.right { right: 60px; }
+
+@keyframes hudLineRGB {
+    0%   { background-color: #00ffaa; box-shadow: 0 0 10px #00ffaa88, 0 0 40px #00ffaa44; }
+    25%  { background-color: #1f6feb; box-shadow: 0 0 10px #1f6feb88, 0 0 40px #1f6feb44; }
+    50%  { background-color: #ff66c4; box-shadow: 0 0 10px #ff66c488, 0 0 40px #ff66c444; }
+    75%  { background-color: #ff006e; box-shadow: 0 0 10px #ff006e88, 0 0 40px #ff006e44; }
+    100% { background-color: #00ffaa; box-shadow: 0 0 10px #00ffaa88, 0 0 40px #00ffaa44; }
+}
 
 /* 📦 Contenedor principal */
 .comic-container {
