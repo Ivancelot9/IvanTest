@@ -332,11 +332,11 @@ button.ver-estatus-btn:hover {
     display: flex;
     align-items: center;
     z-index: 0;
-    overflow: hidden;
+    overflow: visible;
     border: 2px solid transparent;
 }
 
-/* 🐍 Línea que recorre el borde SIN rotar el contenido */
+/* 🐍 Contorno animado real, SIN MASK */
 .grupo-controles::before {
     content: "";
     position: absolute;
@@ -348,9 +348,9 @@ button.ver-estatus-btn:hover {
     z-index: 1;
     pointer-events: none;
     border: 2px solid transparent;
-    mask-image: linear-gradient(#000 0 0);
     background: conic-gradient(red 0% 10%, transparent 10% 100%);
-    animation: serpienteBorde 2s linear infinite;
+    animation: bordeRecorrido 2s linear infinite;
+    transform-origin: center;
 }
 
 
@@ -364,9 +364,9 @@ button.ver-estatus-btn:hover {
     background: conic-gradient(#2ea043 0% 10%, transparent 10% 100%);
 }
 
-@keyframes serpienteBorde {
-    0% { transform: rotate(0turn); }
-    100% { transform: rotate(1turn); }
+@keyframes bordeRecorrido {
+    from { transform: rotate(0turn); }
+    to { transform: rotate(1turn); }
 }
 
 
