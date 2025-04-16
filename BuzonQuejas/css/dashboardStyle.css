@@ -432,16 +432,13 @@ input[disabled], textarea[disabled] {
 
 /* 🔥 Estilos del texto en la pantalla de carga */
 .loading-text {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2rem;
-    font-family: sans-serif;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.8rem;
     color: #f0f6fc;
     text-transform: uppercase;
     letter-spacing: 2px;
     animation: fadeIn 1s ease-in-out;
+    z-index: 1;
 }
 
 /* 🔄 Animación para que aparezca suavemente */

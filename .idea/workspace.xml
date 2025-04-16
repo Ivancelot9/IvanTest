@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="cerrar sesion">
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,15 +167,7 @@
       <workItem from="1744381297604" duration="9554000" />
       <workItem from="1744640231554" duration="8471000" />
       <workItem from="1744726273556" duration="20930000" />
-      <workItem from="1744812492630" duration="13473000" />
-    </task>
-    <task id="LOCAL-00994" summary="Nuevo Sidebar">
-      <option name="closed" value="true" />
-      <created>1744743133791</created>
-      <option name="number" value="00994" />
-      <option name="presentableId" value="LOCAL-00994" />
-      <option name="project" value="LOCAL" />
-      <updated>1744743133791</updated>
+      <workItem from="1744812492630" duration="13654000" />
     </task>
     <task id="LOCAL-00995" summary="Nuevo Sidebar">
       <option name="closed" value="true" />
@@ -561,7 +553,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744826424156</updated>
     </task>
-    <option name="localTasksCounter" value="1043" />
+    <task id="LOCAL-01043" summary="cerrar sesion">
+      <option name="closed" value="true" />
+      <created>1744826736646</created>
+      <option name="number" value="01043" />
+      <option name="presentableId" value="LOCAL-01043" />
+      <option name="project" value="LOCAL" />
+      <updated>1744826736646</updated>
+    </task>
+    <option name="localTasksCounter" value="1044" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -613,7 +613,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Rediseño Modal Estatus" />
     <MESSAGE value="Rediseño Modal Fecha Finalizacion" />
     <MESSAGE value="Evitar Inyeccion Agregar Comentario" />
     <MESSAGE value="Evitar Inyeccion Conseguir Reportes Completos PHP" />
@@ -638,7 +637,8 @@
     <MESSAGE value="Nuevo estilo modal fecha finalizacion git" />
     <MESSAGE value="Nuevo Sidebar" />
     <MESSAGE value="Tabla" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tabla" />
+    <MESSAGE value="cerrar sesion" />
+    <option name="LAST_COMMIT_MESSAGE" value="cerrar sesion" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
