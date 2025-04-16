@@ -306,12 +306,13 @@ button.ver-estatus-btn:hover {
     position: relative;
     border-radius: 12px;
     background-color: #0d1117;
-    padding: 10px;
+    padding: 8px 12px;
     overflow: hidden;
-    display: flex;
+    display: inline-flex; /* ✅ importante: inline-flex para no ocupar todo el ancho */
     gap: 8px;
     align-items: center;
-    flex-wrap: wrap; /* por si se reduce el espacio */
+    flex-wrap: nowrap; /* ❌ NO permitas que baje a otra línea */
+    max-width: fit-content; /* ✅ que el contenedor se ajuste al contenido */
 }
 
 .halo-container svg {
