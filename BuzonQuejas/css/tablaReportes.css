@@ -307,20 +307,21 @@ button.ver-estatus-btn:hover {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 2px 8px;
-    border-radius: 12px;
+    padding: 2px 6px; /* aún más compacto */
+    border-radius: 10px;
     background-color: #0d1117;
     overflow: visible;
     max-width: max-content;
     white-space: nowrap;
+    min-height: auto;
 }
 
 .halo-border {
     position: absolute;
     top: 0;
     left: 0;
-    width: calc(100% + 2px);  /* 🔧 para evitar que corte esquinas */
-    height: calc(100% + 2px); /* 🔧 solo un pelito más alto */
+    width: calc(100% + 1px);  /* justo pero sin cortar esquinas */
+    height: 34px;             /* altura mínima sin cortar */
     pointer-events: none;
     z-index: 0;
 }
@@ -332,8 +333,8 @@ button.ver-estatus-btn:hover {
     stroke-dasharray: 400;
     stroke-dashoffset: 400;
     animation: trace-border 3s linear infinite;
-    rx: 12;
-    ry: 12;
+    rx: 10;
+    ry: 10;
 }
 
 @keyframes trace-border {
@@ -341,6 +342,7 @@ button.ver-estatus-btn:hover {
         stroke-dashoffset: 0;
     }
 }
+
 
 
 /* 📌 Media Query para pantallas de tabletas (max-width: 1024px) */
