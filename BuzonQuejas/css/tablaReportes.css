@@ -362,15 +362,14 @@ button.ver-estatus-btn:hover {
     pointer-events: none;
 }
 
-.borde-serpiente rect {
+/* 🐍 Línea animada bordeando el contorno */
+.borde-serpiente path {
     fill: none;
     stroke: #b8860b;
     stroke-width: 2;
     stroke-dasharray: 400;
     stroke-dashoffset: 400;
     animation: trazar-borde 4s linear infinite;
-    rx: 10;
-    ry: 10;
 }
 
 @keyframes trazar-borde {
