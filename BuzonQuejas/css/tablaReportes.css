@@ -330,19 +330,39 @@ button.ver-estatus-btn:hover {
     margin-right: 8px;
     display: flex;
     align-items: center;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* 🔴 Borde rojo */
 .filtro-rojo {
     border: 2px solid red;
 }
 
-.rango-amarillo {
-    border: 2px solid gold;
+.filtro-rojo:hover {
+    border-color: #ff4d4d;
+    box-shadow: 0 0 5px rgba(255, 77, 77, 0.5);
 }
 
+/* 🟡 Amarillo mostaza oscuro */
+.rango-amarillo {
+    border: 2px solid #b8860b; /* mostaza oscuro */
+}
+
+.rango-amarillo:hover {
+    border-color: #daa520; /* dorado oscuro al hover */
+    box-shadow: 0 0 5px rgba(218, 165, 32, 0.4);
+}
+
+/* 🟢 Verde GitHub */
 .exportar-verde {
     border: 2px solid #2ea043;
 }
+
+.exportar-verde:hover {
+    border-color: #38c367;
+    box-shadow: 0 0 5px rgba(46, 160, 67, 0.4);
+}
+
 
 
 
