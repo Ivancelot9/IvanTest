@@ -3,31 +3,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (btnCerrarSesion) {
         btnCerrarSesion.addEventListener("click", function (e) {
-            e.preventDefault(); // Evita que recargue la página
+            e.preventDefault();
 
-            // 🔥 Ocultar contenido del dashboard y mostrar la pantalla de carga
             document.querySelector(".sidebar").style.display = "none";
             document.querySelector(".main-content").style.display = "none";
 
             const loadingScreen = document.getElementById("loading-screen");
             const heroLoading = document.getElementById("hero-loading");
 
-            // 🟢 Mostrar la pantalla de carga y reiniciar la animación
             loadingScreen.style.opacity = "1";
             loadingScreen.style.visibility = "visible";
 
-            // 🔄 Reiniciar la animación eliminando clases y aplicándola de nuevo
-            heroLoading.style.animation = "none"; // Se elimina la animación anterior
-            void heroLoading.offsetWidth; // 🔥 Truco para reiniciar la animación correctamente
-            heroLoading.style.animation = "fly-right 2s ease-in-out forwards"; // Activar animación
+            heroLoading.style.animation = "none";
+            void heroLoading.offsetWidth;
+            heroLoading.style.animation = "fly-right 2s ease-in-out forwards";
 
-            // 📌 Hacer la solicitud al servidor para cerrar sesión
-            fetch('https://grammermx.com/IvanTest/BuzonQuejas/dao/cerrarSesion.php', { method: 'POST' })
+            // ✅ Obtener tab_id de esta pestaña
+            const tab_id = sessionStorage.getItem("tab_id");
+
+            // 📌 Cerrar solo esta pestaña (via GET)
+            fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/cerrarSesion.php?tab_id=${tab_id}`, {
+                method: 'GET'
+            })
                 .then(response => {
                     if (response.ok) {
                         setTimeout(() => {
-                            window.location.href = "https://grammermx.com/IvanTest/BuzonQuejas/index.php"; // 🔄 Redirigir al login
-                        }, 2500); // Esperar el tiempo de la animación
+                            window.location.href = "https://grammermx.com/IvanTest/BuzonQuejas/index.php";
+                        }, 2500);
                     } else {
                         alert("Error al cerrar sesión. Inténtalo nuevamente.");
                     }

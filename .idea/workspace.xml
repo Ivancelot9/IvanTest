@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="animacion controles tablas">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Evitando sobreescribir en la misma sesion">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/validacionAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/validacionAdmin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardAdmin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/inicioSesion.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/inicioSesion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/cerrarSesion.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/cerrarSesion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,15 +169,7 @@
       <workItem from="1744640231554" duration="8471000" />
       <workItem from="1744726273556" duration="20930000" />
       <workItem from="1744812492630" duration="18894000" />
-      <workItem from="1745245226590" duration="6058000" />
-    </task>
-    <task id="LOCAL-01034" summary="Tabla">
-      <option name="closed" value="true" />
-      <created>1744824953333</created>
-      <option name="number" value="01034" />
-      <option name="presentableId" value="LOCAL-01034" />
-      <option name="project" value="LOCAL" />
-      <updated>1744824953333</updated>
+      <workItem from="1745245226590" duration="6824000" />
     </task>
     <task id="LOCAL-01035" summary="Tabla">
       <option name="closed" value="true" />
@@ -565,7 +555,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745250890491</updated>
     </task>
-    <option name="localTasksCounter" value="1083" />
+    <task id="LOCAL-01083" summary="Evitando sobreescribir en la misma sesion">
+      <option name="closed" value="true" />
+      <created>1745252071401</created>
+      <option name="number" value="01083" />
+      <option name="presentableId" value="LOCAL-01083" />
+      <option name="project" value="LOCAL" />
+      <updated>1745252071401</updated>
+    </task>
+    <option name="localTasksCounter" value="1084" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -617,7 +615,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Evitar Inyeccion Agregar Comentario" />
     <MESSAGE value="Evitar Inyeccion Conseguir Reportes Completos PHP" />
     <MESSAGE value="Evitar Inyeccion Dao Usuario PHP" />
     <MESSAGE value="Evitar Inyeccion Insertar Reporte PHP" />
@@ -642,7 +639,8 @@
     <MESSAGE value="Tabla" />
     <MESSAGE value="cerrar sesion" />
     <MESSAGE value="animacion controles tablas" />
-    <option name="LAST_COMMIT_MESSAGE" value="animacion controles tablas" />
+    <MESSAGE value="Evitando sobreescribir en la misma sesion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Evitando sobreescribir en la misma sesion" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

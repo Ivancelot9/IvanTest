@@ -1,8 +1,19 @@
 <?php
 session_start();
-session_unset(); // Elimina todas las variables de sesión
-session_destroy(); // Destruye la sesión actual
 
-http_response_code(200); // Indica que la petición fue exitosa
+if (isset($_GET['tab_id'])) {
+    $tab_id = $_GET['tab_id'];
+
+    if (isset($_SESSION['usuariosPorPestana'][$tab_id])) {
+        unset($_SESSION['usuariosPorPestana'][$tab_id]);
+    }
+}
+
+// Si ya no hay más pestañas activas, destruir toda la sesión
+if (empty($_SESSION['usuariosPorPestana'])) {
+    session_unset();
+    session_destroy();
+}
+
+http_response_code(200);
 exit;
-?>
