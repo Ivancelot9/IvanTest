@@ -85,15 +85,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${aplicarResaltado(reporte.nomina, "nomina", valorFiltro, columnaSeleccionada)}</td>
                 <td>${formatearEncargadoParaVista(aplicarResaltado(reporte.encargado, "encargado", valorFiltro, columnaSeleccionada))}</td>
                 <td>${aplicarResaltado(formatearFecha(reporte.fechaFinalizacion), "fechaFinalizacion", valorFiltro, columnaSeleccionada)}</td>
-                <td>${aplicarResaltado(reporte.estatus, "estatus", valorFiltro, columnaSeleccionada)}</td>
-            `;
+                <td>${aplicarResaltado(reporte.estatus, "estatus", valorFiltro, columnaSeleccionada)}</td>`;
 
-            let boton = document.createElement("button");
+            const boton = document.createElement("button");
             boton.classList.add("convertidor");
             boton.setAttribute("data-folio", reporte.folio);
             boton.innerHTML = `<i class="fas fa-file-excel"></i> Convertir a Excel`;
 
-            let celdaBoton = document.createElement("td");
+            const celdaBoton = document.createElement("td");
             celdaBoton.appendChild(boton);
             fila.appendChild(celdaBoton);
 
@@ -108,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
         pageIndicatorCompleto.textContent = `Página ${pagina}`;
         prevPageBtnCompleto.disabled = pagina === 1;
         nextPageBtnCompleto.disabled = fin >= datosFiltradosCompletos.length;
-
         paginaActualCompleto = pagina;
     };
 
@@ -116,39 +114,24 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/conseguirReportesCompletos.php")
             .then(res => res.json())
             .then(data => {
-                if (!Array.isArray(data)) {
-                    console.error("❌ Respuesta inesperada:", data);
-                    return;
-                }
-
-                datosReportesCompletos = data;
-                window.datosReportesCompletos = data;
+                datosReportesCompletos = Array.isArray(data) ? data : [];
+                window.datosReportesCompletos = datosReportesCompletos;
                 datosFiltradosCompletos = [...datosReportesCompletos];
                 mostrarReportesCompletos(1);
             })
-            .catch(err => {
-                console.error("❌ Error al cargar reportes completados:", err);
-            });
+            .catch(err => console.error("❌ Error al cargar reportes completados:", err));
     }
 
     function filtrarReportesCompletos() {
         const valorFiltro = filterInputCompleto.value.toLowerCase();
         const columnaSeleccionada = filterColumnCompleto.value;
         const columnaBD = columnasBDCompletos[columnaSeleccionada];
-
         if (!columnaBD) return;
 
         datosFiltradosCompletos = datosReportesCompletos.filter(reporte => {
             let valor = reporte[columnaBD] ?? "";
-
-            if (columnaBD === "encargado") {
-                valor = extraerTextoPlano(valor);
-            }
-
-            if (columnaBD === "fechaFinalizacion") {
-                valor = formatearFecha(valor);
-            }
-
+            if (columnaBD === "encargado") valor = extraerTextoPlano(valor);
+            if (columnaBD === "fechaFinalizacion") valor = formatearFecha(valor);
             return valor.toString().toLowerCase().includes(valorFiltro);
         });
 
@@ -164,27 +147,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function filtrarPorRangoDeFechas() {
-        const startDate = startDateInput.value;
-        const endDate = endDateInput.value;
+        const start = startDateInput.value ? parseFechaDMY(startDateInput.value) : null;
+        const end = endDateInput.value ? parseFechaDMY(endDateInput.value) : null;
 
-        if (!startDate && !endDate) {
+        if (!start && !end) {
             Swal.fire("Advertencia", "Debes seleccionar al menos una fecha para filtrar.", "warning");
             return;
         }
 
-        const start = startDate ? parseFechaDMY(startDate) : null;
-        const end = endDate ? parseFechaDMY(endDate) : null;
-
         datosFiltradosCompletos = datosReportesCompletos.filter(reporte => {
             const fechaStr = reporte.fechaFinalizacion?.split(" ")[0];
-            if (!fechaStr) return false;
-
             const fecha = new Date(fechaStr);
-
-            if (start && end) return fecha >= start && fecha <= end;
-            else if (start) return fecha >= start;
-            else if (end) return fecha <= end;
-            return false;
+            if (!fechaStr) return false;
+            return (start && end) ? fecha >= start && fecha <= end
+                : start ? fecha >= start
+                    : end ? fecha <= end : false;
         });
 
         datosFiltradosCompletos.sort((a, b) => new Date(a.fechaFinalizacion) - new Date(b.fechaFinalizacion));
@@ -192,10 +169,6 @@ document.addEventListener("DOMContentLoaded", function () {
         filterInputCompleto.value = "";
         paginaActualCompleto = 1;
         mostrarReportesCompletos(paginaActualCompleto);
-
-        if (datosFiltradosCompletos.length === 0) {
-            tablaCompletosBody.innerHTML = `<tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
-        }
     }
 
     function limpiarRangoFechas() {
@@ -225,13 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function exportarExcel(reporte) {
         let wb = XLSX.utils.book_new();
-        wb.Props = {
-            Title: "Reporte Completado",
-            Subject: "Exportación Individual",
-            Author: "Sistema",
-            CreatedDate: new Date()
-        };
-
+        wb.Props = { Title: "Reporte Completado", Author: "Sistema", CreatedDate: new Date() };
         wb.SheetNames.push("Reporte");
 
         const ws_data = [
@@ -249,11 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
 
         const ws = XLSX.utils.aoa_to_sheet(ws_data);
-        ws["!cols"] = [
-            { wch: 15 }, { wch: 20 }, { wch: 80 }, { wch: 20 },
-            { wch: 20 }, { wch: 30 }, { wch: 15 }, { wch: 25 }
-        ];
-
+        ws["!cols"] = [ { wch: 15 }, { wch: 20 }, { wch: 80 }, { wch: 20 }, { wch: 20 }, { wch: 30 }, { wch: 15 }, { wch: 25 } ];
         wb.Sheets["Reporte"] = ws;
         XLSX.writeFile(wb, `Reporte_${reporte.folio}.xlsx`, { bookType: "xlsx", cellStyles: true });
     }
@@ -267,19 +230,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    prevPageBtnCompleto.addEventListener("click", () => {
-        if (paginaActualCompleto > 1) {
-            paginaActualCompleto--;
-            mostrarReportesCompletos(paginaActualCompleto);
-        }
-    });
-
-    nextPageBtnCompleto.addEventListener("click", () => {
-        if (paginaActualCompleto * filasPorPagina < datosFiltradosCompletos.length) {
-            paginaActualCompleto++;
-            mostrarReportesCompletos(paginaActualCompleto);
-        }
-    });
+    prevPageBtnCompleto.addEventListener("click", () => { if (paginaActualCompleto > 1) paginaActualCompleto--, mostrarReportesCompletos(paginaActualCompleto); });
+    nextPageBtnCompleto.addEventListener("click", () => { if (paginaActualCompleto * filasPorPagina < datosFiltradosCompletos.length) paginaActualCompleto++, mostrarReportesCompletos(paginaActualCompleto); });
 
     filterInputCompleto.addEventListener("input", filtrarReportesCompletos);
     filterButtonCompleto.addEventListener("click", filtrarReportesCompletos);
@@ -292,12 +244,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.moverReporteACompletados = function (nuevoReporte) {
         const yaExiste = datosReportesCompletos.some(r => String(r.folio) === String(nuevoReporte.folio));
-        if (yaExiste) {
-            console.log("⚠ Reporte ya existe en completados, se ignora:", nuevoReporte.folio);
-            return;
-        }
+        if (yaExiste) return;
 
-        // 🧠 Aumentar contador visual por usuario
         const badge = document.getElementById("contador-completos");
         if (badge) {
             let count = parseInt(localStorage.getItem(claveStorageCompletos) || "0");
@@ -307,7 +255,6 @@ document.addEventListener("DOMContentLoaded", function () {
             badge.style.display = "inline-block";
         }
 
-        console.log("📩 Reporte recibido en moverReporteACompletados:", nuevoReporte);
         datosReportesCompletos.unshift(nuevoReporte);
         datosFiltradosCompletos = [...datosReportesCompletos];
         mostrarReportesCompletos(1);

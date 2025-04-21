@@ -43,11 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerReportesPendientes.php")
             .then(response => response.json())
             .then(data => {
-                if (!data || data.length === 0) {
-                    console.warn("⚠ No hay reportes disponibles.");
-                    return;
-                }
-                datosReportes = data;
+                datosReportes = data || [];
                 datosFiltrados = [...datosReportes];
                 mostrarReportes(paginaActual);
             })
@@ -73,57 +69,37 @@ document.addEventListener("DOMContentLoaded", function () {
         const inicio = (pagina - 1) * filasPorPagina;
         const fin = inicio + filasPorPagina;
         const reportesPagina = datosFiltrados.slice(inicio, fin);
-
-        let estatusGuardados = JSON.parse(localStorage.getItem("estatusReportes")) || {};
         const columnaActiva = filterColumn.value;
         const valorFiltro = filterInput.value;
+        let estatusGuardados = JSON.parse(localStorage.getItem("estatusReportes")) || {};
 
         reportesPagina.forEach(reporte => {
-            let encargadoTexto = reporte.Encargado || reporte.encargado || "N/A";
-            let folio = reporte.FolioReportes || reporte.folio || "S/F";
+            let folio = reporte.FolioReportes || "S/F";
+            let encargadoTexto = reporte.Encargado || "N/A";
 
             let estatus = estatusGuardados[folio];
             let progresoManual = estatus ? estatus.progresoManual : null;
             let colorManual = estatus ? estatus.colorManual : null;
-
-            let estadoClase;
-            if (colorManual) {
-                let mapaColores = { G: "green", B: "blue", Y: "yellow", R: "red" };
-                estadoClase = mapaColores[colorManual] || obtenerClaseEstado(progresoManual);
-            } else {
-                estadoClase = obtenerClaseEstado(progresoManual);
-            }
+            let estadoClase = colorManual ? { G: "green", B: "blue", Y: "yellow", R: "red" }[colorManual] || obtenerClaseEstado(progresoManual) : obtenerClaseEstado(progresoManual);
 
             const porcentajeTexto = progresoManual !== null ? `${progresoManual}%` : "Ver Estatus";
             const esCirculo = progresoManual !== null;
             const color = estadoClase || "white";
 
             const botonEstatusHTML = `
-            <button class="ver-estatus-btn ${estadoClase}" data-folio="${folio}"
-                style="${esCirculo ? `
-                        width: 50px;
-                        height: 50px;
-                        border-radius: 50%;
-                        background-color: ${color};
-                        color: white;
-                        font-weight: bold;
-                        font-size: 14px;
-                        text-shadow: 2px 2px 0 black;
-                        border: 3px solid black;
-                        margin: auto;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
+                <button class="ver-estatus-btn ${estadoClase}" data-folio="${folio}"
+                    style="${esCirculo ? `
+                        width: 50px; height: 50px; border-radius: 50%;
+                        background-color: ${color}; color: white; font-weight: bold;
+                        font-size: 14px; text-shadow: 2px 2px 0 black;
+                        border: 3px solid black; margin: auto;
+                        display: flex; align-items: center; justify-content: center;
                     ` : `
-                        background: white;
-                        color: black;
-                        border: 2px solid black;
-                        font-weight: bold;
-                        padding: 4px 10px;
-                        margin: auto;
+                        background: white; color: black; border: 2px solid black;
+                        font-weight: bold; padding: 4px 10px; margin: auto;
                     `}">
-                ${porcentajeTexto}
-            </button>`;
+                    ${porcentajeTexto}
+                </button>`;
 
             let partes = encargadoTexto.split("<br>");
             let supervisorText = extraerTextoPlano(partes[0] || "SUPERVISOR: N/A");
@@ -138,15 +114,14 @@ document.addEventListener("DOMContentLoaded", function () {
             fila.setAttribute("data-folio", folio);
             fila.innerHTML = `
                 <td>${columnaActiva === "folio" ? resaltarTexto(folio, valorFiltro) : folio}</td>
-                <td>${columnaActiva === "fechaRegistro" ? resaltarTexto(formatearFecha(reporte.FechaRegistro || "Sin fecha"), valorFiltro) : formatearFecha(reporte.FechaRegistro || "Sin fecha")}</td>
-                <td>${columnaActiva === "nomina" ? resaltarTexto(reporte.NumeroNomina || "Sin nómina", valorFiltro) : (reporte.NumeroNomina || "Sin nómina")}</td>
+                <td>${formatearFecha(reporte.FechaRegistro)}</td>
+                <td>${reporte.NumeroNomina || "Sin nómina"}</td>
                 <td>${reporte.Area || "Sin área"}</td>
                 <td class="celda-encargado">${supervisorText}<br>${shiftLeaderText}</td>
                 <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion || 'Sin descripción'}">Mostrar Descripción</button></td>
                 <td><button class="agregar-comentario" data-folio="${folio}">Agregar Comentario</button></td>
                 <td class="estatus-cell">${botonEstatusHTML}</td>
-                <td><button class="seleccionar-fecha" data-folio="${folio}">Finalizar Reporte</button></td>
-            `;
+                <td><button class="seleccionar-fecha" data-folio="${folio}">Finalizar Reporte</button></td>`;
             tablaBody.appendChild(fila);
         });
 
@@ -162,27 +137,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!columnaBD) return;
 
-        if (valorFiltro === "") {
-            datosFiltrados = [...datosReportes];
-            paginaActual = 1;
-            mostrarReportes(paginaActual);
-            return;
-        }
-
-        datosFiltrados = datosReportes.filter(reporte => {
+        datosFiltrados = valorFiltro === "" ? [...datosReportes] : datosReportes.filter(reporte => {
             let valor = reporte[columnaBD] ?? "";
             if (columnaBD === "Encargado") {
-                let textoPlano = extraerTextoPlano(valor).toLowerCase();
-                if (textoPlano.includes("supervisor: n/a") && textoPlano.includes("shift leader: n/a") && !valorFiltro.includes("n/a")) {
+                valor = extraerTextoPlano(valor).toLowerCase();
+                if (valor.includes("supervisor: n/a") && valor.includes("shift leader: n/a") && !valorFiltro.includes("n/a")) {
                     return false;
                 }
-                return textoPlano.includes(valorFiltro);
             }
-
-            if (columnaBD === "FechaRegistro") {
-                valor = formatearFecha(valor);
-            }
-
+            if (columnaBD === "FechaRegistro") valor = formatearFecha(valor);
             return String(valor).toLowerCase().includes(valorFiltro);
         });
 
@@ -190,43 +153,22 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportes(paginaActual);
     }
 
-    prevPageBtn.addEventListener("click", () => {
-        if (paginaActual > 1) {
-            paginaActual--;
-            mostrarReportes(paginaActual);
-        }
-    });
-
-    nextPageBtn.addEventListener("click", () => {
-        if ((paginaActual * filasPorPagina) < datosFiltrados.length) {
-            paginaActual++;
-            mostrarReportes(paginaActual);
-        }
-    });
-
+    prevPageBtn.addEventListener("click", () => { if (paginaActual > 1) paginaActual--, mostrarReportes(paginaActual); });
+    nextPageBtn.addEventListener("click", () => { if (paginaActual * filasPorPagina < datosFiltrados.length) paginaActual++, mostrarReportes(paginaActual); });
     filterInput.addEventListener("input", filtrarReportes);
     filterButton.addEventListener("click", filtrarReportes);
 
     cargarReportes();
 
     window.agregarReporteAHistorial = function (nuevoReporte) {
-        if (!nuevoReporte || !nuevoReporte.FolioReportes || !nuevoReporte.FechaRegistro || !nuevoReporte.NumeroNomina) {
-            console.warn("❌ Reporte recibido incompleto:", nuevoReporte);
-            return;
-        }
-
+        if (!nuevoReporte || !nuevoReporte.FolioReportes || !nuevoReporte.FechaRegistro || !nuevoReporte.NumeroNomina) return;
         datosReportes.push(nuevoReporte);
         datosReportes.sort((a, b) => new Date(b.FechaRegistro) - new Date(a.FechaRegistro));
         filtrarReportes();
-
         const primeraFila = tablaBody.querySelector("tr");
-        if (primeraFila) {
-            primeraFila.classList.add("nueva-fila");
-            setTimeout(() => primeraFila.classList.remove("nueva-fila"), 2000);
-        }
+        if (primeraFila) primeraFila.classList.add("nueva-fila"), setTimeout(() => primeraFila.classList.remove("nueva-fila"), 2000);
     };
 
-    // 🔊 Listener NUEVO REPORTE
     if (!window.listenerCanalReportesRegistrado) {
         window.foliosNotificados = new Set();
         canal.addEventListener("message", (event) => {
@@ -240,17 +182,22 @@ document.addEventListener("DOMContentLoaded", function () {
                     .then(reporte => {
                         if (reporte && reporte.FolioReportes) {
                             window.agregarReporteAHistorial(reporte);
-
                             const currentSection = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
                             if (currentSection !== "historial-reportes") {
                                 const badge = document.getElementById("contador-historial");
                                 const userId = document.body.getAttribute("data-user-id") || "default";
                                 const key = `contadorHistorial_${userId}`;
-                                let count = parseInt(localStorage.getItem(key) || "0");
-                                count++;
-                                localStorage.setItem(key, count);
-                                badge.textContent = count.toString();
-                                badge.style.display = "inline-block";
+                                const foliosKey = `foliosContados_${userId}`;
+                                let foliosContados = JSON.parse(localStorage.getItem(foliosKey) || "[]");
+                                if (!foliosContados.includes(folioNuevo)) {
+                                    foliosContados.push(folioNuevo);
+                                    localStorage.setItem(foliosKey, JSON.stringify(foliosContados));
+                                    let count = parseInt(localStorage.getItem(key) || "0");
+                                    count++;
+                                    localStorage.setItem(key, count);
+                                    badge.textContent = count.toString();
+                                    badge.style.display = "inline-block";
+                                }
                             }
                         }
                     });
@@ -259,27 +206,20 @@ document.addEventListener("DOMContentLoaded", function () {
         window.listenerCanalReportesRegistrado = true;
     }
 
-    // 🔊 Listener FINALIZADOS
     if (!window.listenerCanalFinalizadosRegistrado) {
         window.foliosFinalizados = new Set();
         canalFinalizados.addEventListener("message", (event) => {
             const reporte = event.data;
-            if (!reporte || !reporte.folio) return;
-            if (window.foliosFinalizados.has(reporte.folio)) return;
+            if (!reporte || !reporte.folio || window.foliosFinalizados.has(reporte.folio)) return;
             window.foliosFinalizados.add(reporte.folio);
-
             const fila = document.querySelector(`tr[data-folio="${reporte.folio}"]`);
             if (fila) fila.remove();
-
             datosReportes = datosReportes.filter(r => r.FolioReportes !== reporte.folio);
             datosFiltrados = datosFiltrados.filter(r => r.FolioReportes !== reporte.folio);
             mostrarReportes(paginaActual);
-
-            const yaExiste = window.datosReportesCompletos?.some(r => String(r.folio) === String(reporte.folio));
-            if (!yaExiste && typeof window.moverReporteACompletados === "function") {
+            if (!window.datosReportesCompletos?.some(r => String(r.folio) === String(reporte.folio)) && typeof window.moverReporteACompletados === "function") {
                 window.moverReporteACompletados(reporte);
             }
-
             const badge = document.getElementById("contador-completos");
             if (badge) {
                 const userId = document.body.getAttribute("data-user-id") || "default";
@@ -290,12 +230,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 badge.textContent = count.toString();
                 badge.style.display = "inline-block";
             }
-
             if (typeof window.mostrarReportesCompletos === "function") {
                 window.mostrarReportesCompletos(1);
             }
-
-            console.log("📢 Reporte finalizado sincronizado desde otra pestaña:", reporte.folio);
         });
         window.listenerCanalFinalizadosRegistrado = true;
     }
