@@ -1,15 +1,30 @@
 <?php
 session_start();
 
-// Validar que ambas variables de sesión estén definidas y no vacías
+// Validar que venga el tab_id por GET
+if (!isset($_GET['tab_id'])) {
+    session_destroy();
+    echo "<META HTTP-EQUIV='REFRESH' CONTENT='1; URL=index.php'>";
+    exit;
+}
+
+$tab_id = $_GET['tab_id'];
+
+// Verificar que exista una sesión válida para ese tab_id
 if (
-    !isset($_SESSION["NumNomina"], $_SESSION["Contrasena"]) ||
-    empty($_SESSION["NumNomina"]) || empty($_SESSION["Contrasena"])
+    !isset($_SESSION['usuariosPorPestana'][$tab_id]) ||
+    empty($_SESSION['usuariosPorPestana'][$tab_id]['NumNomina']) ||
+    empty($_SESSION['usuariosPorPestana'][$tab_id]['Contrasena'])
 ) {
     session_destroy();
     echo "<META HTTP-EQUIV='REFRESH' CONTENT='1; URL=index.php'>";
     exit;
 }
+
+// Extraer datos seguros del usuario para esta pestaña
+$usuarioActual = $_SESSION['usuariosPorPestana'][$tab_id];
+$numeroNomina = $usuarioActual['NumNomina'];
+$conectado = $usuarioActual['Conectado'];
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +72,8 @@ if (
         <div class="profile">
             <div class="halo-container">
                 <div class="halo"></div>
-                <img src="https://grammermx.com/Fotos/<?php echo $_SESSION["NumNomina"] ?>.png" alt="Profile Picture" />
+                <img src="https://grammermx.com/Fotos/<?php echo $numeroNomina ?>.png" alt="Profile Picture" />
+
             </div>
             <div class="username-bubble">
                 <h4 id="sidebar-nombre"></h4>

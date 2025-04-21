@@ -1,6 +1,13 @@
 import { validarFormulario } from "./validacionesAdmin.js";
 
 document.addEventListener("DOMContentLoaded", function () {
+    // ✅ Paso 1: Generar tab_id único por pestaña
+    if (!sessionStorage.getItem("tab_id")) {
+        const nuevoTabId = crypto.randomUUID();
+        sessionStorage.setItem("tab_id", nuevoTabId);
+    }
+    const tab_id = sessionStorage.getItem("tab_id");
+
     const loginBtn = document.getElementById("loginBtn");
     const registerBtn = document.getElementById("registerBtn");
     const dynamicFields = document.getElementById("dynamicFields");
@@ -8,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let isLoginMode = true;
 
-    // 🔁 Función reutilizable para activar el toggle de contraseña
     function activarTogglePassword() {
         const inputPwd = document.getElementById("Contrasena");
         const togglePwd = document.getElementById("togglePassword");
@@ -22,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // ✅ Función para cargar la vista de "Iniciar Sesión"
     function cargarLogin() {
         isLoginMode = true;
         loginBtn.classList.add("active");
@@ -44,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
         activarTogglePassword();
     }
 
-    // ✅ Función para cargar la vista de "Registrar"
     function cargarRegistro() {
         isLoginMode = false;
         registerBtn.classList.add("active");
@@ -70,20 +74,16 @@ document.addEventListener("DOMContentLoaded", function () {
         activarTogglePassword();
     }
 
-    // Asignar funciones a los botones
     loginBtn.addEventListener("click", cargarLogin);
     registerBtn.addEventListener("click", cargarRegistro);
 
-    // Evento que se dispara cuando se envía el formulario
     mainForm.addEventListener("submit", function (event) {
-        event.preventDefault(); // Evita el envío tradicional del formulario
+        event.preventDefault();
 
-        // Obtener los valores de los campos dinámicos
         const numeroNomina = document.getElementById("NumNomina").value.trim();
         const contrasena = document.getElementById("Contrasena").value.trim();
         const nombre = document.getElementById("Nombre") ? document.getElementById("Nombre").value.trim() : "";
 
-        // Validar el formulario antes de enviarlo
         const error = validarFormulario({ numeroNomina, contrasena, nombre, isLoginMode });
 
         if (error) {
@@ -96,15 +96,14 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Crear un objeto FormData para enviar datos al servidor
         const formData = new FormData();
         formData.append("NumNomina", numeroNomina.padStart(8, "0"));
         formData.append("Contrasena", contrasena);
+        formData.append("tab_id", tab_id); // ✅ Enviar tab_id al backend
         if (!isLoginMode) {
             formData.append("Nombre", nombre);
         }
 
-        // Enviar datos al servidor mediante fetch
         const url = isLoginMode
             ? "https://grammermx.com/IvanTest/BuzonQuejas/dao/validacionAdmin.php"
             : "https://grammermx.com/IvanTest/BuzonQuejas/dao/registroAdmin.php";
@@ -125,9 +124,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         "success"
                     ).then(() => {
                         if (isLoginMode) {
-                            window.location.href = "dashboardAdmin.php";
+                            window.location.href = "dashboardAdmin.php?tab_id=" + tab_id; // ✅ enviar tab_id también aquí
                         } else {
-                            cargarLogin(); // ✅ Cambiar a vista de login tras registro
+                            cargarLogin();
                         }
                     });
                 } else {
@@ -148,6 +147,5 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     });
 
-    // ✅ Al iniciar la página, mostrar vista "Iniciar Sesión"
     cargarLogin();
 });
