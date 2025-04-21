@@ -94,7 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     const canal = new BroadcastChannel("canalReportes");
                     canal.postMessage({
                         tipo: "nuevo-reporte",
-                        folio: data.folio
+                        folio: data.folio,
+                        nomina: numeroNominaGlobal
                     });
                     canal.close();
 

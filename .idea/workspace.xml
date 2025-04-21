@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Evitando sobreescribir en la misma sesion">
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/insertarFechaFinalizacion.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/insertarFechaFinalizacion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/enviarReporte.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/enviarReporte.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,15 +170,7 @@
       <workItem from="1744640231554" duration="8471000" />
       <workItem from="1744726273556" duration="20930000" />
       <workItem from="1744812492630" duration="18894000" />
-      <workItem from="1745245226590" duration="10932000" />
-    </task>
-    <task id="LOCAL-01042" summary="Tabla">
-      <option name="closed" value="true" />
-      <created>1744826424156</created>
-      <option name="number" value="01042" />
-      <option name="presentableId" value="LOCAL-01042" />
-      <option name="project" value="LOCAL" />
-      <updated>1744826424156</updated>
+      <workItem from="1745245226590" duration="11865000" />
     </task>
     <task id="LOCAL-01043" summary="cerrar sesion">
       <option name="closed" value="true" />
@@ -562,7 +556,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745258242249</updated>
     </task>
-    <option name="localTasksCounter" value="1091" />
+    <task id="LOCAL-01091" summary="Evitando sobreescribir en la misma sesion">
+      <option name="closed" value="true" />
+      <created>1745258454149</created>
+      <option name="number" value="01091" />
+      <option name="presentableId" value="LOCAL-01091" />
+      <option name="project" value="LOCAL" />
+      <updated>1745258454149</updated>
+    </task>
+    <option name="localTasksCounter" value="1092" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

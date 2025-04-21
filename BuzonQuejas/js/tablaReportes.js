@@ -252,9 +252,12 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     canal.addEventListener("message", (event) => {
+        const inputNomina = document.getElementById("nomina");
+        const miNomina = inputNomina?.value?.trim();
+        if (!miNomina || event.data.nomina !== miNomina) return; // 🚫 Filtro de sesión
+
         if (event.data?.tipo === "nuevo-reporte" && event.data.folio) {
             const folioNuevo = event.data.folio;
-
             fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obteneReportesPorFolio.php?folio=${folioNuevo}`)
                 .then(resp => resp.json())
                 .then(reporte => {
