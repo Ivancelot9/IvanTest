@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const canal = new BroadcastChannel("canalReportes");
-    const canalFinalizados = new BroadcastChannel("canalFinalizados"); // 🔊 Canal nuevo
+    const canalFinalizados = new BroadcastChannel("canalFinalizados");
 
     const filasPorPagina = 10;
     let paginaActual = 1;
@@ -100,8 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const botonEstatusHTML = `
             <button class="ver-estatus-btn ${estadoClase}" data-folio="${folio}"
-                style="
-                    ${esCirculo ? `
+                style="${esCirculo ? `
                         width: 50px;
                         height: 50px;
                         border-radius: 50%;
@@ -122,11 +121,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         font-weight: bold;
                         padding: 4px 10px;
                         margin: auto;
-                    `}
-                ">
+                    `}">
                 ${porcentajeTexto}
-            </button>
-        `;
+            </button>`;
 
             let partes = encargadoTexto.split("<br>");
             let supervisorText = extraerTextoPlano(partes[0] || "SUPERVISOR: N/A");
@@ -138,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             const fila = document.createElement("tr");
-            fila.setAttribute("data-folio", folio); // 🔑 Necesario para identificar fila al eliminar
+            fila.setAttribute("data-folio", folio);
             fila.innerHTML = `
                 <td>${columnaActiva === "folio" ? resaltarTexto(folio, valorFiltro) : folio}</td>
                 <td>${columnaActiva === "fechaRegistro" ? resaltarTexto(formatearFecha(reporte.FechaRegistro || "Sin fecha"), valorFiltro) : formatearFecha(reporte.FechaRegistro || "Sin fecha")}</td>
@@ -174,7 +171,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         datosFiltrados = datosReportes.filter(reporte => {
             let valor = reporte[columnaBD] ?? "";
-
             if (columnaBD === "Encargado") {
                 let textoPlano = extraerTextoPlano(valor).toLowerCase();
                 if (textoPlano.includes("supervisor: n/a") && textoPlano.includes("shift leader: n/a") && !valorFiltro.includes("n/a")) {
@@ -226,71 +222,81 @@ document.addEventListener("DOMContentLoaded", function () {
         const primeraFila = tablaBody.querySelector("tr");
         if (primeraFila) {
             primeraFila.classList.add("nueva-fila");
-            setTimeout(() => {
-                primeraFila.classList.remove("nueva-fila");
-            }, 2000);
+            setTimeout(() => primeraFila.classList.remove("nueva-fila"), 2000);
         }
     };
 
-    canal.addEventListener("message", (event) => {
-        if (event.data?.tipo === "nuevo-reporte" && event.data.folio) {
-            const folioNuevo = event.data.folio;
+    // 🔊 Listener NUEVO REPORTE
+    if (!window.listenerCanalReportesRegistrado) {
+        window.foliosNotificados = new Set();
+        canal.addEventListener("message", (event) => {
+            if (event.data?.tipo === "nuevo-reporte" && event.data.folio) {
+                const folioNuevo = event.data.folio;
+                if (window.foliosNotificados.has(folioNuevo)) return;
+                window.foliosNotificados.add(folioNuevo);
 
-            fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obteneReportesPorFolio.php?folio=${folioNuevo}`)
-                .then(resp => resp.json())
-                .then(reporte => {
-                    if (reporte && reporte.FolioReportes) {
-                        window.agregarReporteAHistorial(reporte);
+                fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obteneReportesPorFolio.php?folio=${folioNuevo}`)
+                    .then(resp => resp.json())
+                    .then(reporte => {
+                        if (reporte && reporte.FolioReportes) {
+                            window.agregarReporteAHistorial(reporte);
 
-                        const currentSection = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
-                        if (currentSection !== "historial-reportes") {
-                            const badge = document.getElementById("contador-historial");
-                            let count = parseInt(localStorage.getItem("contadorHistorial") || "0");
-                            count++;
-                            badge.textContent = count.toString();
-                            badge.style.display = "inline-block";
-                            localStorage.setItem("contadorHistorial", count.toString());
+                            const currentSection = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
+                            if (currentSection !== "historial-reportes") {
+                                const badge = document.getElementById("contador-historial");
+                                const userId = document.body.getAttribute("data-user-id") || "default";
+                                const key = `contadorHistorial_${userId}`;
+                                let count = parseInt(localStorage.getItem(key) || "0");
+                                count++;
+                                localStorage.setItem(key, count);
+                                badge.textContent = count.toString();
+                                badge.style.display = "inline-block";
+                            }
                         }
-                    } else {
-                        console.warn("❌ No se pudo cargar el reporte por folio:", folioNuevo);
-                    }
-                })
-                .catch(error => console.error("❌ Error al obtener reporte por folio:", error));
-        }
-    });
+                    });
+            }
+        });
+        window.listenerCanalReportesRegistrado = true;
+    }
 
-    // 🔊 ESCUCHAR REPORTES FINALIZADOS
-    canalFinalizados.addEventListener("message", (event) => {
-        const reporte = event.data;
-        if (!reporte || !reporte.folio) return;
+    // 🔊 Listener FINALIZADOS
+    if (!window.listenerCanalFinalizadosRegistrado) {
+        window.foliosFinalizados = new Set();
+        canalFinalizados.addEventListener("message", (event) => {
+            const reporte = event.data;
+            if (!reporte || !reporte.folio) return;
+            if (window.foliosFinalizados.has(reporte.folio)) return;
+            window.foliosFinalizados.add(reporte.folio);
 
-        const fila = document.querySelector(`tr[data-folio="${reporte.folio}"]`);
-        if (fila) fila.remove();
+            const fila = document.querySelector(`tr[data-folio="${reporte.folio}"]`);
+            if (fila) fila.remove();
 
-        datosReportes = datosReportes.filter(r => r.FolioReportes !== reporte.folio);
-        datosFiltrados = datosFiltrados.filter(r => r.FolioReportes !== reporte.folio);
-        mostrarReportes(paginaActual);
+            datosReportes = datosReportes.filter(r => r.FolioReportes !== reporte.folio);
+            datosFiltrados = datosFiltrados.filter(r => r.FolioReportes !== reporte.folio);
+            mostrarReportes(paginaActual);
 
-        const yaExiste = window.datosReportesCompletos?.some(r => String(r.folio) === String(reporte.folio));
-        if (!yaExiste) {
-            if (window.moverReporteACompletados) {
+            const yaExiste = window.datosReportesCompletos?.some(r => String(r.folio) === String(reporte.folio));
+            if (!yaExiste && typeof window.moverReporteACompletados === "function") {
                 window.moverReporteACompletados(reporte);
             }
-        }
 
-        const badge = document.getElementById("contador-completos");
-        if (badge) {
-            let count = parseInt(localStorage.getItem("contadorCompletos") || "0");
-            count++;
-            badge.textContent = count.toString();
-            badge.style.display = "inline-block";
-            localStorage.setItem("contadorCompletos", count);
-        }
+            const badge = document.getElementById("contador-completos");
+            if (badge) {
+                const userId = document.body.getAttribute("data-user-id") || "default";
+                const key = `contadorCompletos_${userId}`;
+                let count = parseInt(localStorage.getItem(key) || "0");
+                count++;
+                localStorage.setItem(key, count);
+                badge.textContent = count.toString();
+                badge.style.display = "inline-block";
+            }
 
-        if (typeof window.mostrarReportesCompletos === "function") {
-            window.mostrarReportesCompletos(1);
-        }
+            if (typeof window.mostrarReportesCompletos === "function") {
+                window.mostrarReportesCompletos(1);
+            }
 
-        console.log("📢 Reporte finalizado sincronizado desde otra pestaña:", reporte.folio);
-    });
+            console.log("📢 Reporte finalizado sincronizado desde otra pestaña:", reporte.folio);
+        });
+        window.listenerCanalFinalizadosRegistrado = true;
+    }
 });

@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const userId = document.body.getAttribute("data-user-id") || "default";
+    const claveStorageCompletos = `contadorCompletos_${userId}`;
+
     const tablaCompletosBody = document.getElementById("tabla-completos-body");
     const prevPageBtnCompleto = document.getElementById("prevPage-completo");
     const nextPageBtnCompleto = document.getElementById("nextPage-completo");
@@ -25,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
         estatus: "estatus"
     };
 
-
     startDateInput.setAttribute("onkeydown", "return false;");
     endDateInput.setAttribute("onkeydown", "return false;");
 
@@ -40,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return safeText.replace(regex, `<span class="highlight">$1</span>`);
     }
 
-
     function aplicarResaltado(valorCampo, campo, filtro, columnaSeleccionada) {
         return columnaSeleccionada === campo ? resaltarTexto(valorCampo, filtro) : valorCampo;
     }
@@ -48,9 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function formatearFecha(fechaOriginal) {
         const partes = fechaOriginal.split(" ")[0].split("-");
         if (partes.length === 3) {
-            return `${partes[2]}-${partes[1]}-${partes[0]}`; // DD-MM-YYYY
+            return `${partes[2]}-${partes[1]}-${partes[0]}`;
         }
-        return fechaOriginal; // fallback si no tiene formato válido
+        return fechaOriginal;
     }
 
     function extraerTextoPlano(html) {
@@ -58,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
         div.innerHTML = html;
         return div.textContent || div.innerText || "";
     }
-
 
     window.mostrarReportesCompletos = function (pagina = 1) {
         const inicio = (pagina - 1) * filasPorPagina;
@@ -74,16 +74,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const mensaje = usandoFiltroFecha
                 ? "❌ No hay reportes en este rango de fechas."
                 : "❌ No hay reportes que coincidan con el filtro.";
-
-            tablaCompletosBody.innerHTML = `
-        <tr><td colspan="6" style="color: red; font-weight: bold;">${mensaje}</td></tr>`;
+            tablaCompletosBody.innerHTML = `<tr><td colspan="6" style="color: red; font-weight: bold;">${mensaje}</td></tr>`;
             return;
         }
 
         reportesPagina.forEach(reporte => {
             let fila = document.createElement("tr");
-
-
             fila.innerHTML = `
                 <td>${aplicarResaltado(reporte.folio, "folio", valorFiltro, columnaSeleccionada)}</td>
                 <td>${aplicarResaltado(reporte.nomina, "nomina", valorFiltro, columnaSeleccionada)}</td>
@@ -126,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 datosReportesCompletos = data;
-                window.datosReportesCompletos = data; // ✅ Exponemos globalmente
+                window.datosReportesCompletos = data;
                 datosFiltradosCompletos = [...datosReportesCompletos];
                 mostrarReportesCompletos(1);
             })
@@ -150,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             if (columnaBD === "fechaFinalizacion") {
-                valor = formatearFecha(valor); // ✅ convertir a DD-MM-YYYY
+                valor = formatearFecha(valor);
             }
 
             return valor.toString().toLowerCase().includes(valorFiltro);
@@ -171,7 +167,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const startDate = startDateInput.value;
         const endDate = endDateInput.value;
 
-        // ✅ Validación: no permitir si ambos están vacíos
         if (!startDate && !endDate) {
             Swal.fire("Advertencia", "Debes seleccionar al menos una fecha para filtrar.", "warning");
             return;
@@ -186,14 +181,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const fecha = new Date(fechaStr);
 
-            if (start && end) {
-                return fecha >= start && fecha <= end;
-            } else if (start) {
-                return fecha >= start;
-            } else if (end) {
-                return fecha <= end;
-            }
-            return false; // 🔒 nunca debe llegar aquí si validamos antes
+            if (start && end) return fecha >= start && fecha <= end;
+            else if (start) return fecha >= start;
+            else if (end) return fecha <= end;
+            return false;
         });
 
         datosFiltradosCompletos.sort((a, b) => new Date(a.fechaFinalizacion) - new Date(b.fechaFinalizacion));
@@ -203,8 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportesCompletos(paginaActualCompleto);
 
         if (datosFiltradosCompletos.length === 0) {
-            tablaCompletosBody.innerHTML = `
-        <tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
+            tablaCompletosBody.innerHTML = `<tr><td colspan="6" style="color: red; font-weight: bold;">❌ No hay reportes en este rango de fechas.</td></tr>`;
         }
     }
 
@@ -216,24 +206,23 @@ document.addEventListener("DOMContentLoaded", function () {
         paginaActualCompleto = 1;
         mostrarReportesCompletos(paginaActualCompleto);
     }
+
     function limpiarHTMLParaExcel(html) {
         if (!html) return "N/A";
         const temporal = document.createElement("div");
-        html = html.replace(/<br\s*\/?>/gi, '\n'); // Convertir <br> a \n
+        html = html.replace(/<br\s*\/?>/gi, '\n');
         temporal.innerHTML = html;
-        return temporal.textContent.trim(); // Extraer solo el texto plano
+        return temporal.textContent.trim();
     }
+
     function formatearEncargadoParaVista(textoPlano) {
         if (!textoPlano) return "N/A";
-
-        // Convertir saltos de línea a <br>
         const conSaltos = textoPlano.replace(/\n/g, "<br>");
-
-        // Convertir las etiquetas "SUPERVISOR:" y "SHIFT LEADER:" a negritas
         return conSaltos
             .replace(/SUPERVISOR:/gi, "<strong>SUPERVISOR:</strong>")
             .replace(/SHIFT LEADER:/gi, "<strong>SHIFT LEADER:</strong>");
     }
+
     function exportarExcel(reporte) {
         let wb = XLSX.utils.book_new();
         wb.Props = {
@@ -260,30 +249,12 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
 
         const ws = XLSX.utils.aoa_to_sheet(ws_data);
-
-        // 📏 Ancho personalizado para cada columna
         ws["!cols"] = [
-            { wch: 15 }, // Folio
-            { wch: 20 }, // Nómina
-            { wch: 80 }, // Encargado
-            { wch: 20 }, // Fecha Registro
-            { wch: 20 }, // Fecha Finalización
-            { wch: 30 }, // Descripción
-            { wch: 15 }, // Estatus
-            { wch: 25 }  // Comentarios
+            { wch: 15 }, { wch: 20 }, { wch: 80 }, { wch: 20 },
+            { wch: 20 }, { wch: 30 }, { wch: 15 }, { wch: 25 }
         ];
 
-        // 🧼 Forzar wrap text en TODAS las filas de la columna "Encargado" (columna C)
-        for (let i = 2; i <= ws_data.length + 1; i++) {
-            const celda = `C${i}`;
-            if (ws[celda]) {
-                ws[celda].s = { alignment: { wrapText: true } };
-            }
-        }
-
         wb.Sheets["Reporte"] = ws;
-
-        // 🟢 Exportar con estilos activados
         XLSX.writeFile(wb, `Reporte_${reporte.folio}.xlsx`, { bookType: "xlsx", cellStyles: true });
     }
 
@@ -291,12 +262,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (event.target.closest(".convertidor")) {
             const folio = event.target.closest(".convertidor").getAttribute("data-folio");
             const reporte = datosReportesCompletos.find(rep => String(rep.folio) === String(folio));
-
-            if (reporte) {
-                exportarExcel(reporte);
-            } else {
-                Swal.fire("Error", "No se encontró el reporte para exportar.", "error");
-            }
+            if (reporte) exportarExcel(reporte);
+            else Swal.fire("Error", "No se encontró el reporte para exportar.", "error");
         }
     });
 
@@ -330,19 +297,22 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // 🧠 Aumentar contador visual por usuario
+        const badge = document.getElementById("contador-completos");
+        if (badge) {
+            let count = parseInt(localStorage.getItem(claveStorageCompletos) || "0");
+            count++;
+            localStorage.setItem(claveStorageCompletos, count);
+            badge.textContent = count.toString();
+            badge.style.display = "inline-block";
+        }
+
         console.log("📩 Reporte recibido en moverReporteACompletados:", nuevoReporte);
         datosReportesCompletos.unshift(nuevoReporte);
         datosFiltradosCompletos = [...datosReportesCompletos];
         mostrarReportesCompletos(1);
     };
 
-    // 🟢 Flatpickr para inputs de fecha
-    flatpickr("#start-date", {
-        dateFormat: "d/m/Y",
-        locale: "es"
-    });
-    flatpickr("#end-date", {
-        dateFormat: "d/m/Y",
-        locale: "es"
-    });
+    flatpickr("#start-date", { dateFormat: "d/m/Y", locale: "es" });
+    flatpickr("#end-date", { dateFormat: "d/m/Y", locale: "es" });
 });

@@ -55,7 +55,7 @@ $conectado = $usuarioActual['Conectado'];
 
 
 </head>
-<body>
+<body data-user-id="<?php echo htmlspecialchars($numeroNomina); ?>">
 
 <!-- Botón toggle -->
 <div class="toggle-btn-wrapper">
