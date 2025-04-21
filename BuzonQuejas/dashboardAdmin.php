@@ -189,12 +189,15 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                     <button id="filter-date-button">📆 Filtrar</button>
                     <button id="clear-date-button">🧹 Limpiar Rango</button>
                 </div>
-
-                <!-- ✅ SVG animado corregido con PATH (sin engrosamientos) -->
-                <svg class="borde-serpiente" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <path d="M10,1 H90 A9,9 0 0 1 99,10 V90 A9,9 0 0 1 90,99 H10 A9,9 0 0 1 1,90 V10 A9,9 0 0 1 10,1 Z" />
-                </svg>
             </div>
+
+            <!-- 🟢 Grupo de Exportar Página -->
+            <div class="grupo-controles exportar-verde">
+                <button id="exportarPaginaCompletos" class="btn-exportar">
+                    <i class="fas fa-file-excel"></i> Exportar Página
+                </button>
+            </div>
+        </div>
 
         <!-- Tabla de reportes completados -->
         <div class="table-container">
