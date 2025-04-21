@@ -349,55 +349,55 @@ button.ver-estatus-btn:hover {
     margin-right: 8px;
     display: flex;
     align-items: center;
-    border-radius: 10px;
     border: 2px solid #b8860b;
+    border-radius: 10px;
     overflow: hidden;
     z-index: 0;
 }
 
-/* Línea animada tipo serpiente */
+/* Línea animada que recorre el contorno */
 .rango-amarillo::before {
     content: "";
     position: absolute;
-    height: 2px;
+    background-color: #b8860b;
     width: 100%;
-    background: #b8860b;
+    height: 2px;
     top: 0;
-    left: -100%;
-    animation: snakeLoop 4s linear infinite;
-    z-index: 1;
+    left: 0;
+    animation: bordeLoop 4s linear infinite;
+    z-index: 2;
 }
 
-@keyframes snakeLoop {
+@keyframes bordeLoop {
     0% {
-        top: 0;
-        left: -100%;
         width: 100%;
         height: 2px;
+        top: 0;
+        left: 0;
     }
     25% {
-        top: 0;
-        left: 0;
         width: 2px;
         height: 100%;
-    }
-    50% {
         top: 0;
         left: 100%;
+    }
+    50% {
         width: 100%;
         height: 2px;
-    }
-    75% {
         top: 100%;
         left: 0;
+    }
+    75% {
         width: 2px;
         height: 100%;
+        top: 0;
+        left: 0;
     }
     100% {
-        top: 0;
-        left: -100%;
         width: 100%;
         height: 2px;
+        top: 0;
+        left: 0;
     }
 }
 
