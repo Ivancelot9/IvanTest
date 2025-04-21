@@ -1,22 +1,28 @@
 <?php
-session_start(); // Iniciar sesión
-include_once("conexion.php"); // Asegurarnos de incluir la conexión
+session_start();
+include_once("conexion.php");
 header('Content-Type: application/json');
 
-// Verificar si el usuario ha iniciado sesión
-if (!isset($_SESSION['NumNomina'])) {
-    echo json_encode(['status' => 'error', 'message' => 'No has iniciado sesión.']);
+// ✅ Asegúrate de que venga el tab_id
+if (!isset($_GET['tab_id'])) {
+    echo json_encode(['status' => 'error', 'message' => 'Falta tab_id.']);
     exit;
 }
 
-$NumNomina = $_SESSION['NumNomina']; // Obtener el número de nómina de la sesión
+$tab_id = $_GET['tab_id'];
+
+// ✅ Verificar que exista la sesión de esa pestaña
+if (!isset($_SESSION['usuariosPorPestana'][$tab_id])) {
+    echo json_encode(['status' => 'error', 'message' => 'Sesión no encontrada.']);
+    exit;
+}
+
+$NumNomina = $_SESSION['usuariosPorPestana'][$tab_id]['NumNomina'];
 
 try {
-    // Conectar a la base de datos con LocalConector
     $con = new LocalConector();
     $conex = $con->conectar();
 
-    // Consultar datos del usuario en la tabla `Usuario`
     $query = $conex->prepare("SELECT Nombre, NumeroNomina FROM Usuario WHERE NumeroNomina = ?");
     $query->bind_param("s", $NumNomina);
     $query->execute();
@@ -34,4 +40,3 @@ try {
 } catch (Exception $e) {
     echo json_encode(['status' => 'error', 'message' => 'Error en el servidor: ' . $e->getMessage()]);
 }
-?>
