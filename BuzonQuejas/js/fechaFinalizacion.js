@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const canalFinalizacion = new BroadcastChannel("canal-reporte-finalizado");
-
     let modalFecha = document.createElement("div");
     modalFecha.id = "modal-fecha";
-    modalFecha.style.display = "none";
+    modalFecha.style.display = "none";  // Inicialmente oculto
     modalFecha.innerHTML = `
     <div class="modal-fecha">
         <h2>Seleccionar Fecha de Finalización</h2>
@@ -16,9 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
     `;
 
+    // Crear el overlay
     let modalOverlay = document.createElement("div");
     modalOverlay.id = "estatus-modal-overlay";
     document.body.appendChild(modalOverlay);
+
     document.body.appendChild(modalFecha);
 
     let fechaSeleccionada = document.getElementById("fecha-seleccionada");
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
             lastClickedButton = event.target;
             folioSeleccionado = lastClickedButton.getAttribute("data-folio");
             modalFecha.style.display = "flex";
-            modalOverlay.style.display = "block";
+            modalOverlay.style.display = "block"; // Mostrar el overlay
         }
     });
 
@@ -77,9 +77,11 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(res => res.json())
             .then(data => {
                 if (data.status === "success") {
+                    // Luego de guardar fecha, obtener reporte actualizado completo
                     fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obteneReportesPorFolio.php?folio=${folioSeleccionado}`)
                         .then(res => res.json())
                         .then(reporteBD => {
+                            console.log("📦 Respuesta desde obteneReportesPorFolio.php:", reporteBD);
                             if (!reporteBD || !reporteBD.FolioReportes) {
                                 Swal.fire("Error", "No se pudo obtener el reporte actualizado.", "error");
                                 return;
@@ -97,10 +99,13 @@ document.addEventListener("DOMContentLoaded", function () {
                                 estatus: "Completado"
                             };
 
-                            if (window.moverReporteACompletados) {
+                            try {
                                 window.moverReporteACompletados(reporte);
+                            } catch (e) {
+                                console.warn("No se pudo mover el reporte a completados:", e);
                             }
 
+                            // ✅ Actualizar contador visual (estilo Messenger)
                             const badge = document.getElementById("contador-completos");
                             if (badge) {
                                 let count = parseInt(localStorage.getItem("contadorCompletos") || "0");
@@ -110,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 localStorage.setItem("contadorCompletos", count);
                             }
 
+                            // ✅ Forzar actualización visual de tabla 2 si está visible
                             const tablaCompletos = document.getElementById("reportes-completos");
                             if (tablaCompletos && tablaCompletos.style.display !== "none") {
                                 if (typeof window.mostrarReportesCompletos === "function") {
@@ -117,62 +123,32 @@ document.addEventListener("DOMContentLoaded", function () {
                                 }
                             }
 
+                            // ✅ Eliminar de la tabla 1
                             const fila = lastClickedButton.closest("tr");
                             if (fila) fila.remove();
-
-                            canalFinalizacion.postMessage({
-                                tipo: "finalizado",
-                                folio: reporte.folio,
-                                fechaFinalizacion: fecha
-                            });
 
                             Swal.fire("Éxito", "El reporte fue finalizado correctamente.", "success");
                         })
                         .catch(() => Swal.fire("Error", "No se pudo obtener el reporte actualizado desde la base de datos.", "error"));
                 } else {
-                    if (data.message && data.message.includes("ya fue finalizado")) {
-                        Swal.fire({
-                            icon: "info",
-                            title: "Reporte ya finalizado",
-                            html: `<b>Este reporte fue finalizado el:</b><br>${data.message.split("finalizado el")[1].trim()}`,
-                            confirmButtonText: "Entendido"
-                        });
-                    } else {
-                        Swal.fire("Error", data.message || "No se pudo guardar en BD.", "error");
-                    }
+                    Swal.fire("Error", data.message || "No se pudo guardar en BD.", "error");
                 }
             })
             .catch(() => Swal.fire("Error", "No se pudo conectar con el servidor.", "error"));
 
         modalFecha.style.display = "none";
-        modalOverlay.style.display = "none";
+        modalOverlay.style.display = "none"; // Ocultar el overlay
     });
 
     btnCerrar.addEventListener("click", () => {
         modalFecha.style.display = "none";
-        modalOverlay.style.display = "none";
+        modalOverlay.style.display = "none"; // Ocultar el overlay
     });
 
     window.addEventListener("click", e => {
         if (e.target === modalFecha || e.target === modalOverlay) {
             modalFecha.style.display = "none";
-            modalOverlay.style.display = "none";
+            modalOverlay.style.display = "none"; // Ocultar el overlay
         }
     });
-
-    // ✅ Escuchar finalizaciones de otras pestañas
-    canalFinalizacion.onmessage = function (event) {
-        const { tipo, folio, fechaFinalizacion } = event.data;
-        if (tipo === "finalizado") {
-            const fila = document.querySelector(`tr[data-folio='${folio}']`);
-            if (fila) {
-                Swal.fire({
-                    icon: "info",
-                    title: "Finalización detectada",
-                    text: `El reporte ${folio} fue finalizado por otro usuario el ${fechaFinalizacion}`
-                });
-                fila.remove();
-            }
-        }
-    }
 });
