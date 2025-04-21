@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         folio: data.folio,
                         nomina: numeroNominaGlobal
                     });
-                    canal.close();
+
 
                     // Limpiar campos
                     document.getElementById("reporte").value = "";
