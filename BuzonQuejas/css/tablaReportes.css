@@ -343,14 +343,62 @@ button.ver-estatus-btn:hover {
     box-shadow: 0 0 5px rgba(255, 77, 77, 0.5);
 }
 
-/* 🟡 Amarillo mostaza oscuro */
 .rango-amarillo {
-    border: 2px solid #b8860b; /* mostaza oscuro */
+    position: relative;
+    padding: 8px;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid #b8860b;
+    overflow: hidden;
+    z-index: 0;
 }
 
-.rango-amarillo:hover {
-    border-color: #daa520; /* dorado oscuro al hover */
-    box-shadow: 0 0 5px rgba(218, 165, 32, 0.4);
+/* Línea animada tipo serpiente */
+.rango-amarillo::before {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: #b8860b;
+    top: 0;
+    left: -100%;
+    animation: snakeLoop 4s linear infinite;
+    z-index: 1;
+}
+
+@keyframes snakeLoop {
+    0% {
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+    }
+    25% {
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 100%;
+    }
+    50% {
+        top: 0;
+        left: 100%;
+        width: 100%;
+        height: 2px;
+    }
+    75% {
+        top: 100%;
+        left: 0;
+        width: 2px;
+        height: 100%;
+    }
+    100% {
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+    }
 }
 
 /* 🟢 Verde GitHub */
