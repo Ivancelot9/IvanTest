@@ -99,10 +99,9 @@ document.addEventListener("DOMContentLoaded", function () {
                                 estatus: "Completado"
                             };
 
-                            try {
+                            // ✅ Mover a la tabla 2 en tiempo real
+                            if (window.moverReporteACompletados) {
                                 window.moverReporteACompletados(reporte);
-                            } catch (e) {
-                                console.warn("No se pudo mover el reporte a completados:", e);
                             }
 
                             // ✅ Actualizar contador visual (estilo Messenger)
