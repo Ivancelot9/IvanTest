@@ -94,10 +94,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     const canal = new BroadcastChannel("canalReportes");
                     canal.postMessage({
                         tipo: "nuevo-reporte",
-                        folio: data.folio,
-                        nomina: numeroNominaGlobal
+                        folio: data.folio
                     });
-
+                    canal.close();
 
                     // Limpiar campos
                     document.getElementById("reporte").value = "";
