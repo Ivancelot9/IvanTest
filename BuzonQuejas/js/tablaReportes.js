@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const canal = new BroadcastChannel("canalReportes");
+    const canalFinalizados = new BroadcastChannel("canalFinalizados"); // 🔊 Canal nuevo
 
     const filasPorPagina = 10;
     let paginaActual = 1;
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     function resaltarTexto(texto, filtro) {
-        texto = String(texto ?? ""); // 🔒 asegura que sea string aunque sea null/undefined
+        texto = String(texto ?? "");
         if (!filtro || filtro.trim() === "") return texto;
         const regex = new RegExp(`(${filtro})`, "gi");
         return texto.replace(regex, `<span class="highlight">$1</span>`);
@@ -30,16 +31,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function obtenerClaseEstado(progreso) {
         switch (parseInt(progreso)) {
-            case 100:
-                return "green";
-            case 75:
-                return "blue";
-            case 50:
-                return "yellow";
-            case 25:
-                return "red";
-            default:
-                return "";
+            case 100: return "green";
+            case 75: return "blue";
+            case 50: return "yellow";
+            case 25: return "red";
+            default: return "";
         }
     }
 
@@ -61,9 +57,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function formatearFecha(fechaOriginal) {
         const partes = fechaOriginal.split(" ")[0].split("-");
         if (partes.length === 3) {
-            return `${partes[2]}-${partes[1]}-${partes[0]}`; // DD-MM-YYYY
+            return `${partes[2]}-${partes[1]}-${partes[0]}`;
         }
-        return fechaOriginal; // fallback si no tiene formato válido
+        return fechaOriginal;
     }
 
     function extraerTextoPlano(html) {
@@ -132,7 +128,6 @@ document.addEventListener("DOMContentLoaded", function () {
             </button>
         `;
 
-            // 🧼 Limpieza de HTML embebido en Encargado
             let partes = encargadoTexto.split("<br>");
             let supervisorText = extraerTextoPlano(partes[0] || "SUPERVISOR: N/A");
             let shiftLeaderText = extraerTextoPlano(partes[1] || "SHIFT LEADER: N/A");
@@ -143,20 +138,18 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             const fila = document.createElement("tr");
+            fila.setAttribute("data-folio", folio); // 🔑 Necesario para identificar fila al eliminar
             fila.innerHTML = `
-            <td>${columnaActiva === "folio" ? resaltarTexto(folio, valorFiltro) : folio}</td>
-            <td>${columnaActiva === "fechaRegistro" ? resaltarTexto(formatearFecha(reporte.FechaRegistro || "Sin fecha"), valorFiltro) : formatearFecha(reporte.FechaRegistro || "Sin fecha")}</td>
-            <td>${columnaActiva === "nomina" ? resaltarTexto(reporte.NumeroNomina || "Sin nómina", valorFiltro) : (reporte.NumeroNomina || "Sin nómina")}</td>
-            <td>${reporte.Area || "Sin área"}</td>
-            <td class="celda-encargado">
-                ${supervisorText}<br>${shiftLeaderText}
-            </td>
-            <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion || 'Sin descripción'}">Mostrar Descripción</button></td>
-            <td><button class="agregar-comentario" data-folio="${folio}">Agregar Comentario</button></td>
-            <td class="estatus-cell">${botonEstatusHTML}</td>
-            <td><button class="seleccionar-fecha" data-folio="${folio}">Finalizar Reporte</button></td>
-        `;
-
+                <td>${columnaActiva === "folio" ? resaltarTexto(folio, valorFiltro) : folio}</td>
+                <td>${columnaActiva === "fechaRegistro" ? resaltarTexto(formatearFecha(reporte.FechaRegistro || "Sin fecha"), valorFiltro) : formatearFecha(reporte.FechaRegistro || "Sin fecha")}</td>
+                <td>${columnaActiva === "nomina" ? resaltarTexto(reporte.NumeroNomina || "Sin nómina", valorFiltro) : (reporte.NumeroNomina || "Sin nómina")}</td>
+                <td>${reporte.Area || "Sin área"}</td>
+                <td class="celda-encargado">${supervisorText}<br>${shiftLeaderText}</td>
+                <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion || 'Sin descripción'}">Mostrar Descripción</button></td>
+                <td><button class="agregar-comentario" data-folio="${folio}">Agregar Comentario</button></td>
+                <td class="estatus-cell">${botonEstatusHTML}</td>
+                <td><button class="seleccionar-fecha" data-folio="${folio}">Finalizar Reporte</button></td>
+            `;
             tablaBody.appendChild(fila);
         });
 
@@ -172,7 +165,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!columnaBD) return;
 
-        // 🟢 Si el input está vacío, mostrar todos los datos
         if (valorFiltro === "") {
             datosFiltrados = [...datosReportes];
             paginaActual = 1;
@@ -183,25 +175,16 @@ document.addEventListener("DOMContentLoaded", function () {
         datosFiltrados = datosReportes.filter(reporte => {
             let valor = reporte[columnaBD] ?? "";
 
-            // 🔍 Caso especial: columna "Encargado"
             if (columnaBD === "Encargado") {
                 let textoPlano = extraerTextoPlano(valor).toLowerCase();
-
-                // Solo excluir si el usuario NO está buscando "n/a"
-                if (
-                    textoPlano.includes("supervisor: n/a") &&
-                    textoPlano.includes("shift leader: n/a") &&
-                    !valorFiltro.includes("n/a")
-                ) {
+                if (textoPlano.includes("supervisor: n/a") && textoPlano.includes("shift leader: n/a") && !valorFiltro.includes("n/a")) {
                     return false;
                 }
-
                 return textoPlano.includes(valorFiltro);
             }
 
-            // 🔍 Caso especial: columna "FechaRegistro"
             if (columnaBD === "FechaRegistro") {
-                valor = formatearFecha(valor); // 🔧 Solo toma la parte DD-MM-YYYY
+                valor = formatearFecha(valor);
             }
 
             return String(valor).toLowerCase().includes(valorFiltro);
@@ -209,7 +192,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         paginaActual = 1;
         mostrarReportes(paginaActual);
-
     }
 
     prevPageBtn.addEventListener("click", () => {
@@ -240,7 +222,6 @@ document.addEventListener("DOMContentLoaded", function () {
         datosReportes.push(nuevoReporte);
         datosReportes.sort((a, b) => new Date(b.FechaRegistro) - new Date(a.FechaRegistro));
         filtrarReportes();
-
 
         const primeraFila = tablaBody.querySelector("tr");
         if (primeraFila) {
@@ -274,9 +255,39 @@ document.addEventListener("DOMContentLoaded", function () {
                         console.warn("❌ No se pudo cargar el reporte por folio:", folioNuevo);
                     }
                 })
-                .catch(error => {
-                    console.error("❌ Error al obtener reporte por folio:", error);
-                });
+                .catch(error => console.error("❌ Error al obtener reporte por folio:", error));
         }
+    });
+
+    // 🔊 ESCUCHAR REPORTES FINALIZADOS
+    canalFinalizados.addEventListener("message", (event) => {
+        const reporte = event.data;
+        if (!reporte || !reporte.folio) return;
+
+        const fila = document.querySelector(`tr[data-folio="${reporte.folio}"]`);
+        if (fila) fila.remove();
+
+        datosReportes = datosReportes.filter(r => r.FolioReportes !== reporte.folio);
+        datosFiltrados = datosFiltrados.filter(r => r.FolioReportes !== reporte.folio);
+        mostrarReportes(paginaActual);
+
+        if (window.moverReporteACompletados) {
+            window.moverReporteACompletados(reporte);
+        }
+
+        const badge = document.getElementById("contador-completos");
+        if (badge) {
+            let count = parseInt(localStorage.getItem("contadorCompletos") || "0");
+            count++;
+            badge.textContent = count.toString();
+            badge.style.display = "inline-block";
+            localStorage.setItem("contadorCompletos", count);
+        }
+
+        if (typeof window.mostrarReportesCompletos === "function") {
+            window.mostrarReportesCompletos(1);
+        }
+
+        console.log("📢 Reporte finalizado sincronizado desde otra pestaña:", reporte.folio);
     });
 });

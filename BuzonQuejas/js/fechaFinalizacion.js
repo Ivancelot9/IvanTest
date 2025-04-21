@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // 🔊 Canal para notificar finalización de reportes a otras pestañas
+    const canalFinalizados = new BroadcastChannel("canalFinalizados");
+
     let modalFecha = document.createElement("div");
     modalFecha.id = "modal-fecha";
-    modalFecha.style.display = "none";  // Inicialmente oculto
+    modalFecha.style.display = "none";
     modalFecha.innerHTML = `
     <div class="modal-fecha">
         <h2>Seleccionar Fecha de Finalización</h2>
@@ -14,11 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
     `;
 
-    // Crear el overlay
     let modalOverlay = document.createElement("div");
     modalOverlay.id = "estatus-modal-overlay";
     document.body.appendChild(modalOverlay);
-
     document.body.appendChild(modalFecha);
 
     let fechaSeleccionada = document.getElementById("fecha-seleccionada");
@@ -58,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
             lastClickedButton = event.target;
             folioSeleccionado = lastClickedButton.getAttribute("data-folio");
             modalFecha.style.display = "flex";
-            modalOverlay.style.display = "block"; // Mostrar el overlay
+            modalOverlay.style.display = "block";
         }
     });
 
@@ -77,11 +78,9 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(res => res.json())
             .then(data => {
                 if (data.status === "success") {
-                    // Luego de guardar fecha, obtener reporte actualizado completo
                     fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obteneReportesPorFolio.php?folio=${folioSeleccionado}`)
                         .then(res => res.json())
                         .then(reporteBD => {
-                            console.log("📦 Respuesta desde obteneReportesPorFolio.php:", reporteBD);
                             if (!reporteBD || !reporteBD.FolioReportes) {
                                 Swal.fire("Error", "No se pudo obtener el reporte actualizado.", "error");
                                 return;
@@ -99,12 +98,15 @@ document.addEventListener("DOMContentLoaded", function () {
                                 estatus: "Completado"
                             };
 
-                            // ✅ Mover a la tabla 2 en tiempo real
+                            // ✅ Mover localmente a la tabla de completados
                             if (window.moverReporteACompletados) {
                                 window.moverReporteACompletados(reporte);
                             }
 
-                            // ✅ Actualizar contador visual (estilo Messenger)
+                            // ✅ Notificar a otras pestañas que este reporte fue finalizado
+                            canalFinalizados.postMessage(reporte);
+
+                            // ✅ Contador Messenger
                             const badge = document.getElementById("contador-completos");
                             if (badge) {
                                 let count = parseInt(localStorage.getItem("contadorCompletos") || "0");
@@ -114,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 localStorage.setItem("contadorCompletos", count);
                             }
 
-                            // ✅ Forzar actualización visual de tabla 2 si está visible
+                            // ✅ Refrescar visual si ya está abierta la tabla 2
                             const tablaCompletos = document.getElementById("reportes-completos");
                             if (tablaCompletos && tablaCompletos.style.display !== "none") {
                                 if (typeof window.mostrarReportesCompletos === "function") {
@@ -122,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 }
                             }
 
-                            // ✅ Eliminar de la tabla 1
+                            // ✅ Remover de tabla 1
                             const fila = lastClickedButton.closest("tr");
                             if (fila) fila.remove();
 
@@ -136,18 +138,18 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(() => Swal.fire("Error", "No se pudo conectar con el servidor.", "error"));
 
         modalFecha.style.display = "none";
-        modalOverlay.style.display = "none"; // Ocultar el overlay
+        modalOverlay.style.display = "none";
     });
 
     btnCerrar.addEventListener("click", () => {
         modalFecha.style.display = "none";
-        modalOverlay.style.display = "none"; // Ocultar el overlay
+        modalOverlay.style.display = "none";
     });
 
     window.addEventListener("click", e => {
         if (e.target === modalFecha || e.target === modalOverlay) {
             modalFecha.style.display = "none";
-            modalOverlay.style.display = "none"; // Ocultar el overlay
+            modalOverlay.style.display = "none";
         }
     });
 });
