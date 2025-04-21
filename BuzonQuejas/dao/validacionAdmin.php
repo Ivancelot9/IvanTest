@@ -19,6 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode(['status' => 'error', 'message' => 'El número de nómina debe tener 8 dígitos.']);
             exit;
         }
+
+        // ✅ Verificar si ya hay una sesión activa con otro usuario
+        if (isset($_SESSION['NumNomina']) && $_SESSION['NumNomina'] !== $NumNomina) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Ya hay una sesión activa con otro usuario (' . $_SESSION['NumNomina'] . '). Cierra sesión primero.'
+            ]);
+            exit;
+        }
+
         // Validar las credenciales en la base de datos
         $response = validarCredencialesEnDB($NumNomina, $Contrasena);
 
@@ -40,7 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 exit();
 
-// Función para validar las credenciales en la base de datos
+
+// 🧠 Función para validar las credenciales en la base de datos
 function validarCredencialesEnDB(string $NumNomina, string $Contrasena): array {
     try {
         $con = new LocalConector();
@@ -65,8 +76,6 @@ function validarCredencialesEnDB(string $NumNomina, string $Contrasena): array {
 
             // Comparar contraseñas
             if ($usuario['Contrasena'] === $Contrasena) {
-                // Credenciales válidas
-                $_SESSION['NumNomina'] = $NumNomina; // Guardar el número de nómina en la sesión
                 return ['status' => 'success', 'message' => 'Inicio de sesión exitoso.'];
             } else {
                 return ['status' => 'error', 'message' => 'Contraseña incorrecta.'];

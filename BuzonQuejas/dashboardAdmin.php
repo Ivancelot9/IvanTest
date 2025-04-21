@@ -1,11 +1,14 @@
 <?php
 session_start();
 
-if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["Contrasena"]== "" && $_SESSION["Contrasena"]== null) {
-    echo "<META HTTP-EQUIV='REFRESH' CONTENT='1; URL=index.php'>";
+// Validar que ambas variables de sesión estén definidas y no vacías
+if (
+    !isset($_SESSION["NumNomina"], $_SESSION["Contrasena"]) ||
+    empty($_SESSION["NumNomina"]) || empty($_SESSION["Contrasena"])
+) {
     session_destroy();
-}else{
-    session_start();
+    echo "<META HTTP-EQUIV='REFRESH' CONTENT='1; URL=index.php'>";
+    exit;
 }
 ?>
 
