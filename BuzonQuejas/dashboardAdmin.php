@@ -189,6 +189,11 @@ if ($_SESSION["NumNomina"] == "" && $_SESSION["NumNomina"]== null && $_SESSION["
                     <button id="filter-date-button">📆 Filtrar</button>
                     <button id="clear-date-button">🧹 Limpiar Rango</button>
                 </div>
+
+                <!-- ✅ SVG para animar borde serpiente sin romper nada -->
+                <svg class="borde-serpiente" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <rect x="1" y="1" width="98" height="98" rx="10" ry="10" />
+                </svg>
             </div>
 
             <!-- 🟢 Grupo de Exportar Página -->
