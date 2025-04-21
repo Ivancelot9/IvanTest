@@ -271,8 +271,11 @@ document.addEventListener("DOMContentLoaded", function () {
         datosFiltrados = datosFiltrados.filter(r => r.FolioReportes !== reporte.folio);
         mostrarReportes(paginaActual);
 
-        if (window.moverReporteACompletados) {
-            window.moverReporteACompletados(reporte);
+        const yaExiste = window.datosReportesCompletos?.some(r => String(r.folio) === String(reporte.folio));
+        if (!yaExiste) {
+            if (window.moverReporteACompletados) {
+                window.moverReporteACompletados(reporte);
+            }
         }
 
         const badge = document.getElementById("contador-completos");

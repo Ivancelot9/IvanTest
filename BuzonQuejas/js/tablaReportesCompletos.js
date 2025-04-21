@@ -324,6 +324,12 @@ document.addEventListener("DOMContentLoaded", function () {
     window.cargarReportesCompletos = cargarReportesCompletos;
 
     window.moverReporteACompletados = function (nuevoReporte) {
+        const yaExiste = datosReportesCompletos.some(r => String(r.folio) === String(nuevoReporte.folio));
+        if (yaExiste) {
+            console.log("⚠ Reporte ya existe en completados, se ignora:", nuevoReporte.folio);
+            return;
+        }
+
         console.log("📩 Reporte recibido en moverReporteACompletados:", nuevoReporte);
         datosReportesCompletos.unshift(nuevoReporte);
         datosFiltradosCompletos = [...datosReportesCompletos];
