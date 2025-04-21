@@ -345,61 +345,40 @@ button.ver-estatus-btn:hover {
 
 .rango-amarillo {
     position: relative;
-    padding: 8px;
-    margin-right: 8px;
-    display: flex;
-    align-items: center;
     border: 2px solid #b8860b;
     border-radius: 10px;
     overflow: hidden;
     z-index: 0;
 }
 
-/* Línea animada que recorre el contorno */
-.rango-amarillo::before {
-    content: "";
+/* 🎯 SVG animado encima del borde */
+.borde-serpiente {
     position: absolute;
-    background-color: #b8860b;
-    width: 100%;
-    height: 2px;
     top: 0;
     left: 0;
-    animation: bordeLoop 4s linear infinite;
-    z-index: 2;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
 }
 
-@keyframes bordeLoop {
-    0% {
-        width: 100%;
-        height: 2px;
-        top: 0;
-        left: 0;
-    }
-    25% {
-        width: 2px;
-        height: 100%;
-        top: 0;
-        left: 100%;
-    }
-    50% {
-        width: 100%;
-        height: 2px;
-        top: 100%;
-        left: 0;
-    }
-    75% {
-        width: 2px;
-        height: 100%;
-        top: 0;
-        left: 0;
-    }
-    100% {
-        width: 100%;
-        height: 2px;
-        top: 0;
-        left: 0;
+.borde-serpiente rect {
+    fill: none;
+    stroke: #b8860b;
+    stroke-width: 2;
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: trazar-borde 4s linear infinite;
+    rx: 10;
+    ry: 10;
+}
+
+@keyframes trazar-borde {
+    to {
+        stroke-dashoffset: 0;
     }
 }
+
 
 /* 🟢 Verde GitHub */
 .exportar-verde {
