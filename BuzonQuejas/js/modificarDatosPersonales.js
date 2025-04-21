@@ -32,8 +32,10 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Si pasa la validación, enviar al servidor
-        fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/modificarDatosPersonales.php", {
+        // Obtener el tab_id de esta pestaña
+        const tab_id = sessionStorage.getItem("tab_id");
+
+        fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/modificarDatosPersonales.php?tab_id=${tab_id}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nombre: nuevoNombre })

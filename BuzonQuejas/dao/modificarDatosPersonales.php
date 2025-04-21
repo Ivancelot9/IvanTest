@@ -3,11 +3,21 @@ session_start();
 include_once("conexion.php");
 header("Content-Type: application/json");
 
-// Verificar si el usuario ha iniciado sesión
-if (!isset($_SESSION['NumNomina'])) {
-    echo json_encode(["status" => "error", "message" => "No has iniciado sesión."]);
+// ✅ Validar que venga el tab_id
+if (!isset($_GET['tab_id'])) {
+    echo json_encode(["status" => "error", "message" => "Falta el tab_id."]);
     exit;
 }
+
+$tab_id = $_GET['tab_id'];
+
+// ✅ Verificar que exista la sesión de esa pestaña
+if (!isset($_SESSION['usuariosPorPestana'][$tab_id])) {
+    echo json_encode(["status" => "error", "message" => "No has iniciado sesión correctamente."]);
+    exit;
+}
+
+$NumNomina = $_SESSION['usuariosPorPestana'][$tab_id]['NumNomina'];
 
 // Obtener los datos enviados por POST
 $data = json_decode(file_get_contents("php://input"), true);
@@ -17,29 +27,24 @@ if (!isset($data['nombre']) || empty(trim($data['nombre']))) {
     exit;
 }
 
-$NumNomina = $_SESSION['NumNomina'];
 $nuevoNombre = trim($data['nombre']);
 
-// Validación adicional para $NumNomina (asegurarnos de que sea numérico)
 if (!is_numeric($NumNomina)) {
     echo json_encode(["status" => "error", "message" => "Número de nómina inválido."]);
     exit;
 }
 
-// ✅ Validar que el nombre solo contenga letras y espacios
 if (!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/", $nuevoNombre)) {
     echo json_encode(["status" => "error", "message" => "El nombre solo puede contener letras y espacios."]);
     exit;
 }
 
-// Sanitizar el nombre para evitar posibles problemas con caracteres especiales
 $nuevoNombre = htmlspecialchars($nuevoNombre, ENT_QUOTES, 'UTF-8');
 
 try {
     $con = new LocalConector();
     $conex = $con->conectar();
 
-    // Actualizar el nombre en la BD
     $query = $conex->prepare("UPDATE Usuario SET Nombre = ? WHERE NumeroNomina = ?");
     $query->bind_param("ss", $nuevoNombre, $NumNomina);
     if ($query->execute()) {
