@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.foliosFinalizados = new Set();
 
         canalFinalizados.addEventListener("message", (event) => {
-
+            console.log("🛰️  recibido en pestaña", userId, event.data);
             const repFin = event.data;
             if (!repFin?.folio || repFin.origen === userId || window.foliosFinalizados.has(repFin.folio)) return;
             window.foliosFinalizados.add(repFin.folio);
