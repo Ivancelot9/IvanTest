@@ -1,267 +1,286 @@
+/*  tablaReportes.js  ───────────────
+    Gestión de reportes pendientes
+    – Carga inicial desde PHP
+    – Paginación, filtros y resaltado
+    – Notificaciones en tiempo real (BroadcastChannel)
+    – Sincronización de badges por‑usuario
+*/
+
 document.addEventListener("DOMContentLoaded", function () {
-    const canal = new BroadcastChannel("canalReportes");
+
+    /* ──────────────────────────────────
+       1. Constantes y variables globales
+    ────────────────────────────────── */
+    const userId = document.body.getAttribute("data-user-id") || "default";   /* ✅ MOD */
+    const canal            = new BroadcastChannel("canalReportes");
     const canalFinalizados = new BroadcastChannel("canalFinalizados");
 
     const filasPorPagina = 10;
-    let paginaActual = 1;
-    let datosReportes = [];
-    let datosFiltrados = [];
+    let   paginaActual   = 1;
+    let   datosReportes  = [];   // todos los pendientes
+    let   datosFiltrados = [];   // filtrados/paginados
 
-    const tablaBody = document.getElementById("tabla-body");
-    const prevPageBtn = document.getElementById("prevPage");
-    const nextPageBtn = document.getElementById("nextPage");
+    /* DOM */
+    const tablaBody     = document.getElementById("tabla-body");
+    const prevPageBtn   = document.getElementById("prevPage");
+    const nextPageBtn   = document.getElementById("nextPage");
     const pageIndicator = document.getElementById("pageIndicator");
-    const filterColumn = document.getElementById("filter-column");
-    const filterInput = document.getElementById("filter-input");
-    const filterButton = document.getElementById("filter-button");
+    const filterColumn  = document.getElementById("filter-column");
+    const filterInput   = document.getElementById("filter-input");
+    const filterButton  = document.getElementById("filter-button");
 
+    /* Columnas BD ↔ nombres internos */
     const columnasBD = {
-        folio: "FolioReportes",
-        nomina: "NumeroNomina",
-        encargado: "Encargado",
+        folio        : "FolioReportes",
+        nomina       : "NumeroNomina",
+        encargado    : "Encargado",
         fechaRegistro: "FechaRegistro"
     };
 
-    function resaltarTexto(texto, filtro) {
-        texto = String(texto ?? "");
-        if (!filtro || filtro.trim() === "") return texto;
-        const regex = new RegExp(`(${filtro})`, "gi");
-        return texto.replace(regex, `<span class="highlight">$1</span>`);
-    }
+    /* ──────────────────────────────────
+       2. Utilidades
+    ────────────────────────────────── */
+    const resaltarTexto = (txt, f) =>
+        (!f || f.trim() === "") ? txt : String(txt).replace(new RegExp(`(${f})`, "gi"), `<span class="highlight">$1</span>`);
 
-    function obtenerClaseEstado(progreso) {
-        switch (parseInt(progreso)) {
+    function obtenerClaseEstado(p) {
+        switch (parseInt(p)) {
             case 100: return "green";
-            case 75: return "blue";
-            case 50: return "yellow";
-            case 25: return "red";
-            default: return "";
+            case  75: return "blue";
+            case  50: return "yellow";
+            case  25: return "red";
+            default:  return "";
         }
     }
 
+    const formatearFecha = f => {
+        const p = f.split(" ")[0].split("-");
+        return (p.length === 3) ? `${p[2]}-${p[1]}-${p[0]}` : f;
+    };
+
+    const extraerTextoPlano = html => {
+        const d = document.createElement("div");
+        d.innerHTML = html;
+        return d.textContent || d.innerText || "";
+    };
+
+    /* ──────────────────────────────────
+       3. Carga inicial
+    ────────────────────────────────── */
     function cargarReportes() {
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/obtenerReportesPendientes.php")
-            .then(response => response.json())
+            .then(r => r.json())
             .then(data => {
-                datosReportes = data || [];
+                datosReportes  = data || [];
                 datosFiltrados = [...datosReportes];
-                mostrarReportes(paginaActual);
+                mostrarReportes(1);
 
-                // ✅ Marcar todos los folios visibles como vistos para evitar contar de nuevo
+                /* Marcar folios visibles como vistos */
                 const foliosKey = `foliosContados_${userId}`;
-                const foliosYaContados = datosReportes.map(r => r.FolioReportes);
-                localStorage.setItem(foliosKey, JSON.stringify(foliosYaContados));
+                localStorage.setItem(foliosKey, JSON.stringify(datosReportes.map(r => r.FolioReportes)));
             })
-            .catch(error => console.error("❌ Error al cargar reportes:", error));
+            .catch(e => console.error("❌ Error al cargar reportes:", e));
     }
 
-    function formatearFecha(fechaOriginal) {
-        const partes = fechaOriginal.split(" ")[0].split("-");
-        if (partes.length === 3) {
-            return `${partes[2]}-${partes[1]}-${partes[0]}`;
-        }
-        return fechaOriginal;
-    }
-
-    function extraerTextoPlano(html) {
-        const div = document.createElement("div");
-        div.innerHTML = html;
-        return div.textContent || div.innerText || "";
-    }
-
-    function mostrarReportes(pagina) {
+    /* ──────────────────────────────────
+       4. Renderizado + paginación
+    ────────────────────────────────── */
+    function mostrarReportes(pag = 1) {
         tablaBody.innerHTML = "";
-        const inicio = (pagina - 1) * filasPorPagina;
-        const fin = inicio + filasPorPagina;
-        const reportesPagina = datosFiltrados.slice(inicio, fin);
-        const columnaActiva = filterColumn.value;
-        const valorFiltro = filterInput.value;
-        let estatusGuardados = JSON.parse(localStorage.getItem("estatusReportes")) || {};
+        const ini     = (pag - 1) * filasPorPagina;
+        const fin     = ini + filasPorPagina;
+        const lista   = datosFiltrados.slice(ini, fin);
+        const colAct  = filterColumn.value;
+        const filtro  = filterInput.value;
+        const estatus = JSON.parse(localStorage.getItem("estatusReportes") || "{}");
 
-        reportesPagina.forEach(reporte => {
-            let folio = reporte.FolioReportes || "S/F";
-            let encargadoTexto = reporte.Encargado || "N/A";
+        lista.forEach(rep => {
+            const folio = rep.FolioReportes || "S/F";
 
-            let estatus = estatusGuardados[folio];
-            let progresoManual = estatus ? estatus.progresoManual : null;
-            let colorManual = estatus ? estatus.colorManual : null;
-            let estadoClase = colorManual ? { G: "green", B: "blue", Y: "yellow", R: "red" }[colorManual] || obtenerClaseEstado(progresoManual) : obtenerClaseEstado(progresoManual);
+            /* Botón Estatus */
+            const est   = estatus[folio] || null;
+            const prog  = est?.progresoManual ?? null;
+            const color = est?.colorManual ?? null;
+            const clase = color
+                ? {G:"green",B:"blue",Y:"yellow",R:"red"}[color] || obtenerClaseEstado(prog)
+                : obtenerClaseEstado(prog);
 
-            const porcentajeTexto = progresoManual !== null ? `${progresoManual}%` : "Ver Estatus";
-            const esCirculo = progresoManual !== null;
-            const color = estadoClase || "white";
-
-            const botonEstatusHTML = `
-                <button class="ver-estatus-btn ${estadoClase}" data-folio="${folio}"
-                    style="${esCirculo ? `
-                        width: 50px; height: 50px; border-radius: 50%;
-                        background-color: ${color}; color: white; font-weight: bold;
-                        font-size: 14px; text-shadow: 2px 2px 0 black;
-                        border: 3px solid black; margin: auto;
-                        display: flex; align-items: center; justify-content: center;
+            const esCir = prog !== null;
+            const btnHTML = `
+                <button class="ver-estatus-btn ${clase}" data-folio="${folio}"
+                    style="${esCir ? `
+                        width:50px;height:50px;border-radius:50%;
+                        background:${clase};color:white;font-weight:bold;
+                        font-size:14px;text-shadow:2px 2px 0 black;
+                        border:3px solid black;margin:auto;
+                        display:flex;align-items:center;justify-content:center;
                     ` : `
-                        background: white; color: black; border: 2px solid black;
-                        font-weight: bold; padding: 4px 10px; margin: auto;
+                        background:white;color:black;border:2px solid black;
+                        font-weight:bold;padding:4px 10px;margin:auto;
                     `}">
-                    ${porcentajeTexto}
+                    ${esCir ? prog + "%" : "Ver Estatus"}
                 </button>`;
 
-            let partes = encargadoTexto.split("<br>");
-            let supervisorText = extraerTextoPlano(partes[0] || "SUPERVISOR: N/A");
-            let shiftLeaderText = extraerTextoPlano(partes[1] || "SHIFT LEADER: N/A");
-
-            if (columnaActiva === "encargado") {
-                supervisorText = resaltarTexto(supervisorText, valorFiltro);
-                shiftLeaderText = resaltarTexto(shiftLeaderText, valorFiltro);
+            /* Encargados */
+            let [sup, sl] = (rep.Encargado || "N/A").split("<br>");
+            sup = extraerTextoPlano(sup || "SUPERVISOR: N/A");
+            sl  = extraerTextoPlano(sl  || "SHIFT LEADER: N/A");
+            if (colAct === "encargado") {
+                sup = resaltarTexto(sup, filtro);
+                sl  = resaltarTexto(sl , filtro);
             }
 
             const fila = document.createElement("tr");
-            fila.setAttribute("data-folio", folio);
+            fila.dataset.folio = folio;
             fila.innerHTML = `
-                <td>${columnaActiva === "folio" ? resaltarTexto(folio, valorFiltro) : folio}</td>
-                <td>${formatearFecha(reporte.FechaRegistro)}</td>
-                <td>${reporte.NumeroNomina || "Sin nómina"}</td>
-                <td>${reporte.Area || "Sin área"}</td>
-                <td class="celda-encargado">${supervisorText}<br>${shiftLeaderText}</td>
-                <td><button class="mostrar-descripcion" data-descripcion="${reporte.Descripcion || 'Sin descripción'}">Mostrar Descripción</button></td>
+                <td>${colAct==="folio"?resaltarTexto(folio,filtro):folio}</td>
+                <td>${formatearFecha(rep.FechaRegistro)}</td>
+                <td>${rep.NumeroNomina || "Sin nómina"}</td>
+                <td>${rep.Area || "Sin área"}</td>
+                <td class="celda-encargado">${sup}<br>${sl}</td>
+                <td><button class="mostrar-descripcion" data-descripcion="${rep.Descripcion||'Sin descripción'}">Mostrar Descripción</button></td>
                 <td><button class="agregar-comentario" data-folio="${folio}">Agregar Comentario</button></td>
-                <td class="estatus-cell">${botonEstatusHTML}</td>
+                <td class="estatus-cell">${btnHTML}</td>
                 <td><button class="seleccionar-fecha" data-folio="${folio}">Finalizar Reporte</button></td>`;
             tablaBody.appendChild(fila);
         });
 
-        pageIndicator.textContent = `Página ${pagina}`;
-        prevPageBtn.disabled = pagina === 1;
+        pageIndicator.textContent = `Página ${pag}`;
+        prevPageBtn.disabled = pag === 1;
         nextPageBtn.disabled = fin >= datosFiltrados.length;
+        paginaActual = pag;
     }
 
+    /* ──────────────────────────────────
+       5. Filtros, paginación y eventos
+    ────────────────────────────────── */
     function filtrarReportes() {
-        const valorFiltro = filterInput.value.trim().toLowerCase();
-        const columnaSeleccionada = filterColumn.value;
-        const columnaBD = columnasBD[columnaSeleccionada];
+        const fTxt  = filterInput.value.trim().toLowerCase();
+        const colUI = filterColumn.value;
+        const colBD = columnasBD[colUI];
+        if (!colBD) return;
 
-        if (!columnaBD) return;
-
-        datosFiltrados = valorFiltro === "" ? [...datosReportes] : datosReportes.filter(reporte => {
-            let valor = reporte[columnaBD] ?? "";
-            if (columnaBD === "Encargado") {
-                valor = extraerTextoPlano(valor).toLowerCase();
-                if (valor.includes("supervisor: n/a") && valor.includes("shift leader: n/a") && !valorFiltro.includes("n/a")) {
-                    return false;
-                }
-            }
-            if (columnaBD === "FechaRegistro") valor = formatearFecha(valor);
-            return String(valor).toLowerCase().includes(valorFiltro);
+        datosFiltrados = fTxt === "" ? [...datosReportes] : datosReportes.filter(rep => {
+            let val = rep[colBD] ?? "";
+            if (colBD === "Encargado") val = extraerTextoPlano(val).toLowerCase();
+            if (colBD === "FechaRegistro") val = formatearFecha(val);
+            return String(val).toLowerCase().includes(fTxt);
         });
 
-        paginaActual = 1;
-        mostrarReportes(paginaActual);
+        mostrarReportes(1);
     }
 
-    prevPageBtn.addEventListener("click", () => { if (paginaActual > 1) paginaActual--, mostrarReportes(paginaActual); });
-    nextPageBtn.addEventListener("click", () => { if (paginaActual * filasPorPagina < datosFiltrados.length) paginaActual++, mostrarReportes(paginaActual); });
-    filterInput.addEventListener("input", filtrarReportes);
-    filterButton.addEventListener("click", filtrarReportes);
+    prevPageBtn.addEventListener("click", () => {
+        if (paginaActual > 1) mostrarReportes(--paginaActual);
+    });
+    nextPageBtn.addEventListener("click", () => {
+        if (paginaActual * filasPorPagina < datosFiltrados.length) mostrarReportes(++paginaActual);
+    });
+    filterInput .addEventListener("input", filtrarReportes);
+    filterButton.addEventListener("click" , filtrarReportes);
 
-    cargarReportes();
+    /* ──────────────────────────────────
+       6. Nuevos reportes (canalReportes)
+    ────────────────────────────────── */
+    window.foliosNotificados = new Set();
+    canal.addEventListener("message", ev => {
+        if (ev.data?.tipo !== "nuevo-reporte" || !ev.data.folio) return;
+        if (window.foliosNotificados.has(ev.data.folio)) return;
+        window.foliosNotificados.add(ev.data.folio);
 
-    window.agregarReporteAHistorial = function (nuevoReporte) {
-        if (!nuevoReporte || !nuevoReporte.FolioReportes || !nuevoReporte.FechaRegistro || !nuevoReporte.NumeroNomina) return;
-        datosReportes.push(nuevoReporte);
-        datosReportes.sort((a, b) => new Date(b.FechaRegistro) - new Date(a.FechaRegistro));
+        fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obteneReportesPorFolio.php?folio=${ev.data.folio}`)
+            .then(r => r.json())
+            .then(rep => { if (rep?.FolioReportes) agregarReporte(rep); });
+    });
+
+    function agregarReporte(rep) {
+        datosReportes.push(rep);
+        datosReportes.sort((a,b) => new Date(b.FechaRegistro)-new Date(a.FechaRegistro));
         filtrarReportes();
-        const primeraFila = tablaBody.querySelector("tr");
-        if (primeraFila) primeraFila.classList.add("nueva-fila"), setTimeout(() => primeraFila.classList.remove("nueva-fila"), 2000);
-    };
 
-    if (!window.listenerCanalReportesRegistrado) {
-        window.foliosNotificados = new Set();
-        canal.addEventListener("message", (event) => {
-            if (event.data?.tipo === "nuevo-reporte" && event.data.folio) {
-                const folioNuevo = event.data.folio;
-                if (window.foliosNotificados.has(folioNuevo)) return;
-                window.foliosNotificados.add(folioNuevo);
+        const first = tablaBody.querySelector("tr");
+        if (first) { first.classList.add("nueva-fila"); setTimeout(()=>first.classList.remove("nueva-fila"),2000); }
 
-                fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obteneReportesPorFolio.php?folio=${folioNuevo}`)
-                    .then(resp => resp.json())
-                    .then(reporte => {
-                        if (reporte && reporte.FolioReportes) {
-                            window.agregarReporteAHistorial(reporte);
-                            const currentSection = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
-                            if (currentSection !== "historial-reportes") {
-                                const badge = document.getElementById("contador-historial");
-                                const userId = document.body.getAttribute("data-user-id") || "default";
-                                const key = `contadorHistorial_${userId}`;
-                                const foliosKey = `foliosContados_${userId}`;
-                                let foliosContados = JSON.parse(localStorage.getItem(foliosKey) || "[]");
-                                if (!foliosContados.includes(folioNuevo)) {
-                                    foliosContados.push(folioNuevo);
-                                    localStorage.setItem(foliosKey, JSON.stringify(foliosContados));
-                                    let count = parseInt(localStorage.getItem(key) || "0");
-                                    count++;
-                                    localStorage.setItem(key, count);
-                                    badge.textContent = count.toString();
-                                    badge.style.display = "inline-block";
-                                }
-                            }
-                        }
-                    });
+        /* Badge historial solo si no estamos en la sección */
+        const visible = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
+        if (visible !== "historial-reportes") {
+            const badge   = document.getElementById("contador-historial");
+            const keyC    = `contadorHistorial_${userId}`;
+            const keyF    = `foliosContados_${userId}`;
+            let fVistos   = JSON.parse(localStorage.getItem(keyF) || "[]");
+
+            if (!fVistos.includes(rep.FolioReportes)) {
+                fVistos.push(rep.FolioReportes);
+                localStorage.setItem(keyF, JSON.stringify(fVistos));
+
+                let c = parseInt(localStorage.getItem(keyC) || "0");
+                c++;                                                     // ⬆️ incrementa
+                localStorage.setItem(keyC, String(c));                   // ✅ guarda como string
+                badge.textContent   = String(c);                         // ✅ muestra como string
+                badge.style.display = "inline-block";
             }
-        });
-        window.listenerCanalReportesRegistrado = true;
+        }
     }
 
-    const userId = document.body.getAttribute("data-user-id") || "default";
-
+    /* ──────────────────────────────────
+       7. Reportes FINALIZADOS
+    ────────────────────────────────── */
+    /* ✅ Guard para no registrar dos veces si el script se inyecta de nuevo */
     if (!window[`listenerFinalizados_${userId}`]) {
-        window.foliosFinalizados = new Set();
-        canalFinalizados.addEventListener("message", (event) => {
-            const reporte = event.data;
-            if (!reporte || !reporte.folio || window.foliosFinalizados.has(reporte.folio) || reporte.origen === userId) return;
-            window.foliosFinalizados.add(reporte.folio);
 
-            const fila = document.querySelector(`tr[data-folio="${reporte.folio}"]`);
+        window.foliosFinalizados = new Set();                        /* anti‑duplicados */
+
+        canalFinalizados.addEventListener("message", event => {
+            const repFin = event.data;
+            if (!repFin?.folio || repFin.origen === userId || window.foliosFinalizados.has(repFin.folio)) return;
+            window.foliosFinalizados.add(repFin.folio);
+
+            /* ① Sacar de la tabla de pendientes */
+            const fila = document.querySelector(`tr[data-folio="${repFin.folio}"]`);
             if (fila) fila.remove();
-
-            datosReportes = datosReportes.filter(r => r.FolioReportes !== reporte.folio);
-            datosFiltrados = datosFiltrados.filter(r => r.FolioReportes !== reporte.folio);
+            datosReportes  = datosReportes .filter(r => r.FolioReportes !== repFin.folio);
+            datosFiltrados = datosFiltrados.filter(r => r.FolioReportes !== repFin.folio);
             mostrarReportes(paginaActual);
 
-            const badge = document.getElementById("contador-completos");
-            const key = `contadorCompletos_${userId}`;
-            const foliosKey = `foliosContadosCompletos_${userId}`;
-            let foliosContados = JSON.parse(localStorage.getItem(foliosKey) || "[]");
+            /* ② Claves de conteo */
+            const badge     = document.getElementById("contador-completos");
+            const keyC      = `contadorCompletos_${userId}`;
+            const keyF      = `foliosContadosCompletos_${userId}`;
+            let foliosC     = JSON.parse(localStorage.getItem(keyF) || "[]");
 
-            // ✅ Mover a tabla completados si no está ya procesado
-            if (
-                typeof window.moverReporteACompletados === "function" &&
-                !foliosContados.includes(reporte.folio)
-            ) {
-                window.moverReporteACompletados(reporte);
-            }
+            const seccionVis = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
+            const notificar  = seccionVis !== "reportes-completos";
 
-            // ✅ Contador solo si NO está abierta la pestaña
-            const seccionVisible = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
-            const estaEnPestanaCompletos = seccionVisible === "reportes-completos";
+            /* ③ Mover a tabla 2 (completados) */
+            if (typeof window.moverReporteACompletados === "function")
+                window.moverReporteACompletados(repFin, notificar);  /* ✅ MOD flag */
 
-            if (!foliosContados.includes(reporte.folio) && !estaEnPestanaCompletos) {
-                foliosContados.push(reporte.folio);
-                localStorage.setItem(foliosKey, JSON.stringify(foliosContados));
-                let count = parseInt(localStorage.getItem(key) || "0");
-                count++;
-                localStorage.setItem(key, count);
+            /* ④ Badge solo si procede */
+            if (!foliosC.includes(repFin.folio) && notificar) {
+                foliosC.push(repFin.folio);
+                localStorage.setItem(keyF, JSON.stringify(foliosC));
+
+                let c = parseInt(localStorage.getItem(keyC) || "0");
+                c++;                                                         // ⬆️ incrementa
+                localStorage.setItem(keyC, String(c));                       // ✅ guarda como string
+
                 if (badge) {
-                    badge.textContent = count.toString();
+                    badge.textContent = String(c);                         // ✅ muestra como string
                     badge.style.display = "inline-block";
                 }
             }
 
-            if (typeof window.mostrarReportesCompletos === "function") {
+            /* ⑤ Refrescar tabla de completados si está visible */
+            if (seccionVis === "reportes-completos" && typeof window.mostrarReportesCompletos === "function")
                 window.mostrarReportesCompletos(1);
-            }
         });
 
-        // ✅ Marcar como ya registrado para este usuario
-        window[`listenerFinalizados_${userId}`] = true;
+        window[`listenerFinalizados_${userId}`] = true;              /* ✅ MOD */
     }
+
+    /* ──────────────────────────────────
+       8. Arranque
+    ────────────────────────────────── */
+    cargarReportes();
+    filtrarReportes();   // primera visualización
 });
