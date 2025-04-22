@@ -83,8 +83,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (badge) {
                     badge.textContent = "";
                     badge.style.display = "none";
+
+                    // ✅ Guardar los folios visibles como ya vistos
+                    const reportesVisibles = window.datosReportesCompletos || [];
+                    const foliosVistos = reportesVisibles.map(r => r.folio);
+                    localStorage.setItem(`foliosContadosCompletos_${userId}`, JSON.stringify(foliosVistos));
+
+                    // ✅ Reiniciar el contador
                     localStorage.setItem(`contadorCompletos_${userId}`, "0");
-                    localStorage.setItem(`foliosContadosCompletos_${userId}`, JSON.stringify([])); // ✅ ¡AGREGADO!
                 }
             }
 

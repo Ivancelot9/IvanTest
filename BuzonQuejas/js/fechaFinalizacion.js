@@ -103,8 +103,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                 window.moverReporteACompletados(reporte);
                             }
 
-                            // ✅ Notificar a otras pestañas que este reporte fue finalizado
-                            canalFinalizados.postMessage(reporte);
+                            const userId = document.body.getAttribute("data-user-id") || "default";
+                            canalFinalizados.postMessage({ ...reporte, origen: userId });
 
 
                             // ✅ Refrescar visual si ya está abierta la tabla 2
