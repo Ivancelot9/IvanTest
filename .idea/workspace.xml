@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Evitando sobreescribir en la misma sesion">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Evitando sobreescribir en la misma sesion" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,15 +167,7 @@
       <workItem from="1744726273556" duration="20930000" />
       <workItem from="1744812492630" duration="18894000" />
       <workItem from="1745245226590" duration="16937000" />
-      <workItem from="1745331438583" duration="9479000" />
-    </task>
-    <task id="LOCAL-01055" summary="cerrar sesion">
-      <option name="closed" value="true" />
-      <created>1744829439924</created>
-      <option name="number" value="01055" />
-      <option name="presentableId" value="LOCAL-01055" />
-      <option name="project" value="LOCAL" />
-      <updated>1744829439924</updated>
+      <workItem from="1745331438583" duration="9798000" />
     </task>
     <task id="LOCAL-01056" summary="cerrar sesion">
       <option name="closed" value="true" />
@@ -564,7 +553,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745341836359</updated>
     </task>
-    <option name="localTasksCounter" value="1104" />
+    <task id="LOCAL-01104" summary="Evitando sobreescribir en la misma sesion">
+      <option name="closed" value="true" />
+      <created>1745342424099</created>
+      <option name="number" value="01104" />
+      <option name="presentableId" value="LOCAL-01104" />
+      <option name="project" value="LOCAL" />
+      <updated>1745342424099</updated>
+    </task>
+    <option name="localTasksCounter" value="1105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

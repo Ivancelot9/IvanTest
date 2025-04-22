@@ -114,6 +114,25 @@ document.addEventListener("DOMContentLoaded", function () {
         badge.style.display = "inline-block";
     }
 
+    // 🔍 Si la pestaña activa al cargar es "reportes-completos", reiniciar contador
+    const seccionActivaAlCargar = document.querySelector(".main-content .content:not([style*='display: none'])");
+    if (seccionActivaAlCargar?.id === "reportes-completos") {
+        const userId = document.body.getAttribute("data-user-id") || "default";
+        const badge = document.getElementById("contador-completos");
+        if (badge) {
+            badge.textContent = "";
+            badge.style.display = "none";
+
+            // ✅ Guardar folios como vistos
+            const reportesVisibles = window.datosReportesCompletos || [];
+            const foliosVistos = reportesVisibles.map(r => r.folio);
+            localStorage.setItem(`foliosContadosCompletos_${userId}`, JSON.stringify(foliosVistos));
+
+            // ✅ Reiniciar contador
+            localStorage.setItem(`contadorCompletos_${userId}`, "0");
+        }
+    }
+
     const badgeHistorial = document.getElementById("contador-historial");
     let countHistorial = parseInt(localStorage.getItem("contadorHistorial") || "0");
     if (badgeHistorial && countHistorial > 0) {
