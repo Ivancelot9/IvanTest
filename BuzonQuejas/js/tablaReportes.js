@@ -225,57 +225,46 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ──────────────────────────────────
        7. Reportes FINALIZADOS
     ────────────────────────────────── */
-    /* ✅ Guard para no registrar dos veces si el script se inyecta de nuevo */
+    /* ──────────── LISTENER: reportes FINALIZADOS ──────────── */
+    /* ───────── LISTENER: reportes FINALIZADOS ───────── */
     if (!window[`listenerFinalizados_${userId}`]) {
 
-        window.foliosFinalizados = new Set();                        /* anti‑duplicados */
+        window.foliosFinalizados = new Set();
 
-        canalFinalizados.addEventListener("message", event => {
+        canalFinalizados.addEventListener("message", (event) => {
+
             const repFin = event.data;
             if (!repFin?.folio || repFin.origen === userId || window.foliosFinalizados.has(repFin.folio)) return;
             window.foliosFinalizados.add(repFin.folio);
 
-            /* ① Sacar de la tabla de pendientes */
+            /* ①  Quitar de pendientes */
             const fila = document.querySelector(`tr[data-folio="${repFin.folio}"]`);
             if (fila) fila.remove();
             datosReportes  = datosReportes .filter(r => r.FolioReportes !== repFin.folio);
             datosFiltrados = datosFiltrados.filter(r => r.FolioReportes !== repFin.folio);
             mostrarReportes(paginaActual);
 
-            /* ② Claves de conteo */
-            const badge     = document.getElementById("contador-completos");
-            const keyC      = `contadorCompletos_${userId}`;
-            const keyF      = `foliosContadosCompletos_${userId}`;
-            let foliosC     = JSON.parse(localStorage.getItem(keyF) || "[]");
+            /* ②  Clave para folios vistos */
+            const keyF    = `foliosContadosCompletos_${userId}`;
+            let foliosC   = JSON.parse(localStorage.getItem(keyF) || "[]");
 
+            /* ③  ¿Está abierta la pestaña “Completados”? */
             const seccionVis = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
             const notificar  = seccionVis !== "reportes-completos";
 
-            /* ③ Mover a tabla 2 (completados) */
-            if (typeof window.moverReporteACompletados === "function")
-                window.moverReporteACompletados(repFin, notificar);  /* ✅ MOD flag */
-
-            /* ④ Badge solo si procede */
-            if (!foliosC.includes(repFin.folio) && notificar) {
-                foliosC.push(repFin.folio);
-                localStorage.setItem(keyF, JSON.stringify(foliosC));
-
-                let c = parseInt(localStorage.getItem(keyC) || "0");
-                c++;                                                         // ⬆️ incrementa
-                localStorage.setItem(keyC, String(c));                       // ✅ guarda como string
-
-                if (badge) {
-                    badge.textContent = String(c);                         // ✅ muestra como string
-                    badge.style.display = "inline-block";
-                }
+            /* ④  Mover a la tabla 2 */
+            if (typeof window.moverReporteACompletados === "function") {
+                window.moverReporteACompletados(repFin, notificar);
             }
 
-            /* ⑤ Refrescar tabla de completados si está visible */
-            if (seccionVis === "reportes-completos" && typeof window.mostrarReportesCompletos === "function")
-                window.mostrarReportesCompletos(1);
+            /* ⑤  Si la pestaña “Completados” está visible, marcar solo como visto */
+            if (seccionVis === "reportes-completos" && !foliosC.includes(repFin.folio)) {
+                foliosC.push(repFin.folio);
+                localStorage.setItem(keyF, JSON.stringify(foliosC));
+            }
         });
 
-        window[`listenerFinalizados_${userId}`] = true;              /* ✅ MOD */
+        window[`listenerFinalizados_${userId}`] = true;
     }
 
     /* ──────────────────────────────────
