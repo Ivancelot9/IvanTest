@@ -76,27 +76,27 @@ document.addEventListener("DOMContentLoaded", function () {
             const idSeccion = boton.id.replace("btn-", "");
             mostrarSeccion(idSeccion);
 
+            const userId = document.body.getAttribute("data-user-id") || "default";
+
             if (idSeccion === "reportes-completos") {
                 const badge = document.getElementById("contador-completos");
                 if (badge) {
-                    const userId = document.body.getAttribute("data-user-id") || "default";
                     badge.textContent = "";
                     badge.style.display = "none";
                     localStorage.setItem(`contadorCompletos_${userId}`, "0");
+                    localStorage.setItem(`foliosContadosCompletos_${userId}`, JSON.stringify([])); // ✅ ¡AGREGADO!
                 }
             }
+
             if (idSeccion === "historial-reportes") {
                 const badgeHistorial = document.getElementById("contador-historial");
-                const userId = document.body.getAttribute("data-user-id") || "default";
                 if (badgeHistorial) {
                     badgeHistorial.textContent = "";
                     badgeHistorial.style.display = "none";
-                    localStorage.removeItem(`contadorHistorial_${userId}`);
-                    localStorage.removeItem(`foliosContados_${userId}`);
+                    localStorage.setItem(`contadorHistorial_${userId}`, "0"); // ✅ cambio aquí
+                    localStorage.setItem(`foliosContados_${userId}`, JSON.stringify([])); // ✅ también aquí
                 }
             }
-
-
         });
     });
 
