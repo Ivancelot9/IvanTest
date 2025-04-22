@@ -106,15 +106,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             // ✅ Notificar a otras pestañas que este reporte fue finalizado
                             canalFinalizados.postMessage(reporte);
 
-                            // ✅ Contador Messenger
-                            const badge = document.getElementById("contador-completos");
-                            if (badge) {
-                                let count = parseInt(localStorage.getItem("contadorCompletos") || "0");
-                                count++;
-                                badge.textContent = count.toString();
-                                badge.style.display = "inline-block";
-                                localStorage.setItem("contadorCompletos", count);
-                            }
 
                             // ✅ Refrescar visual si ya está abierta la tabla 2
                             const tablaCompletos = document.getElementById("reportes-completos");

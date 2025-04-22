@@ -240,8 +240,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.moverReporteACompletados(reporte);
             }
 
-            // ✅ Contador solo si no ha sido contado
-            if (!foliosContados.includes(reporte.folio)) {
+            // ✅ Contador solo si NO está abierta la pestaña
+            const seccionVisible = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
+            const estaEnPestanaCompletos = seccionVisible === "reportes-completos";
+
+            if (!foliosContados.includes(reporte.folio) && !estaEnPestanaCompletos) {
                 foliosContados.push(reporte.folio);
                 localStorage.setItem(foliosKey, JSON.stringify(foliosContados));
                 let count = parseInt(localStorage.getItem(key) || "0");
