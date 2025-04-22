@@ -217,7 +217,6 @@ document.addEventListener("DOMContentLoaded", function () {
         window.foliosFinalizados = new Set();
         canalFinalizados.addEventListener("message", (event) => {
             const reporte = event.data;
-            const userId = document.body.getAttribute("data-user-id") || "default";
             if (!reporte || !reporte.folio || window.foliosFinalizados.has(reporte.folio) || reporte.origen === userId) return;
             window.foliosFinalizados.add(reporte.folio);
 

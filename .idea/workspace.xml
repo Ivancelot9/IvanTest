@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Evitando sobreescribir en la misma sesion">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/fechaFinalizacion.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/fechaFinalizacion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/logicaDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/logicaDashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportesCompletos.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportesCompletos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,15 +170,7 @@
       <workItem from="1744726273556" duration="20930000" />
       <workItem from="1744812492630" duration="18894000" />
       <workItem from="1745245226590" duration="16937000" />
-      <workItem from="1745331438583" duration="8907000" />
-    </task>
-    <task id="LOCAL-01054" summary="cerrar sesion">
-      <option name="closed" value="true" />
-      <created>1744829238431</created>
-      <option name="number" value="01054" />
-      <option name="presentableId" value="LOCAL-01054" />
-      <option name="project" value="LOCAL" />
-      <updated>1744829238431</updated>
+      <workItem from="1745331438583" duration="9479000" />
     </task>
     <task id="LOCAL-01055" summary="cerrar sesion">
       <option name="closed" value="true" />
@@ -567,7 +556,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745338604938</updated>
     </task>
-    <option name="localTasksCounter" value="1103" />
+    <task id="LOCAL-01103" summary="Evitando sobreescribir en la misma sesion">
+      <option name="closed" value="true" />
+      <created>1745341836359</created>
+      <option name="number" value="01103" />
+      <option name="presentableId" value="LOCAL-01103" />
+      <option name="project" value="LOCAL" />
+      <updated>1745341836359</updated>
+    </task>
+    <option name="localTasksCounter" value="1104" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
