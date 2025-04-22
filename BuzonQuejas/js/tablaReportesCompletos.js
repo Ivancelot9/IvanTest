@@ -247,12 +247,21 @@ document.addEventListener("DOMContentLoaded", function () {
         if (yaExiste) return;
 
         const badge = document.getElementById("contador-completos");
-        if (badge) {
-            let count = parseInt(localStorage.getItem(claveStorageCompletos) || "0");
-            count++;
-            localStorage.setItem(claveStorageCompletos, count);
-            badge.textContent = count.toString();
-            badge.style.display = "inline-block";
+        const foliosKey = `foliosContadosCompletos_${userId}`;
+        let foliosContados = JSON.parse(localStorage.getItem(foliosKey) || "[]");
+
+        // ✅ Solo contar si no ha sido notificado ya
+        if (!foliosContados.includes(nuevoReporte.folio)) {
+            foliosContados.push(nuevoReporte.folio);
+            localStorage.setItem(foliosKey, JSON.stringify(foliosContados));
+
+            if (badge) {
+                let count = parseInt(localStorage.getItem(claveStorageCompletos) || "0");
+                count++;
+                localStorage.setItem(claveStorageCompletos, count);
+                badge.textContent = count.toString();
+                badge.style.display = "inline-block";
+            }
         }
 
         datosReportesCompletos.unshift(nuevoReporte);

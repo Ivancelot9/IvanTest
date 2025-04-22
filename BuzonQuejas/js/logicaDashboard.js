@@ -79,20 +79,24 @@ document.addEventListener("DOMContentLoaded", function () {
             if (idSeccion === "reportes-completos") {
                 const badge = document.getElementById("contador-completos");
                 if (badge) {
+                    const userId = document.body.getAttribute("data-user-id") || "default";
                     badge.textContent = "";
                     badge.style.display = "none";
-                    localStorage.removeItem("contadorCompletos");
+                    localStorage.setItem(`contadorCompletos_${userId}`, "0");
                 }
             }
-
             if (idSeccion === "historial-reportes") {
                 const badgeHistorial = document.getElementById("contador-historial");
+                const userId = document.body.getAttribute("data-user-id") || "default";
                 if (badgeHistorial) {
                     badgeHistorial.textContent = "";
                     badgeHistorial.style.display = "none";
-                    localStorage.removeItem("contadorHistorial");
+                    localStorage.removeItem(`contadorHistorial_${userId}`);
+                    localStorage.removeItem(`foliosContados_${userId}`);
                 }
             }
+
+
         });
     });
 
