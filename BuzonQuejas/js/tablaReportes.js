@@ -206,34 +206,54 @@ document.addEventListener("DOMContentLoaded", function () {
         window.listenerCanalReportesRegistrado = true;
     }
 
-    if (!window.listenerCanalFinalizadosRegistrado) {
+    const userId = document.body.getAttribute("data-user-id") || "default";
+
+    if (!window[`listenerFinalizados_${userId}`]) {
         window.foliosFinalizados = new Set();
         canalFinalizados.addEventListener("message", (event) => {
             const reporte = event.data;
             if (!reporte || !reporte.folio || window.foliosFinalizados.has(reporte.folio)) return;
             window.foliosFinalizados.add(reporte.folio);
+
             const fila = document.querySelector(`tr[data-folio="${reporte.folio}"]`);
             if (fila) fila.remove();
+
             datosReportes = datosReportes.filter(r => r.FolioReportes !== reporte.folio);
             datosFiltrados = datosFiltrados.filter(r => r.FolioReportes !== reporte.folio);
             mostrarReportes(paginaActual);
-            if (!window.datosReportesCompletos?.some(r => String(r.folio) === String(reporte.folio)) && typeof window.moverReporteACompletados === "function") {
+
+            const badge = document.getElementById("contador-completos");
+            const key = `contadorCompletos_${userId}`;
+            const foliosKey = `foliosContadosCompletos_${userId}`;
+            let foliosContados = JSON.parse(localStorage.getItem(foliosKey) || "[]");
+
+            // ✅ Mover a tabla completados si no está ya procesado
+            if (
+                typeof window.moverReporteACompletados === "function" &&
+                !foliosContados.includes(reporte.folio)
+            ) {
                 window.moverReporteACompletados(reporte);
             }
-            const badge = document.getElementById("contador-completos");
-            if (badge) {
-                const userId = document.body.getAttribute("data-user-id") || "default";
-                const key = `contadorCompletos_${userId}`;
+
+            // ✅ Contador solo si no ha sido contado
+            if (!foliosContados.includes(reporte.folio)) {
+                foliosContados.push(reporte.folio);
+                localStorage.setItem(foliosKey, JSON.stringify(foliosContados));
                 let count = parseInt(localStorage.getItem(key) || "0");
                 count++;
                 localStorage.setItem(key, count);
-                badge.textContent = count.toString();
-                badge.style.display = "inline-block";
+                if (badge) {
+                    badge.textContent = count.toString();
+                    badge.style.display = "inline-block";
+                }
             }
+
             if (typeof window.mostrarReportesCompletos === "function") {
                 window.mostrarReportesCompletos(1);
             }
         });
-        window.listenerCanalFinalizadosRegistrado = true;
+
+        // ✅ Marcar como ya registrado para este usuario
+        window[`listenerFinalizados_${userId}`] = true;
     }
 });
