@@ -46,6 +46,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 datosReportes = data || [];
                 datosFiltrados = [...datosReportes];
                 mostrarReportes(paginaActual);
+
+                // ✅ Marcar todos los folios visibles como vistos para evitar contar de nuevo
+                const foliosKey = `foliosContados_${userId}`;
+                const foliosYaContados = datosReportes.map(r => r.FolioReportes);
+                localStorage.setItem(foliosKey, JSON.stringify(foliosYaContados));
             })
             .catch(error => console.error("❌ Error al cargar reportes:", error));
     }

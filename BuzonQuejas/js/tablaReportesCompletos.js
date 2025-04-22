@@ -118,6 +118,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.datosReportesCompletos = datosReportesCompletos;
                 datosFiltradosCompletos = [...datosReportesCompletos];
                 mostrarReportesCompletos(1);
+
+                // ✅ Marcar todos los folios ya visibles como "vistos" para evitar contar de nuevo
+                const foliosKey = `foliosContadosCompletos_${userId}`;
+                const foliosYaContados = datosReportesCompletos.map(r => r.folio);
+                localStorage.setItem(foliosKey, JSON.stringify(foliosYaContados));
             })
             .catch(err => console.error("❌ Error al cargar reportes completados:", err));
     }
