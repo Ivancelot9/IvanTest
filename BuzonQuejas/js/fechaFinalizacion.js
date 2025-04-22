@@ -104,6 +104,12 @@ document.addEventListener("DOMContentLoaded", function () {
                             }
 
                             const userId = document.body.getAttribute("data-user-id") || "default";
+                            console.log(
+                                "📤 [fechaFinalizacion] enviando origen=",
+                                userId,
+                                "para folio",
+                                folioSeleccionado
+                            );
                             canalFinalizados.postMessage({ ...reporte, origen: userId });
 
 
