@@ -232,22 +232,33 @@ document.addEventListener("DOMContentLoaded", function () {
         window.foliosFinalizados = new Set();
 
         canalFinalizados.addEventListener("message", (event) => {
-            console.log("🛰️  recibido en pestaña", userId, event.data);
+            console.log("🛰️ recibido en pestaña", userId, event.data);
+
             const repFin = event.data;
-            if (!repFin?.folio || repFin.origen === userId || window.foliosFinalizados.has(repFin.folio))
-                console.log("⛔  ignorado", userId, { motivo:"filtro", repFin }); // ⬅️ aquíreturn;
+
+            /* ✅ Usa llaves y pon el return dentro */
+            if (!repFin?.folio ||
+                repFin.origen === userId ||
+                window.foliosFinalizados.has(repFin.folio)) {
+
+                console.log("⛔ ignorado", userId, { motivo: "filtro", repFin });
+                return;                               // <-- ahora sí se detiene
+            }
+
+            /* ← A partir de aquí solo entra cuando el mensaje es válido */
             window.foliosFinalizados.add(repFin.folio);
 
             /* ①  Quitar de pendientes */
-            const fila = document.querySelector(`tr[data-folio="${repFin.folio}"]`);
+            const fila = document.querySelector(`tr[data-folio="${String(repFin.folio)}"]`);
+            console.log("🔍 Buscando fila", repFin.folio, "⇒", fila);       // DEBUG
             if (fila) fila.remove();
             datosReportes  = datosReportes .filter(r => r.FolioReportes !== repFin.folio);
             datosFiltrados = datosFiltrados.filter(r => r.FolioReportes !== repFin.folio);
             mostrarReportes(paginaActual);
 
             /* ②  Clave para folios vistos */
-            const keyF    = `foliosContadosCompletos_${userId}`;
-            let foliosC   = JSON.parse(localStorage.getItem(keyF) || "[]");
+            const keyF = `foliosContadosCompletos_${userId}`;
+            let foliosC = JSON.parse(localStorage.getItem(keyF) || "[]");
 
             /* ③  ¿Está abierta la pestaña “Completados”? */
             const seccionVis = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;

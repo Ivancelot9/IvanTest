@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Notificaciones corregidas">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Notificaciones corregidas" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -169,15 +167,7 @@
       <workItem from="1744726273556" duration="20930000" />
       <workItem from="1744812492630" duration="18894000" />
       <workItem from="1745245226590" duration="16937000" />
-      <workItem from="1745331438583" duration="14307000" />
-    </task>
-    <task id="LOCAL-01061" summary="cerrar sesion">
-      <option name="closed" value="true" />
-      <created>1744830733911</created>
-      <option name="number" value="01061" />
-      <option name="presentableId" value="LOCAL-01061" />
-      <option name="project" value="LOCAL" />
-      <updated>1744830733911</updated>
+      <workItem from="1745331438583" duration="14407000" />
     </task>
     <task id="LOCAL-01062" summary="cerrar sesion">
       <option name="closed" value="true" />
@@ -563,7 +553,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745347979466</updated>
     </task>
-    <option name="localTasksCounter" value="1110" />
+    <task id="LOCAL-01110" summary="Notificaciones corregidas">
+      <option name="closed" value="true" />
+      <created>1745354265890</created>
+      <option name="number" value="01110" />
+      <option name="presentableId" value="LOCAL-01110" />
+      <option name="project" value="LOCAL" />
+      <updated>1745354265890</updated>
+    </task>
+    <option name="localTasksCounter" value="1111" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
