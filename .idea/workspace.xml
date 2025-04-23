@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Notificaciones en dos pestañas sincronizadas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/estatusEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/estatusEditor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -172,15 +171,7 @@
       <workItem from="1744812492630" duration="18894000" />
       <workItem from="1745245226590" duration="16937000" />
       <workItem from="1745331438583" duration="16271000" />
-      <workItem from="1745418094690" duration="7376000" />
-    </task>
-    <task id="LOCAL-01074" summary="animacion controles tablas">
-      <option name="closed" value="true" />
-      <created>1745246837012</created>
-      <option name="number" value="01074" />
-      <option name="presentableId" value="LOCAL-01074" />
-      <option name="project" value="LOCAL" />
-      <updated>1745246837012</updated>
+      <workItem from="1745418094690" duration="8671000" />
     </task>
     <task id="LOCAL-01075" summary="animacion controles tablas">
       <option name="closed" value="true" />
@@ -566,7 +557,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745431692868</updated>
     </task>
-    <option name="localTasksCounter" value="1123" />
+    <task id="LOCAL-01123" summary="Notificaciones en dos pestañas sincronizadas">
+      <option name="closed" value="true" />
+      <created>1745431805151</created>
+      <option name="number" value="01123" />
+      <option name="presentableId" value="LOCAL-01123" />
+      <option name="project" value="LOCAL" />
+      <updated>1745431805151</updated>
+    </task>
+    <option name="localTasksCounter" value="1124" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

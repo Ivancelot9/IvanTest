@@ -114,12 +114,27 @@ document.addEventListener("DOMContentLoaded", function () {
             const folio = rep.FolioReportes || "S/F";
 
             // Estatus
-            const est       = JSON.parse(localStorage.getItem("estatusReportes") || "{}")[folio] || null;
-            const prog      = est?.progresoManual ?? null;
-            const color     = est?.colorManual ?? null;
+            // Estatus (sólo después de Guardar manual)
+            const storage  = JSON.parse(localStorage.getItem("estatusReportes") || "{}");
+            const tieneKey = Object.prototype.hasOwnProperty.call(storage, folio);
+            const est      = tieneKey ? storage[folio] : null;
+
+// validamos que exista progresoManual *y* colorManual
+            const prog     = est &&
+            typeof est.progresoManual === "number" &&
+            typeof est.colorManual    === "string"
+                ? est.progresoManual
+                : null;
+
+            const color    = est &&
+            typeof est.colorManual === "string"
+                ? est.colorManual
+                : null;
+
             const clase     = color
                 ? {G:"green",B:"blue",Y:"yellow",R:"red"}[color] || obtenerClaseEstado(prog)
                 : obtenerClaseEstado(prog);
+
             const esCirculo = prog !== null;
             const btnHTML   = `
                 <button class="ver-estatus-btn ${clase}" data-folio="${folio}"
