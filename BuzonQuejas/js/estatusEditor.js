@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <strong>G</strong> = 100% (Verde)<br>
                 <strong>B</strong> = 75% (Azul)<br>
                 <strong>Y</strong> = 50% (Amarillo)<br>
-                <strong>R</strong> = 25% (Rojo)
+                <strong>R</strong> = 25% (Rojo)<br>
             `,
                 confirmButtonText: "Entendido"
             });
