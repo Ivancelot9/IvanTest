@@ -128,14 +128,15 @@ document.addEventListener("DOMContentLoaded", function () {
             Swal.fire("Error", "Por favor, ingresa un número válido de días.", "error");
             return;
         }
-        // Sólo guardamos días y fechaInicio, NUNCA el progreso automático
+
         let fechaInicio = new Date().toISOString();
         let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
-        estatusReportes[currentFolio] = { dias: dias, fechaInicio: fechaInicio };
+        estatusReportes[currentFolio] = { dias: dias, fechaInicio: fechaInicio, progresoManual: progresoAutomatico };
         localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
 
         calcularEstatusRecomendado(dias, fechaInicio);
-        preguntaDias.style.display      = "none";
+
+        preguntaDias.style.display = "none";
         configurarEstatus.style.display = "block";
     });
 
