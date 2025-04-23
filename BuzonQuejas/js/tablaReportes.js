@@ -1,4 +1,3 @@
-
 /*  tablaReportes.js  ───────────────────────────────────────────
     Gestión de reportes pendientes
     – Carga inicial desde PHP
@@ -6,7 +5,6 @@
     – Notificaciones en tiempo real (BroadcastChannel)
     – Sincronización de badges por-usuario
     – Debugging: console.log en listener de finalizados
-    – Listener de estatus en vivo (canalEstatus)
 */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -17,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const userId           = document.body.getAttribute("data-user-id") || "default";
     const canal            = new BroadcastChannel("canalReportes");
     const canalFinalizados = new BroadcastChannel("canalFinalizados");
-    const canalEstatus     = new BroadcastChannel("canalEstatus");      // ← nuevo canal
 
     const filasPorPagina   = 10;
     let   paginaActual     = 1;
@@ -116,39 +113,45 @@ document.addEventListener("DOMContentLoaded", function () {
         slice.forEach(rep => {
             const folio = rep.FolioReportes || "S/F";
 
+            // Estatus
             // Estatus (sólo después de Guardar manual)
             const storage  = JSON.parse(localStorage.getItem("estatusReportes") || "{}");
             const tieneKey = Object.prototype.hasOwnProperty.call(storage, folio);
             const est      = tieneKey ? storage[folio] : null;
 
-            const prog     = est && typeof est.progresoManual === "number"
+// validamos que exista progresoManual *y* colorManual
+            const prog     = est &&
+            typeof est.progresoManual === "number" &&
+            typeof est.colorManual    === "string"
                 ? est.progresoManual
                 : null;
-            const color    = est && typeof est.colorManual === "string"
+
+            const color    = est &&
+            typeof est.colorManual === "string"
                 ? est.colorManual
                 : null;
-            const clase    = color
+
+            const clase     = color
                 ? {G:"green",B:"blue",Y:"yellow",R:"red"}[color] || obtenerClaseEstado(prog)
                 : obtenerClaseEstado(prog);
-            const esCirculo= prog !== null;
 
-            const btnHTML  = `
+            const esCirculo = prog !== null;
+            const btnHTML   = `
                 <button class="ver-estatus-btn ${clase}" data-folio="${folio}"
                     style="${esCirculo
                 ? `width:50px;height:50px;border-radius:50%;
-                   background:${clase};color:white;font-weight:bold;
-                   font-size:14px;text-shadow:2px 2px 0 black;
-                   border:3px solid black;margin:auto;
-                   display:flex;align-items:center;justify-content:center;`
+                               background:${clase};color:white;font-weight:bold;
+                               font-size:14px;text-shadow:2px 2px 0 black;
+                               border:3px solid black;margin:auto;
+                               display:flex;align-items:center;justify-content:center;`
                 : `background:white;color:black;border:2px solid black;
-                   font-weight:bold;padding:4px 10px;margin:auto;` }">
+                               font-weight:bold;padding:4px 10px;margin:auto;` }">
                     ${esCirculo ? prog + "%" : "Ver Estatus"}
                 </button>`;
 
             // Encargados
             let [sup, sl] = (rep.Encargado || "N/A").split("<br>");
-            sup = extraerTextoPlano(sup);
-            sl  = extraerTextoPlano(sl);
+            sup = extraerTextoPlano(sup); sl = extraerTextoPlano(sl);
             if (col === "encargado") {
                 sup = resaltarTexto(sup, txt);
                 sl  = resaltarTexto(sl,  txt);
@@ -157,27 +160,37 @@ document.addEventListener("DOMContentLoaded", function () {
             const row = document.createElement("tr");
             row.dataset.folio = String(folio);
             row.innerHTML = `
-                <td>${col==="folio"          ? resaltarTexto(folio, txt)                  : folio}</td>
-                <td>${col==="fechaRegistro"  ? resaltarTexto(formatearFecha(rep.FechaRegistro), txt)
-                : formatearFecha(rep.FechaRegistro)}</td>
-                <td>${col==="nomina"         ? resaltarTexto(rep.NumeroNomina||"Sin nómina", txt)
-                : (rep.NumeroNomina||"Sin nómina")}</td>
-                <td>${rep.Area||"Sin área"}</td>
-                <td class="celda-encargado">${sup}<br>${sl}</td>
-                <td><button class="mostrar-descripcion"
-                            data-descripcion="${rep.Descripcion||'Sin descripción'}">
-                        Mostrar Descripción
-                    </button>
-                </td>
-                <td><button class="agregar-comentario" data-folio="${folio}">
-                        Agregar Comentario
-                    </button>
-                </td>
-                <td class="estatus-cell">${btnHTML}</td>
-                <td><button class="seleccionar-fecha" data-folio="${folio}">
-                        Finalizar Reporte
-                    </button>
-                </td>`;
+    <td>${col === "folio"
+                ? resaltarTexto(folio, txt)
+                : folio
+            }</td>
+    <td>${col === "fechaRegistro"
+                ? resaltarTexto(formatearFecha(rep.FechaRegistro), txt)
+                : formatearFecha(rep.FechaRegistro)
+            }</td>
+    <td>${col === "nomina"
+                ? resaltarTexto(rep.NumeroNomina || "Sin nómina", txt)
+                : (rep.NumeroNomina || "Sin nómina")
+            }</td>
+    <td>${rep.Area || "Sin área"}</td>
+    <td class="celda-encargado">${sup}<br>${sl}</td>
+    <td>
+        <button class="mostrar-descripcion"
+                data-descripcion="${rep.Descripcion || 'Sin descripción'}">
+            Mostrar Descripción
+        </button>
+    </td>
+    <td>
+        <button class="agregar-comentario" data-folio="${folio}">
+            Agregar Comentario
+        </button>
+    </td>
+    <td class="estatus-cell">${btnHTML}</td>
+    <td>
+        <button class="seleccionar-fecha" data-folio="${folio}">
+            Finalizar Reporte
+        </button>
+    </td>`;
             tablaBody.appendChild(row);
         });
 
@@ -200,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ? [...datosReportes]
             : datosReportes.filter(r => {
                 let v = r[bd] ?? "";
-                if (bd === "Encargado")    v = extraerTextoPlano(v).toLowerCase();
+                if (bd === "Encargado") v = extraerTextoPlano(v).toLowerCase();
                 if (bd === "FechaRegistro") v = formatearFecha(v);
                 return String(v).toLowerCase().includes(f);
             });
@@ -208,8 +221,12 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportes(1);
     }
 
-    prevPageBtn.addEventListener("click", () => { if (paginaActual > 1) mostrarReportes(--paginaActual); });
-    nextPageBtn.addEventListener("click", () => { if (paginaActual*filasPorPagina < datosFiltrados.length) mostrarReportes(++paginaActual); });
+    prevPageBtn.addEventListener("click", () => { if (paginaActual > 1)
+        mostrarReportes(--paginaActual);
+    });
+    nextPageBtn.addEventListener("click", () => { if (paginaActual * filasPorPagina < datosFiltrados.length)
+        mostrarReportes(++paginaActual);
+    });
     filterInput.addEventListener("input", filtrarReportes);
     filterButton.addEventListener("click", filtrarReportes);
 
@@ -224,8 +241,49 @@ document.addEventListener("DOMContentLoaded", function () {
 
         fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obteneReportesPorFolio.php?folio=${ev.data.folio}`)
             .then(r => r.json())
-            .then(rep => { if (rep?.FolioReportes) agregarReporte(rep); });
+            .then(rep => {
+                if (rep?.FolioReportes) agregarReporte(rep);
+            });
     });
+
+    function agregarReporte(rep) {
+        // 1. Agregar al array y exponer globalmente
+        datosReportes.push(rep);
+        window.datosReportes = datosReportes;
+
+        // 2. Ordenar por fecha y filtrar/paginar
+        datosReportes.sort((a, b) => new Date(b.FechaRegistro) - new Date(a.FechaRegistro));
+        filtrarReportes();
+
+        // 3. Animación de entrada
+        const first = tablaBody.querySelector("tr");
+        if (first) {
+            first.classList.add("nueva-fila");
+            setTimeout(() => first.classList.remove("nueva-fila"), 2000);
+        }
+
+        // 4. Registrar este folio como “nuevo pendiente” para resalte al entrar
+        window.nuevosPendientes = window.nuevosPendientes || new Set();
+        window.nuevosPendientes.add(String(rep.FolioReportes));
+
+        // 5. Actualizar badge de historial si no estamos en esa sección
+        const vis = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
+        if (vis !== "historial-reportes") {
+            const badge = document.getElementById("contador-historial");
+            const kF    = `foliosContados_${userId}`;
+            const kC    = `contadorHistorial_${userId}`;
+            let fV      = JSON.parse(localStorage.getItem(kF) || "[]");
+            if (!fV.includes(rep.FolioReportes)) {
+                fV.push(rep.FolioReportes);
+                localStorage.setItem(kF, JSON.stringify(fV));
+                let c = parseInt(localStorage.getItem(kC) || "0");
+                c++;
+                localStorage.setItem(kC, String(c));
+                badge.textContent   = String(c);
+                badge.style.display = "inline-block";
+            }
+        }
+    }
 
     /* ─────────────────────────────────────────
        7. Listener: reportes FINALIZADOS
@@ -233,29 +291,36 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!window[`listenerFinalizados_${userId}`]) {
         window.foliosFinalizados = new Set();
 
-        canalFinalizados.addEventListener("message", event => {
+        canalFinalizados.addEventListener("message", (event) => {
             const repFin = event.data;
-            if (!repFin?.folio || repFin.origen===userId || window.foliosFinalizados.has(repFin.folio)) return;
+
+            // Filtro inicial
+            if (!repFin?.folio
+                || repFin.origen === userId
+                || window.foliosFinalizados.has(repFin.folio)
+            ) return;
+
+            // Marcar como procesado
             window.foliosFinalizados.add(repFin.folio);
 
-            // eliminar y re-render
+            // Eliminar de pendientes y re-renderizar
             const folioStr = String(repFin.folio);
-            datosReportes  = datosReportes.filter(r=>String(r.FolioReportes)!==folioStr);
-            datosFiltrados = datosFiltrados.filter(r=>String(r.FolioReportes)!==folioStr);
+            datosReportes    = datosReportes.filter(r => String(r.FolioReportes) !== folioStr);
+            datosFiltrados   = datosFiltrados.filter(r => String(r.FolioReportes) !== folioStr);
             window.datosReportes = datosReportes;
             mostrarReportes(paginaActual);
 
-            // mover a completados
-            const vis2 = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
-            const notify = vis2!=="reportes-completos";
-            if (typeof window.moverReporteACompletados==="function") {
+            // Mover a completados
+            const vis2  = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
+            const notify = vis2 !== "reportes-completos";
+            if (typeof window.moverReporteACompletados === "function") {
                 window.moverReporteACompletados(repFin, notify);
             }
 
-            // marcar visto si completados abierto
-            if (vis2==="reportes-completos") {
-                const keyF = `foliosContadosCompletos_${userId}`;
-                let foliosC = JSON.parse(localStorage.getItem(keyF)||"[]");
+            // Si completados está abierta, sólo marcar visto
+            if (vis2 === "reportes-completos") {
+                const keyF  = `foliosContadosCompletos_${userId}`;
+                let foliosC = JSON.parse(localStorage.getItem(keyF) || "[]");
                 if (!foliosC.includes(repFin.folio)) {
                     foliosC.push(repFin.folio);
                     localStorage.setItem(keyF, JSON.stringify(foliosC));
@@ -267,36 +332,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ─────────────────────────────────────────
-       8. Listener: estatus en vivo
-    ───────────────────────────────────────── */
-    canalEstatus.addEventListener("message", ev => {
-        const msg = ev.data;
-        if (msg.tipo !== "estatus-cambiado") return;
-
-        // 1) actualizo localStorage
-        const store = JSON.parse(localStorage.getItem("estatusReportes")||"{}");
-        store[msg.folio] = {
-            ...(store[msg.folio]||{}),
-            progresoManual: msg.progreso,
-            colorManual: msg.color
-        };
-        localStorage.setItem("estatusReportes", JSON.stringify(store));
-
-        // 2) actualizo el botón en pantalla
-        const btn = document.querySelector(`.ver-estatus-btn[data-folio="${msg.folio}"]`);
-        if (!btn) return;
-        btn.className   = `ver-estatus-btn ${msg.color.toLowerCase()}`;
-        btn.textContent = `${msg.progreso}%`;
-        btn.style.backgroundColor = msg.color.toLowerCase();
-        // efecto parpadeo
-        btn.classList.add("flash");
-        setTimeout(()=> btn.classList.remove("flash"), 1500);
-    });
-
-    /* ─────────────────────────────────────────
-       9. Arranque
+       8. Arranque
     ───────────────────────────────────────── */
     cargarReportes();
     filtrarReportes();
 });
-
