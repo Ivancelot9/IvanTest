@@ -109,54 +109,66 @@ document.addEventListener("DOMContentLoaded", function () {
         XLSX.writeFile(wb,`Reporte_${rep.folio}.xlsx`,{bookType:"xlsx",cellStyles:true});
     }
 
-    /* ────────────────────────────────────────────────
-       3.  Renderizado y paginación
-    ──────────────────────────────────────────────── */
-    window.mostrarReportesCompletos = function(pag=1){
-        const ini=(pag-1)*filasPorPagina, fin=ini+filasPorPagina;
-        const lista=datosFiltradosCompletos.slice(ini,fin);
-        const filtro=filterInputCompleto.value.toLowerCase();
-        const colSel=filterColumnCompleto.value;
+    // 2) Función actualizar para “tablaReportesCompletos.js”
+    window.mostrarReportesCompletos = function(pag = 1) {
+        const ini = (pag - 1) * filasPorPagina;
+        const fin = ini + filasPorPagina;
+        const lista = datosFiltradosCompletos.slice(ini, fin);
+        const filtro = filterInputCompleto.value.toLowerCase();
+        const colSel = filterColumnCompleto.value;
 
-        tablaCompletosBody.innerHTML="";
-
-        if(lista.length===0){
-            const usandoFecha=startDateInput.value||endDateInput.value;
-            const msg=usandoFecha? "❌ No hay reportes en este rango de fechas."
+        tablaCompletosBody.innerHTML = "";
+        if (lista.length === 0) {
+            const usandoFecha = startDateInput.value || endDateInput.value;
+            const msg = usandoFecha
+                ? "❌ No hay reportes en este rango de fechas."
                 : "❌ No hay reportes que coincidan con el filtro.";
-            tablaCompletosBody.innerHTML=`<tr><td colspan="6" style="color:red;font-weight:bold;">${msg}</td></tr>`;
-            return;
+            tablaCompletosBody.innerHTML = `<tr><td colspan="6" style="color:red;font-weight:bold;">${msg}</td></tr>`;
+        } else {
+            lista.forEach(rep => {
+                const fila = document.createElement("tr");
+                fila.dataset.folio = String(rep.folio);
+                fila.innerHTML = `
+                <td>${aplicarResaltado(rep.folio, "folio", filtro, colSel)}</td>
+                <td>${aplicarResaltado(rep.nomina, "nomina", filtro, colSel)}</td>
+                <td>${formatearEncargadoParaVista(aplicarResaltado(rep.encargado, "encargado", filtro, colSel))}</td>
+                <td>${aplicarResaltado(formatearFecha(rep.fechaFinalizacion), "fechaFinalizacion", filtro, colSel)}</td>
+                <td>${aplicarResaltado(rep.estatus, "estatus", filtro, colSel)}</td>`;
+                const btn = document.createElement("button");
+                btn.classList.add("convertidor");
+                btn.dataset.folio = rep.folio;
+                btn.innerHTML = `<i class="fas fa-file-excel"></i> Convertir a Excel`;
+                const celda = document.createElement("td");
+                celda.appendChild(btn);
+                fila.appendChild(celda);
+                tablaCompletosBody.appendChild(fila);
+            });
         }
 
-        lista.forEach(rep=>{
-            const fila=document.createElement("tr");
-            fila.innerHTML=`
-                <td>${aplicarResaltado(rep.folio,"folio",filtro,colSel)}</td>
-                <td>${aplicarResaltado(rep.nomina,"nomina",filtro,colSel)}</td>
-                <td>${formatearEncargadoParaVista(aplicarResaltado(rep.encargado,"encargado",filtro,colSel))}</td>
-                <td>${aplicarResaltado(formatearFecha(rep.fechaFinalizacion),"fechaFinalizacion",filtro,colSel)}</td>
-                <td>${aplicarResaltado(rep.estatus,"estatus",filtro,colSel)}</td>`;
-            const btn=document.createElement("button");
-            btn.classList.add("convertidor");
-            btn.dataset.folio=rep.folio;
-            btn.innerHTML=`<i class="fas fa-file-excel"></i> Convertir a Excel`;
-            const celda=document.createElement("td");
-            celda.appendChild(btn);
-            fila.appendChild(celda);
-            tablaCompletosBody.appendChild(fila);
-        });
-
-        if(resaltarFechas){
-            tablaCompletosBody.querySelectorAll("td:nth-child(4)")
-                .forEach(c=>c.classList.add("highlight"));
+        // 7. Resaltar en caliente los finalizados si ya estás en la sección
+        const vis2 = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
+        if (vis2 === "reportes-completos") {
+            document.querySelectorAll("#tabla-completos-body tr").forEach(fila => {
+                const folio = fila.dataset.folio;
+                if (window.nuevosCompletados && window.nuevosCompletados.has(folio)) {
+                    fila.classList.add("resaltar-completado");
+                    setTimeout(() => fila.classList.remove("resaltar-completado"), 4000);
+                }
+            });
+            window.nuevosCompletados.clear();
         }
 
-        pageIndicatorCompleto.textContent=`Página ${pag}`;
-        prevPageBtnCompleto.disabled=pag===1;
-        nextPageBtnCompleto.disabled=fin>=datosFiltradosCompletos.length;
-        paginaActualCompleto=pag;
+        // 8. Resaltar fechas filtradas (tu lógica existente)
+        if (resaltarFechas) {
+            tablaCompletosBody.querySelectorAll("td:nth-child(4)").forEach(c => c.classList.add("highlight"));
+        }
+
+        // 9. Paginación
+        pageIndicatorCompleto.textContent      = `Página ${pag}`;
+        prevPageBtnCompleto.disabled           = pag === 1;
+        nextPageBtnCompleto.disabled           = fin >= datosFiltradosCompletos.length;
+        paginaActualCompleto                   = pag;
     };
-
     /* ────────────────────────────────────────────────
        4.  Carga inicial desde backend
     ──────────────────────────────────────────────── */

@@ -299,18 +299,14 @@ button.ver-estatus-btn:hover {
     border: 2px solid #2ea043;
 }
 
-/* Resalte para nuevos pendientes */
 .resaltar-nuevo {
-    animation: parpadeo 4s ease-out;
+    animation: parpadeo 6s ease-out;
 }
-
-/* Resalte para nuevos completados */
 .resaltar-completado {
-    animation: parpadeo 4s ease-out;
+    animation: parpadeo 6s ease-out;
 }
-
 @keyframes parpadeo {
-    0%, 100% { background-color: rgba(255, 255, 153, 0.8); }
+    0%, 100% { background-color: rgba(255,255,153,0.8); }
     50%      { background-color: transparent; }
 }
 
