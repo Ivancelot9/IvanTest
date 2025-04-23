@@ -238,18 +238,8 @@ document.addEventListener("DOMContentLoaded", function () {
         window.nuevosPendientes = window.nuevosPendientes || new Set();
         window.nuevosPendientes.add(String(rep.FolioReportes));
 
-        // 5. Si ya estás viendo “Historial de reportes”, resalta en caliente
+        // 5. Actualizar badge de historial si no estamos en esa sección
         const vis = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
-        if (vis === "historial-reportes") {
-            // tras filtrarReportes la tabla ya está reconstruida
-            const row = tablaBody.querySelector(`tr[data-folio="${rep.FolioReportes}"]`);
-            if (row) {
-                row.classList.add("resaltar-nuevo");
-                setTimeout(() => row.classList.remove("resaltar-nuevo"), 4000);
-            }
-        }
-
-        // 6. Actualizar badge de historial si no estamos en esa sección
         if (vis !== "historial-reportes") {
             const badge = document.getElementById("contador-historial");
             const kF    = `foliosContados_${userId}`;
@@ -258,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!fV.includes(rep.FolioReportes)) {
                 fV.push(rep.FolioReportes);
                 localStorage.setItem(kF, JSON.stringify(fV));
-                let c = parseInt(localStorage.getItem(kC) || "0", 10);
+                let c = parseInt(localStorage.getItem(kC) || "0");
                 c++;
                 localStorage.setItem(kC, String(c));
                 badge.textContent   = String(c);
