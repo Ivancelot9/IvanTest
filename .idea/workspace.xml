@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Notificaciones corregidas">
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/fechaFinalizacion.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/fechaFinalizacion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/logicaDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/logicaDashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportesCompletos.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportesCompletos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,6 +172,7 @@
       <workItem from="1744812492630" duration="18894000" />
       <workItem from="1745245226590" duration="16937000" />
       <workItem from="1745331438583" duration="16271000" />
+      <workItem from="1745418094690" duration="2646000" />
     </task>
     <task id="LOCAL-01066" summary="cerrar sesion">
       <option name="closed" value="true" />

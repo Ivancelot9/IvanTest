@@ -2,18 +2,21 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ────────────────────────────────────────────────────────────── */
     /* Datos base y elementos                                         */
     /* ────────────────────────────────────────────────────────────── */
+    const userId      = document.body.getAttribute("data-user-id") || "default";
+    const sidebar     = document.querySelector(".sidebar");
+    const mainContent = document.querySelector(".main-content");
+    const toggleBtn   = document.getElementById("toggleSidebar");
+    const hero        = document.querySelector(".hero-animation");
+    const botones     = document.querySelectorAll(".sidebar a");
+    const secciones   = document.querySelectorAll(".main-content .content");
 
-    /* ✅ MOD (1): obtenemos el userId una sola vez y lo usamos en todo el script */
-    const userId = document.body.getAttribute("data-user-id") || "default";
+    /* ────────────────────────────────────────────────────────────── */
+    /* 🚨 Asegurar que los arrays globales estén definidos           */
+    /* ────────────────────────────────────────────────────────────── */
+    window.datosReportes          = window.datosReportes          || [];
+    window.datosReportesCompletos = window.datosReportesCompletos || [];
 
-    const sidebar      = document.querySelector(".sidebar");
-    const mainContent  = document.querySelector(".main-content");
-    const toggleBtn    = document.getElementById("toggleSidebar");
-    const hero         = document.querySelector(".hero-animation");
-    const botones      = document.querySelectorAll(".sidebar a");
-    const secciones    = document.querySelectorAll(".main-content .content");
-
-    /* ✅ MOD (2): limpiamos claves antiguas que causaban números fantasma */
+    /* ✅ LIMPIAMOS claves antiguas que causaban números fantasma     */
     localStorage.removeItem("contadorCompletos");
     localStorage.removeItem("contadorHistorial");
 
@@ -22,22 +25,19 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ────────────────────────────────────────────────────────────── */
     /* Animación de apertura / cierre de sidebar                      */
     /* ────────────────────────────────────────────────────────────── */
-
     toggleBtn.addEventListener("click", function () {
         if (animationInProgress) return;
         animationInProgress = true;
 
         hero.classList.remove(
-            "hero-fly-left",
-            "hero-fly-left-end",
-            "hero-fly-right",
-            "hero-fly-right-end"
+            "hero-fly-left", "hero-fly-left-end",
+            "hero-fly-right","hero-fly-right-end"
         );
-        hero.style.opacity  = "1";
+        hero.style.opacity   = "1";
         hero.style.transform = "scale(1)";
-        void hero.offsetWidth; // reset CSS animation
+        void hero.offsetWidth;
 
-        if (sidebar.classList.contains("hidden")) {             // → ABRIR
+        if (sidebar.classList.contains("hidden")) {  //  → ABRIR
             hero.style.transform = "rotateY(0deg) scale(1)";
             hero.classList.add("hero-fly-right");
             setTimeout(() => {
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 1500);
 
             toggleBtn.innerHTML = "☰";
-        } else {                                              // → CERRAR
+        } else {                                    //  → CERRAR
             hero.style.transform = "rotateY(180deg) scale(1)";
             hero.classList.add("hero-fly-left");
             setTimeout(() => {
@@ -79,16 +79,14 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ────────────────────────────────────────────────────────────── */
     /* Navegación entre secciones                                     */
     /* ────────────────────────────────────────────────────────────── */
-
     function mostrarSeccion(idSeccion) {
-        secciones.forEach(sec => (sec.style.display = "none"));
-
-        const seccionActiva = document.getElementById(idSeccion);
-        if (seccionActiva) seccionActiva.style.display = "block";
+        secciones.forEach(sec => sec.style.display = "none");
+        const secActiva = document.getElementById(idSeccion);
+        if (secActiva) secActiva.style.display = "block";
 
         botones.forEach(btn => btn.classList.remove("active"));
-        const botonActivo = document.querySelector(`#btn-${idSeccion}`);
-        if (botonActivo) botonActivo.classList.add("active");
+        const btnAct = document.querySelector(`#btn-${idSeccion}`);
+        if (btnAct) btnAct.classList.add("active");
     }
 
     mostrarSeccion("datos-personales"); // sección inicial
@@ -99,36 +97,37 @@ document.addEventListener("DOMContentLoaded", function () {
             const idSeccion = boton.id.replace("btn-", "");
             mostrarSeccion(idSeccion);
 
-            /* ✅ MOD (3): ya NO redeclaramos userId — usamos la var global */
-
-            /* ── Sección: Reportes Completos ───────────────────────── */
+            /* ── Reportes Completos ───────────────────────────────── */
             if (idSeccion === "reportes-completos") {
                 const badge = document.getElementById("contador-completos");
                 if (badge) {
                     badge.textContent = "";
                     badge.style.display = "none";
 
-                    // Guardar como “vistos” los folios actualmente visibles
-                    const reportesVisibles = window.datosReportesCompletos || [];
-                    const foliosVistos = reportesVisibles.map(r => r.folio);
+                    // Marca como vistos los folios actualmente en memoria
+                    const foliosVistos = window.datosReportesCompletos.map(r => r.folio);
                     localStorage.setItem(
                         `foliosContadosCompletos_${userId}`,
                         JSON.stringify(foliosVistos)
                     );
-
-                    // Reiniciar contador
                     localStorage.setItem(`contadorCompletos_${userId}`, "0");
                 }
             }
 
-            /* ── Sección: Historial de Reportes ───────────────────── */
+            /* ── Historial de Reportes ───────────────────────────── */
             if (idSeccion === "historial-reportes") {
                 const badgeHist = document.getElementById("contador-historial");
                 if (badgeHist) {
                     badgeHist.textContent = "";
                     badgeHist.style.display = "none";
+
+                    // Solo aquí actualizas el storage con lo que tengas en memoria
+                    const folios = window.datosReportes.map(r => r.FolioReportes);
+                    localStorage.setItem(
+                        `foliosContados_${userId}`,
+                        JSON.stringify(folios)
+                    );
                     localStorage.setItem(`contadorHistorial_${userId}`, "0");
-                    localStorage.setItem(`foliosContados_${userId}`, JSON.stringify([]));
                 }
             }
         });
@@ -137,14 +136,12 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ────────────────────────────────────────────────────────────── */
     /* Restaurar contadores al cargar                                 */
     /* ────────────────────────────────────────────────────────────── */
-
-    /* ✅ MOD (4): leemos SIEMPRE usando la clave con userId para evitar “13” */
     const badgeCompletos = document.getElementById("contador-completos");
     const countCompletos = parseInt(
         localStorage.getItem(`contadorCompletos_${userId}`) || "0"
     );
     if (badgeCompletos && countCompletos > 0) {
-        badgeCompletos.textContent = countCompletos.toString();
+        badgeCompletos.textContent   = countCompletos.toString();
         badgeCompletos.style.display = "inline-block";
     }
 
@@ -153,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.getItem(`contadorHistorial_${userId}`) || "0"
     );
     if (badgeHistorial && countHistorial > 0) {
-        badgeHistorial.textContent = countHistorial.toString();
+        badgeHistorial.textContent   = countHistorial.toString();
         badgeHistorial.style.display = "inline-block";
     }
 });

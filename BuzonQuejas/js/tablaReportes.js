@@ -76,9 +76,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 datosFiltrados = [...datosReportes];
                 mostrarReportes(1);
 
-                // Marcar folios visibles como vistos
+                // ————————————————
+                // 1. Clave y datos vistos
+                // ————————————————
                 const foliosKey = `foliosContados_${userId}`;
-                localStorage.setItem(foliosKey, JSON.stringify(datosReportes.map(r => r.FolioReportes)));
+                const vistos    = JSON.parse(localStorage.getItem(foliosKey) || "[]");
+
+                // ————————————————
+                // 2. Folios actuales y nuevos
+                // ————————————————
+                const actuales = datosReportes.map(r => r.FolioReportes);
+                const nuevos   = actuales.filter(folio => !vistos.includes(folio));
+
+                // ————————————————
+                // 3. Actualizar badge de notificaciones
+                // ————————————————
+                const badge = document.getElementById("contador-historial");
+                if (nuevos.length > 0) {
+                    badge.textContent   = String(nuevos.length);
+                    badge.style.display = "inline-block";
+                } else {
+                    badge.textContent   = "";
+                    badge.style.display = "none";
+                }
             })
             .catch(e => console.error("❌ Error al cargar reportes:", e));
     }
