@@ -1,3 +1,4 @@
+// logicaDashboard.js
 document.addEventListener("DOMContentLoaded", function () {
     /* ────────────────────────────────────────────────────────────── */
     /* Datos base y elementos                                         */
@@ -13,22 +14,21 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ────────────────────────────────────────────────────────────── */
     /* Inicializar Sets globales para resaltado                       */
     /* ────────────────────────────────────────────────────────────── */
-    window.nuevosPendientes   = window.nuevosPendientes   || new Set();
-    window.nuevosCompletados  = window.nuevosCompletados  || new Set();
+    window.nuevosPendientes  = window.nuevosPendientes  || new Set();
+    window.nuevosCompletados = window.nuevosCompletados || new Set();
 
-    /* ✅ Limpiar claves antiguas de badges fantasma                  */
+    /* ✅ Limpiar badges antiguos que daban errores */
     localStorage.removeItem("contadorCompletos");
     localStorage.removeItem("contadorHistorial");
 
     let animationInProgress = false;
 
     /* ────────────────────────────────────────────────────────────── */
-    /* Animación de apertura / cierre de sidebar                      */
+    /* Animación apertura / cierre sidebar                            */
     /* ────────────────────────────────────────────────────────────── */
     toggleBtn.addEventListener("click", function () {
         if (animationInProgress) return;
         animationInProgress = true;
-
         hero.classList.remove(
             "hero-fly-left","hero-fly-left-end",
             "hero-fly-right","hero-fly-right-end"
@@ -37,7 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
         hero.style.transform = "scale(1)";
         void hero.offsetWidth;
 
-        if (sidebar.classList.contains("hidden")) {  // → ABRIR
+        if (sidebar.classList.contains("hidden")) {
+            // ABRIR
             hero.style.transform = "rotateY(0deg) scale(1)";
             hero.classList.add("hero-fly-right");
             setTimeout(() => {
@@ -48,7 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
             mainContent.classList.remove("expanded");
             setTimeout(() => { hero.style.opacity = "0"; animationInProgress = false; }, 1500);
             toggleBtn.innerHTML = "☰";
-        } else {                                   // → CERRAR
+        } else {
+            // CERRAR
             hero.style.transform = "rotateY(180deg) scale(1)";
             hero.classList.add("hero-fly-left");
             setTimeout(() => {
@@ -67,13 +69,13 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ────────────────────────────────────────────────────────────── */
     /* Navegación entre secciones                                     */
     /* ────────────────────────────────────────────────────────────── */
-    function mostrarSeccion(idSeccion) {
+    function mostrarSeccion(id) {
         secciones.forEach(sec => sec.style.display = "none");
-        const secActiva = document.getElementById(idSeccion);
-        if (secActiva) secActiva.style.display = "block";
-        botones.forEach(btn => btn.classList.remove("active"));
-        const btnAct = document.querySelector(`#btn-${idSeccion}`);
-        if (btnAct) btnAct.classList.add("active");
+        const activa = document.getElementById(id);
+        if (activa) activa.style.display = "block";
+        botones.forEach(b => b.classList.remove("active"));
+        const btn = document.querySelector(`#btn-${id}`);
+        if (btn) btn.classList.add("active");
     }
     mostrarSeccion("datos-personales");
 
@@ -83,34 +85,14 @@ document.addEventListener("DOMContentLoaded", function () {
             const idSeccion = boton.id.replace("btn-", "");
             mostrarSeccion(idSeccion);
 
-            /* ── Reportes Completos: resaltar nuevos completados ───── */
-            if (idSeccion === "reportes-completos") {
-                const badge = document.getElementById("contador-completos");
-                if (badge) {
-                    badge.textContent = "";
-                    badge.style.display = "none";
-                    // Marcar vistos
-                    const folios = window.datosReportesCompletos.map(r => r.folio);
-                    localStorage.setItem(`foliosContadosCompletos_${userId}`, JSON.stringify(folios));
-                    localStorage.setItem(`contadorCompletos_${userId}`, "0");
-                }
-                // Resaltar filas recién completadas
-                document.querySelectorAll("#tabla-completos-body tr").forEach(fila => {
-                    const folio = fila.dataset.folio;
-                    if (window.nuevosCompletados.has(folio)) {
-                        fila.classList.add("resaltar-completado");
-                        setTimeout(() => fila.classList.remove("resaltar-completado"), 2000);
-                    }
-                });
-                window.nuevosCompletados.clear();
-            }
-
-            /* ── Historial de Reportes: resaltar nuevos pendientes ─── */
+            // ── Historial de Reportes ────────────────────────────────
             if (idSeccion === "historial-reportes") {
-                const badgeHist = document.getElementById("contador-historial");
-                if (badgeHist) {
-                    badgeHist.textContent = "";
-                    badgeHist.style.display = "none";
+                // Limpiar badge
+                const bh = document.getElementById("contador-historial");
+                if (bh) {
+                    bh.textContent   = "";
+                    bh.style.display = "none";
+                    // Marcar vistos en storage
                     const folios = window.datosReportes.map(r => r.FolioReportes);
                     localStorage.setItem(`foliosContados_${userId}`, JSON.stringify(folios));
                     localStorage.setItem(`contadorHistorial_${userId}`, "0");
@@ -125,23 +107,45 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
                 window.nuevosPendientes.clear();
             }
+
+            // ── Reportes Completos ────────────────────────────────────
+            if (idSeccion === "reportes-completos") {
+                // Limpiar badge
+                const bc = document.getElementById("contador-completos");
+                if (bc) {
+                    bc.textContent   = "";
+                    bc.style.display = "none";
+                    // Marcar vistos en storage
+                    const folios = window.datosReportesCompletos.map(r => r.folio);
+                    localStorage.setItem(`foliosContadosCompletos_${userId}`, JSON.stringify(folios));
+                    localStorage.setItem(`contadorCompletos_${userId}`, "0");
+                }
+                // Resaltar filas recién finalizadas
+                document.querySelectorAll("#tabla-completos-body tr").forEach(fila => {
+                    const folio = fila.dataset.folio;
+                    if (window.nuevosCompletados.has(folio)) {
+                        fila.classList.add("resaltar-completado");
+                        setTimeout(() => fila.classList.remove("resaltar-completado"), 2000);
+                    }
+                });
+                window.nuevosCompletados.clear();
+            }
         });
     });
 
     /* ────────────────────────────────────────────────────────────── */
     /* Restaurar contadores al cargar                                 */
     /* ────────────────────────────────────────────────────────────── */
-    const badgeCompletos = document.getElementById("contador-completos");
-    const countCompletos = parseInt(localStorage.getItem(`contadorCompletos_${userId}`) || "0");
-    if (badgeCompletos && countCompletos > 0) {
-        badgeCompletos.textContent   = countCompletos.toString();
-        badgeCompletos.style.display = "inline-block";
+    const badgeC = document.getElementById("contador-completos");
+    const cntC   = parseInt(localStorage.getItem(`contadorCompletos_${userId}`) || "0");
+    if (badgeC && cntC > 0) {
+        badgeC.textContent   = cntC.toString();
+        badgeC.style.display = "inline-block";
     }
-
-    const badgeHist = document.getElementById("contador-historial");
-    const countHist = parseInt(localStorage.getItem(`contadorHistorial_${userId}`) || "0");
-    if (badgeHist && countHist > 0) {
-        badgeHist.textContent   = countHist.toString();
-        badgeHist.style.display = "inline-block";
+    const badgeH = document.getElementById("contador-historial");
+    const cntH   = parseInt(localStorage.getItem(`contadorHistorial_${userId}`) || "0");
+    if (badgeH && cntH > 0) {
+        badgeH.textContent   = cntH.toString();
+        badgeH.style.display = "inline-block";
     }
 });
