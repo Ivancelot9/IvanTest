@@ -160,24 +160,37 @@ document.addEventListener("DOMContentLoaded", function () {
             const row = document.createElement("tr");
             row.dataset.folio = String(folio);
             row.innerHTML = `
-                <td>${col==="folio"?resaltarTexto(folio,txt):folio}</td>
-                <td>${formatearFecha(rep.FechaRegistro)}</td>
-                <td>${rep.NumeroNomina||"Sin nómina"}</td>
-                <td>${rep.Area||"Sin área"}</td>
-                <td class="celda-encargado">${sup}<br>${sl}</td>
-                <td><button class="mostrar-descripcion" data-descripcion="${rep.Descripcion||'Sin descripción'}">
-                        Mostrar Descripción
-                    </button>
-                </td>
-                <td><button class="agregar-comentario" data-folio="${folio}">
-                        Agregar Comentario
-                    </button>
-                </td>
-                <td class="estatus-cell">${btnHTML}</td>
-                <td><button class="seleccionar-fecha" data-folio="${folio}">
-                        Finalizar Reporte
-                    </button>
-                </td>`;
+    <td>${col === "folio"
+                ? resaltarTexto(folio, txt)
+                : folio
+            }</td>
+    <td>${col === "fechaRegistro"
+                ? resaltarTexto(formatearFecha(rep.FechaRegistro), txt)
+                : formatearFecha(rep.FechaRegistro)
+            }</td>
+    <td>${col === "nomina"
+                ? resaltarTexto(rep.NumeroNomina || "Sin nómina", txt)
+                : (rep.NumeroNomina || "Sin nómina")
+            }</td>
+    <td>${rep.Area || "Sin área"}</td>
+    <td class="celda-encargado">${sup}<br>${sl}</td>
+    <td>
+        <button class="mostrar-descripcion"
+                data-descripcion="${rep.Descripcion || 'Sin descripción'}">
+            Mostrar Descripción
+        </button>
+    </td>
+    <td>
+        <button class="agregar-comentario" data-folio="${folio}">
+            Agregar Comentario
+        </button>
+    </td>
+    <td class="estatus-cell">${btnHTML}</td>
+    <td>
+        <button class="seleccionar-fecha" data-folio="${folio}">
+            Finalizar Reporte
+        </button>
+    </td>`;
             tablaBody.appendChild(row);
         });
 
