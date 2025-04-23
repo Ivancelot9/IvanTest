@@ -219,18 +219,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function agregarReporte(rep) {
+        // 1. Agregar al array y exponer globalmente
         datosReportes.push(rep);
         window.datosReportes = datosReportes;
-        datosReportes.sort((a,b) => new Date(b.FechaRegistro) - new Date(a.FechaRegistro));
+
+        // 2. Ordenar por fecha y filtrar/paginar
+        datosReportes.sort((a, b) => new Date(b.FechaRegistro) - new Date(a.FechaRegistro));
         filtrarReportes();
 
+        // 3. Animación de entrada
         const first = tablaBody.querySelector("tr");
         if (first) {
             first.classList.add("nueva-fila");
             setTimeout(() => first.classList.remove("nueva-fila"), 2000);
         }
 
-        // Badge historial
+        // 4. Registrar este folio como “nuevo pendiente” para resalte al entrar
+        window.nuevosPendientes = window.nuevosPendientes || new Set();
+        window.nuevosPendientes.add(String(rep.FolioReportes));
+
+        // 5. Actualizar badge de historial si no estamos en esa sección
         const vis = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
         if (vis !== "historial-reportes") {
             const badge = document.getElementById("contador-historial");

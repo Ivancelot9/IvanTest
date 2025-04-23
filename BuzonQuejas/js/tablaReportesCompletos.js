@@ -247,36 +247,46 @@ document.addEventListener("DOMContentLoaded", function () {
     flatpickr("#end-date"  ,{dateFormat:"d/m/Y",locale:"es"});
 
     /* ────────────────────────────────────────────────
-       8.  Función pública para recibir reportes nuevos
-           — incluye flag `notificar`
-    ──────────────────────────────────────────────── */
-    window.moverReporteACompletados = function(nuevoReporte, notificar = true){   /* ✅ MOD flag */
-        const yaExiste=datosReportesCompletos.some(r=>String(r.folio)===String(nuevoReporte.folio));
-        if(yaExiste) return;
+    8. Función pública para recibir reportes nuevos
+       — incluye flag `notificar` y registro de “nuevos completados”
+ ──────────────────────────────────────────────── */
+    window.moverReporteACompletados = function(nuevoReporte, notificar = true) {
+        // 0. Inicializar set global para resaltado
+        window.nuevosCompletados = window.nuevosCompletados || new Set();
 
-        /* ➜ Agregar a lista local */
+        // 1. Evitar duplicados
+        const yaExiste = datosReportesCompletos.some(r => String(r.folio) === String(nuevoReporte.folio));
+        if (yaExiste) return;
+
+        // 2. Agregar a la lista local y exponer globalmente
         datosReportesCompletos.unshift(nuevoReporte);
-        datosFiltradosCompletos=[...datosReportesCompletos];
+        datosFiltradosCompletos = [...datosReportesCompletos];
+        window.datosReportesCompletos = datosReportesCompletos;
         mostrarReportesCompletos(1);
 
-        const badge   = document.getElementById("contador-completos");
-        const foliosKey=`foliosContadosCompletos_${userId}`;
-        let foliosCont=JSON.parse(localStorage.getItem(foliosKey)||"[]");
+        // 3. Registrar este folio como “nuevo completado”
+        window.nuevosCompletados.add(String(nuevoReporte.folio));
 
-        /* ➜ Contador SOLO si notificar==true */
-        if(notificar && !foliosCont.includes(nuevoReporte.folio)){
+        // 4. Actualizar badge de completados solo si notificar == true
+        const badge      = document.getElementById("contador-completos");
+        const foliosKey  = `foliosContadosCompletos_${userId}`;
+        let foliosCont   = JSON.parse(localStorage.getItem(foliosKey) || "[]");
+
+        if (notificar && !foliosCont.includes(nuevoReporte.folio)) {
             foliosCont.push(nuevoReporte.folio);
-            localStorage.setItem(foliosKey,JSON.stringify(foliosCont));
+            localStorage.setItem(foliosKey, JSON.stringify(foliosCont));
 
-            let count=parseInt(localStorage.getItem(claveStorageCompletos)||"0");
+            let count = parseInt(localStorage.getItem(claveStorageCompletos) || "0");
             count++;
-            localStorage.setItem(claveStorageCompletos,String(count));   /* ✅ MOD String */
-            if(badge){
-                badge.textContent   = String(count);                    /* ✅ MOD String */
+            localStorage.setItem(claveStorageCompletos, String(count));
+
+            if (badge) {
+                badge.textContent   = String(count);
                 badge.style.display = "inline-block";
             }
         }
     };
+
 
     /* ────────────────────────────────────────────────
        9.  Arranque
