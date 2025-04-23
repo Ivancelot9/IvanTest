@@ -113,24 +113,30 @@ document.addEventListener("DOMContentLoaded", function () {
         slice.forEach(rep => {
             const folio = rep.FolioReportes || "S/F";
 
-            // Estatus
-            const est       = JSON.parse(localStorage.getItem("estatusReportes") || "{}")[folio] || null;
-            const prog      = est?.progresoManual ?? null;
-            const color     = est?.colorManual ?? null;
+            // Estatus: sólo si hay progresoManual guardado
+            const storage = JSON.parse(localStorage.getItem("estatusReportes") || "{}");
+            const tieneKey = Object.prototype.hasOwnProperty.call(storage, folio);
+            const est       = tieneKey ? storage[folio] : null;
+            const prog      = est && typeof est.progresoManual === "number"
+                ? est.progresoManual
+                : null;
+            const color     = est && typeof est.colorManual === "string"
+                ? est.colorManual
+                : null;
             const clase     = color
                 ? {G:"green",B:"blue",Y:"yellow",R:"red"}[color] || obtenerClaseEstado(prog)
                 : obtenerClaseEstado(prog);
             const esCirculo = prog !== null;
-            const btnHTML   = `
+            const btnHTML = `
                 <button class="ver-estatus-btn ${clase}" data-folio="${folio}"
                     style="${esCirculo
                 ? `width:50px;height:50px;border-radius:50%;
-                               background:${clase};color:white;font-weight:bold;
-                               font-size:14px;text-shadow:2px 2px 0 black;
-                               border:3px solid black;margin:auto;
-                               display:flex;align-items:center;justify-content:center;`
+                           background:${clase};color:white;font-weight:bold;
+                           font-size:14px;text-shadow:2px 2px 0 black;
+                           border:3px solid black;margin:auto;
+                           display:flex;align-items:center;justify-content:center;`
                 : `background:white;color:black;border:2px solid black;
-                               font-weight:bold;padding:4px 10px;margin:auto;` }">
+                           font-weight:bold;padding:4px 10px;margin:auto;` }">
                     ${esCirculo ? prog + "%" : "Ver Estatus"}
                 </button>`;
 
@@ -193,12 +199,8 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportes(1);
     }
 
-    prevPageBtn.addEventListener("click", () => { if (paginaActual > 1)
-        mostrarReportes(--paginaActual);
-    });
-    nextPageBtn.addEventListener("click", () => { if (paginaActual * filasPorPagina < datosFiltrados.length)
-        mostrarReportes(++paginaActual);
-    });
+    prevPageBtn.addEventListener("click", () => { if (paginaActual > 1) mostrarReportes(--paginaActual); });
+    nextPageBtn.addEventListener("click", () => { if (paginaActual * filasPorPagina < datosFiltrados.length) mostrarReportes(++paginaActual); });
     filterInput.addEventListener("input", filtrarReportes);
     filterButton.addEventListener("click", filtrarReportes);
 
@@ -213,42 +215,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
         fetch(`https://grammermx.com/IvanTest/BuzonQuejas/dao/obteneReportesPorFolio.php?folio=${ev.data.folio}`)
             .then(r => r.json())
-            .then(rep => {
-                if (rep?.FolioReportes) agregarReporte(rep);
-            });
+            .then(rep => { if (rep?.FolioReportes) agregarReporte(rep); });
     });
 
     function agregarReporte(rep) {
-        // 1. Agregar al array y exponer globalmente
         datosReportes.push(rep);
         window.datosReportes = datosReportes;
-
-        // 2. Ordenar por fecha y filtrar/paginar
-        datosReportes.sort((a, b) => new Date(b.FechaRegistro) - new Date(a.FechaRegistro));
+        datosReportes.sort((a,b) => new Date(b.FechaRegistro) - new Date(a.FechaRegistro));
         filtrarReportes();
-
-        // 3. Animación de entrada
         const first = tablaBody.querySelector("tr");
-        if (first) {
-            first.classList.add("nueva-fila");
-            setTimeout(() => first.classList.remove("nueva-fila"), 2000);
-        }
+        if (first) { first.classList.add("nueva-fila"); setTimeout(()=>first.classList.remove("nueva-fila"),2000); }
 
-        // 4. Registrar este folio como “nuevo pendiente” para resalte al entrar
-        window.nuevosPendientes = window.nuevosPendientes || new Set();
-        window.nuevosPendientes.add(String(rep.FolioReportes));
-
-        // 5. Actualizar badge de historial si no estamos en esa sección
         const vis = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
         if (vis !== "historial-reportes") {
             const badge = document.getElementById("contador-historial");
             const kF    = `foliosContados_${userId}`;
             const kC    = `contadorHistorial_${userId}`;
-            let fV      = JSON.parse(localStorage.getItem(kF) || "[]");
+            let fV      = JSON.parse(localStorage.getItem(kF)||"[]");
             if (!fV.includes(rep.FolioReportes)) {
                 fV.push(rep.FolioReportes);
                 localStorage.setItem(kF, JSON.stringify(fV));
-                let c = parseInt(localStorage.getItem(kC) || "0");
+                let c = parseInt(localStorage.getItem(kC)||"0",10);
                 c++;
                 localStorage.setItem(kC, String(c));
                 badge.textContent   = String(c);
@@ -265,34 +252,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
         canalFinalizados.addEventListener("message", (event) => {
             const repFin = event.data;
-
-            // Filtro inicial
-            if (!repFin?.folio
-                || repFin.origen === userId
-                || window.foliosFinalizados.has(repFin.folio)
-            ) return;
-
-            // Marcar como procesado
+            if (!repFin?.folio || repFin.origen === userId || window.foliosFinalizados.has(repFin.folio)) return;
             window.foliosFinalizados.add(repFin.folio);
 
-            // Eliminar de pendientes y re-renderizar
             const folioStr = String(repFin.folio);
-            datosReportes    = datosReportes.filter(r => String(r.FolioReportes) !== folioStr);
-            datosFiltrados   = datosFiltrados.filter(r => String(r.FolioReportes) !== folioStr);
+            datosReportes    = datosReportes.filter(r => String(r.FolioReportes)!==folioStr);
+            datosFiltrados   = datosFiltrados.filter(r => String(r.FolioReportes)!==folioStr);
             window.datosReportes = datosReportes;
             mostrarReportes(paginaActual);
 
-            // Mover a completados
             const vis2  = document.querySelector(".main-content .content:not([style*='display: none'])")?.id;
             const notify = vis2 !== "reportes-completos";
             if (typeof window.moverReporteACompletados === "function") {
                 window.moverReporteACompletados(repFin, notify);
             }
 
-            // Si completados está abierta, sólo marcar visto
             if (vis2 === "reportes-completos") {
                 const keyF  = `foliosContadosCompletos_${userId}`;
-                let foliosC = JSON.parse(localStorage.getItem(keyF) || "[]");
+                let foliosC = JSON.parse(localStorage.getItem(keyF)||"[]");
                 if (!foliosC.includes(repFin.folio)) {
                     foliosC.push(repFin.folio);
                     localStorage.setItem(keyF, JSON.stringify(foliosC));
