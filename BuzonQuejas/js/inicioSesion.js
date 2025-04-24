@@ -28,18 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Auto-rellenar 4→5 dígitos en el campo de Nómina
-    function attachAutoPad() {
-        const nom = document.getElementById("NumNomina");
-        if (!nom) return;
-        nom.addEventListener("blur", () => {
-            const v = nom.value.trim();
-            if (/^\d{4}$/.test(v)) {
-                nom.value = v.padStart(5, "0");
-            }
-        });
-    }
-
     function cargarLogin() {
         isLoginMode = true;
         loginBtn.classList.add("active");
@@ -59,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
         mainForm.querySelector(".submit-btn").textContent = "Entrar";
 
         activarTogglePassword();
-        attachAutoPad();
     }
 
     function cargarRegistro() {
@@ -85,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
         mainForm.querySelector(".submit-btn").textContent = "Registrar";
 
         activarTogglePassword();
-        attachAutoPad();
     }
 
     loginBtn.addEventListener("click", cargarLogin);
@@ -94,15 +80,15 @@ document.addEventListener("DOMContentLoaded", function () {
     mainForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        // Leer valores
-        let numeroNomina = document.getElementById("NumNomina").value.trim();
+        // 1) Leo los valores que ingresó el usuario (4 o 5 dígitos)
+        const rawNomina = document.getElementById("NumNomina").value.trim();
         const contrasena = document.getElementById("Contrasena").value.trim();
         const nombre = document.getElementById("Nombre")
             ? document.getElementById("Nombre").value.trim()
             : "";
 
-        // Validación front-end
-        const error = validarFormulario({ numeroNomina, contrasena, nombre, isLoginMode });
+        // 2) Validación front-end
+        const error = validarFormulario({ numeroNomina: rawNomina, contrasena, nombre, isLoginMode });
         if (error) {
             Swal.fire({
                 icon: 'warning',
@@ -113,11 +99,14 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Padding a 8 dígitos para back-end
-        numeroNomina = numeroNomina.padStart(8, "0");
+        // 3) Internamente relleno a 5 dígitos sin alterar el input
+        const nom5 = rawNomina.padStart(5, "0");
+        // 4) Luego relleno a 8 para enviar al back-end
+        const nom8 = nom5.padStart(8, "0");
 
+        // 5) Preparo FormData
         const formData = new FormData();
-        formData.append("NumNomina", numeroNomina);
+        formData.append("NumNomina", nom8);
         formData.append("Contrasena", contrasena);
         formData.append("tab_id", tab_id);
         if (!isLoginMode) {
