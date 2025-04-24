@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
         canalStatus.postMessage({
             folio:    currentFolio,
             progreso: progresoManual,
-            color:    letraManual
+            color:    manualCircle.style.backgroundColor
         });
 
         if (botonEstatus) {
