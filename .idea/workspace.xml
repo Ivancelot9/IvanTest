@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Notificaciones en dos pestañas sincronizadas" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Notificaciones en dos pestañas sincronizadas">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/estatusEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/estatusEditor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -168,15 +172,8 @@
       <workItem from="1744812492630" duration="18894000" />
       <workItem from="1745245226590" duration="16937000" />
       <workItem from="1745331438583" duration="16271000" />
-      <workItem from="1745418094690" duration="11426000" />
-    </task>
-    <task id="LOCAL-01079" summary="animacion controles tablas">
-      <option name="closed" value="true" />
-      <created>1745247790498</created>
-      <option name="number" value="01079" />
-      <option name="presentableId" value="LOCAL-01079" />
-      <option name="project" value="LOCAL" />
-      <updated>1745247790498</updated>
+      <workItem from="1745418094690" duration="12366000" />
+      <workItem from="1745504572508" duration="2270000" />
     </task>
     <task id="LOCAL-01080" summary="animacion controles tablas">
       <option name="closed" value="true" />
@@ -562,7 +559,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745436053859</updated>
     </task>
-    <option name="localTasksCounter" value="1128" />
+    <task id="LOCAL-01128" summary="Notificaciones en dos pestañas sincronizadas">
+      <option name="closed" value="true" />
+      <created>1745440460589</created>
+      <option name="number" value="01128" />
+      <option name="presentableId" value="LOCAL-01128" />
+      <option name="project" value="LOCAL" />
+      <updated>1745440460589</updated>
+    </task>
+    <option name="localTasksCounter" value="1129" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

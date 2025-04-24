@@ -16,6 +16,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const canal            = new BroadcastChannel("canalReportes");
     const canalFinalizados = new BroadcastChannel("canalFinalizados");
 
+    // 1) nuevo canal para estatus manual
+    const canalStatus = new BroadcastChannel("canalStatus");
+
+// 2) listener que actualiza el botón correspondiente
+    canalStatus.addEventListener("message", ({data}) => {
+        const { folio, progreso, color } = data;
+        // busca el botón que tenga data-folio==folio
+        const btn = document.querySelector(`.ver-estatus-btn[data-folio='${folio}']`);
+        if (!btn) return;
+
+        // aplica estilo + texto igual que en el modal:
+        btn.style.backgroundColor = color;
+        btn.textContent = `${progreso}%`;
+        btn.classList.add("ver-estatus-circulo");
+        // (opcional) ajusta textShadow, fontSize, etc. igual que en estatusEditor
+    });
+
     const filasPorPagina   = 10;
     let   paginaActual     = 1;
     let   datosReportes    = [];   // todos los pendientes

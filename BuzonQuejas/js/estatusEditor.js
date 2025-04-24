@@ -180,6 +180,14 @@ document.addEventListener("DOMContentLoaded", function () {
         estatusReportes[currentFolio].colorManual = letraManual;
         localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
 
+        // === Aquí integramos BroadcastChannel ===
+        const canalStatus = new BroadcastChannel("canalStatus");
+        canalStatus.postMessage({
+            folio:    currentFolio,
+            progreso: progresoManual,
+            color:    letraManual
+        });
+
         if (botonEstatus) {
             botonEstatus.classList.add("ver-estatus-circulo");
             botonEstatus.classList.add("ver-estatus-btn");
