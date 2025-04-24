@@ -28,6 +28,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Auto-rellenar 4→5 dígitos en el campo de Nómina
+    function attachAutoPad() {
+        const nom = document.getElementById("NumNomina");
+        if (!nom) return;
+        nom.addEventListener("blur", () => {
+            const v = nom.value.trim();
+            if (/^\d{4}$/.test(v)) {
+                nom.value = v.padStart(5, "0");
+            }
+        });
+    }
+
     function cargarLogin() {
         isLoginMode = true;
         loginBtn.classList.add("active");
@@ -47,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mainForm.querySelector(".submit-btn").textContent = "Entrar";
 
         activarTogglePassword();
+        attachAutoPad();
     }
 
     function cargarRegistro() {
@@ -72,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mainForm.querySelector(".submit-btn").textContent = "Registrar";
 
         activarTogglePassword();
+        attachAutoPad();
     }
 
     loginBtn.addEventListener("click", cargarLogin);
@@ -80,12 +94,15 @@ document.addEventListener("DOMContentLoaded", function () {
     mainForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const numeroNomina = document.getElementById("NumNomina").value.trim();
+        // Leer valores
+        let numeroNomina = document.getElementById("NumNomina").value.trim();
         const contrasena = document.getElementById("Contrasena").value.trim();
-        const nombre = document.getElementById("Nombre") ? document.getElementById("Nombre").value.trim() : "";
+        const nombre = document.getElementById("Nombre")
+            ? document.getElementById("Nombre").value.trim()
+            : "";
 
+        // Validación front-end
         const error = validarFormulario({ numeroNomina, contrasena, nombre, isLoginMode });
-
         if (error) {
             Swal.fire({
                 icon: 'warning',
@@ -96,10 +113,13 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // Padding a 8 dígitos para back-end
+        numeroNomina = numeroNomina.padStart(8, "0");
+
         const formData = new FormData();
-        formData.append("NumNomina", numeroNomina.padStart(8, "0"));
+        formData.append("NumNomina", numeroNomina);
         formData.append("Contrasena", contrasena);
-        formData.append("tab_id", tab_id); // ✅ Enviar tab_id al backend
+        formData.append("tab_id", tab_id);
         if (!isLoginMode) {
             formData.append("Nombre", nombre);
         }
@@ -124,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         "success"
                     ).then(() => {
                         if (isLoginMode) {
-                            window.location.href = "dashboardAdmin.php?tab_id=" + tab_id; // ✅ enviar tab_id también aquí
+                            window.location.href = "dashboardAdmin.php?tab_id=" + tab_id;
                         } else {
                             cargarLogin();
                         }

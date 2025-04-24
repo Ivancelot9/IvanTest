@@ -1,19 +1,19 @@
+// validacionesAdmin.js
+
 // Validar campos comunes
 export function validarCamposComunes(numeroNomina, contrasena) {
     if (!numeroNomina || !contrasena) {
         return "Completa todos los campos.";
     }
 
-    // Verificar que el número de nómina contenga solo números
+    // Solo números
     if (!/^\d+$/.test(numeroNomina)) {
         return "El Número de Nómina solo puede contener números.<br><br>🔹 <strong>Ejemplo:</strong> 30318";
-
     }
 
-    // Verificar longitud exacta
-    if (numeroNomina.length !== 5) {
-        return "El Número de Nómina debe tener exactamente 5 dígitos, como aparece en tu tarjeta.<br><br>🔹 <strong>Ejemplo:</strong> 30318";
-
+    // Aceptar 4 o 5 dígitos
+    if (numeroNomina.length < 4 || numeroNomina.length > 5) {
+        return "El Número de Nómina debe tener 4 o 5 dígitos, como aparece en tu tarjeta.<br><br>🔹 <strong>Ejemplo:</strong> 30318";
     }
 
     return ""; // Sin errores
@@ -24,30 +24,21 @@ export function validarNombre(nombre) {
     if (!nombre) {
         return "El campo Nombre es obligatorio.";
     }
-
-    const nombreRegex = /^[a-zA-Z\s]+$/;
-    if (!nombreRegex.test(nombre)) {
+    if (!/^[a-zA-Z\s]+$/.test(nombre)) {
         return "El Nombre solo puede contener letras y espacios.";
     }
-
-    return ""; // Sin errores
+    return "";
 }
 
 // Validar el formulario completo
 export function validarFormulario({ numeroNomina, contrasena, nombre = "", isLoginMode }) {
-    // Validar campos comunes
-    const errorCamposComunes = validarCamposComunes(numeroNomina, contrasena);
-    if (errorCamposComunes) {
-        return errorCamposComunes;
-    }
+    const errorComun = validarCamposComunes(numeroNomina, contrasena);
+    if (errorComun) return errorComun;
 
-    // Validar nombre solo si no es modo login
     if (!isLoginMode) {
-        const errorNombre = validarNombre(nombre);
-        if (errorNombre) {
-            return errorNombre;
-        }
+        const errorNom = validarNombre(nombre);
+        if (errorNom) return errorNom;
     }
 
-    return ""; // Sin errores
+    return "";
 }
