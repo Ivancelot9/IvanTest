@@ -13,8 +13,8 @@
 /* 🔹 Imagen del bot (ahora con <img>) */
 #botSprite {
     width: 200px;      /* ancho fijo */
-    height: auto;     /* alto fijo (ajústalo a gusto) */
-    object-fit: contain; /* mantiene la proporción y centra el PNG */
+    height: 250px;     /* alto fijo */
+    object-fit: contain; /* escala cada PNG dentro del cuadro */
     display: block;
 }
 
