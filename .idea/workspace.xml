@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Bot grammer">
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/Heroher11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/Heroher2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BuzonQuejas/imagenes/Heroher3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/bot.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/bot.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dashboardUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dashboardUsuario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/bot.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,15 +178,7 @@
       <workItem from="1745331438583" duration="16271000" />
       <workItem from="1745418094690" duration="12366000" />
       <workItem from="1745504572508" duration="12741000" />
-      <workItem from="1745590710051" duration="3537000" />
-    </task>
-    <task id="LOCAL-01094" summary="Evitando sobreescribir en la misma sesion">
-      <option name="closed" value="true" />
-      <created>1745259835209</created>
-      <option name="number" value="01094" />
-      <option name="presentableId" value="LOCAL-01094" />
-      <option name="project" value="LOCAL" />
-      <updated>1745259835209</updated>
+      <workItem from="1745590710051" duration="4210000" />
     </task>
     <task id="LOCAL-01095" summary="Evitando sobreescribir en la misma sesion">
       <option name="closed" value="true" />
@@ -566,7 +564,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745594661000</updated>
     </task>
-    <option name="localTasksCounter" value="1143" />
+    <task id="LOCAL-01143" summary="Bot grammer">
+      <option name="closed" value="true" />
+      <created>1745594746092</created>
+      <option name="number" value="01143" />
+      <option name="presentableId" value="LOCAL-01143" />
+      <option name="project" value="LOCAL" />
+      <updated>1745594746092</updated>
+    </task>
+    <option name="localTasksCounter" value="1144" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

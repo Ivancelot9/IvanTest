@@ -1,37 +1,35 @@
 .hidden {
     display: none !important; /* 🔹 Fuerza que el elemento no se muestre */
 }
+
 /* 🔹 Contenedor del bot */
 #bot {
     position: fixed;
     bottom: 30px; /* 📌 Ajustado para estar bien en la esquina */
-    left: 80px; /* 📌 Pegado al borde izquierdo */
-    width: auto;
-    height: auto;
+    left: 80px;   /* 📌 Pegado al borde izquierdo */
     z-index: 1000;
 }
-/* Contenedor del frame del sprite */
+
+/* 🔹 Imagen del bot (ahora con <img>) */
 #botSprite {
-    width: 180px;     /* ancho de un solo frame */
-    height: 180px;    /* alto de un solo frame */
-    background: url("../imagenes/Heroher.png") no-repeat 0 0;
-    /* Si el sprite sheet mide 3×180px = 540px de ancho total,
-       podrías ajustar background-size para escalarlo: */
-    /* background-size: 540px 180px; */
+    width: 120px;    /* ← ajusta este valor hasta que te guste */
+    height: auto;
+    display: block;
 }
 
+/* ───────────────────────────────────────────────────────────── */
 
-
+/* 🔹 Animación de flotación del globo de diálogo */
 @keyframes flotacion {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-5px); } /* 🔹 Sube un poco */
-    100% { transform: translateY(0); } /* 🔹 Regresa a su posición */
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
 }
 
 /* 🔹 Globo de diálogo */
 #dialogo {
     position: fixed;
-    bottom: 340px;
+    bottom: 340px;   /* ya lo ajustaste */
     left: 120px;
     background: white;
     padding: 15px 20px;
@@ -49,8 +47,8 @@
 #dialogo::after {
     content: "";
     position: absolute;
-    bottom: -20px; /* 📌 Ajustamos la colita */
-    left: 30px; /* 📌 Que salga bien hacia el bot */
+    bottom: -20px;
+    left: 30px;
     width: 0;
     height: 0;
     border-left: 15px solid transparent;
@@ -58,53 +56,43 @@
     border-top: 20px solid black;
 }
 
-/* 🔹 Contorno animado más sutil y continuo */
+/* 🔹 Contorno animado más sutil */
 @keyframes glow {
-    0% {
-        box-shadow: 0 0 0 #00ff66;
-    }
-    50% {
-        box-shadow: 0 0 8px #00ff66, 0 0 12px #00ff66;
-    }
-    100% {
-        box-shadow: 0 0 0 #00ff66;
-    }
+    0%   { box-shadow: 0 0 0 #00ff66; }
+    50%  { box-shadow: 0 0 8px #00ff66, 0 0 12px #00ff66; }
+    100% { box-shadow: 0 0 0 #00ff66; }
 }
 
-/* 🔹 La clase glowing hará que la pestaña parpadee infinitamente */
+/* 🔹 Pestañas parpadeantes */
 .tab-item.glowing {
     animation: glow 1s ease-in-out infinite;
 }
 
-
+/* 🔹 Botón de ayuda */
 @keyframes vibrarSuave {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-5px); } /* 🔹 Sube un poco */
-    100% { transform: translateY(0); } /* 🔹 Regresa a su posición */
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
 }
 
-/* 🔹 Estilos del botón "?" */
 #btnAyuda {
     position: fixed;
-    bottom: 30px; /* 📌 Mismo lugar donde estaba el bot */
+    bottom: 30px;
     left: 80px;
     width: 50px;
     height: 50px;
     background: #fff;
     border: 3px solid black;
-    border-radius: 50%; /* 🔹 Lo hace circular */
+    border-radius: 50%;
     font-size: 24px;
     font-weight: bold;
     color: black;
     cursor: pointer;
     box-shadow: 3px 3px 0 black;
     transition: transform 0.2s ease-in-out;
-    animation: vibrarSuave 1.5s ease-in-out infinite; /* 🔹 Le damos el efecto */
+    animation: vibrarSuave 1.5s ease-in-out infinite;
 }
 
-/* 🔹 Efecto al pasar el mouse */
 #btnAyuda:hover {
     transform: scale(1.1);
 }
-
-
