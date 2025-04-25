@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         "success"
                     ).then(() => {
                         if (isLoginMode) {
-                            window.location.href = "dashboardAdmin.php?tab_id=" + tab_id;
+                            window.location.href = "dashboardAdmin.php";
                         } else {
                             cargarLogin();
                         }
