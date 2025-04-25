@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const tabs         = document.querySelectorAll(".tab-item");
     const btnSiguiente = document.getElementById("btnSiguiente");
 
+    // Velocidad de animación en milisegundos (aumenta este valor para hacerla más lenta)
+    const frameInterval = 500;
+
     // Sprites primer bot
     const spriteFrames = [
         "imagenes/Heroher11.png",
@@ -20,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         botSprite.src = spriteFrames[frameIndex];
         frameIndex = (frameIndex + 1) % spriteFrames.length;
     }
-    setInterval(animarBot, 200);
+    setInterval(animarBot, frameInterval);
 
     // Sprites segundo bot
     const spriteFrames2 = [
@@ -32,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         botSprite2.src = spriteFrames2[frameIndex2];
         frameIndex2 = (frameIndex2 + 1) % spriteFrames2.length;
     }
-    setInterval(animarBot2, 200);
+    setInterval(animarBot2, frameInterval);
 
     // Funciones de parpadeo
     function iniciarParpadeo() {
