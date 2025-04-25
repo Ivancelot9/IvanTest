@@ -1,30 +1,40 @@
-// js/bot.js
-
+/* --- JS: js/bot.js --- */
 document.addEventListener("DOMContentLoaded", function () {
     const bot          = document.getElementById("bot");
     const botSprite    = document.getElementById("botSprite");
+    const bot2         = document.getElementById("bot2");
+    const botSprite2   = document.getElementById("botSprite2");
     const dialogo      = document.getElementById("dialogo");
     const btnAyuda     = document.getElementById("btnAyuda");
     const tabs         = document.querySelectorAll(".tab-item");
     const btnSiguiente = document.getElementById("btnSiguiente");
 
-    // 🔹 Sprites para animación del bot (3 imágenes separadas)
+    // Sprites primer bot
     const spriteFrames = [
         "imagenes/Heroher11.png",
         "imagenes/Heroher2.png",
         "imagenes/Heroher3.png"
     ];
     let frameIndex = 0;
-
     function animarBot() {
         botSprite.src = spriteFrames[frameIndex];
         frameIndex = (frameIndex + 1) % spriteFrames.length;
     }
-
-    // 🔹 Inicia la animación cada 200 ms
     setInterval(animarBot, 200);
 
-    // ─── Funciones de parpadeo ───────────────────────────────────
+    // Sprites segundo bot
+    const spriteFrames2 = [
+        "imagenes/had1.png",
+        "imagenes/had2.png"
+    ];
+    let frameIndex2 = 0;
+    function animarBot2() {
+        botSprite2.src = spriteFrames2[frameIndex2];
+        frameIndex2 = (frameIndex2 + 1) % spriteFrames2.length;
+    }
+    setInterval(animarBot2, 200);
+
+    // Funciones de parpadeo
     function iniciarParpadeo() {
         tabs.forEach(tab => tab.classList.add("glowing"));
     }
@@ -32,36 +42,36 @@ document.addEventListener("DOMContentLoaded", function () {
         tabs.forEach(tab => tab.classList.remove("glowing"));
     }
 
-    // ─── Manejador de "Siguiente" ───────────────────────────────
+    // Manejador de "Siguiente"
     let pasoActual = 0;
     btnSiguiente.addEventListener("click", () => {
         pasoActual++;
         if (pasoActual === 1) {
-            bot.classList.remove("hidden");
+            [bot, bot2].forEach(el => el.classList.remove("hidden"));
             dialogo.classList.remove("hidden");
             btnAyuda.classList.add("hidden");
             iniciarParpadeo();
         } else {
-            detenerParpadeo();
-            bot.classList.add("hidden");
+            [bot, bot2].forEach(el => el.classList.add("hidden"));
             dialogo.classList.add("hidden");
             btnAyuda.classList.remove("hidden");
+            detenerParpadeo();
         }
     });
 
-    // ─── Clic en pestañas ────────────────────────────────────────
+    // Clic en pestañas
     tabs.forEach(tab => {
         tab.addEventListener("click", () => {
-            detenerParpadeo();
-            bot.classList.add("hidden");
+            [bot, bot2].forEach(el => el.classList.add("hidden"));
             dialogo.classList.add("hidden");
             btnAyuda.classList.remove("hidden");
+            detenerParpadeo();
         });
     });
 
-    // ─── Botón "?" ──────────────────────────────────────────────
+    // Botón de ayuda
     btnAyuda.addEventListener("click", () => {
-        bot.classList.remove("hidden");
+        [bot, bot2].forEach(el => el.classList.remove("hidden"));
         dialogo.classList.remove("hidden");
         btnAyuda.classList.add("hidden");
         iniciarParpadeo();

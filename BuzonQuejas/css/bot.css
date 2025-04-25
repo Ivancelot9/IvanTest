@@ -18,6 +18,21 @@
     display: block;
 }
 
+/* --- CSS: css/bot.css --- */
+#bot2 {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    z-index: 1000;
+}
+#botSprite2 {
+    width: 280px;
+    height: 320px;
+    object-fit: contain;
+    display: block;
+}
+
+
 /* ───────────────────────────────────────────────────────────── */
 
 /* 🔹 Animación de flotación del globo de diálogo */

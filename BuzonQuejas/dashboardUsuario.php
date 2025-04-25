@@ -106,6 +106,10 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
     <img id="botSprite" src="imagenes/Heroher11.png" alt="Bot Caminando">
 </div>
 
+<div id="bot2" class="hidden">
+    <img id="botSprite2" src="imagenes/had1.png" alt="Bot2 Caminando">
+</div>
+
 <!-- 🔹 Globo de Diálogo (Inicialmente Oculto) -->
 <div id="dialogo" class="hidden">
     ¡Puedes retroceder a cualquier pestaña dándole click!
