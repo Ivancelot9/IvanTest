@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modo claro tabla">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/inicioSesion.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/inicioSesion.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,15 +172,7 @@
       <workItem from="1745331438583" duration="16271000" />
       <workItem from="1745418094690" duration="12366000" />
       <workItem from="1745504572508" duration="12741000" />
-      <workItem from="1745590710051" duration="11209000" />
-    </task>
-    <task id="LOCAL-01118" summary="Notificaciones en dos pestañas sincronizadas">
-      <option name="closed" value="true" />
-      <created>1745430042765</created>
-      <option name="number" value="01118" />
-      <option name="presentableId" value="LOCAL-01118" />
-      <option name="project" value="LOCAL" />
-      <updated>1745430042765</updated>
+      <workItem from="1745590710051" duration="11263000" />
     </task>
     <task id="LOCAL-01119" summary="Notificaciones en dos pestañas sincronizadas">
       <option name="closed" value="true" />
@@ -567,7 +558,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745612180572</updated>
     </task>
-    <option name="localTasksCounter" value="1167" />
+    <task id="LOCAL-01167" summary="Modo claro tabla">
+      <option name="closed" value="true" />
+      <created>1745613160308</created>
+      <option name="number" value="01167" />
+      <option name="presentableId" value="LOCAL-01167" />
+      <option name="project" value="LOCAL" />
+      <updated>1745613160309</updated>
+    </task>
+    <option name="localTasksCounter" value="1168" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
