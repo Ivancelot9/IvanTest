@@ -1,50 +1,52 @@
 // js/bot.js
 
 document.addEventListener("DOMContentLoaded", function () {
-    const bot        = document.getElementById("bot");
-    const botSprite  = document.getElementById("botSprite");
-    const dialogo    = document.getElementById("dialogo");
-    const btnAyuda   = document.getElementById("btnAyuda");
-    const tabs       = document.querySelectorAll(".tab-item");
+    const bot          = document.getElementById("bot");
+    const botSprite    = document.getElementById("botSprite");
+    const dialogo      = document.getElementById("dialogo");
+    const btnAyuda     = document.getElementById("btnAyuda");
+    const tabs         = document.querySelectorAll(".tab-item");
     const btnSiguiente = document.getElementById("btnSiguiente");
 
-    // ─── Variables para el sprite sheet ─────────────────────────
-    let pasoActual  = 0;      // controla el paso/pestaña actual
-    let totalFrames;         // número de cuadros en Heroher.png
-    let frameWidth;          // ancho de cada cuadro (px)
-    let frameIndex = 0;      // índice del cuadro actual
+    // ─── Configuración de escala ─────────────────────────────────
+    const scale = 0.5;      // ← ajusta este valor (0.5 = 50 %, 0.3 = 30 %, etc.)
+    let totalFrames;        // número de cuadros en Heroher.png
+    let frameWidth;         // ancho de cada cuadro (px)
+    let frameIndex = 0;     // índice del cuadro actual
 
-    // 1) Cargamos la imagen para medir sus dimensiones
+    // 1) Carga la imagen para medir dimensiones
     const spriteSheet = new Image();
     spriteSheet.src = "imagenes/Heroher.png";
     spriteSheet.onload = () => {
-        const sheetW = spriteSheet.width;   // ancho total, p.e. 1536px
-        const sheetH = spriteSheet.height;  // alto total, p.e. 1024px
+        const sheetW = spriteSheet.width;   // ancho total (p.e. 1536px)
+        const sheetH = spriteSheet.height;  // alto total (p.e. 1024px)
 
-        totalFrames = 3;                    // ajusta si añades/quitas cuadros
+        totalFrames = 3;                    // ajusta si cambias nº de cuadros
         frameWidth  = sheetW / totalFrames; // p.e. 1536 / 3 = 512px
 
-        // 2) Ajustamos el <div> al tamaño de un solo cuadro
-        botSprite.style.width        = `${frameWidth}px`;
-        botSprite.style.height       = `${sheetH}px`;
+        // 2) Calcula tamaño escalado
+        const sw = sheetW * scale;          // ancho total escalado
+        const sh = sheetH * scale;          // alto total escalado
+        const fw = frameWidth * scale;      // ancho de un frame escalado
+        const fh = sheetH * scale;          // alto de un frame escalado
 
-        // 3) Configuramos el fondo como sprite sheet
-        botSprite.style.background       = `url("imagenes/Heroher.png") no-repeat 0 0`;
-        botSprite.style.backgroundSize   = `${sheetW}px ${sheetH}px`;
+        // 3) Aplica dimensiones escaladas al contenedor
+        botSprite.style.width          = `${fw}px`;
+        botSprite.style.height         = `${fh}px`;
+        botSprite.style.background     = `url("imagenes/Heroher.png") no-repeat 0 0`;
+        botSprite.style.backgroundSize = `${sw}px ${sh}px`;
 
-        // 4) Iniciamos la animación cada 200 ms
+        // 4) Inicia la animación
         setInterval(animarBot, 200);
     };
 
     function animarBot() {
-        // Desplaza el background según el índice de cuadro
-        const offsetX = -frameWidth * frameIndex;
+        const offsetX = -frameWidth * frameIndex * scale;
         botSprite.style.backgroundPosition = `${offsetX}px 0`;
-
         frameIndex = (frameIndex + 1) % totalFrames;
     }
 
-    // ─── Funciones para el parpadeo de pestañas ─────────────────
+    // ─── Funciones de parpadeo ───────────────────────────────────
     function iniciarParpadeo() {
         tabs.forEach(tab => tab.classList.add("glowing"));
     }
@@ -53,7 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ─── Manejador de "Siguiente" ───────────────────────────────
-    btnSiguiente.addEventListener("click", function () {
+    let pasoActual = 0;
+    btnSiguiente.addEventListener("click", () => {
         pasoActual++;
         if (pasoActual === 1) {
             bot.classList.remove("hidden");
@@ -68,9 +71,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // ─── Clic en pestañas: detener parpadeo y ocultar bot ───────
+    // ─── Clic en pestañas ────────────────────────────────────────
     tabs.forEach(tab => {
-        tab.addEventListener("click", function () {
+        tab.addEventListener("click", () => {
             detenerParpadeo();
             bot.classList.add("hidden");
             dialogo.classList.add("hidden");
@@ -78,8 +81,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // ─── Botón "?" vuelve a mostrar bot y parpadeo ──────────────
-    btnAyuda.addEventListener("click", function () {
+    // ─── Botón "?" ──────────────────────────────────────────────
+    btnAyuda.addEventListener("click", () => {
         bot.classList.remove("hidden");
         dialogo.classList.remove("hidden");
         btnAyuda.classList.add("hidden");
