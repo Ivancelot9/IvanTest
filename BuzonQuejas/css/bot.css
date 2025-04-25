@@ -6,7 +6,7 @@
 #bot {
     position: fixed;
     bottom: 30px; /* 📌 Ajustado para estar bien en la esquina */
-    left: 50px;   /* 📌 Pegado al borde izquierdo */
+    left: 20px;   /* 📌 Pegado al borde izquierdo */
     z-index: 1000;
 }
 
