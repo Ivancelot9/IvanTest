@@ -1,9 +1,9 @@
-/* 🌤️ Modo Claro: Fondo + líneas sutiles */
+/* 🌌 Fondo RGB dinámico + líneas diagonales + verticales tipo HUD */
 body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    background-color: #f5f5f5;
+    background-color: #0d1117;
     font-family: 'Segoe UI', sans-serif;
     display: flex;
     justify-content: center;
@@ -12,24 +12,18 @@ body {
     overflow: hidden;
 }
 
+/* 🎨 Fondo RGB animado */
 body::before {
     content: "";
     position: fixed;
     top: 0; left: 0;
     width: 100%;
     height: 100%;
-    /* degradado suave en tonos pastel */
-    background: linear-gradient(130deg,
-    #f5f5f5, /* claro */
-    #d2e3fc, /* azul pastel */
-    #ffcce0, /* rosa pastel */
-    #dfffe1, /* verde pastel */
-    #ffe6f0  /* magenta suave */
-    );
+    background: linear-gradient(130deg, #0d1117, #1f6feb, #ff66c4, #00ffaa, #ff006e);
     background-size: 400% 400%;
     animation: bgGradientFlow 20s ease infinite;
     z-index: -3;
-    filter: brightness(1);
+    filter: brightness(0.2);
 }
 
 @keyframes bgGradientFlow {
@@ -38,7 +32,7 @@ body::before {
     100% { background-position: 0% 50%; }
 }
 
-/* 🧩 Líneas diagonales sutiles en gris claro */
+/* 🧩 Líneas diagonales sutiles */
 body::after {
     content: "";
     position: fixed;
@@ -46,8 +40,8 @@ body::after {
     width: 100%;
     height: 100%;
     background-image:
-            linear-gradient(45deg, rgba(0,0,0,0.03) 1px, transparent 1px),
-            linear-gradient(-45deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+            linear-gradient(45deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+            linear-gradient(-45deg, rgba(255,255,255,0.02) 1px, transparent 1px);
     background-size: 60px 60px;
     z-index: -2;
     pointer-events: none;
@@ -59,56 +53,56 @@ body::after {
     100% { background-position: 200px 200px; }
 }
 
-/* ✨ Líneas HUD verticales en tono suave */
+/* ✨ Líneas HUD verticales */
 .hud-line {
     position: fixed;
     top: 0;
     height: 100%;
     width: 4px;
-    background-color: #d2e3fc;
+    background-color: #00ffaa;
     border-radius: 2px;
     z-index: -1;
-    animation: hudLineLight 6s linear infinite;
+    animation: hudLineRGB 6s linear infinite; /* ✅ Nueva animación para color de fondo */
 }
 .hud-line.left { left: 60px; }
 .hud-line.right { right: 60px; }
 
-@keyframes hudLineLight {
-    0%   { background-color: #d2e3fc; box-shadow: 0 0 10px #d2e3fc88, 0 0 40px #d2e3fc44; }
-    25%  { background-color: #ffcce0; box-shadow: 0 0 10px #ffcce088, 0 0 40px #ffcce044; }
-    50%  { background-color: #ffe6f0; box-shadow: 0 0 10px #ffe6f088, 0 0 40px #ffe6f044; }
-    75%  { background-color: #dfffe1; box-shadow: 0 0 10px #dfffe188, 0 0 40px #dfffe144; }
-    100% { background-color: #d2e3fc; box-shadow: 0 0 10px #d2e3fc88, 0 0 40px #d2e3fc44; }
+@keyframes hudLineRGB {
+    0%   { background-color: #00ffaa; box-shadow: 0 0 10px #00ffaa88, 0 0 40px #00ffaa44; }
+    25%  { background-color: #1f6feb; box-shadow: 0 0 10px #1f6feb88, 0 0 40px #1f6feb44; }
+    50%  { background-color: #ff66c4; box-shadow: 0 0 10px #ff66c488, 0 0 40px #ff66c444; }
+    75%  { background-color: #ff006e; box-shadow: 0 0 10px #ff006e88, 0 0 40px #ff006e44; }
+    100% { background-color: #00ffaa; box-shadow: 0 0 10px #00ffaa88, 0 0 40px #00ffaa44; }
 }
 
-/* 📦 Contenedor principal en tonos claros */
+/* 📦 Contenedor principal */
 .comic-container {
     width: 90%;
     max-width: 450px;
-    background-color: #ffffff;
+    background-color: #161b22;
     padding: 30px;
     border-radius: 16px;
-    border: 1px solid #d1d5da;
+    border: 1px solid #30363d;
     box-shadow:
-            0 0 5px #cbd3de,
-            0 0 20px #bac8f044,
-            0 0 60px #8da5f222,
-            inset 0 0 5px #8da5f222;
+            0 0 5px #0d1117,
+            0 0 20px #1f6feb44,
+            0 0 60px #58a6ff22,
+            inset 0 0 5px #58a6ff22;
     z-index: 10;
     position: relative;
     transition: box-shadow 0.3s ease-in-out;
 }
 
-/* 🎮 Esquinas tipo gamer sutiles */
+/* 🎮 Esquinas tipo RGB gamer ANIMADAS */
 .comic-container::before,
 .comic-container::after {
     content: "";
     position: absolute;
     width: 18px;
     height: 18px;
-    border: 2px solid #d2e3fc;
-    animation: borderLight 6s linear infinite;
-    box-shadow: 0 0 12px #d2e3fc99;
+    border: 2px solid #00ffaa;
+    animation: borderRGB 6s linear infinite;
+    box-shadow: 0 0 12px #00ffaa99;
 }
 .comic-container::before {
     top: -10px;
@@ -123,32 +117,45 @@ body::after {
     border-top: none;
 }
 
-@keyframes borderLight {
-    0%   { border-color: #d2e3fc; box-shadow: 0 0 8px #d2e3fc; }
-    25%  { border-color: #ffcce0; box-shadow: 0 0 8px #ffcce0; }
-    50%  { border-color: #ffe6f0; box-shadow: 0 0 8px #ffe6f0; }
-    75%  { border-color: #dfffe1; box-shadow: 0 0 8px #dfffe1; }
-    100% { border-color: #d2e3fc; box-shadow: 0 0 8px #d2e3fc; }
+@keyframes borderRGB {
+    0%   { border-color: #00ffaa; box-shadow: 0 0 8px #00ffaa; }
+    25%  { border-color: #1f6feb; box-shadow: 0 0 8px #1f6feb; }
+    50%  { border-color: #ff66c4; box-shadow: 0 0 8px #ff66c4; }
+    75%  { border-color: #ff006e; box-shadow: 0 0 8px #ff006e; }
+    100% { border-color: #00ffaa; box-shadow: 0 0 8px #00ffaa; }
 }
 
-/* 🧠 Título en azul oscuro */
+/* 🧠 Título */
 .comic-title {
     font-size: 2rem;
     text-align: center;
-    color: #0366d6;
+    color: #58a6ff;
     font-weight: bold;
     margin-bottom: 25px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-/* 🔵 Botones de pestañas claros */
+/* 🖼 Logo */
+.logo {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 64px;
+}
+
+/* 🔵 Botones de pestañas */
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
 .toggle-btn {
     flex: 1;
     padding: 12px 0;
     border: none;
-    background: #f0f3f6;
-    color: #24292e;
+    background: #21262d;
+    color: #c9d1d9;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
@@ -157,59 +164,77 @@ body::after {
     margin: 0 4px;
     transition: all 0.3s ease;
 }
+
 .toggle-btn.active {
-    background: #0366d6;
+    background: #1f6feb;
     color: white;
-    box-shadow: 0 0 10px #0366d655, 0 0 20px #0366d622;
+    box-shadow: 0 0 10px #1f6feb, 0 0 20px #1f6feb55;
 }
 
-/* 🧩 Inputs claros */
+/* 🧩 Inputs */
 .input-group {
     display: flex;
     align-items: center;
-    background: #f0f3f6;
+    background: #21262d;
     border-radius: 6px;
     padding: 12px 14px;
     margin-bottom: 18px;
-    border: 1px solid #d1d5da;
-    color: #57606a;
+    border: 1px solid #30363d;
+    color: #8b949e;
     transition: border-color 0.3s ease;
 }
 .input-group:hover {
-    border-color: #0366d6;
-    box-shadow: 0 0 8px #0366d688;
+    border-color: #1094e0;
+    box-shadow: 0 0 8px #1094e0;
 }
+
+.input-group i {
+    margin-right: 10px;
+    font-size: 1rem;
+    color: #1094e0;
+}
+
 input {
     flex: 1;
     background: transparent;
     border: none;
     outline: none;
     font-size: 0.95rem;
-    color: #24292e;
+    color: #f0f6fc;
 }
 
-/* 🟢 Botón de acción verde vivo */
+/* 🟢 Botón de acción tipo neón verde */
 .submit-btn {
     width: 100%;
     padding: 12px 0;
     border: none;
     border-radius: 6px;
-    background: #28a745;
+    background: #238636;
     color: white;
     font-weight: bold;
     font-size: 1rem;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 0 10px #28a74577, 0 0 20px #28a74544;
-}
-.submit-btn:hover {
-    background: #34d058;
-    transform: scale(1.03);
-    box-shadow: 0 0 15px #34d058aa, 0 0 30px #34d05855;
+    box-shadow:
+            0 0 10px #23863677,
+            0 0 20px #2ea04344;
 }
 
-/* 🚫 Ocultar íconos de autocompletado (igual que en oscuro) */
+.submit-btn:hover {
+    background: #2ea043;
+    transform: scale(1.03);
+    box-shadow:
+            0 0 15px #2ea043aa,
+            0 0 30px #2ea04355;
+}
+
+.submit-btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* 🚫 Ocultar íconos de autocompletado */
 input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear,
 input::-webkit-credentials-auto-fill-button,
