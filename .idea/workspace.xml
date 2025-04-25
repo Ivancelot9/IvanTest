@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modo claro">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modo claro tabla">
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/tablaReportes.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/tablaReportes.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -172,15 +172,7 @@
       <workItem from="1745331438583" duration="16271000" />
       <workItem from="1745418094690" duration="12366000" />
       <workItem from="1745504572508" duration="12741000" />
-      <workItem from="1745590710051" duration="10244000" />
-    </task>
-    <task id="LOCAL-01116" summary="Notificaciones en dos pestañas sincronizadas">
-      <option name="closed" value="true" />
-      <created>1745427915560</created>
-      <option name="number" value="01116" />
-      <option name="presentableId" value="LOCAL-01116" />
-      <option name="project" value="LOCAL" />
-      <updated>1745427915560</updated>
+      <workItem from="1745590710051" duration="10293000" />
     </task>
     <task id="LOCAL-01117" summary="Notificaciones en dos pestañas sincronizadas">
       <option name="closed" value="true" />
@@ -566,7 +558,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745611740844</updated>
     </task>
-    <option name="localTasksCounter" value="1165" />
+    <task id="LOCAL-01165" summary="Modo claro tabla">
+      <option name="closed" value="true" />
+      <created>1745612133381</created>
+      <option name="number" value="01165" />
+      <option name="presentableId" value="LOCAL-01165" />
+      <option name="project" value="LOCAL" />
+      <updated>1745612133381</updated>
+    </task>
+    <option name="localTasksCounter" value="1166" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -618,7 +618,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Obtener Reportes Completos php" />
     <MESSAGE value="Test: Corrigiendo modifcar datos personales" />
     <MESSAGE value="Corrigiendo advertencias Inicio Sesion" />
     <MESSAGE value="Corrigiendo Estatus Modal" />
@@ -643,7 +642,8 @@
     <MESSAGE value="Estatus entre Pestanas" />
     <MESSAGE value="Bot grammer" />
     <MESSAGE value="Modo claro" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modo claro" />
+    <MESSAGE value="Modo claro tabla" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modo claro tabla" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
