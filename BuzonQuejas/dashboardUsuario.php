@@ -100,9 +100,9 @@ if ($_SESSION["nomina"] == "" && $_SESSION["nomina"]== null) {
     </div>
 </div>
 
-<!-- 🔹 Contenedor del Bot (Inicialmente Oculto) -->
+<!-- Después -->
 <div id="bot" class="hidden">
-    <img id="botSprite" src="imagenes/gatilloMamon1.png" alt="Bot Caminando">
+    +   <div id="botSprite"></div>
 </div>
 
 <!-- 🔹 Globo de Diálogo (Inicialmente Oculto) -->

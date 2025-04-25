@@ -6,23 +6,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const tabs = document.querySelectorAll(".tab-item");
     const btnSiguiente = document.getElementById("btnSiguiente");
 
-    // 🔹 Sprites para animación del bot
-    const spriteFrames = [
-        "imagenes/gatilloMamon1.png",
-        "imagenes/gatilloMamon2.png",
-        "imagenes/gatilloMamon3.png"
-    ];
+    // 🔹 Configuración del sprite sheet
+    const totalFrames = 3;       // número de cuadros en Heroher.png
+    const frameWidth  = 180;     // ancho de cada cuadro en px
     let frameIndex = 0;
 
     function animarBot() {
-        botSprite.src = spriteFrames[frameIndex]; // 🔹 Cambia la imagen del bot
-        frameIndex = (frameIndex + 1) % spriteFrames.length;
+        // calculamos el desplazamiento horizontal
+        const offsetX = -frameWidth * frameIndex;
+        botSprite.style.backgroundPosition = `${offsetX}px 0`;
+        frameIndex = (frameIndex + 1) % totalFrames;
     }
 
-    // 🔹 Inicia la animación del bot cada 200ms
+    // 🔹 Inicia la animación cada 200 ms
     setInterval(animarBot, 200);
 
-    let pasoActual = 0; // 🔹 Control de la pestaña actual
+    let pasoActual = 0; // controla en qué paso/pestaña estamos
 
     function iniciarParpadeo() {
         tabs.forEach(tab => tab.classList.add("glowing"));
@@ -32,20 +31,15 @@ document.addEventListener("DOMContentLoaded", function () {
         tabs.forEach(tab => tab.classList.remove("glowing"));
     }
 
-    // 🔹 Manejador de botón "Siguiente"
+    // 🔹 Botón "Siguiente"
     btnSiguiente.addEventListener("click", function () {
         pasoActual++;
-
         if (pasoActual === 1) {
-            // 🔹 Cuando pasamos a la pestaña "Área", mostramos el bot y el diálogo
             bot.classList.remove("hidden");
             dialogo.classList.remove("hidden");
-            btnAyuda.classList.add("hidden"); // 🔹 Ocultamos el botón de ayuda
-
-            // 🔹 Iniciar el parpadeo infinito de las pestañas
+            btnAyuda.classList.add("hidden");
             iniciarParpadeo();
         } else {
-            // 🔹 Si avanza a la siguiente pestaña, detener el parpadeo y mostrar el botón "?"
             detenerParpadeo();
             bot.classList.add("hidden");
             dialogo.classList.add("hidden");
@@ -53,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 🔹 Si el usuario hace clic en cualquier pestaña, detener el parpadeo y ocultar el bot
+    // 🔹 Clic en cualquier pestaña detiene parpadeo y oculta bot
     tabs.forEach(tab => {
         tab.addEventListener("click", function () {
             detenerParpadeo();
@@ -63,13 +57,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // 🔹 Cuando el usuario presiona el botón "?", vuelve a mostrar el bot y el parpadeo
+    // 🔹 Botón "?" vuelve a mostrar bot + parpadeo
     btnAyuda.addEventListener("click", function () {
         bot.classList.remove("hidden");
         dialogo.classList.remove("hidden");
-        btnAyuda.classList.add("hidden"); // 🔹 Ocultamos el botón "?" al mostrar el bot
-
-        // 🔹 Reiniciamos el parpadeo de las pestañas
+        btnAyuda.classList.add("hidden");
         iniciarParpadeo();
     });
 });

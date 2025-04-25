@@ -10,13 +10,17 @@
     height: auto;
     z-index: 1000;
 }
-
-/* 🔹 Imagen del bot (Más grande) */
-#bot img {
-    width: 180px; /* 📌 Aumentamos el tamaño */
-    height: auto;
-    display: block;
+/* Contenedor del frame del sprite */
+#botSprite {
+    width: 180px;     /* ancho de un solo frame */
+    height: 180px;    /* alto de un solo frame */
+    background: url("../imagenes/Heroher.png") no-repeat 0 0;
+    /* Si el sprite sheet mide 3×180px = 540px de ancho total,
+       podrías ajustar background-size para escalarlo: */
+    /* background-size: 540px 180px; */
 }
+
+
 
 @keyframes flotacion {
     0% { transform: translateY(0); }
