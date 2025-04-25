@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    background-color: #0d1117;
+    background-color: #f5f5f5;
     font-family: 'Segoe UI', sans-serif;
     display: flex;
     justify-content: center;
@@ -19,17 +19,17 @@ body::before {
     top: 0; left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(130deg, #0d1117, #1f6feb, #ff66c4, #00ffaa, #ff006e);
+    background: linear-gradient(130deg,
+    #f5f5f5,   /* reemplaza #0d1117 */
+    #d2e3fc,   /* reemplaza #1f6feb */
+    #ffcce0,   /* reemplaza #ff66c4 */
+    #dfffe1,   /* reemplaza #00ffaa */
+    #ffe6f0    /* reemplaza #ff006e */
+    );
     background-size: 400% 400%;
     animation: bgGradientFlow 20s ease infinite;
     z-index: -3;
-    filter: brightness(0.2);
-}
-
-@keyframes bgGradientFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    filter: brightness(1);  /* reemplaza 0.2 */
 }
 
 /* 🧩 Líneas diagonales sutiles */
@@ -40,17 +40,12 @@ body::after {
     width: 100%;
     height: 100%;
     background-image:
-            linear-gradient(45deg, rgba(255,255,255,0.02) 1px, transparent 1px),
-            linear-gradient(-45deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            linear-gradient(45deg, rgba(0,0,0,0.03) 1px, transparent 1px),
+            linear-gradient(-45deg, rgba(0,0,0,0.03) 1px, transparent 1px);
     background-size: 60px 60px;
     z-index: -2;
     pointer-events: none;
     animation: gridFloat 60s linear infinite;
-}
-
-@keyframes gridFloat {
-    0% { background-position: 0 0; }
-    100% { background-position: 200px 200px; }
 }
 
 /* ✨ Líneas HUD verticales */
@@ -59,35 +54,35 @@ body::after {
     top: 0;
     height: 100%;
     width: 4px;
-    background-color: #00ffaa;
+    background-color: #d2e3fc; /* reemplaza #00ffaa */
     border-radius: 2px;
     z-index: -1;
-    animation: hudLineRGB 6s linear infinite; /* ✅ Nueva animación para color de fondo */
+    animation: hudLineRGB 6s linear infinite;
 }
 .hud-line.left { left: 60px; }
 .hud-line.right { right: 60px; }
 
 @keyframes hudLineRGB {
-    0%   { background-color: #00ffaa; box-shadow: 0 0 10px #00ffaa88, 0 0 40px #00ffaa44; }
-    25%  { background-color: #1f6feb; box-shadow: 0 0 10px #1f6feb88, 0 0 40px #1f6feb44; }
-    50%  { background-color: #ff66c4; box-shadow: 0 0 10px #ff66c488, 0 0 40px #ff66c444; }
-    75%  { background-color: #ff006e; box-shadow: 0 0 10px #ff006e88, 0 0 40px #ff006e44; }
-    100% { background-color: #00ffaa; box-shadow: 0 0 10px #00ffaa88, 0 0 40px #00ffaa44; }
+    0%   { background-color: #d2e3fc; box-shadow: 0 0 10px #d2e3fc88, 0 0 40px #d2e3fc44; }
+    25%  { background-color: #d2e3fc; box-shadow: 0 0 10px #d2e3fc88, 0 0 40px #d2e3fc44; } /* opcional repetir o variar */
+    50%  { background-color: #ffcce0; box-shadow: 0 0 10px #ffcce088, 0 0 40px #ffcce044; }
+    75%  { background-color: #ffe6f0; box-shadow: 0 0 10px #ffe6f088, 0 0 40px #ffe6f044; }
+    100% { background-color: #dfffe1; box-shadow: 0 0 10px #dfffe188, 0 0 40px #dfffe144; }
 }
 
 /* 📦 Contenedor principal */
 .comic-container {
     width: 90%;
     max-width: 450px;
-    background-color: #161b22;
+    background-color: #ffffff;      /* reemplaza #161b22 */
     padding: 30px;
     border-radius: 16px;
-    border: 1px solid #30363d;
+    border: 1px solid #d1d5da;     /* reemplaza #30363d */
     box-shadow:
-            0 0 5px #0d1117,
-            0 0 20px #1f6feb44,
-            0 0 60px #58a6ff22,
-            inset 0 0 5px #58a6ff22;
+            0 0 5px #f0f3f6,            /* reemplaza #0d1117 */
+            0 0 20px #bac8f044,         /* reemplaza #1f6feb44 */
+            0 0 60px #8da5f222,         /* reemplaza #58a6ff22 */
+            inset 0 0 5px #8da5f222;    /* reemplaza #58a6ff22 */
     z-index: 10;
     position: relative;
     transition: box-shadow 0.3s ease-in-out;
@@ -100,9 +95,9 @@ body::after {
     position: absolute;
     width: 18px;
     height: 18px;
-    border: 2px solid #00ffaa;
+    border: 2px solid #d2e3fc;      /* reemplaza #00ffaa */
     animation: borderRGB 6s linear infinite;
-    box-shadow: 0 0 12px #00ffaa99;
+    box-shadow: 0 0 12px #d2e3fc99; /* reemplaza #00ffaa99 */
 }
 .comic-container::before {
     top: -10px;
@@ -118,18 +113,18 @@ body::after {
 }
 
 @keyframes borderRGB {
-    0%   { border-color: #00ffaa; box-shadow: 0 0 8px #00ffaa; }
-    25%  { border-color: #1f6feb; box-shadow: 0 0 8px #1f6feb; }
-    50%  { border-color: #ff66c4; box-shadow: 0 0 8px #ff66c4; }
-    75%  { border-color: #ff006e; box-shadow: 0 0 8px #ff006e; }
-    100% { border-color: #00ffaa; box-shadow: 0 0 8px #00ffaa; }
+    0%   { border-color: #d2e3fc; box-shadow: 0 0 8px #d2e3fc; }
+    25%  { border-color: #ffcce0; box-shadow: 0 0 8px #ffcce0; }
+    50%  { border-color: #ffe6f0; box-shadow: 0 0 8px #ffe6f0; }
+    75%  { border-color: #dfffe1; box-shadow: 0 0 8px #dfffe1; }
+    100% { border-color: #d2e3fc; box-shadow: 0 0 8px #d2e3fc; }
 }
 
 /* 🧠 Título */
 .comic-title {
     font-size: 2rem;
     text-align: center;
-    color: #58a6ff;
+    color: #0366d6;                 /* reemplaza #58a6ff */
     font-weight: bold;
     margin-bottom: 25px;
     text-transform: uppercase;
@@ -149,13 +144,12 @@ body::after {
     justify-content: space-between;
     margin-bottom: 20px;
 }
-
 .toggle-btn {
     flex: 1;
     padding: 12px 0;
     border: none;
-    background: #21262d;
-    color: #c9d1d9;
+    background: #f0f3f6;            /* reemplaza #21262d */
+    color: #24292e;                 /* reemplaza #c9d1d9 */
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
@@ -164,43 +158,40 @@ body::after {
     margin: 0 4px;
     transition: all 0.3s ease;
 }
-
 .toggle-btn.active {
-    background: #1f6feb;
+    background: #0366d6;            /* reemplaza #1f6feb */
     color: white;
-    box-shadow: 0 0 10px #1f6feb, 0 0 20px #1f6feb55;
+    box-shadow: 0 0 10px #0366d655, 0 0 20px #0366d622; /* reemplaza #1f6feb y opacidades */
 }
 
 /* 🧩 Inputs */
 .input-group {
     display: flex;
     align-items: center;
-    background: #21262d;
+    background: #f0f3f6;            /* reemplaza #21262d */
     border-radius: 6px;
     padding: 12px 14px;
     margin-bottom: 18px;
-    border: 1px solid #30363d;
-    color: #8b949e;
+    border: 1px solid #d1d5da;     /* reemplaza #30363d */
+    color: #57606a;                 /* reemplaza #8b949e */
     transition: border-color 0.3s ease;
 }
 .input-group:hover {
-    border-color: #1094e0;
-    box-shadow: 0 0 8px #1094e0;
+    border-color: #0366d6;          /* reemplaza #1094e0 */
+    box-shadow: 0 0 8px #0366d688;  /* reemplaza #1094e0 */
 }
-
 .input-group i {
     margin-right: 10px;
     font-size: 1rem;
-    color: #1094e0;
+    color: #0366d6;                 /* reemplaza #1094e0 */
 }
-
 input {
     flex: 1;
     background: transparent;
     border: none;
     outline: none;
     font-size: 0.95rem;
-    color: #f0f6fc;
+    color: #24292e;                 /* reemplaza #f0f6fc */
 }
 
 /* 🟢 Botón de acción tipo neón verde */
@@ -209,7 +200,7 @@ input {
     padding: 12px 0;
     border: none;
     border-radius: 6px;
-    background: #238636;
+    background: #28a745;            /* reemplaza #238636 */
     color: white;
     font-weight: bold;
     font-size: 1rem;
@@ -217,18 +208,16 @@ input {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow:
-            0 0 10px #23863677,
-            0 0 20px #2ea04344;
+            0 0 10px #28a74577,         /* reemplaza #23863677 */
+            0 0 20px #28a74544;         /* reemplaza #2ea04344 */
 }
-
 .submit-btn:hover {
-    background: #2ea043;
+    background: #34d058;            /* reemplaza #2ea043 */
     transform: scale(1.03);
     box-shadow:
-            0 0 15px #2ea043aa,
-            0 0 30px #2ea04355;
+            0 0 15px #34d058aa,         /* reemplaza #2ea043aa */
+            0 0 30px #34d05855;         /* reemplaza #2ea04355 */
 }
-
 .submit-btn:focus {
     outline: none !important;
     box-shadow: none !important;
