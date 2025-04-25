@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnSiguiente = document.getElementById("btnSiguiente");
 
     // ─── Configuración de escala ─────────────────────────────────
-    const scale = 0.5;      // ← ajusta este valor (0.5 = 50 %, 0.3 = 30 %, etc.)
+    const scale = 0.3;      // ← ajusta este valor (0.5 = 50 %, 0.3 = 30 %, etc.)
     let totalFrames;        // número de cuadros en Heroher.png
     let frameWidth;         // ancho de cada cuadro (px)
     let frameIndex = 0;     // índice del cuadro actual
