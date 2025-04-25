@@ -3,8 +3,8 @@
     max-width: 100%;
     overflow-x: auto;
     overflow-y: auto;
-    border: 2px solid #30363d;
-    background-color: #0d1117;
+    border: 2px solid #d1d5da;       /* claro (reemplaza #30363d) */
+    background-color: #f5f5f5;       /* claro (reemplaza #0d1117) */
     height: 250px;
     min-height: 230px;
     max-height: 50vh;
@@ -17,28 +17,28 @@ table {
     border-collapse: collapse;
     margin: 20px 0;
     font-family: 'Segoe UI', sans-serif;
-    color: #f0f6fc;
+    color: #24292e;                  /* oscuro (reemplaza #f0f6fc) */
 }
 
 /* 🎭 Estilos para encabezados */
 table th {
-    background-color: #1f6feb; /* Azul GitHub elegante */
-    color: #f0f6fc;
+    background-color: #0366d6;       /* azul claro (reemplaza #1f6feb) */
+    color: #ffffff;                  /* blanco (reemplaza #f0f6fc) */
     font-size: 1rem;
     padding: 10px;
     text-align: center;
-    border: 1px solid #30363d;
+    border: 1px solid #d1d5da;       /* claro (reemplaza #30363d) */
 }
 
 /* 📝 Estilos para las celdas */
 table td {
-    background-color: #161b22;
-    border: 1px solid #30363d;
+    background-color: #ffffff;       /* blanco (reemplaza #161b22) */
+    border: 1px solid #d1d5da;       /* claro (reemplaza #30363d) */
     padding: 8px;
     text-align: center;
     font-size: 0.9rem;
     font-family: 'Segoe UI', sans-serif;
-    color: #c9d1d9;
+    color: #57606a;                  /* gris medio (reemplaza #c9d1d9) */
 }
 
 /* 🔘 Estilos para botones de la tabla */
@@ -48,9 +48,9 @@ button.seleccionar-fecha,
 button.estatus-btn,
 button.convertidor,
 button.ver-estatus-btn {
-    background-color: #21262d;
-    color: #f0f6fc;
-    border: 1px solid #30363d;
+    background-color: #f0f3f6;       /* claro (reemplaza #21262d) */
+    color: #24292e;                  /* oscuro (reemplaza #f0f6fc) */
+    border: 1px solid #d1d5da;       /* claro (reemplaza #30363d) */
     font-family: 'Segoe UI', sans-serif;
     font-size: 0.85rem;
     padding: 6px 10px;
@@ -64,30 +64,30 @@ button.ver-estatus-btn {
 }
 
 /* 🔘 Estilo especial para botón de estatus con colores */
-button.ver-estatus-btn.green { background-color: #2ea043; color: white; }
-button.ver-estatus-btn.blue { background-color: #388bfd; color: white; }
-button.ver-estatus-btn.yellow { background-color: #e3b341; color: #0d1117; }
-button.ver-estatus-btn.red { background-color: #f85149; color: white; }
+button.ver-estatus-btn.green  { background-color: #28a745; color: #ffffff; }
+button.ver-estatus-btn.blue   { background-color: #0366d6; color: #ffffff; }
+button.ver-estatus-btn.yellow { background-color: #e3b341; color: #24292e; }
+button.ver-estatus-btn.red    { background-color: #d73a49; color: #ffffff; }
 
 /* 🔹 Corrección para que el botón no se salga de la celda */
 td {
-    text-align: center;  /* 🔹 Centra el contenido de la celda */
-    vertical-align: middle;  /* 🔹 Asegura que el botón quede alineado */
-    padding: 5px;  /* 🔹 Un poco de espacio */
+    text-align: center;             /* 🔹 Centra el contenido de la celda */
+    vertical-align: middle;         /* 🔹 Asegura que el botón quede alineado */
+    padding: 5px;                   /* 🔹 Un poco de espacio */
 }
 
 /* 🎯 Asegurar que el botón esté bien alineado dentro de la celda */
 td.convertidor-cell {
-    display: flex;  /* 🔹 Permite centrar el botón dentro del td */
-    justify-content: center;  /* 🔹 Lo coloca en el centro horizontalmente */
-    align-items: center;  /* 🔹 Lo centra verticalmente */
-    padding:0;  /* 🔹 Asegurar que el botón no se desborde */
+    display: flex;                  /* 🔹 Permite centrar el botón dentro del td */
+    justify-content: center;        /* 🔹 Lo coloca en el centro horizontalmente */
+    align-items: center;            /* 🔹 Lo centra verticalmente */
+    padding: 0;                     /* 🔹 Asegurar que el botón no se desborde */
 }
 
 /* 🎨 Estilo específico para el botón "Convertir a Excel" */
 button.convertidor {
-    background-color: #238636 !important;
-    color: #f0f6fc !important;
+    background-color: #28a745 !important;  /* verde (reemplaza #238636) */
+    color: #ffffff !important;             /* blanco (reemplaza #f0f6fc) */
     font-weight: 600;
     padding: 7px 14px !important;
     width: auto !important;
@@ -107,11 +107,11 @@ button.seleccionar-fecha:hover,
 button.estatus-btn:hover,
 button.convertidor:hover,
 button.ver-estatus-btn:hover {
-    background-color: #30363d;
+    background-color: #e1e4e8;      /* hover claro (reemplaza #30363d) */
     transform: scale(1.03);
 }
 
-/* 📌 Paginaciónn */
+/* 📌 Paginación */
 .pagination {
     display: flex;
     justify-content: center;
@@ -120,14 +120,14 @@ button.ver-estatus-btn:hover {
     margin-top: 10px;
     padding: 15px 0;
     width: 100%;
-    background-color: #0d1117;
+    background-color: #f5f5f5;      /* claro (reemplaza #0d1117) */
     font-family: 'Segoe UI', sans-serif;
 }
 
 .pagination button {
-    background-color: #21262d;
-    color: #f0f6fc;
-    border: 1px solid #30363d;
+    background-color: #f0f3f6;      /* claro (reemplaza #21262d) */
+    color: #24292e;                 /* oscuro (reemplaza #f0f6fc) */
+    border: 1px solid #d1d5da;      /* claro (reemplaza #30363d) */
     padding: 6px 12px;
     font-size: 0.8rem;
     cursor: pointer;
@@ -136,15 +136,15 @@ button.ver-estatus-btn:hover {
 }
 
 .pagination button:hover {
-    background-color: #30363d;
+    background-color: #e1e4e8;      /* hover claro (reemplaza #30363d) */
     transform: scale(1.05);
 }
 
 /* 🔦 Resaltado de texto al filtrar */
 .highlight,
 .highlighted {
-    background-color: #f9d342 !important;
-    color: #0d1117;
+    background-color: #fff8c4 !important; /* amarillo suave (reemplaza #f9d342) */
+    color: #24292e;                        /* oscuro (reemplaza #0d1117) */
     font-weight: bold;
     padding: 2px 4px;
     border-radius: 4px;
@@ -156,17 +156,17 @@ button.ver-estatus-btn:hover {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
-    background-color: #0d1117;
+    background-color: #f5f5f5;      /* claro (reemplaza #0d1117) */
     padding: 8px 10px;
     border-radius: 10px;
-    gap: 8px; /* 🔧 Nuevo: espacio más pequeño entre grupos */
-    flex-wrap: nowrap; /* 🔧 Fuerza que todo esté en una línea */
+    gap: 8px;                       /* 🔧 Nuevo: espacio más pequeño entre grupos */
+    flex-wrap: nowrap;             /* 🔧 Fuerza que todo esté en una línea */
 }
 
 /* 🔎 Contenedor del filtro */
 .filter-container {
     display: flex;
-    gap: 4px; /* 🔧 Menor separación entre elementos */
+    gap: 4px;                      /* 🔧 Menor separación entre elementos */
     align-items: center;
     flex: 1;
 }
@@ -174,7 +174,7 @@ button.ver-estatus-btn:hover {
 /* 📌 Label "Filtrar por" más pequeño */
 .filter-container label {
     font-size: 0.85rem;
-    color: #c9d1d9;
+    color: #24292e;                /* oscuro (reemplaza #c9d1d9) */
     font-family: 'Segoe UI', sans-serif;
 }
 
@@ -184,49 +184,49 @@ button.ver-estatus-btn:hover {
     width: 110px;
     padding: 4px 6px;
     font-size: 0.8rem;
-    border: 1px solid #30363d;
-    background-color: #161b22;
-    color: #f0f6fc;
+    border: 1px solid #d1d5da;     /* claro (reemplaza #30363d) */
+    background-color: #ffffff;     /* claro (reemplaza #161b22) */
+    color: #24292e;                /* oscuro (reemplaza #f0f6fc) */
     font-family: 'Segoe UI', sans-serif;
     border-radius: 6px;
     transition: border 0.2s ease-in-out;
 }
 .filter-container select:focus,
 .filter-container input:focus {
-    border-color: #58a6ff;
+    border-color: #0366d6;         /* foco azul (reemplaza #58a6ff) */
     outline: none;
 }
 /* 🎯 Asegurar que el botón de búsqueda sigue alineado y más pequeño */
 #filter-button-completo, #filter-button {
     padding: 4px 8px;
     font-size: 0.8rem;
-    background-color: #21262d;
-    color: #f0f6fc;
-    border: 1px solid #30363d;
+    background-color: #f0f3f6;     /* claro (reemplaza #21262d) */
+    color: #24292e;                /* oscuro (reemplaza #f0f6fc) */
+    border: 1px solid #d1d5da;     /* claro (reemplaza #30363d) */
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
 #filter-button-completo:hover, #filter-button:hover {
-    background-color: #30363d;
+    background-color: #e1e4e8;     /* hover claro (reemplaza #30363d) */
 }
 
 /* 📅 Contenedor del rango de fechas (Ajustamos más el espacio) */
 .date-range-container {
     display: flex;
     align-items: center;
-    gap: 4px; /* 🔧 Compactado */
-    flex: 1.4; /* 🔧 Puedes ajustar esto a 1.2 si aún se amontona */
+    gap: 4px;                      /* 🔧 Compactado */
+    flex: 1.4;                     /* 🔧 Puedes ajustar esto a 1.2 si aún se amontona */
 }
 
 /* 📅 Inputs de fecha más compactos */
 #start-date, #end-date {
-    width: 100px; /* 🔧 Compactamos un poco */
+    width: 100px;                  /* 🔧 Compactamos un poco */
     padding: 3px 5px;
     font-size: 0.75rem;
-    border: 1px solid #30363d;
-    background-color: #161b22;
-    color: #f0f6fc;
+    border: 1px solid #d1d5da;     /* claro (reemplaza #30363d) */
+    background-color: #ffffff;     /* claro (reemplaza #161b22) */
+    color: #24292e;                /* oscuro (reemplaza #f0f6fc) */
     font-family: 'Segoe UI', sans-serif;
     border-radius: 6px;
 }
@@ -235,23 +235,23 @@ button.ver-estatus-btn:hover {
 #clear-date-button {
     padding: 4px 8px;
     font-size: 0.8rem;
-    background-color: #21262d;
-    color: #f0f6fc;
-    border: 1px solid #30363d;
+    background-color: #f0f3f6;     /* claro (reemplaza #21262d) */
+    color: #24292e;                /* oscuro (reemplaza #f0f6fc) */
+    border: 1px solid #d1d5da;     /* claro (reemplaza #30363d) */
     border-radius: 6px;
     cursor: pointer;
 }
 
 #filter-date-button:hover,
 #clear-date-button:hover {
-    background-color: #30363d;
+    background-color: #e1e4e8;     /* hover claro (reemplaza #30363d) */
 }
 
 /* 📤 Botón "Exportar Página" (Mantiene su tamaño y color verde) */
 #exportarPaginaCompletos {
-    background: #238636 !important;
-    color: #f0f6fc !important;
-    border: 2px solid #2ea043 !important;
+    background: #28a745 !important; /* verde (reemplaza #238636) */
+    color: #ffffff !important;       /* blanco (reemplaza #f0f6fc) */
+    border: 2px solid #2ea043 !important; /* verde vivo */
     font-family: 'Segoe UI', sans-serif;
     font-size: 0.9rem;
     padding: 8px 16px;
@@ -268,7 +268,7 @@ button.ver-estatus-btn:hover {
 
 /* 🎯 Hover para el botón de exportar */
 #exportarPaginaCompletos:hover {
-    background: #2ea043 !important;
+    background: #2ea043 !important; /* hover verde */
     color: #ffffff !important;
     transform: scale(1.03);
 }
@@ -314,7 +314,6 @@ button.ver-estatus-btn:hover {
     50%      { background-color: transparent; }
 }
 
-
 /* 🎭 Animación de aparición con fade-in */
 @keyframes fadeIn {
     from {
@@ -332,11 +331,10 @@ button.ver-estatus-btn:hover {
 }
 
 .nombre-encargado {
-    color: #8b949e;
+    color: #57606a;          /* gris medio (reemplaza #8b949e) */
     font-weight: normal;
     font-style: italic;
 }
-
 
 
 .grupo-controles {
