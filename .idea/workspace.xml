@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modo claro tabla">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentar Proyecto">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/areaProduccion.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/areaProduccion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/bot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/cargarAreas.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/cargarAreas.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/cargarEncargados.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/cargarEncargados.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/cerrarSesion.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/cerrarSesion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/comentarios.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/comentarios.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/datosUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/datosUsuario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/descripcionReporte.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/descripcionReporte.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/enviarReporte.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/enviarReporte.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,15 +174,7 @@
       <workItem from="1745418094690" duration="12366000" />
       <workItem from="1745504572508" duration="12741000" />
       <workItem from="1745590710051" duration="12436000" />
-      <workItem from="1745849597951" duration="3670000" />
-    </task>
-    <task id="LOCAL-01120" summary="Notificaciones en dos pestañas sincronizadas">
-      <option name="closed" value="true" />
-      <created>1745430892950</created>
-      <option name="number" value="01120" />
-      <option name="presentableId" value="LOCAL-01120" />
-      <option name="project" value="LOCAL" />
-      <updated>1745430892950</updated>
+      <workItem from="1745849597951" duration="4365000" />
     </task>
     <task id="LOCAL-01121" summary="Notificaciones en dos pestañas sincronizadas">
       <option name="closed" value="true" />
@@ -575,7 +560,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745613213983</updated>
     </task>
-    <option name="localTasksCounter" value="1169" />
+    <task id="LOCAL-01169" summary="Documentar Proyecto">
+      <option name="closed" value="true" />
+      <created>1745854480913</created>
+      <option name="number" value="01169" />
+      <option name="presentableId" value="LOCAL-01169" />
+      <option name="project" value="LOCAL" />
+      <updated>1745854480913</updated>
+    </task>
+    <option name="localTasksCounter" value="1170" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -627,7 +620,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Test: Corrigiendo modifcar datos personales" />
     <MESSAGE value="Corrigiendo advertencias Inicio Sesion" />
     <MESSAGE value="Corrigiendo Estatus Modal" />
     <MESSAGE value="Arreglando Insercción de Fechas" />
@@ -652,7 +644,8 @@
     <MESSAGE value="Bot grammer" />
     <MESSAGE value="Modo claro" />
     <MESSAGE value="Modo claro tabla" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modo claro tabla" />
+    <MESSAGE value="Documentar Proyecto" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentar Proyecto" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
