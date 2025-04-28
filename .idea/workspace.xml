@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentar Proyecto (Exportar Tabla Completa Excel)">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentar Proyecto (Fecha Finalizacion)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,15 +173,7 @@
       <workItem from="1745418094690" duration="12366000" />
       <workItem from="1745504572508" duration="12741000" />
       <workItem from="1745590710051" duration="12436000" />
-      <workItem from="1745849597951" duration="8197000" />
-    </task>
-    <task id="LOCAL-01124" summary="Notificaciones en dos pestañas sincronizadas">
-      <option name="closed" value="true" />
-      <created>1745433511685</created>
-      <option name="number" value="01124" />
-      <option name="presentableId" value="LOCAL-01124" />
-      <option name="project" value="LOCAL" />
-      <updated>1745433511685</updated>
+      <workItem from="1745849597951" duration="9883000" />
     </task>
     <task id="LOCAL-01125" summary="Notificaciones en dos pestañas sincronizadas">
       <option name="closed" value="true" />
@@ -567,7 +559,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745859643000</updated>
     </task>
-    <option name="localTasksCounter" value="1173" />
+    <task id="LOCAL-01173" summary="Documentar Proyecto (Fecha Finalizacion)">
+      <option name="closed" value="true" />
+      <created>1745860410825</created>
+      <option name="number" value="01173" />
+      <option name="presentableId" value="LOCAL-01173" />
+      <option name="project" value="LOCAL" />
+      <updated>1745860410825</updated>
+    </task>
+    <option name="localTasksCounter" value="1174" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,7 +619,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Arreglando Insercción de Fechas" />
     <MESSAGE value="Cambiando Letras" />
     <MESSAGE value="Formatear Fecha" />
     <MESSAGE value="Corrigiendo Inicio Sesion" />
@@ -644,7 +643,8 @@
     <MESSAGE value="Documentar Proyecto" />
     <MESSAGE value="Documentar Proyecto (Estatus Editor)" />
     <MESSAGE value="Documentar Proyecto (Exportar Tabla Completa Excel)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Documentar Proyecto (Exportar Tabla Completa Excel)" />
+    <MESSAGE value="Documentar Proyecto (Fecha Finalizacion)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentar Proyecto (Fecha Finalizacion)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
