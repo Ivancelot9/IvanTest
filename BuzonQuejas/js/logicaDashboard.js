@@ -1,8 +1,29 @@
-// logicaDashboard.js
+/* --- JS: js/logicaDashboard.js --- */
+/**
+ * @file logicaDashboard.js
+ * @description
+ * Gestiona la interacción y navegación del dashboard de reportes:
+ *  1. Controla la apertura/cierre de la sidebar con animaciones.
+ *  2. Resalta nuevas filas en tablas de pendientes y completados.
+ *  3. Navega entre secciones y actualiza badges de notificaciones.
+ *  4. Restaura contadores y visibilidad de badges al cargar la página.
+ *
+ * Requiere:
+ *  - Elementos en el DOM:
+ *      • data-user-id en <body>
+ *      • .sidebar, .main-content, #toggleSidebar, .hero-animation
+ *      • enlaces .sidebar a con IDs "btn-<seccion>"
+ *      • secciones .main-content .content con IDs respectivos
+ *      • tablas con <tr data-folio> en #tabla-body y #tabla-completos-body
+ *  - Variables globales:
+ *      • window.datosReportes (array de reportes pendientes)
+ *      • window.datosReportesCompletos (array de reportes completados)
+ */
+
 document.addEventListener("DOMContentLoaded", function () {
-    /* ────────────────────────────────────────────────────────────── */
-    /* Datos base y elementos                                         */
-    /* ────────────────────────────────────────────────────────────── */
+    /* ─────────────────────────────────────────
+       1. Variables globales y referencias al DOM
+    ───────────────────────────────────────── */
     const userId      = document.body.getAttribute("data-user-id") || "default";
     const sidebar     = document.querySelector(".sidebar");
     const mainContent = document.querySelector(".main-content");
@@ -11,34 +32,36 @@ document.addEventListener("DOMContentLoaded", function () {
     const botones     = document.querySelectorAll(".sidebar a");
     const secciones   = document.querySelectorAll(".main-content .content");
 
-    /* ────────────────────────────────────────────────────────────── */
-    /* Inicializar Sets globales para resaltado                       */
-    /* ────────────────────────────────────────────────────────────── */
+    /* ─────────────────────────────────────────
+       2. Inicializar sets para destacar nuevos
+    ───────────────────────────────────────── */
     window.nuevosPendientes  = window.nuevosPendientes  || new Set();
     window.nuevosCompletados = window.nuevosCompletados || new Set();
 
-    /* ✅ Limpiar badges antiguos que daban errores                    */
+    // Limpiar badges antiguos en localStorage
     localStorage.removeItem("contadorCompletos");
     localStorage.removeItem("contadorHistorial");
 
     let animationInProgress = false;
 
-    /* ────────────────────────────────────────────────────────────── */
-    /* Animación apertura / cierre de sidebar                         */
-    /* ────────────────────────────────────────────────────────────── */
+    /* ─────────────────────────────────────────
+       3. Animación apertura/cierre de sidebar
+    ───────────────────────────────────────── */
     toggleBtn.addEventListener("click", function () {
         if (animationInProgress) return;
         animationInProgress = true;
+
+        // Resetear clases de animación
         hero.classList.remove(
             "hero-fly-left","hero-fly-left-end",
             "hero-fly-right","hero-fly-right-end"
         );
         hero.style.opacity   = "1";
         hero.style.transform = "scale(1)";
-        void hero.offsetWidth;
+        void hero.offsetWidth; // Forzar repaint
 
         if (sidebar.classList.contains("hidden")) {
-            // ABRIR
+            // Abrir sidebar
             hero.style.transform = "rotateY(0deg) scale(1)";
             hero.classList.add("hero-fly-right");
             setTimeout(() => {
@@ -50,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
             setTimeout(() => { hero.style.opacity = "0"; animationInProgress = false; }, 1500);
             toggleBtn.innerHTML = "☰";
         } else {
-            // CERRAR
+            // Cerrar sidebar
             hero.style.transform = "rotateY(180deg) scale(1)";
             hero.classList.add("hero-fly-left");
             setTimeout(() => {
@@ -66,9 +89,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    /* ────────────────────────────────────────────────────────────── */
-    /* Funciones de resaltado                                          */
-    /* ────────────────────────────────────────────────────────────── */
+    /* ─────────────────────────────────────────
+       4. Funciones para resaltar nuevas filas
+    ───────────────────────────────────────── */
     function highlightPendientes() {
         document.querySelectorAll("#tabla-body tr").forEach(fila => {
             const folio = fila.dataset.folio;
@@ -90,57 +113,51 @@ document.addEventListener("DOMContentLoaded", function () {
         window.nuevosCompletados.clear();
     }
 
-    /* ────────────────────────────────────────────────────────────── */
-    /* Navegación entre secciones                                     */
-    /* ────────────────────────────────────────────────────────────── */
+    /* ─────────────────────────────────────────
+       5. Navegación entre secciones
+    ───────────────────────────────────────── */
     function mostrarSeccion(id) {
-        // ocultar todas
+        // Ocultar todas
         secciones.forEach(sec => sec.style.display = "none");
-        // mostrar la activa
+        // Mostrar sección activa
         const activa = document.getElementById(id);
         if (activa) activa.style.display = "block";
-        // marcar botón activo
+        // Marcar botón activo
         botones.forEach(b => b.classList.remove("active"));
         const btn = document.querySelector(`#btn-${id}`);
         if (btn) btn.classList.add("active");
 
-        // al entrar a historial de pendientes
         if (id === "historial-reportes") {
-            // limpiar badge
+            // Limpiar badge de pendientes
             const bh = document.getElementById("contador-historial");
             if (bh) {
                 bh.textContent   = "";
                 bh.style.display = "none";
-                // marcar vistos en storage
+                // Marcar todos como vistos
                 const fols = window.datosReportes.map(r => r.FolioReportes);
                 localStorage.setItem(`foliosContados_${userId}`, JSON.stringify(fols));
                 localStorage.setItem(`contadorHistorial_${userId}`, "0");
             }
-            // resaltar llegadas
             highlightPendientes();
         }
 
-        // al entrar a completados
         if (id === "reportes-completos") {
-            // limpiar badge
+            // Limpiar badge de completados
             const bc = document.getElementById("contador-completos");
             if (bc) {
                 bc.textContent   = "";
                 bc.style.display = "none";
-                // marcar vistos en storage
                 const fols = window.datosReportesCompletos.map(r => r.folio);
                 localStorage.setItem(`foliosContadosCompletos_${userId}`, JSON.stringify(fols));
                 localStorage.setItem(`contadorCompletos_${userId}`, "0");
             }
-            // resaltar finalizaciones
             highlightCompletados();
         }
     }
-
-    // inicializa seccion
+    // Inicializar sección por defecto
     mostrarSeccion("datos-personales");
 
-    // click en menú
+    // Asignar evento a botones del menú
     botones.forEach(boton => {
         boton.addEventListener("click", e => {
             e.preventDefault();
@@ -149,9 +166,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    /* ────────────────────────────────────────────────────────────── */
-    /* Restaurar contadores al cargar                                 */
-    /* ────────────────────────────────────────────────────────────── */
+    /* ─────────────────────────────────────────
+       6. Restaurar contadores de badges al cargar
+    ───────────────────────────────────────── */
     const badgeC = document.getElementById("contador-completos");
     const cntC   = parseInt(localStorage.getItem(`contadorCompletos_${userId}`) || "0", 10);
     if (badgeC && cntC > 0) {
