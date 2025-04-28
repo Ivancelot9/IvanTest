@@ -1,9 +1,50 @@
+/* --- JS: js/estatusEditor.js --- */
+/**
+ * @file estatusEditor.js
+ * @description
+ * Controla el modal de configuración de estatus de un reporte:
+ *  1. Pregunta al usuario cuántos días tardará en evaluar el reporte.
+ *  2. Calcula y muestra el estatus automático en función del tiempo restante.
+ *  3. Permite ingresar un estatus manual (G, B, Y, R).
+ *  4. Guarda los datos en localStorage y actualiza el botón correspondiente.
+ *  5. Notifica cambios mediante BroadcastChannel.
+ *
+ * Cálculo de estatus recomendado:
+ *  - Se obtiene la fecha de asignación (fechaInicio) y la fecha actual (fechaActual).
+ *  - Se calcula la diferencia en milisegundos y se convierte a días completos:
+ *      diasTranscurridos = Math.floor((fechaActual - fechaAsignada) / (1000 * 60 * 60 * 24));
+ *  - Se determinan los días restantes:
+ *      diasRestantes = diasAsignados - diasTranscurridos;
+ *
+ * Ejemplo de cálculo:
+ *    Supón que:
+ *      • fechaInicio = "2025-04-20T10:00:00Z"
+ *      • fechaActual = "2025-04-23T15:30:00Z"
+ *      • diasAsignados = 7
+ *
+ *    Entonces:
+ *      • diferencia en ms = fechaActual - fechaInicio ≈ 3.229e8 ms
+ *      • diasTranscurridos = Math.floor(3.229e8 / 86_400_000) = 3 días completos
+ *      • diasRestantes     = 7 - 3 = 4 días
+ *      • Como diasRestantes > 7*0.75 (5.25) → estado = Green, 100%
+ *      • Si fuera entre (7*0.5, 7*0.75] → Blue (75%), etc.
+ *
+ * Requiere:
+ *  - SweetAlert2 (Swal) cargado globalmente.
+ *  - Botones con clase "ver-estatus-btn" y atributo data-folio para abrir el modal.
+ *  - Estilos CSS para .comic-bubble, .comic-button, .progress-circle, etc.
+ */
+
 document.addEventListener("DOMContentLoaded", function () {
-    // 🔹 Crear el fondo oscuro (overlay)
+    /* ─────────────────────────────────────────
+       1. Creación de overlay y modal
+    ───────────────────────────────────────── */
+    // 🔹 Crear el fondo oscuro (overlay) que cubre toda la pantalla
     let modalOverlay = document.createElement("div");
-    modalOverlay.id = "estatus-modal-overlay";
+    modalOverlay.id  = "estatus-modal-overlay";
     document.body.appendChild(modalOverlay);
 
+    // 🔹 Crear el contenedor principal del modal y ocultarlo inicialmente
     let modal = document.createElement("div");
     modal.id = "estatus-modal";
     modal.style.display = "none";  // Inicialmente oculto
@@ -36,30 +77,45 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
     </div>`;
 
+    // 🔹 Agregar el modal al final del <body>
     document.body.appendChild(modal);
 
-    let closeModal = modal.querySelector(".close-modal");
-    let preguntaDias = modal.querySelector("#pregunta-dias");
-    let configurarEstatus = modal.querySelector("#configurar-estatus");
-    let diasEvaluacionInput = modal.querySelector("#dias-evaluacion");
-    let continuarBtn = modal.querySelector("#continuar-btn");
-    let autoCircle = modal.querySelector("#auto-circle");
-    let manualCircle = modal.querySelector("#manual-circle");
-    let inputManual = modal.querySelector("#input-manual");
-    let guardarBtn = modal.querySelector("#guardar-estatus");
-    let diasSeleccionados = modal.querySelector("#dias-seleccionados");
-    let recomendadoText = modal.querySelector("#recomendado-text");
+    /* ─────────────────────────────────────────
+       2. Referencias a elementos internos y estado global
+    ───────────────────────────────────────── */
+    let closeModal          = modal.querySelector(".close-modal");        // Icono de cierre
+    let preguntaDias        = modal.querySelector("#pregunta-dias");      // Paso de ingresar días
+    let configurarEstatus   = modal.querySelector("#configurar-estatus"); // Paso de configurar estatus
+    let diasEvaluacionInput = modal.querySelector("#dias-evaluacion");    // Input de días
+    let continuarBtn        = modal.querySelector("#continuar-btn");      // Botón continuar
+    let autoCircle          = modal.querySelector("#auto-circle");        // Círculo estatus automático
+    let manualCircle        = modal.querySelector("#manual-circle");      // Círculo estatus manual
+    let inputManual         = modal.querySelector("#input-manual");       // Input manual
+    let guardarBtn          = modal.querySelector("#guardar-estatus");    // Botón guardar
+    let diasSeleccionados   = modal.querySelector("#dias-seleccionados"); // Texto días restantes
+    let recomendadoText     = modal.querySelector("#recomendado-text");   // Descripción recomendada
 
-    let progresoAutomatico = 100;
-    let progresoManual = 100;
-    let currentFolio = null;
+    // Variables para almacenar los porcentajes y folio actual
+    let progresoAutomatico  = 100; // % calculado automáticamente
+    let progresoManual      = 100; // % definido por el usuario
+    let currentFolio        = null; // Folio del reporte que se está editando
 
+    /* ─────────────────────────────────────────
+       3. Funciones utilitarias
+    ───────────────────────────────────────── */
+    /**
+     * Calcula y muestra el estatus recomendado según días asignados y tiempo transcurrido.
+     * @param {number} dias       - Cantidad de días para evaluar.
+     * @param {string} fechaInicio - Fecha ISO de inicio de la evaluación.
+     */
     function calcularEstatusRecomendado(dias, fechaInicio) {
-        let fechaAsignada = new Date(fechaInicio);
-        let fechaActual = new Date();
+        let fechaAsignada     = new Date(fechaInicio);
+        let fechaActual       = new Date();
+        // Días completos transcurridos
         let diasTranscurridos = Math.floor((fechaActual - fechaAsignada) / (1000 * 60 * 60 * 24));
-        let diasRestantes = dias - diasTranscurridos;
+        let diasRestantes     = dias - diasTranscurridos;
 
+        // 🔹 Mostrar texto de días restantes u horas
         if (diasRestantes > 1) {
             diasSeleccionados.textContent = `Te quedan ${diasRestantes} de ${dias} días`;
         } else if (diasRestantes === 1) {
@@ -71,10 +127,12 @@ document.addEventListener("DOMContentLoaded", function () {
             diasSeleccionados.textContent = `Tiempo agotado`;
         }
 
-        let limiteVerde = Math.ceil(dias * 0.25);
-        let limiteAzul = Math.ceil(dias * 0.50);
+        // 🔹 Definir límites porcentuales para colores
+        let limiteVerde    = Math.ceil(dias * 0.25);
+        let limiteAzul     = Math.ceil(dias * 0.50);
         let limiteAmarillo = Math.ceil(dias * 0.75);
 
+        // 🔹 Asignar porcentaje y color según tiempo restante
         if (diasTranscurridos === 0) {
             progresoAutomatico = 100;
             autoCircle.style.backgroundColor = "green";
@@ -97,119 +155,134 @@ document.addEventListener("DOMContentLoaded", function () {
             recomendadoText.innerHTML = `<strong>Red</strong><br><small>Tiempo agotado. Urgente finalizar.</small>`;
         }
 
+        // 🔹 Actualizar texto del círculo automático
         autoCircle.textContent = `${progresoAutomatico}%`;
     }
 
+    /**
+     * Abre el modal y determina si mostrar paso de días o configuración.
+     * @param {string} folio - Folio del reporte a configurar.
+     */
     function abrirModal(folio) {
         currentFolio = folio;
 
+        // 🔹 Revisar si ya hay datos guardados para este folio
         let estatusGuardados = JSON.parse(localStorage.getItem("estatusReportes")) || {};
-        let datosReporte = estatusGuardados[folio];
+        let datosReporte     = estatusGuardados[folio];
 
         if (datosReporte) {
-            let dias = datosReporte.dias;
-            let fechaInicio = datosReporte.fechaInicio;
-            calcularEstatusRecomendado(dias, fechaInicio);
-
-            preguntaDias.style.display = "none";
+            // Si ya existe configuración previa, mostrar configuración directa
+            calcularEstatusRecomendado(datosReporte.dias, datosReporte.fechaInicio);
+            preguntaDias.style.display      = "none";
             configurarEstatus.style.display = "block";
         } else {
-            preguntaDias.style.display = "block";
+            // Si no hay datos previos, iniciar con pregunta de días
+            preguntaDias.style.display      = "block";
             configurarEstatus.style.display = "none";
         }
 
-        modal.style.display = "flex";
-        modalOverlay.style.display = "block"; // Mostrar el overlay
+        modal.style.display        = "flex";
+        modalOverlay.style.display = "block"; // Mostrar overlay
     }
 
+    /* ─────────────────────────────────────────
+       4. Manejo de eventos de usuario
+    ───────────────────────────────────────── */
+    // Cerrar modal al pulsar icono de cierre
+    closeModal.addEventListener("click", function () {
+        modal.style.display        = "none";
+        modalOverlay.style.display = "none";
+    });
+
+    // Continuar desde pregunta de días a configuración
     continuarBtn.addEventListener("click", function () {
-        let dias = parseInt(diasEvaluacionInput.value);
+        let dias = parseInt(diasEvaluacionInput.value, 10);
         if (!dias || dias < 1) {
             Swal.fire("Error", "Por favor, ingresa un número válido de días.", "error");
             return;
         }
 
-        let fechaInicio = new Date().toISOString();
+        // 🔹 Guardar en localStorage la fecha de inicio y días
+        let fechaInicio     = new Date().toISOString();
         let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
-        estatusReportes[currentFolio] = { dias: dias, fechaInicio: fechaInicio, progresoManual: progresoAutomatico };
+        estatusReportes[currentFolio] = {
+            dias: dias,
+            fechaInicio: fechaInicio,
+            progresoManual: progresoAutomatico
+        };
         localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
 
         calcularEstatusRecomendado(dias, fechaInicio);
-
-        preguntaDias.style.display = "none";
+        preguntaDias.style.display      = "none";
         configurarEstatus.style.display = "block";
     });
 
+    // Capturar entrada manual de estatus (G, B, Y, R)
     inputManual.addEventListener("input", function () {
         let valor = inputManual.value.toUpperCase();
         let colores = { G: "green", B: "blue", Y: "yellow", R: "red" };
+        // 🔹 Mapear letra a porcentaje o usar automático si inválido
         progresoManual = { G: 100, B: 75, Y: 50, R: 25 }[valor] || progresoAutomatico;
         manualCircle.style.backgroundColor = colores[valor] || autoCircle.style.backgroundColor;
         manualCircle.textContent = `${progresoManual}%`;
     });
 
+    // Guardar configuración manual y notificar via BroadcastChannel
     guardarBtn.addEventListener("click", function () {
         let botonEstatus = document.querySelector(`.ver-estatus-btn[data-folio='${currentFolio}']`);
 
         let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
-        let letraManual = inputManual.value.toUpperCase();
-        const letrasValidas = ["G", "B", "Y", "R"];
+        let letraManual      = inputManual.value.toUpperCase();
+        const letrasValidas  = ["G","B","Y","R"];
 
         if (!letrasValidas.includes(letraManual)) {
-            inputManual.value = ""; // Limpiar el campo inválido
-            manualCircle.style.backgroundColor = "#ccc"; // Opcional: reset visual
+            // 🔹 Validación de letra manual válida
+            inputManual.value = "";
+            manualCircle.style.backgroundColor = "#ccc";
             manualCircle.textContent = "?";
             Swal.fire({
                 icon: "warning",
                 title: "Valor inválido",
-                html: `
-                Solo puedes ingresar una letra válida para el estatus manual:<br><br>
-                <strong>G</strong> = 100% (Verde)<br>
-                <strong>B</strong> = 75% (Azul)<br>
-                <strong>Y</strong> = 50% (Amarillo)<br>
-                <strong>R</strong> = 25% (Rojo)<br>
-            `,
+                html: `Solo puedes ingresar una letra válida para el estatus manual:<br><br>
+                       <strong>G</strong> = 100% (Verde)<br>
+                       <strong>B</strong> = 75% (Azul)<br>
+                       <strong>Y</strong> = 50% (Amarillo)<br>
+                       <strong>R</strong> = 25% (Rojo)`,
                 confirmButtonText: "Entendido"
             });
             return;
         }
 
+        // 🔹 Actualizar datos en localStorage
         if (!estatusReportes[currentFolio]) estatusReportes[currentFolio] = {};
-
         estatusReportes[currentFolio].progresoManual = progresoManual;
-        estatusReportes[currentFolio].colorManual = letraManual;
+        estatusReportes[currentFolio].colorManual    = letraManual;
         localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
 
-        // === Aquí integramos BroadcastChannel ===
+        // 🔹 Enviar actualización via BroadcastChannel
         const canalStatus = new BroadcastChannel("canalStatus");
-        canalStatus.postMessage({
-            folio:    currentFolio,
-            progreso: progresoManual,
-            color:    manualCircle.style.backgroundColor
-        });
+        canalStatus.postMessage({ folio: currentFolio, progreso: progresoManual, color: manualCircle.style.backgroundColor });
 
+        // 🔹 Actualizar estilos y texto del botón de estatus
         if (botonEstatus) {
-            botonEstatus.classList.add("ver-estatus-circulo");
-            botonEstatus.classList.add("ver-estatus-btn");
+            botonEstatus.classList.add("ver-estatus-circulo", "ver-estatus-btn");
             botonEstatus.style.backgroundColor = manualCircle.style.backgroundColor;
-            botonEstatus.style.color = "white";
-            botonEstatus.style.textShadow = `-1px -1px 0 black, 1px -1px 0 black, -1px  1px 0 black, 1px  1px 0 black`;
-            botonEstatus.style.fontWeight = "bold";
-            botonEstatus.style.fontSize = "14px";
-            botonEstatus.style.textAlign = "center";
-            botonEstatus.textContent = `${progresoManual}%`;
+            botonEstatus.style.color           = "white";
+            botonEstatus.style.textShadow     = `-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black`;
+            botonEstatus.style.fontWeight     = "bold";
+            botonEstatus.style.fontSize       = "14px";
+            botonEstatus.style.textAlign      = "center";
+            botonEstatus.textContent          = `${progresoManual}%`;
         }
 
         Swal.fire("¡Estatus Guardado!", `El reporte ha sido actualizado a ${progresoManual}%`, "success");
-        modal.style.display = "none";
-        modalOverlay.style.display = "none"; // Ocultar el overlay
+        modal.style.display        = "none";
+        modalOverlay.style.display = "none";
     });
 
-    closeModal.addEventListener("click", function () {
-        modal.style.display = "none";
-        modalOverlay.style.display = "none"; // Ocultar el overlay
-    });
-
+    /* ─────────────────────────────────────────
+       5. Delegación para abrir el modal desde botones de estatus
+    ───────────────────────────────────────── */
     document.body.addEventListener("click", function (event) {
         if (event.target.classList.contains("ver-estatus-btn")) {
             abrirModal(event.target.getAttribute("data-folio"));
