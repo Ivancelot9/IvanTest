@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentar Proyecto (dao/modifcarDatosPersonales)">
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/obtenerArea.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/obtenerArea.php" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentar Proyecto (dao/obtenerAreas)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/obtenerComentarios.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/obtenerComentarios.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,15 +175,7 @@
       <workItem from="1745504572508" duration="12741000" />
       <workItem from="1745590710051" duration="12436000" />
       <workItem from="1745849597951" duration="15403000" />
-      <workItem from="1745936205719" duration="11663000" />
-    </task>
-    <task id="LOCAL-01138" summary="Bot grammer">
-      <option name="closed" value="true" />
-      <created>1745594391253</created>
-      <option name="number" value="01138" />
-      <option name="presentableId" value="LOCAL-01138" />
-      <option name="project" value="LOCAL" />
-      <updated>1745594391253</updated>
+      <workItem from="1745936205719" duration="12054000" />
     </task>
     <task id="LOCAL-01139" summary="Bot grammer">
       <option name="closed" value="true" />
@@ -568,7 +561,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745949077654</updated>
     </task>
-    <option name="localTasksCounter" value="1187" />
+    <task id="LOCAL-01187" summary="Documentar Proyecto (dao/obtenerAreas)">
+      <option name="closed" value="true" />
+      <created>1745949349208</created>
+      <option name="number" value="01187" />
+      <option name="presentableId" value="LOCAL-01187" />
+      <option name="project" value="LOCAL" />
+      <updated>1745949349208</updated>
+    </task>
+    <option name="localTasksCounter" value="1188" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -620,7 +621,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tabla" />
     <MESSAGE value="cerrar sesion" />
     <MESSAGE value="animacion controles tablas" />
     <MESSAGE value="Evitando sobreescribir en la misma sesion" />
@@ -645,7 +645,8 @@
     <MESSAGE value="Documentar Proyecto (dao/insertarFechaFinalizacion)" />
     <MESSAGE value="Documentar Proyecto (dao/insertarReporte)" />
     <MESSAGE value="Documentar Proyecto (dao/modifcarDatosPersonales)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Documentar Proyecto (dao/modifcarDatosPersonales)" />
+    <MESSAGE value="Documentar Proyecto (dao/obtenerAreas)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentar Proyecto (dao/obtenerAreas)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
