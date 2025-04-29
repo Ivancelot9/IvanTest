@@ -1,3 +1,18 @@
+/* --- CSS: dashboardStyles.css ---
+ *
+ * @file dashboardStyles.css
+ * @description
+ * Estilos principales para el dashboard:
+ *  1. Diseño global de la página (fondo, tipografía, layout flex).
+ *  2. Estilos de la barra lateral (sidebar) y sus animaciones.
+ *  3. Layout y comportamiento responsivo del contenido principal.
+ *  4. Burbujas de usuario, botones y elementos de interacción.
+ *  5. Animaciones de héroe y transiciones para carga y toggles.
+ *
+ * Uso:
+ *  – Importar tras el CSS base.
+ *  – Clases principales: .sidebar, .main-content, .toggle-btn, .halo-container, etc.
+ */
 /* Fondo general tipo cómic */
 body {
     margin: 0;

@@ -1,3 +1,15 @@
+/* --- CSS: dashboardStyleUsuario.css ---
+ *
+ * @file dashboardStyleUsuario.css
+ * @description
+ * Estilos para la interfaz de usuario en modo cómic:
+ *  1. Fondo con imagen fija y tipografía “Bangers” para estilo caricaturesco.
+ *  2. Contenedor principal con borde grueso, sombras y radios para estética cómic.
+ *  3. Título con efecto de explosión y sombreado múltiple.
+ *  4. Pestañas simuladas con animaciones de vibración al hover.
+ *  5. Formularios paso a paso con cajas estilizadas y botones “siguiente” animados.
+ *  6. Media queries para ajustar tamaños en pantallas grandes y pequeñas.
+ */
 /* Fondo general tipo cómic */
 body {
     margin: 0;

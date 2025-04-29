@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentar Proyecto (dao/registroAdmin)" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentar Proyecto (dao/validacionAdmin)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/comic-style.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/comic-style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyleUsuario.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/dashboardStyleUsuario.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/datosPersonales.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/datosPersonales.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/loginAdmin.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/loginAdmin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalComentarios.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalComentarios.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalDescripcion.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalDescripcion.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalEstatus.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalEstatus.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalFechaFinalizacion.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalFechaFinalizacion.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/tablaReportes.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/tablaReportes.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -172,15 +184,7 @@
       <workItem from="1745504572508" duration="12741000" />
       <workItem from="1745590710051" duration="12436000" />
       <workItem from="1745849597951" duration="15403000" />
-      <workItem from="1745936205719" duration="13779000" />
-    </task>
-    <task id="LOCAL-01146" summary="Bot grammer">
-      <option name="closed" value="true" />
-      <created>1745595612644</created>
-      <option name="number" value="01146" />
-      <option name="presentableId" value="LOCAL-01146" />
-      <option name="project" value="LOCAL" />
-      <updated>1745595612644</updated>
+      <workItem from="1745936205719" duration="14488000" />
     </task>
     <task id="LOCAL-01147" summary="Bot grammer">
       <option name="closed" value="true" />
@@ -566,7 +570,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745951390766</updated>
     </task>
-    <option name="localTasksCounter" value="1195" />
+    <task id="LOCAL-01195" summary="Documentar Proyecto (dao/validacionAdmin)">
+      <option name="closed" value="true" />
+      <created>1745951536692</created>
+      <option name="number" value="01195" />
+      <option name="presentableId" value="LOCAL-01195" />
+      <option name="project" value="LOCAL" />
+      <updated>1745951536692</updated>
+    </task>
+    <option name="localTasksCounter" value="1196" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -618,7 +630,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modo claro" />
     <MESSAGE value="Modo claro tabla" />
     <MESSAGE value="Documentar Proyecto" />
     <MESSAGE value="Documentar Proyecto (Estatus Editor)" />
@@ -643,7 +654,8 @@
     <MESSAGE value="Documentar Proyecto (dao/obtenerReportesPendientes)" />
     <MESSAGE value="Documentar Proyecto (dao/obtenerUsuario)" />
     <MESSAGE value="Documentar Proyecto (dao/registroAdmin)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Documentar Proyecto (dao/registroAdmin)" />
+    <MESSAGE value="Documentar Proyecto (dao/validacionAdmin)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentar Proyecto (dao/validacionAdmin)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,4 +1,19 @@
 /* ====== MODIFICACIONES ESTILO GITHUB PARA ESTATUS ====== */
+/* --- CSS: modalEstatus.css ---
+ *
+ * @file modalEstatus.css
+ * @description
+ * Define estilos para el modal de configuración de estatus:
+ *  1. Overlay semitransparente con blur de fondo (#estatus-modal-overlay).
+ *  2. Contenedor fijo y centrado (#estatus-modal) con bordes, sombra y diseño GitHub.
+ *  3. Clases .comic-button para botones con transición y hover.
+ *  4. .progress-circle para representar gráficamente el porcentaje.
+ *  5. Secciones de pregunta y configuración de estatus con layout flex.
+ *
+ * Uso:
+ *  – Incluir <div id="estatus-modal-overlay"> y <div id="estatus-modal"> en el HTML.
+ *  – Dentro, usar elementos con clases .comic-button, .progress-circle, #pregunta-dias, #configurar-estatus.
+ */
 
 #estatus-modal-overlay {
     display: none;

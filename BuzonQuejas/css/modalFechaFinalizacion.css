@@ -1,4 +1,21 @@
 /* 🔹 Fondo del modal centrado */
+/* --- CSS: modificarFechaFinalizacion.css ---
+ *
+ * @file modificarFechaFinalizacion.css
+ * @description
+ * Estilos para el modal de selección de fecha de finalización:
+ *  1. Contenedor centrado con animación de desplegar.
+ *  2. Personalización de Flatpickr en tema oscuro (colores, bordes y tipografía).
+ *  3. Inputs de fecha y botones (Cancelar, Finalizar) con estilo “pill” y efectos hover.
+ *  4. Layout flexible para calendario, campo de fecha y botones de acción.
+ *
+ * Uso:
+ *  – Overlay: #modal-fecha
+ *  – Contenedor: .modal-fecha
+ *  – Calendario: #calendario-container + flatpickr styles
+ *  – Input seleccionado: #fecha-seleccionada
+ *  – Botones: #cerrar-fecha, #guardar-fecha dentro de .botones-container
+ */
 #modal-fecha {
     display: none;
     position: fixed;

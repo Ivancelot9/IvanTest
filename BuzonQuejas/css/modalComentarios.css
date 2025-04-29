@@ -1,3 +1,19 @@
+/* --- CSS: modalComentarios.css ---
+ *
+ * @file modalComentarios.css
+ * @description
+ * Estilos para el modal de comentarios:
+ *  1. Overlay semitransparente con efecto de desenfoque (backdrop-filter).
+ *  2. Contenedor del modal (.comentarios-modal) con animación de escala y opacidad.
+ *  3. Estilos para el textarea de entrada (#nueva-nota) y botón de guardar (.btn-guardar).
+ *  4. Diseño de la lista de comentarios (.comentarios-container, .comentario) con scroll interno.
+ *  5. Botón de cierre (.close-modal) con rotación y cambio de color al hover.
+ *
+ * Uso:
+ *  – Aplicar id="reporte-modal" al overlay.
+ *  – Incluir un elemento con clase .comentarios-modal dentro del overlay.
+ *  – Estructura de HTML esperada para contenido de comentarios y lista.
+ */
 #reporte-modal {
     display: none;
     justify-content: center;

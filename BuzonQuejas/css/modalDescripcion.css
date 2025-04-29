@@ -1,4 +1,19 @@
-/* 🔹 Modal centrado */
+/* --- CSS: modalDescripcion.css ---
+ *
+ * @file modalDescripcion.css
+ * @description
+ * Estilos para el modal de descripción de reportes:
+ *  1. Overlay semitransparente para centrar el modal en pantalla.
+ *  2. Contenedor principal (.descripcion-modal) con animación de escala y opacidad.
+ *  3. Área de texto con scroll interno y sombreado sutil.
+ *  4. Botón de cierre (.close-modal) con interacción hover.
+ *  5. Encabezado con ícono (.modal-icon-header) para título de sección.
+ *
+ * Uso:
+ *  – Aplicar id="descripcion-modal" al overlay.
+ *  – Añadir un div con clase .descripcion-modal dentro del overlay.
+ *  – Estructura HTML esperada para el contenido descriptivo.
+ */
 #descripcion-modal {
     display: none;
     justify-content: center;

@@ -1,3 +1,17 @@
+/* --- CSS: comic-style.css ---
+ *
+ * @file comic-style.css
+ * @description
+ * Define el estilo “cómico” de la interfaz, incluyendo:
+ *  1. Variables de color y tipografía con estética caricaturesca.
+ *  2. Burbujas de diálogo y modal con bordes redondeados y sombreado.
+ *  3. Botones “comic-button” con efecto presionado y transición.
+ *  4. Animaciones de entrada/salida tipo “pop” o “bounce”.
+ *
+ * Uso:
+ *  – Importar en el <head> de tu página tras el archivo base de estilos.
+ *  – Aplicar clases como .comic-bubble, .comic-button según corresponda.
+ */
 /* Fondo general tipo cómic */
 body {
     margin: 0;

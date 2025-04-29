@@ -1,3 +1,22 @@
+/* --- CSS: datosPersonales.css ---
+ *
+ * @file datosPersonales.css
+ * @description
+ * Estilos para el formulario de datos personales al estilo GitHub:
+ *  1. Contenedor principal con fondo oscuro, bordes y radios.
+ *  2. Layout de campos de información (labels e inputs).
+ *  3. Inputs bloqueados con estilo diferenciado.
+ *  4. Botones de acción (“Editar”, “Guardar”) con colores verde y azul.
+ *  5. Transiciones suaves al hover para feedback visual.
+ *
+ * Uso:
+ *  – Aplicar id="datos-personales" al contenedor principal.
+ *  – Estructura HTML esperada:
+ *      <div id="datos-personales">
+ *        <div class="personal-info">…</div>
+ *        <div class="botones-accion">…</div>
+ *      </div>
+ */
 /* 📌 Contenedor de Datos Personales - estilo GitHub */
 #datos-personales {
     display: flex;

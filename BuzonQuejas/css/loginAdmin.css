@@ -1,3 +1,20 @@
+/* --- CSS: loginAdmin.css ---
+ *
+ * @file loginAdmin.css
+ * @description
+ * Estilos para la página de login de administradores con efecto cómic/HUD:
+ *  1. Fondo animado RGB con gradiente y líneas diagonales.
+ *  2. Líneas HUD verticales con animación de color.
+ *  3. Contenedor principal “comic-container” con bordes gruesos, sombras y esquinas animadas.
+ *  4. Título y logo centrados con tipografía y efectos de cómic.
+ *  5. Botones de pestañas (toggle-btn) con estados activos e interacciones.
+ *  6. Campos de entrada en “input-group” con iconos y focus styling.
+ *  7. Botón de envío “submit-btn” estilo neón con hover y box-shadow dinámico.
+ *
+ * Uso:
+ *  – Importar este CSS en la página de login después de los estilos base.
+ *  – Clases clave: .comic-container, .hud-line, .toggle-btn, .input-group, .submit-btn.
+ */
 /* 🌌 Fondo RGB dinámico + líneas diagonales + verticales tipo HUD */
 body {
     margin: 0;

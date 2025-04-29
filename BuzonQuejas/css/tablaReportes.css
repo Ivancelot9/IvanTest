@@ -1,3 +1,15 @@
+/* --- CSS: tablaReportes.css ---
+ *
+ * @file tablaReportes.css
+ * @description
+ * Define estilos para la visualización y los controles de la tabla de reportes:
+ *  1. Contenedor con scroll, bordes y fondo oscuro.
+ *  2. Diseño de la tabla (encabezados, celdas, tipografía).
+ *  3. Botones dentro de la tabla (descripción, comentarios, estado, Excel).
+ *  4. Paginación y efectos hover/transición.
+ *  5. Resaltado de texto y animaciones para nuevos reportes.
+ *  6. Media queries para adaptabilidad en tabletas y móviles.
+ */
 /* 🎨 Estilos de la tabla de reportes */
 .table-container {
     max-width: 100%;
