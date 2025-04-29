@@ -1,4 +1,27 @@
 <?php
+/* --- PHP: insertarFechaFinalizacion.php ---
+ *
+ * @file insertarFechaFinalizacion.php
+ * @description
+ * Actualiza la fecha de finalización de un reporte en la base de datos.
+ * Recibe JSON con los campos:
+ *  - folio (int): identificador del reporte
+ *  - fechaFinalizada (string): fecha en formato ISO (YYYY-MM-DD)
+ *
+ * Flujo:
+ *  1. Incluir conexión a la BD y configurar header JSON.
+ *  2. Leer y decodificar JSON de entrada.
+ *  3. Validar que ambos parámetros estén presentes.
+ *  4. Verificar que el folio exista en la tabla `Reporte`.
+ *  5. Ejecutar UPDATE preparado para setear `FechaFinalizada`.
+ *  6. Enviar respuesta JSON con status y mensaje.
+ *  7. Manejar excepciones y errores de consulta.
+ *
+ * Requiere:
+ *  - conexion.php con clase LocalConector::conectar()
+ *  - Tabla `Reporte` con columnas `FolioReportes` y `FechaFinalizada`
+ *  - Extensión MySQLi habilitada
+ */
 include_once("conexion.php"); // 🔥 Conexión a la BD
 
 header("Content-Type: application/json");

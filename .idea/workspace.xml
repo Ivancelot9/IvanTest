@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentar Proyecto (dao/agregarComentario)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/cerrarSesion.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/cerrarSesion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/cerrarSesionUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/cerrarSesionUsuario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/conexion.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/conexion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/conseguirReportesCompletos.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/conseguirReportesCompletos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/insertarFechaFinalizacion.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/insertarFechaFinalizacion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,15 +175,7 @@
       <workItem from="1745504572508" duration="12741000" />
       <workItem from="1745590710051" duration="12436000" />
       <workItem from="1745849597951" duration="15403000" />
-      <workItem from="1745936205719" duration="5560000" />
-    </task>
-    <task id="LOCAL-01133" summary="Bot grammer">
-      <option name="closed" value="true" />
-      <created>1745593456956</created>
-      <option name="number" value="01133" />
-      <option name="presentableId" value="LOCAL-01133" />
-      <option name="project" value="LOCAL" />
-      <updated>1745593456956</updated>
+      <workItem from="1745936205719" duration="6766000" />
     </task>
     <task id="LOCAL-01134" summary="Bot grammer">
       <option name="closed" value="true" />
@@ -572,7 +561,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745939449132</updated>
     </task>
-    <option name="localTasksCounter" value="1182" />
+    <task id="LOCAL-01182" summary="Documentar Proyecto (dao/agregarComentario)">
+      <option name="closed" value="true" />
+      <created>1745942430031</created>
+      <option name="number" value="01182" />
+      <option name="presentableId" value="LOCAL-01182" />
+      <option name="project" value="LOCAL" />
+      <updated>1745942430032</updated>
+    </task>
+    <option name="localTasksCounter" value="1183" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
