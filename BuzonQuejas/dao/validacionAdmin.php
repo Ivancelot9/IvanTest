@@ -1,15 +1,36 @@
 <?php
+/* --- PHP: validacionAdmin.php ---
+ *
+ * @file validacionAdmin.php
+ * @description
+ * Valida el inicio de sesión de administradores mediante número de nómina y contraseña.
+ * Permite sesiones por pestaña usando `tab_id`.
+ *
+ * Flujo:
+ *  1. Iniciar sesión PHP y cargar conexión a BD.
+ *  2. Comprobar método POST y existencia de NumNomina, Contrasena y tab_id.
+ *  3. Validar que los campos no estén vacíos y que NumNomina tenga 8 dígitos.
+ *  4. Llamar a validarCredencialesEnDB() para verificar credenciales en la tabla Usuario.
+ *  5. Si éxito, guardar datos en $_SESSION['usuariosPorPestana'][tab_id] y devolver status success.
+ *  6. En caso contrario, devolver el error correspondiente.
+ *
+ * Requiere:
+ *  - conexion.php con clase LocalConector::conectar()
+ *  - Tabla `Usuario` con columnas `NumeroNomina`, `Contrasena`
+ *  - Extensión MySQLi habilitada
+ */
 session_start();
 include_once("conexion.php");
 
-// Verificar si el método es POST
+// 1. Verificar método POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // 2. Validar campos obligatorios
     if (isset($_POST['NumNomina'], $_POST['Contrasena'], $_POST['tab_id'])) {
         $NumNomina = trim($_POST['NumNomina']);
         $Contrasena = trim($_POST['Contrasena']);
         $tab_id = trim($_POST['tab_id']); // ✅ Identificador único por pestaña
 
-        // Validar que los campos no estén vacíos
+        // 3. Validar contenido y formato
         if (empty($NumNomina) || empty($Contrasena)) {
             echo json_encode(['status' => 'error', 'message' => 'Datos incompletos.']);
             exit;
@@ -48,7 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 exit();
 
 
-// 🧠 Función para validar las credenciales en la base de datos
+/* ─────────────────────────────────────────
+   Función: validarCredencialesEnDB
+   Valida NumNomina y Contrasena contra la tabla Usuario
+───────────────────────────────────────── */
 function validarCredencialesEnDB(string $NumNomina, string $Contrasena): array {
     try {
         $con = new LocalConector();
