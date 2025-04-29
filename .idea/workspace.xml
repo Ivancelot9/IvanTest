@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentar Proyecto (Pestanas Reporte)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportesCompletos.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportesCompletos.js" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentar Proyecto (Tablas Reportes)">
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/validacionesAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/validacionesAdmin.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,15 +174,7 @@
       <workItem from="1745504572508" duration="12741000" />
       <workItem from="1745590710051" duration="12436000" />
       <workItem from="1745849597951" duration="15403000" />
-      <workItem from="1745936205719" duration="1080000" />
-    </task>
-    <task id="LOCAL-01129" summary="Estatus entre Pestanas">
-      <option name="closed" value="true" />
-      <created>1745509684134</created>
-      <option name="number" value="01129" />
-      <option name="presentableId" value="LOCAL-01129" />
-      <option name="project" value="LOCAL" />
-      <updated>1745509684134</updated>
+      <workItem from="1745936205719" duration="1470000" />
     </task>
     <task id="LOCAL-01130" summary="Estatus entre Pestanas">
       <option name="closed" value="true" />
@@ -570,7 +560,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745867866433</updated>
     </task>
-    <option name="localTasksCounter" value="1178" />
+    <task id="LOCAL-01178" summary="Documentar Proyecto (Tablas Reportes)">
+      <option name="closed" value="true" />
+      <created>1745937434460</created>
+      <option name="number" value="01178" />
+      <option name="presentableId" value="LOCAL-01178" />
+      <option name="project" value="LOCAL" />
+      <updated>1745937434460</updated>
+    </task>
+    <option name="localTasksCounter" value="1179" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -622,7 +620,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="nuevo estilo" />
     <MESSAGE value="nuevo estilo git" />
     <MESSAGE value="Nuevo estilo modal descripcion git" />
     <MESSAGE value="Nuevo estilo modal comentarios git" />
@@ -647,7 +644,8 @@
     <MESSAGE value="Documentar Proyecto (Logica Dashboard)" />
     <MESSAGE value="Documentar Proyecto (Modificar Datos Personales)" />
     <MESSAGE value="Documentar Proyecto (Pestanas Reporte)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Documentar Proyecto (Pestanas Reporte)" />
+    <MESSAGE value="Documentar Proyecto (Tablas Reportes)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentar Proyecto (Tablas Reportes)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
