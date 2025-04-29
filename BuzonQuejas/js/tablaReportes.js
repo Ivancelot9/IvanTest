@@ -1,11 +1,27 @@
-/*  tablaReportes.js  ───────────────────────────────────────────
-    Gestión de reportes pendientes
-    – Carga inicial desde PHP
-    – Paginación, filtros y resaltado
-    – Notificaciones en tiempo real (BroadcastChannel)
-    – Sincronización de badges por-usuario
-    – Debugging: console.log en listener de finalizados
-*/
+/* --- JS: js/tablaReportes.js --- */
+/**
+ * @file tablaReportes.js
+ * @description
+ * Gestión de reportes pendientes:
+ *  – Carga inicial desde backend (PHP)
+ *  – Paginación, filtros y resaltado dinámico
+ *  – Actualización de estatus manual en tiempo real (BroadcastChannel)
+ *  – Notificaciones de nuevos y finalizados
+ *  – Sincronización de badges por usuario en localStorage
+ *  – Debugging: console.log en listener de finalizados
+ *
+ * Requiere:
+ *  – <body data-user-id="..."> para identificar usuario.
+ *  – Elementos en el DOM:
+ *      • #tabla-body, #prevPage, #nextPage, #pageIndicator
+ *      • #filter-column, #filter-input, #filter-button
+ *  – Botones en cada fila con clases:
+ *      • .ver-estatus-btn, .mostrar-descripcion,
+ *        .agregar-comentario, .seleccionar-fecha
+ *  – Funciones y variables globales:
+ *      • window.datosReportes, window.moverReporteACompletados()
+ *      • SweetAlert2 (Swal) para alertas
+ */
 
 document.addEventListener("DOMContentLoaded", function () {
 

@@ -1,12 +1,26 @@
-/*  tablaReportesCompletos.js  ──────────────────────────────
-    Gestión de reportes COMPLETADOS
-    –  Filtro por texto y rango de fechas
-    –  Paginación + resaltado
-    –  Exportar reporte individual a Excel
-    –  Recibe notificaciones de tablaReportes.js mediante
-       window.moverReporteACompletados(reporte, notificar)
-*/
-
+/* --- JS: js/tablaReportesCompletos.js --- */
+/**
+ * @file tablaReportesCompletos.js
+ * @description
+ * Gestión de reportes COMPLETADOS:
+ *  – Filtro por texto y rango de fechas
+ *  – Paginación y resaltado dinámico
+ *  – Exportar reporte individual a Excel
+ *  – Recibe notificaciones de tablaReportes.js mediante
+ *    window.moverReporteACompletados(reporte, notificar)
+ *
+ * Requiere:
+ *  – <body data-user-id="..."> para identificar usuario
+ *  – Elementos en el DOM con IDs:
+ *      • #tabla-completos-body, #prevPage-completo, #nextPage-completo
+ *      • #pageIndicator-completo, #filter-column-completo
+ *      • #filter-input-completo, #filter-button-completo
+ *      • #start-date, #end-date, #filter-date-button, #clear-date-button
+ *  – Funciones y librerías externas:
+ *      • XLSX (SheetJS) para exportar Excel
+ *      • SweetAlert2 (Swal) para alertas
+ *      • flatpickr para datepickers
+ */
 document.addEventListener("DOMContentLoaded", function () {
 
     /* ────────────────────────────────────────────────
