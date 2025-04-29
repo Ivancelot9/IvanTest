@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentar Proyecto (dao/insertarFechaFinalizacion)">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentar Proyecto (dao/insertarReporte)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/insertarReporte.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/insertarReporte.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/modificarDatosPersonales.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/modificarDatosPersonales.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,15 +175,7 @@
       <workItem from="1745504572508" duration="12741000" />
       <workItem from="1745590710051" duration="12436000" />
       <workItem from="1745849597951" duration="15403000" />
-      <workItem from="1745936205719" duration="10913000" />
-    </task>
-    <task id="LOCAL-01136" summary="Bot grammer">
-      <option name="closed" value="true" />
-      <created>1745594264634</created>
-      <option name="number" value="01136" />
-      <option name="presentableId" value="LOCAL-01136" />
-      <option name="project" value="LOCAL" />
-      <updated>1745594264634</updated>
+      <workItem from="1745936205719" duration="11395000" />
     </task>
     <task id="LOCAL-01137" summary="Bot grammer">
       <option name="closed" value="true" />
@@ -569,7 +561,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745947738537</updated>
     </task>
-    <option name="localTasksCounter" value="1185" />
+    <task id="LOCAL-01185" summary="Documentar Proyecto (dao/insertarReporte)">
+      <option name="closed" value="true" />
+      <created>1745948597461</created>
+      <option name="number" value="01185" />
+      <option name="presentableId" value="LOCAL-01185" />
+      <option name="project" value="LOCAL" />
+      <updated>1745948597461</updated>
+    </task>
+    <option name="localTasksCounter" value="1186" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -621,7 +621,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Nuevo estilo modal fecha finalizacion git" />
     <MESSAGE value="Nuevo Sidebar" />
     <MESSAGE value="Tabla" />
     <MESSAGE value="cerrar sesion" />
@@ -646,7 +645,8 @@
     <MESSAGE value="Documentar Proyecto (Validaciones Reporte)" />
     <MESSAGE value="Documentar Proyecto (dao/agregarComentario)" />
     <MESSAGE value="Documentar Proyecto (dao/insertarFechaFinalizacion)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Documentar Proyecto (dao/insertarFechaFinalizacion)" />
+    <MESSAGE value="Documentar Proyecto (dao/insertarReporte)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentar Proyecto (dao/insertarReporte)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
