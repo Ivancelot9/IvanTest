@@ -101,10 +101,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* Excel */
     function exportarExcel(rep){
-        const wb=XLSX.utils.book_new();
-        wb.Props={Title:"Reporte Completado",Author:"Sistema",CreatedDate:new Date()};
+        const wb = XLSX.utils.book_new();
+        wb.Props = { Title: "Reporte Completado", Author: "Sistema", CreatedDate: new Date() };
         wb.SheetNames.push("Reporte");
-        const ws_data=[
+
+        const ws_data = [
             ["Folio","Número de Nómina","Encargado","Fecha Registro","Fecha Finalización","Descripción","Estatus","Comentarios"],
             [
                 rep.folio,
@@ -112,15 +113,40 @@ document.addEventListener("DOMContentLoaded", function () {
                 limpiarHTMLParaExcel(rep.encargado),
                 formatearFecha(rep.fechaRegistro),
                 formatearFecha(rep.fechaFinalizacion),
-                rep.descripcion||"-",
+                rep.descripcion || "-",
                 rep.estatus,
-                rep.comentarios||"Sin comentarios"
+                rep.comentarios || "Sin comentarios"
             ]
         ];
-        const ws=XLSX.utils.aoa_to_sheet(ws_data);
-        ws["!cols"]=[{wch:15},{wch:20},{wch:80},{wch:20},{wch:20},{wch:30},{wch:15},{wch:25}];
-        wb.Sheets["Reporte"]=ws;
-        XLSX.writeFile(wb,`Reporte_${rep.folio}.xlsx`,{bookType:"xlsx",cellStyles:true});
+
+        const ws = XLSX.utils.aoa_to_sheet(ws_data);
+
+        // 🔁 Solo tendrá efecto si usas SheetJS Pro
+        ["F2", "H2"].forEach(ref => {
+            if (ws[ref]) {
+                ws[ref].s = {
+                    alignment: {
+                        wrapText: true,
+                        vertical: "top"
+                    }
+                };
+            }
+        });
+
+        // Ancho de columnas
+        ws["!cols"] = [
+            { wch: 15 }, // Folio
+            { wch: 20 }, // Nómina
+            { wch: 80 }, // Encargado
+            { wch: 20 }, // Fecha Registro
+            { wch: 20 }, // Fecha Finalización
+            { wch: 40 }, // Descripción
+            { wch: 15 }, // Estatus
+            { wch: 40 }  // Comentarios
+        ];
+
+        wb.Sheets["Reporte"] = ws;
+        XLSX.writeFile(wb, `Reporte_${rep.folio}.xlsx`, { bookType: "xlsx", cellStyles: true });
     }
 
     /* ────────────────────────────────────────────────
