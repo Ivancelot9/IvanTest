@@ -1,10 +1,35 @@
 <?php
+/* --- PHP: registroAdmin.php ---
+ *
+ * @file registroAdmin.php
+ * @description
+ * Gestiona el registro de nuevos administradores en la base de datos.
+ * Recibe un formulario POST con:
+ *  - NumNomina   (string) Número de nómina de 8 dígitos
+ *  - Nombre      (string) Nombre completo del administrador
+ *  - Contrasena  (string) Contraseña (mínimo 6 caracteres)
+ *
+ * Flujo:
+ *  1. Iniciar sesión PHP y configurar errores MySQLi.
+ *  2. Verificar método POST y campos obligatorios.
+ *  3. Validar formato de los datos con validarDatos().
+ *  4. Registrar en BD llamando a registrarAdminEnDB().
+ *  5. Devolver respuesta JSON con status y mensaje.
+ *
+ * Requiere:
+ *  - conexion.php con clase LocalConector::conectar()
+ *  - Tabla Roles (IdRol) y Usuario (NumeroNomina, Nombre, Contrasena, IdRol)
+ *  - Extensión MySQLi con manejo de excepciones
+ */
 session_start(); // Iniciar sesión
 include_once("conexion.php"); // Incluir la conexión a la base de datos
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 header('Content-Type: application/json');
 
 // Revisión del método POST
+/* ─────────────────────────────────────────
+   2. Procesar petición POST
+───────────────────────────────────────── */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['NumNomina'], $_POST['Nombre'], $_POST['Contrasena'])) {
         $NumNomina = trim($_POST['NumNomina']);
@@ -19,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        // Registro en la base de datos
+        // 4. Registro en la base de datos
         $response = registrarAdminEnDB($NumNomina, $Nombre, $Contrasena, $IdRol);
     } else {
         $response = ['status' => 'error', 'message' => 'Datos incompletos.'];
@@ -28,9 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $response = ['status' => 'error', 'message' => 'Se requiere método POST.'];
 }
 
-// Respuesta JSON
+// 5. Enviar respuesta JSON
 echo json_encode($response);
 exit();
+
+/* ─────────────────────────────────────────
+   Función de validación de entrada
+───────────────────────────────────────── */
 
 // Función de validación
 function validarDatos(string $NumNomina, string $Nombre, string $Contrasena): ?array {
@@ -46,7 +75,9 @@ function validarDatos(string $NumNomina, string $Nombre, string $Contrasena): ?a
     return null;
 }
 
-// Función para registrar administrador
+/* ─────────────────────────────────────────
+   Función para insertar el administrador en BD
+───────────────────────────────────────── */
 function registrarAdminEnDB(string $NumNomina, string $Nombre, string $Contrasena, int $IdRol): array {
     try {
         $con = new LocalConector();
