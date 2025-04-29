@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentar Proyecto (Validaciones Admin)">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentar Proyecto (Validaciones Reporte)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/validacionesReporte.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/validacionesReporte.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,15 +174,7 @@
       <workItem from="1745504572508" duration="12741000" />
       <workItem from="1745590710051" duration="12436000" />
       <workItem from="1745849597951" duration="15403000" />
-      <workItem from="1745936205719" duration="1781000" />
-    </task>
-    <task id="LOCAL-01131" summary="Estatus entre Pestanas">
-      <option name="closed" value="true" />
-      <created>1745519363591</created>
-      <option name="number" value="01131" />
-      <option name="presentableId" value="LOCAL-01131" />
-      <option name="project" value="LOCAL" />
-      <updated>1745519363591</updated>
+      <workItem from="1745936205719" duration="3021000" />
     </task>
     <task id="LOCAL-01132" summary="Estatus entre Pestanas">
       <option name="closed" value="true" />
@@ -569,7 +560,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745937831236</updated>
     </task>
-    <option name="localTasksCounter" value="1180" />
+    <task id="LOCAL-01180" summary="Documentar Proyecto (Validaciones Reporte)">
+      <option name="closed" value="true" />
+      <created>1745938140561</created>
+      <option name="number" value="01180" />
+      <option name="presentableId" value="LOCAL-01180" />
+      <option name="project" value="LOCAL" />
+      <updated>1745938140561</updated>
+    </task>
+    <option name="localTasksCounter" value="1181" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -621,7 +620,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Nuevo estilo modal descripcion git" />
     <MESSAGE value="Nuevo estilo modal comentarios git" />
     <MESSAGE value="Nuevo estilo modal estatus git" />
     <MESSAGE value="Nuevo estilo modal fecha finalizacion git" />
@@ -646,7 +644,8 @@
     <MESSAGE value="Documentar Proyecto (Pestanas Reporte)" />
     <MESSAGE value="Documentar Proyecto (Tablas Reportes)" />
     <MESSAGE value="Documentar Proyecto (Validaciones Admin)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Documentar Proyecto (Validaciones Admin)" />
+    <MESSAGE value="Documentar Proyecto (Validaciones Reporte)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentar Proyecto (Validaciones Reporte)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

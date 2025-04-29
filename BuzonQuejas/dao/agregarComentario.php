@@ -1,47 +1,81 @@
 <?php
+/* --- PHP: agregarComentario.php ---
+ *
+ * @file agregarComentario.php
+ * @description
+ * Añade un nuevo comentario a un reporte existente en la base de datos.
+ * Recibe un JSON con las claves:
+ *   - FolioReportes (int): identificador del reporte
+ *   - Comentario (string): texto del comentario
+ *
+ * Flujo:
+ *  1. Leer y decodificar JSON de entrada
+ *  2. Validar existencia y formato de los datos
+ *  3. Conectar a la BD usando LocalConector
+ *  4. Ejecutar UPDATE preparado para concatenar comentario
+ *  5. Devolver respuesta JSON con status
+ *
+ * Requiere:
+ *  - conexion.php que define LocalConector::conectar()
+ *  - Tabla `Reporte` con campos `Comentarios` y `FolioReportes`
+ *  - Extensión MySQLi habilitada
+ */
+
 include_once("conexion.php"); // 🔥 Conexión a la BD
 header('Content-Type: application/json');
 
-// 🔹 Obtener los datos enviados desde el frontend
+/* ─────────────────────────────────────────
+   1. Leer y decodificar JSON de entrada
+───────────────────────────────────────── */
 $data = json_decode(file_get_contents("php://input"), true);
 
-// Verificar si se han recibido los datos necesarios
+/* ─────────────────────────────────────────
+   2. Validar datos obligatorios
+───────────────────────────────────────── */
 if (!isset($data['FolioReportes'], $data['Comentario']) || empty(trim($data['Comentario']))) {
     echo json_encode(["status" => "error", "message" => "Faltan datos obligatorios."]);
     exit;
 }
 
-// Sanitizar los datos para evitar posibles problemas con entradas maliciosas
-$folio = intval($data['FolioReportes']); // Aseguramos que FolioReportes sea un número entero
-$comentario = trim($data['Comentario']); // Eliminar espacios extra al principio y al final del comentario
-
-// Verificar que el FolioReportes sea un número válido
+/* ─────────────────────────────────────────
+   3. Sanitizar y validar formatos
+───────────────────────────────────────── */
+$folio      = intval($data['FolioReportes']);        // Asegurar entero
+$comentario = trim($data['Comentario']);             // Quitar espacios extra
 if ($folio <= 0) {
     echo json_encode(["status" => "error", "message" => "Folio inválido."]);
     exit;
 }
 
 try {
+    /* ─────────────────────────────────────────
+       4. Conectar y preparar consulta
+    ────────────────────────────────────────── */
     $con = new LocalConector();
     $conn = $con->conectar();
 
-    // 🔹 Usar una consulta preparada para evitar inyecciones SQL
-    $query = $conn->prepare("UPDATE Reporte SET Comentarios = CONCAT(IFNULL(Comentarios, ''), ?, '\n') WHERE FolioReportes = ?");
-
-    // 🔹 Asociar los parámetros correctamente
+    $query = $conn->prepare(
+        "UPDATE Reporte
+         SET Comentarios = CONCAT(IFNULL(Comentarios, ''), ?, '\n')
+         WHERE FolioReportes = ?"
+    );
     $query->bind_param("si", $comentario, $folio);
 
-    // Ejecutar la consulta
+    /* ─────────────────────────────────────────
+       5. Ejecutar y enviar respuesta
+    ────────────────────────────────────────── */
     if ($query->execute()) {
         echo json_encode(["status" => "success", "message" => "Comentario agregado correctamente."]);
     } else {
         echo json_encode(["status" => "error", "message" => "Error al agregar comentario."]);
     }
 
-    // Cerrar la consulta y la conexión
     $query->close();
     $conn->close();
 } catch (Exception $e) {
-    // Manejo de excepciones para errores en el servidor
+    /* ─────────────────────────────────────────
+       6. Manejo de excepciones
+    ────────────────────────────────────────── */
     echo json_encode(["status" => "error", "message" => "Error en el servidor: " . $e->getMessage()]);
 }
+
