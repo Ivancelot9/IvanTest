@@ -1,0 +1,134 @@
+/* loginContencion.css
+ * Estilo claro inspirado en GitHub Light para el Programa de Contención
+ * Adaptado del CSS anterior (loginAdmin.css)
+ */
+
+/* 🌐 Reset y layout general */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #f6f8fa;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 📦 Contenedor principal */
+.comic-container {
+    background-color: #ffffff;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(27,31,35,0.12);
+    width: 100%;
+    max-width: 400px;
+    padding: 24px;
+}
+
+/* 🖼 Logo */
+.logo {
+    display: block;
+    margin: 0 auto 16px;
+    max-width: 64px;
+}
+
+/* 🧠 Título */
+.comic-title {
+    font-size: 1.75rem;
+    text-align: center;
+    color: #24292e;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+/* 🔵 Botones de pestañas (Registrar / Iniciar Sesión) */
+.form-header {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 10px 0;
+    border: 1px solid #e1e4e8;
+    background-color: #fafbfc;
+    color: #24292e;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    margin: 0 4px;
+}
+
+.toggle-btn:first-child { margin-left: 0; }
+.toggle-btn:last-child  { margin-right: 0; }
+
+.toggle-btn.active {
+    background-color: #0366d6;
+    color: #ffffff;
+    border-color: #0366d6;
+}
+
+/* 🧩 Campos de entrada */
+.input-group {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #d1d5da;
+    border-radius: 4px;
+    padding: 10px 12px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s ease;
+}
+
+.input-group:hover,
+.input-group:focus-within {
+    border-color: #0366d6;
+}
+
+.input-group i {
+    margin-right: 8px;
+    color: #6a737d;
+}
+
+input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
+    color: #24292e;
+    background: transparent;
+}
+
+/* 🟢 Botón de envío */
+.submit-btn {
+    width: 100%;
+    padding: 10px 0;
+    border: 1px solid #0366d6;
+    border-radius: 4px;
+    background-color: #238636;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: #2ea043;
+    transform: translateY(-1px);
+}
+
+.submit-btn:focus {
+    outline: none;
+}
+
+/* 🚫 Ocultación de controles de autocompletar */
+input::-webkit-credentials-auto-fill-button,
+input::-webkit-password-toggle-button {
+    display: none !important;
+}
