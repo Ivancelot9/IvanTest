@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="excel">
-      <change afterPath="$PROJECT_DIR$/ContencionMateriales/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Login Contencion" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -177,15 +174,7 @@
       <workItem from="1745849597951" duration="15403000" />
       <workItem from="1745936205719" duration="18567000" />
       <workItem from="1746024871591" duration="881000" />
-      <workItem from="1746459383862" duration="6532000" />
-    </task>
-    <task id="LOCAL-01149" summary="Bot grammer">
-      <option name="closed" value="true" />
-      <created>1745595938476</created>
-      <option name="number" value="01149" />
-      <option name="presentableId" value="LOCAL-01149" />
-      <option name="project" value="LOCAL" />
-      <updated>1745595938476</updated>
+      <workItem from="1746459383862" duration="7399000" />
     </task>
     <task id="LOCAL-01150" summary="Bot grammer">
       <option name="closed" value="true" />
@@ -571,7 +560,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745960868814</updated>
     </task>
-    <option name="localTasksCounter" value="1198" />
+    <task id="LOCAL-01198" summary="Login Contencion">
+      <option name="closed" value="true" />
+      <created>1746477840420</created>
+      <option name="number" value="01198" />
+      <option name="presentableId" value="LOCAL-01198" />
+      <option name="project" value="LOCAL" />
+      <updated>1746477840421</updated>
+    </task>
+    <option name="localTasksCounter" value="1199" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -623,7 +620,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Documentar Proyecto (Estatus Editor)" />
     <MESSAGE value="Documentar Proyecto (Exportar Tabla Completa Excel)" />
     <MESSAGE value="Documentar Proyecto (Fecha Finalizacion)" />
     <MESSAGE value="Documentar Proyecto (Inicio Sesion)" />
@@ -648,7 +644,8 @@
     <MESSAGE value="Documentar Proyecto (dao/validacionAdmin)" />
     <MESSAGE value="Documentar Proyecto CSS" />
     <MESSAGE value="excel" />
-    <option name="LAST_COMMIT_MESSAGE" value="excel" />
+    <MESSAGE value="Login Contencion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login Contencion" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
