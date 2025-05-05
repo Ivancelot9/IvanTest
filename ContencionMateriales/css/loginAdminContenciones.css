@@ -1,6 +1,6 @@
 /* loginContencion.css
  * Estilo claro inspirado en GitHub Light para el Programa de Contención
- * Adaptado del CSS anterior (loginAdmin.css)
+ * Adaptado del CSS anterior con adaptabilidad móvil
  */
 
 /* 🌐 Reset y layout general */
@@ -21,9 +21,10 @@ body {
     border: 1px solid #e1e4e8;
     border-radius: 6px;
     box-shadow: 0 1px 3px rgba(27,31,35,0.12);
-    width: 100%;
+    width: 90%;
     max-width: 400px;
     padding: 24px;
+    box-sizing: border-box;
 }
 
 /* 🖼 Logo */
@@ -31,6 +32,7 @@ body {
     display: block;
     margin: 0 auto 16px;
     max-width: 64px;
+    height: auto;
 }
 
 /* 🧠 Título */
@@ -131,4 +133,66 @@ input {
 input::-webkit-credentials-auto-fill-button,
 input::-webkit-password-toggle-button {
     display: none !important;
+}
+
+/* 📱 Responsividad: Adaptabilidad para móviles y tablets */
+@media (max-width: 768px) {
+    .comic-container {
+        padding: 20px;
+    }
+    .comic-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    .toggle-btn {
+        font-size: 0.85rem;
+        padding: 8px 0;
+        margin: 0 2px;
+    }
+    .input-group {
+        padding: 8px 10px;
+        margin-bottom: 14px;
+    }
+    input {
+        font-size: 0.9rem;
+    }
+    .submit-btn {
+        padding: 8px 0;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    .comic-container {
+        width: 100%;
+        max-width: none;
+        padding: 16px;
+    }
+    .logo {
+        max-width: 48px;
+        margin-bottom: 12px;
+    }
+    .comic-title {
+        font-size: 1.25rem;
+        margin-bottom: 16px;
+    }
+    .form-header {
+        flex-direction: column;
+    }
+    .toggle-btn {
+        margin: 4px 0;
+        font-size: 0.8rem;
+        padding: 6px 0;
+    }
+    .input-group {
+        padding: 6px 8px;
+        margin-bottom: 12px;
+    }
+    .submit-btn {
+        padding: 6px 0;
+        font-size: 0.85rem;
+    }
 }
