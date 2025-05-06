@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Login Contencion" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Login Contencion">
+      <change afterPath="$PROJECT_DIR$/ContencionMateriales/js/inicioSesionContecion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/login.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -175,6 +179,7 @@
       <workItem from="1745936205719" duration="18567000" />
       <workItem from="1746024871591" duration="881000" />
       <workItem from="1746459383862" duration="8041000" />
+      <workItem from="1746541193247" duration="1621000" />
     </task>
     <task id="LOCAL-01153" summary="Bot grammer">
       <option name="closed" value="true" />

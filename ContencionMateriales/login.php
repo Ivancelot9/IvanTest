@@ -42,4 +42,6 @@
     </div>
 </div>
 </body>
+<script src="js/inicioSesionContecion.js" defer></script>
+
 </html>
