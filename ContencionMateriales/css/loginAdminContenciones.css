@@ -88,7 +88,7 @@ body {
     color: #24292e;
     font-weight: 600;
     margin-bottom: 24px;
-    animation: fadeInDown 0.8s ease-out both;
+    animation: fadeInDown 0.8s ease-out both, colorPulse 3s ease-in-out infinite alternate;
 }
 
 /* 🔵 Pestañas */
@@ -217,4 +217,9 @@ input {
     0% { transform: scale(0.8); opacity: 0; }
     60% { transform: scale(1.05); opacity: 1; }
     100% { transform: scale(1); }
+}
+
+@keyframes colorPulse {
+    0%   { color: #24292e; }
+    100% { color: #0366d6; }
 }
