@@ -180,15 +180,7 @@
       <workItem from="1745936205719" duration="18567000" />
       <workItem from="1746024871591" duration="881000" />
       <workItem from="1746459383862" duration="8041000" />
-      <workItem from="1746541193247" duration="8820000" />
-    </task>
-    <task id="LOCAL-01168" summary="Modo claro tabla">
-      <option name="closed" value="true" />
-      <created>1745613213983</created>
-      <option name="number" value="01168" />
-      <option name="presentableId" value="LOCAL-01168" />
-      <option name="project" value="LOCAL" />
-      <updated>1745613213983</updated>
+      <workItem from="1746541193247" duration="9125000" />
     </task>
     <task id="LOCAL-01169" summary="Documentar Proyecto">
       <option name="closed" value="true" />
@@ -574,7 +566,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746555640411</updated>
     </task>
-    <option name="localTasksCounter" value="1217" />
+    <task id="LOCAL-01217" summary="Login Contencion">
+      <option name="closed" value="true" />
+      <created>1746555913707</created>
+      <option name="number" value="01217" />
+      <option name="presentableId" value="LOCAL-01217" />
+      <option name="project" value="LOCAL" />
+      <updated>1746555913707</updated>
+    </task>
+    <option name="localTasksCounter" value="1218" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

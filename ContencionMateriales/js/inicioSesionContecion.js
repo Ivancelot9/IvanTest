@@ -6,18 +6,16 @@
  * - Validación sencilla de campos
  * - Placeholder para llamada fetch al backend
  */
-
 document.addEventListener("DOMContentLoaded", () => {
     const loginBtn      = document.getElementById("loginBtn");
     const registerBtn   = document.getElementById("registerBtn");
     const dynamicFields = document.getElementById("dynamicFields");
     const mainForm      = document.getElementById("mainForm");
-
     let isLoginMode = true;
 
     function activarTogglePassword() {
-        const pwdInput = document.getElementById("contrasena");
-        const toggle   = document.getElementById("togglePassword");
+        const pwdInput = document.getElementById("contrasena"),
+            toggle   = document.getElementById("togglePassword");
         if (pwdInput && toggle) {
             toggle.style.cursor = "pointer";
             toggle.addEventListener("click", () => {
@@ -74,10 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     mainForm.addEventListener("submit", event => {
         event.preventDefault();
-        const usuario   = document.getElementById("usuario").value.trim();
-        const contrasena= document.getElementById("contrasena").value.trim();
-        const nombreFld = document.getElementById("Nombre");
-        const nombre    = nombreFld ? nombreFld.value.trim() : "";
+        const usuario    = document.getElementById("usuario").value.trim();
+        const contrasena = document.getElementById("contrasena").value.trim();
+        const nombreFld  = document.getElementById("Nombre");
+        const nombre     = nombreFld ? nombreFld.value.trim() : "";
 
         if (!usuario || !contrasena || (!isLoginMode && !nombre)) {
             Swal.fire({
@@ -89,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // TODO: fetch al backend
-        console.log({ usuario, contrasena, nombre, modo: isLoginMode ? 'login' : 'registro' });
+        console.log({usuario, contrasena, nombre, modo: isLoginMode?'login':'registro'});
         Swal.fire({
             icon: 'info',
             title: 'Función pendiente',
