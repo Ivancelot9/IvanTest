@@ -52,6 +52,18 @@ body {
     font-size: 1.75rem; text-align: center;
     color: #24292e; font-weight: 600;
     margin-bottom: 24px;
+    animation: fadeInDown 0.8s ease-out both;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* 🔵 Pestañas */
