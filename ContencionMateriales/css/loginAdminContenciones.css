@@ -52,7 +52,8 @@ body {
     font-size: 1.75rem; text-align: center;
     color: #24292e; font-weight: 600;
     margin-bottom: 24px;
-    animation: fadeInDown 0.8s ease-out both;
+    animation: fadeInDown 0.8s ease-out both,
+    glow         1.5s ease-in-out infinite alternate;
 }
 
 @keyframes fadeInDown {
@@ -63,6 +64,15 @@ body {
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 0 #0366d6;
+    }
+    to {
+        text-shadow: 0 0 12px #0366d6;
     }
 }
 
