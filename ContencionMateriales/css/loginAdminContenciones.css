@@ -4,12 +4,14 @@
 
 /* 🌐 Reset y layout general */
 body {
-
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
     height: 100vh;
-    background-color: #f6f8fa;
-    display: flex; justify-content: center; align-items: center;
-    position: relative;
+    background: linear-gradient(135deg, #f6f8fa 0%, #eaecef 100%);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* 📏 Líneas de acento laterales */
@@ -26,26 +28,18 @@ body {
 
 /* 📦 Contenedor principal */
 .login-container {
-    /* Mantén tu border y shadow */
-    border: 8px solid #ffffff;
+    background-color: #ffffff;
+    border: 1px solid #e1e4e8;
     border-radius: 6px;
     box-shadow: 0 1px 3px rgba(27,31,35,0.12);
-    overflow: hidden;
+    width: 90%;
+    max-width: 400px;
+    padding: 24px;
+    box-sizing: border-box;
     position: relative;
-    width: 90%; max-width: 400px;
-    padding: 24px; box-sizing: border-box;
-    transition: transform .2s, box-shadow .2s;
-    animation: fadeInUp .8s ease-out;
-
-    /* AHORA el fondo: imagen + fallback blanco */
-    background-image: url('../imagenes/bg (2) 1.jpg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    /* ¡Clip al content-box! */
-    background-origin: content-box;
-    background-clip:   content-box;
-    background-color:  #ffffff;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: fadeInUp 0.8s ease-out;
 }
 .login-container::before {
     content: "";
