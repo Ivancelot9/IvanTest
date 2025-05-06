@@ -16,7 +16,7 @@
 <div class="hud-line left"></div>
 <div class="hud-line right"></div>
 <div class="comic-container">
-    <img src="imagenes/logo_contencion.png" alt="Logo Programa de Contención" class="logo">
+    <img src="imagenes/Grammer_Logo.png" alt="Logo Programa de Contención" class="logo">
     <div class="comic-panel">
         <h1 class="comic-title">Programa de Contención</h1>
         <div class="form-container">
