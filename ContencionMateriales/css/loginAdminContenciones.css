@@ -1,6 +1,6 @@
 /* loginContencion.css
  * Estilo claro inspirado en GitHub Light para el Programa de Contención
- * Versión mejorada con detalles de acento y microinteracciones
+ * Versión ajustada a nuevos nombres de clases (login-container, login-panel, login-title, accent-line)
  */
 
 /* 🌐 Reset y layout general */
@@ -15,8 +15,20 @@ body {
     align-items: center;
 }
 
+/* 📏 Líneas de acento laterales */
+.accent-line {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: #0366d6;
+    z-index: -1;
+}
+.accent-line.left { left: 40px; }
+.accent-line.right { right: 40px; }
+
 /* 📦 Contenedor principal con acento superior y hover */
-.comic-container {
+.login-container {
     background-color: #ffffff;
     border: 1px solid #e1e4e8;
     border-radius: 6px;
@@ -28,7 +40,7 @@ body {
     position: relative;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.comic-container::before {
+.login-container::before {
     content: "";
     position: absolute;
     top: 0;
@@ -37,7 +49,7 @@ body {
     height: 4px;
     background-color: #0366d6;
 }
-.comic-container:hover {
+.login-container:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(27,31,35,0.15);
 }
@@ -51,7 +63,7 @@ body {
 }
 
 /* 🧠 Título */
-.comic-title {
+.login-title {
     font-size: 1.75rem;
     text-align: center;
     color: #24292e;
@@ -171,10 +183,10 @@ input::-webkit-password-toggle-button {
 
 /* 📱 Responsividad: Adaptabilidad para móviles y tablets */
 @media (max-width: 768px) {
-    .comic-container {
+    .login-container {
         padding: 20px;
     }
-    .comic-title {
+    .login-title {
         font-size: 1.5rem;
         margin-bottom: 20px;
     }
@@ -199,7 +211,7 @@ input::-webkit-password-toggle-button {
     body {
         padding: 10px;
     }
-    .comic-container {
+    .login-container {
         width: 100%;
         max-width: none;
         padding: 16px;
@@ -208,7 +220,7 @@ input::-webkit-password-toggle-button {
         max-width: 48px;
         margin-bottom: 12px;
     }
-    .comic-title {
+    .login-title {
         font-size: 1.25rem;
         margin-bottom: 16px;
     }

@@ -9,22 +9,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/loginAdminContenciones.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-<div class="hud-line left"></div>
-<div class="hud-line right"></div>
-<div class="comic-container">
+<div class="accent-line left"></div>
+<div class="accent-line right"></div>
+
+<div class="login-container">
     <img src="imagenes/Grammer_Logo.png" alt="Logo Programa de Contención" class="logo">
-    <div class="comic-panel">
-        <h1 class="comic-title">Programa de Contención</h1>
+    <div class="login-panel">
+        <h1 class="login-title">Programa de Contención</h1>
         <div class="form-container">
             <div class="form-header">
                 <button id="registerBtn" class="toggle-btn">Registrar</button>
                 <button id="loginBtn" class="toggle-btn active">Iniciar Sesión</button>
             </div>
-            <form id="mainForm" class="form">
+            <form id="mainForm" class="login-form">
                 <div id="dynamicFields">
                     <!-- Campos para "Iniciar Sesión" -->
                     <div class="input-group">
@@ -41,7 +41,7 @@
         </div>
     </div>
 </div>
-</body>
-<script src="js/inicioSesionContecion.js" defer></script>
 
+<script src="js/inicioSesionContecion.js" defer></script>
+</body>
 </html>
