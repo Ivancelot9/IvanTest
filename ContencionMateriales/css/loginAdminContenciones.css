@@ -4,31 +4,33 @@
 
 /* 🌐 Reset y layout general con imagen de fondo detrás */
 body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    /* Fondo: imagen + degradado gris claro overlay */
+    margin: 0; padding: 0; height: 100vh;
     background:
             url('../imagenes/bg (2) 1.jpg') center/cover no-repeat,
             linear-gradient(135deg, rgba(246,248,250,0.9) 0%, rgba(234,236,239,0.9) 100%);
     font-family: 'Segoe UI', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex; justify-content: center; align-items: center;
     position: relative;
 }
 
 /* 📏 Líneas de acento laterales, por encima del fondo */
 .accent-line {
-    position: fixed;
-    top: 0;
-    height: 100%;
-    width: 4px;
-    background-color: #0366d6;
-    z-index: 2;
+    position: fixed; top:0; height:100%; width:4px;
+    background-color:#0366d6; z-index:2;
 }
 .accent-line.left  { left: 40px; }
 .accent-line.right { right: 40px; }
+
+/* ⚪ Zona blanca entre rayas, z-index:1 */
+.white-area {
+    position: absolute;
+    top:   0;
+    left:  44px;   /* 40px de la raya + 4px de su ancho */
+    right: 44px;   /* idem a la derecha */
+    bottom:0;
+    background-color: #ffffff;
+    z-index: 1;
+}
 
 /* 📦 Contenedor principal encima de todo */
 .login-container {

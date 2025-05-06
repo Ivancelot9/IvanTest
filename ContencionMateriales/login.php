@@ -21,6 +21,10 @@
 <div class="accent-line left"></div>
 <div class="accent-line right"></div>
 
+<!-- NUEVO: área blanca entre las rayas -->
+<div class="white-area"></div>
+
+
 <div class="login-container">
     <img src="imagenes/Grammer_Logo.png" alt="Logo Programa de Contención" class="logo">
     <div class="login-panel">
