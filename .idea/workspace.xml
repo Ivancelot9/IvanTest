@@ -7,7 +7,6 @@
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Login Contencion">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/loginAdminContenciones.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/loginAdminContenciones.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/login.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,15 +179,7 @@
       <workItem from="1745936205719" duration="18567000" />
       <workItem from="1746024871591" duration="881000" />
       <workItem from="1746459383862" duration="8041000" />
-      <workItem from="1746541193247" duration="9125000" />
-    </task>
-    <task id="LOCAL-01169" summary="Documentar Proyecto">
-      <option name="closed" value="true" />
-      <created>1745854480913</created>
-      <option name="number" value="01169" />
-      <option name="presentableId" value="LOCAL-01169" />
-      <option name="project" value="LOCAL" />
-      <updated>1745854480913</updated>
+      <workItem from="1746541193247" duration="9498000" />
     </task>
     <task id="LOCAL-01170" summary="Documentar Proyecto">
       <option name="closed" value="true" />
@@ -574,7 +565,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746555913707</updated>
     </task>
-    <option name="localTasksCounter" value="1218" />
+    <task id="LOCAL-01218" summary="Login Contencion">
+      <option name="closed" value="true" />
+      <created>1746556216269</created>
+      <option name="number" value="01218" />
+      <option name="presentableId" value="LOCAL-01218" />
+      <option name="project" value="LOCAL" />
+      <updated>1746556216269</updated>
+    </task>
+    <option name="localTasksCounter" value="1219" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -2,7 +2,9 @@
 
 /* 🌐 Body: solo degradado gris claro */
 body {
-    margin: 0; padding: 0; height: 100vh;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
     background: linear-gradient(135deg, #f6f8fa 0%, #eaecef 100%);
     font-family: 'Segoe UI', sans-serif;
     display: flex; justify-content: center; align-items: center;
@@ -20,10 +22,16 @@ body {
 /* ⚪ Zona central que ahora muestra la imagen (z-index 1) */
 .white-area {
     position: absolute; top: 0; bottom: 0;
-    left: 44px;  /* 40px de la raya + 4px de su ancho */
+    left: 44px;   /* 40px de la raya + 4px de su ancho */
     right: 44px;
-    background: url('../imagenes/bg (2) 1.jpg')
-    center/cover no-repeat;
+    /* image-set para pantallas normales y retina */
+    background-image: image-set(
+            url('../imagenes/bg (2) 1.jpg')    1x,
+            url('../imagenes/bg (2) 1.jpg') 2x
+    );
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     z-index: 1;
 }
 
