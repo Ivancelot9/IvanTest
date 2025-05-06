@@ -88,7 +88,7 @@ body {
     color: #24292e;
     font-weight: 600;
     margin-bottom: 24px;
-    animation: fadeInDown 0.8s ease-out both, colorPulse 3s ease-in-out infinite alternate;
+    animation: fadeInDown 0.8s ease-out both, colorPulse 2s ease-in-out infinite alternate;
 }
 
 /* 🔵 Pestañas */
