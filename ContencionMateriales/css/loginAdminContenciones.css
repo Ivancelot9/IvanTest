@@ -4,14 +4,20 @@
 
 /* 🌐 Reset y layout general */
 body {
+
     margin: 0;
     padding: 0;
     height: 100vh;
-    background: linear-gradient(135deg, #f6f8fa 0%, #eaecef 100%);
+    /* primero la imagen, luego el degradado como fallback/overlay */
+    background:
+            url('../imagenes/bg (2) 1.jpg') no-repeat center center fixed,
+            linear-gradient(135deg, rgba(246,248,250,0.8) 0%, rgba(234,236,239,0.8) 100%);
+    background-size: cover, cover;
     font-family: 'Segoe UI', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 /* 📏 Líneas de acento laterales */
