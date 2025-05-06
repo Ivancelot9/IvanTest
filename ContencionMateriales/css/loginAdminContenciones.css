@@ -1,5 +1,5 @@
-/* loginContencion.css
- * Versión final con animaciones para el Programa de Contención
+/* css/loginContencion.css
+ * Versión final con clases renombradas y microinteracciones
  */
 
 /* 🌐 Reset y layout general */
@@ -12,7 +12,10 @@ body {
 }
 
 /* 📏 Líneas de acento laterales */
-.accent-line { position: fixed; top: 0; height: 100%; width: 4px; background-color: #0366d6; z-index: -1; }
+.accent-line {
+    position: fixed; top: 0; height: 100%; width: 4px;
+    background-color: #0366d6; z-index: -1;
+}
 .accent-line.left  { left: 40px; }
 .accent-line.right { right: 40px; }
 
@@ -25,8 +28,7 @@ body {
     width: 90%; max-width: 400px;
     padding: 24px; box-sizing: border-box;
     position: relative;
-    overflow: hidden;
-    animation: fadeInUp 0.8s ease-out;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 .login-container::before {
     content: "";
@@ -40,52 +42,108 @@ body {
 }
 
 /* 🖼 Logo */
-.logo { display: block; margin: 0 auto 16px; max-width: 64px; height: auto; animation: bounceIn 1s ease; }
+.logo {
+    display: block; margin: 0 auto 16px;
+    max-width: 64px; height: auto;
+}
 
 /* 🧠 Título */
 .login-title {
-    font-size: 1.75rem;
-    text-align: center;
-    color: #24292e;
-    font-weight: 600;
-    margin-bottom: 12px;
-    animation: pulse 2s 1s infinite;
+    font-size: 1.75rem; text-align: center;
+    color: #24292e; font-weight: 600;
+    margin-bottom: 24px;
 }
 
 /* 🔵 Pestañas */
-.form-header { display: flex; margin-bottom: 20px; }
-.toggle-btn { /* ... estilos previos ... */ }
-/* mantiene estilos previos de .toggle-btn */
+.form-header {
+    display: flex; margin-bottom: 20px;
+}
+.toggle-btn {
+    flex: 1; padding: 10px 0;
+    border: 1px solid #e1e4e8;
+    background: #fafbfc; color: #24292e;
+    font-weight: 500; text-transform: uppercase;
+    cursor: pointer; font-size: 0.9rem;
+    border-radius: 4px; margin: 0 4px;
+    position: relative;
+    transition: background 0.2s;
+}
+.toggle-btn:first-child { margin-left: 0; }
+.toggle-btn:last-child  { margin-right: 0; }
+.toggle-btn.active {
+    background: #0366d6; color: #fff;
+    border-color: #0366d6;
+}
+.toggle-btn.active::after {
+    content: ""; position: absolute;
+    bottom: -2px; left: 20%;
+    width: 60%; height: 2px;
+    background: #fff; border-radius: 2px;
+}
 
 /* 🧩 Inputs */
-.input-group { /* ... estilos previos ... */ }
-input { /* ... estilos previos ... */ }
+.input-group {
+    display: flex; align-items: center;
+    background: #fff; border: 1px solid #d1d5da;
+    border-radius: 4px; padding: 10px 12px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+}
+.input-group:hover,
+.input-group:focus-within {
+    border-color: #0366d6;
+}
+.input-group i {
+    margin-right: 8px; color: #6a737d;
+}
+input {
+    flex: 1; border: none; outline: none;
+    font-size: 0.95rem; color: #24292e;
+    background: transparent;
+}
 
 /* 🟢 Botón Entrar */
-.submit-btn { /* ... estilos previos ... */ }
+.submit-btn {
+    width: 100%; padding: 10px 0;
+    border: 1px solid #0366d6; border-radius: 4px;
+    background: #238636; color: #fff;
+    font-weight: 600; font-size: 0.95rem;
+    text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+.submit-btn:hover {
+    background: #2ea043;
+    transform: translateY(-1px);
+}
 
 /* ✏️ Ayuda */
-.help-text { /* ... estilos previos ... */ }
-
-/* 🚫 Ocultación de controles de autocompletar */
-input::-webkit-credentials-auto-fill-button,
-input::-webkit-password-toggle-button { display: none !important; }
+.help-text {
+    text-align: center; margin-top: 12px;
+}
+.help-text .link-secondary {
+    color: #586069; font-size: 0.85rem;
+    text-decoration: none; transition: text-decoration 0.2s;
+}
+.help-text .link-secondary:hover {
+    text-decoration: underline;
+}
 
 /* 📱 Responsividad */
-@media (max-width: 768px) { /* ... */ }
-@media (max-width: 480px) { /* ... */ }
-
-/* ==== Animaciones ==== */
-@keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+@media (max-width: 768px) {
+    .login-container { padding: 20px; }
+    .login-title    { font-size: 1.5rem; margin-bottom: 20px; }
+    .toggle-btn     { font-size: 0.85rem; padding: 8px 0; margin: 0 2px; }
+    .input-group    { padding: 8px 10px; margin-bottom: 14px; }
+    input           { font-size: 0.9rem; }
+    .submit-btn     { padding: 8px 0; font-size: 0.9rem; }
 }
-@keyframes bounceIn {
-    0% { transform: scale(0.8); opacity: 0; }
-    60% { transform: scale(1.05); opacity: 1; }
-    100% { transform: scale(1); }
-}
-@keyframes pulse {
-    0%,100% { text-shadow: 0 0 0 #0366d6; }
-    50% { text-shadow: 0 0 8px #0366d6; }
+@media (max-width: 480px) {
+    body            { padding: 10px; }
+    .login-container { width: 100%; padding: 16px; }
+    .logo           { max-width: 48px; margin-bottom: 12px; }
+    .login-title    { font-size: 1.25rem; margin-bottom: 16px; }
+    .form-header    { flex-direction: column; }
+    .toggle-btn     { margin: 4px 0; font-size: 0.8rem; padding: 6px 0; }
+    .input-group    { padding: 6px 8px; margin-bottom: 12px; }
+    .submit-btn     { padding: 6px 0; font-size: 0.85rem; }
 }
