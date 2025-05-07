@@ -42,6 +42,21 @@ body {
     z-index: 1;
 }
 
+.white-area::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: image-set(
+            url('../imagenes/logoHD (2).png') 1x,
+            url('../imagenes/logoHD (2).png') 2x
+    );
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(6px);
+    z-index: -1;
+}
+
 /* 📦 Container: intacto, por encima de todo (z-index 3) */
 .login-container {
     position: relative;
