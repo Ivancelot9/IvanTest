@@ -21,6 +21,7 @@ body {
     width: 4px;
     background-color: #0366d6;
     z-index: 2;
+    animation: blink 1.5s infinite ease-in-out;
 }
 .accent-line.left  { left: 40px; }
 .accent-line.right { right: 40px; }
@@ -237,4 +238,9 @@ input {
 @keyframes colorPulse {
     0%   { color: #24292e; }
     100% { color: #0366d6; }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
 }
