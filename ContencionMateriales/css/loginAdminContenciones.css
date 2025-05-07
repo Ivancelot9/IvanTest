@@ -72,7 +72,7 @@ body {
     box-sizing: border-box;
     overflow: hidden;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    animation: fadeInUp 0.8s ease-out,  containerGlow 5s ease-in-out infinite;
+    animation: fadeInUp 0.8s ease-out,  containerGlow 2s ease-in-out infinite;
 }
 .login-container::before {
     content: "";
