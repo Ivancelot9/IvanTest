@@ -14,7 +14,7 @@ use PHPMailer\PHPMailer\Exception;
 
 header('Content-Type: application/json; charset=UTF-8');
 
-// Validar que se reciban los datos necesarios
+// Validar que se reciban los datos necesarioss
 if (!isset($_POST['correo'], $_POST['asunto'], $_POST['mensaje'])) {
     echo json_encode(['status' => 'error', 'message' => 'Faltan parámetros obligatorios.']);
     exit;
