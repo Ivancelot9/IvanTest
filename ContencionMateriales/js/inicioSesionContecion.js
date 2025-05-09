@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Paso 2: solicitar token
             try {
-                const r1 = await fetch('dao/solicitarToken.php', {
+                const r1 = await fetch('mailer/solicitarToken.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams({ Username: user })
@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Paso 4: restablecer contraseña
             try {
-                const r2 = await fetch('dao/cambiarContrasena.php', {
+                const r2 = await fetch('mailer/cambiarContrasena.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams({
