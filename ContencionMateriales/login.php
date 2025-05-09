@@ -29,7 +29,7 @@
             <button id="registerBtn" class="toggle-btn">Registrar</button>
             <button id="loginBtn"    class="toggle-btn active">Iniciar Sesión</button>
         </div>
-        <form id="mainForm" class="login-form">
+        <form id="mainForm" class="login-form"  novalidate>
             <div id="dynamicFields"></div>
             <button type="submit" class="submit-btn">Entrar</button>
         </form>

@@ -104,6 +104,15 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        if (!username || !contrasena || (!isLoginMode && !nombre)) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Campos incompletos',
+                text: 'Por favor completa todos los campos obligatorios.'
+            });
+            return;
+        }
+
         // 📦 Preparar datos y endpoint
         const formData = new FormData();
         formData.append("Username", username);
