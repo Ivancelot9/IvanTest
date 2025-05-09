@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Olvide Contrasena">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/inicioSesionContecion.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/inicioSesionContecion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dao/solicitarToken.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dao/solicitarToken.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,15 +182,7 @@
       <workItem from="1746541193247" duration="14956000" />
       <workItem from="1746627653602" duration="8996000" />
       <workItem from="1746713849609" duration="8021000" />
-      <workItem from="1746800542525" duration="5280000" />
-    </task>
-    <task id="LOCAL-01186" summary="Documentar Proyecto (dao/modifcarDatosPersonales)">
-      <option name="closed" value="true" />
-      <created>1745949077654</created>
-      <option name="number" value="01186" />
-      <option name="presentableId" value="LOCAL-01186" />
-      <option name="project" value="LOCAL" />
-      <updated>1745949077654</updated>
+      <workItem from="1746800542525" duration="8594000" />
     </task>
     <task id="LOCAL-01187" summary="Documentar Proyecto (dao/obtenerAreas)">
       <option name="closed" value="true" />
@@ -576,7 +568,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746805222970</updated>
     </task>
-    <option name="localTasksCounter" value="1235" />
+    <task id="LOCAL-01235" summary="Olvide Contrasena">
+      <option name="closed" value="true" />
+      <created>1746806594341</created>
+      <option name="number" value="01235" />
+      <option name="presentableId" value="LOCAL-01235" />
+      <option name="project" value="LOCAL" />
+      <updated>1746806594341</updated>
+    </task>
+    <option name="localTasksCounter" value="1236" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -1,5 +1,5 @@
 <?php
-/* dao/solicitarTokenContencion.php
+/* dao/solicitarToken.php
  *
  * Genera un token de recuperación, lo guarda en la BD y lo envía por correo.
  * Recibe POST ‘Username’ con el nombre de usuario o email.
@@ -15,12 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-if (empty($_POST['Username'])) {
+$username = trim($_POST['Username'] ?? '');
+if ($username === '') {
     echo json_encode(['status'=>'error','message'=>'Usuario requerido.']);
     exit;
 }
-
-$username = trim($_POST['Username']);
 
 try {
     $con = (new LocalConector())->conectar();
@@ -40,23 +39,31 @@ try {
     $token  = bin2hex(random_bytes(16));
     $expira = date('Y-m-d H:i:s', time() + 3600);
 
-    // 3) Guardar en RecuperarContrasena
-    $ins = $con->prepare(
-        "INSERT INTO RecuperarContrasena 
-        (IdUsuario, Token, Expira, TokenValido)
-       VALUES (?, ?, ?, 1)"
-    );
+    // 3) Limpiar tokens anteriores para este usuario (opcional)
+    $del = $con->prepare("DELETE FROM RecuperarContrasena WHERE IdUsuario = ?");
+    $del->bind_param("i", $idUsuario);
+    $del->execute();
+    $del->close();
+
+    // 4) Guardar el nuevo token
+    $ins = $con->prepare("
+        INSERT INTO RecuperarContrasena
+            (IdUsuario, Token, Expira, TokenValido)
+        VALUES (?, ?, ?, 1)
+    ");
     $ins->bind_param("iss", $idUsuario, $token, $expira);
     $ins->execute();
     $ins->close();
 
-    // 4) (*Aquí envías el correo con el enlace que incluya ?token=…*)
+    // 5) (Aquí integrarías tu librería de envío de correo)
+    // p.ej. mail($email, 'Recupera tu contraseña', "Tu token: $token");
 
     echo json_encode([
-        'status'    => 'success',
-        'message'   => 'Revisa tu correo para recuperar la contraseña.',
-        'token'     => $token
+        'status'  => 'success',
+        'message' => 'Revisa tu correo para recuperar la contraseña.',
+        // 'token' => $token  // quitar en producción
     ]);
 } catch (Exception $e) {
+    error_log("solicitarToken error: " . $e->getMessage());
     echo json_encode(['status'=>'error','message'=>'Error del servidor.']);
 }
