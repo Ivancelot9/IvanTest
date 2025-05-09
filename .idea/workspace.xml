@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Login Contencion">
-      <change afterPath="$PROJECT_DIR$/ContencionMateriales/dao/cambiarContrasena.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ContencionMateriales/dao/solicitarToken.php" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Olvide Contrasena">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/inicioSesionContecion.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/inicioSesionContecion.js" afterDir="false" />
     </list>
@@ -184,15 +182,7 @@
       <workItem from="1746541193247" duration="14956000" />
       <workItem from="1746627653602" duration="8996000" />
       <workItem from="1746713849609" duration="8021000" />
-      <workItem from="1746800542525" duration="3838000" />
-    </task>
-    <task id="LOCAL-01185" summary="Documentar Proyecto (dao/insertarReporte)">
-      <option name="closed" value="true" />
-      <created>1745948597461</created>
-      <option name="number" value="01185" />
-      <option name="presentableId" value="LOCAL-01185" />
-      <option name="project" value="LOCAL" />
-      <updated>1745948597461</updated>
+      <workItem from="1746800542525" duration="5280000" />
     </task>
     <task id="LOCAL-01186" summary="Documentar Proyecto (dao/modifcarDatosPersonales)">
       <option name="closed" value="true" />
@@ -578,7 +568,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746803109886</updated>
     </task>
-    <option name="localTasksCounter" value="1234" />
+    <task id="LOCAL-01234" summary="Olvide Contrasena">
+      <option name="closed" value="true" />
+      <created>1746805222970</created>
+      <option name="number" value="01234" />
+      <option name="presentableId" value="LOCAL-01234" />
+      <option name="project" value="LOCAL" />
+      <updated>1746805222970</updated>
+    </task>
+    <option name="localTasksCounter" value="1235" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -630,7 +628,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Documentar Proyecto (Exportar Tabla Completa Excel)" />
     <MESSAGE value="Documentar Proyecto (Fecha Finalizacion)" />
     <MESSAGE value="Documentar Proyecto (Inicio Sesion)" />
     <MESSAGE value="Documentar Proyecto (Logica Dashboard)" />
@@ -655,7 +652,8 @@
     <MESSAGE value="Documentar Proyecto CSS" />
     <MESSAGE value="excel" />
     <MESSAGE value="Login Contencion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login Contencion" />
+    <MESSAGE value="Olvide Contrasena" />
+    <option name="LAST_COMMIT_MESSAGE" value="Olvide Contrasena" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
