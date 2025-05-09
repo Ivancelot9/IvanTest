@@ -6,6 +6,7 @@
  * - Valida campos antes de enviar.
  * - Realiza fetch a los endpoints PHP correspondientes.
  * - Redirige al dashboard si el inicio de sesión es exitoso.
+ *  * - Flujo de “Olvidé mi contraseña” con SweetAlert2.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -146,6 +147,77 @@ document.addEventListener("DOMContentLoaded", () => {
             Swal.fire({ icon: 'error', title: 'Error de red', text: 'No se pudo conectar al servidor.' });
         }
     });
+
+    // 5. Flujo “Olvidé mi contraseña”
+    forgotLink.addEventListener("click", async e => {
+        e.preventDefault();
+
+        // Paso 1: pedir usuario o email
+        const { value: user } = await Swal.fire({
+            title: 'Recuperar contraseña',
+            input: 'text',
+            inputLabel: 'Usuario o correo',
+            inputPlaceholder: 'Ingresa tu usuario o email',
+            showCancelButton: true
+        });
+        if (!user) return;
+
+        // Paso 2: solicitar token al backend
+        try {
+            const r1 = await fetch('dao/solicitarToken.php', {
+                method: 'POST',
+                body: new URLSearchParams({ Username: user })
+            });
+            const d1 = await r1.json();
+            if (d1.status !== 'success') {
+                return Swal.fire('Error', d1.message, 'error');
+            }
+            await Swal.fire('Token enviado', 'Revisa tu correo para el token', 'success');
+        } catch (err) {
+            console.error(err);
+            return Swal.fire('Error de red', 'No se pudo enviar el token', 'error');
+        }
+
+        // Paso 3: pedir token + nueva contraseña
+        const { value: formValues } = await Swal.fire({
+            title: 'Ingresa token y nueva contraseña',
+            html:
+                '<input id="swal-token" class="swal2-input" placeholder="Token">'+
+                '<input id="swal-pass" type="password" class="swal2-input" placeholder="Nueva contraseña">',
+            focusConfirm: false,
+            preConfirm: () => {
+                return {
+                    token: document.getElementById('swal-token').value,
+                    pwd:   document.getElementById('swal-pass').value
+                };
+            }
+        });
+        if (!formValues || !formValues.token || formValues.pwd.length < 6) {
+            return Swal.fire('Error', 'Completa todos los campos correctamente', 'error');
+        }
+
+        // Paso 4: enviar al backend para resetear
+        try {
+            const r2 = await fetch('dao/cambiarContrasena.php', {
+                method: 'POST',
+                body: new URLSearchParams({
+                    Username: user,
+                    Token: formValues.token,
+                    NuevaContrasena: formValues.pwd
+                })
+            });
+            const d2 = await r2.json();
+            if (d2.status === 'success') {
+                Swal.fire('¡Hecho!', d2.message, 'success');
+            } else {
+                Swal.fire('Error', d2.message, 'error');
+            }
+        } catch (err) {
+            console.error(err);
+            Swal.fire('Error de red', 'No se pudo completar la solicitud', 'error');
+        }
+    });
+
 
     // ✅ 6. Mostrar Login por defecto
     cargarLogin();
