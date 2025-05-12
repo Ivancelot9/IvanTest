@@ -68,7 +68,7 @@ try {
         CURLOPT_POST           => true,
         CURLOPT_POSTFIELDS     => $postData,
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT        => 10,
+        CURLOPT_TIMEOUT        => 20,
     ]);
     $result = curl_exec($ch);
 
