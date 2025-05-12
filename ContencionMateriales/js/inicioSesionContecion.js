@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Paso 5: enviar al backend para cambiar contraseña
             try {
                 const r2 = await fetch(
-                    'https://grammermx.com/IvanTest/ContencionMateriales/mailer/cambiarContrasena.php', {
+                    'https://grammermx.com/IvanTest/ContencionMateriales/dao/cambiarContrasena.php', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         body: new URLSearchParams({
