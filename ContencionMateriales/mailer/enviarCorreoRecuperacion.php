@@ -32,7 +32,7 @@ try {
     $mail->isSMTP();
     $mail->Host       = 'smtp.hostinger.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'contencion_Materiales@grammermx.com';
+    $mail->Username   = 'contencion_materiales@grammermx.com';
     $mail->Password   = 'Materiales12345;';
     $mail->SMTPSecure = 'ssl';
     $mail->Port       = 465;
