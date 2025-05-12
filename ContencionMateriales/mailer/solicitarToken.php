@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("../dao/conexionContencion.php");
+include_once("conexionContencion.php");
 
 header('Content-Type: application/json; charset=UTF-8');
 
