@@ -37,8 +37,9 @@ try {
     $stmt->close();
 
     // 3. Generar e insertar token
-    $token  = bin2hex(random_bytes(16));
-    $expira = date('Y-m-d H:i:s', time() + 3600); // válido por 1 hora
+    $token = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+    $expira = date('Y-m-d H:i:s', time() + 600); // 10 minutos
+
 
     $ins = $con->prepare("INSERT INTO RecuperarContrasena (IdUsuario, Token, Expira, TokenValido) VALUES (?, ?, ?, 1)");
     if (!$ins) throw new Exception('Error al preparar INSERT: ' . $con->error);

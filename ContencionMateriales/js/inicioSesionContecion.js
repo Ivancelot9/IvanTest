@@ -184,12 +184,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 return Swal.fire('Error de red', 'No se pudo enviar el token', 'error');
             }
 
-            // Paso 4: ingresar token y nueva contraseña
+            const timerInterval = 600; // segundos
+
             const result = await Swal.fire({
                 title: 'Restablecer contraseña',
                 html:
                     '<input id="swal-token" class="swal2-input" placeholder="Token">' +
-                    '<input id="swal-pass" type="password" class="swal2-input" placeholder="Nueva contraseña">',
+                    '<input id="swal-pass" type="password" class="swal2-input" placeholder="Nueva contraseña">' +
+                    `<p style="margin-top:10px;font-size:14px;">Este token expira en <span id="countdown">${timerInterval}</span> segundos.</p>`,
+                timer: timerInterval * 1000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    const countdown = Swal.getPopup().querySelector('#countdown');
+                    const interval = setInterval(() => {
+                        const value = parseInt(countdown.textContent, 10);
+                        if (value > 0) {
+                            countdown.textContent = value - 1;
+                        }
+                    }, 1000);
+                    Swal.stopTimer(); // Evita cierre automático
+                },
                 focusConfirm: false,
                 preConfirm: () => {
                     const token = document.getElementById('swal-token').value.trim();
