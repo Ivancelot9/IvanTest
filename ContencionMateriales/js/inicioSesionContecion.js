@@ -176,8 +176,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 );
                 const d1 = await r1.json();
+
                 if (d1.status !== 'success') {
-                    return Swal.fire('Error', d1.message, 'error');
+                    await Swal.fire('Error', d1.message, 'error');
+                    return;
                 }
                 await Swal.fire('Token enviado', d1.message, 'success');
             } catch {

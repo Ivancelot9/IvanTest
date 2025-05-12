@@ -54,7 +54,7 @@ try {
         <p>Hola <strong>$username</strong>,</p>
         <p>Has solicitado recuperar tu contraseña.</p>
         <p>Tu token es: <strong>$token</strong></p>
-        <p>Este token expira en 1 hora. No lo compartas con nadie.</p>
+        <p>Este token expira en 10 minutos. No lo compartas con nadie. Ingresálo en la página</p>
     ";
 
     $postData = http_build_query([
