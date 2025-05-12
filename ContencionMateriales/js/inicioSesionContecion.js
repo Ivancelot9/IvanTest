@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Paso 3: solicitar token usando Username + Email
             try {
                 const r1 = await fetch(
-                    'https://grammermx.com/IvanTest/ContencionMateriales/mailer/solicitarToken.php', {
+                    'https://grammermx.com/IvanTest/ContencionMateriales/dao/solicitarToken.php', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         body: new URLSearchParams({ Username: username, Email: email })
