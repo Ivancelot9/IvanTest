@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Olvide Contrasena">
-      <change afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Dashboard">
+      <change afterPath="$PROJECT_DIR$/ContencionMateriales/css/dashboardContencion.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/inicioSesionContecion.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/inicioSesionContecion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -184,15 +184,7 @@
       <workItem from="1746627653602" duration="8996000" />
       <workItem from="1746713849609" duration="8021000" />
       <workItem from="1746800542525" duration="16131000" />
-      <workItem from="1747059421691" duration="16381000" />
-    </task>
-    <task id="LOCAL-01213" summary="Login Contencion">
-      <option name="closed" value="true" />
-      <created>1746554525197</created>
-      <option name="number" value="01213" />
-      <option name="presentableId" value="LOCAL-01213" />
-      <option name="project" value="LOCAL" />
-      <updated>1746554525197</updated>
+      <workItem from="1747059421691" duration="17470000" />
     </task>
     <task id="LOCAL-01214" summary="Login Contencion">
       <option name="closed" value="true" />
@@ -578,7 +570,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747074540318</updated>
     </task>
-    <option name="localTasksCounter" value="1262" />
+    <task id="LOCAL-01262" summary="Dashboard">
+      <option name="closed" value="true" />
+      <created>1747077765006</created>
+      <option name="number" value="01262" />
+      <option name="presentableId" value="LOCAL-01262" />
+      <option name="project" value="LOCAL" />
+      <updated>1747077765006</updated>
+    </task>
+    <option name="localTasksCounter" value="1263" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -630,7 +630,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Documentar Proyecto (Fecha Finalizacion)" />
     <MESSAGE value="Documentar Proyecto (Inicio Sesion)" />
     <MESSAGE value="Documentar Proyecto (Logica Dashboard)" />
     <MESSAGE value="Documentar Proyecto (Modificar Datos Personales)" />
@@ -655,7 +654,8 @@
     <MESSAGE value="excel" />
     <MESSAGE value="Login Contencion" />
     <MESSAGE value="Olvide Contrasena" />
-    <option name="LAST_COMMIT_MESSAGE" value="Olvide Contrasena" />
+    <MESSAGE value="Dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dashboard" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
