@@ -143,22 +143,22 @@ document.addEventListener("DOMContentLoaded", () => {
         forgotLink.addEventListener("click", async ev => {
             ev.preventDefault();
 
-            // Paso 1: pedir usuario/email
-            const { value: user } = await Swal.fire({
+            // Paso 1: pedir SOLO el usuario
+            const { value: username } = await Swal.fire({
                 title: 'Recuperar contraseña',
                 input: 'text',
-                inputLabel: 'Usuario o correo',
-                inputPlaceholder: 'Ingresa tu usuario o email',
+                inputLabel: 'Nombre de usuario',
+                inputPlaceholder: 'Ej. ivancelot9',
                 showCancelButton: true
             });
-            if (!user) return;
+            if (!username) return;
 
-            // Paso 2: solicitar token
+            // Paso 2: solicitar token usando el Username
             try {
                 const r1 = await fetch('https://grammermx.com/IvanTest/ContencionMateriales/mailer/solicitarToken.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams({ Username: user })
+                    body: new URLSearchParams({ Username: username })
                 });
                 const d1 = await r1.json();
                 if (d1.status !== 'success') {
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return Swal.fire('Error de red', 'No se pudo enviar el token', 'error');
             }
 
-            // Paso 3: pedir token + nueva contraseña
+            // Paso 3: ingresar token y nueva contraseña
             const result = await Swal.fire({
                 title: 'Restablecer contraseña',
                 html:
@@ -189,13 +189,13 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!result.value) return;
             const { token, pwd } = result.value;
 
-            // Paso 4: restablecer contraseña
+            // Paso 4: enviar al backend
             try {
                 const r2 = await fetch('https://grammermx.com/IvanTest/ContencionMateriales/mailer/cambiarContrasena.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams({
-                        Username: user,
+                        Username: username,
                         Token: token,
                         NuevaContrasena: pwd
                     })
