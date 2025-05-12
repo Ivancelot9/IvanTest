@@ -185,24 +185,32 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const timerInterval = 600; // segundos
+            let remainingSeconds = timerInterval;
 
             const result = await Swal.fire({
                 title: 'Restablecer contraseña',
                 html:
                     '<input id="swal-token" class="swal2-input" placeholder="Token">' +
                     '<input id="swal-pass" type="password" class="swal2-input" placeholder="Nueva contraseña">' +
-                    `<p style="margin-top:10px;font-size:14px;">Este token expira en <span id="countdown">${timerInterval}</span> segundos.</p>`,
+                    `<p style="margin-top:10px;font-size:14px;">Este token expira en <span id="countdown">10:00</span> minutos.</p>`,
                 timer: timerInterval * 1000,
                 timerProgressBar: true,
                 didOpen: () => {
                     const countdown = Swal.getPopup().querySelector('#countdown');
+
                     const interval = setInterval(() => {
-                        const value = parseInt(countdown.textContent, 10);
-                        if (value > 0) {
-                            countdown.textContent = value - 1;
+                        if (remainingSeconds <= 0) {
+                            clearInterval(interval);
+                            return;
                         }
+                        remainingSeconds--;
+
+                        const minutes = Math.floor(remainingSeconds / 60);
+                        const seconds = remainingSeconds % 60;
+                        countdown.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                     }, 1000);
-                    Swal.stopTimer(); // Evita cierre automático
+
+                    Swal.stopTimer(); // Así no se cierra automáticamente
                 },
                 focusConfirm: false,
                 preConfirm: () => {
