@@ -79,14 +79,14 @@ document.addEventListener("DOMContentLoaded", () => {
     loginBtn.addEventListener("click", cargarLogin);
     registerBtn.addEventListener("click", cargarRegistro);
 
-    // 5. Envío de formulario
+    // 5. Envío de formulario (login / registro)
     mainForm.addEventListener("submit", async event => {
         event.preventDefault();
 
-        const usuario   = document.getElementById("usuario").value.trim();
-        const contrasena= document.getElementById("contrasena").value.trim();
-        const nombreFld = document.getElementById("Nombre");
-        const nombre    = nombreFld ? nombreFld.value.trim() : "";
+        const usuario    = document.getElementById("usuario").value.trim();
+        const contrasena = document.getElementById("contrasena").value.trim();
+        const nombreFld  = document.getElementById("Nombre");
+        const nombre     = nombreFld ? nombreFld.value.trim() : "";
 
         // Validaciones
         if (!usuario || !contrasena || (!isLoginMode && !nombre)) {
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-// 6. Flujo “Olvidé mi contraseña”
+    // 6. Flujo “Olvidé mi contraseña”
     if (forgotLink) {
         forgotLink.addEventListener("click", async ev => {
             ev.preventDefault();
@@ -153,13 +153,28 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             if (!username) return;
 
-            // Paso 2: solicitar token usando el Username
+            // Paso 2: pedir el correo al que enviar el token
+            const { value: email } = await Swal.fire({
+                title: 'Correo de recuperación',
+                input: 'email',
+                inputLabel: 'Tu correo electrónico',
+                inputPlaceholder: 'ejemplo@dominio.com',
+                inputValidator: value => {
+                    if (!value) return 'Necesitas un correo válido';
+                },
+                showCancelButton: true
+            });
+            if (!email) return;
+
+            // Paso 3: solicitar token usando Username + Email
             try {
-                const r1 = await fetch('https://grammermx.com/IvanTest/ContencionMateriales/mailer/solicitarToken.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams({ Username: username })
-                });
+                const r1 = await fetch(
+                    'https://grammermx.com/IvanTest/ContencionMateriales/mailer/solicitarToken.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams({ Username: username, Email: email })
+                    }
+                );
                 const d1 = await r1.json();
                 if (d1.status !== 'success') {
                     return Swal.fire('Error', d1.message, 'error');
@@ -169,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return Swal.fire('Error de red', 'No se pudo enviar el token', 'error');
             }
 
-            // Paso 3: ingresar token y nueva contraseña
+            // Paso 4: ingresar token y nueva contraseña
             const result = await Swal.fire({
                 title: 'Restablecer contraseña',
                 html:
@@ -189,17 +204,19 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!result.value) return;
             const { token, pwd } = result.value;
 
-            // Paso 4: enviar al backend
+            // Paso 5: enviar al backend para cambiar contraseña
             try {
-                const r2 = await fetch('https://grammermx.com/IvanTest/ContencionMateriales/mailer/cambiarContrasena.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams({
-                        Username: username,
-                        Token: token,
-                        NuevaContrasena: pwd
-                    })
-                });
+                const r2 = await fetch(
+                    'https://grammermx.com/IvanTest/ContencionMateriales/mailer/cambiarContrasena.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams({
+                            Username: username,
+                            Token: token,
+                            NuevaContrasena: pwd
+                        })
+                    }
+                );
                 const d2 = await r2.json();
                 if (d2.status === 'success') {
                     Swal.fire('¡Hecho!', d2.message, 'success');
@@ -211,6 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
     // 7. Mostrar login por defecto
     cargarLogin();
 });
