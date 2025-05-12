@@ -1,156 +1,203 @@
-/* 🎨 Estilo general */
+/* 🌐 Fondo general */
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #f6f8fa 0%, #eaecef 100%);
-    display: flex;
     min-height: 100vh;
-    overflow-x: hidden;
+    background: linear-gradient(135deg, #f0f2f5 0%, #dfe3e8 100%);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    color: #1c1e21;
+    animation: fadeInBody 0.5s ease-out;
 }
 
-/* 📏 Sidebar */
+/* 📘 Sidebar */
 .sidebar {
     width: 240px;
-    background-color: #ffffff;
-    border-right: 1px solid #d1d5da;
-    padding: 20px;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+    background-color: #1e2a38;
+    color: #f0f2f5;
+    padding: 20px 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    animation: slideInLeft 0.6s ease;
 }
 
+/* 👤 Usuario arriba */
 .user-dropdown {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     font-weight: 600;
-    color: #24292e;
-    margin-bottom: 20px;
+    font-size: 1rem;
+    margin-bottom: 30px;
+    animation: fadeInDown 0.5s ease-in;
 }
 
+.user-dropdown i {
+    font-size: 1.1rem;
+}
+
+/* 🧭 Botones del menú */
 .sidebar-btn {
-    background-color: #005bb5;
-    color: white;
+    background: transparent;
+    color: #f0f2f5;
     border: none;
-    padding: 10px 14px;
-    margin-bottom: 12px;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.2s ease;
+    padding: 12px 16px;
     text-align: left;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
     display: flex;
     align-items: center;
     gap: 10px;
-}
-.sidebar-btn:hover {
-    background-color: #004799;
+    animation: fadeInUp 0.5s ease forwards;
 }
 
+.sidebar-btn:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: translateX(4px);
+}
+
+/* 📥 Zona inferior */
 .bottom-actions {
+    margin-top: auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-/* 🧱 Contenido principal */
+/* 🧾 Contenido principal */
 .main-content {
-    flex: 1;
-    padding: 40px;
+    margin-left: 260px;
+    padding: 40px 30px;
+    flex-grow: 1;
+    background-color: #f5f6f8;
+    min-height: 100vh;
+    animation: fadeInMain 0.7s ease;
 }
 
 .main-content h1 {
     font-size: 1.8rem;
-    color: #24292e;
     margin-bottom: 30px;
+    color: #1e2a38;
+    animation: fadeInDown 0.6s ease-in-out;
 }
 
-/* 📝 Formulario */
+/* 📋 Formulario */
 .data-form {
-    max-width: 600px;
-    background: #ffffff;
-    border: 1px solid #e1e4e8;
-    border-radius: 8px;
+    background-color: #ffffff;
     padding: 24px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    animation: fadeInUp 0.7s ease;
 }
 
 .form-group {
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
+    animation: fadeIn 0.5s ease;
 }
 
 .form-group label {
+    font-size: 0.9rem;
     margin-bottom: 6px;
-    font-weight: 600;
-    color: #24292e;
+    color: #333;
 }
 
 .form-group input {
     padding: 10px;
-    border: 1px solid #d1d5da;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.2s;
-}
-
-.form-group input:focus {
-    border-color: #005bb5;
-    outline: none;
-}
-
-.form-button {
-    padding: 10px 14px;
-    background-color: #005bb5;
-    color: white;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 6px;
-    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* 🧩 Botones secundarios */
+.form-button {
+    background-color: #1e6cd1;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
     cursor: pointer;
-    transition: background-color 0.2s;
+    width: fit-content;
+    transition: background 0.2s, transform 0.2s;
 }
+
 .form-button:hover {
-    background-color: #004799;
+    background-color: #1558b0;
+    transform: scale(1.03);
 }
 
-.confirm {
-    text-align: right;
-}
-
+/* ✅ Botón confirmar */
 .confirm-button {
-    padding: 10px 20px;
-    background-color: #238636;
+    width: 100%;
+    padding: 12px;
+    background-color: #2ea043;
     color: white;
     border: none;
     border-radius: 6px;
     font-weight: bold;
+    font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.2s;
-}
-.confirm-button:hover {
-    background-color: #2ea043;
+    transition: background 0.2s, transform 0.2s;
 }
 
-/* 📱 Responsivo */
+.confirm-button:hover {
+    background-color: #238636;
+    transform: translateY(-1px);
+}
+
+/* 📱 Responsive */
 @media (max-width: 768px) {
-    body {
-        flex-direction: column;
-    }
     .sidebar {
+        position: relative;
         width: 100%;
         flex-direction: row;
-        flex-wrap: wrap;
-        padding: 12px;
+        overflow-x: auto;
+        height: auto;
     }
+
     .main-content {
+        margin-left: 0;
         padding: 20px;
     }
-    .sidebar-btn {
-        flex: 1 1 45%;
-        margin: 5px;
+
+    .data-form {
+        padding: 16px;
     }
+}
+
+/* === ✨ Animaciones === */
+@keyframes fadeInBody {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInMain {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+    0% { opacity: 0; transform: translateX(-50px); }
+    100% { opacity: 1; transform: translateX(0); }
 }
