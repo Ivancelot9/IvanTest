@@ -2,7 +2,8 @@
 // dao/enviarCorreoRecuperacion.php
 
 session_start();
-include_once("../dao/conexionContencion.php");
+// 2) Incluye tu conector usando ruta absoluta
+require __DIR__ . '/../dao/conexionContencion.php';
 
 // Incluir PHPMailer
 require 'Phpmailer/Exception.php';
