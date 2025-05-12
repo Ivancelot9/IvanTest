@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Olvide Contrasena">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/mailer/solicitarToken.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/mailer/solicitarToken.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -182,15 +183,7 @@
       <workItem from="1746627653602" duration="8996000" />
       <workItem from="1746713849609" duration="8021000" />
       <workItem from="1746800542525" duration="16131000" />
-      <workItem from="1747059421691" duration="5818000" />
-    </task>
-    <task id="LOCAL-01201" summary="Login Contencion">
-      <option name="closed" value="true" />
-      <created>1746479067166</created>
-      <option name="number" value="01201" />
-      <option name="presentableId" value="LOCAL-01201" />
-      <option name="project" value="LOCAL" />
-      <updated>1746479067166</updated>
+      <workItem from="1747059421691" duration="6260000" />
     </task>
     <task id="LOCAL-01202" summary="Login Contencion">
       <option name="closed" value="true" />
@@ -576,7 +569,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747065242938</updated>
     </task>
-    <option name="localTasksCounter" value="1250" />
+    <task id="LOCAL-01250" summary="Olvide Contrasena">
+      <option name="closed" value="true" />
+      <created>1747065600728</created>
+      <option name="number" value="01250" />
+      <option name="presentableId" value="LOCAL-01250" />
+      <option name="project" value="LOCAL" />
+      <updated>1747065600728</updated>
+    </task>
+    <option name="localTasksCounter" value="1251" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

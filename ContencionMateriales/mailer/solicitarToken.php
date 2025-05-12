@@ -1,45 +1,47 @@
 <?php
 // mailer/solicitarToken.php
 
-// 1) Mostrar errores para que no sea un 500 “genérico”
+// 1) Mostrar errores para no obtener solo un 500 genérico
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 header('Content-Type: application/json; charset=UTF-8');
 
-// 2) Incluye tu conector usando rutas absolutas
+// 2) Incluye tu conector usando ruta absoluta
 require __DIR__ . '/../dao/conexionContencion.php';
 
 try {
-    // 3) Verifica método y parámetro
+    // 3) Verifica método y parámetros
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         throw new Exception('Método no permitido, debe ser POST.');
     }
     if (empty($_POST['Username'])) {
         throw new Exception('Falta Username.');
     }
-    $username = trim($_POST['Username']);
+    if (empty($_POST['Email']) || !filter_var($_POST['Email'], FILTER_VALIDATE_EMAIL)) {
+        throw new Exception('Email inválido o no enviado.');
+    }
 
-    // 4) Conexión y búsqueda de usuario
+    $username     = trim($_POST['Username']);
+    $emailDestino = trim($_POST['Email']);
+
+    // 4) Conexión y búsqueda de IdUsuario (ya sin columna Correo)
     $con = (new LocalConector())->conectar();
-    $stmt = $con->prepare("SELECT IdUsuario, Correo FROM Usuario WHERE Username = ?");
+    $stmt = $con->prepare("SELECT IdUsuario FROM Usuario WHERE Username = ?");
     if (!$stmt) {
         throw new Exception('Error al preparar SELECT: ' . $con->error);
     }
     $stmt->bind_param("s", $username);
     $stmt->execute();
-    $stmt->bind_result($idUsuario, $correo);
+    $stmt->bind_result($idUsuario);
     if (!$stmt->fetch()) {
-        throw new Exception('Usuario “' . $username . '” no existe.');
+        // aquí escapamos las comillas adecuadamente
+        throw new Exception("Usuario \"$username\" no existe.");
     }
     $stmt->close();
 
-    if (empty($correo)) {
-        throw new Exception('El usuario no tiene correo asociado.');
-    }
-
-    // 5) Genera e inserta token
+    // 5) Generar e insertar token
     $token  = bin2hex(random_bytes(16));
     $expira = date('Y-m-d H:i:s', time() + 3600);
     $ins = $con->prepare(
@@ -55,25 +57,25 @@ try {
     }
     $ins->close();
 
-    // 6) Llama al endpoint de envío de correo usando cURL
+    // 6) Envío de correo al endpoint de mailer, usando $emailDestino
     $postData = http_build_query([
-        'correo'  => $correo,
+        'correo'  => $emailDestino,
         'asunto'  => 'Recuperación de contraseña',
         'mensaje' => "<p>Hola <strong>$username</strong>, tu token es: <strong>$token</strong> (expira en 1 h).</p>"
     ]);
+
     $ch = curl_init('https://grammermx.com/IvanTest/ContencionMateriales/mailer/enviarCorreoRecuperacion.php');
     curl_setopt_array($ch, [
         CURLOPT_POST           => true,
         CURLOPT_POSTFIELDS     => $postData,
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_CONNECTTIMEOUT => 10,
-        CURLOPT_TIMEOUT        => 20,
     ]);
     $result = curl_exec($ch);
     if ($err = curl_error($ch)) {
         throw new Exception('cURL: ' . $err);
     }
     curl_close($ch);
+
     $resp = json_decode($result, true);
     if (!isset($resp['status'])) {
         throw new Exception('Respuesta inválida del mailer: ' . $result);
@@ -82,7 +84,7 @@ try {
         throw new Exception('Mailer error: ' . $resp['message']);
     }
 
-    // 7) Todo OK
+    // 7) Éxito
     echo json_encode([
         'status'  => 'success',
         'message' => 'Token enviado al correo.'
