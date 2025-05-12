@@ -5,9 +5,9 @@ session_start();
 include_once("conexionContencion.php");
 
 // Incluir PHPMailer
-require 'Phpmailer/Exception.php';
-require 'Phpmailer/PHPMailer.php';
-require 'Phpmailer/SMTP.php';
+require '/Phpmailer/Exception.php';
+require '/Phpmailer/PHPMailer.php';
+require '/Phpmailer/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -38,11 +38,11 @@ try {
     $mail->Port       = 465;
 
     // Remitente
-    $mail->setFrom('contencion_Materiales@grammermx.com', 'Sistema Contención Materiales Grammer');
+    $mail->setFrom('contencion_materiales@grammermx.com', 'Sistema Contención Materiales Grammer');
 
     // Destinatarios
     $mail->addAddress($correoDestino);
-    $mail->addBCC('contencion_Materiales@grammermx.com');
+    $mail->addBCC('contencion_materiales@grammermx.com');
     $mail->addBCC('Ivan.Medina@grammer.com'); // Opcional, puedes cambiarlo
 
     // Contenido
