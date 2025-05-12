@@ -1,19 +1,20 @@
-// js/inicioSesionContencion.js
 /**
  * Script para gestionar:
- * - Login / Registro
- * - Olvidé mi contraseña (SweetAlert2)
+ * - Login y Registro de usuarios
+ * - Recuperación de contraseña con envío de token por correo
+ * - Interacciones con SweetAlert2 para formularios dinámicos
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Asegurar tab_id único por pestaña
+
+    // 1. Asigna un ID único a cada pestaña del navegador (persistente mientras dure la sesión)
     let tab_id = sessionStorage.getItem("tab_id");
     if (!tab_id) {
         tab_id = crypto.randomUUID();
         sessionStorage.setItem("tab_id", tab_id);
     }
 
-    // 2. Referencias DOM
+    // 2. Referencias del DOM para los botones y contenedores
     const loginBtn      = document.getElementById("loginBtn");
     const registerBtn   = document.getElementById("registerBtn");
     const dynamicFields = document.getElementById("dynamicFields");
@@ -21,7 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const forgotLink    = document.querySelector(".link-secondary");
     let isLoginMode     = true;
 
-    // 3. Toggle de contraseña
+    /**
+     * 3. Activa el toggle visual para mostrar u ocultar contraseña
+     */
     function activarTogglePassword() {
         const pwdInput = document.getElementById("contrasena");
         const toggle   = document.getElementById("togglePassword");
@@ -35,51 +38,59 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 4. Montar formularios
+    /**
+     * 4. Construye el formulario de login dinámicamente
+     */
     function cargarLogin() {
         isLoginMode = true;
         loginBtn.classList.add("active");
         registerBtn.classList.remove("active");
         dynamicFields.innerHTML = `
-      <div class="input-group">
-        <i class="fa-solid fa-user"></i>
-        <input type="text" id="usuario" placeholder="Usuario" required>
-      </div>
-      <div class="input-group">
-        <i class="fa-solid fa-lock"></i>
-        <input type="password" id="contrasena" placeholder="Contraseña" required>
-        <i class="fa-solid fa-eye-slash" id="togglePassword"></i>
-      </div>`;
+            <div class="input-group">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="usuario" placeholder="Usuario" required>
+            </div>
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="contrasena" placeholder="Contraseña" required>
+                <i class="fa-solid fa-eye-slash" id="togglePassword"></i>
+            </div>`;
         mainForm.querySelector(".submit-btn").textContent = "Entrar";
         activarTogglePassword();
     }
 
+    /**
+     * Construye el formulario de registro dinámicamente
+     */
     function cargarRegistro() {
         isLoginMode = false;
         registerBtn.classList.add("active");
         loginBtn.classList.remove("active");
         dynamicFields.innerHTML = `
-      <div class="input-group">
-        <i class="fa-solid fa-user"></i>
-        <input type="text" id="usuario" placeholder="Usuario" required>
-      </div>
-      <div class="input-group">
-        <i class="fa-solid fa-id-badge"></i>
-        <input type="text" id="Nombre" placeholder="Nombre completo" required>
-      </div>
-      <div class="input-group">
-        <i class="fa-solid fa-lock"></i>
-        <input type="password" id="contrasena" placeholder="Contraseña" required>
-        <i class="fa-solid fa-eye-slash" id="togglePassword"></i>
-      </div>`;
+            <div class="input-group">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="usuario" placeholder="Usuario" required>
+            </div>
+            <div class="input-group">
+                <i class="fa-solid fa-id-badge"></i>
+                <input type="text" id="Nombre" placeholder="Nombre completo" required>
+            </div>
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="contrasena" placeholder="Contraseña" required>
+                <i class="fa-solid fa-eye-slash" id="togglePassword"></i>
+            </div>`;
         mainForm.querySelector(".submit-btn").textContent = "Registrar";
         activarTogglePassword();
     }
 
+    // 5. Botones de navegación entre formularios
     loginBtn.addEventListener("click", cargarLogin);
     registerBtn.addEventListener("click", cargarRegistro);
 
-    // 5. Envío de formulario (login / registro)
+    /**
+     * 6. Envío del formulario de login o registro
+     */
     mainForm.addEventListener("submit", async event => {
         event.preventDefault();
 
@@ -88,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const nombreFld  = document.getElementById("Nombre");
         const nombre     = nombreFld ? nombreFld.value.trim() : "";
 
-        // Validaciones
+        // Validaciones de campos
         if (!usuario || !contrasena || (!isLoginMode && !nombre)) {
             await Swal.fire("Campos incompletos", "Completa todos los campos obligatorios.", "warning");
             return;
@@ -102,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // Preparar fetch
+        // Preparar envío
         const formData = new FormData();
         formData.append("Username", usuario);
         formData.append("Contrasena", contrasena);
@@ -138,12 +149,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 6. Flujo “Olvidé mi contraseña”
+    /**
+     * 7. Flujo para recuperar contraseña
+     */
     if (forgotLink) {
         forgotLink.addEventListener("click", async ev => {
             ev.preventDefault();
 
-            // Paso 1: pedir SOLO el usuario
+            // Paso 1: solicitar usuario
             const { value: username } = await Swal.fire({
                 title: 'Recuperar contraseña',
                 input: 'text',
@@ -153,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             if (!username) return;
 
-            // Paso 2: pedir el correo al que enviar el token
+            // Paso 2: solicitar correo
             const { value: email } = await Swal.fire({
                 title: 'Correo de recuperación',
                 input: 'email',
@@ -166,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             if (!email) return;
 
-            // Paso 3: solicitar token usando Username + Email
+            // Paso 3: solicitar token al servidor
             try {
                 const r1 = await fetch(
                     'https://grammermx.com/IvanTest/ContencionMateriales/dao/solicitarToken.php', {
@@ -181,12 +194,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     await Swal.fire('Error', d1.message, 'error');
                     return;
                 }
+
                 await Swal.fire('Token enviado', d1.message, 'success');
             } catch {
                 return Swal.fire('Error de red', 'No se pudo enviar el token', 'error');
             }
 
-            const timerInterval = 600; // segundos
+            // Paso 4: Mostrar formulario para ingresar token + nueva contraseña con temporizador
+            const timerInterval = 600; // 10 minutos
             let remainingSeconds = timerInterval;
 
             const result = await Swal.fire({
@@ -199,20 +214,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 timerProgressBar: true,
                 didOpen: () => {
                     const countdown = Swal.getPopup().querySelector('#countdown');
-
                     const interval = setInterval(() => {
                         if (remainingSeconds <= 0) {
                             clearInterval(interval);
                             return;
                         }
                         remainingSeconds--;
-
                         const minutes = Math.floor(remainingSeconds / 60);
                         const seconds = remainingSeconds % 60;
                         countdown.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                     }, 1000);
-
-                    Swal.stopTimer(); // Así no se cierra automáticamente
+                    Swal.stopTimer(); // No cerrar automáticamente
                 },
                 focusConfirm: false,
                 preConfirm: () => {
@@ -228,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!result.value) return;
             const { token, pwd } = result.value;
 
-            // Paso 5: enviar al backend para cambiar contraseña
+            // Paso 5: Enviar token y contraseña al backend
             try {
                 const r2 = await fetch(
                     'https://grammermx.com/IvanTest/ContencionMateriales/dao/cambiarContrasena.php', {
@@ -253,6 +265,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 7. Mostrar login por defecto
+    // 8. Cargar por defecto el login al abrir
     cargarLogin();
 });
