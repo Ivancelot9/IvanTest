@@ -5,9 +5,9 @@ session_start();
 include_once("conexionContencion.php");
 
 // Incluir PHPMailer
-require '../Phpmailer/Exception.php';
-require '../Phpmailer/PHPMailer.php';
-require '../Phpmailer/SMTP.php';
+require 'Phpmailer/Exception.php';
+require 'Phpmailer/PHPMailer.php';
+require 'Phpmailer/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
