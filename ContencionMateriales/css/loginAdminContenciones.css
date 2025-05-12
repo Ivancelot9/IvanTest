@@ -4,13 +4,15 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     background: linear-gradient(135deg, #f6f8fa 0%, #eaecef 100%);
     font-family: 'Segoe UI', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    overflow-x: hidden;
 }
 
 /* 📏 Rayas azules laterales (z-index 2) */
