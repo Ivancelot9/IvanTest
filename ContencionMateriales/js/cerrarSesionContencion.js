@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const tab_id = sessionStorage.getItem("tab_id");
             if (!tab_id) return window.location.href = "login.php";
 
-            fetch(`dao/cerrarSesionContencion.php?tab_id=${tab_id}`)
+            fetch(`https://grammermx.com/IvanTest/ContencionMateriales/cerrarSesionContencion.php?tab_id=${tab_id}`)
                 .then(() => {
                     sessionStorage.removeItem("tab_id");
                     window.location.href = "login.php";
