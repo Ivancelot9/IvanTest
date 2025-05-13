@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Navegacion entre botones" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Navegacion entre botones">
+      <change afterPath="$PROJECT_DIR$/ContencionMateriales/dao/cerrarSesionContencion.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ContencionMateriales/js/cerrarSesionContencion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,8 +22,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -181,15 +186,7 @@
       <workItem from="1746713849609" duration="8021000" />
       <workItem from="1746800542525" duration="16131000" />
       <workItem from="1747059421691" duration="18877000" />
-      <workItem from="1747145834744" duration="4973000" />
-    </task>
-    <task id="LOCAL-01222" summary="Login Contencion">
-      <option name="closed" value="true" />
-      <created>1746558716374</created>
-      <option name="number" value="01222" />
-      <option name="presentableId" value="LOCAL-01222" />
-      <option name="project" value="LOCAL" />
-      <updated>1746558716374</updated>
+      <workItem from="1747145834744" duration="8853000" />
     </task>
     <task id="LOCAL-01223" summary="Login Contencion">
       <option name="closed" value="true" />
@@ -575,7 +572,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747152825308</updated>
     </task>
-    <option name="localTasksCounter" value="1271" />
+    <task id="LOCAL-01271" summary="Navegacion entre botones">
+      <option name="closed" value="true" />
+      <created>1747153085929</created>
+      <option name="number" value="01271" />
+      <option name="presentableId" value="LOCAL-01271" />
+      <option name="project" value="LOCAL" />
+      <updated>1747153085930</updated>
+    </task>
+    <option name="localTasksCounter" value="1272" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

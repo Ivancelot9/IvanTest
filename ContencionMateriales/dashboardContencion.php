@@ -101,5 +101,7 @@
 
 <script src="js/perfilUsuario.js" defer></script>
 <script src="js/navegacionDashboard.js" defer></script>
+<script src="js/cerrarSesionContencion.js" defer></script>
+
 </body>
 </html>
