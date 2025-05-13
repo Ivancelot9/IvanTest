@@ -10,10 +10,20 @@
 <body>
 
 <div class="sidebar">
-    <div class="user-dropdown">
-        <i class="fa-solid fa-user"></i>
-        <span>Óscar</span>
+    <div class="user-dropdown" id="userDropdownToggle">
+        <img src="imagenes/avatar_default.png" alt="Avatar" class="avatar-icon">
+        <span id="usernameLabel">Óscar</span>
         <i class="fa-solid fa-caret-down"></i>
+
+        <div class="user-dropdown-panel" id="userDropdownPanel">
+            <div class="user-info">
+                <img src="imagenes/avatar_default.png" alt="Avatar" class="avatar-large">
+                <div class="user-text">
+                    <strong>Óscar</strong>
+                    <p class="username">@ivancelot9</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <button class="sidebar-btn">
@@ -31,6 +41,7 @@
         <button class="sidebar-btn">Cerrar Sesión</button>
     </div>
 </div>
+
 
 <main class="main-content">
     <h1><strong>DATOS</strong></h1>
