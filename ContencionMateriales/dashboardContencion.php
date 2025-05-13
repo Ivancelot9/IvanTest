@@ -1,20 +1,18 @@
 <?php
 session_start();
 
-// Validar que venga el tab_id por GET
 if (!isset($_GET['tab_id'])) {
     session_destroy();
     echo "<META HTTP-EQUIV='REFRESH' CONTENT='1; URL=login.php'>";
     exit;
 }
-
 $tab_id = $_GET['tab_id'];
 
-// Verificar que exista una sesión válida para ese tab_id
+// Ahora comprobamos solo lo que sí guardas:
 if (
     !isset($_SESSION['usuariosPorPestana'][$tab_id]) ||
     empty($_SESSION['usuariosPorPestana'][$tab_id]['Username']) ||
-    empty($_SESSION['usuariosPorPestana'][$tab_id]['Contrasena'])
+    empty($_SESSION['usuariosPorPestana'][$tab_id]['Conectado'])
 ) {
     session_destroy();
     echo "<META HTTP-EQUIV='REFRESH' CONTENT='1; URL=login.php'>";
@@ -23,8 +21,9 @@ if (
 
 $usuarioActual = $_SESSION['usuariosPorPestana'][$tab_id];
 $username = htmlspecialchars($usuarioActual['Username']);
-$nombre = htmlspecialchars($usuarioActual['Nombre']);
+$nombre   = htmlspecialchars($usuarioActual['Nombre']);
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
