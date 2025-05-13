@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard Contención</title>
     <link rel="stylesheet" href="css/dashboardContencion.css" />
+    <link rel="stylesheet" href="css/perfilUsuario.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
@@ -73,6 +74,25 @@
     </form>
 </main>
 
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const toggle = document.getElementById('userDropdownToggle');
+        const panel = document.getElementById('userDropdownPanel');
+
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!toggle.contains(e.target)) {
+                panel.style.display = 'none';
+            }
+        });
+    });
+</script>
 </body>
+
 </html>
 
