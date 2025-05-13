@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!tab_id) return;
 
         try {
-            await fetch(`dao/cerrarSesionContencion.php?tab_id=${tab_id}`);
+            await fetch(`https://grammermx.com/IvanTest/ContencionMateriales/dao/cerrarSesionContencion.php?tab_id=${tab_id}`);
             // Redirigir a login.php
             window.location.href = "login.php";
         } catch (err) {
