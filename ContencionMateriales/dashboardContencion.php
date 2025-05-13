@@ -1,4 +1,30 @@
-<!-- dashboardContencion.html -->
+<?php
+session_start();
+
+// Validar que venga el tab_id por GET
+if (!isset($_GET['tab_id'])) {
+    session_destroy();
+    echo "<META HTTP-EQUIV='REFRESH' CONTENT='1; URL=login.php'>";
+    exit;
+}
+
+$tab_id = $_GET['tab_id'];
+
+// Verificar que exista una sesión válida para ese tab_id
+if (
+    !isset($_SESSION['usuariosPorPestana'][$tab_id]) ||
+    empty($_SESSION['usuariosPorPestana'][$tab_id]['Username']) ||
+    empty($_SESSION['usuariosPorPestana'][$tab_id]['Contrasena'])
+) {
+    session_destroy();
+    echo "<META HTTP-EQUIV='REFRESH' CONTENT='1; URL=login.php'>";
+    exit;
+}
+
+$usuarioActual = $_SESSION['usuariosPorPestana'][$tab_id];
+$username = htmlspecialchars($usuarioActual['Username']);
+$nombre = htmlspecialchars($usuarioActual['Nombre']);
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,21 +34,20 @@
     <link rel="stylesheet" href="css/dashboardContencion.css" />
     <link rel="stylesheet" href="css/perfilUsuario.css" />
     <link rel="stylesheet" href="css/tablaCasos.css" />
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-<body>
+<body data-tab-id="<?php echo htmlspecialchars($tab_id); ?>">
 <div class="sidebar">
     <div class="user-dropdown" id="userDropdownToggle">
         <img src="imagenes/avatar_default.png" alt="Avatar" class="avatar-icon">
-        <span id="usernameLabel">Óscar</span>
+        <span id="usernameLabel"><?php echo $nombre; ?></span>
         <i class="fa-solid fa-caret-down"></i>
         <div class="user-dropdown-panel" id="userDropdownPanel">
             <div class="user-info">
                 <img src="imagenes/avatar_default.png" alt="Avatar" class="avatar-large">
                 <div class="user-text">
-                    <strong>Óscar</strong>
-                    <p class="username">@ivancelot9</p>
+                    <strong><?php echo $nombre; ?></strong>
+                    <p class="username">@<?php echo $username; ?></p>
                 </div>
             </div>
         </div>
@@ -40,7 +65,7 @@
 
     <div class="bottom-actions">
         <button class="sidebar-btn" data-section="admin">Administrador</button>
-        <button class="sidebar-btn">Cerrar Sesión</button>
+        <button class="sidebar-btn" id="btn-cerrar-sesion">Cerrar Sesión</button>
     </div>
 </div>
 
@@ -102,6 +127,5 @@
 <script src="js/perfilUsuario.js" defer></script>
 <script src="js/navegacionDashboard.js" defer></script>
 <script src="js/cerrarSesionContencion.js" defer></script>
-
 </body>
 </html>

@@ -1,31 +1,29 @@
+/**
+ * Script para cerrar sesión de forma segura usando el tab_id
+ * Requiere un botón con id "btn-cerrar-sesion"
+ * y el atributo data-tab-id en el <body>.
+ */
+
 document.addEventListener("DOMContentLoaded", () => {
-    const tab_id = sessionStorage.getItem("tab_id");
-    if (!tab_id) return;
+    const cerrarSesionBtn = document.getElementById("btn-cerrar-sesion");
+    const tab_id = document.body.getAttribute("data-tab-id");
 
-    // Buscar el botón que diga "Cerrar Sesión"
-    const botones = document.querySelectorAll(".sidebar-btn");
-    let cerrarSesionBtn = null;
-
-    botones.forEach(btn => {
-        if (btn.textContent.trim().toLowerCase().includes("cerrar sesión")) {
-            cerrarSesionBtn = btn;
-        }
-    });
-
-    if (!cerrarSesionBtn) return;
+    if (!cerrarSesionBtn || !tab_id) return;
 
     cerrarSesionBtn.addEventListener("click", async () => {
         try {
             const response = await fetch(
-                `https://grammermx.com/IvanTest/ContencionMateriales/dao/cerrarSesionContencion.php?tab_id=${tab_id}`
+                `https://grammermx.com/IvanTest/ContencionMateriales/dao/cerrarSesionContencion.php?tab_id=${encodeURIComponent(tab_id)}`
             );
 
-            if (!response.ok) throw new Error("Error en la solicitud");
-
-            window.location.href = "login.php";
+            if (response.ok) {
+                window.location.href = "login.php";
+            } else {
+                throw new Error("No se pudo cerrar sesión");
+            }
         } catch (err) {
             console.error("Error al cerrar sesión:", err);
-            alert("Hubo un problema al cerrar sesión. Intenta de nuevo.");
+            alert("No se pudo cerrar sesión. Inténtalo de nuevo.");
         }
     });
 });
