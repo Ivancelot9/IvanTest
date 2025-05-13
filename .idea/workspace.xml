@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Perfil Usuario">
-      <change afterPath="$PROJECT_DIR$/ContencionMateriales/css/tablaCasos.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ContencionMateriales/js/navegacionDashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Navegacion entre botones" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -186,15 +181,7 @@
       <workItem from="1746713849609" duration="8021000" />
       <workItem from="1746800542525" duration="16131000" />
       <workItem from="1747059421691" duration="18877000" />
-      <workItem from="1747145834744" duration="4693000" />
-    </task>
-    <task id="LOCAL-01221" summary="Login Contencion">
-      <option name="closed" value="true" />
-      <created>1746558584140</created>
-      <option name="number" value="01221" />
-      <option name="presentableId" value="LOCAL-01221" />
-      <option name="project" value="LOCAL" />
-      <updated>1746558584141</updated>
+      <workItem from="1747145834744" duration="4973000" />
     </task>
     <task id="LOCAL-01222" summary="Login Contencion">
       <option name="closed" value="true" />
@@ -580,7 +567,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747149293420</updated>
     </task>
-    <option name="localTasksCounter" value="1270" />
+    <task id="LOCAL-01270" summary="Navegacion entre botones">
+      <option name="closed" value="true" />
+      <created>1747152825308</created>
+      <option name="number" value="01270" />
+      <option name="presentableId" value="LOCAL-01270" />
+      <option name="project" value="LOCAL" />
+      <updated>1747152825308</updated>
+    </task>
+    <option name="localTasksCounter" value="1271" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -632,7 +627,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Documentar Proyecto (Logica Dashboard)" />
     <MESSAGE value="Documentar Proyecto (Modificar Datos Personales)" />
     <MESSAGE value="Documentar Proyecto (Pestanas Reporte)" />
     <MESSAGE value="Documentar Proyecto (Tablas Reportes)" />
@@ -657,7 +651,8 @@
     <MESSAGE value="Olvide Contrasena" />
     <MESSAGE value="Dashboard" />
     <MESSAGE value="Perfil Usuario" />
-    <option name="LAST_COMMIT_MESSAGE" value="Perfil Usuario" />
+    <MESSAGE value="Navegacion entre botones" />
+    <option name="LAST_COMMIT_MESSAGE" value="Navegacion entre botones" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

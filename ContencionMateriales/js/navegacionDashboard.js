@@ -7,29 +7,31 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-    const btnLevantar = document.querySelectorAll(".sidebar-btn")[0];
-    const btnMisCasos = document.querySelectorAll(".sidebar-btn")[1];
-    const btnAdmin    = document.querySelectorAll(".sidebar-btn")[2];
-
-    const seccionLevantar = document.getElementById("seccion-levantar");
-    const seccionMisCasos = document.getElementById("seccion-mis-casos");
-    const seccionAdmin    = document.getElementById("seccion-admin");
+    const btns = document.querySelectorAll(".sidebar-btn[data-section]");
+    const secciones = {
+        formulario: document.getElementById("formulario"),
+        historial: document.getElementById("historial"),
+        admin: document.getElementById("admin")
+    };
 
     /**
      * Muestra solo una sección y oculta las demás.
-     * @param {HTMLElement} seccionAMostrar
+     * @param {string} id
      */
-    function mostrarSolo(seccionAMostrar) {
-        [seccionLevantar, seccionMisCasos, seccionAdmin].forEach(seccion => {
-            seccion.style.display = (seccion === seccionAMostrar) ? "block" : "none";
+    function mostrarSolo(id) {
+        Object.entries(secciones).forEach(([clave, elemento]) => {
+            if (elemento) {
+                elemento.style.display = (clave === id) ? "block" : "none";
+            }
         });
     }
 
-    // Eventos de navegación
-    btnLevantar.addEventListener("click", () => mostrarSolo(seccionLevantar));
-    btnMisCasos.addEventListener("click", () => mostrarSolo(seccionMisCasos));
-    btnAdmin.addEventListener("click", () => mostrarSolo(seccionAdmin));
+    // Asignar evento a cada botón con data-section
+    btns.forEach(btn => {
+        const destino = btn.dataset.section;
+        btn.addEventListener("click", () => mostrarSolo(destino));
+    });
 
-    // Mostrar por defecto la sección "Levantar"
-    mostrarSolo(seccionLevantar);
+    // Mostrar por defecto la sección "Levantar nuevo caso"
+    mostrarSolo("formulario");
 });
