@@ -20,6 +20,11 @@ if (
 }
 
 $usuarioActual = $_SESSION['usuariosPorPestana'][$tab_id];
+echo "<pre>";
+var_dump($usuarioActual);
+echo "</pre>";
+exit;
+
 $rol = $usuarioActual['Rol'] ?? 1;
 $username = htmlspecialchars($usuarioActual['Username']);
 $nombre   = htmlspecialchars($usuarioActual['Nombre']);

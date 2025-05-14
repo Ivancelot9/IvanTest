@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Diderenciar entre roles">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,15 +184,7 @@
       <workItem from="1746800542525" duration="16131000" />
       <workItem from="1747059421691" duration="18877000" />
       <workItem from="1747145834744" duration="13512000" />
-      <workItem from="1747232804383" duration="9742000" />
-    </task>
-    <task id="LOCAL-01234" summary="Olvide Contrasena">
-      <option name="closed" value="true" />
-      <created>1746805222970</created>
-      <option name="number" value="01234" />
-      <option name="presentableId" value="LOCAL-01234" />
-      <option name="project" value="LOCAL" />
-      <updated>1746805222970</updated>
+      <workItem from="1747232804383" duration="10217000" />
     </task>
     <task id="LOCAL-01235" summary="Olvide Contrasena">
       <option name="closed" value="true" />
@@ -579,7 +570,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747244593124</updated>
     </task>
-    <option name="localTasksCounter" value="1283" />
+    <task id="LOCAL-01283" summary="Diderenciar entre roles">
+      <option name="closed" value="true" />
+      <created>1747247516101</created>
+      <option name="number" value="01283" />
+      <option name="presentableId" value="LOCAL-01283" />
+      <option name="project" value="LOCAL" />
+      <updated>1747247516101</updated>
+    </task>
+    <option name="localTasksCounter" value="1284" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
