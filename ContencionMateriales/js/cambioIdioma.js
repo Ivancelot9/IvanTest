@@ -1,38 +1,41 @@
 document.addEventListener("DOMContentLoaded", () => {
     const languageBtn = document.getElementById("btn-language-toggle");
-    let currentLang = "es"; // Valor por defecto
+
+    let currentLang = localStorage.getItem("lang") || "es";
+    applyLanguage(currentLang);
 
     languageBtn.addEventListener("click", () => {
         currentLang = currentLang === "es" ? "en" : "es";
-        cambiarIdioma(currentLang);
+        localStorage.setItem("lang", currentLang);
+        applyLanguage(currentLang);
     });
 
-    function cambiarIdioma(lang) {
-        const traducciones = {
+    function applyLanguage(lang) {
+        const translations = {
             "es": {
-                "DATOS": "DATOS",
-                "Responsable": "Responsable",
-                "Selecciona un responsable": "Selecciona un responsable",
-                "No. Parte": "No. Parte",
-                "Cantidad": "Cantidad",
-                "Descripción": "Descripción",
-                "Descripción del caso": "Descripción del caso",
-                "Terciaria": "Terciaria",
-                "Selecciona opción": "Selecciona opción",
-                "Proveedor": "Proveedor",
-                "Selecciona proveedor": "Selecciona proveedor",
+                "DATA": "DATOS",
+                "Responsible": "Responsable",
+                "Select a responsible": "Selecciona un responsable",
+                "Part No.": "No. Parte",
+                "Quantity": "Cantidad",
+                "Description": "Descripción",
+                "Case description": "Descripción del caso",
+                "Tertiary": "Terciaria",
+                "Select option": "Selecciona opción",
+                "Supplier": "Proveedor",
+                "Select supplier": "Selecciona proveedor",
                 "Commodity": "Commodity",
-                "Selecciona commodity": "Selecciona commodity",
-                "Defectos": "Defectos",
-                "Selecciona defecto": "Selecciona defecto",
-                "Fotos/Evidencia": "Fotos/Evidencia",
-                "Agregar Fotos": "Agregar Fotos",
-                "Confirmar": "Confirmar",
-                "Mis Casos": "Mis Casos",
-                "Folio": "Folio",
-                "Fecha Registro": "Fecha Registro",
-                "Mostrar descripción": "Mostrar descripción",
-                "Administrador": "Administrador"
+                "Select commodity": "Selecciona commodity",
+                "Defects": "Defectos",
+                "Select defect": "Selecciona defecto",
+                "Photos/Evidence": "Fotos/Evidencia",
+                "Add Photos": "Agregar Fotos",
+                "Submit": "Confirmar",
+                "My Cases": "Mis Casos",
+                "Case No.": "Folio",
+                "Date": "Fecha Registro",
+                "Show description": "Mostrar descripción",
+                "Admin": "Administrador"
             },
             "en": {
                 "DATOS": "DATA",
@@ -61,17 +64,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         };
 
-        document.querySelectorAll("label, h1, button, option, th").forEach(el => {
-            const original = el.textContent.trim();
-            const newText = traducciones[lang][original];
-            if (newText) el.textContent = newText;
+        const dict = translations[lang];
+
+        document.querySelectorAll("label, h1, button, option, th, strong, p").forEach(el => {
+            const text = el.textContent.trim();
+            if (dict[text]) {
+                el.textContent = dict[text];
+            }
         });
 
-        // También cambiar el placeholder si aplica
         document.querySelectorAll("input, textarea").forEach(el => {
-            const ph = el.getAttribute("placeholder");
-            if (ph && traducciones[lang][ph]) {
-                el.setAttribute("placeholder", traducciones[lang][ph]);
+            const placeholder = el.getAttribute("placeholder");
+            if (placeholder && dict[placeholder]) {
+                el.setAttribute("placeholder", dict[placeholder]);
             }
         });
     }

@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Diderenciar entre roles">
-      <change afterPath="$PROJECT_DIR$/ContencionMateriales/js/cambioIdioma.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/dashboardContencion.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/dashboardContencion.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Cambio de Idioma" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -187,15 +182,7 @@
       <workItem from="1746800542525" duration="16131000" />
       <workItem from="1747059421691" duration="18877000" />
       <workItem from="1747145834744" duration="13512000" />
-      <workItem from="1747232804383" duration="14836000" />
-    </task>
-    <task id="LOCAL-01245" summary="Olvide Contrasena">
-      <option name="closed" value="true" />
-      <created>1747063266024</created>
-      <option name="number" value="01245" />
-      <option name="presentableId" value="LOCAL-01245" />
-      <option name="project" value="LOCAL" />
-      <updated>1747063266024</updated>
+      <workItem from="1747232804383" duration="15054000" />
     </task>
     <task id="LOCAL-01246" summary="Olvide Contrasena">
       <option name="closed" value="true" />
@@ -581,7 +568,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747254533862</updated>
     </task>
-    <option name="localTasksCounter" value="1294" />
+    <task id="LOCAL-01294" summary="Cambio de Idioma">
+      <option name="closed" value="true" />
+      <created>1747256010029</created>
+      <option name="number" value="01294" />
+      <option name="presentableId" value="LOCAL-01294" />
+      <option name="project" value="LOCAL" />
+      <updated>1747256010029</updated>
+    </task>
+    <option name="localTasksCounter" value="1295" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -633,7 +628,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Documentar Proyecto (Validaciones Admin)" />
     <MESSAGE value="Documentar Proyecto (Validaciones Reporte)" />
     <MESSAGE value="Documentar Proyecto (dao/agregarComentario)" />
     <MESSAGE value="Documentar Proyecto (dao/insertarFechaFinalizacion)" />
@@ -658,7 +652,8 @@
     <MESSAGE value="Cerrar Sesion" />
     <MESSAGE value="historial casos" />
     <MESSAGE value="Diderenciar entre roles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Diderenciar entre roles" />
+    <MESSAGE value="Cambio de Idioma" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambio de Idioma" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
