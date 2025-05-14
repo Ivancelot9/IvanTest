@@ -50,6 +50,23 @@
     width: 60%;  /* Descripción */
 }
 
+/* Limita el ancho de las columnas */
+.cases-table th:nth-child(1),
+.cases-table td:nth-child(1) {
+    width: 20%; /* Folio */
+}
+
+.cases-table th:nth-child(2),
+.cases-table td:nth-child(2) {
+    width: 30%; /* Fecha Registro */
+}
+
+.cases-table th:nth-child(3),
+.cases-table td:nth-child(3) {
+    width: 50%; /* Descripción */
+    text-align: center; /* Centrar el botón */
+}
+
 /* 🟢 Botón Mostrar descripción */
 .show-desc {
     background-color: #238636;
@@ -60,6 +77,8 @@
     cursor: pointer;
     font-size: 0.85rem;
     transition: background-color 0.2s ease-in-out;
+    display: inline-block;
+    margin: 0 auto;
 }
 
 .show-desc:hover {
