@@ -1,4 +1,4 @@
-/* 📦 Contenedor del historial */
+/* 📦 Contenedor de la sección */
 #historial {
     padding: 24px;
     background-color: #ffffff;
@@ -9,21 +9,21 @@
     overflow-x: auto;
 }
 
-/* 📋 Nueva tabla elegante */
+/* 📋 Tabla moderna */
 .cases-table {
     width: 100%;
     border-collapse: collapse;
     font-family: 'Segoe UI', sans-serif;
     font-size: 0.95rem;
-    color: #1c1e21;
+    color: #1f2328;
     margin-top: 16px;
     border-radius: 8px;
     overflow: hidden;
 }
 
 .cases-table thead {
-    background-color: #1f6feb; /* azul moderno */
-    color: white;
+    background-color: #24292f;  /* gris oscuro */
+    color: #f0f6fc;             /* texto claro */
 }
 
 .cases-table th, .cases-table td {
@@ -35,6 +35,7 @@
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.85rem;
+    letter-spacing: 1px;
 }
 
 .cases-table tbody tr {
@@ -44,13 +45,13 @@
 }
 
 .cases-table tbody tr:hover {
-    background-color: #e8edf2;
+    background-color: #eaeef2;
 }
 
-/* 🟢 Botón centrado dentro de celda */
+/* 🟢 Botón Mostrar descripción */
 .show-desc {
     background-color: #2ea043;
-    color: #fff;
+    color: #ffffff;
     border: none;
     padding: 8px 14px;
     border-radius: 6px;
@@ -68,7 +69,7 @@
 @media (max-width: 768px) {
     .cases-table th,
     .cases-table td {
-        font-size: 0.82rem;
+        font-size: 0.85rem;
         padding: 10px;
     }
 
@@ -78,7 +79,7 @@
     }
 }
 
-/* ✨ Animación suave */
+/* ✨ Animación */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
