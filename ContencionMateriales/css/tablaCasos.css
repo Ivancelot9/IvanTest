@@ -1,105 +1,85 @@
-/* css/tablaCasos.css */
-
-/* 📦 Contenedor de la sección de historial */
+/* 📦 Contenedor del historial */
 #historial {
-    padding: 20px;
+    padding: 24px;
     background-color: #ffffff;
-    border-radius: 8px;
-    border: 1px solid #e1e4e8;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    animation: fadeIn 0.5s ease-in;
-    max-width: 100%;
+    border-radius: 12px;
+    border: 1px solid #d0d7de;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    animation: fadeIn 0.4s ease-in;
     overflow-x: auto;
 }
 
-/* 📋 Tabla de casos */
+/* 📋 Nueva tabla elegante */
 .cases-table {
     width: 100%;
     border-collapse: collapse;
     font-family: 'Segoe UI', sans-serif;
     font-size: 0.95rem;
-    color: #24292e;
-    margin-top: 20px;
+    color: #1c1e21;
+    margin-top: 16px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.cases-table thead {
+    background-color: #1f6feb; /* azul moderno */
+    color: white;
+}
+
+.cases-table th, .cases-table td {
+    padding: 14px 12px;
+    text-align: center;
 }
 
 .cases-table th {
-    background-color: #004f9e; /* azul más sobrio */
-    color: white;
-    padding: 12px 8px;
-    text-align: left;
     font-weight: 600;
-}
-
-.cases-table td {
-    padding: 10px 8px;
-    border-bottom: 1px solid #e1e4e8;
-}
-
-.cases-table th:nth-child(1),
-.cases-table td:nth-child(1) {
-    width: 15%;  /* Folio */
-}
-
-.cases-table th:nth-child(2),
-.cases-table td:nth-child(2) {
-    width: 25%;  /* Fecha Registro */
-}
-
-.cases-table th:nth-child(3),
-.cases-table td:nth-child(3) {
-    width: 60%;  /* Descripción */
-}
-
-/* Limita el ancho de las columnas */
-.cases-table th:nth-child(1),
-.cases-table td:nth-child(1) {
-    width: 20%; /* Folio */
-}
-
-.cases-table th:nth-child(2),
-.cases-table td:nth-child(2) {
-    width: 30%; /* Fecha Registro */
-}
-
-.cases-table th:nth-child(3),
-.cases-table td:nth-child(3) {
-    width: 50%; /* Descripción */
-    text-align: center; /* Centrar el botón */
-}
-
-/* 🟢 Botón Mostrar descripción */
-.show-desc {
-    background-color: #238636;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
+    text-transform: uppercase;
     font-size: 0.85rem;
-    transition: background-color 0.2s ease-in-out;
-    display: inline-block;
-    margin: 0 auto;
+}
+
+.cases-table tbody tr {
+    background-color: #f6f8fa;
+    border-bottom: 1px solid #d8dee4;
+    transition: background 0.2s;
+}
+
+.cases-table tbody tr:hover {
+    background-color: #e8edf2;
+}
+
+/* 🟢 Botón centrado dentro de celda */
+.show-desc {
+    background-color: #2ea043;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 .show-desc:hover {
-    background-color: #2ea043;
-}
-
-/* ✨ Animación */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    background-color: #238636;
 }
 
 /* 📱 Responsive */
 @media (max-width: 768px) {
     .cases-table th,
     .cases-table td {
-        padding: 8px;
-        font-size: 0.85rem;
+        font-size: 0.82rem;
+        padding: 10px;
     }
 
     .show-desc {
-        padding: 4px 8px;
+        padding: 6px 10px;
+        font-size: 0.8rem;
     }
+}
+
+/* ✨ Animación suave */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }

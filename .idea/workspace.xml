@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Diderenciar entre roles">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/tablaCasos.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/tablaCasos.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -185,15 +184,7 @@
       <workItem from="1746800542525" duration="16131000" />
       <workItem from="1747059421691" duration="18877000" />
       <workItem from="1747145834744" duration="13512000" />
-      <workItem from="1747232804383" duration="11851000" />
-    </task>
-    <task id="LOCAL-01238" summary="Olvide Contrasena">
-      <option name="closed" value="true" />
-      <created>1746824817458</created>
-      <option name="number" value="01238" />
-      <option name="presentableId" value="LOCAL-01238" />
-      <option name="project" value="LOCAL" />
-      <updated>1746824817458</updated>
+      <workItem from="1747232804383" duration="12044000" />
     </task>
     <task id="LOCAL-01239" summary="Olvide Contrasena">
       <option name="closed" value="true" />
@@ -579,7 +570,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747249454950</updated>
     </task>
-    <option name="localTasksCounter" value="1287" />
+    <task id="LOCAL-01287" summary="Diderenciar entre roles">
+      <option name="closed" value="true" />
+      <created>1747249637129</created>
+      <option name="number" value="01287" />
+      <option name="presentableId" value="LOCAL-01287" />
+      <option name="project" value="LOCAL" />
+      <updated>1747249637129</updated>
+    </task>
+    <option name="localTasksCounter" value="1288" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
