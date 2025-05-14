@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Diderenciar entre roles">
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/tablaCasos.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/tablaCasos.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,15 +185,7 @@
       <workItem from="1746800542525" duration="16131000" />
       <workItem from="1747059421691" duration="18877000" />
       <workItem from="1747145834744" duration="13512000" />
-      <workItem from="1747232804383" duration="12350000" />
-    </task>
-    <task id="LOCAL-01242" summary="Olvide Contrasena">
-      <option name="closed" value="true" />
-      <created>1747061248437</created>
-      <option name="number" value="01242" />
-      <option name="presentableId" value="LOCAL-01242" />
-      <option name="project" value="LOCAL" />
-      <updated>1747061248437</updated>
+      <workItem from="1747232804383" duration="12780000" />
     </task>
     <task id="LOCAL-01243" summary="Olvide Contrasena">
       <option name="closed" value="true" />
@@ -578,7 +571,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747250050943</updated>
     </task>
-    <option name="localTasksCounter" value="1291" />
+    <task id="LOCAL-01291" summary="Diderenciar entre roles">
+      <option name="closed" value="true" />
+      <created>1747250139818</created>
+      <option name="number" value="01291" />
+      <option name="presentableId" value="LOCAL-01291" />
+      <option name="project" value="LOCAL" />
+      <updated>1747250139818</updated>
+    </task>
+    <option name="localTasksCounter" value="1292" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

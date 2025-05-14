@@ -89,10 +89,13 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
     <section id="formulario" class="main-section">
         <h1><strong>DATOS</strong></h1>
         <form class="data-form">
-            <!-- Responsable -->
+
+            <!-- Responsable (desglosable) -->
             <div class="form-group">
                 <label for="responsable">Responsable</label>
-                <input type="text" id="responsable" placeholder="Nombre" />
+                <select id="responsable">
+                    <option value="">Selecciona un responsable</option>
+                </select>
             </div>
 
             <!-- No. Parte + Cantidad -->
@@ -113,28 +116,36 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
                 <textarea id="descripcion" placeholder="Descripción del caso"></textarea>
             </div>
 
-            <!-- Terciaria + Proveedor -->
+            <!-- Terciaria + Proveedor (ambos desglosables) -->
             <div class="form-row">
                 <div class="form-group">
                     <label for="terciaria">Terciaria</label>
-                    <input type="text" id="terciaria" placeholder="Terciaria" />
+                    <select id="terciaria">
+                        <option value="">Selecciona opción</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="proveedor">Proveedor</label>
-                    <input type="text" id="proveedor" placeholder="Proveedor" />
+                    <select id="proveedor">
+                        <option value="">Selecciona proveedor</option>
+                    </select>
                 </div>
             </div>
 
-            <!-- Commodity -->
+            <!-- Commodity (desglosable) -->
             <div class="form-group">
                 <label for="commodity">Commodity</label>
-                <input type="text" id="commodity" placeholder="Commodity" />
+                <select id="commodity">
+                    <option value="">Selecciona commodity</option>
+                </select>
             </div>
 
-            <!-- Defectos -->
+            <!-- Defectos (desglosable) -->
             <div class="form-group">
                 <label for="defectos">Defectos</label>
-                <button type="button" class="form-button">Seleccionar Defectos</button>
+                <select id="defectos">
+                    <option value="">Selecciona defecto</option>
+                </select>
             </div>
 
             <!-- Fotos/Evidencia -->

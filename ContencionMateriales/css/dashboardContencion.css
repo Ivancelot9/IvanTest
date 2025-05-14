@@ -165,6 +165,22 @@ body {
     transform: translateY(-1px);
 }
 
+/* 🎨 Estilo visual para todos los selects del formulario */
+form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fff;
+    appearance: none; /* Limpia estilos por defecto del navegador */
+}
+
+/* 🔽 Flecha personalizada para mejor estética (opcional) */
+form select:focus {
+    outline: 2px solid #1e6cd1;
+}
+
 /* 📱 Responsive */
 @media (max-width: 768px) {
     .sidebar {
