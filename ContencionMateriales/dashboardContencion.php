@@ -63,13 +63,21 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
     </button>
 
     <div class="bottom-actions">
-        <button class="sidebar-btn" data-section="admin">Administrador</button>
-        <!-- Nuevo botón: Historial de casos -->
-        <button class="sidebar-btn" data-section="historial-casos">
-            <i class="fa-solid fa-clock-rotate-left"></i>
-            Historial de casos
+        <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 2): ?>
+            <button class="sidebar-btn" data-section="historial-casos">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                Historial de casos
+            </button>
+            <button class="sidebar-btn" data-section="admin">
+                <i class="fa-solid fa-user-shield"></i>
+                Administrador
+            </button>
+        <?php endif; ?>
+
+        <button class="sidebar-btn" id="btn-cerrar-sesion">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Cerrar Sesión
         </button>
-        <button class="sidebar-btn" id="btn-cerrar-sesion">Cerrar Sesión</button>
     </div>
 </div>
 
