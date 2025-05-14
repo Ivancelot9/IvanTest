@@ -35,6 +35,21 @@
     border-bottom: 1px solid #e1e4e8;
 }
 
+.cases-table th:nth-child(1),
+.cases-table td:nth-child(1) {
+    width: 15%;  /* Folio */
+}
+
+.cases-table th:nth-child(2),
+.cases-table td:nth-child(2) {
+    width: 25%;  /* Fecha Registro */
+}
+
+.cases-table th:nth-child(3),
+.cases-table td:nth-child(3) {
+    width: 60%;  /* Descripción */
+}
+
 /* 🟢 Botón Mostrar descripción */
 .show-desc {
     background-color: #238636;
