@@ -1,29 +1,29 @@
-/* 📦 Contenedor del historial */
+/* 📦 Contenedor de la sección */
 #historial {
     padding: 24px;
-    background-color: #f4f6f9;
+    background-color: #ffffff;
     border-radius: 12px;
-    border: 1px solid #e0e4e8;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #d0d7de;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
     animation: fadeIn 0.4s ease-in;
     overflow-x: auto;
 }
 
-/* 📋 Nueva tabla elegante */
+/* 📋 Tabla moderna */
 .cases-table {
     width: 100%;
     border-collapse: collapse;
     font-family: 'Segoe UI', sans-serif;
     font-size: 0.95rem;
-    color: #2e3338;
+    color: #1f2328;
     margin-top: 16px;
     border-radius: 8px;
     overflow: hidden;
 }
 
 .cases-table thead {
-    background-color: #007bff; /* Azul claro */
-    color: white;
+    background-color: #24292f;  /* gris oscuro */
+    color: #f0f6fc;             /* texto claro */
 }
 
 .cases-table th, .cases-table td {
@@ -35,22 +35,23 @@
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.85rem;
+    letter-spacing: 1px;
 }
 
 .cases-table tbody tr {
-    background-color: #ffffff;
-    border-bottom: 1px solid #e0e4e8;
+    background-color: #f6f8fa;
+    border-bottom: 1px solid #d8dee4;
     transition: background 0.2s;
 }
 
 .cases-table tbody tr:hover {
-    background-color: #f1f3f5;
+    background-color: #eaeef2;
 }
 
-/* 🟢 Botón centrado dentro de celda */
+/* 🟢 Botón Mostrar descripción */
 .show-desc {
-    background-color: #28a745; /* Verde más claro */
-    color: #fff;
+    background-color: #2ea043;
+    color: #ffffff;
     border: none;
     padding: 8px 14px;
     border-radius: 6px;
@@ -61,14 +62,14 @@
 }
 
 .show-desc:hover {
-    background-color: #218838; /* Verde oscuro */
+    background-color: #238636;
 }
 
 /* 📱 Responsive */
 @media (max-width: 768px) {
     .cases-table th,
     .cases-table td {
-        font-size: 0.82rem;
+        font-size: 0.85rem;
         padding: 10px;
     }
 
@@ -78,7 +79,7 @@
     }
 }
 
-/* ✨ Animación suave */
+/* ✨ Animación */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
