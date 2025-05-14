@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Diderenciar entre roles">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Diderenciar entre roles" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -184,15 +182,7 @@
       <workItem from="1746800542525" duration="16131000" />
       <workItem from="1747059421691" duration="18877000" />
       <workItem from="1747145834744" duration="13512000" />
-      <workItem from="1747232804383" duration="10217000" />
-    </task>
-    <task id="LOCAL-01235" summary="Olvide Contrasena">
-      <option name="closed" value="true" />
-      <created>1746806594341</created>
-      <option name="number" value="01235" />
-      <option name="presentableId" value="LOCAL-01235" />
-      <option name="project" value="LOCAL" />
-      <updated>1746806594341</updated>
+      <workItem from="1747232804383" duration="10348000" />
     </task>
     <task id="LOCAL-01236" summary="Olvide Contrasena">
       <option name="closed" value="true" />
@@ -578,7 +568,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747247516101</updated>
     </task>
-    <option name="localTasksCounter" value="1284" />
+    <task id="LOCAL-01284" summary="Diderenciar entre roles">
+      <option name="closed" value="true" />
+      <created>1747248041348</created>
+      <option name="number" value="01284" />
+      <option name="presentableId" value="LOCAL-01284" />
+      <option name="project" value="LOCAL" />
+      <updated>1747248041348</updated>
+    </task>
+    <option name="localTasksCounter" value="1285" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
