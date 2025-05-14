@@ -84,6 +84,10 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
     </div>
 </div>
 
+<!-- Botón de idioma en la esquina superior derecha -->
+<button id="btn-language-toggle" class="language-toggle">ES/EN</button>
+
+
 <main class="main-content">
     <!-- Sección 1: Formulario -->
     <section id="formulario" class="main-section">
@@ -198,5 +202,6 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
 <script src="js/perfilUsuario.js" defer></script>
 <script src="js/navegacionDashboard.js" defer></script>
 <script src="js/cerrarSesionContencion.js" defer></script>
+<script src="js/cambioIdioma.js" defer></script>
 </body>
 </html>
