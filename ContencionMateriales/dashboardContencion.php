@@ -64,6 +64,11 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
 
     <div class="bottom-actions">
         <button class="sidebar-btn" data-section="admin">Administrador</button>
+        <!-- Nuevo botón: Historial de casos -->
+        <button class="sidebar-btn" data-section="historial-casos">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Historial de casos
+        </button>
         <button class="sidebar-btn" id="btn-cerrar-sesion">Cerrar Sesión</button>
     </div>
 </div>
@@ -156,6 +161,12 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
     </section>
 
     <!-- Sección 3: Administrador -->
+    <section id="admin" class="main-section" style="display: none;">
+        <h1><strong>Administrador</strong></h1>
+        <p>Aún no hay contenido definido.</p>
+    </section>
+
+    <!-- Sección 4: Administrador -->
     <section id="admin" class="main-section" style="display: none;">
         <h1><strong>Administrador</strong></h1>
         <p>Aún no hay contenido definido.</p>
