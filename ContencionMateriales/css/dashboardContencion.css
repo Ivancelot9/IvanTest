@@ -119,6 +119,14 @@ body {
     font-size: 0.95rem;
 }
 
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+.form-row .form-group {
+    flex: 1;
+}
+
 /* 🧩 Botones secundarios */
 .form-button {
     background-color: #1e6cd1;

@@ -73,22 +73,61 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
     <section id="formulario" class="main-section">
         <h1><strong>DATOS</strong></h1>
         <form class="data-form">
+            <!-- Responsable -->
             <div class="form-group">
                 <label for="responsable">Responsable</label>
                 <input type="text" id="responsable" placeholder="Nombre" />
             </div>
-            <div class="form-group">
-                <label for="proveedor">Proveedor</label>
-                <input type="text" id="proveedor" placeholder="Proveedor" />
+
+            <!-- No. Parte + Cantidad -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="no-parte">No. Parte</label>
+                    <input type="text" id="no-parte" placeholder="Número de parte" />
+                </div>
+                <div class="form-group">
+                    <label for="cantidad">Cantidad</label>
+                    <input type="number" id="cantidad" placeholder="Cantidad" />
+                </div>
             </div>
+
+            <!-- Descripción -->
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" placeholder="Descripción del caso"></textarea>
+            </div>
+
+            <!-- Terciaria + Proveedor -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="terciaria">Terciaria</label>
+                    <input type="text" id="terciaria" placeholder="Terciaria" />
+                </div>
+                <div class="form-group">
+                    <label for="proveedor">Proveedor</label>
+                    <input type="text" id="proveedor" placeholder="Proveedor" />
+                </div>
+            </div>
+
+            <!-- Commodity -->
+            <div class="form-group">
+                <label for="commodity">Commodity</label>
+                <input type="text" id="commodity" placeholder="Commodity" />
+            </div>
+
+            <!-- Defectos -->
             <div class="form-group">
                 <label for="defectos">Defectos</label>
                 <button type="button" class="form-button">Seleccionar Defectos</button>
             </div>
+
+            <!-- Fotos/Evidencia -->
             <div class="form-group">
                 <label for="evidencia">Fotos/Evidencia</label>
                 <button type="button" class="form-button">Agregar Fotos</button>
             </div>
+
+            <!-- Confirmar -->
             <div class="form-group confirm">
                 <button type="submit" class="confirm-button">Confirmar</button>
             </div>
