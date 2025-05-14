@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="historial casos">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Diderenciar entre roles">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
     </list>
@@ -185,15 +185,7 @@
       <workItem from="1746800542525" duration="16131000" />
       <workItem from="1747059421691" duration="18877000" />
       <workItem from="1747145834744" duration="13512000" />
-      <workItem from="1747232804383" duration="7781000" />
-    </task>
-    <task id="LOCAL-01233" summary="Login Contencion">
-      <option name="closed" value="true" />
-      <created>1746803109886</created>
-      <option name="number" value="01233" />
-      <option name="presentableId" value="LOCAL-01233" />
-      <option name="project" value="LOCAL" />
-      <updated>1746803109886</updated>
+      <workItem from="1747232804383" duration="9742000" />
     </task>
     <task id="LOCAL-01234" summary="Olvide Contrasena">
       <option name="closed" value="true" />
@@ -579,7 +571,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747243967004</updated>
     </task>
-    <option name="localTasksCounter" value="1282" />
+    <task id="LOCAL-01282" summary="Diderenciar entre roles">
+      <option name="closed" value="true" />
+      <created>1747244593124</created>
+      <option name="number" value="01282" />
+      <option name="presentableId" value="LOCAL-01282" />
+      <option name="project" value="LOCAL" />
+      <updated>1747244593124</updated>
+    </task>
+    <option name="localTasksCounter" value="1283" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -631,7 +631,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Documentar Proyecto (Tablas Reportes)" />
     <MESSAGE value="Documentar Proyecto (Validaciones Admin)" />
     <MESSAGE value="Documentar Proyecto (Validaciones Reporte)" />
     <MESSAGE value="Documentar Proyecto (dao/agregarComentario)" />
@@ -656,7 +655,8 @@
     <MESSAGE value="Navegacion entre botones" />
     <MESSAGE value="Cerrar Sesion" />
     <MESSAGE value="historial casos" />
-    <option name="LAST_COMMIT_MESSAGE" value="historial casos" />
+    <MESSAGE value="Diderenciar entre roles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Diderenciar entre roles" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

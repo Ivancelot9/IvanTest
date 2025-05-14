@@ -20,6 +20,7 @@ if (
 }
 
 $usuarioActual = $_SESSION['usuariosPorPestana'][$tab_id];
+$rol = $usuarioActual['Rol'] ?? 1;
 $username = htmlspecialchars($usuarioActual['Username']);
 $nombre   = htmlspecialchars($usuarioActual['Nombre']);
 ?>
@@ -63,7 +64,7 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
     </button>
 
     <div class="bottom-actions">
-        <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 2): ?>
+        <?php if ($rol == 2): ?>
             <button class="sidebar-btn" data-section="historial-casos">
                 <i class="fa-solid fa-clock-rotate-left"></i>
                 Historial de casos
