@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Fotos">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Descripcion">
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalDescripcion.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalDescripcion.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -186,15 +185,7 @@
       <workItem from="1747059421691" duration="18877000" />
       <workItem from="1747145834744" duration="13512000" />
       <workItem from="1747232804383" duration="15882000" />
-      <workItem from="1747318880798" duration="5162000" />
-    </task>
-    <task id="LOCAL-01252" summary="Olvide Contrasena">
-      <option name="closed" value="true" />
-      <created>1747066326841</created>
-      <option name="number" value="01252" />
-      <option name="presentableId" value="LOCAL-01252" />
-      <option name="project" value="LOCAL" />
-      <updated>1747066326841</updated>
+      <workItem from="1747318880798" duration="5379000" />
     </task>
     <task id="LOCAL-01253" summary="Olvide Contrasena">
       <option name="closed" value="true" />
@@ -580,7 +571,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747326131835</updated>
     </task>
-    <option name="localTasksCounter" value="1301" />
+    <task id="LOCAL-01301" summary="Modal Descripcion">
+      <option name="closed" value="true" />
+      <created>1747326674167</created>
+      <option name="number" value="01301" />
+      <option name="presentableId" value="LOCAL-01301" />
+      <option name="project" value="LOCAL" />
+      <updated>1747326674167</updated>
+    </task>
+    <option name="localTasksCounter" value="1302" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -632,7 +631,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Documentar Proyecto (dao/agregarComentario)" />
     <MESSAGE value="Documentar Proyecto (dao/insertarFechaFinalizacion)" />
     <MESSAGE value="Documentar Proyecto (dao/insertarReporte)" />
     <MESSAGE value="Documentar Proyecto (dao/modifcarDatosPersonales)" />
@@ -657,7 +655,8 @@
     <MESSAGE value="Diderenciar entre roles" />
     <MESSAGE value="Cambio de Idioma" />
     <MESSAGE value="Modal Fotos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modal Fotos" />
+    <MESSAGE value="Modal Descripcion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modal Descripcion" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

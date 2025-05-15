@@ -150,10 +150,11 @@
     margin-top: 10px;
     display: none;
 
-    /* 🔧 Correcciones clave */
-    overflow-x: hidden;      /* ❌ elimina scroll horizontal */
-    white-space: pre-wrap;   /* ✅ permite saltos de línea y ajusta texto automáticamente */
-    word-wrap: break-word;   /* ✅ corta palabras largas para evitar desbordes */
+    /* 🛠 Fix definitivo */
+    overflow: auto;             /* Solo scroll vertical si es necesario */
+    white-space: pre-wrap;      /* Respeta saltos de línea */
+    word-break: break-word;     /* Rompe palabras largas */
+    overflow-wrap: break-word;  /* Compatibilidad adicional */
 }
 
 #descripcion-texto {
