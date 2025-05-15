@@ -169,26 +169,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 : obtenerClaseEstado(prog);
 
             const esCirculo = prog !== null;
-            const btnHTML = (() => {
-                if (esCirculo) {
-                    // Estado tras guardar: círculo con porcentaje y color inline
-                    return `
-      <button
-        class="ver-estatus-btn ver-estatus-circulo"
-        data-folio="${folio}"
-        style="background:${clase};">
-        ${prog}%
-      </button>`;
-                } else {
-                    // Estado inicial: solo clase base, sin estilo inline
-                    return `
-      <button
-        class="ver-estatus-btn"
-        data-folio="${folio}">
-        Ver Estatus
-      </button>`;
-                }
-            })();
+            const btnHTML   = `
+                <button class="ver-estatus-btn ${clase}" data-folio="${folio}"
+                    style="${esCirculo
+                ? `width:50px;height:50px;border-radius:50%;
+                               background:${clase};color:white;font-weight:bold;
+                               font-size:14px;text-shadow:2px 2px 0 black;
+                               border:3px solid black;margin:auto;
+                               display:flex;align-items:center;justify-content:center;`
+                : `background:white;color:black;border:2px solid black;
+                               font-weight:bold;padding:4px 10px;margin:auto;` }">
+                    ${esCirculo ? prog + "%" : "Ver Estatus"}
+                </button>`;
 
             // Encargados
             let [sup, sl] = (rep.Encargado || "N/A").split("<br>");
