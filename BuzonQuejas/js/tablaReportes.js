@@ -157,18 +157,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 : null;
 
 // Construcción del botón
+            // Tus estilos inline originales
+            const circleStyle = `
+    width:50px;height:50px;border-radius:50%;
+    background:${colorCode};color:white;font-weight:bold;
+    font-size:14px;text-shadow:2px 2px 0 black;
+    border:3px solid black;margin:auto;
+    display:flex;align-items:center;justify-content:center;`;
+
+            const defaultStyle = `
+    background:white;color:black;border:2px solid black;
+    font-weight:bold;padding:4px 10px;margin:auto;`;
+
+            // Volvemos a usar btnHTML con esos estilos
             const btnHTML = esCirculo
                 ? `<button
-       class="ver-estatus-btn ver-estatus-circulo"
-       data-folio="${folio}"
-       style="background:${colorCode};">
-       ${prog}%
-     </button>`
+         class="ver-estatus-btn ver-estatus-circulo"
+         data-folio="${folio}"
+         style="${circleStyle}">
+           ${prog}%
+       </button>`
                 : `<button
-       class="ver-estatus-btn"
-       data-folio="${folio}">
-       Ver Estatus
-     </button>`;
+         class="ver-estatus-btn"
+         data-folio="${folio}"
+         style="${defaultStyle}">
+           Ver Estatus
+       </button>`;
 
             // Encargados
             let [sup, sl] = (rep.Encargado || "N/A").split("<br>");
