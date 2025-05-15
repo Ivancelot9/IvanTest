@@ -192,8 +192,11 @@
     color: white;
     border: 2px solid #58a6ff;
     background-color: #21262d;
-    display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    display: inline-flex;
+
 }
