@@ -107,7 +107,7 @@
     transform: scale(1.03);
 }
 
-.status-container {
+.estatus-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -163,6 +163,24 @@
     -2px -2px 0 black,
     2px -2px 0 black,
     -2px 2px 0 black;
+}
+
+/* ESTILO POR DEFECTO: botón “en blanco” (o con tu gris oscuro) */
+.ver-estatus-btn {
+    background-color: #21262d;      /* gris oscuro, mismo fondo que tu modal */
+    border: 2px solid #30363d;      /* contorno neutro */
+    color: #c9d1d9;                 /* texto sobrio */
+    font-size: 12px;
+    font-weight: normal;
+    text-shadow: none;              /* sin sombra extra */
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;             /* levemente redondeado */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0 4px;
 }
 
 .ver-estatus-btn.ver-estatus-circulo {

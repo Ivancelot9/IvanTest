@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 🔹 Actualizar estilos y texto del botón de estatus
         if (botonEstatus) {
-            botonEstatus.classList.add("ver-estatus-circulo", "ver-estatus-btn");
+            botonEstatus.classList.add("ver-estatus-circulo");
             botonEstatus.style.backgroundColor = manualCircle.style.backgroundColor;
             botonEstatus.style.color           = "white";
             botonEstatus.style.textShadow     = `-1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black`;
@@ -288,4 +288,21 @@ document.addEventListener("DOMContentLoaded", function () {
             abrirModal(event.target.getAttribute("data-folio"));
         }
     });
+
+    // ─── Inicializa todos los botones sin estado previo ───
+    ;(function inicializarBotonesDefault() {
+        const estatusGuardados = JSON.parse(localStorage.getItem('estatusReportes')) || {};
+        document.querySelectorAll('.ver-estatus-btn').forEach(btn => {
+            const folio = btn.getAttribute('data-folio');
+            if (!estatusGuardados[folio]) {
+                // Quita la clase de “configurado” si la tuviera
+                btn.classList.remove('ver-estatus-circulo');
+                // Asegura que no queden estilos inline de ejecuciones previas
+                btn.style.backgroundColor = '';
+                btn.style.color           = '';
+                btn.style.textShadow      = '';
+                btn.textContent           = '';
+            }
+        });
+    })();
 });
