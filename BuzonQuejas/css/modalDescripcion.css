@@ -148,6 +148,16 @@
     box-shadow: inset 0 0 10px rgba(88, 166, 255, 0.08);
     transition: box-shadow 0.2s ease-in-out;
     margin-top: 10px;
-    display: none; /* Oculto por defecto, visible en modo edición */
+    display: none;
+
+    /* 🔧 Correcciones clave */
+    overflow-x: hidden;      /* ❌ elimina scroll horizontal */
+    white-space: pre-wrap;   /* ✅ permite saltos de línea y ajusta texto automáticamente */
+    word-wrap: break-word;   /* ✅ corta palabras largas para evitar desbordes */
+}
+
+#descripcion-texto {
+    white-space: pre-wrap;  /* ✅ respeta saltos de línea */
+    word-wrap: break-word;  /* ✅ previene scroll horizontal */
 }
 
