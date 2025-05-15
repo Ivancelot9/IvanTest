@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Cambio de Idioma">
-      <change afterPath="$PROJECT_DIR$/ContencionMateriales/css/modalFotos.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ContencionMateriales/js/modalFotos.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/modalFotos.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/modalFotos.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/modalFotos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/modalFotos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,6 +187,7 @@
       <workItem from="1747059421691" duration="18877000" />
       <workItem from="1747145834744" duration="13512000" />
       <workItem from="1747232804383" duration="15882000" />
+      <workItem from="1747318880798" duration="1284000" />
     </task>
     <task id="LOCAL-01247" summary="Olvide Contrasena">
       <option name="closed" value="true" />
