@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <td>
         <button class="mostrar-descripcion"
                 data-descripcion="${rep.Descripcion || 'Sin descripción'}"
-                data-folioreportes="${folio}">>
+                data-folioreportes="${folio}">
             Mostrar Descripción
         </button>
     </td>
