@@ -209,8 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <td class="celda-encargado">${sup}<br>${sl}</td>
     <td>
         <button class="mostrar-descripcion"
-                data-descripcion="${rep.Descripcion || 'Sin descripción'}"
-                data-folioreportes="${folio}">
+                data-descripcion="${rep.Descripcion || 'Sin descripción'}">
             Mostrar Descripción
         </button>
     </td>

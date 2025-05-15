@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             // Enviar al servidor para persistir en BD
-            fetch('actualizarDescripcion.php', {
+            fetch('https://grammermx.com/IvanTest/BuzonQuejas/dao/actualizarDescripcion.php', {
                 method:  'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body:    JSON.stringify({
