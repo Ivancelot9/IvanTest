@@ -22,6 +22,38 @@
 }
 
 /* –––––––––––––––––––––––––––––––––––––––––––––
+   Estilizar botón nativo “Choose file”
+––––––––––––––––––––––––––––––––––––––––––––– */
+/* Chrome, Safari, Edge */
+.modal-content input[type="file"]::-webkit-file-upload-button {
+    background: #0366d6;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    margin-left: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+.modal-content input[type="file"]::-webkit-file-upload-button:hover {
+    background: #0254b0;
+}
+/* Firefox */
+.modal-content input[type="file"]::-moz-file-upload-button {
+    background: #0366d6;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    margin-left: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+.modal-content input[type="file"]::-moz-file-upload-button:hover {
+    background: #0254b0;
+}
+
+/* –––––––––––––––––––––––––––––––––––––––––––––
    Botones y campos
 ––––––––––––––––––––––––––––––––––––––––––––– */
 .modal-content input[type="file"],
@@ -47,7 +79,7 @@
 }
 #btn-confirmar-fotos {
     background: #238636;
-    color: white;
+    color: #fff;
 }
 
 /* –––––––––––––––––––––––––––––––––––––––––––––
@@ -84,7 +116,7 @@
 }
 
 /* –––––––––––––––––––––––––––––––––––––––––––––
-   Iconos de Font Awesome en labels
+   Labels en zonas de arrastre (iconos principales)
 ––––––––––––––––––––––––––––––––––––––––––––– */
 .drop-zone label {
     display: flex;
@@ -92,7 +124,6 @@
     font-weight: bold;
     margin-bottom: 4px;
 }
-
 /* Palomita verde para “OK” */
 #drop-ok label::before {
     content: "\f058"; /* fa-check-circle */
@@ -101,10 +132,29 @@
     color: #2ea043;
     margin-right: 8px;
 }
-
 /* Equis roja para “NO OK” */
 #drop-no-ok label::before {
     content: "\f057"; /* fa-times-circle */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #cb2431;
+    margin-right: 8px;
+}
+
+/* –––––––––––––––––––––––––––––––––––––––––––––
+   Labels en fotos adicionales (extras)
+––––––––––––––––––––––––––––––––––––––––––––– */
+/* Extras OK */
+#fotos-ok-extra-container label::before {
+    content: "\f058";              /* fa-check-circle */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #2ea043;
+    margin-right: 8px;
+}
+/* Extras NO OK */
+#fotos-no-extra-container label::before {
+    content: "\f057";              /* fa-times-circle */
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
     color: #cb2431;

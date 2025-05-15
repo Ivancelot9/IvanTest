@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Finalizacion &quot;G&quot;">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Fotos/Contencion">
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/modalFotos.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/modalFotos.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -186,15 +185,7 @@
       <workItem from="1747059421691" duration="18877000" />
       <workItem from="1747145834744" duration="13512000" />
       <workItem from="1747232804383" duration="15882000" />
-      <workItem from="1747318880798" duration="15093000" />
-    </task>
-    <task id="LOCAL-01271" summary="Navegacion entre botones">
-      <option name="closed" value="true" />
-      <created>1747153085929</created>
-      <option name="number" value="01271" />
-      <option name="presentableId" value="LOCAL-01271" />
-      <option name="project" value="LOCAL" />
-      <updated>1747153085930</updated>
+      <workItem from="1747318880798" duration="15332000" />
     </task>
     <task id="LOCAL-01272" summary="Cerrar Sesion">
       <option name="closed" value="true" />
@@ -580,7 +571,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747334424035</updated>
     </task>
-    <option name="localTasksCounter" value="1320" />
+    <task id="LOCAL-01320" summary="Modal Fotos/Contencion">
+      <option name="closed" value="true" />
+      <created>1747342502480</created>
+      <option name="number" value="01320" />
+      <option name="presentableId" value="LOCAL-01320" />
+      <option name="project" value="LOCAL" />
+      <updated>1747342502480</updated>
+    </task>
+    <option name="localTasksCounter" value="1321" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -632,7 +631,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Documentar Proyecto (dao/modifcarDatosPersonales)" />
     <MESSAGE value="Documentar Proyecto (dao/obtenerAreas)" />
     <MESSAGE value="Documentar Proyecto (dao/obtenerComentarios)" />
     <MESSAGE value="Documentar Proyecto (dao/obtenerEncargados)" />
@@ -657,7 +655,8 @@
     <MESSAGE value="Modal Descripcion" />
     <MESSAGE value="Modal Estatus" />
     <MESSAGE value="Modal Finalizacion &quot;G&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modal Finalizacion &quot;G&quot;" />
+    <MESSAGE value="Modal Fotos/Contencion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modal Fotos/Contencion" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
