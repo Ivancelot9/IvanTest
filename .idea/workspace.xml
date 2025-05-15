@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Descripcion">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Estatus">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalEstatus.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalEstatus.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/estatusEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/estatusEditor.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,15 +186,7 @@
       <workItem from="1747059421691" duration="18877000" />
       <workItem from="1747145834744" duration="13512000" />
       <workItem from="1747232804383" duration="15882000" />
-      <workItem from="1747318880798" duration="9081000" />
-    </task>
-    <task id="LOCAL-01259" summary="Olvide Contrasena">
-      <option name="closed" value="true" />
-      <created>1747073471563</created>
-      <option name="number" value="01259" />
-      <option name="presentableId" value="LOCAL-01259" />
-      <option name="project" value="LOCAL" />
-      <updated>1747073471563</updated>
+      <workItem from="1747318880798" duration="9675000" />
     </task>
     <task id="LOCAL-01260" summary="Olvide Contrasena">
       <option name="closed" value="true" />
@@ -581,7 +572,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747329324308</updated>
     </task>
-    <option name="localTasksCounter" value="1308" />
+    <task id="LOCAL-01308" summary="Modal Estatus">
+      <option name="closed" value="true" />
+      <created>1747330624428</created>
+      <option name="number" value="01308" />
+      <option name="presentableId" value="LOCAL-01308" />
+      <option name="project" value="LOCAL" />
+      <updated>1747330624429</updated>
+    </task>
+    <option name="localTasksCounter" value="1309" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -633,7 +632,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Documentar Proyecto (dao/insertarFechaFinalizacion)" />
     <MESSAGE value="Documentar Proyecto (dao/insertarReporte)" />
     <MESSAGE value="Documentar Proyecto (dao/modifcarDatosPersonales)" />
     <MESSAGE value="Documentar Proyecto (dao/obtenerAreas)" />
@@ -658,7 +656,8 @@
     <MESSAGE value="Cambio de Idioma" />
     <MESSAGE value="Modal Fotos" />
     <MESSAGE value="Modal Descripcion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modal Descripcion" />
+    <MESSAGE value="Modal Estatus" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modal Estatus" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
