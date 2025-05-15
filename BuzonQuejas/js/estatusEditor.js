@@ -202,13 +202,12 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // 🔹 Guardar en localStorage la fecha de inicio y días
+        // 🔹 Guardar SOLO días y fechaInicio (quitamos progresoManual)
         let fechaInicio     = new Date().toISOString();
         let estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
         estatusReportes[currentFolio] = {
-            dias: dias,
-            fechaInicio: fechaInicio,
-            progresoManual: progresoAutomatico
+            dias:        dias,
+            fechaInicio: fechaInicio
         };
         localStorage.setItem("estatusReportes", JSON.stringify(estatusReportes));
 

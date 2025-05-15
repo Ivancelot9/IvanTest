@@ -146,18 +146,17 @@ document.addEventListener("DOMContentLoaded", function () {
         slice.forEach(rep => {
             const folio = rep.FolioReportes || "S/F";
 
-            // … dentro de mostrarReportes, justo antes de construir el row.innerHTML:
             const storageAll = JSON.parse(localStorage.getItem("estatusReportes") || "{}");
             const entry      = storageAll[folio] || {};
 
-// Sólo si el usuario ya guardó un colorManual, mostramos círculo
+// Sólo existe círculo si el usuario ya guardó colorManual
             const esCirculo  = typeof entry.colorManual === "string";
             const prog       = esCirculo ? entry.progresoManual : null;
             const colorCode  = esCirculo
                 ? { G: "green", B: "blue", Y: "yellow", R: "red" }[entry.colorManual]
                 : null;
 
-// Construimos el botón sin estilos inline en el caso inicial
+// Construcción del botón
             const btnHTML = esCirculo
                 ? `<button
        class="ver-estatus-btn ver-estatus-circulo"
