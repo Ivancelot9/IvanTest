@@ -158,6 +158,7 @@
     font-size: 20px;
     box-sizing: border-box;
     align-items: center;
+    flex: 0 0 auto;
     justify-content: center;
     text-shadow: 2px 2px 0 black,
     -2px -2px 0 black,
