@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Descripcion">
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/css/modalDescripcion.css" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/css/modalDescripcion.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,15 +185,7 @@
       <workItem from="1747059421691" duration="18877000" />
       <workItem from="1747145834744" duration="13512000" />
       <workItem from="1747232804383" duration="15882000" />
-      <workItem from="1747318880798" duration="5577000" />
-    </task>
-    <task id="LOCAL-01254" summary="Olvide Contrasena">
-      <option name="closed" value="true" />
-      <created>1747069406822</created>
-      <option name="number" value="01254" />
-      <option name="presentableId" value="LOCAL-01254" />
-      <option name="project" value="LOCAL" />
-      <updated>1747069406822</updated>
+      <workItem from="1747318880798" duration="6265000" />
     </task>
     <task id="LOCAL-01255" summary="Olvide Contrasena">
       <option name="closed" value="true" />
@@ -579,7 +571,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747326878891</updated>
     </task>
-    <option name="localTasksCounter" value="1303" />
+    <task id="LOCAL-01303" summary="Modal Descripcion">
+      <option name="closed" value="true" />
+      <created>1747327079897</created>
+      <option name="number" value="01303" />
+      <option name="presentableId" value="LOCAL-01303" />
+      <option name="project" value="LOCAL" />
+      <updated>1747327079897</updated>
+    </task>
+    <option name="localTasksCounter" value="1304" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
