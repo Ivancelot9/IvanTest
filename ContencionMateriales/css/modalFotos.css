@@ -1,40 +1,40 @@
+/* –––––––––––––––––––––––––––––––––––––––––––––
+   Overlay y contenedor
+––––––––––––––––––––––––––––––––––––––––––––– */
 .modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 9999;
 }
-
 .modal-content {
-    background: white;
+    background: #fff;
     padding: 30px;
     border-radius: 10px;
-    width: 90%;
-    max-width: 600px;
+    width: 90%; max-width: 600px;
     max-height: 90vh;
     overflow-y: auto;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
+/* –––––––––––––––––––––––––––––––––––––––––––––
+   Botones y campos
+––––––––––––––––––––––––––––––––––––––––––––– */
 .modal-content input[type="file"],
 .modal-content input[type="text"],
 .modal-content button {
     margin-top: 8px;
 }
-
 .modal-buttons {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
     margin-top: 20px;
 }
-
 .modal-buttons button {
     padding: 8px 16px;
     border: none;
@@ -42,16 +42,17 @@
     cursor: pointer;
     font-weight: bold;
 }
-
 #btn-cancelar-fotos {
     background: #ddd;
 }
-
 #btn-confirmar-fotos {
     background: #238636;
     color: white;
 }
 
+/* –––––––––––––––––––––––––––––––––––––––––––––
+   Zonas de arrastre
+––––––––––––––––––––––––––––––––––––––––––––– */
 .drop-area {
     border: 2px dashed #ccc;
     border-radius: 6px;
@@ -60,15 +61,17 @@
     font-size: 0.95rem;
     background: #f9f9f9;
 }
-
 .drop-zone.dragging .drop-area {
     background: #e0f7e0;
     border-color: #2ea043;
 }
 
+/* –––––––––––––––––––––––––––––––––––––––––––––
+   Botón “Elegir archivo” personalizado
+––––––––––––––––––––––––––––––––––––––––––––– */
 .custom-file-btn {
     background: #0366d6;
-    color: white;
+    color: #fff;
     padding: 6px 12px;
     border-radius: 4px;
     border: none;
@@ -76,7 +79,44 @@
     cursor: pointer;
     font-size: 0.85rem;
 }
+.custom-file-btn:hover {
+    background: #0254b0;
+}
 
+/* –––––––––––––––––––––––––––––––––––––––––––––
+   Iconos de Font Awesome en labels
+––––––––––––––––––––––––––––––––––––––––––––– */
+.drop-zone label {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+/* Palomita verde para “OK” */
+#drop-ok label::before {
+    content: "\f058"; /* fa-check-circle */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #2ea043;
+    margin-right: 8px;
+}
+
+/* Equis roja para “NO OK” */
+#drop-no-ok label::before {
+    content: "\f057"; /* fa-times-circle */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #cb2431;
+    margin-right: 8px;
+}
+
+/* –––––––––––––––––––––––––––––––––––––––––––––
+   Encabezados
+––––––––––––––––––––––––––––––––––––––––––––– */
 h2, h3 {
     margin-top: 20px;
+    font-family: sans-serif;
+    font-weight: 600;
+    color: #333;
 }
