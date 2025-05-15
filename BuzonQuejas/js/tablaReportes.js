@@ -146,41 +146,30 @@ document.addEventListener("DOMContentLoaded", function () {
         slice.forEach(rep => {
             const folio = rep.FolioReportes || "S/F";
 
-            // Estatus
-            // Estatus (sólo después de Guardar manual)
-            const storage  = JSON.parse(localStorage.getItem("estatusReportes") || "{}");
-            const tieneKey = Object.prototype.hasOwnProperty.call(storage, folio);
-            const est      = tieneKey ? storage[folio] : null;
+            // … dentro de mostrarReportes, justo antes de construir el row.innerHTML:
+            const storageAll = JSON.parse(localStorage.getItem("estatusReportes") || "{}");
+            const entry      = storageAll[folio] || {};
 
-// validamos que exista progresoManual *y* colorManual
-            const prog     = est &&
-            typeof est.progresoManual === "number" &&
-            typeof est.colorManual    === "string"
-                ? est.progresoManual
+// Sólo si el usuario ya guardó un colorManual, mostramos círculo
+            const esCirculo  = typeof entry.colorManual === "string";
+            const prog       = esCirculo ? entry.progresoManual : null;
+            const colorCode  = esCirculo
+                ? { G: "green", B: "blue", Y: "yellow", R: "red" }[entry.colorManual]
                 : null;
 
-            const color    = est &&
-            typeof est.colorManual === "string"
-                ? est.colorManual
-                : null;
-
-            const clase     = color
-                ? {G:"green",B:"blue",Y:"yellow",R:"red"}[color] || obtenerClaseEstado(prog)
-                : obtenerClaseEstado(prog);
-
-            const esCirculo = prog !== null;
-            const btnHTML   = `
-                <button class="ver-estatus-btn ${clase}" data-folio="${folio}"
-                    style="${esCirculo
-                ? `width:50px;height:50px;border-radius:50%;
-                               background:${clase};color:white;font-weight:bold;
-                               font-size:14px;text-shadow:2px 2px 0 black;
-                               border:3px solid black;margin:auto;
-                               display:flex;align-items:center;justify-content:center;`
-                : `background:white;color:black;border:2px solid black;
-                               font-weight:bold;padding:4px 10px;margin:auto;` }">
-                    ${esCirculo ? prog + "%" : "Ver Estatus"}
-                </button>`;
+// Construimos el botón sin estilos inline en el caso inicial
+            const btnHTML = esCirculo
+                ? `<button
+       class="ver-estatus-btn ver-estatus-circulo"
+       data-folio="${folio}"
+       style="background:${colorCode};">
+       ${prog}%
+     </button>`
+                : `<button
+       class="ver-estatus-btn"
+       data-folio="${folio}">
+       Ver Estatus
+     </button>`;
 
             // Encargados
             let [sup, sl] = (rep.Encargado || "N/A").split("<br>");
