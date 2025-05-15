@@ -114,6 +114,19 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // ── NUEVO: Validar que el estatus manual sea G ──
+        const estatusReportes = JSON.parse(localStorage.getItem("estatusReportes")) || {};
+        const datosReporte     = estatusReportes[folioSeleccionado];
+        if (!datosReporte || datosReporte.colorManual !== "G") {
+            Swal.fire({
+                icon: "warning",
+                title: "No permitido",
+                html: `Solo puedes finalizar el reporte si su estatus manual es <strong>G</strong> (Green).`,
+                confirmButtonText: "Entendido"
+            });
+            return;
+        }
+
         // Enviar fecha al backend
         fetch("https://grammermx.com/IvanTest/BuzonQuejas/dao/insertarFechaFinalizacion.php", {
             method: "POST",
