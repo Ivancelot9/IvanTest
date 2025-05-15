@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Fotos">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/modalFotos.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/modalFotos.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/modalFotos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/modalFotos.js" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Fotos" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -187,15 +183,7 @@
       <workItem from="1747059421691" duration="18877000" />
       <workItem from="1747145834744" duration="13512000" />
       <workItem from="1747232804383" duration="15882000" />
-      <workItem from="1747318880798" duration="1700000" />
-    </task>
-    <task id="LOCAL-01248" summary="Olvide Contrasena">
-      <option name="closed" value="true" />
-      <created>1747064924043</created>
-      <option name="number" value="01248" />
-      <option name="presentableId" value="LOCAL-01248" />
-      <option name="project" value="LOCAL" />
-      <updated>1747064924043</updated>
+      <workItem from="1747318880798" duration="2353000" />
     </task>
     <task id="LOCAL-01249" summary="Olvide Contrasena">
       <option name="closed" value="true" />
@@ -581,7 +569,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747320210816</updated>
     </task>
-    <option name="localTasksCounter" value="1297" />
+    <task id="LOCAL-01297" summary="Modal Fotos">
+      <option name="closed" value="true" />
+      <created>1747320619865</created>
+      <option name="number" value="01297" />
+      <option name="presentableId" value="LOCAL-01297" />
+      <option name="project" value="LOCAL" />
+      <updated>1747320619865</updated>
+    </task>
+    <option name="localTasksCounter" value="1298" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
