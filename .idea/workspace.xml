@@ -186,15 +186,7 @@
       <workItem from="1747145834744" duration="13512000" />
       <workItem from="1747232804383" duration="15882000" />
       <workItem from="1747318880798" duration="15332000" />
-      <workItem from="1747404764877" duration="8434000" />
-    </task>
-    <task id="LOCAL-01280" summary="Cerrar Sesion">
-      <option name="closed" value="true" />
-      <created>1747240407904</created>
-      <option name="number" value="01280" />
-      <option name="presentableId" value="LOCAL-01280" />
-      <option name="project" value="LOCAL" />
-      <updated>1747240407904</updated>
+      <workItem from="1747404764877" duration="8502000" />
     </task>
     <task id="LOCAL-01281" summary="historial casos">
       <option name="closed" value="true" />
@@ -580,7 +572,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747424483761</updated>
     </task>
-    <option name="localTasksCounter" value="1329" />
+    <task id="LOCAL-01329" summary="Barra Agregar">
+      <option name="closed" value="true" />
+      <created>1747424522270</created>
+      <option name="number" value="01329" />
+      <option name="presentableId" value="LOCAL-01329" />
+      <option name="project" value="LOCAL" />
+      <updated>1747424522270</updated>
+    </task>
+    <option name="localTasksCounter" value="1330" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
