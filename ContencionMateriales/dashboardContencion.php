@@ -105,10 +105,13 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
                     <!-- RESPONSABLE -->
                     <div class="form-group">
                         <label for="responsable">Responsable</label>
-                        <select name="IdResponsable" id="responsable" required>
-                            <option value="">Selecciona un responsable</option>
-                            <!-- PHP carga aquí las opciones -->
-                        </select>
+                        <input
+                                type="text"
+                                name="Responsable"
+                                id="responsable"
+                                placeholder="Nombre del responsable"
+                                required
+                        />
                     </div>
 
                     <!-- No. PARTE + CANTIDAD -->
