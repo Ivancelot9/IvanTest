@@ -95,10 +95,14 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
         <h1><strong>DATOS</strong></h1>
 
         <div class="form-panel">
-            <!-- 1) Canvas: tu formulario de casos -->
+            <!-- ————————————————
+                 1) Canvas: tu formulario en blanco
+                 ———————————————— -->
             <div class="form-main" id="form-main">
-                <form class="data-form" method="post" action="guardarCaso.php?tab_id=<?php echo urlencode($tab_id) ?>">
-                    <!-- Responsable -->
+                <form class="data-form"
+                      method="post"
+                      action="guardarCaso.php?tab_id=<?php echo urlencode($tab_id) ?>">
+                    <!-- RESPONSABLE -->
                     <div class="form-group">
                         <label for="responsable">Responsable</label>
                         <select name="IdResponsable" id="responsable" required>
@@ -107,25 +111,35 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
                         </select>
                     </div>
 
-                    <!-- No. Parte + Cantidad -->
+                    <!-- No. PARTE + CANTIDAD -->
                     <div class="form-row">
                         <div class="form-group">
                             <label for="no-parte">No. Parte</label>
-                            <input type="text" name="NumeroParte" id="no-parte" placeholder="Número de parte" required />
+                            <input type="text"
+                                   name="NumeroParte"
+                                   id="no-parte"
+                                   placeholder="Número de parte"
+                                   required />
                         </div>
                         <div class="form-group">
                             <label for="cantidad">Cantidad</label>
-                            <input type="number" name="Cantidad" id="cantidad" placeholder="Cantidad" required />
+                            <input type="number"
+                                   name="Cantidad"
+                                   id="cantidad"
+                                   placeholder="Cantidad"
+                                   required />
                         </div>
                     </div>
 
-                    <!-- Descripción -->
+                    <!-- DESCRIPCIÓN -->
                     <div class="form-group">
                         <label for="descripcion">Descripción</label>
-                        <textarea name="Descripcion" id="descripcion" placeholder="Descripción del caso"></textarea>
+                        <textarea name="Descripcion"
+                                  id="descripcion"
+                                  placeholder="Descripción del caso"></textarea>
                     </div>
 
-                    <!-- Terciaria + Proveedor -->
+                    <!-- TERCIARIA + PROVEEDOR -->
                     <div class="form-row">
                         <div class="form-group">
                             <label for="terciaria">Terciaria</label>
@@ -143,7 +157,7 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
                         </div>
                     </div>
 
-                    <!-- Commodity -->
+                    <!-- COMMODITY -->
                     <div class="form-group">
                         <label for="commodity">Commodity</label>
                         <select name="IdCommodity" id="commodity" required>
@@ -152,7 +166,7 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
                         </select>
                     </div>
 
-                    <!-- Defectos -->
+                    <!-- DEFECTOS -->
                     <div class="form-group">
                         <label for="defectos">Defectos</label>
                         <select name="IdDefectos" id="defectos" required>
@@ -161,20 +175,22 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
                         </select>
                     </div>
 
-                    <!-- Fotos/Evidencia -->
+                    <!-- FOTOS/EVIDENCIA -->
                     <div class="form-group">
-                        <label for="evidencia">Fotos/Evidencia</label>
+                        <label>Fotos/Evidencia</label>
                         <button type="button" class="form-button">Agregar Fotos</button>
                     </div>
 
-                    <!-- Confirmar -->
+                    <!-- BOTÓN CONFIRMAR -->
                     <div class="form-group confirm">
                         <button type="submit" class="confirm-button">Confirmar</button>
                     </div>
                 </form>
             </div>
 
-            <!-- 2) Barra de catálogos a la derecha -->
+            <!-- —————————————————————————
+                 2) Barra lateral derecha
+                 ————————————————————————— -->
             <aside class="form-sidebar">
                 <ul>
                     <li>
@@ -201,6 +217,8 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
             </aside>
         </div>
     </section>
+
+
 
 
 
