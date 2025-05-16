@@ -197,22 +197,27 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
             <aside class="form-sidebar">
                 <ul>
                     <li>
-                        <button type="button" data-action="add-terciaria">
+                        <button type="button" data-type="responsable">
+                            <i class="fa-solid fa-user"></i> Agregar Responsable
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" data-type="terciaria">
                             <i class="fa-solid fa-building"></i> Agregar Terciaria
                         </button>
                     </li>
                     <li>
-                        <button type="button" data-action="add-proveedor">
+                        <button type="button" data-type="proveedor">
                             <i class="fa-solid fa-truck"></i> Agregar Proveedor
                         </button>
                     </li>
                     <li>
-                        <button type="button" data-action="add-commodity">
+                        <button type="button" data-type="commodity">
                             <i class="fa-solid fa-box"></i> Agregar Commodity
                         </button>
                     </li>
                     <li>
-                        <button type="button" data-action="add-defecto">
+                        <button type="button" data-type="defecto">
                             <i class="fa-solid fa-exclamation-triangle"></i> Agregar Defecto
                         </button>
                     </li>
