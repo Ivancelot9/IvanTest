@@ -315,8 +315,43 @@ form select:focus {
     margin-right: 0;       /* ya no necesitas esta reserva */
 }
 
+/* 1) Quitar viñetas del <ul> */
+.form-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* opcional: un poco de separación entre items */
+.form-sidebar li + li {
+    margin-top: 1rem;
+}
 
 
+/* 2) Centrar el formulario */
+/* .form-panel es el flex que envuelve canvas + sidebar derecho */
+.form-panel {
+    display: flex;
+    justify-content: center; /* centra el canvas (.form-main) */
+    align-items: flex-start;
+    gap: 2rem;
+    margin-top: 20px;
+    /* elimina este valor si lo habías puesto antes */
+    margin-right: 0;
+}
+
+/* Asegúrate de que el canvas tenga ancho fijo */
+.form-main {
+    flex: 0 0 600px;  /* igual que antes */
+    /* y que quede centrado dentro del flex */
+    margin: 0 auto;
+}
+
+/* 3) Reserva espacio para la barra derecha fija */
+.main-content {
+    margin-left: 260px;   /* tu sidebar izquierdo */
+    margin-right: 260px;  /* espacio para el sidebar derecho */
+}
 /* === ✨ Animaciones === */
 @keyframes fadeInBody {
     from { opacity: 0; }
