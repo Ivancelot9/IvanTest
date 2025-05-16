@@ -76,7 +76,7 @@ body {
 /* 🧾 Contenido principal */
 .main-content {
     margin-left: 260px;
-    padding: 20px 30px;
+    padding: 15px 30px;
     flex-grow: 1;
     background-color: #f5f6f8;
     height: 100vh;
