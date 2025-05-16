@@ -93,78 +93,116 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
     <!-- Sección 1: Formulario -->
     <section id="formulario" class="main-section">
         <h1><strong>DATOS</strong></h1>
-        <form class="data-form">
 
-            <!-- Responsable (desglosable) -->
-            <div class="form-group">
-                <label for="responsable">Responsable</label>
-                <select id="responsable">
-                    <option value="">Selecciona un responsable</option>
-                </select>
-            </div>
+        <div class="form-panel">
+            <!-- 1) Columna de acciones (añadir catálogos) -->
+            <aside class="form-sidebar">
+                <ul>
+                    <li>
+                        <button type="button" data-action="add-terciaria">
+                            <i class="fa-solid fa-building"></i> Agregar Terciaria
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" data-action="add-proveedor">
+                            <i class="fa-solid fa-truck"></i> Agregar Proveedor
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" data-action="add-commodity">
+                            <i class="fa-solid fa-box"></i> Agregar Commodity
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" data-action="add-defecto">
+                            <i class="fa-solid fa-exclamation-triangle"></i> Agregar Defecto
+                        </button>
+                    </li>
+                </ul>
+            </aside>
 
-            <!-- No. Parte + Cantidad -->
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="no-parte">No. Parte</label>
-                    <input type="text" id="no-parte" placeholder="Número de parte" />
-                </div>
-                <div class="form-group">
-                    <label for="cantidad">Cantidad</label>
-                    <input type="number" id="cantidad" placeholder="Cantidad" />
-                </div>
-            </div>
+            <!-- 2) Contenedor principal donde aparece el form de casos o los mini-formularios -->
+            <div class="form-main" id="form-main">
+                <!-- Aquí copia TODO tu <form class="data-form">…</form> actual -->
+                <form class="data-form" method="post" action="guardarCaso.php?tab_id=<?php echo urlencode($tab_id) ?>">
+                    <!-- Responsable -->
+                    <div class="form-group">
+                        <label for="responsable">Responsable</label>
+                        <select name="IdResponsable" id="responsable" required>
+                            <option value="">Selecciona un responsable</option>
+                            <!-- PHP carga aquí las opciones -->
+                        </select>
+                    </div>
 
-            <!-- Descripción -->
-            <div class="form-group">
-                <label for="descripcion">Descripción</label>
-                <textarea id="descripcion" placeholder="Descripción del caso"></textarea>
-            </div>
+                    <!-- No. Parte + Cantidad -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="no-parte">No. Parte</label>
+                            <input type="text" name="NumeroParte" id="no-parte" placeholder="Número de parte" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidad">Cantidad</label>
+                            <input type="number" name="Cantidad" id="cantidad" placeholder="Cantidad" required />
+                        </div>
+                    </div>
 
-            <!-- Terciaria + Proveedor (ambos desglosables) -->
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="terciaria">Terciaria</label>
-                    <select id="terciaria">
-                        <option value="">Selecciona opción</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="proveedor">Proveedor</label>
-                    <select id="proveedor">
-                        <option value="">Selecciona proveedor</option>
-                    </select>
-                </div>
-            </div>
+                    <!-- Descripción -->
+                    <div class="form-group">
+                        <label for="descripcion">Descripción</label>
+                        <textarea name="Descripcion" id="descripcion" placeholder="Descripción del caso"></textarea>
+                    </div>
 
-            <!-- Commodity (desglosable) -->
-            <div class="form-group">
-                <label for="commodity">Commodity</label>
-                <select id="commodity">
-                    <option value="">Selecciona commodity</option>
-                </select>
-            </div>
+                    <!-- Terciaria + Proveedor -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="terciaria">Terciaria</label>
+                            <select name="IdTerceria" id="terciaria" required>
+                                <option value="">Selecciona opción</option>
+                                <!-- PHP carga aquí -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="proveedor">Proveedor</label>
+                            <select name="IdProveedor" id="proveedor" required>
+                                <option value="">Selecciona proveedor</option>
+                                <!-- PHP carga aquí -->
+                            </select>
+                        </div>
+                    </div>
 
-            <!-- Defectos (desglosable) -->
-            <div class="form-group">
-                <label for="defectos">Defectos</label>
-                <select id="defectos">
-                    <option value="">Selecciona defecto</option>
-                </select>
-            </div>
+                    <!-- Commodity -->
+                    <div class="form-group">
+                        <label for="commodity">Commodity</label>
+                        <select name="IdCommodity" id="commodity" required>
+                            <option value="">Selecciona commodity</option>
+                            <!-- PHP carga aquí -->
+                        </select>
+                    </div>
 
-            <!-- Fotos/Evidencia -->
-            <div class="form-group">
-                <label for="evidencia">Fotos/Evidencia</label>
-                <button type="button" class="form-button">Agregar Fotos</button>
-            </div>
+                    <!-- Defectos -->
+                    <div class="form-group">
+                        <label for="defectos">Defectos</label>
+                        <select name="IdDefectos" id="defectos" required>
+                            <option value="">Selecciona defecto</option>
+                            <!-- PHP carga aquí -->
+                        </select>
+                    </div>
 
-            <!-- Confirmar -->
-            <div class="form-group confirm">
-                <button type="submit" class="confirm-button">Confirmar</button>
+                    <!-- Fotos/Evidencia -->
+                    <div class="form-group">
+                        <label for="evidencia">Fotos/Evidencia</label>
+                        <button type="button" class="form-button">Agregar Fotos</button>
+                    </div>
+
+                    <!-- Confirmar -->
+                    <div class="form-group confirm">
+                        <button type="submit" class="confirm-button">Confirmar</button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </section>
+
 
     <!-- Sección 2: Historial -->
     <section id="historial" class="main-section" style="display: none;">
