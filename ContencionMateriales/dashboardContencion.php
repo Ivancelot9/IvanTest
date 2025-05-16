@@ -34,6 +34,8 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard Contención</title>
     <link rel="stylesheet" href="css/dashboardContencion.css" />
+    <link rel="stylesheet" href="css/agregarComponentes.css">
+
     <link rel="stylesheet" href= "css/modalFotos.css"/>
     <link rel="stylesheet" href="css/perfilUsuario.css" />
     <link rel="stylesheet" href="css/tablaCasos.css" />
@@ -269,6 +271,7 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
 <script src="js/cerrarSesionContencion.js" defer></script>
 <script src="js/cambioIdioma.js" defer></script>
 <script src="js/modalFotos.js" defer></script>
+<script src="js/agregarComponentesFormulario.js" defer></script>
 
 </body>
 </html>

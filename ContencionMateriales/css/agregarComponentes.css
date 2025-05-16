@@ -1,0 +1,83 @@
+/* ======================================================
+   CSS para el modal de “Agregar Componentes”
+   Archivo: agregarComponentes.css
+   ====================================================== */
+
+/* Overlay de fondo */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;               /* se mostrará mediante JS */
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+}
+
+/* Caja del modal */
+.modal-box {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: 320px;
+    max-width: 90%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Título */
+.modal-box h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    color: #1e2a38;
+}
+
+/* Campo de texto */
+#catalog-modal-input {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Botones del modal */
+.modal-actions {
+    margin-top: 1rem;
+    text-align: right;
+}
+
+.modal-actions button {
+    margin-left: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Botón Cancelar */
+#catalog-modal-cancel {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+#catalog-modal-cancel:hover {
+    background-color: #cacaca;
+}
+
+/* Botón Guardar */
+#catalog-modal-save {
+    background-color: #1e6cd1;
+    color: #fff;
+}
+
+#catalog-modal-save:hover {
+    background-color: #1558b0;
+}
