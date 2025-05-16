@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Barra Agregar" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Barra Agregar">
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/dashboardContencion.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/dashboardContencion.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -184,15 +186,7 @@
       <workItem from="1747145834744" duration="13512000" />
       <workItem from="1747232804383" duration="15882000" />
       <workItem from="1747318880798" duration="15332000" />
-      <workItem from="1747404764877" duration="8310000" />
-    </task>
-    <task id="LOCAL-01279" summary="Cerrar Sesion">
-      <option name="closed" value="true" />
-      <created>1747239857830</created>
-      <option name="number" value="01279" />
-      <option name="presentableId" value="LOCAL-01279" />
-      <option name="project" value="LOCAL" />
-      <updated>1747239857830</updated>
+      <workItem from="1747404764877" duration="8434000" />
     </task>
     <task id="LOCAL-01280" summary="Cerrar Sesion">
       <option name="closed" value="true" />
@@ -578,7 +572,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747423898668</updated>
     </task>
-    <option name="localTasksCounter" value="1328" />
+    <task id="LOCAL-01328" summary="Barra Agregar">
+      <option name="closed" value="true" />
+      <created>1747424483745</created>
+      <option name="number" value="01328" />
+      <option name="presentableId" value="LOCAL-01328" />
+      <option name="project" value="LOCAL" />
+      <updated>1747424483761</updated>
+    </task>
+    <option name="localTasksCounter" value="1329" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
