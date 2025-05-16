@@ -281,3 +281,65 @@ form select:focus {
     0% { opacity: 0; transform: translateX(-50px); }
     100% { opacity: 1; transform: translateX(0); }
 }
+
+
+/* 🔷 Contenedor flex que centra el canvas y deja la barra a la derecha */
+.form-panel {
+    display: flex;
+    justify-content: center; /* centra el conjunto */
+    align-items: flex-start;
+    gap: 2rem;
+    margin-top: 20px;
+}
+
+/* 🔸 Canvas (tu formulario) ocupa ancho fijo */
+.form-main {
+    flex: 0 0 600px; /* ajusta este ancho si lo necesitas */
+}
+
+/* 🔹 Barra lateral de catálogos */
+.form-sidebar {
+    flex: 0 0 200px;         /* ancho fijo */
+    background: #f7f7f7;
+    border-radius: 6px;
+    padding: 1rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.form-sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.form-sidebar li + li {
+    margin-top: 1rem;
+}
+
+.form-sidebar button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+    color: #333;
+    padding: 0.4rem 0.2rem;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.form-sidebar button i {
+    font-size: 1.1rem;
+}
+
+.form-sidebar button:hover {
+    color: #1e6cd1;
+    transform: translateX(4px);
+}
+
+/* Asegura que tu formulario aproveche todo el espacio */
+.form-main .data-form {
+    max-width: 100%;
+}

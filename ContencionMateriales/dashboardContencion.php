@@ -95,35 +95,8 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
         <h1><strong>DATOS</strong></h1>
 
         <div class="form-panel">
-            <!-- 1) Columna de acciones (añadir catálogos) -->
-            <aside class="form-sidebar">
-                <ul>
-                    <li>
-                        <button type="button" data-action="add-terciaria">
-                            <i class="fa-solid fa-building"></i> Agregar Terciaria
-                        </button>
-                    </li>
-                    <li>
-                        <button type="button" data-action="add-proveedor">
-                            <i class="fa-solid fa-truck"></i> Agregar Proveedor
-                        </button>
-                    </li>
-                    <li>
-                        <button type="button" data-action="add-commodity">
-                            <i class="fa-solid fa-box"></i> Agregar Commodity
-                        </button>
-                    </li>
-                    <li>
-                        <button type="button" data-action="add-defecto">
-                            <i class="fa-solid fa-exclamation-triangle"></i> Agregar Defecto
-                        </button>
-                    </li>
-                </ul>
-            </aside>
-
-            <!-- 2) Contenedor principal donde aparece el form de casos o los mini-formularios -->
+            <!-- 1) Canvas: tu formulario de casos -->
             <div class="form-main" id="form-main">
-                <!-- Aquí copia TODO tu <form class="data-form">…</form> actual -->
                 <form class="data-form" method="post" action="guardarCaso.php?tab_id=<?php echo urlencode($tab_id) ?>">
                     <!-- Responsable -->
                     <div class="form-group">
@@ -200,8 +173,35 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
                     </div>
                 </form>
             </div>
+
+            <!-- 2) Barra de catálogos a la derecha -->
+            <aside class="form-sidebar">
+                <ul>
+                    <li>
+                        <button type="button" data-action="add-terciaria">
+                            <i class="fa-solid fa-building"></i> Agregar Terciaria
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" data-action="add-proveedor">
+                            <i class="fa-solid fa-truck"></i> Agregar Proveedor
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" data-action="add-commodity">
+                            <i class="fa-solid fa-box"></i> Agregar Commodity
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" data-action="add-defecto">
+                            <i class="fa-solid fa-exclamation-triangle"></i> Agregar Defecto
+                        </button>
+                    </li>
+                </ul>
+            </aside>
         </div>
     </section>
+
 
 
     <!-- Sección 2: Historial -->
