@@ -293,7 +293,7 @@ form select:focus {
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0;
+    gap: 5px;
     transition: background 0.2s, transform 0.2s;
 }
 
