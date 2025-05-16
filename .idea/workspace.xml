@@ -186,15 +186,7 @@
       <workItem from="1747145834744" duration="13512000" />
       <workItem from="1747232804383" duration="15882000" />
       <workItem from="1747318880798" duration="15332000" />
-      <workItem from="1747404764877" duration="8617000" />
-    </task>
-    <task id="LOCAL-01283" summary="Diderenciar entre roles">
-      <option name="closed" value="true" />
-      <created>1747247516101</created>
-      <option name="number" value="01283" />
-      <option name="presentableId" value="LOCAL-01283" />
-      <option name="project" value="LOCAL" />
-      <updated>1747247516101</updated>
+      <workItem from="1747404764877" duration="8748000" />
     </task>
     <task id="LOCAL-01284" summary="Diderenciar entre roles">
       <option name="closed" value="true" />
@@ -580,7 +572,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747424671007</updated>
     </task>
-    <option name="localTasksCounter" value="1332" />
+    <task id="LOCAL-01332" summary="Barra Agregar">
+      <option name="closed" value="true" />
+      <created>1747424709821</created>
+      <option name="number" value="01332" />
+      <option name="presentableId" value="LOCAL-01332" />
+      <option name="project" value="LOCAL" />
+      <updated>1747424709821</updated>
+    </task>
+    <option name="localTasksCounter" value="1333" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
