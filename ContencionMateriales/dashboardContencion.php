@@ -194,6 +194,11 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
             <aside class="form-sidebar">
                 <ul>
                     <li>
+                        <button type="button" data-action="add-responsable">
+                            <i class="fa-solid fa-user"></i> Agregar Responsable
+                        </button>
+                    </li>
+                    <li>
                         <button type="button" data-action="add-terciaria">
                             <i class="fa-solid fa-building"></i> Agregar Terciaria
                         </button>
