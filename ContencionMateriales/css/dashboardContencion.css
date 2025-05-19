@@ -384,5 +384,62 @@ form select:focus {
     100% { opacity: 1; transform: translateX(0); }
 }
 
+/* 📱 Responsive móvil */
+@media screen and (max-width: 768px) {
+    /* 0) Permitir scroll vertical */
+    body {
+        overflow-y: auto;
+    }
+
+    /* 1) Sidebar izquierdo como top bar */
+    .sidebar {
+        position: relative;
+        width: 100%;
+        flex-direction: row;
+        padding: 10px;
+        box-shadow: none;
+        height: auto;
+        overflow-x: auto;
+    }
+    .sidebar .bottom-actions {
+        display: none; /* ocultar botones de abajo si quieres */
+    }
+
+    /* 2) Ocultar la barra de añadir (derecha) */
+    .form-sidebar {
+        display: none;
+    }
+
+    /* 3) Formulario ocupa 100% de ancho */
+    .main-content {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 10px 15px;
+        height: auto;
+    }
+
+    /* 4) Reajusta el panel para apilarlo vertical */
+    .form-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 0;
+    }
+
+    /* 5) El propio .data-form al 100% */
+    .data-form {
+        width: 100%;
+        max-width: 100%;
+        padding: 16px;
+        box-shadow: none;
+    }
+
+    /* 6) Botón confirmar algo más compacto */
+    .confirm-button {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}
+
 
 
