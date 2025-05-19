@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 
 if (!isset($_GET['tab_id'])) {
@@ -26,15 +29,23 @@ $rol = $usuarioActual['Rol'] ?? 1;
 $username = htmlspecialchars($usuarioActual['Username']);
 $nombre   = htmlspecialchars($usuarioActual['Nombre']);
 
-// ————— Conexión y precarga de catálogos —————
-// Ajusta la ruta si tu archivo está en otro directorio:
-include_once __DIR__ . '/conexionContencion.php';
+
+// Incluyo el conector desde la carpeta dao/
+$path = __DIR__ . '/dao/conexionContencion.php';
+if (! file_exists($path)) {
+    die("¡Error! No encontré el conector en: $path");
+}
+include_once $path;
+
 $con = (new LocalConector())->conectar();
 
+// Precargo los catálogos
 $terciarias  = $con->query("SELECT IdTerceria, NombreTerceria   FROM Terceria    ORDER BY NombreTerceria");
 $proveedores = $con->query("SELECT IdProveedor, NombreProveedor FROM Proveedores ORDER BY NombreProveedor");
 $commodities = $con->query("SELECT IdCommodity, NombreCommodity FROM Commodity   ORDER BY NombreCommodity");
 $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos     ORDER BY NombreDefectos");
+
+
 
 ?>
 
