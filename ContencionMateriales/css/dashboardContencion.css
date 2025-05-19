@@ -234,9 +234,8 @@ body {
     100% { opacity: 1; transform: translateX(0); }
 }
 
-/* ———————— 📱 Responsive móvil ———————— */
 @media screen and (max-width: 768px) {
-    /* 0) Body apilado con scroll vertical */
+    /* 0) Apilamos todo en columna y permitimos scroll vertical */
     body {
         display: flex;
         flex-direction: column;
@@ -244,62 +243,53 @@ body {
         overflow-y: auto;
     }
 
-    /* 1) Sidebar como flex-wrap */
+    /* 1) Sidebar como barra superior, en columna */
     .sidebar {
         position: relative;
         width: 100%;
-        display: flex !important;
-        flex-wrap: wrap;
-        align-items: flex-start;
+        flex-direction: column !important;  /* forzamos columna */
         padding: 10px;
         box-shadow: none;
         height: auto;
         max-height: none;
         overflow-y: visible;
     }
-
-    /* 1.1) User-dropdown a 100% */
+    /* 1.1) El dropdown de usuario a 100% */
     .sidebar > .user-dropdown {
         width: 100%;
         margin-bottom: 8px;
     }
 
-    /* 1.2) Botones principales en 2 columnas */
-    .sidebar > .sidebar-btn {
-        flex: 0 0 calc(50% - 8px);
-        max-width: calc(50% - 8px);
-        margin: 4px;
+    /* 1.2) Botones del menú, ancho 100% y menos padding */
+    .sidebar-btn {
+        display: flex !important;
+        width: 100% !important;
+        margin: 4px 0;
         padding: 8px 12px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         justify-content: flex-start !important;
     }
-    .sidebar > .sidebar-btn i {
+    .sidebar-btn i {
         margin-right: 8px;
     }
 
-    /* 1.3) Zona inferior en 2 columnas */
-    .sidebar .bottom-actions {
-        width: 100%;
+    /* 1.3) Mantener los botones inferiores visibles */
+    .bottom-actions {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         gap: 4px;
-        margin-top: 0;
-        padding: 0;
+        margin-top: 12px;
     }
-    .sidebar .bottom-actions .sidebar-btn {
-        flex: 0 0 calc(50% - 8px);
-        max-width: calc(50% - 8px);
-        margin: 4px;
-        padding: 8px 12px;
-        font-size: 0.9rem;
+    .bottom-actions .sidebar-btn {
+        margin: 4px 0;
     }
 
-    /* 2) Ocultar barra derecha */
+    /* 2) Ocultar el sidebar derecho */
     .form-sidebar {
         display: none !important;
     }
 
-    /* 3) Ajustes de main/form */
+    /* 3) Ajustes del main y del form */
     .main-content {
         margin: 0 !important;
         padding: 10px 15px;
