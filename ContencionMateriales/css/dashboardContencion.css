@@ -239,7 +239,7 @@ body {
 
 /* ———————— 📱 Responsive móvil ———————— */
 @media screen and (max-width: 768px) {
-    /* Body apilado, scroll vertical en toda la página */
+    /* 0) Body apilado, scroll vertical en toda la página */
     body {
         display: flex;
         flex-direction: column;
@@ -247,37 +247,52 @@ body {
         overflow-y: auto;
     }
 
-    /* 1) Sidebar como top bar, pero SIN scroll interno */
+    /* 1) Sidebar como top bar y envuelve sus hijos */
     .sidebar {
         position: relative;
         width: 100%;
-        flex-direction: column !important;
+        display: flex !important;
+        flex-wrap: wrap;
+        align-items: flex-start;
         padding: 10px;
         box-shadow: none;
-        height: auto;        /* quita cualquier altura fija */
-        max-height: none;    /* permite crecer todo lo necesario */
-        overflow-y: visible; /* quita el scroll interno */
+        height: auto;
+        max-height: none;
+        overflow-y: visible;
     }
 
-    /* 1.1) Botones full‑width y verticales (más compactos) */
+    /* 1.1) User dropdown al 100% de ancho */
+    .user-dropdown {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    /* 1.2) Botones principales en dos columnas */
     .sidebar-btn {
-        display: flex !important;
-        width: 100% !important;
-        margin: 0 0 4px 0;       /* menos separación */
-        padding: 8px 12px;       /* un poco más compacto */
-        font-size: 0.9rem;       /* letra ligeramente más pequeña */
+        flex: 0 0 calc(50% - 8px);
+        margin: 4px;
+        padding: 8px 12px;
+        font-size: 0.9rem;
         justify-content: flex-start !important;
     }
     .sidebar-btn i {
         margin-right: 8px;
     }
 
-    /* Deja visibles las acciones inferiores */
+    /* 1.3) Botones de bottom-actions también en dos columnas */
     .bottom-actions {
+        width: 100%;
         display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 0;
+    }
+    .bottom-actions .sidebar-btn {
+        flex: 0 0 calc(50% - 8px);
+        margin: 4px;
     }
 
-    /* 2) Ocultar la barra derecha */
+    /* 2) Ocultar la barra lateral derecha */
     .form-sidebar {
         display: none !important;
     }
