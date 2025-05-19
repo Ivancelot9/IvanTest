@@ -199,11 +199,6 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
             <aside class="form-sidebar">
                 <ul>
                     <li>
-                        <button type="button" data-type="responsable">
-                            <i class="fa-solid fa-user"></i> Agregar Responsable
-                        </button>
-                    </li>
-                    <li>
                         <button type="button" data-type="terciaria">
                             <i class="fa-solid fa-building"></i> Agregar Terciaria
                         </button>
@@ -225,6 +220,7 @@ $nombre   = htmlspecialchars($usuarioActual['Nombre']);
                     </li>
                 </ul>
             </aside>
+
         </div>
     </section>
 
