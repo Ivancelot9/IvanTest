@@ -239,12 +239,15 @@ body {
 
 /* ———————— 📱 Responsive móvil ———————— */
 @media screen and (max-width: 768px) {
-    /* permitir scroll vertical */
+    /* 0) Body en columna para que sidebar quede encima del contenido */
     body {
-        overflow-y: auto;
+        display: flex;          /* sigue siendo flex */
+        flex-direction: column; /* apila sidebar y main uno encima de otro */
+        overflow-x: hidden;     /* evita scroll horizontal */
+        overflow-y: auto;       /* permite scroll vertical si hace falta */
     }
 
-    /* 1) Sidebar como barra superior, apilado vertical */
+    /* 1) Sidebar como top bar y apilado vertical */
     .sidebar {
         position: relative;
         width: 100%;
@@ -253,17 +256,15 @@ body {
         box-shadow: none;
         height: auto;
     }
-    /* botones full‑width y verticales */
     .sidebar-btn {
         display: flex !important;
         width: 100% !important;
-        margin: 0 0 8px 0;
+        margin-bottom: 8px;
         justify-content: flex-start !important;
     }
     .sidebar-btn i {
         margin-right: 8px;
     }
-    /* ocultar acciones inferiores si no interesan */
     .sidebar .bottom-actions {
         display: none;
     }
