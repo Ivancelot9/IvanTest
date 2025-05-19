@@ -173,6 +173,11 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                             <select name="IdTerceria" id="terciaria" required>
                                 <option value="">Selecciona opción</option>
                                 <!-- PHP carga aquí -->
+                                <?php while($r = $terciarias->fetch_assoc()): ?>
+                                    <option value="<?= $r['IdTerceria'] ?>">
+                                        <?= htmlspecialchars($r['NombreTerceria']) ?>
+                                    </option>
+                                <?php endwhile; ?>
                             </select>
                         </div>
                         <div class="form-group">
@@ -180,6 +185,11 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                             <select name="IdProveedor" id="proveedor" required>
                                 <option value="">Selecciona proveedor</option>
                                 <!-- PHP carga aquí -->
+                                <?php while($r = $proveedores->fetch_assoc()): ?>
+                                    <option value="<?= $r['IdProveedor'] ?>">
+                                        <?= htmlspecialchars($r['NombreProveedor']) ?>
+                                    </option>
+                                <?php endwhile; ?>
                             </select>
                         </div>
                     </div>
@@ -190,6 +200,11 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                         <select name="IdCommodity" id="commodity" required>
                             <option value="">Selecciona commodity</option>
                             <!-- PHP carga aquí -->
+                            <?php while($c = $commodities->fetch_assoc()): ?>
+                                <option value="<?= $c['IdCommodity'] ?>">
+                                    <?= htmlspecialchars($c['NombreCommodity']) ?>
+                                </option>
+                            <?php endwhile; ?>
                         </select>
                     </div>
 
@@ -199,6 +214,11 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                         <select name="IdDefectos" id="defectos" required>
                             <option value="">Selecciona defecto</option>
                             <!-- PHP carga aquí -->
+                            <?php while($d = $defectos->fetch_assoc()): ?>
+                                <option value="<?= $d['IdDefectos'] ?>">
+                                    <?= htmlspecialchars($d['NombreDefectos']) ?>
+                                </option>
+                            <?php endwhile; ?>
                         </select>
                     </div>
 
