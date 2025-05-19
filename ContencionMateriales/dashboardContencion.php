@@ -25,6 +25,16 @@ $usuarioActual = $_SESSION['usuariosPorPestana'][$tab_id];
 $rol = $usuarioActual['Rol'] ?? 1;
 $username = htmlspecialchars($usuarioActual['Username']);
 $nombre   = htmlspecialchars($usuarioActual['Nombre']);
+
+
+include_once "conexionContencion.php";
+$con = (new LocalConector())->conectar();
+
+// Precarga los catálogos
+$terciarias   = $con->query("SELECT IdTerceria, NombreTerceria   FROM Terceria    ORDER BY NombreTerceria");
+$proveedores  = $con->query("SELECT IdProveedor, NombreProveedor FROM Proveedores ORDER BY NombreProveedor");
+$commodities  = $con->query("SELECT IdCommodity, NombreCommodity FROM Commodity   ORDER BY NombreCommodity");
+$defectos     = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos     ORDER BY NombreDefectos");
 ?>
 
 <!DOCTYPE html>
