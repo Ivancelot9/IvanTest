@@ -101,7 +101,6 @@ body {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
     max-width: 600px;
     margin: 0 auto;
-    max-height: none;
     animation: fadeInUp 0.7s ease;
 }
 
@@ -166,27 +165,12 @@ body {
     background-size: 16px 16px;
 }
 
-/* ✅ Al enfocar, resalta como los inputs */
 .form-group select:focus {
     outline: none;
     border-color: #1e6cd1;
     box-shadow: 0 0 0 2px rgba(30, 108, 209, 0.2);
 }
 
-/* ✨ Animación de suavizado al enfocar o interactuar */
-.form-group select {
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-}
-
-/* Al pasar el mouse (hover), resalta el borde suavemente */
-.form-group select:hover {
-    border-color: #999;
-}
-
-/* Cuando se enfoca (por tab o clic) */
-.form-group select:focus {
-    background-color: #f0f6ff;
-}
 /* ✅ Botón confirmar */
 .confirm-button {
     width: 100%;
@@ -206,74 +190,18 @@ body {
     transform: translateY(-1px);
 }
 
-/* 🎨 Estilo visual para todos los selects del formulario */
-form select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #fff;
-    appearance: none; /* Limpia estilos por defecto del navegador */
-}
-
-/* 🔽 Flecha personalizada para mejor estética (opcional) */
-form select:focus {
-    outline: 2px solid #1e6cd1;
-}
-
-/* 📱 Responsive */
-@media (max-width: 768px) {
-    .sidebar {
-        position: relative;
-        width: 100%;
-        flex-direction: row;
-        overflow-x: auto;
-        height: auto;
-    }
-
-    .main-content {
-        margin-left: 0;
-        padding: 20px;
-    }
-
-    .data-form {
-        padding: 16px;
-    }
-}
-
-.language-toggle {
-    position: fixed;
-    top: 15px;
-    right: 20px;
-    z-index: 999;
-    padding: 6px 12px;
-    border-radius: 20px;
-    background-color: #f0f0f0;
-    color: #333;
-    border: 1px solid #ccc;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: background-color 0.2s;
-}
-.language-toggle:hover {
-    background-color: #e2e2e2;
-}
-
-
 /* —————————————————————————————————————————————
    Barra lateral derecha (idéntico estilo al sidebar)
    ————————————————————————————————————————————— */
 .form-sidebar {
-    position: fixed;                /* la hace fija */
-    top: 0;                         /* desde el tope de la ventana */
-    right: 0;                       /* pegada al borde derecho */
-    bottom: 0;                      /* hasta abajo */
-    width: 240px;                   /* mismo ancho que tu sidebar */
-    background-color: #1e2a38;      /* mismo color que sidebar */
-    color: #f0f2f5;                 /* mismo color de texto */
-    padding: 20px 15px;             /* mismo padding */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 240px;
+    background-color: #1e2a38;
+    color: #f0f2f5;
+    padding: 20px 15px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -282,7 +210,14 @@ form select:focus {
     padding-top: 80px;
 }
 
-/* usa los mismos botones que .sidebar-btn */
+.form-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.form-sidebar li + li {
+    margin-top: 1rem;
+}
 .form-sidebar button {
     background: transparent;
     color: #f0f2f5;
@@ -297,88 +232,28 @@ form select:focus {
     gap: 10px;
     transition: background 0.2s, transform 0.2s;
 }
-
 .form-sidebar button:hover {
     background-color: rgba(255,255,255,0.08);
-    transform: translateX(-4px); /* invierte el desplazamiento */
+    transform: translateX(-4px);
 }
 
-/* —————————————————————————————————————————————
-   Reserva espacio a la derecha para que el contenido no quede tapado
-   ————————————————————————————————————————————— */
-.main-content {
-    margin-right: 260px; /* 240px de ancho + 20px de margen */
-}
-
-/* —————————————————————————————————————————————
-   Ajusta tu form-panel para que ya no reserve margin-right extra
-   ————————————————————————————————————————————— */
-.form-panel {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    margin-top: 0;
-    margin-right: 0;       /* ya no necesitas esta reserva */
-}
-
-/* 1) Quitar viñetas del <ul> */
-.form-sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-/* opcional: un poco de separación entre items */
-.form-sidebar li + li {
-    margin-top: 1rem;
-}
-
-
-/* 2) Centrar el formulario */
-/* .form-panel es el flex que envuelve canvas + sidebar derecho */
-.form-panel {
-    display: flex;
-    justify-content: center; /* centra el canvas (.form-main) */
-    align-items: flex-start;
-    gap: 2rem;
-    margin-top: 20px;
-    /* elimina este valor si lo habías puesto antes */
-    margin-right: 0;
-}
-
-/* Asegúrate de que el canvas tenga ancho fijo */
-.form-main {
-    flex: 0 0 600px;  /* igual que antes */
-    /* y que quede centrado dentro del flex */
-    margin: 0 auto;
-}
-
-/* 3) Reserva espacio para la barra derecha fija */
-.main-content {
-    margin-left: 260px;   /* tu sidebar izquierdo */
-    margin-right: 260px;  /* espacio para el sidebar derecho */
-}
 /* === ✨ Animaciones === */
 @keyframes fadeInBody {
     from { opacity: 0; }
     to { opacity: 1; }
 }
-
 @keyframes fadeInMain {
     from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes fadeInUp {
     0% { opacity: 0; transform: translateY(15px); }
     100% { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes fadeInDown {
     0% { opacity: 0; transform: translateY(-15px); }
     100% { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes slideInLeft {
     0% { opacity: 0; transform: translateX(-50px); }
     100% { opacity: 1; transform: translateX(0); }
@@ -391,18 +266,28 @@ form select:focus {
         overflow-y: auto;
     }
 
-    /* 1) Sidebar izquierdo como top bar */
+    /* 1) Sidebar izquierdo como top bar y apilado vertical */
     .sidebar {
         position: relative;
         width: 100%;
-        flex-direction: row;
+        flex-direction: column !important;
         padding: 10px;
         box-shadow: none;
         height: auto;
-        overflow-x: auto;
     }
+    /* botones verticales y ancho completo */
+    .sidebar-btn {
+        display: block !important;
+        width: 100%;
+        margin-bottom: 8px;
+        justify-content: flex-start !important;
+    }
+    .sidebar-btn i {
+        margin-right: 8px;
+    }
+    /* escondemos acciones inferiores si no hacen falta */
     .sidebar .bottom-actions {
-        display: none; /* ocultar botones de abajo si quieres */
+        display: none;
     }
 
     /* 2) Ocultar la barra de añadir (derecha) */
@@ -418,7 +303,7 @@ form select:focus {
         height: auto;
     }
 
-    /* 4) Reajusta el panel para apilarlo vertical */
+    /* 4) Apilar vertical el panel de formulario */
     .form-panel {
         display: flex;
         flex-direction: column;
@@ -426,7 +311,7 @@ form select:focus {
         margin-top: 0;
     }
 
-    /* 5) El propio .data-form al 100% */
+    /* 5) data-form al 100% */
     .data-form {
         width: 100%;
         max-width: 100%;
@@ -434,12 +319,9 @@ form select:focus {
         box-shadow: none;
     }
 
-    /* 6) Botón confirmar algo más compacto */
+    /* 6) Botón confirmar más compacto */
     .confirm-button {
         font-size: 0.9rem;
         padding: 10px;
     }
 }
-
-
-

@@ -187,15 +187,7 @@
       <workItem from="1747232804383" duration="15882000" />
       <workItem from="1747318880798" duration="15332000" />
       <workItem from="1747404764877" duration="13293000" />
-      <workItem from="1747664504792" duration="7016000" />
-    </task>
-    <task id="LOCAL-01303" summary="Modal Descripcion">
-      <option name="closed" value="true" />
-      <created>1747327079897</created>
-      <option name="number" value="01303" />
-      <option name="presentableId" value="LOCAL-01303" />
-      <option name="project" value="LOCAL" />
-      <updated>1747327079897</updated>
+      <workItem from="1747664504792" duration="8224000" />
     </task>
     <task id="LOCAL-01304" summary="Modal Descripcion">
       <option name="closed" value="true" />
@@ -581,7 +573,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747676750530</updated>
     </task>
-    <option name="localTasksCounter" value="1352" />
+    <task id="LOCAL-01352" summary="Agregar Componentes Formulario">
+      <option name="closed" value="true" />
+      <created>1747677717976</created>
+      <option name="number" value="01352" />
+      <option name="presentableId" value="LOCAL-01352" />
+      <option name="project" value="LOCAL" />
+      <updated>1747677717976</updated>
+    </task>
+    <option name="localTasksCounter" value="1353" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
