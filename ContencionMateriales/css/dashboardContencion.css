@@ -239,37 +239,45 @@ body {
 
 /* ———————— 📱 Responsive móvil ———————— */
 @media screen and (max-width: 768px) {
-    /* 0) Body en columna para que sidebar quede encima del contenido */
+    /* Body apilado, scroll vertical en toda la página */
     body {
-        display: flex;          /* sigue siendo flex */
-        flex-direction: column; /* apila sidebar y main uno encima de otro */
-        overflow-x: hidden;     /* evita scroll horizontal */
-        overflow-y: auto;       /* permite scroll vertical si hace falta */
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
-    /* 1) Sidebar como top bar y apilado vertical */
+    /* 1) Sidebar como top bar, pero SIN scroll interno */
     .sidebar {
         position: relative;
         width: 100%;
         flex-direction: column !important;
         padding: 10px;
         box-shadow: none;
-        height: auto;
+        height: auto;        /* quita cualquier altura fija */
+        max-height: none;    /* permite crecer todo lo necesario */
+        overflow-y: visible; /* quita el scroll interno */
     }
+
+    /* 1.1) Botones full‑width y verticales (más compactos) */
     .sidebar-btn {
         display: flex !important;
         width: 100% !important;
-        margin-bottom: 8px;
+        margin: 0 0 4px 0;       /* menos separación */
+        padding: 8px 12px;       /* un poco más compacto */
+        font-size: 0.9rem;       /* letra ligeramente más pequeña */
         justify-content: flex-start !important;
     }
     .sidebar-btn i {
         margin-right: 8px;
     }
-    .sidebar .bottom-actions {
-        display: none;
+
+    /* Deja visibles las acciones inferiores */
+    .bottom-actions {
+        display: flex;
     }
 
-    /* 2) Ocultar la barra lateral derecha */
+    /* 2) Ocultar la barra derecha */
     .form-sidebar {
         display: none !important;
     }
@@ -297,3 +305,4 @@ body {
         padding: 10px;
     }
 }
+
