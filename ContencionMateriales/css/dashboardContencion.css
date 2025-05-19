@@ -235,24 +235,19 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-    /* 1a) Convertir la sidebar en flex‑wrap para dos columnas */
-    .sidebar {
-        display: flex !important;
-        flex-wrap: wrap;
-    }
-    /* 1b) Cada botón ocupa la mitad de ancho */
-    .sidebar > .sidebar-btn {
-        flex: 0 0 50%;
-        max-width: 50%;
-        box-sizing: border-box;
+    /* 0) Apilamos todo en columna y permitimos scroll vertical */
+    body {
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
-    /* — el resto de tu media‑query sigue igual — */
     /* 1) Sidebar como barra superior, en columna */
     .sidebar {
         position: relative;
         width: 100%;
-        flex-direction: column !important;
+        flex-direction: column !important;  /* forzamos columna */
         padding: 10px;
         box-shadow: none;
         height: auto;
@@ -264,6 +259,7 @@ body {
         width: 100%;
         margin-bottom: 8px;
     }
+
     /* 1.2) Botones del menú, ancho 100% y menos padding */
     .sidebar-btn {
         display: flex !important;
@@ -276,6 +272,7 @@ body {
     .sidebar-btn i {
         margin-right: 8px;
     }
+
     /* 1.3) Mantener los botones inferiores visibles */
     .bottom-actions {
         display: flex;
@@ -286,10 +283,12 @@ body {
     .bottom-actions .sidebar-btn {
         margin: 4px 0;
     }
-    /* 2) Ocultar el sidebar de “Agregar…” */
+
+    /* 2) Ocultar el sidebar derecho */
     .form-sidebar {
         display: none !important;
     }
+
     /* 3) Ajustes del main y del form */
     .main-content {
         margin: 0 !important;

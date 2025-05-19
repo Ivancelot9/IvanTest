@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Diseño Responsivo Celular" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Diseño Responsivo Celular">
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/dashboardContencion.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/dashboardContencion.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -185,15 +187,7 @@
       <workItem from="1747232804383" duration="15882000" />
       <workItem from="1747318880798" duration="15332000" />
       <workItem from="1747404764877" duration="13293000" />
-      <workItem from="1747664504792" duration="13664000" />
-    </task>
-    <task id="LOCAL-01318" summary="Modal Estatus">
-      <option name="closed" value="true" />
-      <created>1747334388742</created>
-      <option name="number" value="01318" />
-      <option name="presentableId" value="LOCAL-01318" />
-      <option name="project" value="LOCAL" />
-      <updated>1747334388742</updated>
+      <workItem from="1747664504792" duration="13731000" />
     </task>
     <task id="LOCAL-01319" summary="Modal Finalizacion &quot;G&quot;">
       <option name="closed" value="true" />
@@ -579,7 +573,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747688537631</updated>
     </task>
-    <option name="localTasksCounter" value="1367" />
+    <task id="LOCAL-01367" summary="Diseño Responsivo Celular">
+      <option name="closed" value="true" />
+      <created>1747688872544</created>
+      <option name="number" value="01367" />
+      <option name="presentableId" value="LOCAL-01367" />
+      <option name="project" value="LOCAL" />
+      <updated>1747688872544</updated>
+    </task>
+    <option name="localTasksCounter" value="1368" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
