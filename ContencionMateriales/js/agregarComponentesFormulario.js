@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         form.append('name', name);
 
         try {
-            const res  = await fetch('agregarComponentesFormulario.php', {
+            const res  = await fetch('https://grammermx.com/IvanTest/ContencionMateriales/dao/agregarComponentesFormulario.php', {
                 method: 'POST',
                 body: form
             });
