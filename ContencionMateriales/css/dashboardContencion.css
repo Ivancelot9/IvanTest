@@ -235,7 +235,7 @@ body {
 
 /* ———————— 📱 Responsive móvil ———————— */
 @media screen and (max-width: 768px) {
-    /* 0) Body apilado, scroll vertical */
+    /* Apilar body para que la sidebar quede encima */
     body {
         display: flex;
         flex-direction: column;
@@ -243,7 +243,7 @@ body {
         overflow-y: auto;
     }
 
-    /* 1) Sidebar como top bar y envuelve sus hijos */
+    /* 1) Convertir la sidebar en un flex-wrap container */
     .sidebar {
         position: relative;
         width: 100%;
@@ -257,43 +257,48 @@ body {
         overflow-y: visible;
     }
 
-    /* 1.1) User-dropdown al 100% */
-    .user-dropdown {
+    /* 1.1) Que el user-dropdown ocupe toda la fila */
+    .sidebar > .user-dropdown {
         width: 100%;
         margin-bottom: 8px;
     }
 
-    /* 1.2) Botones principales en dos columnas */
-    .sidebar-btn {
+    /* 1.2) Botones de menú (directos hijos de .sidebar) en dos columnas */
+    .sidebar > .sidebar-btn {
         flex: 0 0 calc(50% - 8px);
+        max-width: calc(50% - 8px);
         margin: 4px;
         padding: 8px 12px;
         font-size: 0.9rem;
         justify-content: flex-start !important;
     }
-    .sidebar-btn i {
+    .sidebar > .sidebar-btn i {
         margin-right: 8px;
     }
 
-    /* 1.3) Botones de bottom-actions en dos columnas */
-    .bottom-actions {
+    /* 1.3) Zona inferior con los botones también en dos columnas */
+    .sidebar .bottom-actions {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         gap: 4px;
         margin-top: 0;
+        padding: 0;
     }
-    .bottom-actions .sidebar-btn {
+    .sidebar .bottom-actions .sidebar-btn {
         flex: 0 0 calc(50% - 8px);
+        max-width: calc(50% - 8px);
         margin: 4px;
+        padding: 8px 12px;
+        font-size: 0.9rem;
     }
 
-    /* 2) Ocultar la barra lateral derecha */
+    /* 2) Ocultar la barra lateral derecha de “Agregar…” */
     .form-sidebar {
         display: none !important;
     }
 
-    /* 3) Ajustes del main/form */
+    /* 3) Ajustes del main/form para móvil */
     .main-content {
         margin: 0 !important;
         padding: 10px 15px;
