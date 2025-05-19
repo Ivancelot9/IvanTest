@@ -188,15 +188,7 @@
       <workItem from="1747232804383" duration="15882000" />
       <workItem from="1747318880798" duration="15332000" />
       <workItem from="1747404764877" duration="13293000" />
-      <workItem from="1747664504792" duration="11872000" />
-    </task>
-    <task id="LOCAL-01311" summary="Modal Estatus">
-      <option name="closed" value="true" />
-      <created>1747331666270</created>
-      <option name="number" value="01311" />
-      <option name="presentableId" value="LOCAL-01311" />
-      <option name="project" value="LOCAL" />
-      <updated>1747331666270</updated>
+      <workItem from="1747664504792" duration="12196000" />
     </task>
     <task id="LOCAL-01312" summary="Modal Estatus">
       <option name="closed" value="true" />
@@ -582,7 +574,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747686593113</updated>
     </task>
-    <option name="localTasksCounter" value="1360" />
+    <task id="LOCAL-01360" summary="Diseño Responsivo Celular">
+      <option name="closed" value="true" />
+      <created>1747687067511</created>
+      <option name="number" value="01360" />
+      <option name="presentableId" value="LOCAL-01360" />
+      <option name="project" value="LOCAL" />
+      <updated>1747687067511</updated>
+    </task>
+    <option name="localTasksCounter" value="1361" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -8,6 +8,7 @@ body {
     display: flex;
     color: #1c1e21;
     animation: fadeInBody 0.5s ease-out;
+    /* ocultamos el scroll interno en desktop */
     overflow-y: hidden;
 }
 
@@ -181,7 +182,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    box-shadow: -2px 0 6px rgba(0,0,0,0.1);
+    box-shadow: -2px 0 6px rgba(0, 0, 0, 0.1);
     z-index: 100;
 }
 .form-sidebar ul {
@@ -214,28 +215,28 @@ body {
 /* === ✨ Animaciones === */
 @keyframes fadeInBody {
     from { opacity: 0; }
-    to { opacity: 1; }
+    to   { opacity: 1; }
 }
 @keyframes fadeInMain {
     from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 @keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(15px); }
+    0%   { opacity: 0; transform: translateY(15px); }
     100% { opacity: 1; transform: translateY(0); }
 }
 @keyframes fadeInDown {
-    0% { opacity: 0; transform: translateY(-15px); }
+    0%   { opacity: 0; transform: translateY(-15px); }
     100% { opacity: 1; transform: translateY(0); }
 }
 @keyframes slideInLeft {
-    0% { opacity: 0; transform: translateX(-50px); }
+    0%   { opacity: 0; transform: translateX(-50px); }
     100% { opacity: 1; transform: translateX(0); }
 }
 
 /* ———————— 📱 Responsive móvil ———————— */
 @media screen and (max-width: 768px) {
-    /* Apilar body para que la sidebar quede encima */
+    /* 0) Body apilado con scroll vertical */
     body {
         display: flex;
         flex-direction: column;
@@ -243,7 +244,7 @@ body {
         overflow-y: auto;
     }
 
-    /* 1) Convertir la sidebar en un flex-wrap container */
+    /* 1) Sidebar como flex-wrap */
     .sidebar {
         position: relative;
         width: 100%;
@@ -257,13 +258,13 @@ body {
         overflow-y: visible;
     }
 
-    /* 1.1) Que el user-dropdown ocupe toda la fila */
+    /* 1.1) User-dropdown a 100% */
     .sidebar > .user-dropdown {
         width: 100%;
         margin-bottom: 8px;
     }
 
-    /* 1.2) Botones de menú (directos hijos de .sidebar) en dos columnas */
+    /* 1.2) Botones principales en 2 columnas */
     .sidebar > .sidebar-btn {
         flex: 0 0 calc(50% - 8px);
         max-width: calc(50% - 8px);
@@ -276,7 +277,7 @@ body {
         margin-right: 8px;
     }
 
-    /* 1.3) Zona inferior con los botones también en dos columnas */
+    /* 1.3) Zona inferior en 2 columnas */
     .sidebar .bottom-actions {
         width: 100%;
         display: flex;
@@ -293,12 +294,12 @@ body {
         font-size: 0.9rem;
     }
 
-    /* 2) Ocultar la barra lateral derecha de “Agregar…” */
+    /* 2) Ocultar barra derecha */
     .form-sidebar {
         display: none !important;
     }
 
-    /* 3) Ajustes del main/form para móvil */
+    /* 3) Ajustes de main/form */
     .main-content {
         margin: 0 !important;
         padding: 10px 15px;
