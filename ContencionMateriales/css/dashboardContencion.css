@@ -180,22 +180,19 @@ body {
     position: fixed;
     top: 0;
     right: 0;
-    bottom: 0;
+    /* bottom: 0;  <-- quitar */
     width: 240px;
+    height: 100vh;
+    box-sizing: border-box !important;  /* incluye padding en ese 100vh */
+    padding: 80px 15px 20px;
     background-color: #1e2a38;
     color: #f0f2f5;
-    padding: 80px 15px 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     box-shadow: -2px 0 6px rgba(0,0,0,0.1);
     z-index: 100;
-
-    /* ─── Aquí va lo nuevo ─── */
-    box-sizing: border-box;  /* Incluye padding en el height/width */
-    height: 100vh;           /* Fuerza igualar viewport */
-    overflow: hidden;        /* Elimina cualquier scroll */
-
+    overflow: hidden !important;        /* quita todo scrollbar */
 }
 .form-sidebar ul {
     list-style: none;
