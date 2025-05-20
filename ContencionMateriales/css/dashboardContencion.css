@@ -196,14 +196,14 @@ body {
     position: absolute;
     top: 16px;
     right: 16px;
-    z-index: 9999;
-    display: block;
+    z-index: 9999;        /* por encima de todo */
     padding: 6px 12px;
-    background: #ffffff;
+    background: #fff;
     color: #1e2a38;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
 }
 #btn-language-toggle:hover {
     background: #f0f0f0;
