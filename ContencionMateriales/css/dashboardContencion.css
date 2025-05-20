@@ -80,7 +80,8 @@ body {
 
 /* 🧾 Contenido principal */
 .main-content {
-    margin-inline: 260px;
+    margin-left: 260px;
+    margin-right: 0;
     padding: 15px 30px;
     flex-grow: 1;
     background-color: #f5f6f8;
@@ -89,6 +90,7 @@ body {
     overflow-y: auto;
     animation: fadeInMain 0.7s ease;
     position: relative;       /* para que el absolute del botón funcione */
+    scrollbar-gutter: stable both-edges;
 }
 .main-content h1 {
     font-size: 1.8rem;
@@ -194,15 +196,22 @@ body {
 
 /* Y este es tu botón en la esquina superior derecha */
 #btn-language-toggle {
+    /* bajarlo un poco y darle feedback visual */
     position: absolute;
-    top: 16px;
-    right: 16px;
-    z-index: 200; /* por encima de tu contenido */
-    background: transparent;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
+    top: 40px;            /* antes era 16px */
+    right: 24px;          /* un poco más alejado del scrollbar */
+    padding: 6px 10px;
+    background: #1e2a38;
+    color: #f0f2f5;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: background 0.2s, transform 0.1s;
 }
+#btn-language-toggle:hover {
+      background: #162029;
+      transform: translateY(-1px);
+      cursor: pointer;
+  }
 /* —————————————————————————————————————————————
    Barra lateral derecha (idéntico estilo al sidebar)
    ————————————————————————————————————————————— */
