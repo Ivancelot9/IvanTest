@@ -279,6 +279,21 @@ body {
 /* ———————— 📱 Responsive móvil ———————— */
 @media screen and (max-width: 768px) {
 
+    /*  Ajuste de .form-row para evitar desborde */
+    .form-row {
+        flex-wrap: wrap;    /* permite que bajen los campos */
+        gap: 10px;          /* opcional, controla el espacio */
+    }
+    .form-row .form-group {
+        flex: 1 1 100%;     /* cada campo ocupa toda la línea */
+        min-width: 0;       /* clave: deja encoger el flex-item */
+    }
+    .form-row .form-group input,
+    .form-row .form-group select {
+        width: 100%;        /* rellena el 100% del flex-item */
+        box-sizing: border-box;
+    }
+
     /* permitimos scroll global para bajar hasta el footer */
     html, body {
         overflow-y: auto;    /* body SÍ hace scroll en móvil */
