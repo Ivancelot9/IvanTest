@@ -81,15 +81,15 @@ body {
 /* 🧾 Contenido principal */
 .main-content {
     margin-left: 260px;
-    margin-right: 0;
+    margin-right: 240px;         /* espacio para tu sidebar derecho */
     padding: 15px 30px;
     flex-grow: 1;
     background-color: #f5f6f8;
     height: 100vh;
     min-height: 100vh;
     overflow-y: auto;
-    animation: fadeInMain 0.7s ease;
-    position: relative;       /* para que el absolute del botón funcione */
+    animation: fadeInMain 0.7s ease;   /* lo dejamos intacto */
+    position: relative;
     scrollbar-gutter: stable both-edges;
 }
 .main-content h1 {
