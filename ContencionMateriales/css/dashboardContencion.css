@@ -256,19 +256,25 @@ body {
         height: auto;        /* quita cualquier altura fija */
         max-height: none;    /* permite crecer todo lo necesario */
         overflow-y: visible; /* quita el scroll interno */
+
+        /* NUEVO: grid ligero de 2 columnas */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
 
-    /* 1.1) Botones full‑width y verticales (más compactos) */
+    /* 1.1) Botones en filas de dos */
     .sidebar-btn {
         display: flex !important;
-        width: 100% !important;
-        margin: 0 0 4px 0;       /* menos separación */
+        /* en lugar de width:100% ahora usamos flex-basis al 50% menos gap */
+        flex: 0 0 calc(50% - 8px) !important;
+        margin-bottom: 8px;
         padding: 8px 12px;       /* un poco más compacto */
         font-size: 0.9rem;       /* letra ligeramente más pequeña */
         justify-content: flex-start !important;
     }
     .sidebar-btn i {
-        margin-right: 8px;
+        margin-right: 6px;
     }
 
     /* Deja visibles las acciones inferiores */

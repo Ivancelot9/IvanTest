@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Diseño Responsivo Celular">
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/dashboardContencion.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/dashboardContencion.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,6 +188,7 @@
       <workItem from="1747318880798" duration="15332000" />
       <workItem from="1747404764877" duration="13293000" />
       <workItem from="1747664504792" duration="14021000" />
+      <workItem from="1747750453692" duration="1144000" />
     </task>
     <task id="LOCAL-01323" summary="Barra Agregar">
       <option name="closed" value="true" />
