@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Diseño Responsivo Celular">
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/dashboardContencion.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/dashboardContencion.css" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Diseño Responsivo Celular" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -188,15 +186,7 @@
       <workItem from="1747318880798" duration="15332000" />
       <workItem from="1747404764877" duration="13293000" />
       <workItem from="1747664504792" duration="14021000" />
-      <workItem from="1747750453692" duration="2400000" />
-    </task>
-    <task id="LOCAL-01325" summary="Barra Agregar">
-      <option name="closed" value="true" />
-      <created>1747416173441</created>
-      <option name="number" value="01325" />
-      <option name="presentableId" value="LOCAL-01325" />
-      <option name="project" value="LOCAL" />
-      <updated>1747416173441</updated>
+      <workItem from="1747750453692" duration="3035000" />
     </task>
     <task id="LOCAL-01326" summary="Barra Agregar">
       <option name="closed" value="true" />
@@ -582,7 +572,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747752840343</updated>
     </task>
-    <option name="localTasksCounter" value="1374" />
+    <task id="LOCAL-01374" summary="Diseño Responsivo Celular">
+      <option name="closed" value="true" />
+      <created>1747753027390</created>
+      <option name="number" value="01374" />
+      <option name="presentableId" value="LOCAL-01374" />
+      <option name="project" value="LOCAL" />
+      <updated>1747753027390</updated>
+    </task>
+    <option name="localTasksCounter" value="1375" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
