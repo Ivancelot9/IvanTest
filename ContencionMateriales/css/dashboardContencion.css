@@ -88,6 +88,7 @@ body {
     min-height: 100vh;
     overflow-y: auto;
     animation: fadeInMain 0.7s ease;
+    position: relative;       /* para que el absolute del botón funcione */
 }
 .main-content h1 {
     font-size: 1.8rem;
@@ -95,6 +96,24 @@ body {
     color: #1e2a38;
     margin-top: 20px;
     animation: fadeInDown 0.6s ease-in-out;
+}
+
+/* Webkit (Chrome, Edge, Safari…) */
+.main-content::-webkit-scrollbar {
+    width: 8px;
+}
+.main-content::-webkit-scrollbar-track {
+    background: #f5f6f8;      /* color de fondo del track */
+}
+.main-content::-webkit-scrollbar-thumb {
+    background: #333;         /* tu thumb “negro” */
+    border-radius: 4px;
+}
+
+/* Firefox */
+.main-content {
+    scrollbar-width: thin;
+    scrollbar-color: #333 #f5f6f8;
 }
 
 /* 📋 Formulario */
