@@ -1,3 +1,10 @@
+
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -293,6 +300,9 @@ body {
         margin-right: 0 !important;
         padding: 10px 15px;
         height: auto;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
     }
     .form-panel {
         display: flex;
@@ -305,6 +315,8 @@ body {
         max-width: 100%;
         padding: 16px;
         box-shadow: none;
+        overflow-x: hidden;
+        box-sizing: border-box;
     }
     .confirm-button {
         font-size: 0.9rem;
