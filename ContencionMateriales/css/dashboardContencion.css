@@ -173,6 +173,17 @@ body {
     transform: translateY(-1px);
 }
 
+/* Y este es tu botón en la esquina superior derecha */
+#btn-language-toggle {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 200; /* por encima de tu contenido */
+    background: transparent;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
 /* —————————————————————————————————————————————
    Barra lateral derecha (idéntico estilo al sidebar)
    ————————————————————————————————————————————— */
