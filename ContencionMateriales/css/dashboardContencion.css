@@ -196,12 +196,15 @@ body {
     position: absolute;
     top: 16px;
     right: 16px;
-    z-index: 9999;        /* por encima de todo */
+    z-index: 9999;                /* por encima de sidebars y scroll */
+    display: block;               /* en caso de que esté oculto */
     padding: 6px 12px;
-    background: #fff;
-    color: #1e2a38;
+    background: #ffffff;          /* fondo claro para contraste */
+    color: #1e2a38;               /* texto oscuro */
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    font-size: 0.9rem;
     cursor: pointer;
     transition: background 0.2s, transform 0.1s;
 }
