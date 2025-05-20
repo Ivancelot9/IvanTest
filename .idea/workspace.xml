@@ -188,15 +188,7 @@
       <workItem from="1747318880798" duration="15332000" />
       <workItem from="1747404764877" duration="13293000" />
       <workItem from="1747664504792" duration="14021000" />
-      <workItem from="1747750453692" duration="10679000" />
-    </task>
-    <task id="LOCAL-01342" summary="Barra Agregar">
-      <option name="closed" value="true" />
-      <created>1747428078208</created>
-      <option name="number" value="01342" />
-      <option name="presentableId" value="LOCAL-01342" />
-      <option name="project" value="LOCAL" />
-      <updated>1747428078208</updated>
+      <workItem from="1747750453692" duration="11120000" />
     </task>
     <task id="LOCAL-01343" summary="Agregar Componentes Formulario">
       <option name="closed" value="true" />
@@ -582,7 +574,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747762512313</updated>
     </task>
-    <option name="localTasksCounter" value="1391" />
+    <task id="LOCAL-01391" summary="Diseño Responsivo Celular">
+      <option name="closed" value="true" />
+      <created>1747762691613</created>
+      <option name="number" value="01391" />
+      <option name="presentableId" value="LOCAL-01391" />
+      <option name="project" value="LOCAL" />
+      <updated>1747762691613</updated>
+    </task>
+    <option name="localTasksCounter" value="1392" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

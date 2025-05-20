@@ -3,7 +3,7 @@
 html, body {
     max-width: 100%;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;    /* body NO hace scroll en PC */
 }
 
 body {
@@ -244,6 +244,11 @@ body {
 
 /* ———————— 📱 Responsive móvil ———————— */
 @media screen and (max-width: 768px) {
+
+    /* permitimos scroll global para bajar hasta el footer */
+    html, body {
+        overflow-y: auto;    /* body SÍ hace scroll en móvil */
+    }
     /* 0) Body en columna con scroll general */
     body {
         display: flex;
