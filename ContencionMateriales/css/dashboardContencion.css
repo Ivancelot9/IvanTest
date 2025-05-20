@@ -191,8 +191,7 @@ body {
     z-index: 100;
 
     /* ✅ Ajuste para evitar scroll innecesario */
-    overflow-y: auto;
-    max-height: 100vh;
+    overflow-y: hidden;
 }
 .form-sidebar ul {
     list-style: none;
