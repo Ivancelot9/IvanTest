@@ -176,23 +176,21 @@ body {
    Barra lateral derecha (idéntico estilo al sidebar)
    ————————————————————————————————————————————— */
 .form-sidebar {
-
     position: fixed;
     top: 0;
+    bottom: 0;                /* asegura que llene de arriba a abajo */
     right: 0;
-    /* bottom: 0;  <-- quitar */
     width: 240px;
-    height: 100vh;
-    box-sizing: border-box !important;  /* incluye padding en ese 100vh */
-    padding: 80px 15px 20px;
+    /* elimina height:100vh para que top/bottom definan la altura */
+    box-sizing: border-box !important;
+    padding: 20px 15px;       /* igual padding que .sidebar (ajusta según necesites) */
     background-color: #1e2a38;
     color: #f0f2f5;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between; /* reparte espacio igual que .sidebar */
     box-shadow: -2px 0 6px rgba(0,0,0,0.1);
     z-index: 100;
-    overflow: hidden !important;        /* quita todo scrollbar */
 }
 .form-sidebar ul {
     list-style: none;
