@@ -196,22 +196,25 @@ body {
 
 /* Y este es tu botón en la esquina superior derecha */
 #btn-language-toggle {
-    /* bajarlo un poco y darle feedback visual */
     position: absolute;
-    top: 40px;            /* antes era 16px */
-    right: 24px;          /* un poco más alejado del scrollbar */
-    padding: 6px 10px;
-    background: #1e2a38;
-    color: #f0f2f5;
+    top: 16px;
+    right: 16px;
+    z-index: 9999;                /* por encima de sidebars y scroll */
+    display: block;               /* en caso de que esté oculto */
+    padding: 6px 12px;
+    background: #ffffff;          /* fondo claro para contraste */
+    color: #1e2a38;               /* texto oscuro */
+    border: 1px solid #ccc;
     border-radius: 4px;
-    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    font-size: 0.9rem;
+    cursor: pointer;
     transition: background 0.2s, transform 0.1s;
 }
 #btn-language-toggle:hover {
-      background: #162029;
-      transform: translateY(-1px);
-      cursor: pointer;
-  }
+    background: #f0f0f0;
+    transform: translateY(-1px);
+}
 /* —————————————————————————————————————————————
    Barra lateral derecha (idéntico estilo al sidebar)
    ————————————————————————————————————————————— */
