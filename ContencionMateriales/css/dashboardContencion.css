@@ -81,13 +81,15 @@ body {
 /* 🧾 Contenido principal */
 .main-content {
     margin-left: 260px;
+    margin-right: 0;
     padding: 15px 30px;
     flex-grow: 1;
     background-color: #f5f6f8;
     height: 100vh;
+    min-height: 100vh;
     overflow-y: auto;
-    position: relative;       /* para el botón */
-    scrollbar-gutter: stable both-edges;
+    animation: fadeInMain 0.7s ease;
+    position: relative;       /* para que el absolute del botón funcione */
 }
 .main-content h1 {
     font-size: 1.8rem;
@@ -196,21 +198,11 @@ body {
     position: absolute;
     top: 16px;
     right: 16px;
-    z-index: 9999;                /* por encima de sidebars y scroll */
-    display: block;               /* en caso de que esté oculto */
-    padding: 6px 12px;
-    background: #ffffff;          /* fondo claro para contraste */
-    color: #1e2a38;               /* texto oscuro */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    font-size: 0.9rem;
+    z-index: 200; /* por encima de tu contenido */
+    background: transparent;
+    border: none;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-}
-#btn-language-toggle:hover {
-    background: #f0f0f0;
-    transform: translateY(-1px);
 }
 /* —————————————————————————————————————————————
    Barra lateral derecha (idéntico estilo al sidebar)
