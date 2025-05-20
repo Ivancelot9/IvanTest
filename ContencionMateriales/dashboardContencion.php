@@ -109,11 +109,12 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
     </div>
 </div>
 
-<!-- Botón de idioma en la esquina superior derecha -->
-<button id="btn-language-toggle" class="language-toggle">ES/EN</button>
+
 
 
 <main class="main-content">
+    <!-- Botón de idioma en la esquina superior derecha -->
+    <button id="btn-language-toggle" class="language-toggle">ES/EN</button>
     <!-- Sección 1: Formulario -->
     <section id="formulario" class="main-section">
         <h1><strong>DATOS</strong></h1>
