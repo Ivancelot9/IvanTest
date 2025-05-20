@@ -259,11 +259,9 @@ body {
         flex-direction: column !important;
         padding: 10px;
         box-shadow: none;
-        height: auto;        /* quita cualquier altura fija */
-        max-height: none;    /* permite crecer todo lo necesario */
-        overflow-y: visible; /* quita el scroll interno */
-
-        /* NUEVO: grid ligero de 2 columnas */
+        height: auto;
+        max-height: none;
+        overflow-y: visible;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -272,11 +270,10 @@ body {
     /* 1.1) Botones en filas de dos */
     .sidebar-btn {
         display: flex !important;
-        /* en lugar de width:100% ahora usamos flex-basis al 50% menos gap */
         flex: 0 0 calc(50% - 8px) !important;
         margin-bottom: 8px;
-        padding: 8px 12px;       /* un poco más compacto */
-        font-size: 0.9rem;       /* letra ligeramente más pequeña */
+        padding: 8px 12px;
+        font-size: 0.9rem;
         justify-content: flex-start !important;
     }
     .sidebar-btn i {
@@ -288,12 +285,7 @@ body {
         display: flex;
     }
 
-    /* 2) Ocultar la barra derecha */
-    .form-sidebar {
-        display: none !important;
-    }
-
-    /* 3) Ajustes del main/form */
+    /* 2) Ajustes del main/form */
     .main-content {
         margin-left: 0 !important;
         margin-right: 0 !important;
@@ -321,4 +313,40 @@ body {
         font-size: 0.9rem;
         padding: 10px;
     }
+
+    /* 3) Mostrar form-sidebar como footer */
+    .form-sidebar {
+        display: flex !important;         /* lo mostramos */
+        position: relative;               /* sale del fixed */
+        order: 2;                         /* va después del formulario */
+        width: 100%;                      /* ancho completo */
+        margin: 1rem 0 0;                 /* espacio arriba */
+        padding: 15px;                    /* igual estilo */
+        box-shadow: 0 -2px 6px rgba(0,0,0,0.1); /* sombra superior */
+        background-color: #1e2a38;
+        color: #f0f2f5;
+        flex-direction: row;              /* organiza botones en fila */
+        flex-wrap: wrap;
+        justify-content: space-around;    /* espacio entre botones */
+        box-sizing: border-box;
+        overflow: visible;
+    }
+
+    /* Opcional: dos columnas de botones en el footer */
+    .form-sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .form-sidebar li {
+        flex: 1 1 calc(50% - 0.5rem);
+    }
+    .form-sidebar button {
+        width: 100%;
+        text-align: center;
+    }
 }
+
