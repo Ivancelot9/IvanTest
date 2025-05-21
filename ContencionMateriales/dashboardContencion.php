@@ -274,6 +274,21 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
     <!-- Sección 2: Historial -->
     <section id="historial" class="main-section" style="display: none;">
         <h1><strong>Mis Casos</strong></h1>
+
+
+        <!-- 🔎 Controles de búsqueda -->
+        <div class="table-controls">
+            <div class="filter-container">
+                <label for="historial-filter-column">Filtrar por:</label>
+                <select id="historial-filter-column">
+                    <option value="folio">Folio</option>
+                    <option value="fecha">Fecha Registro</option>
+                </select>
+                <input type="text" id="historial-filter-input" placeholder="Buscar...">
+                <button id="historial-filter-button">🔍 Buscar</button>
+            </div>
+        </div>
+
         <table class="cases-table">
             <thead>
             <tr>
@@ -290,6 +305,14 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
             </tr>
             </tbody>
         </table>
+
+        <!-- 📑 Controles de paginación -->
+        <div class="pagination" id="historial-pagination">
+            <button id="hist-prev" disabled>⬅ Anterior</button>
+            <span id="hist-page-indicator">Página 1</span>
+            <button id="hist-next">Siguiente ➡</button>
+        </div>
+
     </section>
 
     <!-- Sección 3: Administrador -->

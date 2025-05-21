@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Diseño Responsivo Celular">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/dashboardContencion.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/dashboardContencion.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/tablaCasos.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/tablaCasos.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,15 +190,8 @@
       <workItem from="1747318880798" duration="15332000" />
       <workItem from="1747404764877" duration="13293000" />
       <workItem from="1747664504792" duration="14021000" />
-      <workItem from="1747750453692" duration="15745000" />
-    </task>
-    <task id="LOCAL-01357" summary="Diseño Responsivo Celular">
-      <option name="closed" value="true" />
-      <created>1747680465476</created>
-      <option name="number" value="01357" />
-      <option name="presentableId" value="LOCAL-01357" />
-      <option name="project" value="LOCAL" />
-      <updated>1747680465476</updated>
+      <workItem from="1747750453692" duration="18443000" />
+      <workItem from="1747837343678" duration="1627000" />
     </task>
     <task id="LOCAL-01358" summary="Diseño Responsivo Celular">
       <option name="closed" value="true" />
@@ -583,7 +577,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747767252050</updated>
     </task>
-    <option name="localTasksCounter" value="1406" />
+    <task id="LOCAL-01406" summary="Diseño Responsivo Celular">
+      <option name="closed" value="true" />
+      <created>1747767769963</created>
+      <option name="number" value="01406" />
+      <option name="presentableId" value="LOCAL-01406" />
+      <option name="project" value="LOCAL" />
+      <updated>1747767769963</updated>
+    </task>
+    <option name="localTasksCounter" value="1407" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
