@@ -91,7 +91,8 @@
 .table-controls {
     margin-bottom: 16px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;   /* ← antes era flex-end */
+    padding-left: 0;               /* opcional: ajusta si necesitas un poco de margen */
 }
 .filter-container {
     display: flex;
