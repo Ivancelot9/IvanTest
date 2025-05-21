@@ -151,11 +151,15 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                         </div>
                         <div class="form-group">
                             <label for="cantidad">Cantidad</label>
-                            <input type="number"
-                                   name="Cantidad"
-                                   id="cantidad"
-                                   placeholder="Cantidad"
-                                   required />
+                            <input
+                                    type="number"
+                                    name="Cantidad"
+                                    id="cantidad"
+                                    placeholder="Cantidad"
+                                    min="1"
+                                    step="1"
+                                    required
+                            />
                         </div>
                     </div>
 
