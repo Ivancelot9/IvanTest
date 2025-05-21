@@ -271,7 +271,7 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
 
 
 
-    <!-- Sección 2: Historial -->
+    <!-- Sección 2: Mis Casos -->
     <section id="historial" class="main-section" style="display: none;">
         <h1><strong>Mis Casos</strong></h1>
 
@@ -320,16 +320,48 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
 
     </section>
 
-    <!-- Sección 3: Administrador -->
-    <section id="admin" class="main-section" style="display: none;">
-        <h1><strong>Administrador</strong></h1>
-        <p>Aún no hay contenido definido.</p>
-    </section>
+    <!-- Sección 3: Historial de Casos-->
+    <section id="historial-casos" class="main-section" style="display: none;">
+        <h1><strong>Historial de Casos</strong></h1>
 
-    <!-- Sección 4: Administrador -->
-    <section id="admin" class="main-section" style="display: none;">
-        <h1><strong>Administrador</strong></h1>
-        <p>Aún no hay contenido definido.</p>
+        <!-- 🔎 Controles de búsqueda -->
+        <div class="table-controls">
+            <div class="filter-container">
+                <label for="todos-filter-column">Filtrar por:</label>
+                <select id="todos-filter-column">
+                    <option value="folio">Folio</option>
+                    <option value="fecha">Fecha Registro</option>
+                </select>
+                <input type="text" id="todos-filter-input" placeholder="Buscar...">
+                <button id="todos-filter-button">🔍 Buscar</button>
+            </div>
+        </div>
+
+        <table class="cases-table" id="tabla-todos-casos">
+            <thead>
+            <tr>
+                <th>Folio</th>
+                <th>Fecha Registro</th>
+                <th>Descripción</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Se llenará dinámicamente con todos los casos -->
+            <tr><td>001</td><td>2025-05-13</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
+            <tr><td>002</td><td>2025-05-14</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
+            <tr><td>003</td><td>2025-05-15</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
+            <tr><td>004</td><td>2025-05-16</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
+            <tr><td>005</td><td>2025-05-17</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
+            <tr><td>006</td><td>2025-05-18</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
+            </tbody>
+        </table>
+
+        <!-- 📑 Controles de paginación -->
+        <div class="pagination" id="todos-pagination">
+            <button id="todos-prev" disabled>⬅ Anterior</button>
+            <span id="todos-page-indicator">Página 1</span>
+            <button id="todos-next">Siguiente ➡</button>
+        </div>
     </section>
 </main>
 
