@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Tabla Mis Casos">
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/tablaCasos.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/tablaCasos.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ContencionMateriales/js/tablaMisCasos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -189,15 +191,7 @@
       <workItem from="1747404764877" duration="13293000" />
       <workItem from="1747664504792" duration="14021000" />
       <workItem from="1747750453692" duration="18443000" />
-      <workItem from="1747837343678" duration="1859000" />
-    </task>
-    <task id="LOCAL-01359" summary="Diseño Responsivo Celular">
-      <option name="closed" value="true" />
-      <created>1747686593113</created>
-      <option name="number" value="01359" />
-      <option name="presentableId" value="LOCAL-01359" />
-      <option name="project" value="LOCAL" />
-      <updated>1747686593113</updated>
+      <workItem from="1747837343678" duration="3220000" />
     </task>
     <task id="LOCAL-01360" summary="Diseño Responsivo Celular">
       <option name="closed" value="true" />
@@ -583,7 +577,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747839132814</updated>
     </task>
-    <option name="localTasksCounter" value="1408" />
+    <task id="LOCAL-01408" summary="Tabla Mis Casos">
+      <option name="closed" value="true" />
+      <created>1747839345401</created>
+      <option name="number" value="01408" />
+      <option name="presentableId" value="LOCAL-01408" />
+      <option name="project" value="LOCAL" />
+      <updated>1747839345401</updated>
+    </task>
+    <option name="localTasksCounter" value="1409" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -303,6 +303,11 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                 <td>2025-05-13</td>
                 <td><button class="show-desc">Mostrar descripción</button></td>
             </tr>
+            <tr><td>002</td><td>2025-05-14</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
+            <tr><td>003</td><td>2025-05-15</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
+            <tr><td>004</td><td>2025-05-16</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
+            <tr><td>005</td><td>2025-05-17</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
+            <tr><td>006</td><td>2025-05-18</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
             </tbody>
         </table>
 
@@ -334,6 +339,8 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
 <script src="js/cambioIdioma.js" defer></script>
 <script src="js/modalFotos.js" defer></script>
 <script src="js/agregarComponentesFormulario.js" defer></script>
+<script src="js/tablaMisCasos.js"></script>
+
 
 </body>
 </html>
