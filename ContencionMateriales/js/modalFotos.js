@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>`;
     document.body.insertAdjacentHTML("beforeend", modalHTML);
 
-    // 2) Referencias
+    // 2) Referencias y contadores
     const modal       = document.getElementById("modal-fotos");
     const btnAbrir    = document.querySelector("button.form-button");
     const btnCancelar = document.getElementById("btn-cancelar-fotos");
@@ -47,55 +47,43 @@ document.addEventListener("DOMContentLoaded", () => {
     const containerNo = document.getElementById("fotos-no-extra-container");
     const btnOk       = document.getElementById("btn-agregar-ok");
     const btnNo       = document.getElementById("btn-agregar-no");
+    const formPreview = document.getElementById("evidencia-preview"); // contenedor en el formulario
     let contadorOk = 0, contadorNo = 0;
 
-    // 3) Función para acortar nombre de archivo
+    // 3) Acortar nombre de archivo
     function acortarNombre(name, max = 20) {
         if (name.length <= max) return name;
         const ext = name.slice(name.lastIndexOf('.')) || "";
         return name.slice(0, max - ext.length - 3) + "..." + ext;
     }
 
-    // 4) Función para manejar inputs principales (OK/NO OK)
+    // 4) Manejar inputs principales (preview + quitar + rebind)
     function manejarPrincipal(inputEl, areaEl, defaultHTML) {
-        // rebind del botón "Elegir archivo" después de reset
         function bindChooseBtn() {
             const btn = areaEl.querySelector(".custom-file-btn");
-            if (!btn) return;
-            btn.addEventListener("click", () => inputEl.click());
+            if (btn) btn.onclick = () => inputEl.click();
         }
-
-        // inicializar choose btn
         bindChooseBtn();
 
-        // resetear a estado original
         function resetArea() {
             areaEl.innerHTML = defaultHTML;
             bindChooseBtn();
             inputEl.value = "";
         }
 
-        // evento cambio de archivo
         inputEl.addEventListener("change", () => {
             if (!inputEl.files.length) return;
-            areaEl.innerHTML = ""; // limpiamos
+            areaEl.innerHTML = "";
             const file = inputEl.files[0];
             const nombre = acortarNombre(file.name);
 
-            // texto
             const span = document.createElement("span");
             span.textContent = nombre;
-            areaEl.appendChild(span);
-
-            // botón quitar
             const rm = document.createElement("button");
-            rm.type = "button";
-            rm.className = "remove-file-btn";
-            rm.textContent = "✖";
+            rm.type = "button"; rm.className = "remove-file-btn"; rm.textContent = "✖";
             rm.addEventListener("click", resetArea);
-            areaEl.appendChild(rm);
+            areaEl.append(span, rm);
 
-            // imagen preview
             const reader = new FileReader();
             reader.onload = e => {
                 const img = document.createElement("img");
@@ -110,23 +98,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 5) Asociar inputs principales
-    const dropOk    = document.getElementById("drop-ok");
-    const areaOk    = dropOk.querySelector(".drop-area");
-    const defaultOk = areaOk.innerHTML;
+    // 5) Asociar principales
+    const dropOk    = document.getElementById("drop-ok"),
+        areaOk    = dropOk.querySelector(".drop-area"),
+        defaultOk = areaOk.innerHTML;
     manejarPrincipal(document.getElementById("foto-ok"), areaOk, defaultOk);
 
-    const dropNo    = document.getElementById("drop-no-ok");
-    const areaNo    = dropNo.querySelector(".drop-area");
-    const defaultNo = areaNo.innerHTML;
+    const dropNo    = document.getElementById("drop-no-ok"),
+        areaNo    = dropNo.querySelector(".drop-area"),
+        defaultNo = areaNo.innerHTML;
     manejarPrincipal(document.getElementById("foto-no-ok"), areaNo, defaultNo);
 
     // 6) Abrir / cerrar modal
-    btnAbrir.addEventListener("click",  () => modal.style.display = "flex");
-    btnCancelar.addEventListener("click", () => modal.style.display = "none");
-    btnConfirm.addEventListener("click",   () => modal.style.display = "none");
+    btnAbrir.onclick    = () => modal.style.display = "flex";
+    btnCancelar.onclick = () => modal.style.display = "none";
 
-    // 7) Función para manejar inputs adicionales (solo nombre + quitar)
+    // 7) Crear inputs adicionales (solo nombre + quitar)
     function manejarExtra(inputEl, areaEl) {
         inputEl.addEventListener("change", () => {
             if (!inputEl.files.length) return;
@@ -134,20 +121,13 @@ document.addEventListener("DOMContentLoaded", () => {
             areaEl.innerHTML = "";
             const span = document.createElement("span");
             span.textContent = nombre;
-            areaEl.appendChild(span);
             const rm = document.createElement("button");
-            rm.type = "button";
-            rm.className = "remove-file-btn";
-            rm.textContent = "✖";
-            rm.addEventListener("click", () => {
-                inputEl.value = "";
-                areaEl.innerHTML = "";
-            });
-            areaEl.appendChild(rm);
+            rm.type = "button"; rm.className = "remove-file-btn"; rm.textContent = "✖";
+            rm.onclick = () => { inputEl.value = ""; areaEl.innerHTML = ""; };
+            areaEl.append(span, rm);
         });
     }
 
-    // 8) Botón + Foto OK adicional
     btnOk.addEventListener("click", () => {
         if (contadorOk >= 4) return;
         contadorOk++;
@@ -157,13 +137,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <input type="file" name="fotosOk[]" accept="image/*" />
       <div class="preview-ok-${contadorOk}"></div>`;
         containerOk.appendChild(div);
-        manejarExtra(
-            div.querySelector('input[type="file"]'),
-            div.querySelector(`.preview-ok-${contadorOk}`)
-        );
+        manejarExtra(div.querySelector("input[type=file]"),
+            div.querySelector(`.preview-ok-${contadorOk}`));
     });
 
-    // 9) Botón + Foto NO OK adicional
     btnNo.addEventListener("click", () => {
         if (contadorNo >= 4) return;
         contadorNo++;
@@ -173,37 +150,66 @@ document.addEventListener("DOMContentLoaded", () => {
       <input type="file" name="fotosNo[]" accept="image/*" />
       <div class="preview-no-${contadorNo}"></div>`;
         containerNo.appendChild(div);
-        manejarExtra(
-            div.querySelector('input[type="file"]'),
-            div.querySelector(`.preview-no-${contadorNo}`)
-        );
+        manejarExtra(div.querySelector("input[type=file]"),
+            div.querySelector(`.preview-no-${contadorNo}`));
     });
 
-    // 10) Botones “Elegir archivo”
-    document.querySelectorAll(".custom-file-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            document.getElementById(btn.dataset.target).click();
-        });
-    });
+    // 8) Botones “Elegir archivo”
+    document.querySelectorAll(".custom-file-btn").forEach(btn =>
+        btn.addEventListener("click", () =>
+            document.getElementById(btn.dataset.target).click()
+        )
+    );
 
-    // 11) Drag & drop con dispatch de change
+    // 9) Drag & drop con dispatch de change
     ["drop-ok", "drop-no-ok"].forEach(id => {
-        const dropZone = document.getElementById(id);
-        const inputEl  = dropZone.querySelector("input[type='file']");
-        dropZone.addEventListener("dragover", e => {
-            e.preventDefault();
-            dropZone.classList.add("dragging");
+        const zone   = document.getElementById(id),
+            inputE = zone.querySelector("input[type=file]");
+        zone.addEventListener("dragover", e => {
+            e.preventDefault(); zone.classList.add("dragging");
         });
-        dropZone.addEventListener("dragleave", () => {
-            dropZone.classList.remove("dragging");
-        });
-        dropZone.addEventListener("drop", e => {
-            e.preventDefault();
-            dropZone.classList.remove("dragging");
+        zone.addEventListener("dragleave", () => zone.classList.remove("dragging"));
+        zone.addEventListener("drop", e => {
+            e.preventDefault(); zone.classList.remove("dragging");
             if (e.dataTransfer.files.length) {
-                inputEl.files = e.dataTransfer.files;
-                inputEl.dispatchEvent(new Event("change"));
+                inputE.files = e.dataTransfer.files;
+                inputE.dispatchEvent(new Event("change"));
             }
         });
+    });
+
+    // 10) Confirmar: volcar previews al formulario y cerrar
+    btnConfirm.addEventListener("click", () => {
+        // Vaciar cualquier preview previo
+        formPreview.innerHTML = "";
+
+        // Recoger todos los file inputs del modal
+        const inputs = [
+            document.getElementById("foto-ok"),
+            ...document.querySelectorAll("#fotos-ok-extra-container input[type=file]"),
+            document.getElementById("foto-no-ok"),
+            ...document.querySelectorAll("#fotos-no-extra-container input[type=file]")
+        ];
+
+        inputs.forEach(inputEl => {
+            if (!inputEl.files.length) return;
+            const file = inputEl.files[0];
+            const reader = new FileReader();
+            reader.onload = e => {
+                // wrapper para miniatura + nombre
+                const wrapper = document.createElement("div");
+                wrapper.className = "evidencia-item";
+                const img = document.createElement("img");
+                img.src = e.target.result;
+                img.alt = file.name;
+                const caption = document.createElement("small");
+                caption.textContent = acortarNombre(file.name, 25);
+                wrapper.append(img, caption);
+                formPreview.appendChild(wrapper);
+            };
+            reader.readAsDataURL(file);
+        });
+
+        modal.style.display = "none";
     });
 });
