@@ -232,6 +232,7 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                     <div class="form-group">
                         <label>Fotos/Evidencia</label>
                         <button type="button" class="form-button">Agregar Fotos</button>
+                        <div id="evidencia-preview" class="evidencia-preview"></div>
                     </div>
 
                     <!-- BOTÓN CONFIRMAR -->
