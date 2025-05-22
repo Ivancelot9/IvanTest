@@ -1,3 +1,4 @@
+// js/validacionesCasos.js
 document.addEventListener('DOMContentLoaded', () => {
     const formulario = document.querySelector('.data-form');
 
@@ -73,27 +74,41 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // —— TODO OK: enviamos por AJAX ——
+        // —— 6) Feedback de envío ——
         Swal.fire({
             title: 'Guardando caso…',
             allowOutsideClick: false,
             didOpen: () => Swal.showLoading()
         });
 
+        // —— 7) Preparamos FormData ——
         const fd = new FormData(formulario);
+
+        // —— 8) Añadimos manualmente TODOS los archivos del modal ——
+        document
+            .querySelectorAll('#modal-fotos input[type="file"]')
+            .forEach(input => {
+                // input.name es "fotosOk[]" o "fotosNo[]"
+                Array.from(input.files).forEach(file => {
+                    fd.append(input.name, file);
+                });
+            });
+
+        // —— 9) Enviamos por AJAX ——
         fetch(formulario.action, {
             method: 'POST',
             body: fd
         })
             .then(res => res.json())
             .then(json => {
+                Swal.close();
                 if (json.status === 'success') {
                     Swal.fire({
                         icon: 'success',
                         title: '¡Caso guardado!',
                         text: json.message
                     });
-                    // limpiar form + previews
+                    // Limpiar formulario y previews
                     formulario.reset();
                     document.getElementById('evidencia-preview').innerHTML = '';
                 } else {
