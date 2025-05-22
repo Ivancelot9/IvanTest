@@ -376,6 +376,7 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
 <script src="js/modalFotos.js" defer></script>
 <script src="js/agregarComponentesFormulario.js" defer></script>
 <script src="js/tablaMisCasos.js"></script>
+<script src="js/validacionesCasos.js"></script>
 
 
 </body>
