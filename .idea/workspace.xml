@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Vista Previa Modal Fotos">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/modalFotos.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/modalFotos.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -191,15 +190,7 @@
       <workItem from="1747664504792" duration="14021000" />
       <workItem from="1747750453692" duration="18443000" />
       <workItem from="1747837343678" duration="11459000" />
-      <workItem from="1747923871195" duration="11199000" />
-    </task>
-    <task id="LOCAL-01377" summary="Diseño Responsivo Celular">
-      <option name="closed" value="true" />
-      <created>1747756221720</created>
-      <option name="number" value="01377" />
-      <option name="presentableId" value="LOCAL-01377" />
-      <option name="project" value="LOCAL" />
-      <updated>1747756221720</updated>
+      <workItem from="1747923871195" duration="11442000" />
     </task>
     <task id="LOCAL-01378" summary="Diseño Responsivo Celular">
       <option name="closed" value="true" />
@@ -585,7 +576,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747937848868</updated>
     </task>
-    <option name="localTasksCounter" value="1426" />
+    <task id="LOCAL-01426" summary="Vista Previa Modal Fotos">
+      <option name="closed" value="true" />
+      <created>1747938358786</created>
+      <option name="number" value="01426" />
+      <option name="presentableId" value="LOCAL-01426" />
+      <option name="project" value="LOCAL" />
+      <updated>1747938358786</updated>
+    </task>
+    <option name="localTasksCounter" value="1427" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

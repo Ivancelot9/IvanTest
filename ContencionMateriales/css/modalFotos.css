@@ -257,3 +257,20 @@
         font-size: 0.7rem;
     }
 }
+
+/* — Ajuste de previews extras para nombres largos — */
+#fotos-ok-extra-container > div,
+#fotos-no-extra-container > div {
+    display: flex;          /* conserva el layout en línea */
+    flex-wrap: wrap;        /* permite que los items bajen de línea */
+    align-items: center;
+    gap: 6px;               /* separación pequeña entre elementos */
+}
+
+#fotos-ok-extra-container > div span,
+#fotos-no-extra-container > div span {
+    flex: 1 1 auto;         /* ocupa espacio disponible */
+    word-break: break-all;  /* parte el texto si es muy largo */
+    overflow-wrap: anywhere;
+}
+
