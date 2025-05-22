@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const formulario = document.querySelector('.data-form');
 
     formulario.addEventListener('submit', e => {
-        e.preventDefault(); // bloqueamos envío hasta validar todo
+        e.preventDefault(); // bloqueamos el envío normal
 
-        // 1) Responsable: sólo letras, acentos y espacios
+        // —— 1) Responsable ——
         const responsable = document.getElementById('responsable').value.trim();
         const regexResponsable = /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$/;
         if (!responsable || !regexResponsable.test(responsable)) {
@@ -15,18 +15,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 2) Número de parte: letras, dígitos y guión medio
+        // —— 2) Número de parte ——
         const numParte = document.getElementById('no-parte').value.trim();
         const regexParte = /^[A-Za-z0-9-]+$/;
         if (!numParte || !regexParte.test(numParte)) {
             return Swal.fire({
                 icon: 'error',
                 title: 'Número de parte inválido',
-                text: 'Sólo se permiten letras, números y guiones medios (–).'
+                text: 'Sólo se permiten letras, números y guiones medios.'
             });
         }
 
-        // 3) Cantidad: número > 0 (decimales permitidos)
+        // —— 3) Cantidad ——
         const cantidadStr = document.getElementById('cantidad').value.trim();
         const cantidad = parseFloat(cantidadStr.replace(',', '.'));
         if (!cantidadStr || isNaN(cantidad) || cantidad <= 0) {
@@ -37,11 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 4) Campos obligatorios: selects
+        // —— 4) Selects obligatorios ——
         const selects = ['terciaria','proveedor','commodity','defectos'];
         for (let id of selects) {
-            const valor = document.getElementById(id).value;
-            if (!valor) {
+            if (!document.getElementById(id).value) {
                 const texto = document.querySelector(`label[for="${id}"]`).innerText;
                 return Swal.fire({
                     icon: 'warning',
@@ -51,36 +50,66 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // ——— Validación de fotos ———
-        const fotoOkPrincipal = document.getElementById("foto-ok");
-        const fotosOkExtras   = Array.from(
-            document.querySelectorAll("#fotos-ok-extra-container input[type=file]")
-        );
-        const todasOk         = [fotoOkPrincipal, ...fotosOkExtras];
-
-        const fotoNoPrincipal = document.getElementById("foto-no-ok");
-        const fotosNoExtras   = Array.from(
-            document.querySelectorAll("#fotos-no-extra-container input[type=file]")
-        );
-        const todasNo         = [fotoNoPrincipal, ...fotosNoExtras];
-
-        const tieneOk = todasOk.some(i => i.files.length > 0);
-        const tieneNo = todasNo.some(i => i.files.length > 0);
-
+        // —— 5) Fotos OK / NO OK ——
+        const fotosOk = [
+            document.getElementById("foto-ok"),
+            ...document.querySelectorAll("#fotos-ok-extra-container input[type=file]")
+        ];
+        const fotosNo = [
+            document.getElementById("foto-no-ok"),
+            ...document.querySelectorAll("#fotos-no-extra-container input[type=file]")
+        ];
+        const tieneOk = fotosOk.some(i => i.files.length > 0);
+        const tieneNo = fotosNo.some(i => i.files.length > 0);
         if (!tieneOk || !tieneNo) {
             return Swal.fire({
-                icon: "warning",
-                title: "Faltan fotos",
+                icon: 'warning',
+                title: 'Faltan fotos',
                 html: `
-          ${!tieneOk ? "• Debes subir al menos una foto <strong>OK</strong>.<br>" : ""}
-          ${!tieneNo ? "• Debes subir al menos una foto <strong>NO OK</strong>." : ""}
+          ${!tieneOk ? '• Debes subir al menos una foto <strong>OK</strong>.<br>' : ''}
+          ${!tieneNo ? '• Debes subir al menos una foto <strong>NO OK</strong>.' : ''}
         `,
-                confirmButtonText: "Entendido"
+                confirmButtonText: 'Entendido'
             });
         }
-        // ——— Fin validación de fotos ———
 
-        // Si todas las validaciones pasaron → enviamos el formulario
-        formulario.submit();
+        // —— TODO OK: enviamos por AJAX ——
+        Swal.fire({
+            title: 'Guardando caso…',
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading()
+        });
+
+        const fd = new FormData(formulario);
+        fetch(formulario.action, {
+            method: 'POST',
+            body: fd
+        })
+            .then(res => res.json())
+            .then(json => {
+                if (json.status === 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Caso guardado!',
+                        text: json.message
+                    });
+                    // limpiar form + previews
+                    formulario.reset();
+                    document.getElementById('evidencia-preview').innerHTML = '';
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al guardar',
+                        text: json.message
+                    });
+                }
+            })
+            .catch(() => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error de red',
+                    text: 'No se pudo conectar con el servidor.'
+                });
+            });
     });
 });
