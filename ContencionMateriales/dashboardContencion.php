@@ -126,7 +126,7 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
             <div class="form-main" id="form-main">
                 <form class="data-form"
                       method="post"
-                      action="guardarCaso.php?tab_id=<?php echo urlencode($tab_id) ?>"
+                      action="https://grammermx.com/IvanTest/ContencionMateriales/dao/guardarCaso.php?tab_id=<?php echo urlencode($tab_id)?>"
                       enctype="multipart/form-data" novalidate>
                     <!-- RESPONSABLE -->
                     <div class="form-group">
