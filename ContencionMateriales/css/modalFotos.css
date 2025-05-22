@@ -203,3 +203,57 @@
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
+/* ——— Responsive para móviles (pantallas < 480px) ——— */
+@media (max-width: 480px) {
+    /* El modal ocupa casi toda la pantalla y sin esquinas redondas exageradas */
+    .modal-content {
+        width: 98%;
+        max-width: 98%;
+        padding: 16px;
+        border-radius: 4px;
+        max-height: 90vh;
+    }
+
+    /* Flex-columna para botones, ocupando todo el ancho */
+    .modal-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .modal-buttons button {
+        width: 100%;
+        margin: 0;
+    }
+
+    /* Botón “Elegir archivo” a ancho completo */
+    .custom-file-btn {
+        display: block;
+        width: 100%;
+        margin: 8px 0 0 0;
+    }
+
+    /* Zonas de arrastre más compactas */
+    .drop-area {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    /* Labels e íconos un poco más pequeños */
+    .drop-zone label {
+        font-size: 0.9rem;
+    }
+
+    /* Las miniaturas en .evidencia-preview en fila única */
+    .evidencia-preview {
+        gap: 8px;
+    }
+    .evidencia-item {
+        width: 60px;
+    }
+    .evidencia-item img {
+        max-height: 50px;
+    }
+    .evidencia-item small {
+        font-size: 0.7rem;
+    }
+}
