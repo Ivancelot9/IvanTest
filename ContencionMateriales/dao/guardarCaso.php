@@ -11,16 +11,31 @@ try {
         throw new Exception('Método no permitido');
     }
 
-    // 2) Recuperar tab_id de la URL y verificar sesión
+    // 2) Recuperar tab_id y username de la sesión
     $tab_id = $_GET['tab_id'] ?? '';
     if (
         empty($tab_id) ||
-        ! isset($_SESSION['usuariosPorPestana'][$tab_id]['IdUsuario']) ||
-        ! $_SESSION['usuariosPorPestana'][$tab_id]['IdUsuario']
+        ! isset($_SESSION['usuariosPorPestana'][$tab_id]['Username'])
     ) {
         throw new Exception('Sesión inválida: usuario no encontrado.');
     }
-    $idUsuario = intval($_SESSION['usuariosPorPestana'][$tab_id]['IdUsuario']);
+    $username = $_SESSION['usuariosPorPestana'][$tab_id]['Username'];
+
+    // 2b) Obtener IdUsuario real de la tabla Usuario
+    $conUser = (new LocalConector())->conectar();
+    $stmtUser = $conUser->prepare("SELECT IdUsuario FROM Usuario WHERE Username = ?");
+    if (! $stmtUser) {
+        throw new Exception('Error preparando SELECT usuario: ' . $conUser->error);
+    }
+    $stmtUser->bind_param("s", $username);
+    $stmtUser->execute();
+    $stmtUser->bind_result($idUsuario);
+    if (! $stmtUser->fetch()) {
+        throw new Exception("Usuario \"$username\" no existe en BD.");
+    }
+    $stmtUser->close();
+    // Cerramos esta conexión, usaremos otra para el INSERT
+    $conUser->close();
 
     // 3) Validar campos obligatorios
     $campos = [
@@ -43,7 +58,7 @@ try {
     $idProveedor  = intval($_POST['IdProveedor']);
     $idDefectos   = intval($_POST['IdDefectos']);
 
-    // 5) Conectar a la BD
+    // 5) Conectar a la BD para insertar el caso
     $con = (new LocalConector())->conectar();
 
     // 6) Insertar el nuevo caso
