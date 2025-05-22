@@ -6,25 +6,34 @@ header('Content-Type: application/json; charset=UTF-8');
 include_once ('conexionContencion.php');
 
 try {
+    // 1) Método POST
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         throw new Exception('Método no permitido');
     }
 
-    // Validar campos obligatorios
-    $campos = ['Responsable','NumeroParte','Cantidad','IdTerceria','IdCommodity','IdProveedor','IdDefectos'];
+    // 2) Recuperar tab_id de la URL y verificar sesión
+    $tab_id = $_GET['tab_id'] ?? '';
+    if (
+        empty($tab_id) ||
+        ! isset($_SESSION['usuariosPorPestana'][$tab_id]['IdUsuario']) ||
+        ! $_SESSION['usuariosPorPestana'][$tab_id]['IdUsuario']
+    ) {
+        throw new Exception('Sesión inválida: usuario no encontrado.');
+    }
+    $idUsuario = intval($_SESSION['usuariosPorPestana'][$tab_id]['IdUsuario']);
+
+    // 3) Validar campos obligatorios
+    $campos = [
+        'Responsable','NumeroParte','Cantidad',
+        'IdTerceria','IdCommodity','IdProveedor','IdDefectos'
+    ];
     foreach ($campos as $c) {
-        if (!isset($_POST[$c]) || trim($_POST[$c]) === '') {
+        if (! isset($_POST[$c]) || trim($_POST[$c]) === '') {
             throw new Exception("Falta el campo $c");
         }
     }
 
-    // Obtener IdUsuario de la sesión
-    $idUsuario = $_SESSION['IdUsuario'] ?? null;
-    if (!$idUsuario) {
-        throw new Exception('Sesión inválida, no se encontró usuario.');
-    }
-
-    // Recoger datos del formulario
+    // 4) Recoger datos del formulario
     $responsable  = trim($_POST['Responsable']);
     $numeroParte  = trim($_POST['NumeroParte']);
     $cantidad     = floatval(str_replace(',', '.', $_POST['Cantidad']));
@@ -34,15 +43,17 @@ try {
     $idProveedor  = intval($_POST['IdProveedor']);
     $idDefectos   = intval($_POST['IdDefectos']);
 
-    // Conectar a la base de datos
+    // 5) Conectar a la BD
     $con = (new LocalConector())->conectar();
 
-    // 1) Insertar el nuevo caso
-    $sql = "INSERT INTO Casos
-      (IdUsuario, NumeroParte, Cantidad, Descripcion, IdTerceria, IdCommodity, IdProveedor, IdDefectos)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    // 6) Insertar el nuevo caso
+    $sql = "
+      INSERT INTO Casos
+        (IdUsuario, NumeroParte, Cantidad, Descripcion, IdTerceria, IdCommodity, IdProveedor, IdDefectos)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ";
     $stmt = $con->prepare($sql);
-    if (!$stmt) {
+    if (! $stmt) {
         throw new Exception('Error preparando INSERT Casos: ' . $con->error);
     }
     $stmt->bind_param(
@@ -56,25 +67,29 @@ try {
         $idProveedor,
         $idDefectos
     );
-    if (!$stmt->execute()) {
+    if (! $stmt->execute()) {
         throw new Exception('Error ejecutando INSERT Casos: ' . $stmt->error);
     }
     $folioCaso = $stmt->insert_id;
     $stmt->close();
 
-    // Preparar directorios de subida
+    // 7) Preparar carpetas de subida
     $baseDir = __DIR__ . '/uploads';
     $okDir   = "$baseDir/ok";
     $noDir   = "$baseDir/no";
     foreach ([$okDir, $noDir] as $dir) {
-        if (!is_dir($dir)) {
+        if (! is_dir($dir)) {
             mkdir($dir, 0755, true);
         }
     }
 
-    // Función para procesar fotos subidas
-    function procesarFotos($filesArray, $tipo, $folio, $con, $destDir) {
-        if (empty($filesArray['name']) || !is_array($filesArray['name'])) {
+    // 8) Función helper para procesar fotos
+    function procesarFotos(array $filesArray, string $tipo, int $folio, $con, string $destDir) {
+        if (
+            ! isset($filesArray['name'])
+            || ! is_array($filesArray['name'])
+            || count($filesArray['name']) === 0
+        ) {
             return;
         }
         $count = count($filesArray['name']);
@@ -83,38 +98,41 @@ try {
                 continue;
             }
             $origName = basename($filesArray['name'][$i]);
-            $newName  = uniqid() . "_" . $origName;
+            $newName  = uniqid() . "_{$origName}";
             $destPath = "$destDir/$newName";
-            if (!move_uploaded_file($filesArray['tmp_name'][$i], $destPath)) {
+
+            if (! move_uploaded_file($filesArray['tmp_name'][$i], $destPath)) {
                 throw new Exception("No se pudo mover foto ($tipo): $origName");
             }
-            $ins = $con->prepare(
-                "INSERT INTO Fotos (FolioCaso, TipoFoto, Ruta) VALUES (?, ?, ?)"
-            );
-            if (!$ins) {
+
+            $ins = $con->prepare("
+              INSERT INTO Fotos (FolioCaso, TipoFoto, Ruta)
+              VALUES (?, ?, ?)
+            ");
+            if (! $ins) {
                 throw new Exception('Error preparando INSERT Fotos: ' . $con->error);
             }
             $ins->bind_param("iss", $folio, $tipo, $newName);
-            if (!$ins->execute()) {
+            if (! $ins->execute()) {
                 throw new Exception('Error ejecutando INSERT Fotos: ' . $ins->error);
             }
             $ins->close();
         }
     }
 
-    // 2) Procesar fotos OK y NO OK
-    procesarFotos($_FILES['fotosOk'], 'ok', $folioCaso, $con, $okDir);
-    procesarFotos($_FILES['fotosNo'], 'no', $folioCaso, $con, $noDir);
+    // 9) Procesar todas las fotos OK y NO OK
+    procesarFotos($_FILES['fotosOk'] ?? [], 'ok', $folioCaso, $con, $okDir);
+    procesarFotos($_FILES['fotosNo'] ?? [], 'no', $folioCaso, $con, $noDir);
 
-    // 3) Respuesta JSON de éxito
+    // 10) Responder éxito
     echo json_encode([
         'status'  => 'success',
-        'message' => "Caso #$folioCaso guardado correctamente."
+        'message' => "Caso #{$folioCaso} guardado correctamente."
     ]);
     exit;
 
 } catch (Exception $e) {
-    // En caso de error, devolvemos JSON con status error
+    // En caso de error
     echo json_encode([
         'status'  => 'error',
         'message' => $e->getMessage()
