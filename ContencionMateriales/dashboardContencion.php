@@ -126,7 +126,8 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
             <div class="form-main" id="form-main">
                 <form class="data-form"
                       method="post"
-                      action="guardarCaso.php?tab_id=<?php echo urlencode($tab_id) ?>">
+                      action="guardarCaso.php?tab_id=<?php echo urlencode($tab_id) ?>"
+                      enctype="multipart/form-data">
                     <!-- RESPONSABLE -->
                     <div class="form-group">
                         <label for="responsable">Responsable</label>

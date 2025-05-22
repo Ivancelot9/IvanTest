@@ -7,13 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="drop-zone" id="drop-ok">
                 <label><i class="fa-solid fa-circle-check" style="color: green;"></i> Foto OK:</label>
                 <div class="drop-area">Arrastra aquí o <button type="button" class="custom-file-btn" data-target="foto-ok">Elegir archivo</button></div>
-                <input type="file" id="foto-ok" accept="image/*" hidden required />
+               <input type="file" id="foto-ok"   name="fotosOk[]"   accept="image/*" hidden required />
             </div>
 
             <div class="drop-zone" id="drop-no-ok">
                 <label><i class="fa-solid fa-circle-xmark" style="color: red;"></i> Foto NO OK:</label>
                 <div class="drop-area">Arrastra aquí o <button type="button" class="custom-file-btn" data-target="foto-no-ok">Elegir archivo</button></div>
-                <input type="file" id="foto-no-ok" accept="image/*" hidden required />
+                <input type="file" id="foto-no-ok" name="fotosNo[]"   accept="image/*" hidden required />
             </div>
 
             <div id="fotos-ok-extra-container">
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const div = document.createElement("div");
         div.innerHTML = `
             <label>Foto OK adicional ${contadorOk}:</label>
-            <input type="file" accept="image/*" />
+            <input type="file" name="fotosOk[]" accept="image/*" />
         `;
         containerOk.appendChild(div);
     });
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const div = document.createElement("div");
         div.innerHTML = `
             <label>Foto NO OK adicional ${contadorNo}:</label>
-            <input type="file" accept="image/*" />
+            <input type="file" name="fotosNo[]" accept="image/*" />
         `;
         containerNo.appendChild(div);
     });

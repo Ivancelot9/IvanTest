@@ -51,7 +51,36 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Si todas las validaciones pasaron → continuar al siguiente paso
+        // ——— Validación de fotos ———
+        const fotoOkPrincipal = document.getElementById("foto-ok");
+        const fotosOkExtras   = Array.from(
+            document.querySelectorAll("#fotos-ok-extra-container input[type=file]")
+        );
+        const todasOk         = [fotoOkPrincipal, ...fotosOkExtras];
+
+        const fotoNoPrincipal = document.getElementById("foto-no-ok");
+        const fotosNoExtras   = Array.from(
+            document.querySelectorAll("#fotos-no-extra-container input[type=file]")
+        );
+        const todasNo         = [fotoNoPrincipal, ...fotosNoExtras];
+
+        const tieneOk = todasOk.some(i => i.files.length > 0);
+        const tieneNo = todasNo.some(i => i.files.length > 0);
+
+        if (!tieneOk || !tieneNo) {
+            return Swal.fire({
+                icon: "warning",
+                title: "Faltan fotos",
+                html: `
+          ${!tieneOk ? "• Debes subir al menos una foto <strong>OK</strong>.<br>" : ""}
+          ${!tieneNo ? "• Debes subir al menos una foto <strong>NO OK</strong>." : ""}
+        `,
+                confirmButtonText: "Entendido"
+            });
+        }
+        // ——— Fin validación de fotos ———
+
+        // Si todas las validaciones pasaron → enviamos el formulario
         formulario.submit();
     });
 });
