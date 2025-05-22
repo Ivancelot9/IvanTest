@@ -170,3 +170,48 @@ h2, h3 {
     font-weight: 600;
     color: #333;
 }
+
+.drop-area {
+    text-align: center;
+    padding: 12px;
+    border: 2px dashed #ccc;
+    border-radius: 6px;
+    background: #f9f9f9;
+}
+.drop-area img {
+    display: block;
+    margin: 8px auto 0;
+    max-width: 100%;
+    max-height: 100px;
+}
+
+/* —— Preview de nombre en inputs extras —— */
+#fotos-ok-extra-container div,
+#fotos-no-extra-container div {
+    margin-top: 8px;
+    font-size: 0.9rem;
+}
+
+/* —— Quitar duplicado de iconos en labels principales —— */
+.drop-zone > label i { display: none; }
+
+/* —— Iconos definidos por pseudo-elementos —— */
+#drop-ok label::before {
+    content: "\f058"; /* fa-check-circle */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #2ea043;
+    margin-right: 8px;
+}
+#drop-no-ok label::before {
+    content: "\f057"; /* fa-times-circle */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #cb2431;
+    margin-right: 8px;
+}
+
+/* —— Mantener máximo 4 extras y evitar scroll excesivo —— */
+.modal-content {
+    max-height: 80vh;
+}
