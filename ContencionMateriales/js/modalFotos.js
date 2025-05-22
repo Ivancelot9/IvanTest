@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
           <input type="file" id="foto-no-ok" name="fotosNo[]" accept="image/*" hidden />
         </div>
 
-        <div id="fotos-ok-extra-container"><h3>Fotos OK adicionales (máx. 4):</h3></div>
+        <div id="fotos-ok-extra-container"><h3>Fotos OK adicionales (máx. 4):</h3></div>
         <button type="button" id="btn-agregar-ok">+ Foto OK adicional</button>
 
-        <div id="fotos-no-extra-container"><h3>Fotos NO OK adicionales (máx. 4):</h3></div>
+        <div id="fotos-no-extra-container"><h3>Fotos NO OK adicionales (máx. 4):</h3></div>
         <button type="button" id="btn-agregar-no">+ Foto NO OK adicional</button>
 
         <div class="modal-buttons">
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>`;
     document.body.insertAdjacentHTML("beforeend", modalHTML);
 
-    // 2) Referencias y contadores
+    // 2) Referencias
     const modal       = document.getElementById("modal-fotos");
     const btnAbrir    = document.querySelector("button.form-button");
     const btnCancelar = document.getElementById("btn-cancelar-fotos");
@@ -47,74 +47,86 @@ document.addEventListener("DOMContentLoaded", () => {
     const containerNo = document.getElementById("fotos-no-extra-container");
     const btnOk       = document.getElementById("btn-agregar-ok");
     const btnNo       = document.getElementById("btn-agregar-no");
-    let contadorOk   = 0;
-    let contadorNo   = 0;
+    let contadorOk = 0, contadorNo = 0;
 
-    // 3) Acortar nombre de archivo
+    // 3) Función para acortar nombre de archivo
     function acortarNombre(name, max = 20) {
         if (name.length <= max) return name;
-        const ext = name.slice(name.lastIndexOf('.')) || '';
-        return name.slice(0, max - ext.length - 3) + '...' + ext;
+        const ext = name.slice(name.lastIndexOf('.')) || "";
+        return name.slice(0, max - ext.length - 3) + "..." + ext;
     }
 
-    // 4) Manejar inputs principales (OK/NO OK) con preview + quitar
+    // 4) Función para manejar inputs principales (OK/NO OK)
     function manejarPrincipal(inputEl, areaEl, defaultHTML) {
+        // rebind del botón "Elegir archivo" después de reset
+        function bindChooseBtn() {
+            const btn = areaEl.querySelector(".custom-file-btn");
+            if (!btn) return;
+            btn.addEventListener("click", () => inputEl.click());
+        }
+
+        // inicializar choose btn
+        bindChooseBtn();
+
+        // resetear a estado original
+        function resetArea() {
+            areaEl.innerHTML = defaultHTML;
+            bindChooseBtn();
+            inputEl.value = "";
+        }
+
+        // evento cambio de archivo
         inputEl.addEventListener("change", () => {
             if (!inputEl.files.length) return;
-            // Reset
-            areaEl.innerHTML = "";
+            areaEl.innerHTML = ""; // limpiamos
             const file = inputEl.files[0];
             const nombre = acortarNombre(file.name);
 
-            // Texto nombre
+            // texto
             const span = document.createElement("span");
             span.textContent = nombre;
             areaEl.appendChild(span);
 
-            // Botón quitar
-            const btn = document.createElement("button");
-            btn.type = "button";
-            btn.className = "remove-file-btn";
-            btn.textContent = "✖";
-            btn.addEventListener("click", () => {
-                inputEl.value = "";
-                areaEl.innerHTML = defaultHTML;
-            });
-            areaEl.appendChild(btn);
+            // botón quitar
+            const rm = document.createElement("button");
+            rm.type = "button";
+            rm.className = "remove-file-btn";
+            rm.textContent = "✖";
+            rm.addEventListener("click", resetArea);
+            areaEl.appendChild(rm);
 
-            // Imagen preview
+            // imagen preview
             const reader = new FileReader();
             reader.onload = e => {
                 const img = document.createElement("img");
                 img.src = e.target.result;
-                img.style.maxWidth = "100%";
+                img.style.maxWidth  = "100%";
                 img.style.maxHeight = "100px";
-                img.style.display = "block";
-                img.style.margin = "8px auto 0";
+                img.style.display   = "block";
+                img.style.margin    = "8px auto 0";
                 areaEl.appendChild(img);
             };
             reader.readAsDataURL(file);
         });
     }
 
-    // 5) Asociar a Foto OK principal
+    // 5) Asociar inputs principales
     const dropOk    = document.getElementById("drop-ok");
     const areaOk    = dropOk.querySelector(".drop-area");
     const defaultOk = areaOk.innerHTML;
     manejarPrincipal(document.getElementById("foto-ok"), areaOk, defaultOk);
 
-    // 6) Asociar a Foto NO OK principal
     const dropNo    = document.getElementById("drop-no-ok");
     const areaNo    = dropNo.querySelector(".drop-area");
     const defaultNo = areaNo.innerHTML;
     manejarPrincipal(document.getElementById("foto-no-ok"), areaNo, defaultNo);
 
-    // 7) Abrir / cerrar modal
+    // 6) Abrir / cerrar modal
     btnAbrir.addEventListener("click",  () => modal.style.display = "flex");
     btnCancelar.addEventListener("click", () => modal.style.display = "none");
     btnConfirm.addEventListener("click",   () => modal.style.display = "none");
 
-    // 8) Manejar inputs extras (solo texto + quitar)
+    // 7) Función para manejar inputs adicionales (solo nombre + quitar)
     function manejarExtra(inputEl, areaEl) {
         inputEl.addEventListener("change", () => {
             if (!inputEl.files.length) return;
@@ -123,19 +135,19 @@ document.addEventListener("DOMContentLoaded", () => {
             const span = document.createElement("span");
             span.textContent = nombre;
             areaEl.appendChild(span);
-            const btn = document.createElement("button");
-            btn.type = "button";
-            btn.className = "remove-file-btn";
-            btn.textContent = "✖";
-            btn.addEventListener("click", () => {
+            const rm = document.createElement("button");
+            rm.type = "button";
+            rm.className = "remove-file-btn";
+            rm.textContent = "✖";
+            rm.addEventListener("click", () => {
                 inputEl.value = "";
                 areaEl.innerHTML = "";
             });
-            areaEl.appendChild(btn);
+            areaEl.appendChild(rm);
         });
     }
 
-    // 9) Botón + Foto OK adicional
+    // 8) Botón + Foto OK adicional
     btnOk.addEventListener("click", () => {
         if (contadorOk >= 4) return;
         contadorOk++;
@@ -151,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     });
 
-    // 10) Botón + Foto NO OK adicional
+    // 9) Botón + Foto NO OK adicional
     btnNo.addEventListener("click", () => {
         if (contadorNo >= 4) return;
         contadorNo++;
@@ -167,14 +179,14 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     });
 
-    // 11) Botones “Elegir archivo”
+    // 10) Botones “Elegir archivo”
     document.querySelectorAll(".custom-file-btn").forEach(btn => {
         btn.addEventListener("click", () => {
             document.getElementById(btn.dataset.target).click();
         });
     });
 
-    // 12) Drag & drop con dispatch de change
+    // 11) Drag & drop con dispatch de change
     ["drop-ok", "drop-no-ok"].forEach(id => {
         const dropZone = document.getElementById(id);
         const inputEl  = dropZone.querySelector("input[type='file']");
