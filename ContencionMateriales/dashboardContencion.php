@@ -157,8 +157,8 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                                     name="Cantidad"
                                     id="cantidad"
                                     placeholder="Cantidad"
-                                    min="1"
-                                    step="1"
+                                    min="0.001"
+                                    step="0.001"
                                     required
                             />
                         </div>

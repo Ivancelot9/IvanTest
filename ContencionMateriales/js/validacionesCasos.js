@@ -3,7 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const formulario = document.querySelector('.data-form');
 
     formulario.addEventListener('submit', e => {
-        e.preventDefault(); // bloqueamos el envío normal
+        e.preventDefault();
+
+        // 0) Validación nativa HTML5 de campos required
+        if (!formulario.checkValidity()) {
+            formulario.reportValidity();
+            return;
+        }
 
         // —— 1) Responsable ——
         const responsable = document.getElementById('responsable').value.trim();
@@ -28,13 +34,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // —— 3) Cantidad ——
-        const cantidadStr = document.getElementById('cantidad').value.trim();
-        const cantidad = parseFloat(cantidadStr.replace(',', '.'));
-        if (!cantidadStr || isNaN(cantidad) || cantidad <= 0) {
+        const cantidadInput = document.getElementById('cantidad');
+        const cantidadStr   = cantidadInput.value;
+        const cantidadNum   = parseFloat(cantidadStr.replace(',', '.'));
+        const regexCantidad = /^[0-9]+([.,][0-9]{1,3})?$/;
+
+        if (
+            cantidadStr === '' ||
+            !regexCantidad.test(cantidadStr) ||
+            isNaN(cantidadNum) ||
+            cantidadNum <= 0
+        ) {
             return Swal.fire({
                 icon: 'error',
                 title: 'Cantidad inválida',
-                text: 'La cantidad debe ser un número mayor que cero (puedes usar decimales).'
+                html: `
+          Debe ser un número mayor que 0.<br>
+          Puedes usar hasta 3 decimales, por ejemplo:<br>
+          <em>1.2, 1.00, 1.567</em>
+        `
             });
         }
 
@@ -85,14 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const fd = new FormData(formulario);
 
         // —— 8) Añadimos manualmente TODOS los archivos del modal ——
-        document
-            .querySelectorAll('#modal-fotos input[type="file"]')
-            .forEach(input => {
-                // input.name es "fotosOk[]" o "fotosNo[]"
-                Array.from(input.files).forEach(file => {
-                    fd.append(input.name, file);
-                });
+        document.querySelectorAll('#modal-fotos input[type="file"]').forEach(input => {
+            Array.from(input.files).forEach(file => {
+                fd.append(input.name, file);
             });
+        });
 
         // —— 9) Enviamos por AJAX ——
         fetch(formulario.action, {
