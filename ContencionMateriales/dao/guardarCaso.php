@@ -2,8 +2,8 @@
 session_start();
 header('Content-Type: application/json; charset=UTF-8');
 
-// Incluimos la clase de conexión (una sola vez)
-include_once ('conexionContencion.php');
+// Incluimos la clase de conexión
+include_once 'conexionContencion.php';
 
 try {
     // 1) Método POST
@@ -34,7 +34,6 @@ try {
         throw new Exception("Usuario \"$username\" no existe en BD.");
     }
     $stmtUser->close();
-    // Cerramos esta conexión, usaremos otra para el INSERT
     $conUser->close();
 
     // 3) Validar campos obligatorios
@@ -98,12 +97,25 @@ try {
         }
     }
 
+    // 7b) Validar número máximo de archivos por tipo
+    $numOk = isset($_FILES['fotosOk']['name'])
+        ? count(array_filter($_FILES['fotosOk']['name']))
+        : 0;
+    $numNo = isset($_FILES['fotosNo']['name'])
+        ? count(array_filter($_FILES['fotosNo']['name']))
+        : 0;
+    if ($numOk > 5) {
+        throw new Exception("No puedes subir más de 5 fotos OK.");
+    }
+    if ($numNo > 5) {
+        throw new Exception("No puedes subir más de 5 fotos NO OK.");
+    }
+
     // 8) Función helper para procesar fotos
     function procesarFotos(array $filesArray, string $tipo, int $folio, $con, string $destDir) {
         if (
-            ! isset($filesArray['name'])
-            || ! is_array($filesArray['name'])
-            || count($filesArray['name']) === 0
+            empty($filesArray['name']) ||
+            ! is_array($filesArray['name'])
         ) {
             return;
         }
@@ -136,8 +148,8 @@ try {
     }
 
     // 9) Procesar todas las fotos OK y NO OK
-    procesarFotos($_FILES['fotosOk'] ?? [], 'ok', $folioCaso, $con, $okDir);
-    procesarFotos($_FILES['fotosNo'] ?? [], 'no', $folioCaso, $con, $noDir);
+    procesarFotos($_FILES['fotosOk']  ?? ['name'=>[]], 'ok', $folioCaso, $con, $okDir);
+    procesarFotos($_FILES['fotosNo']  ?? ['name'=>[]], 'no', $folioCaso, $con, $noDir);
 
     // 10) Responder éxito
     echo json_encode([

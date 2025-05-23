@@ -235,6 +235,63 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                         <div id="evidencia-preview" class="evidencia-preview"></div>
                     </div>
 
+                    <!-- ↓↓↓ Modal AGREGAR FOTOS, dentro del form ↓↓↓ -->
+                    <div id="modal-fotos" class="modal-overlay" style="display: none;">
+                        <div class="modal-content scrollable">
+                            <h2>Agregar Evidencia</h2>
+
+                            <div class="drop-zone" id="drop-ok">
+                                <label>Foto OK:</label>
+                                <div class="drop-area">
+                                    Arrastra aquí o
+                                    <button type="button" class="custom-file-btn" data-target="foto-ok">
+                                        Elegir archivo
+                                    </button>
+                                </div>
+                                <input
+                                        type="file"
+                                        id="foto-ok"
+                                        name="fotosOk[]"
+                                        accept="image/*"
+                                        hidden
+                                />
+                            </div>
+
+                            <div class="drop-zone" id="drop-no-ok">
+                                <label>Foto NO OK:</label>
+                                <div class="drop-area">
+                                    Arrastra aquí o
+                                    <button type="button" class="custom-file-btn" data-target="foto-no-ok">
+                                        Elegir archivo
+                                    </button>
+                                </div>
+                                <input
+                                        type="file"
+                                        id="foto-no-ok"
+                                        name="fotosNo[]"
+                                        accept="image/*"
+                                        hidden
+                                />
+                            </div>
+
+                            <div id="fotos-ok-extra-container">
+                                <h3>Fotos OK adicionales (máx. 4):</h3>
+                            </div>
+                            <button type="button" id="btn-agregar-ok">+ Foto OK adicional</button>
+
+                            <div id="fotos-no-extra-container">
+                                <h3>Fotos NO OK adicionales (máx. 4):</h3>
+                            </div>
+                            <button type="button" id="btn-agregar-no">+ Foto NO OK adicional</button>
+
+                            <div class="modal-buttons">
+                                <button type="button" id="btn-cancelar-fotos">Cancelar</button>
+                                <button type="button" id="btn-confirmar-fotos">Confirmar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ↑↑↑ Fin del modal dentro del form ↑↑↑ -->
+
                     <!-- BOTÓN CONFIRMAR -->
                     <div class="form-group confirm">
                         <button type="submit" class="confirm-button">Confirmar</button>
