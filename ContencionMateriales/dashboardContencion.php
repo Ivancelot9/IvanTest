@@ -136,7 +136,7 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                                 name="Responsable"
                                 id="responsable"
                                 placeholder="Nombre del responsable"
-                                required
+
                         />
                     </div>
 
@@ -148,7 +148,7 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                                    name="NumeroParte"
                                    id="no-parte"
                                    placeholder="Número de parte"
-                                   required />
+                                    />
                         </div>
                         <div class="form-group">
                             <label for="cantidad">Cantidad</label>
@@ -159,7 +159,7 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                                     placeholder="Cantidad"
                                     min="0.001"
                                     step="0.001"
-                                    required
+
                             />
                         </div>
                     </div>
@@ -176,7 +176,7 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                     <div class="form-row">
                         <div class="form-group">
                             <label for="terciaria">Terciaria</label>
-                            <select name="IdTerceria" id="terciaria" required>
+                            <select name="IdTerceria" id="terciaria" >
                                 <option value="">Selecciona opción</option>
                                 <!-- PHP carga aquí -->
                                 <?php while($r = $terciarias->fetch_assoc()): ?>
@@ -188,7 +188,7 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                         </div>
                         <div class="form-group">
                             <label for="proveedor">Proveedor</label>
-                            <select name="IdProveedor" id="proveedor" required>
+                            <select name="IdProveedor" id="proveedor" >
                                 <option value="">Selecciona proveedor</option>
                                 <!-- PHP carga aquí -->
                                 <?php while($r = $proveedores->fetch_assoc()): ?>
@@ -203,7 +203,7 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                     <!-- COMMODITY -->
                     <div class="form-group">
                         <label for="commodity">Commodity</label>
-                        <select name="IdCommodity" id="commodity" required>
+                        <select name="IdCommodity" id="commodity" >
                             <option value="">Selecciona commodity</option>
                             <!-- PHP carga aquí -->
                             <?php while($c = $commodities->fetch_assoc()): ?>
@@ -217,7 +217,7 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                     <!-- DEFECTOS -->
                     <div class="form-group">
                         <label for="defectos">Defectos</label>
-                        <select name="IdDefectos" id="defectos" required>
+                        <select name="IdDefectos" id="defectos" >
                             <option value="">Selecciona defecto</option>
                             <!-- PHP carga aquí -->
                             <?php while($d = $defectos->fetch_assoc()): ?>

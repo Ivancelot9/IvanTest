@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Resetear Foto">
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/validacionesCasos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/validacionesCasos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -191,15 +192,7 @@
       <workItem from="1747750453692" duration="18443000" />
       <workItem from="1747837343678" duration="11459000" />
       <workItem from="1747923871195" duration="16229000" />
-      <workItem from="1748010408906" duration="10123000" />
-    </task>
-    <task id="LOCAL-01391" summary="Diseño Responsivo Celular">
-      <option name="closed" value="true" />
-      <created>1747762691613</created>
-      <option name="number" value="01391" />
-      <option name="presentableId" value="LOCAL-01391" />
-      <option name="project" value="LOCAL" />
-      <updated>1747762691613</updated>
+      <workItem from="1748010408906" duration="10416000" />
     </task>
     <task id="LOCAL-01392" summary="Diseño Responsivo Celular">
       <option name="closed" value="true" />
@@ -585,7 +578,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748024596151</updated>
     </task>
-    <option name="localTasksCounter" value="1440" />
+    <task id="LOCAL-01440" summary="Resetear Foto">
+      <option name="closed" value="true" />
+      <created>1748024802685</created>
+      <option name="number" value="01440" />
+      <option name="presentableId" value="LOCAL-01440" />
+      <option name="project" value="LOCAL" />
+      <updated>1748024802685</updated>
+    </task>
+    <option name="localTasksCounter" value="1441" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

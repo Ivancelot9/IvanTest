@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const formulario = document.querySelector('.data-form');
 
-    // IDs de todos los campos obligatorios
+    // IDs de todos los campos obligatorios (inputs y selects)
     const camposRequeridos = [
         'responsable',
         'no-parte',
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     formulario.addEventListener('submit', async e => {
         e.preventDefault();
 
-        // 1) Validación custom de campos required con SweetAlert
+        // 1) Validación de todos los campos “requeridos” con SweetAlert
         for (const id of camposRequeridos) {
             const el    = document.getElementById(id);
             const valor = el.value.trim();
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // 2) Validación de Responsable
+        // 2) Validación de Responsable (solo letras y espacios)
         const responsable = document.getElementById('responsable').value.trim();
         if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$/.test(responsable)) {
             const el = document.getElementById('responsable');
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // 3) Validación de Número de Parte
+        // 3) Validación de Número de Parte (letras, números, guiones)
         const numParte = document.getElementById('no-parte').value.trim();
         if (!/^[A-Za-z0-9-]+$/.test(numParte)) {
             const el = document.getElementById('no-parte');
@@ -89,8 +89,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 5) Validación de Fotos OK / NO OK
         const archivos = Array.from(formulario.querySelectorAll('input[type="file"]'));
-        const tieneOk  = archivos.filter(i => i.name==='fotosOk[]').some(i => i.files.length>0);
-        const tieneNo  = archivos.filter(i => i.name==='fotosNo[]').some(i => i.files.length>0);
+        const tieneOk  = archivos
+            .filter(i => i.name === 'fotosOk[]')
+            .some(i => i.files.length > 0);
+        const tieneNo  = archivos
+            .filter(i => i.name === 'fotosNo[]')
+            .some(i => i.files.length > 0);
         if (!tieneOk || !tieneNo) {
             await Swal.fire({
                 icon: 'warning',
@@ -110,26 +114,38 @@ document.addEventListener('DOMContentLoaded', () => {
             didOpen: () => Swal.showLoading()
         });
 
-        // 7) Envío con FormData
+        // 7) Envío con todos los archivos ya dentro del <form>
         const fd = new FormData(formulario);
         try {
-            const res  = await fetch(formulario.action, { method:'POST', body:fd });
+            const res  = await fetch(formulario.action, { method: 'POST', body: fd });
             const json = await res.json();
             Swal.close();
 
             if (json.status === 'success') {
-                await Swal.fire({ icon:'success', title:'¡Caso guardado!', text:json.message });
+                await Swal.fire({
+                    icon: 'success',
+                    title: '¡Caso guardado!',
+                    text: json.message
+                });
                 formulario.reset();
                 document.getElementById('evidencia-preview').innerHTML = '';
             } else {
-                await Swal.fire({ icon:'error', title:'Error al guardar', text:json.message });
+                await Swal.fire({
+                    icon: 'error',
+                    title: 'Error al guardar',
+                    text: json.message
+                });
             }
         } catch {
-            Swal.fire({ icon:'error', title:'Error de red', text:'No se pudo conectar al servidor.' });
+            Swal.fire({
+                icon: 'error',
+                title: 'Error de red',
+                text: 'No se pudo conectar con el servidor.'
+            });
         }
     });
 
-    // Funciones para resaltar/remover error en un campo
+    // --- Funciones auxiliares para marcar/quitar estilo de error ---
     function marcarError(el) {
         el.classList.add('input-error');
     }
