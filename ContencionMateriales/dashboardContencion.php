@@ -248,13 +248,7 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                                         Elegir archivo
                                     </button>
                                 </div>
-                                <input
-                                        type="file"
-                                        id="foto-ok"
-                                        name="fotosOk[]"
-                                        accept="image/*"
-                                        hidden
-                                />
+                                <input type="file" id="foto-ok" name="fotosOk[]" accept="image/*" hidden />
                             </div>
 
                             <div class="drop-zone" id="drop-no-ok">
@@ -265,13 +259,7 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
                                         Elegir archivo
                                     </button>
                                 </div>
-                                <input
-                                        type="file"
-                                        id="foto-no-ok"
-                                        name="fotosNo[]"
-                                        accept="image/*"
-                                        hidden
-                                />
+                                <input type="file" id="foto-no-ok" name="fotosNo[]" accept="image/*" hidden />
                             </div>
 
                             <div id="fotos-ok-extra-container">

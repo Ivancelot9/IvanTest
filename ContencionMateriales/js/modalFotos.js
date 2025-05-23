@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const btn = areaEl.querySelector(".custom-file-btn");
             if (btn) btn.onclick = () => inputEl.click();
         }
-        bindChooseBtn();
+        bindChooseBtn();  // enlazamos el click una sola vez
 
         function resetArea() {
             areaEl.innerHTML = defaultHTML;
@@ -50,25 +50,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const reader = new FileReader();
             reader.onload = e => {
-                const img = document.createElement("img");
-                img.src = e.target.result;
-                img.style.maxWidth  = "100%";
-                img.style.maxHeight = "100px";
-                img.style.display   = "block";
-                img.style.margin    = "8px auto 0";
-                areaEl.appendChild(img);
+                const result = e.target && e.target.result;
+                if (typeof result === 'string') {
+                    const img = document.createElement("img");
+                    img.src = result;
+                    img.style.maxWidth  = "100%";
+                    img.style.maxHeight = "100px";
+                    img.style.display   = "block";
+                    img.style.margin    = "8px auto 0";
+                    areaEl.appendChild(img);
+                } else {
+                    console.warn("FileReader no devolvió una cadena:", result);
+                }
             };
             reader.readAsDataURL(file);
         });
     }
 
     // 4) Asociar inputs OK / NO OK principales
-    const dropOk    = document.getElementById("drop-ok"),
+    const dropOk     = document.getElementById("drop-ok"),
         areaOk    = dropOk.querySelector(".drop-area"),
         defaultOk = areaOk.innerHTML;
     manejarPrincipal(document.getElementById("foto-ok"), areaOk, defaultOk);
 
-    const dropNo    = document.getElementById("drop-no-ok"),
+    const dropNo     = document.getElementById("drop-no-ok"),
         areaNo    = dropNo.querySelector(".drop-area"),
         defaultNo = areaNo.innerHTML;
     manejarPrincipal(document.getElementById("foto-no-ok"), areaNo, defaultNo);
@@ -124,24 +129,17 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     });
 
-    // 7) Botones “Elegir archivo” dentro de cada drop-area
-    document.querySelectorAll(".custom-file-btn").forEach(btn =>
-        btn.addEventListener("click", () =>
-            document.getElementById(btn.dataset.target).click()
-        )
-    );
-
-    // 8) Drag & drop con dispatch de change
-    ["drop-ok", "drop-no-ok"].forEach(id => {
+    // 7) Drag & drop con dispatch de change
+    ["drop-ok","drop-no-ok"].forEach(id => {
         const zone   = document.getElementById(id),
             inputE = zone.querySelector("input[type=file]");
         zone.addEventListener("dragover", e => {
             e.preventDefault();
             zone.classList.add("dragging");
         });
-        zone.addEventListener("dragleave", () =>
-            zone.classList.remove("dragging")
-        );
+        zone.addEventListener("dragleave", () => {
+            zone.classList.remove("dragging");
+        });
         zone.addEventListener("drop", e => {
             e.preventDefault();
             zone.classList.remove("dragging");
@@ -152,35 +150,36 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 9) Confirmar: volcar previews al formulario y cerrar modal
+    // 8) Confirmar: volcar previews al formulario y cerrar modal
     btnConfirm.addEventListener("click", () => {
         formPreview.innerHTML = "";
-
         const inputs = [
             document.getElementById("foto-ok"),
             ...document.querySelectorAll("#fotos-ok-extra-container input[type=file]"),
             document.getElementById("foto-no-ok"),
             ...document.querySelectorAll("#fotos-no-extra-container input[type=file]")
         ];
-
         inputs.forEach(inputEl => {
             if (!inputEl.files.length) return;
-            const file = inputEl.files[0];
             const reader = new FileReader();
             reader.onload = e => {
-                const wrapper = document.createElement("div");
-                wrapper.className = "evidencia-item";
-                const img = document.createElement("img");
-                img.src = e.target.result;
-                img.alt = file.name;
-                const caption = document.createElement("small");
-                caption.textContent = acortarNombre(file.name, 25);
-                wrapper.append(img, caption);
-                formPreview.appendChild(wrapper);
+                const result = e.target && e.target.result;
+                if (typeof result === 'string') {
+                    const wrapper = document.createElement("div");
+                    wrapper.className = "evidencia-item";
+                    const img = document.createElement("img");
+                    img.src = result;
+                    img.alt = inputEl.files[0].name;
+                    const caption = document.createElement("small");
+                    caption.textContent = acortarNombre(inputEl.files[0].name, 25);
+                    wrapper.append(img, caption);
+                    formPreview.appendChild(wrapper);
+                } else {
+                    console.warn("FileReader no devolvió una cadena:", result);
+                }
             };
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(inputEl.files[0]);
         });
-
         modal.style.display = "none";
     });
 });
