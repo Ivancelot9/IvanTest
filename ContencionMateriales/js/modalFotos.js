@@ -21,18 +21,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 3) Manejo de inputs principales (OK / NO OK)
-    function manejarPrincipal(inputEl, areaEl, defaultHTML) {
-        function bindChooseBtn() {
-            const btn = areaEl.querySelector(".custom-file-btn");
-            if (btn) btn.onclick = () => inputEl.click();
-        }
-        bindChooseBtn();
+    //    Guardamos referencias para reset posterior
+    const dropOk     = document.getElementById("drop-ok");
+    const areaOk     = dropOk.querySelector(".drop-area");
+    const defaultOk  = areaOk.innerHTML;
+    const inputOk    = document.getElementById("foto-ok");
 
-        function resetArea() {
-            areaEl.innerHTML = defaultHTML;
-            bindChooseBtn();
-            inputEl.value = "";
-        }
+    const dropNo     = document.getElementById("drop-no-ok");
+    const areaNo     = dropNo.querySelector(".drop-area");
+    const defaultNo  = areaNo.innerHTML;
+    const inputNo    = document.getElementById("foto-no-ok");
+
+    function bindChooseBtn(areaEl, inputEl) {
+        const btn = areaEl.querySelector(".custom-file-btn");
+        if (btn) btn.onclick = () => inputEl.click();
+    }
+
+    function resetArea(areaEl, defaultHTML, inputEl) {
+        areaEl.innerHTML = defaultHTML;
+        bindChooseBtn(areaEl, inputEl);
+        inputEl.value = "";
+    }
+
+    function manejarPrincipal(inputEl, areaEl, defaultHTML) {
+        bindChooseBtn(areaEl, inputEl);
 
         inputEl.addEventListener("change", () => {
             if (!inputEl.files.length) return;
@@ -40,15 +52,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const file = inputEl.files[0];
             const nombre = acortarNombre(file.name);
 
+            // Nombre + botón de quitar
             const span = document.createElement("span");
             span.textContent = nombre;
             const rm = document.createElement("button");
             rm.type = "button";
             rm.className = "remove-file-btn";
             rm.textContent = "✖";
-            rm.addEventListener("click", resetArea);
+            rm.addEventListener("click", () => resetArea(areaEl, defaultHTML, inputEl));
             areaEl.append(span, rm);
 
+            // Preview
             const reader = new FileReader();
             reader.onload = e => {
                 const result = e.target && e.target.result;
@@ -66,22 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 4) Asociar inputs OK / NO OK principales
-    const dropOk     = document.getElementById("drop-ok"),
-        areaOk    = dropOk.querySelector(".drop-area"),
-        defaultOk = areaOk.innerHTML;
-    manejarPrincipal(document.getElementById("foto-ok"), areaOk, defaultOk);
+    manejarPrincipal(inputOk, areaOk, defaultOk);
+    manejarPrincipal(inputNo, areaNo, defaultNo);
 
-    const dropNo     = document.getElementById("drop-no-ok"),
-        areaNo    = dropNo.querySelector(".drop-area"),
-        defaultNo = areaNo.innerHTML;
-    manejarPrincipal(document.getElementById("foto-no-ok"), areaNo, defaultNo);
-
-    // 5) Abrir / cerrar modal
+    // 4) Abrir / cerrar modal
     btnAbrir.onclick    = () => modal.style.display = "flex";
     btnCancelar.onclick = () => modal.style.display = "none";
 
-    // 6) Crear inputs adicionales (solo nombre + quitar)
+    // 5) Crear inputs adicionales
     function manejarExtra(inputEl, areaEl) {
         inputEl.addEventListener("change", () => {
             if (!inputEl.files.length) return;
@@ -90,9 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const span = document.createElement("span");
             span.textContent = nombre;
             const rm = document.createElement("button");
-            rm.type = "button";
-            rm.className = "remove-file-btn";
-            rm.textContent = "✖";
+            rm.type = "button"; rm.className = "remove-file-btn"; rm.textContent = "✖";
             rm.onclick = () => {
                 inputEl.value = "";
                 areaEl.innerHTML = "";
@@ -106,14 +110,11 @@ document.addEventListener("DOMContentLoaded", () => {
         contadorOk++;
         const div = document.createElement("div");
         div.innerHTML = `
-            <label>Foto OK adicional ${contadorOk}:</label>
-            <input type="file" name="fotosOk[]" accept="image/*" />
-            <div class="preview-ok-${contadorOk}"></div>`;
+          <label>Foto OK adicional ${contadorOk}:</label>
+          <input type="file" name="fotosOk[]" accept="image/*" />
+          <div class="preview-ok-${contadorOk}"></div>`;
         containerOk.appendChild(div);
-        manejarExtra(
-            div.querySelector("input[type=file]"),
-            div.querySelector(`.preview-ok-${contadorOk}`)
-        );
+        manejarExtra(div.querySelector("input[type=file]"), div.querySelector(`.preview-ok-${contadorOk}`));
     });
 
     btnNo.addEventListener("click", () => {
@@ -121,30 +122,21 @@ document.addEventListener("DOMContentLoaded", () => {
         contadorNo++;
         const div = document.createElement("div");
         div.innerHTML = `
-            <label>Foto NO OK adicional ${contadorNo}:</label>
-            <input type="file" name="fotosNo[]" accept="image/*" />
-            <div class="preview-no-${contadorNo}"></div>`;
+          <label>Foto NO OK adicional ${contadorNo}:</label>
+          <input type="file" name="fotosNo[]" accept="image/*" />
+          <div class="preview-no-${contadorNo}"></div>`;
         containerNo.appendChild(div);
-        manejarExtra(
-            div.querySelector("input[type=file]"),
-            div.querySelector(`.preview-no-${contadorNo}`)
-        );
+        manejarExtra(div.querySelector("input[type=file]"), div.querySelector(`.preview-no-${contadorNo}`));
     });
 
-    // 7) Drag & drop
+    // 6) Drag & drop
     ["drop-ok","drop-no-ok"].forEach(id => {
         const zone   = document.getElementById(id),
             inputE = zone.querySelector("input[type=file]");
-        zone.addEventListener("dragover", e => {
-            e.preventDefault();
-            zone.classList.add("dragging");
-        });
-        zone.addEventListener("dragleave", () => {
-            zone.classList.remove("dragging");
-        });
+        zone.addEventListener("dragover", e => { e.preventDefault(); zone.classList.add("dragging"); });
+        zone.addEventListener("dragleave", () => zone.classList.remove("dragging"));
         zone.addEventListener("drop", e => {
-            e.preventDefault();
-            zone.classList.remove("dragging");
+            e.preventDefault(); zone.classList.remove("dragging");
             if (e.dataTransfer.files.length) {
                 inputE.files = e.dataTransfer.files;
                 inputE.dispatchEvent(new Event("change"));
@@ -152,25 +144,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 8) Confirmar: mover inputs fuera del modal y cerrar
+    // 7) Confirmar: mover inputs fuera del modal y cerrar
     btnConfirm.addEventListener("click", () => {
         formPreview.innerHTML = "";
 
-        // Recogemos TODOS los file inputs del modal
         const inputs = [
-            document.getElementById("foto-ok"),
+            inputOk,
             ...document.querySelectorAll("#fotos-ok-extra-container input[type=file]"),
-            document.getElementById("foto-no-ok"),
+            inputNo,
             ...document.querySelectorAll("#fotos-no-extra-container input[type=file]")
         ];
 
         inputs.forEach(inputEl => {
             if (!inputEl.files.length) return;
-
-            // 1) Movemos EL INPUT a la raíz del form
             form.appendChild(inputEl);
 
-            // 2) Generamos la vista previa
             const reader = new FileReader();
             reader.onload = e => {
                 const result = e.target && e.target.result;
@@ -189,7 +177,22 @@ document.addEventListener("DOMContentLoaded", () => {
             reader.readAsDataURL(inputEl.files[0]);
         });
 
-        // 3) Ocultamos el modal
         modal.style.display = "none";
+    });
+
+    // 8) RESET general tras enviar/limpiar formulario
+    form.addEventListener('reset', () => {
+        // Reset previews
+        formPreview.innerHTML = '';
+
+        // Reset inputs principales
+        resetArea(areaOk, defaultOk, inputOk);
+        resetArea(areaNo, defaultNo, inputNo);
+
+        // Reset extras
+        contadorOk = 0;
+        contadorNo = 0;
+        containerOk.innerHTML = `<h3>Fotos OK adicionales (máx. 4):</h3>`;
+        containerNo.innerHTML = `<h3>Fotos NO OK adicionales (máx. 4):</h3>`;
     });
 });

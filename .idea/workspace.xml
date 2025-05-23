@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Guardar Caso en BD">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/modalFotos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/modalFotos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,15 +192,7 @@
       <workItem from="1747750453692" duration="18443000" />
       <workItem from="1747837343678" duration="11459000" />
       <workItem from="1747923871195" duration="16229000" />
-      <workItem from="1748010408906" duration="7138000" />
-    </task>
-    <task id="LOCAL-01387" summary="Diseño Responsivo Celular">
-      <option name="closed" value="true" />
-      <created>1747760410911</created>
-      <option name="number" value="01387" />
-      <option name="presentableId" value="LOCAL-01387" />
-      <option name="project" value="LOCAL" />
-      <updated>1747760410911</updated>
+      <workItem from="1748010408906" duration="7642000" />
     </task>
     <task id="LOCAL-01388" summary="Diseño Responsivo Celular">
       <option name="closed" value="true" />
@@ -586,7 +578,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748019814578</updated>
     </task>
-    <option name="localTasksCounter" value="1436" />
+    <task id="LOCAL-01436" summary="Guardar Caso en BD">
+      <option name="closed" value="true" />
+      <created>1748021514946</created>
+      <option name="number" value="01436" />
+      <option name="presentableId" value="LOCAL-01436" />
+      <option name="project" value="LOCAL" />
+      <updated>1748021514946</updated>
+    </task>
+    <option name="localTasksCounter" value="1437" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
