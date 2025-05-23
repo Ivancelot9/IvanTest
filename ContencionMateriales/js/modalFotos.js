@@ -1,6 +1,7 @@
 // modalFotos.js
 document.addEventListener("DOMContentLoaded", () => {
     // 1) Referencias y contadores
+    const form        = document.querySelector("form.data-form");
     const modal       = document.getElementById("modal-fotos");
     const btnAbrir    = document.querySelector("button.form-button");
     const btnCancelar = document.getElementById("btn-cancelar-fotos");
@@ -25,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const btn = areaEl.querySelector(".custom-file-btn");
             if (btn) btn.onclick = () => inputEl.click();
         }
-        bindChooseBtn();  // enlazamos el click una sola vez
+        bindChooseBtn();
 
         function resetArea() {
             areaEl.innerHTML = defaultHTML;
@@ -59,8 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     img.style.display   = "block";
                     img.style.margin    = "8px auto 0";
                     areaEl.appendChild(img);
-                } else {
-                    console.warn("FileReader no devolvió una cadena:", result);
                 }
             };
             reader.readAsDataURL(file);
@@ -94,7 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
             rm.type = "button";
             rm.className = "remove-file-btn";
             rm.textContent = "✖";
-            rm.onclick = () => { inputEl.value = ""; areaEl.innerHTML = ""; };
+            rm.onclick = () => {
+                inputEl.value = "";
+                areaEl.innerHTML = "";
+            };
             areaEl.append(span, rm);
         });
     }
@@ -104,9 +106,9 @@ document.addEventListener("DOMContentLoaded", () => {
         contadorOk++;
         const div = document.createElement("div");
         div.innerHTML = `
-          <label>Foto OK adicional ${contadorOk}:</label>
-          <input type="file" name="fotosOk[]" accept="image/*" />
-          <div class="preview-ok-${contadorOk}"></div>`;
+            <label>Foto OK adicional ${contadorOk}:</label>
+            <input type="file" name="fotosOk[]" accept="image/*" />
+            <div class="preview-ok-${contadorOk}"></div>`;
         containerOk.appendChild(div);
         manejarExtra(
             div.querySelector("input[type=file]"),
@@ -119,9 +121,9 @@ document.addEventListener("DOMContentLoaded", () => {
         contadorNo++;
         const div = document.createElement("div");
         div.innerHTML = `
-          <label>Foto NO OK adicional ${contadorNo}:</label>
-          <input type="file" name="fotosNo[]" accept="image/*" />
-          <div class="preview-no-${contadorNo}"></div>`;
+            <label>Foto NO OK adicional ${contadorNo}:</label>
+            <input type="file" name="fotosNo[]" accept="image/*" />
+            <div class="preview-no-${contadorNo}"></div>`;
         containerNo.appendChild(div);
         manejarExtra(
             div.querySelector("input[type=file]"),
@@ -129,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     });
 
-    // 7) Drag & drop con dispatch de change
+    // 7) Drag & drop
     ["drop-ok","drop-no-ok"].forEach(id => {
         const zone   = document.getElementById(id),
             inputE = zone.querySelector("input[type=file]");
@@ -150,17 +152,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 8) Confirmar: volcar previews al formulario y cerrar modal
+    // 8) Confirmar: mover inputs fuera del modal y cerrar
     btnConfirm.addEventListener("click", () => {
         formPreview.innerHTML = "";
+
+        // Recogemos TODOS los file inputs del modal
         const inputs = [
             document.getElementById("foto-ok"),
             ...document.querySelectorAll("#fotos-ok-extra-container input[type=file]"),
             document.getElementById("foto-no-ok"),
             ...document.querySelectorAll("#fotos-no-extra-container input[type=file]")
         ];
+
         inputs.forEach(inputEl => {
             if (!inputEl.files.length) return;
+
+            // 1) Movemos EL INPUT a la raíz del form
+            form.appendChild(inputEl);
+
+            // 2) Generamos la vista previa
             const reader = new FileReader();
             reader.onload = e => {
                 const result = e.target && e.target.result;
@@ -174,12 +184,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     caption.textContent = acortarNombre(inputEl.files[0].name, 25);
                     wrapper.append(img, caption);
                     formPreview.appendChild(wrapper);
-                } else {
-                    console.warn("FileReader no devolvió una cadena:", result);
                 }
             };
             reader.readAsDataURL(inputEl.files[0]);
         });
+
+        // 3) Ocultamos el modal
         modal.style.display = "none";
     });
 });
