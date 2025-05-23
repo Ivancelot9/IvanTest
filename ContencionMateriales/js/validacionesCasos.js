@@ -2,134 +2,138 @@
 document.addEventListener('DOMContentLoaded', () => {
     const formulario = document.querySelector('.data-form');
 
-    formulario.addEventListener('submit', e => {
+    // IDs de todos los campos obligatorios
+    const camposRequeridos = [
+        'responsable',
+        'no-parte',
+        'cantidad',
+        'terciaria',
+        'proveedor',
+        'commodity',
+        'defectos'
+    ];
+
+    formulario.addEventListener('submit', async e => {
         e.preventDefault();
 
-        // 0) Validación nativa HTML5 de campos required
-        if (!formulario.checkValidity()) {
-            formulario.reportValidity();
+        // 1) Validación custom de campos required con SweetAlert
+        for (const id of camposRequeridos) {
+            const el    = document.getElementById(id);
+            const valor = el.value.trim();
+            if (!valor) {
+                marcarError(el);
+                const texto = document.querySelector(`label[for="${id}"]`).innerText;
+                await Swal.fire({
+                    icon: 'warning',
+                    title: 'Campo requerido',
+                    text: `Por favor completa el campo "${texto}".`
+                });
+                quitarError(el);
+                el.focus();
+                return;
+            }
+        }
+
+        // 2) Validación de Responsable
+        const responsable = document.getElementById('responsable').value.trim();
+        if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$/.test(responsable)) {
+            const el = document.getElementById('responsable');
+            marcarError(el);
+            await Swal.fire({
+                icon: 'error',
+                title: 'Responsable inválido',
+                text: 'El nombre solo puede contener letras y espacios.'
+            });
+            quitarError(el);
+            el.focus();
             return;
         }
 
-        // —— 1) Responsable ——
-        const responsable = document.getElementById('responsable').value.trim();
-        const regexResponsable = /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$/;
-        if (!responsable || !regexResponsable.test(responsable)) {
-            return Swal.fire({
-                icon: 'error',
-                title: 'Responsable inválido',
-                text: 'El nombre del responsable sólo puede contener letras y espacios.'
-            });
-        }
-
-        // —— 2) Número de parte ——
+        // 3) Validación de Número de Parte
         const numParte = document.getElementById('no-parte').value.trim();
-        const regexParte = /^[A-Za-z0-9-]+$/;
-        if (!numParte || !regexParte.test(numParte)) {
-            return Swal.fire({
+        if (!/^[A-Za-z0-9-]+$/.test(numParte)) {
+            const el = document.getElementById('no-parte');
+            marcarError(el);
+            await Swal.fire({
                 icon: 'error',
                 title: 'Número de parte inválido',
-                text: 'Sólo se permiten letras, números y guiones medios.'
+                text: 'Solo se permiten letras, números y guiones medios.'
             });
+            quitarError(el);
+            el.focus();
+            return;
         }
 
-        // —— 3) Cantidad ——
+        // 4) Validación de Cantidad (mayor que 0, hasta 3 decimales)
         const cantidadInput = document.getElementById('cantidad');
-        const cantidadStr   = cantidadInput.value;
+        const cantidadStr   = cantidadInput.value.trim();
         const cantidadNum   = parseFloat(cantidadStr.replace(',', '.'));
-        const regexCantidad = /^[0-9]+([.,][0-9]{1,3})?$/;
         if (
-            cantidadStr === '' ||
-            !regexCantidad.test(cantidadStr) ||
+            !/^[0-9]+([.,][0-9]{1,3})?$/.test(cantidadStr) ||
             isNaN(cantidadNum) ||
             cantidadNum <= 0
         ) {
-            return Swal.fire({
+            marcarError(cantidadInput);
+            await Swal.fire({
                 icon: 'error',
                 title: 'Cantidad inválida',
                 html: `
           Debe ser un número mayor que 0.<br>
-          Puedes usar hasta 3 decimales, por ejemplo:<br>
-          <em>1.2, 1.00, 1.567</em>
+          Puedes usar hasta 3 decimales (ej. 1.2, 1.00, 1.567).
         `
             });
+            quitarError(cantidadInput);
+            cantidadInput.focus();
+            return;
         }
 
-        // —— 4) Selects obligatorios ——
-        const selects = ['terciaria','proveedor','commodity','defectos'];
-        for (let id of selects) {
-            if (!document.getElementById(id).value) {
-                const texto = document.querySelector(`label[for="${id}"]`).innerText;
-                return Swal.fire({
-                    icon: 'warning',
-                    title: 'Campo requerido',
-                    text: `Debes seleccionar una opción para "${texto}".`
-                });
-            }
-        }
-
-        // —— 5) Fotos OK / NO OK ——
-        //  Como ya movimos y ocultamos los inputs al <form>, basta con comprobar que haya archivos en ellos
-        const allFileInputs = Array.from(formulario.querySelectorAll('input[type="file"]'));
-        const tieneOk = allFileInputs
-            .filter(i => i.name === 'fotosOk[]')
-            .some(i => i.files.length > 0);
-        const tieneNo = allFileInputs
-            .filter(i => i.name === 'fotosNo[]')
-            .some(i => i.files.length > 0);
+        // 5) Validación de Fotos OK / NO OK
+        const archivos = Array.from(formulario.querySelectorAll('input[type="file"]'));
+        const tieneOk  = archivos.filter(i => i.name==='fotosOk[]').some(i => i.files.length>0);
+        const tieneNo  = archivos.filter(i => i.name==='fotosNo[]').some(i => i.files.length>0);
         if (!tieneOk || !tieneNo) {
-            return Swal.fire({
+            await Swal.fire({
                 icon: 'warning',
                 title: 'Faltan fotos',
                 html: `
-          ${!tieneOk ? '• Debes subir al menos una foto <strong>OK</strong>.<br>' : ''}
-          ${!tieneNo ? '• Debes subir al menos una foto <strong>NO OK</strong>.' : ''}
-        `,
-                confirmButtonText: 'Entendido'
+          ${!tieneOk ? '&bull; Debes subir al menos una foto <strong>OK</strong>.<br>' : ''}
+          ${!tieneNo ? '&bull; Debes subir al menos una foto <strong>NO OK</strong>.' : ''}
+        `
             });
+            return;
         }
 
-        // —— 6) Feedback de envío ——
+        // 6) Feedback de envío
         Swal.fire({
             title: 'Guardando caso…',
             allowOutsideClick: false,
             didOpen: () => Swal.showLoading()
         });
 
-        // —— 7) Preparamos FormData (captura todos los inputs, incluidos los file ocultos) ——
+        // 7) Envío con FormData
         const fd = new FormData(formulario);
+        try {
+            const res  = await fetch(formulario.action, { method:'POST', body:fd });
+            const json = await res.json();
+            Swal.close();
 
-        // —— 8) Enviamos por AJAX ——
-        fetch(formulario.action, {
-            method: 'POST',
-            body: fd
-        })
-            .then(res => res.json())
-            .then(json => {
-                Swal.close();
-                if (json.status === 'success') {
-                    Swal.fire({
-                        icon: 'success',
-                        title: '¡Caso guardado!',
-                        text: json.message
-                    });
-                    // Limpiar formulario y previews
-                    formulario.reset();
-                    document.getElementById('evidencia-preview').innerHTML = '';
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error al guardar',
-                        text: json.message
-                    });
-                }
-            })
-            .catch(() => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error de red',
-                    text: 'No se pudo conectar con el servidor.'
-                });
-            });
+            if (json.status === 'success') {
+                await Swal.fire({ icon:'success', title:'¡Caso guardado!', text:json.message });
+                formulario.reset();
+                document.getElementById('evidencia-preview').innerHTML = '';
+            } else {
+                await Swal.fire({ icon:'error', title:'Error al guardar', text:json.message });
+            }
+        } catch {
+            Swal.fire({ icon:'error', title:'Error de red', text:'No se pudo conectar al servidor.' });
+        }
     });
+
+    // Funciones para resaltar/remover error en un campo
+    function marcarError(el) {
+        el.classList.add('input-error');
+    }
+    function quitarError(el) {
+        el.classList.remove('input-error');
+    }
 });
