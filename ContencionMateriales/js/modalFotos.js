@@ -146,19 +146,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 7) Confirmar: mover inputs fuera del modal y cerrar
     btnConfirm.addEventListener("click", () => {
+        // 1) Limpia el preview
         formPreview.innerHTML = "";
 
+        // 2) Recoge TODOS los inputs de archivo (principales + extras)
         const inputs = [
-            inputOk,
+            document.getElementById("foto-ok"),
             ...document.querySelectorAll("#fotos-ok-extra-container input[type=file]"),
-            inputNo,
+            document.getElementById("foto-no-ok"),
             ...document.querySelectorAll("#fotos-no-extra-container input[type=file]")
         ];
 
         inputs.forEach(inputEl => {
             if (!inputEl.files.length) return;
-            form.appendChild(inputEl);
 
+            // 3) Mueve el input al <form> (si no está ya)
+            if (!form.contains(inputEl)) {
+                form.appendChild(inputEl);
+            }
+            // 4) Oculta el input para que no se vea el botón “Choose File”
+            inputEl.hidden = true;
+
+            // 5) Genera la miniatura como antes
             const reader = new FileReader();
             reader.onload = e => {
                 const result = e.target && e.target.result;
@@ -177,6 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
             reader.readAsDataURL(inputEl.files[0]);
         });
 
+        // 6) Cierra el modal
         modal.style.display = "none";
     });
 

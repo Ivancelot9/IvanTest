@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const cantidadStr   = cantidadInput.value;
         const cantidadNum   = parseFloat(cantidadStr.replace(',', '.'));
         const regexCantidad = /^[0-9]+([.,][0-9]{1,3})?$/;
-
         if (
             cantidadStr === '' ||
             !regexCantidad.test(cantidadStr) ||
@@ -70,16 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // —— 5) Fotos OK / NO OK ——
-        const fotosOk = [
-            document.getElementById("foto-ok"),
-            ...document.querySelectorAll("#fotos-ok-extra-container input[type=file]")
-        ];
-        const fotosNo = [
-            document.getElementById("foto-no-ok"),
-            ...document.querySelectorAll("#fotos-no-extra-container input[type=file]")
-        ];
-        const tieneOk = fotosOk.some(i => i.files.length > 0);
-        const tieneNo = fotosNo.some(i => i.files.length > 0);
+        //  Como ya movimos y ocultamos los inputs al <form>, basta con comprobar que haya archivos en ellos
+        const allFileInputs = Array.from(formulario.querySelectorAll('input[type="file"]'));
+        const tieneOk = allFileInputs
+            .filter(i => i.name === 'fotosOk[]')
+            .some(i => i.files.length > 0);
+        const tieneNo = allFileInputs
+            .filter(i => i.name === 'fotosNo[]')
+            .some(i => i.files.length > 0);
         if (!tieneOk || !tieneNo) {
             return Swal.fire({
                 icon: 'warning',
@@ -99,17 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
             didOpen: () => Swal.showLoading()
         });
 
-        // —— 7) Preparamos FormData ——
+        // —— 7) Preparamos FormData (captura todos los inputs, incluidos los file ocultos) ——
         const fd = new FormData(formulario);
 
-        // —— 8) Añadimos manualmente TODOS los archivos del modal ——
-        document.querySelectorAll('#modal-fotos input[type="file"]').forEach(input => {
-            Array.from(input.files).forEach(file => {
-                fd.append(input.name, file);
-            });
-        });
-
-        // —— 9) Enviamos por AJAX ——
+        // —— 8) Enviamos por AJAX ——
         fetch(formulario.action, {
             method: 'POST',
             body: fd
