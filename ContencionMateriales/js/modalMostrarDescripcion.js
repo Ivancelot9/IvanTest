@@ -1,45 +1,70 @@
-document.addEventListener('DOMContentLoaded', () => {
+/**
+ * Módulo para abrir un modal estilo “reporte” con TODOS los datos
+ * del caso—including las fotos OK / NO OK—al pulsar “Mostrar descripción”.
+ */
+(function(){
     const modal = document.getElementById('modal-descripcion');
-    const body  = document.getElementById('modal-body');
-    const close = document.getElementById('modal-cerrar');
+    const body  = modal.querySelector('#modal-body');
+    const close = modal.querySelector('#modal-cerrar');
 
-    // Abrir modal al clickar "Mostrar descripción"
-    document.querySelectorAll('.show-desc').forEach(btn => {
-        btn.addEventListener('click', async () => {
-            const fila = btn.closest('tr');
-            const folio = fila.querySelector('td').textContent.trim();
-
-            body.innerHTML = 'Cargando…';
-            modal.style.display = 'flex';
-
-            try {
-                const res = await fetch(`dao/obtenerCaso.php?folio=${folio}`);
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                const data = await res.json();
-                if (data.error) throw new Error(data.error);
-
-                // Construyo HTML con todos los campos
-                body.innerHTML = `
-          <p><strong>Folio:</strong> ${data.folio}</p>
-          <p><strong>Fecha:</strong> ${data.fecha}</p>
-          <p><strong>Número de parte:</strong> ${data.numeroParte}</p>
-          <p><strong>Cantidad:</strong> ${data.cantidad}</p>
-          <p><strong>Descripción:</strong> ${data.descripcion}</p>
-          <p><strong>Terciaria:</strong> ${data.terciaria}</p>
-          <p><strong>Proveedor:</strong> ${data.proveedor}</p>
-          <p><strong>Commodity:</strong> ${data.commodity}</p>
-          <p><strong>Defectos:</strong> ${data.defectos}</p>
-          <div><strong>Fotos OK:</strong><br>${data.fotosOk.map(f=>`<img src="uploads/ok/${f}" class="thumb">`).join(' ')}</div>
-          <div><strong>Fotos NO OK:</strong><br>${data.fotosNo.map(f=>`<img src="uploads/no/${f}" class="thumb">`).join(' ')}</div>
-        `;
-            } catch (err) {
-                body.innerHTML = `<p style="color:red">Error: ${err.message}</p>`;
-            }
-        });
-    });
-
-    // Cerrar modal
     close.addEventListener('click', () => {
         modal.style.display = 'none';
     });
-});
+
+    // La función global que llama el paginador:
+    window.mostrarModalDescripcion = async function(folio) {
+        body.innerHTML = '<p>Cargando...</p>';
+        modal.style.display = 'flex';
+
+        try {
+            const res = await fetch(`dao/obtenerCaso.php?folio=${folio}`);
+            const json = await res.json();
+
+            if (json.error) {
+                body.innerHTML = `<p class="error">${json.error}</p>`;
+                return;
+            }
+
+            // Construimos el HTML del “reporte”
+            let html = `
+        <div class="report-grid">
+          <div><strong>Folio:</strong> ${json.folio}</div>
+          <div><strong>Fecha:</strong> ${json.fecha.split('-').reverse().join('-')}</div>
+          <div><strong>No. Parte:</strong> ${json.numeroParte}</div>
+          <div><strong>Cantidad:</strong> ${json.cantidad}</div>
+          <div><strong>Terciaria:</strong> ${json.terciaria}</div>
+          <div><strong>Proveedor:</strong> ${json.proveedor}</div>
+          <div><strong>Commodity:</strong> ${json.commodity}</div>
+          <div><strong>Defectos:</strong> ${json.defectos}</div>
+        </div>
+
+        <div class="desc-section">
+          <h3>Descripción</h3>
+          <p>${json.descripcion || '<em>(sin texto)</em>'}</p>
+        </div>
+
+        <div class="fotos-section">
+          <div>
+            <h3>Fotos OK</h3>
+            <div class="fotos-grid">
+              ${json.fotosOk.map(r => `<img src="uploads/ok/${r}" alt="OK">`).join('')}
+              ${json.fotosOk.length === 0 ? '<p>(ninguna)</p>' : ''}
+            </div>
+          </div>
+          <div>
+            <h3>Fotos NO OK</h3>
+            <div class="fotos-grid">
+              ${json.fotosNo.map(r => `<img src="uploads/no/${r}" alt="NO OK">`).join('')}
+              ${json.fotosNo.length === 0 ? '<p>(ninguna)</p>' : ''}
+            </div>
+          </div>
+        </div>
+      `;
+
+            body.innerHTML = html;
+        } catch (err) {
+            body.innerHTML = `<p class="error">Error al cargar los datos.</p>`;
+            console.error(err);
+        }
+    };
+})();
