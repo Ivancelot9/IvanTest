@@ -1,4 +1,9 @@
 <?php
+// Mostrar siempre los errores para depurar
+ini_set('display_errors',1);
+ini_set('display_startup_errors',1);
+error_reporting(E_ALL);
+
 session_start();
 header('Content-Type: application/json; charset=UTF-8');
 
@@ -22,8 +27,19 @@ $stmt = $con->prepare("
       FROM Casos
      WHERE IdCaso = ?
 ");
+if (!$stmt) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Error al preparar SELECT Casos: ' . $con->error]);
+    exit;
+}
 $stmt->bind_param('i', $folio);
 $stmt->execute();
+
+// inicializo todas las variables que voy a bindear
+$numeroParte = $cantidad = $descripcion = '';
+$idTerceria = $idProveedor = $idCommodity = $idDefectos = 0;
+$fecha = '';
+
 $stmt->bind_result(
     $numeroParte,
     $cantidad,
@@ -35,49 +51,63 @@ $stmt->bind_result(
     $fecha
 );
 if (! $stmt->fetch()) {
+    http_response_code(404);
     echo json_encode(['error' => 'Caso no encontrado.']);
     exit;
 }
 $stmt->close();
 
-// 3) Función helper para lookup de nombres
+// 3) Función helper lookup
 function lookup(mysqli $con, string $table, string $idfield, string $namefield, int $id): string {
-    $n = '';  // <-- inicializamos
-    $s = $con->prepare("SELECT $namefield FROM $table WHERE $idfield = ?");
+    $value = '';
+    $s = $con->prepare("SELECT `$namefield` FROM `$table` WHERE `$idfield` = ?");
+    if (!$s) {
+        throw new Exception("Error preparando lookup en $table: " . $con->error);
+    }
     $s->bind_param('i', $id);
     $s->execute();
-    $s->bind_result($n);
-    $s->fetch();  // si no existe fila, $n queda como ''
+    $s->bind_result($value);
+    $s->fetch(); // si no hay fila, $value queda en ''
     $s->close();
-    return $n;
+    return $value;
 }
 
-$terciaria = lookup($con, 'Terceria',    'IdTerceria', 'NombreTerceria',  $idTerceria);
-$proveedor = lookup($con, 'Proveedores', 'IdProveedor','NombreProveedor', $idProveedor);
-$commodity = lookup($con, 'Commodity',   'IdCommodity','NombreCommodity', $idCommodity);
-$defectosN = lookup($con, 'Defectos',    'IdDefectos', 'NombreDefectos',  $idDefectos);
+try {
+    $terciaria = lookup($con, 'Terceria',    'IdTerceria',    'NombreTerceria',  $idTerceria);
+    $proveedor = lookup($con, 'Proveedores', 'IdProveedor',   'NombreProveedor', $idProveedor);
+    $commodity = lookup($con, 'Commodity',   'IdCommodity',   'NombreCommodity', $idCommodity);
+    $defectosN = lookup($con, 'Defectos',    'IdDefectos',    'NombreDefectos',  $idDefectos);
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['error' => $e->getMessage()]);
+    exit;
+}
 
 // 4) Fotos OK
 $fotosOk = [];
 $sf = $con->prepare("SELECT Ruta FROM Fotos WHERE FolioCaso = ? AND TipoFoto = 'ok'");
-$sf->bind_param('i', $folio);
-$sf->execute();
-$sf->bind_result($ruta);
-while ($sf->fetch()) {
-    $fotosOk[] = $ruta;
+if ($sf) {
+    $sf->bind_param('i', $folio);
+    $sf->execute();
+    $sf->bind_result($ruta);
+    while ($sf->fetch()) {
+        $fotosOk[] = $ruta;
+    }
+    $sf->close();
 }
-$sf->close();
 
 // 5) Fotos NO OK
 $fotosNo = [];
 $sn = $con->prepare("SELECT Ruta FROM Fotos WHERE FolioCaso = ? AND TipoFoto = 'no'");
-$sn->bind_param('i', $folio);
-$sn->execute();
-$sn->bind_result($ruta);
-while ($sn->fetch()) {
-    $fotosNo[] = $ruta;
+if ($sn) {
+    $sn->bind_param('i', $folio);
+    $sn->execute();
+    $sn->bind_result($rutaNo);
+    while ($sn->fetch()) {
+        $fotosNo[] = $rutaNo;
+    }
+    $sn->close();
 }
-$sn->close();
 
 // 6) Responder JSON
 echo json_encode([

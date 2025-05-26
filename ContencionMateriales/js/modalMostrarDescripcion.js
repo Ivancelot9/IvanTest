@@ -1,61 +1,45 @@
-// js/modalMostrarDescripcion.js
 document.addEventListener('DOMContentLoaded', () => {
-    const overlay   = document.getElementById('modal-descripcion');
-    const modalBody = document.getElementById('modal-body');
-    const btnCerrar = document.getElementById('modal-cerrar');
+    const modal = document.getElementById('modal-descripcion');
+    const body  = document.getElementById('modal-body');
+    const close = document.getElementById('modal-cerrar');
 
-    // Delegamos click sobre cualquier .show-desc
-    document.body.addEventListener('click', async e => {
-        if (!e.target.matches('.show-desc')) return;
-        const folio = e.target.dataset.folio;
-        if (!folio) return;
+    // Abrir modal al clickar "Mostrar descripción"
+    document.querySelectorAll('.show-desc').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const fila = btn.closest('tr');
+            const folio = fila.querySelector('td').textContent.trim();
 
-        overlay.style.display = 'flex';
-        modalBody.innerHTML = '<p>Cargando...</p>';
+            body.innerHTML = 'Cargando…';
+            modal.style.display = 'flex';
 
-        try {
-            const res  = await fetch(`https://grammermx.com/IvanTest/ContencionMateriales/dao/obtenerCaso.php?folio=${folio}`);
-            const caso = await res.json();
-            if (caso.error) throw new Error(caso.error);
+            try {
+                const res = await fetch(`dao/obtenerCaso.php?folio=${folio}`);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                if (data.error) throw new Error(data.error);
 
-            // Armamos el HTML con todos los campos y fotos
-            let html = `
-        <table class="report-table">
-          <tr><th>Folio</th>       <td>${caso.folio}</td></tr>
-          <tr><th>Fecha</th>       <td>${caso.fecha}</td></tr>
-          <tr><th>No. Parte</th>   <td>${caso.numeroParte}</td></tr>
-          <tr><th>Cantidad</th>    <td>${caso.cantidad}</td></tr>
-          <tr><th>Terciaria</th>   <td>${caso.terciaria}</td></tr>
-          <tr><th>Proveedor</th>   <td>${caso.proveedor}</td></tr>
-          <tr><th>Commodity</th>   <td>${caso.commodity}</td></tr>
-          <tr><th>Defectos</th>    <td>${caso.defectos}</td></tr>
-          <tr><th>Descripción</th> <td>${caso.descripcion}</td></tr>
-        </table>
-
-        <div class="photos-group">
-          <strong>Fotos OK:</strong>
-          <div class="thumbs">
-            ${caso.fotosOk.map(r => `<img src="uploads/ok/${r}" class="thumb">`).join('')}
-          </div>
-        </div>
-
-        <div class="photos-group">
-          <strong>Fotos NO OK:</strong>
-          <div class="thumbs">
-            ${caso.fotosNo.map(r => `<img src="uploads/no/${r}" class="thumb">`).join('')}
-          </div>
-        </div>
-      `;
-            modalBody.innerHTML = html;
-
-        } catch (err) {
-            modalBody.innerHTML = `<p class="error">Error: ${err.message}</p>`;
-        }
+                // Construyo HTML con todos los campos
+                body.innerHTML = `
+          <p><strong>Folio:</strong> ${data.folio}</p>
+          <p><strong>Fecha:</strong> ${data.fecha}</p>
+          <p><strong>Número de parte:</strong> ${data.numeroParte}</p>
+          <p><strong>Cantidad:</strong> ${data.cantidad}</p>
+          <p><strong>Descripción:</strong> ${data.descripcion}</p>
+          <p><strong>Terciaria:</strong> ${data.terciaria}</p>
+          <p><strong>Proveedor:</strong> ${data.proveedor}</p>
+          <p><strong>Commodity:</strong> ${data.commodity}</p>
+          <p><strong>Defectos:</strong> ${data.defectos}</p>
+          <div><strong>Fotos OK:</strong><br>${data.fotosOk.map(f=>`<img src="uploads/ok/${f}" class="thumb">`).join(' ')}</div>
+          <div><strong>Fotos NO OK:</strong><br>${data.fotosNo.map(f=>`<img src="uploads/no/${f}" class="thumb">`).join(' ')}</div>
+        `;
+            } catch (err) {
+                body.innerHTML = `<p style="color:red">Error: ${err.message}</p>`;
+            }
+        });
     });
 
     // Cerrar modal
-    btnCerrar.addEventListener('click', () => overlay.style.display = 'none');
-    overlay.addEventListener('click', e => {
-        if (e.target === overlay) overlay.style.display = 'none';
+    close.addEventListener('click', () => {
+        modal.style.display = 'none';
     });
 });
