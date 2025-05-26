@@ -154,7 +154,9 @@ try {
     // 10) Responder éxito
     echo json_encode([
         'status'  => 'success',
-        'message' => "Caso #{$folioCaso} guardado correctamente."
+        'message' => "Caso #{$folioCaso} guardado correctamente.",
+        'folio'   => $folioCaso,
+        'fecha'   => date('Y-m-d')
     ]);
     exit;
 
