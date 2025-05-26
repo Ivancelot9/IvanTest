@@ -391,15 +391,16 @@ $stmtUser->close();
             // ————————————————
             // 2) Trae todos los casos del usuario
             // ————————————————
-            $rs = $con->prepare("
-    SELECT 
-      IdCaso       AS folio,
-      DATE_FORMAT(FechaRegistro, '%Y-%m-%d') AS fecha,
-      Descripcion  AS descripcion
-    FROM Casos
-    WHERE IdUsuario = ?
-    ORDER BY IdCaso DESC
-  ");
+
+   $rs = $con->prepare("
+  SELECT 
+    FolioCaso    AS folio,
+    DATE_FORMAT(FechaRegistro, '%Y-%m-%d') AS fecha,
+    Descripcion  AS descripcion
+  FROM Casos
+  WHERE IdUsuario = ?
+  ORDER BY FolioCaso DESC
+");
             $rs->bind_param("i", $idUsuario);
             $rs->execute();
             $result = $rs->get_result();
