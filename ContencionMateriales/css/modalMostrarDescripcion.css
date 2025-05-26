@@ -1,18 +1,55 @@
 .modal-overlay {
-    position:fixed; top:0; left:0; right:0; bottom:0;
-    background:rgba(0,0,0,0.6);
-    display:flex; align-items:center; justify-content:center;
-    z-index:1000;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
 }
 .modal-content {
-    background:#fff; border-radius:6px; width:90%; max-width:500px;
-    padding:1rem; box-shadow:0 2px 12px rgba(0,0,0,0.3);
+    background: #fff;
+    border-radius: 6px;
+    max-width: 600px;
+    width: 90%;
+    padding: 1rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    overflow-y: auto;
+    max-height: 90vh;
 }
 .modal-close {
-    background:none; border:none; font-size:1.5rem; cursor:pointer;
+    float: right;
+    font-size: 1.5rem;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
-.report-table { width:100%; border-collapse:collapse; margin-bottom:1rem; }
-.report-table th, .report-table td { text-align:left; padding:4px; border-bottom:1px solid #eee; }
-.photos-group { margin-bottom:1rem; }
-.thumbs { display:flex; flex-wrap:wrap; gap:8px; }
-.thumbs .thumb { width:80px; height:80px; object-fit:cover; border-radius:4px; }
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+.report-table th,
+.report-table td {
+    padding: 6px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+.photos-group {
+    margin-bottom: 1rem;
+}
+.thumbs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.thumb {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+.error {
+    color: red;
+}

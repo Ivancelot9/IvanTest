@@ -412,7 +412,7 @@ $stmtUser->close();
                     <td><?= htmlspecialchars($row['fecha']) ?></td>
                     <td>
                         <button class="show-desc"
-                                data-desc="<?= htmlspecialchars($row['descripcion']) ?>">
+                                data-folio="<?= htmlspecialchars($row['folio']) ?>">
                             Mostrar descripción
                         </button>
                     </td>
