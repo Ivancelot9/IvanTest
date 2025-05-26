@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="NotificacionesCasos.js">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -192,15 +193,7 @@
       <workItem from="1747837343678" duration="11459000" />
       <workItem from="1747923871195" duration="16229000" />
       <workItem from="1748010408906" duration="13790000" />
-      <workItem from="1748268830555" duration="4372000" />
-    </task>
-    <task id="LOCAL-01398" summary="Diseño Responsivo Celular">
-      <option name="closed" value="true" />
-      <created>1747765688443</created>
-      <option name="number" value="01398" />
-      <option name="presentableId" value="LOCAL-01398" />
-      <option name="project" value="LOCAL" />
-      <updated>1747765688444</updated>
+      <workItem from="1748268830555" duration="4767000" />
     </task>
     <task id="LOCAL-01399" summary="Diseño Responsivo Celular">
       <option name="closed" value="true" />
@@ -586,7 +579,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748273206620</updated>
     </task>
-    <option name="localTasksCounter" value="1447" />
+    <task id="LOCAL-01447" summary="NotificacionesCasos.js">
+      <option name="closed" value="true" />
+      <created>1748273246763</created>
+      <option name="number" value="01447" />
+      <option name="presentableId" value="LOCAL-01447" />
+      <option name="project" value="LOCAL" />
+      <updated>1748273246763</updated>
+    </task>
+    <option name="localTasksCounter" value="1448" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
