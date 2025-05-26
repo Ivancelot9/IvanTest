@@ -457,16 +457,27 @@ $stmtUser->close();
     </section>
 </main>
 
-<script src="js/perfilUsuario.js" defer></script>
-<script src="js/navegacionDashboard.js" defer></script>
-<script src="js/cerrarSesionContencion.js" defer></script>
-<script src="js/cambioIdioma.js" defer></script>
-<script src="js/modalFotos.js" defer></script>
-<script src="js/agregarComponentesFormulario.js" defer></script>
-<script src="js/tablaMisCasos.js" defer></script>
-<script src="js/validacionesCasos.js" defer></script>
+<!-- SweetAlert primero, porque validacionesCasos lo necesita -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="js/notificacionesCasos.js" defer></script>
+
+<!-- Navegación de secciones -->
+<script src="js/navegacionDashboard.js"></script>
+
+<!-- Perfil / Cerrar sesión / Idioma -->
+<script src="js/perfilUsuario.js"></script>
+<script src="js/cerrarSesionContencion.js"></script>
+<script src="js/cambioIdioma.js"></script>
+
+<!-- Modal de fotos y componentes de formulario -->
+<script src="js/modalFotos.js"></script>
+<script src="js/agregarComponentesFormulario.js"></script>
+
+<!-- Paginador y validaciones -->
+<script src="js/tablaMisCasos.js"></script>
+<script src="js/validacionesCasos.js"></script>
+
+<!-- Notificaciones en tiempo real -->
+<script src="js/notificacionesCasos.js"></script>
 
 
 </body>
