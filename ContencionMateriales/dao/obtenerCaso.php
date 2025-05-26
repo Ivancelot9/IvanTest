@@ -1,7 +1,7 @@
 <?php
-// Mostrar siempre los errores para depurar
-ini_set('display_errors',1);
-ini_set('display_startup_errors',1);
+// 1) para que PHP vuelque todos los errores:
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
@@ -9,7 +9,7 @@ header('Content-Type: application/json; charset=UTF-8');
 
 include_once 'conexionContencion.php';
 
-// 1) Validar folio
+// 2) Parámetro folio obligatorio
 if (!isset($_GET['folio'])) {
     http_response_code(400);
     echo json_encode(['error' => 'Falta el parámetro folio.']);
@@ -19,27 +19,27 @@ $folio = intval($_GET['folio']);
 
 $con = (new LocalConector())->conectar();
 
-// 2) Obtener datos del caso
+// 3) Traer datos del caso usando FolioCaso
 $stmt = $con->prepare("
-    SELECT NumeroParte, Cantidad, Descripcion,
-           IdTerceria, IdProveedor, IdCommodity, IdDefectos,
-           DATE_FORMAT(FechaRegistro, '%Y-%m-%d') AS FechaRegistro
-      FROM Casos
-     WHERE IdCaso = ?
+    SELECT 
+      NumeroParte,
+      Cantidad,
+      Descripcion,
+      IdTerceria,
+      IdProveedor,
+      IdCommodity,
+      IdDefectos,
+      DATE_FORMAT(FechaRegistro, '%Y-%m-%d') AS FechaRegistro
+    FROM Casos
+    WHERE FolioCaso = ?
 ");
-if (!$stmt) {
+if (! $stmt) {
     http_response_code(500);
-    echo json_encode(['error' => 'Error al preparar SELECT Casos: ' . $con->error]);
+    echo json_encode(['error' => 'Error preparando SELECT Casos: '.$con->error]);
     exit;
 }
 $stmt->bind_param('i', $folio);
 $stmt->execute();
-
-// inicializo todas las variables que voy a bindear
-$numeroParte = $cantidad = $descripcion = '';
-$idTerceria = $idProveedor = $idCommodity = $idDefectos = 0;
-$fecha = '';
-
 $stmt->bind_result(
     $numeroParte,
     $cantidad,
@@ -51,65 +51,57 @@ $stmt->bind_result(
     $fecha
 );
 if (! $stmt->fetch()) {
-    http_response_code(404);
     echo json_encode(['error' => 'Caso no encontrado.']);
     exit;
 }
 $stmt->close();
 
-// 3) Función helper lookup
+// 4) Helper de lookup para los nombres de catálogos
 function lookup(mysqli $con, string $table, string $idfield, string $namefield, int $id): string {
-    $value = '';
-    $s = $con->prepare("SELECT `$namefield` FROM `$table` WHERE `$idfield` = ?");
-    if (!$s) {
-        throw new Exception("Error preparando lookup en $table: " . $con->error);
+    $n = '';
+    $sql = "SELECT $namefield FROM $table WHERE $idfield = ?";
+    $s = $con->prepare($sql);
+    if (! $s) {
+        http_response_code(500);
+        echo json_encode(['error' => "Error preparando lookup ($table): ".$con->error]);
+        exit;
     }
     $s->bind_param('i', $id);
     $s->execute();
-    $s->bind_result($value);
-    $s->fetch(); // si no hay fila, $value queda en ''
+    $s->bind_result($n);
+    $s->fetch();
     $s->close();
-    return $value;
+    return $n;
 }
 
-try {
-    $terciaria = lookup($con, 'Terceria',    'IdTerceria',    'NombreTerceria',  $idTerceria);
-    $proveedor = lookup($con, 'Proveedores', 'IdProveedor',   'NombreProveedor', $idProveedor);
-    $commodity = lookup($con, 'Commodity',   'IdCommodity',   'NombreCommodity', $idCommodity);
-    $defectosN = lookup($con, 'Defectos',    'IdDefectos',    'NombreDefectos',  $idDefectos);
-} catch (Exception $e) {
-    http_response_code(500);
-    echo json_encode(['error' => $e->getMessage()]);
-    exit;
-}
+$terciaria = lookup($con, 'Terceria',    'IdTerceria',   'NombreTerceria',  $idTerceria);
+$proveedor = lookup($con, 'Proveedores', 'IdProveedor',  'NombreProveedor', $idProveedor);
+$commodity = lookup($con, 'Commodity',   'IdCommodity',  'NombreCommodity', $idCommodity);
+$defectosN = lookup($con, 'Defectos',    'IdDefectos',   'NombreDefectos',  $idDefectos);
 
-// 4) Fotos OK
+// 5) Fotos OK
 $fotosOk = [];
 $sf = $con->prepare("SELECT Ruta FROM Fotos WHERE FolioCaso = ? AND TipoFoto = 'ok'");
-if ($sf) {
-    $sf->bind_param('i', $folio);
-    $sf->execute();
-    $sf->bind_result($ruta);
-    while ($sf->fetch()) {
-        $fotosOk[] = $ruta;
-    }
-    $sf->close();
+$sf->bind_param('i', $folio);
+$sf->execute();
+$sf->bind_result($ruta);
+while ($sf->fetch()) {
+    $fotosOk[] = $ruta;
 }
+$sf->close();
 
-// 5) Fotos NO OK
+// 6) Fotos NO OK
 $fotosNo = [];
 $sn = $con->prepare("SELECT Ruta FROM Fotos WHERE FolioCaso = ? AND TipoFoto = 'no'");
-if ($sn) {
-    $sn->bind_param('i', $folio);
-    $sn->execute();
-    $sn->bind_result($rutaNo);
-    while ($sn->fetch()) {
-        $fotosNo[] = $rutaNo;
-    }
-    $sn->close();
+$sn->bind_param('i', $folio);
+$sn->execute();
+$sn->bind_result($ruta);
+while ($sn->fetch()) {
+    $fotosNo[] = $ruta;
 }
+$sn->close();
 
-// 6) Responder JSON
+// 7) Devolvemos todo
 echo json_encode([
     'folio'       => $folio,
     'fecha'       => $fecha,
