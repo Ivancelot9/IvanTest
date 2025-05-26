@@ -45,24 +45,7 @@ $proveedores = $con->query("SELECT IdProveedor, NombreProveedor FROM Proveedores
 $commodities = $con->query("SELECT IdCommodity, NombreCommodity FROM Commodity   ORDER BY NombreCommodity");
 $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos     ORDER BY NombreDefectos");
 
-// ————————————————
-// 1) Recupera el IdUsuario de tu sesión
-// ————————————————
-$stmtUser = $con->prepare("
-    SELECT IdUsuario 
-      FROM Usuario 
-     WHERE Username = ?
-");
-if (! $stmtUser) {
-    die("Error preparando SELECT IdUsuario: " . $con->error);
-}
-$stmtUser->bind_param("s", $username);
-$stmtUser->execute();
-$stmtUser->bind_result($idUsuario);
-if (! $stmtUser->fetch()) {
-    die("El usuario “{$username}” no existe en la BD.");
-}
-$stmtUser->close();
+
 
 ?>
 
@@ -367,38 +350,6 @@ $stmtUser->close();
             </tr>
             </thead>
             <tbody>
-            <?php
-            // ————————————————
-            // 2) Trae todos los casos del usuario
-            // ————————————————
-            $rs = $con->prepare("
-    SELECT 
-      IdCaso       AS folio,
-      DATE_FORMAT(FechaRegistro, '%Y-%m-%d') AS fecha,
-      Descripcion  AS descripcion
-    FROM Casos
-    WHERE IdUsuario = ?
-    ORDER BY IdCaso DESC
-  ");
-            $rs->bind_param("i", $idUsuario);
-            $rs->execute();
-            $result = $rs->get_result();
-            while ($row = $result->fetch_assoc()):
-                ?>
-                <tr>
-                    <td><?= htmlspecialchars($row['folio']) ?></td>
-                    <td><?= htmlspecialchars($row['fecha']) ?></td>
-                    <td>
-                        <button class="show-desc"
-                                data-desc="<?= htmlspecialchars($row['descripcion']) ?>">
-                            Mostrar descripción
-                        </button>
-                    </td>
-                </tr>
-            <?php
-            endwhile;
-            $rs->close();
-            ?>
 
             </tbody>
         </table>
@@ -457,26 +408,15 @@ $stmtUser->close();
     </section>
 </main>
 
-<!-- SweetAlert primero, porque validacionesCasos lo necesita -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<!-- Navegación de secciones -->
-<script src="js/navegacionDashboard.js"></script>
-
-<!-- Perfil / Cerrar sesión / Idioma -->
-<script src="js/perfilUsuario.js"></script>
-<script src="js/cerrarSesionContencion.js"></script>
-<script src="js/cambioIdioma.js"></script>
-
-<!-- Modal de fotos y componentes de formulario -->
-<script src="js/modalFotos.js"></script>
-<script src="js/agregarComponentesFormulario.js"></script>
-
-<!-- Paginador y validaciones -->
+<script src="js/perfilUsuario.js" defer></script>
+<script src="js/navegacionDashboard.js" defer></script>
+<script src="js/cerrarSesionContencion.js" defer></script>
+<script src="js/cambioIdioma.js" defer></script>
+<script src="js/modalFotos.js" defer></script>
+<script src="js/agregarComponentesFormulario.js" defer></script>
 <script src="js/tablaMisCasos.js"></script>
 <script src="js/validacionesCasos.js"></script>
-
-<!-- Notificaciones en tiempo real -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="js/notificacionesCasos.js"></script>
 
 
