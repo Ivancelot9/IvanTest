@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalBody.innerHTML = '<p>Cargando...</p>';
 
         try {
-            const res  = await fetch(`dao/obtenerCaso.php?folio=${folio}`);
+            const res  = await fetch(`https://grammermx.com/IvanTest/ContencionMateriales/dao/obtenerCaso.php?folio=${folio}`);
             const caso = await res.json();
             if (caso.error) throw new Error(caso.error);
 
