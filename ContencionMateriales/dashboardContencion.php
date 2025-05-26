@@ -463,10 +463,10 @@ $stmtUser->close();
 <script src="js/cambioIdioma.js" defer></script>
 <script src="js/modalFotos.js" defer></script>
 <script src="js/agregarComponentesFormulario.js" defer></script>
-<script src="js/tablaMisCasos.js"></script>
-<script src="js/validacionesCasos.js"></script>
+<script src="js/tablaMisCasos.js" defer></script>
+<script src="js/validacionesCasos.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="js/notificacionesCasos.js"></script>
+<script src="js/notificacionesCasos.js" defer></script>
 
 
 </body>
