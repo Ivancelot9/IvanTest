@@ -85,9 +85,10 @@ $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos  
         Levantar nuevo caso
     </button>
 
-    <button class="sidebar-btn" data-section="historial">
+    <button class="sidebar-btn" data-section="historial" id="btn-mis-casos">
         <i class="fa-solid fa-folder-open"></i>
         Mis casos
+        <span class="badge-count" style="display:none"></span>
     </button>
 
     <div class="bottom-actions">

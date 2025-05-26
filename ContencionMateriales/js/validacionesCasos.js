@@ -1,6 +1,7 @@
 // js/validacionesCasos.js
 document.addEventListener('DOMContentLoaded', () => {
     const formulario = document.querySelector('.data-form');
+    const canal = new BroadcastChannel('casosChannel');
 
     // IDs de todos los campos obligatorios (inputs y selects)
     const camposRequeridos = [
@@ -97,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: 'Faltan fotos',
                 html: `
                     ${!tieneOk ? '&bull; Debes subir al menos una foto <strong>OK</strong>.<br>' : ''}
-                    ${!tieneNo ? '&bull; Debes subir al menos una foto <strong>NO OK</strong>.' : ''}
+                    ${!tieneNo ? '&bull; Debes subir al menos una foto <strong>NO OK</strong>.' : ''}
                 `
             });
             return;
@@ -136,10 +137,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         <td>${json.fecha}</td>
                         <td><button class="show-desc">Mostrar descripción</button></td>
                     `;
-                    tablaHistorial.prepend(nuevaFila); // lo coloca al inicio
+                    tablaHistorial.prepend(nuevaFila);
 
-                    // Vuelve a aplicar paginación (recontar y mostrar)
+                    // Volver a aplicar paginación
                     inicializarTablaCasos('#historial');
+
+                    // 7.2) Emitir notificación en tiempo real
+                    canal.postMessage({ type: 'new-case', folio: json.folio });
                 }
 
             } else {
