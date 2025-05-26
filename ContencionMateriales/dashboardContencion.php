@@ -45,18 +45,6 @@ $proveedores = $con->query("SELECT IdProveedor, NombreProveedor FROM Proveedores
 $commodities = $con->query("SELECT IdCommodity, NombreCommodity FROM Commodity   ORDER BY NombreCommodity");
 $defectos    = $con->query("SELECT IdDefectos,   NombreDefectos  FROM Defectos     ORDER BY NombreDefectos");
 
-// 1. Obtener el IdUsuario real desde el Username de sesión
-$stmtUser = $con->prepare("SELECT IdUsuario FROM Usuario WHERE Username = ?");
-if (!$stmtUser) {
-    die("Error preparando SELECT usuario: " . $con->error);
-}
-$stmtUser->bind_param("s", $username);
-$stmtUser->execute();
-$stmtUser->bind_result($idUsuario);
-if (!$stmtUser->fetch()) {
-    die("Usuario “{$username}” no existe en la BD.");
-}
-$stmtUser->close();
 
 
 ?>
@@ -362,37 +350,6 @@ $stmtUser->close();
             </tr>
             </thead>
             <tbody>
-            <?php
-            // 2. Consultar los casos de este usuario
-            $rs = $con->prepare("
-      SELECT 
-        IdCaso AS folio,
-        DATE_FORMAT(FechaRegistro, '%Y-%m-%d') AS fecha,
-        Descripcion AS descripcion
-      FROM Casos
-      WHERE IdUsuario = ?
-      ORDER BY IdCaso DESC
-    ");
-            $rs->bind_param("i", $idUsuario);
-            $rs->execute();
-            $result = $rs->get_result();
-            while ($row = $result->fetch_assoc()):
-                ?>
-                <tr>
-                    <td><?= htmlspecialchars($row['folio']) ?></td>
-                    <td><?= htmlspecialchars($row['fecha']) ?></td>
-                    <td>
-                        <button class="show-desc"
-                                data-desc="<?= htmlspecialchars($row['descripcion']) ?>">
-                            Mostrar descripción
-                        </button>
-                    </td>
-                </tr>
-            <?php
-            endwhile;
-            $rs->close();
-            ?>
-
 
             </tbody>
         </table>
