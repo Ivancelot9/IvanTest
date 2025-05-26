@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="NotificacionesCasos.js">
+      <change afterPath="$PROJECT_DIR$/ContencionMateriales/css/modalMostrarDescripcion.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ContencionMateriales/dao/obtenerCaso.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ContencionMateriales/js/modalMostrarDescripcion.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/tablaMisCasos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/tablaMisCasos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +23,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -193,15 +196,7 @@
       <workItem from="1747837343678" duration="11459000" />
       <workItem from="1747923871195" duration="16229000" />
       <workItem from="1748010408906" duration="13790000" />
-      <workItem from="1748268830555" duration="10261000" />
-    </task>
-    <task id="LOCAL-01410" summary="Tabla Mis Casos">
-      <option name="closed" value="true" />
-      <created>1747841373568</created>
-      <option name="number" value="01410" />
-      <option name="presentableId" value="LOCAL-01410" />
-      <option name="project" value="LOCAL" />
-      <updated>1747841373569</updated>
+      <workItem from="1748268830555" duration="11974000" />
     </task>
     <task id="LOCAL-01411" summary="Tabla Todos Mis Casos">
       <option name="closed" value="true" />
@@ -587,7 +582,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748282060354</updated>
     </task>
-    <option name="localTasksCounter" value="1459" />
+    <task id="LOCAL-01459" summary="NotificacionesCasos.js">
+      <option name="closed" value="true" />
+      <created>1748282495849</created>
+      <option name="number" value="01459" />
+      <option name="presentableId" value="LOCAL-01459" />
+      <option name="project" value="LOCAL" />
+      <updated>1748282495849</updated>
+    </task>
+    <option name="localTasksCounter" value="1460" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

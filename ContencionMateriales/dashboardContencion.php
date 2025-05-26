@@ -74,7 +74,7 @@ $stmtUser->close();
     <title>Dashboard Contención</title>
     <link rel="stylesheet" href="css/dashboardContencion.css" />
     <link rel="stylesheet" href="css/agregarComponentes.css">
-
+    <link rel="stylesheet" href="css/modalMostrarDescripcion.css">
     <link rel="stylesheet" href= "css/modalFotos.css"/>
     <link rel="stylesheet" href="css/perfilUsuario.css" />
     <link rel="stylesheet" href="css/tablaCasos.css" />
@@ -99,6 +99,7 @@ $stmtUser->close();
 
     <!-- notificaciones en tiempo real -->
     <script src="js/notificacionesCasos.js" defer></script>
+    <script src="js/modalMostrarDescripcion.js" defer></script>
 </head>
 <body data-tab-id="<?php echo htmlspecialchars($tab_id); ?>">
 <div class="sidebar">
@@ -478,7 +479,15 @@ $stmtUser->close();
     </section>
 </main>
 
-
+<div id="modal-descripcion" class="modal-overlay" style="display:none;">
+    <div class="modal-content">
+        <header>
+            <h2>Detalles del caso</h2>
+            <button id="modal-cerrar" class="modal-close">&times;</button>
+        </header>
+        <div id="modal-body" class="modal-body"></div>
+    </div>
+</div>
 
 
 
