@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="NotificacionesCasos.js">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="NotificacionesCasos.js" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -192,15 +190,7 @@
       <workItem from="1747837343678" duration="11459000" />
       <workItem from="1747923871195" duration="16229000" />
       <workItem from="1748010408906" duration="13790000" />
-      <workItem from="1748268830555" duration="8083000" />
-    </task>
-    <task id="LOCAL-01406" summary="Diseño Responsivo Celular">
-      <option name="closed" value="true" />
-      <created>1747767769963</created>
-      <option name="number" value="01406" />
-      <option name="presentableId" value="LOCAL-01406" />
-      <option name="project" value="LOCAL" />
-      <updated>1747767769963</updated>
+      <workItem from="1748268830555" duration="8733000" />
     </task>
     <task id="LOCAL-01407" summary="Tabla Mis Casos">
       <option name="closed" value="true" />
@@ -586,7 +576,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748277761315</updated>
     </task>
-    <option name="localTasksCounter" value="1455" />
+    <task id="LOCAL-01455" summary="NotificacionesCasos.js">
+      <option name="closed" value="true" />
+      <created>1748278273139</created>
+      <option name="number" value="01455" />
+      <option name="presentableId" value="LOCAL-01455" />
+      <option name="project" value="LOCAL" />
+      <updated>1748278273139</updated>
+    </task>
+    <option name="localTasksCounter" value="1456" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

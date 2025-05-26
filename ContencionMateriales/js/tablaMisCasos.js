@@ -1,6 +1,6 @@
 /**
  * Script reutilizable para paginar, filtrar y resaltar una tabla de casos.
- * Además reformatea la fecha de YYYY-MM-DD a DD-MM-YYYY.
+ * Además reformatea la fecha de YYYY-MM-DD a DD-MM-YYYY al mostrar y al filtrar.
  */
 function inicializarTablaCasos(idContenedor) {
     const filasPorPagina = 5;
@@ -15,36 +15,38 @@ function inicializarTablaCasos(idContenedor) {
     const selFiltro    = contenedor.querySelector('select[id$="-filter-column"]');
     const inputFiltro  = contenedor.querySelector('input[id$="-filter-input"]');
 
-    // 1) Capturamos TODAS las filas originales en un array
+    // Capturamos todas las filas originales
     const todasFilasOriginales = Array.from(cuerpoTabla.querySelectorAll('tr'));
 
-    // 2) Helpers para _escape_ y resaltar
+    // Helpers
     function escapeRegExp(s) {
         return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
-    function resaltarTexto(texto, termino) {
-        if (!termino) return texto;
-        const re = new RegExp(`(${escapeRegExp(termino)})`, 'gi');
+    function resaltar(texto, term) {
+        if (!term) return texto;
+        const re = new RegExp(`(${escapeRegExp(term)})`, 'gi');
         return texto.replace(re, '<mark>$1</mark>');
     }
-
-    // 3) Reformatea "YYYY-MM-DD" → "DD-MM-YYYY"
     function formatearFecha(iso) {
-        const partes = iso.split('-');
-        if (partes.length !== 3) return iso;
-        return `${partes[2]}-${partes[1]}-${partes[0]}`;
+        const p = iso.split('-');
+        if (p.length !== 3) return iso;
+        return `${p[2]}-${p[1]}-${p[0]}`;
     }
 
-    // 4) Devuelve el array filtrado según el término y la columna
+    // Filtra usando el texto formateado cuando es fecha
     function filasFiltradas() {
         const term = inputFiltro.value.trim().toLowerCase();
         const idx  = selFiltro.value === 'folio' ? 0 : 1;
-        return todasFilasOriginales.filter(tr =>
-            tr.cells[idx].textContent.trim().toLowerCase().includes(term)
-        );
+        return todasFilasOriginales.filter(tr => {
+            let txt = tr.cells[idx].textContent.trim();
+            if (selFiltro.value === 'fecha') {
+                txt = formatearFecha(txt);
+            }
+            return txt.toLowerCase().includes(term);
+        });
     }
 
-    // 5) Renderiza la página actual (slice + highlight + fecha formateada)
+    // Renderiza la página actual
     function renderizar() {
         const filtr = filasFiltradas();
         const total = Math.ceil(filtr.length / filasPorPagina) || 1;
@@ -57,46 +59,40 @@ function inicializarTablaCasos(idContenedor) {
         filtr.slice(start, end).forEach(tr => {
             const clon = tr.cloneNode(true);
 
-            // Folio
-            const folioCel = clon.cells[0];
+            // Formatear y resaltar FOLIO si es el caso
             if (selFiltro.value === 'folio') {
-                folioCel.innerHTML = resaltarTexto(folioCel.textContent.trim(), inputFiltro.value.trim());
+                const c = clon.cells[0];
+                c.innerHTML = resaltar(c.textContent.trim(), inputFiltro.value.trim());
             }
 
-            // Fecha
-            const fechaCel = clon.cells[1];
-            const raw = fechaCel.textContent.trim();
-            const formatted = formatearFecha(raw);
+            // Formatear y resaltar FECHA
+            const fcell = clon.cells[1];
+            const raw   = fcell.textContent.trim();
+            const fmt   = formatearFecha(raw);
             if (selFiltro.value === 'fecha') {
-                fechaCel.innerHTML = resaltarTexto(formatted, inputFiltro.value.trim());
+                fcell.innerHTML = resaltar(fmt, inputFiltro.value.trim());
             } else {
-                fechaCel.textContent = formatted;
+                fcell.textContent = fmt;
             }
 
             cuerpoTabla.appendChild(clon);
         });
 
-        // Actualiza controles
-        btnPrev.disabled   = paginaActual === 1;
-        btnNext.disabled   = paginaActual === total;
+        btnPrev.disabled = paginaActual === 1;
+        btnNext.disabled = paginaActual === total;
         indicador.textContent = `Página ${paginaActual} de ${total}`;
     }
 
-    // 6) Eventos
+    // Eventos
     inputFiltro.addEventListener('input', () => { paginaActual = 1; renderizar(); });
     selFiltro.addEventListener('change', () => { paginaActual = 1; renderizar(); });
-    btnPrev.addEventListener('click', () => {
-        if (paginaActual > 1) { paginaActual--; renderizar(); }
-    });
-    btnNext.addEventListener('click', () => {
-        paginaActual++; renderizar();
-    });
+    btnPrev .addEventListener('click', () => { if (paginaActual>1) { paginaActual--; renderizar(); } });
+    btnNext .addEventListener('click', () => { paginaActual++; renderizar(); });
 
-    // 7) Primer render
+    // Inicio
     renderizar();
 }
 
-// ——— Inicialización ———
 document.addEventListener('DOMContentLoaded', () => {
     inicializarTablaCasos('#historial');
     inicializarTablaCasos('#historial-casos');
