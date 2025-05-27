@@ -60,9 +60,11 @@
 
 /* ————— Header ————— */
 .reporte-header {
+    position: relative;             /* para posicionar logo */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-right: 4rem;            /* espacio para logo + X */
     border-bottom: 2px solid var(--gray-border);
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
@@ -78,6 +80,22 @@
     font-size: 1.5rem;
     color: var(--text-light);
     cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+/* ————— Logo en header ————— */
+.modal-logo {
+    position: absolute;
+    top: 50%;
+    right: 2.5rem;                  /* ajusta según tamaño de X */
+    transform: translateY(-50%);
+    width: 32px;                    /* tamaño del icono */
+    height: auto;
+    transition: transform .2s ease;
+}
+.modal-logo:hover {
+    transform: translateY(-50%) scale(1.1);
 }
 
 /* ————— Grid de datos ————— */
@@ -132,17 +150,17 @@
 }
 .photo-section {
     flex: 1;
-    background: #f6f8fa;         /* gris tablas */
+    background: #f6f8fa;           /* gris tablas */
     border: 1px solid var(--gray-border);
     border-radius: 6px;
     padding: 0.75rem;
 }
 .ok-section {
-    background: #e6f4ea;         /* verde suave */
+    background: #e6f4ea;           /* verde suave */
     border-color: var(--accent-ok);
 }
 .no-section {
-    background: #fce8e6;         /* rojo suave */
+    background: #fce8e6;           /* rojo suave */
     border-color: var(--accent-no);
 }
 .reporte-photos h3 {

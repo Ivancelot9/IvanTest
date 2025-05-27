@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Mostrar Descripcion">
+      <change afterPath="$PROJECT_DIR$/ContencionMateriales/imagenes/Recurso 6 (2).png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/modalMostrarDescripcion.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/modalMostrarDescripcion.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,9 +79,9 @@
       <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\BuzonQuejas\css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\ContencionMateriales\imagenes" />
       <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\ContencionMateriales\dao" />
       <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\ContencionMateriales\mailer" />
-      <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\ContencionMateriales\imagenes" />
       <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\BuzonQuejas\imagenes" />
       <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\BuzonQuejas\js" />
     </key>
@@ -194,15 +196,7 @@
       <workItem from="1747923871195" duration="16229000" />
       <workItem from="1748010408906" duration="13790000" />
       <workItem from="1748268830555" duration="15414000" />
-      <workItem from="1748355471679" duration="10643000" />
-    </task>
-    <task id="LOCAL-01440" summary="Resetear Foto">
-      <option name="closed" value="true" />
-      <created>1748024802685</created>
-      <option name="number" value="01440" />
-      <option name="presentableId" value="LOCAL-01440" />
-      <option name="project" value="LOCAL" />
-      <updated>1748024802685</updated>
+      <workItem from="1748355471679" duration="11221000" />
     </task>
     <task id="LOCAL-01441" summary="Resetear Foto">
       <option name="closed" value="true" />
@@ -588,7 +582,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748370661138</updated>
     </task>
-    <option name="localTasksCounter" value="1489" />
+    <task id="LOCAL-01489" summary="Modal Mostrar Descripcion">
+      <option name="closed" value="true" />
+      <created>1748371112061</created>
+      <option name="number" value="01489" />
+      <option name="presentableId" value="LOCAL-01489" />
+      <option name="project" value="LOCAL" />
+      <updated>1748371112061</updated>
+    </task>
+    <option name="localTasksCounter" value="1490" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
