@@ -523,11 +523,6 @@ $stmtUser->close();
     <img src="" alt="Vista ampliada">
 </div>
 
-<!-- Lightbox para imágenes -->
-<div id="modal-image" class="modal-overlay">
-    <button class="close-img">&times;</button>
-    <img src="" alt="Vista ampliada">
-</div>
 
 
 
