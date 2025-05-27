@@ -48,7 +48,7 @@
 /* grid de datos con contorno */
 .reporte-grid {
     display: grid;
-    grid-template-columns: max-content 1fr max-content 1fr;
+    grid-template-columns: 140px 1fr 140px 1fr;
     gap: .75rem 1.5rem;
     background: #fff;
     border: 1px solid #ccc;
@@ -59,7 +59,7 @@
 /* etiquetas alineadas a la derecha */
 .field-label {
     font-weight: 600;
-    justify-self: end;
+    justify-self: start;
 }
 /* descripción se alinea a la izquierda */
 .description-label {
