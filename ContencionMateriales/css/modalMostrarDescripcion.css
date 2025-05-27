@@ -1,22 +1,20 @@
 /* ————— Variables de color ————— */
 :root {
-    --blue-dark:   #1e2a38;
-    --gray-border: #d0d7de;
-    --text-light:  #ffffff;
-    --text-dark:   #1c1e21;
-    --accent-ok:   #2ea043;
-    --accent-no:   #d93025;
+    --blue-dark:     #1e2a38;
+    --blue-primary:  #0366d6;  /* acento azul */
+    --gray-border:   #d0d7de;
+    --text-light:    #ffffff;
+    --text-dark:     #1c1e21;
+    --accent-ok:     #2ea043;
+    --accent-no:     #d93025;
 }
 
 /* ————— Overlay semitransparente ————— */
 .modal-overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    position: fixed; top:0; left:0; right:0; bottom:0;
     background: rgba(30,42,56,0.75);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
+    display: none; align-items:center; justify-content:center;
+    z-index:999;
 }
 
 /* ————— Ventana principal ————— */
@@ -24,73 +22,55 @@
     background: #fff;
     border: 2px solid var(--blue-dark);
     border-radius: 12px;
-    width: 95%; max-width: 900px;
-    max-height: 90vh;
-    padding: 1rem; overflow-y: auto;
-    font-family: 'Segoe UI', sans-serif;
+    width: 95%; max-width:900px; max-height:90vh;
+    padding:1rem; overflow-y:auto;
+    font-family:'Segoe UI',sans-serif;
     color: var(--text-dark);
+
+    /* Scrollbar fino */
     scrollbar-width: thin;
     scrollbar-color: var(--accent-ok) transparent;
 }
 .modal-content.reporte::-webkit-scrollbar { width:6px; }
 .modal-content.reporte::-webkit-scrollbar-track { background:transparent; }
 .modal-content.reporte::-webkit-scrollbar-thumb {
-    background:var(--accent-ok);
+    background: var(--accent-ok);
     border:1px solid var(--gray-border);
     border-radius:3px;
 }
 .modal-content.reporte::-webkit-scrollbar-thumb:hover {
-    background:rgba(46,160,67,0.8);
+    background: rgba(46,160,67,0.8);
 }
 
-/* ————— Interior azul ————— */
+/* ————— Tarjeta interior ————— */
 .reporte-inner {
     background: var(--blue-dark);
     border-radius: 12px;
     padding: 1.5rem;
 }
 
-/* ————— Header ————— */
+/* ————— Header con h2 flex ————— */
 .reporte-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 2px solid var(--gray-border);
-    padding-bottom: .5rem;
-    margin-bottom: 1rem;
+    display: flex; align-items:center; justify-content:space-between;
+    border-bottom:2px solid var(--gray-border);
+    padding-bottom:.5rem; margin-bottom:1rem;
 }
-
-/* Convertimos el h2 en flex para alinear texto + logo */
 .modal-heading {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.4rem;
-    color: var(--text-light);
-    margin: 0;
+    display: flex; align-items:center; gap:.5rem;
+    font-size:1.4rem; color: var(--text-light); margin:0;
 }
-
-/* Logo dentro del H2 */
 .modal-logo-inline {
-    width: 28px;
-    height: auto;
-    transition: transform .2s ease;
+    width:28px; height:auto; transition:transform .2s;
 }
 .modal-logo-inline:hover {
-    transform: scale(1.1);
+    transform:scale(1.1);
 }
-
-/* Botón cerrar */
+/* “X” cerrar */
 .modal-close {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--text-light);
-    cursor: pointer;
-    position: relative;
-    z-index: 2;
+    background:none; border:none;
+    font-size:1.5rem; color:var(--text-light);
+    cursor:pointer; position:relative; z-index:2;
 }
-/* Pulse animation */
 @keyframes pulse {
     0%   { transform: scale(1);   }
     50%  { transform: scale(1.2); }
@@ -98,126 +78,102 @@
 }
 .modal-close:hover {
     animation: pulse .2s forwards;
-    border: 2px solid var(--accent-no);
-    border-radius: 50%;
+    border:2px solid var(--accent-no);
+    border-radius:50%;
 }
 
 /* ————— Grid de datos ————— */
 .reporte-grid {
-    display: grid;
+    display:grid;
     grid-template-columns:
     max-content minmax(140px,1fr)
     max-content minmax(140px,1fr);
-    row-gap: .5rem;
-    column-gap: 1rem;
+    row-gap:.5rem; column-gap:1rem;
     background: var(--blue-dark);
-    padding: 1rem;
-    border-radius: 8px;
+    padding:1rem; border-radius:8px;
 }
 .field-label {
-    font-weight: 600;
-    color: var(--text-light);
-    justify-self: start;
+    font-weight:600; color:var(--text-light);
+    justify-self:start;
 }
 
-/* Campos con borde verde grueso y muy curvado */
-.field-value {
-    background: #fff;
-    border: 6px solid var(--accent-ok);
-    padding: .5rem;
-    border-radius: 16px;
-    color: var(--text-dark);
-}
-.description-label {
-    grid-column: 1 / span 4;
-    margin-top: .5rem;
-}
+/* ————— Inputs con degradado en el borde ————— */
+.field-value,
 .description-box {
-    grid-column: 1 / span 4;
-    min-height: 120px;
-    overflow-y: auto;
-    background: #fff;
-    border: 6px solid var(--accent-ok);
-    padding: .75rem;
-    border-radius: 16px;
+    background:#fff;
+    border:6px solid;               /* el ancho fijo */
+    border-image-slice:1;           /* usar todo el degradado */
+    border-image-source: linear-gradient(
+            135deg,
+            var(--accent-ok),
+            var(--blue-primary)
+    );
+    padding:.5rem;
+    border-radius:16px;
     color: var(--text-dark);
+}
+
+/* La caja de descripción es más alta */
+.description-box {
+    grid-column:1 / span 4;
+    min-height:120px; overflow-y:auto;
+    padding:.75rem;
 }
 
 /* ————— Sección Fotos ————— */
 .reporte-photos {
-    display: flex;
-    gap: 2rem;
-    margin-top: 1.5rem;
+    display:flex; gap:2rem; margin-top:1.5rem;
 }
 .photo-section {
-    flex: 1;
-    background: #f6f8fa;
-    border: 1px solid var(--gray-border);
-    border-radius: 6px;
-    padding: .75rem;
+    flex:1;
+    background:#f6f8fa;   /* gris tablas */
+    border:1px solid var(--gray-border);
+    border-radius:6px; padding:.75rem;
 }
-.ok-section {
-    background: #e6f4ea;
-    border-color: var(--accent-ok);
-}
-.no-section {
-    background: #fce8e6;
-    border-color: var(--accent-no);
-}
+.ok-section { background:#e6f4ea; border-color:var(--accent-ok); }
+.no-section { background:#fce8e6; border-color:var(--accent-no); }
 .reporte-photos h3 {
-    margin: 0 0 .5rem 0;
-    display: flex;
-    align-items: center;
-    gap: .5rem;
+    margin:0 0 .5rem 0; display:flex; align-items:center; gap:.5rem;
 }
 .ok-section h3, .ok-section h3 i {
-    color: var(--accent-ok);
+    color:var(--accent-ok);
 }
 .no-section h3, .no-section h3 i {
-    color: var(--accent-no);
+    color:var(--accent-no);
 }
 
 /* ————— Galería ————— */
 .photos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px,1fr));
-    gap: .5rem;
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(100px,1fr));
+    gap:.5rem;
 }
 .photos-grid img {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: transform .2s;
+    width:100%; height:100px;
+    object-fit:cover; border-radius:4px;
+    cursor:pointer; transition:transform .2s;
 }
 .photos-grid.ok img:hover {
-    transform: scale(1.1);
-    border: 4px solid var(--accent-ok);
+    transform:scale(1.1);
+    border:4px solid var(--accent-ok);
 }
 .photos-grid.no img:hover {
-    transform: scale(1.1);
-    border: 4px solid var(--accent-no);
+    transform:scale(1.1);
+    border:4px solid var(--accent-no);
 }
 
 /* ————— Lightbox ————— */
 #modal-image {
-    background: rgba(30,42,56,0.85);
+    background:rgba(30,42,56,0.85);
 }
 #modal-image img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    max-width:90%; max-height:90%;
+    border-radius:4px;
+    box-shadow:0 0 10px rgba(0,0,0,0.5);
 }
 #modal-image .close-img {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 2rem;
-    color: #fff;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1001;
+    position:absolute; top:20px; right:30px;
+    font-size:2rem; color:#fff;
+    background:none; border:none; cursor:pointer;
+    z-index:1001;
 }
