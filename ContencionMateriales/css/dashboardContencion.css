@@ -1,200 +1,388 @@
-/* ————— Variables de color ————— */
-:root {
-    --blue-dark:    #1e2a38;       /* tu color base */
-    --blue-primary: #0366d6;
-    --blue-medium:  #79b8ff;
-    --blue-light:   #f1f8ff;
-    --gray-border:  #c0c0c0;
-    --text-dark:    #1c1e21;
-    --accent-ok:    #2ea043;
-    --accent-no:    #d93025;
+
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;    /* body NO hace scroll en PC */
 }
 
-/* ————— overlay usando #1e2a38 ————— */
-.modal-overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    /* ahora tintado con tu azul oscuro */
-    background: rgba(30, 42, 56, 0.75);
-    display: none;       /* ¡no se ve hasta que lo abras! */
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-}
-
-/* — ventana principal con manto azul — */
-.modal-content.reporte {
-    background: var(--blue-dark);
-    padding: 1rem;
-    width: 95%; max-width: 900px;
-    border-radius: 6px;
-    font-family: 'Segoe UI', sans-serif;
-    color: var(--text-dark);
-    max-height: 90vh;
-    overflow-y: auto;
-    /* scrollbar fino */
-    scrollbar-width: thin;
-    scrollbar-color: var(--blue-primary) transparent;
-}
-.modal-content.reporte::-webkit-scrollbar {
-    width: 6px;
-}
-.modal-content.reporte::-webkit-scrollbar-track {
-    background: transparent;
-}
-.modal-content.reporte::-webkit-scrollbar-thumb {
-    background-color: var(--blue-primary);
-    border-radius: 3px;
-    border: 1px solid rgba(255,255,255,0.5);
-}
-.modal-content.reporte::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0,0,0,0.5);
-}
-
-/* — tarjeta interior con azul suave — */
-.reporte-inner {
-    background: var(--blue-light);
-    border: 2px solid var(--blue-medium);
-    border-radius: 6px;
-    padding: 1.5rem;
-}
-
-/* header */
-.reporte-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid var(--blue-primary);
-    padding-bottom: .5rem;
-    margin-bottom: 1rem;
-}
-.reporte-header h2 {
+body {
     margin: 0;
-    font-size: 1.4rem;
-    color: var(--blue-primary);
-}
-.modal-close {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--text-dark);
-    cursor: pointer;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f0f2f5 0%, #dfe3e8 100%);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    color: #1c1e21;
+    animation: fadeInBody 0.5s ease-out;
+    /* quitamos overflow hidden para permitir scroll mobile */
 }
 
-/* grid de datos */
-.reporte-grid {
-    display: grid;
-    grid-template-columns: max-content minmax(140px,1fr) max-content minmax(140px,1fr);
-    row-gap: .5rem;
-    column-gap: 1rem;
+/* 📘 Sidebar */
+.sidebar {
+    width: 240px;
+    background-color: #1e2a38;
+    color: #f0f2f5;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    animation: slideInLeft 0.6s ease;
+}
+
+/* 👤 Usuario arriba */
+.user-dropdown {
+    display: flex;
     align-items: center;
-    background: var(--blue-medium);
-    padding: 1rem;
-    border-radius: 4px;
-}
-
-/* etiquetas y valores */
-.field-label {
+    gap: 10px;
     font-weight: 600;
-    justify-self: start;
-    color: var(--blue-dark);
+    font-size: 1rem;
+    margin-bottom: 30px;
+    animation: fadeInDown 0.5s ease-in;
 }
-.field-value {
-    border: 1px solid var(--blue-primary);
-    background: #fff;
-    padding: .5rem;
-    border-radius: 4px;
-    color: var(--text-dark);
-}
-.description-label {
-    grid-column: 1 / span 4;
-    margin-top: .5rem;
-}
-.description-box {
-    grid-column: 1 / span 4;
-    min-height: 120px;
-    overflow-y: auto;
-    border: 1px solid var(--blue-primary);
-    padding: .75rem;
-    border-radius: 4px;
-    background: #fff;
-    color: var(--text-dark);
+.user-dropdown i {
+    font-size: 1.1rem;
 }
 
-/* sección fotos */
-.reporte-photos {
-    display: flex;
-    gap: 2rem;
-    margin-top: 1.5rem;
-}
-.photo-section {
-    flex: 1;
+/* 🧭 Botones del menú */
+.sidebar-btn {
+    background: transparent;
+    color: #f0f2f5;
+    border: none;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 0.95rem;
     border-radius: 6px;
-    padding: .75rem;
-}
-.ok-section {
-    background: #e6f4ea;
-    border: 1px solid var(--accent-ok);
-}
-.no-section {
-    background: #fce8e6;
-    border: 1px solid var(--accent-no);
-}
-.reporte-photos h3 {
-    margin: 0 0 .5rem 0;
-    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
     display: flex;
     align-items: center;
-    gap: .5rem;
+    gap: 10px;
+    animation: fadeInUp 0.5s ease forwards;
 }
-.reporte-photos h3.ok {
-    color: var(--accent-ok);
-}
-.reporte-photos h3.no {
-    color: var(--accent-no);
-}
-
-/* galería */
-.photos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px,1fr));
-    gap: .5rem;
-}
-.photos-grid img {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: transform .2s;
-}
-.photos-grid.ok img:hover {
-    transform: scale(1.1);
-    border: 2px solid var(--accent-ok);
-}
-.photos-grid.no img:hover {
-    transform: scale(1.1);
-    border: 2px solid var(--accent-no);
+.sidebar-btn:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: translateX(4px);
 }
 
-/* lightbox */
-#modal-image {
-    background: rgba(30,42,56,0.85);
+/* 📥 Zona inferior */
+.bottom-actions {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
-#modal-image img {
-    max-width: 90%;
-    max-height: 90%;
+
+/* 🧾 Contenido principal */
+.main-content {
+    margin-left: 260px;
+    margin-right: 240px;         /* espacio para tu sidebar derecho */
+    padding: 15px 30px;
+    flex-grow: 1;
+    background-color: #f5f6f8;
+    height: 100vh;
+    min-height: 100vh;
+    overflow-y: auto;
+    animation: fadeInMain 0.7s ease;   /* lo dejamos intacto */
+    position: relative;
+    scrollbar-gutter: stable both-edges;
+}
+.main-content h1 {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    color: #1e2a38;
+    margin-top: 20px;
+    animation: fadeInDown 0.6s ease-in-out;
+}
+
+/* Webkit (Chrome, Edge, Safari…) */
+.main-content::-webkit-scrollbar {
+    width: 8px;
+}
+.main-content::-webkit-scrollbar-track {
+    background: #f5f6f8;      /* color de fondo del track */
+}
+.main-content::-webkit-scrollbar-thumb {
+    background: #333;         /* tu thumb “negro” */
     border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
-#modal-image .close-img {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 2rem;
+
+/* Firefox */
+.main-content {
+    scrollbar-width: thin;
+    scrollbar-color: #333 #f5f6f8;
+}
+
+/* 📋 Formulario */
+.data-form {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeInUp 0.7s ease;
+}
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.5s ease;
+}
+.form-group label {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    color: #333;
+}
+.form-group input,
+.form-group select,
+.data-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: 'Segoe UI', sans-serif;
+}
+.data-form textarea {
+    resize: vertical;
+}
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+.form-row .form-group {
+    flex: 1;
+}
+
+/* 🧩 Botones secundarios */
+.form-button {
+    background-color: #1e6cd1;
     color: #fff;
-    background: none;
     border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
     cursor: pointer;
-    z-index: 1001;
+    width: fit-content;
+    transition: background 0.2s, transform 0.2s;
+}
+.form-button:hover {
+    background-color: #1558b0;
+    transform: scale(1.03);
+}
+
+/* ✅ Botón confirmar */
+.confirm-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #2ea043;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+.confirm-button:hover {
+    background-color: #238636;
+    transform: translateY(-1px);
+}
+
+/* Y este es tu botón en la esquina superior derecha */
+#btn-language-toggle {
+    /* bajarlo un poco y darle feedback visual */
+    position: absolute;
+    top: 40px;            /* antes era 16px */
+    right: 24px;          /* un poco más alejado del scrollbar */
+    padding: 6px 10px;
+    background: #1e2a38;
+    color: #f0f2f5;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: background 0.2s, transform 0.1s;
+}
+/* —————————————————————————————————————————————
+   Barra lateral derecha (idéntico estilo al sidebar)
+   ————————————————————————————————————————————— */
+.form-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;                /* asegura que llene de arriba a abajo */
+    right: 0;
+    width: 240px;
+    /* elimina height:100vh para que top/bottom definan la altura */
+    box-sizing: border-box !important;
+    padding: 20px 15px;       /* igual padding que .sidebar (ajusta según necesites) */
+    background-color: #1e2a38;
+    color: #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* reparte espacio igual que .sidebar */
+    box-shadow: -2px 0 6px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+.form-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.form-sidebar li + li {
+    margin-top: 1rem;
+}
+.form-sidebar button {
+    background: transparent;
+    color: #f0f2f5;
+    border: none;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s, transform 0.2s;
+}
+.form-sidebar button:hover {
+    background-color: rgba(255,255,255,0.08);
+    transform: translateX(-4px);
+}
+
+/* === ✨ Animaciones === */
+@keyframes fadeInBody {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes fadeInMain {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInLeft {
+    0% { opacity: 0; transform: translateX(-50px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+/* ———————— 📱 Responsive móvil ———————— */
+@media screen and (max-width: 768px) {
+
+    /*  Ajuste de .form-row para evitar desborde */
+    .form-row {
+        flex-wrap: wrap;    /* permite que bajen los campos */
+        gap: 10px;          /* opcional, controla el espacio */
+    }
+    .form-row .form-group {
+        flex: 1 1 100%;     /* cada campo ocupa toda la línea */
+        min-width: 0;       /* clave: deja encoger el flex-item */
+    }
+    .form-row .form-group input,
+    .form-row .form-group select {
+        width: 100%;        /* rellena el 100% del flex-item */
+        box-sizing: border-box;
+    }
+
+    /* permitimos scroll global para bajar hasta el footer */
+    html, body {
+        overflow-y: auto;    /* body SÍ hace scroll en móvil */
+    }
+    /* 0) Body en columna con scroll general */
+    body {
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    /* 1) Sidebar principal como top bar, sin scroll interno */
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        max-height: none;
+        overflow: visible;
+        padding: 10px;
+        box-shadow: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .sidebar-btn {
+        flex: 0 0 calc(50% - 8px) !important;
+        margin-bottom: 8px;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    .sidebar-btn i { margin-right: 6px; }
+    .bottom-actions { display: flex; }
+
+    /* 2) Ajustes de main-content / sección */
+    .main-content, .main-section {
+        margin: 0 !important;
+        padding: 10px 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .main-content {
+        height: auto;
+        overflow: visible;
+    }
+
+    /* 3) Estructura interna: formulario + footer */
+    .form-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .form-main {
+        order: 1;
+    }
+
+    /* 4) Footer (antes .form-sidebar) */
+    .form-sidebar {
+        display: flex !important;           /* lo mostramos */
+        position: relative;                 /* sale del fixed */
+        order: 2;                           /* va después del form */
+        width: 100%;                        /* full‑width */
+        margin: 1rem 0 0;                   /* separación */
+        padding: 15px;                      /* igual estilo */
+        box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
+        background-color: #1e2a38;
+        color: #f0f2f5;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .form-sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        width: 100%;
+    }
+    .form-sidebar li {
+        flex: 1 1 calc(50% - 0.5rem);
+    }
+    .form-sidebar button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.input-error {
+    border: 2px solid #e74c3c;
+    box-shadow: 0 0 4px rgba(231, 76, 60, 0.6);
 }

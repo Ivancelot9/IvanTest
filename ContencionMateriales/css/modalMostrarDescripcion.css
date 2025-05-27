@@ -1,6 +1,6 @@
 /* ————— Variables de color ————— */
 :root {
-    --blue-dark:    #1e2a38;
+    --blue-dark:    #1e2a38;       /* tu color base */
     --blue-primary: #0366d6;
     --blue-medium:  #79b8ff;
     --blue-light:   #f1f8ff;
@@ -10,12 +10,13 @@
     --accent-no:    #d93025;
 }
 
-/* ————— overlay ————— */
+/* ————— overlay usando #1e2a38 ————— */
 .modal-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    display: none;              /* ¡importante! */
+    /* ahora tintado con tu azul oscuro */
+    background: rgba(30, 42, 56, 0.75);
+    display: none;       /* ¡no se ve hasta que lo abras! */
     align-items: center;
     justify-content: center;
     z-index: 999;
@@ -31,12 +32,10 @@
     color: var(--text-dark);
     max-height: 90vh;
     overflow-y: auto;
-    /* Scrollbar personalizado */
+    /* scrollbar fino */
     scrollbar-width: thin;
     scrollbar-color: var(--blue-primary) transparent;
 }
-
-/* WebKit */
 .modal-content.reporte::-webkit-scrollbar {
     width: 6px;
 }
@@ -180,7 +179,7 @@
 
 /* lightbox */
 #modal-image {
-    background: rgba(0,0,0,0.85);
+    background: rgba(30,42,56,0.85);
 }
 #modal-image img {
     max-width: 90%;
