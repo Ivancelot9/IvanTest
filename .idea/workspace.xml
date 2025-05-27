@@ -193,15 +193,7 @@
       <workItem from="1747923871195" duration="16229000" />
       <workItem from="1748010408906" duration="13790000" />
       <workItem from="1748268830555" duration="15414000" />
-      <workItem from="1748355471679" duration="9245000" />
-    </task>
-    <task id="LOCAL-01435" summary="Guardar Caso en BD">
-      <option name="closed" value="true" />
-      <created>1748019814578</created>
-      <option name="number" value="01435" />
-      <option name="presentableId" value="LOCAL-01435" />
-      <option name="project" value="LOCAL" />
-      <updated>1748019814578</updated>
+      <workItem from="1748355471679" duration="9596000" />
     </task>
     <task id="LOCAL-01436" summary="Guardar Caso en BD">
       <option name="closed" value="true" />
@@ -587,7 +579,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748369513361</updated>
     </task>
-    <option name="localTasksCounter" value="1484" />
+    <task id="LOCAL-01484" summary="Modal Mostrar Descripcion">
+      <option name="closed" value="true" />
+      <created>1748369702125</created>
+      <option name="number" value="01484" />
+      <option name="presentableId" value="LOCAL-01484" />
+      <option name="project" value="LOCAL" />
+      <updated>1748369702125</updated>
+    </task>
+    <option name="localTasksCounter" value="1485" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
