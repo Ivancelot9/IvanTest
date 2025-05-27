@@ -479,6 +479,7 @@ $stmtUser->close();
     </section>
 </main>
 
+<!-- Modal de reporte -->
 <div id="modal-descripcion" class="modal-overlay">
     <div class="modal-content reporte">
         <header class="reporte-header">
@@ -487,30 +488,36 @@ $stmtUser->close();
         </header>
 
         <section class="reporte-grid">
-            <div class="field-label">Folio:</div>          <div class="field-value" id="r-folio"></div>
-            <div class="field-label">Fecha:</div>          <div class="field-value" id="r-fecha"></div>
-            <div class="field-label">No. Parte:</div>      <div class="field-value" id="r-parte"></div>
-            <div class="field-label">Cantidad:</div>       <div class="field-value" id="r-cantidad"></div>
-            <div class="field-label">Terciaria:</div>      <div class="field-value" id="r-terciaria"></div>
-            <div class="field-label">Proveedor:</div>      <div class="field-value" id="r-proveedor"></div>
-            <div class="field-label">Commodity:</div>      <div class="field-value" id="r-commodity"></div>
-            <div class="field-label">Defectos:</div>       <div class="field-value" id="r-defectos"></div>
+            <div class="field-label">Folio:</div>      <div class="field-value" id="r-folio"></div>
+            <div class="field-label">Fecha:</div>      <div class="field-value" id="r-fecha"></div>
+            <div class="field-label">No. Parte:</div>  <div class="field-value" id="r-parte"></div>
+            <div class="field-label">Cantidad:</div>   <div class="field-value" id="r-cantidad"></div>
+            <div class="field-label">Terciaria:</div>  <div class="field-value" id="r-terciaria"></div>
+            <div class="field-label">Proveedor:</div>  <div class="field-value" id="r-proveedor"></div>
+            <div class="field-label">Commodity:</div>  <div class="field-value" id="r-commodity"></div>
+            <div class="field-label">Defectos:</div>   <div class="field-value" id="r-defectos"></div>
 
-            <div class="field-label description-label">Descripción & causa raíz:</div>
+            <div class="field-label description-label">Descripción:</div>
             <div class="field-value description-box" id="r-descripcion"></div>
         </section>
 
         <section class="reporte-photos">
             <div>
-                <h3 class="ok">Fotos OK</h3>
+                <h3 class="ok"><i class="fa fa-check-circle"></i> Fotos OK</h3>
                 <div class="photos-grid" id="r-photos-ok"></div>
             </div>
             <div>
-                <h3 class="no">Fotos NO OK</h3>
+                <h3 class="no"><i class="fa fa-times-circle"></i> Fotos NO OK</h3>
                 <div class="photos-grid" id="r-photos-no"></div>
             </div>
         </section>
     </div>
+</div>
+
+<!-- Lightbox para imágenes -->
+<div id="modal-image" class="modal-overlay">
+    <button class="close-img">&times;</button>
+    <img src="" alt="Vista ampliada">
 </div>
 
 

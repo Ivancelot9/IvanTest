@@ -1,5 +1,5 @@
-/* overlay — sin cambios */
-#modal-descripcion.modal-overlay {
+/* overlay compartido */
+.modal-overlay {
     position: fixed;
     top:0; left:0; right:0; bottom:0;
     background: rgba(0,0,0,0.6);
@@ -9,16 +9,18 @@
     z-index: 999;
 }
 
-/* ventana */
-#modal-descripcion .modal-content.reporte {
-    background: #f5f6f8;             /* fondo claro como tu main-content */
+/* ventana principal */
+.modal-content.reporte {
+    background: #f5f6f8;
     padding: 1.5rem;
     width: 95%;
     max-width: 900px;
-    border: 2px solid #1e2a38;      /* color sidebar */
+    border: 2px solid #1e2a38;
     border-radius: 6px;
     font-family: 'Segoe UI', sans-serif;
     color: #1c1e21;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 /* header */
@@ -39,52 +41,53 @@
     background: none;
     border: none;
     font-size: 1.5rem;
-    color: #1c1e21;
+    color: #1e2a21;
     cursor: pointer;
 }
 
-/* grid de datos */
+/* grid de datos con contorno */
 .reporte-grid {
     display: grid;
     grid-template-columns: max-content 1fr max-content 1fr;
     gap: .75rem 1.5rem;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 4px;
 }
 
-/* etiquetas */
+/* etiquetas alineadas a la derecha */
 .field-label {
     font-weight: 600;
     justify-self: end;
 }
+/* descripción se alinea a la izquierda */
+.description-label {
+    grid-column: 1 / span 4;
+    justify-self: start !important;
+    margin-top: .5rem;
+}
 
 /* valores */
 .field-value {
-    border: 1px solid #ccc;
+    border: 1px solid #1e2a38;
     background: #ffffff;
-    padding: .25rem .5rem;
+    padding: .5rem;
     border-radius: 4px;
 }
 
-/* descripción */
-.description-label {
-    grid-column: 1 / span 4;
-    margin-top: .5rem;
-}
+/* caja de descripción */
 .description-box {
     grid-column: 1 / span 4;
     min-height: 120px;
-    border: 1px solid #ccc;
-    background: #ffffff;
-    padding: .75rem;
-    border-radius: 4px;
     overflow-y: auto;
 }
 
 /* sección fotos */
 .reporte-photos {
     display: flex;
-    justify-content: space-between;
+    gap: 2rem;
     margin-top: 1.5rem;
-    gap: 1rem;
 }
 .reporte-photos > div {
     flex: 1;
@@ -96,36 +99,46 @@
     align-items: center;
     gap: .5rem;
 }
-/* íconos (usa FontAwesome) */
-.reporte-photos h3.ok {
-    color: #2ea043;
-}
-.reporte-photos h3.ok i {
-    color: #2ea043;
-}
-.reporte-photos h3.no {
-    color: #d93025;
-}
-.reporte-photos h3.no i {
-    color: #d93025;
-}
+/* colores OK/NO OK */
+.reporte-photos h3.ok { color: #2ea043; }
+.reporte-photos h3.no { color: #d93025; }
 
+/* galería flexible */
 .photos-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px,1fr));
     gap: .5rem;
 }
 .photos-grid img {
-    width: 100px;
+    width: 100%;
     height: 100px;
     object-fit: cover;
     border: 2px solid #ccc;
     border-radius: 4px;
+    transition: transform .2s;
+    cursor: pointer;
 }
-/* bordes específicos */
-.photos-grid.ok img {
-    border-color: #2ea043;
+.photos-grid.ok img { border-color: #2ea043; }
+.photos-grid.no img { border-color: #d93025; }
+.photos-grid img:hover { transform: scale(1.05); }
+
+/* lightbox */
+#modal-image {
+    background: rgba(0,0,0,0.85);
 }
-.photos-grid.no img {
-    border-color: #d93025;
+#modal-image img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+#modal-image .close-img {
+    position: absolute;
+    top: 20px; right: 30px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    z-index: 1001;
 }
