@@ -484,7 +484,7 @@ $stmtUser->close();
     <div class="modal-content reporte">
         <div class="reporte-inner">
             <header class="reporte-header">
-                <h2>Reporte de Caso</h2>
+                <h2>Datos del Caso</h2>
                 <img src="imagenes/Recurso%206%20(2).png" alt="Logo" class="modal-logo">
                 <button id="modal-cerrar" class="modal-close">&times;</button>
             </header>

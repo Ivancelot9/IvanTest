@@ -58,35 +58,33 @@
     padding: 1.5rem;
 }
 
-/* ————— Header con logo + tache ————— */
+/* ————— Header con logo a la izquierda y X a la derecha ————— */
 .reporte-header {
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 4rem;
     border-bottom: 2px solid var(--gray-border);
+    padding-bottom: .5rem;
     margin-bottom: 1rem;
+}
+.reporte-header .title-container {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
 }
 .reporte-header h2 {
     margin: 0;
     font-size: 1.4rem;
     color: var(--text-light);
 }
-/* Logo */
 .modal-logo {
-    position: absolute;
-    top: 50%;
-    right: 2.5rem;
-    transform: translateY(-50%);
     width: 32px;
     height: auto;
     transition: transform .2s ease;
 }
 .modal-logo:hover {
-    transform: translateY(-50%) scale(1.1);
+    transform: scale(1.1);
 }
-/* Botón cerrar */
 .modal-close {
     background: none;
     border: none;
@@ -96,15 +94,14 @@
     position: relative;
     z-index: 2;
 }
-/* Animación al hover */
+/* Animación tache */
 @keyframes pulse {
     0%   { transform: scale(1);   }
     50%  { transform: scale(1.2); }
     100% { transform: scale(1.4); }
 }
-.modal-close:hover,
-#modal-image .close-img:hover {
-    animation: pulse 0.2s forwards;
+.modal-close:hover {
+    animation: pulse .2s forwards;
     border: 2px solid var(--accent-no);
     border-radius: 50%;
 }
@@ -131,7 +128,7 @@
 .field-value {
     background: #fff;
     border: 6px solid var(--accent-ok);
-    padding: 0.5rem;
+    padding: .5rem;
     border-radius: 16px;
     color: var(--text-dark);
 }
