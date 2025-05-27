@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Mostrar Descripcion">
-      <change afterPath="$PROJECT_DIR$/ContencionMateriales/imagenes/Recurso 6 (2).png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/modalMostrarDescripcion.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/modalMostrarDescripcion.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
@@ -196,15 +195,7 @@
       <workItem from="1747923871195" duration="16229000" />
       <workItem from="1748010408906" duration="13790000" />
       <workItem from="1748268830555" duration="15414000" />
-      <workItem from="1748355471679" duration="11221000" />
-    </task>
-    <task id="LOCAL-01441" summary="Resetear Foto">
-      <option name="closed" value="true" />
-      <created>1748025103450</created>
-      <option name="number" value="01441" />
-      <option name="presentableId" value="LOCAL-01441" />
-      <option name="project" value="LOCAL" />
-      <updated>1748025103450</updated>
+      <workItem from="1748355471679" duration="11409000" />
     </task>
     <task id="LOCAL-01442" summary="Insertar Caso en Tabla">
       <option name="closed" value="true" />
@@ -590,7 +581,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748371112061</updated>
     </task>
-    <option name="localTasksCounter" value="1490" />
+    <task id="LOCAL-01490" summary="Modal Mostrar Descripcion">
+      <option name="closed" value="true" />
+      <created>1748371706630</created>
+      <option name="number" value="01490" />
+      <option name="presentableId" value="LOCAL-01490" />
+      <option name="project" value="LOCAL" />
+      <updated>1748371706630</updated>
+    </task>
+    <option name="localTasksCounter" value="1491" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

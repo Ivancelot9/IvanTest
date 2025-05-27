@@ -482,39 +482,34 @@ $stmtUser->close();
 <!-- Modal de reporte -->
 <div id="modal-descripcion" class="modal-overlay">
     <div class="modal-content reporte">
-        <!-- fondo azul -->
         <div class="reporte-inner">
             <header class="reporte-header">
                 <h2>Reporte de Caso</h2>
-                <header class="reporte-header">
-                    <h2>Reporte de Caso</h2>
-                    <img src="imagenes/Recurso%206%20(2).png" alt="Logo" class="modal-logo">
-                    <button id="modal-cerrar" class="modal-close">&times;</button>
-                </header>
+                <img src="imagenes/Recurso%206%20(2).png" alt="Logo" class="modal-logo">
                 <button id="modal-cerrar" class="modal-close">&times;</button>
             </header>
 
             <section class="reporte-grid">
-                <div class="field-label">Folio:</div>      <div class="field-value" id="r-folio"></div>
-                <div class="field-label">Fecha:</div>      <div class="field-value" id="r-fecha"></div>
-                <div class="field-label">No. Parte:</div>  <div class="field-value" id="r-parte"></div>
-                <div class="field-label">Cantidad:</div>   <div class="field-value" id="r-cantidad"></div>
-                <div class="field-label">Terciaria:</div>  <div class="field-value" id="r-terciaria"></div>
-                <div class="field-label">Proveedor:</div>  <div class="field-value" id="r-proveedor"></div>
-                <div class="field-label">Commodity:</div>  <div class="field-value" id="r-commodity"></div>
-                <div class="field-label">Defectos:</div>   <div class="field-value" id="r-defectos"></div>
+                <div class="field-label">Folio:</div>      <div class="field-value"   id="r-folio"></div>
+                <div class="field-label">Fecha:</div>      <div class="field-value"   id="r-fecha"></div>
+                <div class="field-label">No. Parte:</div>  <div class="field-value"   id="r-parte"></div>
+                <div class="field-label">Cantidad:</div>   <div class="field-value"   id="r-cantidad"></div>
+                <div class="field-label">Terciaria:</div>  <div class="field-value"   id="r-terciaria"></div>
+                <div class="field-label">Proveedor:</div>  <div class="field-value"   id="r-proveedor"></div>
+                <div class="field-label">Commodity:</div>  <div class="field-value"   id="r-commodity"></div>
+                <div class="field-label">Defectos:</div>   <div class="field-value"   id="r-defectos"></div>
 
                 <div class="field-label description-label">Descripción:</div>
-                <div class="field-value description-box" id="r-descripcion"></div>
+                <div class="description-box"           id="r-descripcion"></div>
             </section>
 
             <section class="reporte-photos">
                 <div class="photo-section ok-section">
-                    <h3 class="ok"><i class="fa fa-check-circle"></i> Fotos OK</h3>
+                    <h3><i class="fa fa-check-circle"></i> Fotos OK</h3>
                     <div class="photos-grid ok" id="r-photos-ok"></div>
                 </div>
                 <div class="photo-section no-section">
-                    <h3 class="no"><i class="fa fa-times-circle"></i> Fotos NO OK</h3>
+                    <h3><i class="fa fa-times-circle"></i> Fotos NO OK</h3>
                     <div class="photos-grid no" id="r-photos-no"></div>
                 </div>
             </section>
@@ -522,7 +517,7 @@ $stmtUser->close();
     </div>
 </div>
 
-<!-- Lightbox para imágenes (sin cambios) -->
+<!-- Lightbox para imágenes -->
 <div id="modal-image" class="modal-overlay">
     <button class="close-img">&times;</button>
     <img src="" alt="Vista ampliada">

@@ -1,25 +1,25 @@
 /* ————— Variables de color ————— */
 :root {
-    --blue-dark:   #1e2a38;  /* color base */
-    --gray-border: #d0d7de;  /* grises tablas/bordes */
-    --text-light:  #ffffff;  /* texto claro */
-    --text-dark:   #1c1e21;  /* texto oscuro */
-    --accent-ok:   #2ea043;  /* verde OK */
-    --accent-no:   #d93025;  /* rojo NO OK */
+    --blue-dark:   #1e2a38;
+    --gray-border: #d0d7de;
+    --text-light:  #ffffff;
+    --text-dark:   #1c1e21;
+    --accent-ok:   #2ea043;
+    --accent-no:   #d93025;
 }
 
 /* ————— Overlay semitransparente ————— */
 .modal-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(30, 42, 56, 0.75);
-    display: none;              /* se activa con JS */
+    background: rgba(30,42,56,0.75);
+    display: none;
     align-items: center;
     justify-content: center;
     z-index: 999;
 }
 
-/* ————— Ventana principal (blanca con borde azul oscuro) ————— */
+/* ————— Ventana principal ————— */
 .modal-content.reporte {
     background: #fff;
     border: 2px solid var(--blue-dark);
@@ -48,25 +48,24 @@
     border: 1px solid var(--gray-border);
 }
 .modal-content.reporte::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(46, 160, 67, 0.8);
+    background-color: rgba(46,160,67,0.8);
 }
 
-/* ————— Tarjeta interior (fondo azul oscuro) ————— */
+/* ————— Tarjeta interior ————— */
 .reporte-inner {
     background: var(--blue-dark);
     border-radius: 12px;
     padding: 1.5rem;
 }
 
-/* ————— Header ————— */
+/* ————— Header con logo + tache ————— */
 .reporte-header {
-    position: relative;             /* para posicionar logo */
+    position: relative;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding-right: 4rem;            /* espacio para logo + X */
+    justify-content: space-between;
+    padding-right: 4rem;
     border-bottom: 2px solid var(--gray-border);
-    padding-bottom: 0.5rem;
     margin-bottom: 1rem;
 }
 .reporte-header h2 {
@@ -74,6 +73,20 @@
     font-size: 1.4rem;
     color: var(--text-light);
 }
+/* Logo */
+.modal-logo {
+    position: absolute;
+    top: 50%;
+    right: 2.5rem;
+    transform: translateY(-50%);
+    width: 32px;
+    height: auto;
+    transition: transform .2s ease;
+}
+.modal-logo:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+/* Botón cerrar */
 .modal-close {
     background: none;
     border: none;
@@ -83,43 +96,38 @@
     position: relative;
     z-index: 2;
 }
-
-/* ————— Logo en header ————— */
-.modal-logo {
-    position: absolute;
-    top: 50%;
-    right: 2.5rem;                  /* ajusta según tamaño de X */
-    transform: translateY(-50%);
-    width: 32px;                    /* tamaño del icono */
-    height: auto;
-    transition: transform .2s ease;
+/* Animación al hover */
+@keyframes pulse {
+    0%   { transform: scale(1);   }
+    50%  { transform: scale(1.2); }
+    100% { transform: scale(1.4); }
 }
-.modal-logo:hover {
-    transform: translateY(-50%) scale(1.1);
+.modal-close:hover,
+#modal-image .close-img:hover {
+    animation: pulse 0.2s forwards;
+    border: 2px solid var(--accent-no);
+    border-radius: 50%;
 }
 
 /* ————— Grid de datos ————— */
 .reporte-grid {
     display: grid;
     grid-template-columns:
-        max-content minmax(140px,1fr)
-        max-content minmax(140px,1fr);
-    row-gap: 0.5rem;
+    max-content minmax(140px,1fr)
+    max-content minmax(140px,1fr);
+    row-gap: .5rem;
     column-gap: 1rem;
-    align-items: center;
     background: var(--blue-dark);
     padding: 1rem;
     border-radius: 8px;
 }
-
-/* — Etiquetas y valores — */
 .field-label {
     font-weight: 600;
     color: var(--text-light);
     justify-self: start;
 }
 
-/* Campos “input” simulados con borde verde grueso y muy curvado */
+/* Campos con borde verde grueso y curvado */
 .field-value {
     background: #fff;
     border: 6px solid var(--accent-ok);
@@ -129,7 +137,7 @@
 }
 .description-label {
     grid-column: 1 / span 4;
-    margin-top: 0.5rem;
+    margin-top: .5rem;
 }
 .description-box {
     grid-column: 1 / span 4;
@@ -137,7 +145,7 @@
     overflow-y: auto;
     background: #fff;
     border: 6px solid var(--accent-ok);
-    padding: 0.75rem;
+    padding: .75rem;
     border-radius: 16px;
     color: var(--text-dark);
 }
@@ -150,31 +158,29 @@
 }
 .photo-section {
     flex: 1;
-    background: #f6f8fa;           /* gris tablas */
+    background: #f6f8fa;
     border: 1px solid var(--gray-border);
     border-radius: 6px;
-    padding: 0.75rem;
+    padding: .75rem;
 }
 .ok-section {
-    background: #e6f4ea;           /* verde suave */
+    background: #e6f4ea;
     border-color: var(--accent-ok);
 }
 .no-section {
-    background: #fce8e6;           /* rojo suave */
+    background: #fce8e6;
     border-color: var(--accent-no);
 }
 .reporte-photos h3 {
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 .5rem 0;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: .5rem;
 }
-.ok-section h3,
-.ok-section h3 i {
+.ok-section h3, .ok-section h3 i {
     color: var(--accent-ok);
 }
-.no-section h3,
-.no-section h3 i {
+.no-section h3, .no-section h3 i {
     color: var(--accent-no);
 }
 
@@ -182,7 +188,7 @@
 .photos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px,1fr));
-    gap: 0.5rem;
+    gap: .5rem;
 }
 .photos-grid img {
     width: 100%;
@@ -190,7 +196,7 @@
     object-fit: cover;
     border-radius: 4px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform .2s;
 }
 .photos-grid.ok img:hover {
     transform: scale(1.1);
@@ -201,7 +207,7 @@
     border: 4px solid var(--accent-no);
 }
 
-/* ————— Lightbox de imagen ————— */
+/* ————— Lightbox ————— */
 #modal-image {
     background: rgba(30,42,56,0.85);
 }
@@ -221,17 +227,4 @@
     border: none;
     cursor: pointer;
     z-index: 1001;
-}
-
-/* ————— Animación de “tache” ————— */
-@keyframes pulse {
-    0%   { transform: scale(1);   }
-    50%  { transform: scale(1.2); }
-    100% { transform: scale(1.4); }
-}
-.modal-close:hover,
-#modal-image .close-img:hover {
-    animation: pulse 0.2s forwards;
-    border: 2px solid var(--accent-no);
-    border-radius: 50%;
 }
