@@ -102,7 +102,7 @@
 }
 .field-value {
     background: #fff;
-    border: 1px solid var(--accent-ok);
+    border: 3px solid var(--accent-ok);
     padding: 0.5rem;
     border-radius: 4px;
     color: var(--text-dark);
@@ -116,7 +116,7 @@
     min-height: 120px;
     overflow-y: auto;
     background: #fff;
-    border: 1px solid var(--accent-ok);
+    border: 3px solid var(--accent-ok);
     padding: 0.75rem;
     border-radius: 4px;
     color: var(--text-dark);
