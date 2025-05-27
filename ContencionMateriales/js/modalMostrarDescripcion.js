@@ -5,6 +5,10 @@
     const lbImg    = lb.querySelector('img');
     const lbClose  = lb.querySelector('.close-img');
 
+    // ← Modificación: asegurarnos de que ambos modales estén ocultos al arrancar
+    modal.style.display = 'none';
+    lb.style.display    = 'none';
+
     // Mapeo de campos
     const campos = {
         folio:       document.getElementById('r-folio'),
@@ -21,14 +25,27 @@
     };
 
     // Cerrar modales
-    btnClose.addEventListener('click',()=> modal.style.display='none');
-    lbClose .addEventListener('click',()=> lb.style.display='none');
+    btnClose.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+    lbClose.addEventListener('click', () => {
+        lb.style.display = 'none';
+    });
 
-    // Función global
+    // Cerrar lightbox al hacer clic fuera de la imagen
+    lb.addEventListener('click', e => {
+        if (e.target === lb) {
+            lb.style.display = 'none';
+        }
+    });
+
+    // Función global para abrir el modal de descripción
     window.mostrarModalDescripcion = async function(folio) {
-        // limpiar
-        Object.values(campos).forEach(el=>el.innerHTML='');
-        modal.style.display='flex';
+        // limpiar contenidos de todos los campos
+        Object.values(campos).forEach(el => el.innerHTML = '');
+
+        // abrir modal de descripción
+        modal.style.display = 'flex';
 
         try {
             const res  = await fetch(`dao/obtenerCaso.php?folio=${folio}`);
@@ -50,36 +67,40 @@
             const okGrid = campos.photosOk;
             okGrid.classList.add('ok');
             if (data.fotosOk.length) {
-                data.fotosOk.forEach(r=>{
+                data.fotosOk.forEach(r => {
                     const img = new Image();
                     img.src = `dao/uploads/ok/${r}`;
                     img.alt = 'OK';
                     okGrid.appendChild(img);
-                    img.addEventListener('click',()=> {
-                        lbImg.src = img.src;
-                        lb.style.display='flex';
+
+                    // ← Modificación: sólo abres el lightbox al hacer clic en la miniatura
+                    img.addEventListener('click', () => {
+                        lbImg.src          = img.src;
+                        lb.style.display   = 'flex';
                     });
                 });
             } else {
-                okGrid.textContent='(ninguna)';
+                okGrid.textContent = '(ninguna)';
             }
 
             // Fotos NO OK
             const noGrid = campos.photosNo;
             noGrid.classList.add('no');
             if (data.fotosNo.length) {
-                data.fotosNo.forEach(r=>{
+                data.fotosNo.forEach(r => {
                     const img = new Image();
                     img.src = `dao/uploads/no/${r}`;
                     img.alt = 'NO OK';
                     noGrid.appendChild(img);
-                    img.addEventListener('click',()=> {
-                        lbImg.src = img.src;
-                        lb.style.display='flex';
+
+                    // ← Modificación: sólo abres el lightbox al hacer clic en la miniatura
+                    img.addEventListener('click', () => {
+                        lbImg.src          = img.src;
+                        lb.style.display   = 'flex';
                     });
                 });
             } else {
-                noGrid.textContent='(ninguna)';
+                noGrid.textContent = '(ninguna)';
             }
 
         } catch(err) {
