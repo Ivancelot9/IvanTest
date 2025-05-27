@@ -479,13 +479,37 @@ $stmtUser->close();
     </section>
 </main>
 
-<div id="modal-descripcion" class="modal-overlay" style="display:none;">
-    <div class="modal-content">
-        <header>
-            <h2>Detalles del caso</h2>
+<div id="modal-descripcion" class="modal-overlay">
+    <div class="modal-content reporte">
+        <header class="reporte-header">
+            <h2>Reporte de Caso</h2>
             <button id="modal-cerrar" class="modal-close">&times;</button>
         </header>
-        <div id="modal-body" class="modal-body"></div>
+
+        <section class="reporte-grid">
+            <div class="field-label">Folio:</div>          <div class="field-value" id="r-folio"></div>
+            <div class="field-label">Fecha:</div>          <div class="field-value" id="r-fecha"></div>
+            <div class="field-label">No. Parte:</div>      <div class="field-value" id="r-parte"></div>
+            <div class="field-label">Cantidad:</div>       <div class="field-value" id="r-cantidad"></div>
+            <div class="field-label">Terciaria:</div>      <div class="field-value" id="r-terciaria"></div>
+            <div class="field-label">Proveedor:</div>      <div class="field-value" id="r-proveedor"></div>
+            <div class="field-label">Commodity:</div>      <div class="field-value" id="r-commodity"></div>
+            <div class="field-label">Defectos:</div>       <div class="field-value" id="r-defectos"></div>
+
+            <div class="field-label description-label">Descripción & causa raíz:</div>
+            <div class="field-value description-box" id="r-descripcion"></div>
+        </section>
+
+        <section class="reporte-photos">
+            <div>
+                <h3>Fotos OK</h3>
+                <div class="photos-grid" id="r-photos-ok"></div>
+            </div>
+            <div>
+                <h3>Fotos NO OK</h3>
+                <div class="photos-grid" id="r-photos-no"></div>
+            </div>
+        </section>
     </div>
 </div>
 

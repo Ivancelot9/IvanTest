@@ -1,69 +1,81 @@
 /**
- * Módulo para abrir un modal estilo “reporte” con TODOS los datos
- * del caso—including las fotos OK / NO OK—al pulsar “Mostrar descripción”.
+ * modalMostrarDescripcion.js
+ * Maneja apertura/cierre del modal y carga de datos via AJAX.
  */
 (function(){
     const modal = document.getElementById('modal-descripcion');
-    const body  = modal.querySelector('#modal-body');
-    const close = modal.querySelector('#modal-cerrar');
+    const btnClose = modal.querySelector('#modal-cerrar');
 
-    close.addEventListener('click', () => {
+    // campos destino
+    const campos = {
+        folio:       document.getElementById('r-folio'),
+        fecha:       document.getElementById('r-fecha'),
+        numeroParte: document.getElementById('r-parte'),
+        cantidad:    document.getElementById('r-cantidad'),
+        descripcion: document.getElementById('r-descripcion'),
+        terciaria:   document.getElementById('r-terciaria'),
+        proveedor:   document.getElementById('r-proveedor'),
+        commodity:   document.getElementById('r-commodity'),
+        defectos:    document.getElementById('r-defectos'),
+        photosOk:    document.getElementById('r-photos-ok'),
+        photosNo:    document.getElementById('r-photos-no')
+    };
+
+    btnClose.addEventListener('click', () => {
         modal.style.display = 'none';
     });
 
-    // La función global que llama el paginador:
     window.mostrarModalDescripcion = async function(folio) {
-        body.innerHTML = '<p>Cargando...</p>';
+        // limpiar y mostrar overlay
+        Object.values(campos).forEach(el => {
+            if (el.tagName === 'DIV') el.innerHTML = '';
+        });
         modal.style.display = 'flex';
 
+        // llamada AJAX
         try {
             const res = await fetch(`dao/obtenerCaso.php?folio=${folio}`);
-            const json = await res.json();
+            const data = await res.json();
+            if (data.error) throw new Error(data.error);
 
-            if (json.error) {
-                body.innerHTML = `<p class="error">${json.error}</p>`;
-                return;
+            // rellenar campos
+            campos.folio.textContent       = data.folio;
+            campos.fecha.textContent       = data.fecha.split('-').reverse().join('-');
+            campos.numeroParte.textContent = data.numeroParte;
+            campos.cantidad.textContent    = data.cantidad;
+            campos.terciaria.textContent   = data.terciaria;
+            campos.proveedor.textContent   = data.proveedor;
+            campos.commodity.textContent   = data.commodity;
+            campos.defectos.textContent    = data.defectos;
+            campos.descripcion.textContent = data.descripcion || '(sin texto)';
+
+            // fotos OK
+            if (data.fotosOk.length) {
+                data.fotosOk.forEach(ruta => {
+                    const img = document.createElement('img');
+                    img.src = `dao/uploads/ok/${ruta}`;
+                    img.alt = 'OK';
+                    campos.photosOk.appendChild(img);
+                });
+            } else {
+                campos.photosOk.textContent = '(ninguna)';
             }
 
-            // Construimos el HTML del “reporte”
-            let html = `
-        <div class="report-grid">
-          <div><strong>Folio:</strong> ${json.folio}</div>
-          <div><strong>Fecha:</strong> ${json.fecha.split('-').reverse().join('-')}</div>
-          <div><strong>No. Parte:</strong> ${json.numeroParte}</div>
-          <div><strong>Cantidad:</strong> ${json.cantidad}</div>
-          <div><strong>Terciaria:</strong> ${json.terciaria}</div>
-          <div><strong>Proveedor:</strong> ${json.proveedor}</div>
-          <div><strong>Commodity:</strong> ${json.commodity}</div>
-          <div><strong>Defectos:</strong> ${json.defectos}</div>
-        </div>
+            // fotos NO OK
+            if (data.fotosNo.length) {
+                data.fotosNo.forEach(ruta => {
+                    const img = document.createElement('img');
+                    img.src = `dao/uploads/no/${ruta}`;
+                    img.alt = 'NO OK';
+                    campos.photosNo.appendChild(img);
+                });
+            } else {
+                campos.photosNo.textContent = '(ninguna)';
+            }
 
-        <div class="desc-section">
-          <h3>Descripción</h3>
-          <p>${json.descripcion || '<em>(sin texto)</em>'}</p>
-        </div>
-
-        <div class="fotos-section">
-          <div>
-            <h3>Fotos OK</h3>
-            <div class="fotos-grid">
-              ${json.fotosOk.map(r => `<img src="dao/uploads/ok/${r}" alt="OK">`).join('')}
-              ${json.fotosOk.length === 0 ? '<p>(ninguna)</p>' : ''}
-            </div>
-          </div>
-          <div>
-            <h3>Fotos NO OK</h3>
-            <div class="fotos-grid">
-              ${json.fotosNo.map(r => `<img src="dao/uploads/no/${r}" alt="NO OK">`).join('')}
-              ${json.fotosNo.length === 0 ? '<p>(ninguna)</p>' : ''}
-            </div>
-          </div>
-        </div>
-      `;
-
-            body.innerHTML = html;
         } catch (err) {
-            body.innerHTML = `<p class="error">Error al cargar los datos.</p>`;
+            // mostrar error
+            campos.descripcion.textContent = 'Error al cargar datos.';
             console.error(err);
         }
     };

@@ -10,53 +10,87 @@
 }
 
 /* ventana */
-#modal-descripcion .modal-content {
+#modal-descripcion .modal-content.reporte {
     background: #fff;
-    padding: 1.5rem;
-    width: 90%;
-    max-width: 800px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    position: relative;
+    padding: 1rem;
+    width: 95%;
+    max-width: 900px;
+    border: 2px solid #000;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    color: #222;
 }
 
-/* cerrar */
+/* header */
+.reporte-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #000;
+    padding-bottom: .5rem;
+    margin-bottom: 1rem;
+}
+.reporte-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
 .modal-close {
     background: none;
     border: none;
     font-size: 1.5rem;
-    position: absolute;
-    top: .5rem; right: .75rem;
     cursor: pointer;
 }
 
 /* grid de datos */
-.report-grid {
+.reporte-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: .75rem 2rem;
-    margin-bottom: 1rem;
+    grid-template-columns: max-content 1fr max-content 1fr;
+    gap: .75rem 1.5rem;
 }
 
-/* descripción */
-.desc-section {
-    margin-bottom: 1rem;
+/* etiquetas y valores */
+.field-label {
+    font-weight: bold;
+    justify-self: end;
+}
+.field-value {
+    border: 1px solid #000;
+    background: #e6f0ff;
+    padding: .25rem .5rem;
 }
 
-/* fotos */
-.fotos-section {
+/* descripción ocupa fila completa */
+.description-label {
+    grid-column: 1 / span 4;
+    margin-top: .5rem;
+}
+.description-box {
+    grid-column: 1 / span 4;
+    min-height: 100px;
+    border: 1px solid #000;
+    background: #e6f0ff;
+    padding: .5rem;
+    overflow-y: auto;
+}
+
+/* sección de fotos */
+.reporte-photos {
     display: flex;
-    gap: 1rem;
+    justify-content: space-between;
+    margin-top: 1rem;
 }
-.fotos-grid {
+.reporte-photos h3 {
+    margin: 0 0 .5rem 0;
+}
+.photos-grid {
     display: flex;
     flex-wrap: wrap;
     gap: .5rem;
 }
-.fotos-grid img {
+.photos-grid img {
     width: 100px;
     height: 100px;
     object-fit: cover;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+    border: 1px solid #000;
+    border-radius: 2px;
 }
