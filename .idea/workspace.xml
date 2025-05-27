@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Mostrar Descripcion">
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/modalMostrarDescripcion.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/modalMostrarDescripcion.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,15 +193,7 @@
       <workItem from="1747923871195" duration="16229000" />
       <workItem from="1748010408906" duration="13790000" />
       <workItem from="1748268830555" duration="15414000" />
-      <workItem from="1748355471679" duration="7494000" />
-    </task>
-    <task id="LOCAL-01429" summary="Guardar Caso en BD">
-      <option name="closed" value="true" />
-      <created>1747941015500</created>
-      <option name="number" value="01429" />
-      <option name="presentableId" value="LOCAL-01429" />
-      <option name="project" value="LOCAL" />
-      <updated>1747941015500</updated>
+      <workItem from="1748355471679" duration="7669000" />
     </task>
     <task id="LOCAL-01430" summary="Guardar Caso en BD">
       <option name="closed" value="true" />
@@ -587,7 +579,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748366245894</updated>
     </task>
-    <option name="localTasksCounter" value="1478" />
+    <task id="LOCAL-01478" summary="Modal Mostrar Descripcion">
+      <option name="closed" value="true" />
+      <created>1748366295709</created>
+      <option name="number" value="01478" />
+      <option name="presentableId" value="LOCAL-01478" />
+      <option name="project" value="LOCAL" />
+      <updated>1748366295709</updated>
+    </task>
+    <option name="localTasksCounter" value="1479" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -114,3 +114,31 @@
     font-size:2rem; color:#fff; background:none; border:none; cursor:pointer;
     z-index:1001;
 }
+
+/* Firefox: scroll delgado y colores personalizados */
+.modal-content.reporte {
+    /* scrollbar-width: auto | thin | none */
+    scrollbar-width: thin;                     /* deja la barra estrecha */
+    scrollbar-color: rgba(0,0,0,0.3) transparent;  /* pulgar semitransparente + transparente de fondo */
+}
+
+/* WebKit (Chrome, Edge, Safari): */
+.modal-content.reporte::-webkit-scrollbar {
+    width: 6px;              /* ancho total de la barra */
+}
+
+.modal-content.reporte::-webkit-scrollbar-track {
+    background: transparent; /* fondo “invisible” */
+}
+
+.modal-content.reporte::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.3); /* color del pulgar */
+    border-radius: 3px;                /* esquinas redondeadas */
+    border: 1px solid rgba(255,255,255,0.5); /* finísimo borde interior para distinguirlo*/
+}
+
+/* Opcional: al hacer hover sobre la barra, hazla un pelín más intensa */
+.modal-content.reporte::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0,0,0,0.5);
+}
+
