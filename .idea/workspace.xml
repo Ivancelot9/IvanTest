@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Mostrar Descripcion">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/modalMostrarDescripcion.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/modalMostrarDescripcion.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Modal Mostrar Descripcion" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -195,15 +191,7 @@
       <workItem from="1747923871195" duration="16229000" />
       <workItem from="1748010408906" duration="13790000" />
       <workItem from="1748268830555" duration="15414000" />
-      <workItem from="1748355471679" duration="11927000" />
-    </task>
-    <task id="LOCAL-01444" summary="NotificacionesCasos.js">
-      <option name="closed" value="true" />
-      <created>1748272523615</created>
-      <option name="number" value="01444" />
-      <option name="presentableId" value="LOCAL-01444" />
-      <option name="project" value="LOCAL" />
-      <updated>1748272523615</updated>
+      <workItem from="1748355471679" duration="12054000" />
     </task>
     <task id="LOCAL-01445" summary="NotificacionesCasos.js">
       <option name="closed" value="true" />
@@ -589,7 +577,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748372132319</updated>
     </task>
-    <option name="localTasksCounter" value="1493" />
+    <task id="LOCAL-01493" summary="Modal Mostrar Descripcion">
+      <option name="closed" value="true" />
+      <created>1748372419606</created>
+      <option name="number" value="01493" />
+      <option name="presentableId" value="LOCAL-01493" />
+      <option name="project" value="LOCAL" />
+      <updated>1748372419606</updated>
+    </task>
+    <option name="localTasksCounter" value="1494" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
