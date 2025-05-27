@@ -48,12 +48,13 @@
 /* grid de datos con contorno */
 .reporte-grid {
     display: grid;
-    grid-template-columns: 140px 1fr 140px 1fr;
-    gap: .75rem 1.5rem;
+    grid-template-columns: 120px 1fr 120px 1fr; /* etiquetas un poco más justas */
+    gap: .5rem 1rem;                              /* fila:0.5rem, col:1rem */
     background: #fff;
     border: 1px solid #ccc;
     padding: 1rem;
     border-radius: 4px;
+    align-items: center;                          /* centra verticalmente etiqueta + campo */
 }
 
 /* etiquetas alineadas a la derecha */
