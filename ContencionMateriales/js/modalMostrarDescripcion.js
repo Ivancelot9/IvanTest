@@ -1,12 +1,8 @@
-/**
- * modalMostrarDescripcion.js
- * Maneja apertura/cierre del modal y carga de datos via AJAX.
- */
 (function(){
     const modal = document.getElementById('modal-descripcion');
     const btnClose = modal.querySelector('#modal-cerrar');
 
-    // campos destino
+    // mapeo de campos
     const campos = {
         folio:       document.getElementById('r-folio'),
         fecha:       document.getElementById('r-fecha'),
@@ -21,24 +17,20 @@
         photosNo:    document.getElementById('r-photos-no')
     };
 
-    btnClose.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
+    btnClose.addEventListener('click', () => { modal.style.display = 'none'; });
 
     window.mostrarModalDescripcion = async function(folio) {
-        // limpiar y mostrar overlay
-        Object.values(campos).forEach(el => {
-            if (el.tagName === 'DIV') el.innerHTML = '';
-        });
+        // limpiar
+        Object.values(campos).forEach(el => el.innerHTML = '');
+
         modal.style.display = 'flex';
 
-        // llamada AJAX
         try {
             const res = await fetch(`dao/obtenerCaso.php?folio=${folio}`);
             const data = await res.json();
             if (data.error) throw new Error(data.error);
 
-            // rellenar campos
+            // rellenar
             campos.folio.textContent       = data.folio;
             campos.fecha.textContent       = data.fecha.split('-').reverse().join('-');
             campos.numeroParte.textContent = data.numeroParte;
@@ -49,32 +41,43 @@
             campos.defectos.textContent    = data.defectos;
             campos.descripcion.textContent = data.descripcion || '(sin texto)';
 
-            // fotos OK
+            // Fotos OK
+            const okHeader = modal.querySelector('h3.ok');
+            const okGrid   = campos.photosOk;
+            okGrid.classList.add('photos-grid','ok');
+            okHeader.textContent = ''; // vamos a inyectar icono + texto
+            okHeader.appendChild(Object.assign(document.createElement('i'),{className:'fa fa-check-circle'}));
+            okHeader.insertAdjacentText('beforeend',' Fotos OK');
             if (data.fotosOk.length) {
-                data.fotosOk.forEach(ruta => {
-                    const img = document.createElement('img');
-                    img.src = `dao/uploads/ok/${ruta}`;
+                data.fotosOk.forEach(r => {
+                    const img = new Image(100,100);
+                    img.src = `dao/uploads/ok/${r}`;
                     img.alt = 'OK';
-                    campos.photosOk.appendChild(img);
+                    okGrid.appendChild(img);
                 });
             } else {
-                campos.photosOk.textContent = '(ninguna)';
+                okGrid.textContent = '(ninguna)';
             }
 
-            // fotos NO OK
+            // Fotos NO OK
+            const noHeader = modal.querySelector('h3.no');
+            const noGrid   = campos.photosNo;
+            noGrid.classList.add('photos-grid','no');
+            noHeader.textContent = '';
+            noHeader.appendChild(Object.assign(document.createElement('i'),{className:'fa fa-times-circle'}));
+            noHeader.insertAdjacentText('beforeend',' Fotos NO OK');
             if (data.fotosNo.length) {
-                data.fotosNo.forEach(ruta => {
-                    const img = document.createElement('img');
-                    img.src = `dao/uploads/no/${ruta}`;
+                data.fotosNo.forEach(r => {
+                    const img = new Image(100,100);
+                    img.src = `dao/uploads/no/${r}`;
                     img.alt = 'NO OK';
-                    campos.photosNo.appendChild(img);
+                    noGrid.appendChild(img);
                 });
             } else {
-                campos.photosNo.textContent = '(ninguna)';
+                noGrid.textContent = '(ninguna)';
             }
 
         } catch (err) {
-            // mostrar error
             campos.descripcion.textContent = 'Error al cargar datos.';
             console.error(err);
         }

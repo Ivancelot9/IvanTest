@@ -502,11 +502,11 @@ $stmtUser->close();
 
         <section class="reporte-photos">
             <div>
-                <h3>Fotos OK</h3>
+                <h3 class="ok">Fotos OK</h3>
                 <div class="photos-grid" id="r-photos-ok"></div>
             </div>
             <div>
-                <h3>Fotos NO OK</h3>
+                <h3 class="no">Fotos NO OK</h3>
                 <div class="photos-grid" id="r-photos-no"></div>
             </div>
         </section>

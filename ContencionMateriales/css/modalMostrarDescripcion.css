@@ -1,4 +1,4 @@
-/* overlay */
+/* overlay — sin cambios */
 #modal-descripcion.modal-overlay {
     position: fixed;
     top:0; left:0; right:0; bottom:0;
@@ -11,14 +11,14 @@
 
 /* ventana */
 #modal-descripcion .modal-content.reporte {
-    background: #fff;
-    padding: 1rem;
+    background: #f5f6f8;             /* fondo claro como tu main-content */
+    padding: 1.5rem;
     width: 95%;
     max-width: 900px;
-    border: 2px solid #000;
-    border-radius: 4px;
-    font-family: Arial, sans-serif;
-    color: #222;
+    border: 2px solid #1e2a38;      /* color sidebar */
+    border-radius: 6px;
+    font-family: 'Segoe UI', sans-serif;
+    color: #1c1e21;
 }
 
 /* header */
@@ -26,18 +26,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid #1e2a38;
     padding-bottom: .5rem;
     margin-bottom: 1rem;
 }
 .reporte-header h2 {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1.4rem;
+    color: #1e2a38;
 }
 .modal-close {
     background: none;
     border: none;
     font-size: 1.5rem;
+    color: #1c1e21;
     cursor: pointer;
 }
 
@@ -48,40 +50,66 @@
     gap: .75rem 1.5rem;
 }
 
-/* etiquetas y valores */
+/* etiquetas */
 .field-label {
-    font-weight: bold;
+    font-weight: 600;
     justify-self: end;
 }
+
+/* valores */
 .field-value {
-    border: 1px solid #000;
-    background: #e6f0ff;
+    border: 1px solid #ccc;
+    background: #ffffff;
     padding: .25rem .5rem;
+    border-radius: 4px;
 }
 
-/* descripción ocupa fila completa */
+/* descripción */
 .description-label {
     grid-column: 1 / span 4;
     margin-top: .5rem;
 }
 .description-box {
     grid-column: 1 / span 4;
-    min-height: 100px;
-    border: 1px solid #000;
-    background: #e6f0ff;
-    padding: .5rem;
+    min-height: 120px;
+    border: 1px solid #ccc;
+    background: #ffffff;
+    padding: .75rem;
+    border-radius: 4px;
     overflow-y: auto;
 }
 
-/* sección de fotos */
+/* sección fotos */
 .reporte-photos {
     display: flex;
     justify-content: space-between;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    gap: 1rem;
+}
+.reporte-photos > div {
+    flex: 1;
 }
 .reporte-photos h3 {
     margin: 0 0 .5rem 0;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
 }
+/* íconos (usa FontAwesome) */
+.reporte-photos h3.ok {
+    color: #2ea043;
+}
+.reporte-photos h3.ok i {
+    color: #2ea043;
+}
+.reporte-photos h3.no {
+    color: #d93025;
+}
+.reporte-photos h3.no i {
+    color: #d93025;
+}
+
 .photos-grid {
     display: flex;
     flex-wrap: wrap;
@@ -91,6 +119,13 @@
     width: 100px;
     height: 100px;
     object-fit: cover;
-    border: 1px solid #000;
-    border-radius: 2px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+/* bordes específicos */
+.photos-grid.ok img {
+    border-color: #2ea043;
+}
+.photos-grid.no img {
+    border-color: #d93025;
 }
