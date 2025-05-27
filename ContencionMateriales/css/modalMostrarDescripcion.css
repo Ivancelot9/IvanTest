@@ -84,8 +84,8 @@
 .reporte-grid {
     display: grid;
     grid-template-columns:
-    max-content minmax(140px,1fr)
-    max-content minmax(140px,1fr);
+        max-content minmax(140px,1fr)
+        max-content minmax(140px,1fr);
     row-gap: 0.5rem;
     column-gap: 1rem;
     align-items: center;
@@ -203,4 +203,17 @@
     border: none;
     cursor: pointer;
     z-index: 1001;
+}
+
+/* ————— Animación de “tache” ————— */
+@keyframes pulse {
+    0%   { transform: scale(1);   }
+    50%  { transform: scale(1.2); }
+    100% { transform: scale(1.4); }
+}
+.modal-close:hover,
+#modal-image .close-img:hover {
+    animation: pulse 0.2s forwards;
+    border: 2px solid var(--accent-no);
+    border-radius: 50%;
 }
