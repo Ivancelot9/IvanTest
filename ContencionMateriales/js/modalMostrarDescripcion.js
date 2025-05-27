@@ -47,14 +47,14 @@
           <div>
             <h3>Fotos OK</h3>
             <div class="fotos-grid">
-              ${json.fotosOk.map(r => `<img src="uploads/ok/${r}" alt="OK">`).join('')}
+              ${json.fotosOk.map(r => `<img src="dao/uploads/ok/${r}" alt="OK">`).join('')}
               ${json.fotosOk.length === 0 ? '<p>(ninguna)</p>' : ''}
             </div>
           </div>
           <div>
             <h3>Fotos NO OK</h3>
             <div class="fotos-grid">
-              ${json.fotosNo.map(r => `<img src="uploads/no/${r}" alt="NO OK">`).join('')}
+              ${json.fotosNo.map(r => `<img src="dao/uploads/no/${r}" alt="NO OK">`).join('')}
               ${json.fotosNo.length === 0 ? '<p>(ninguna)</p>' : ''}
             </div>
           </div>
