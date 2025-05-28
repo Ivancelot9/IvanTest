@@ -101,7 +101,9 @@ $stmtUser->close();
     <script src="js/notificacionesCasos.js" defer></script>
     <script src="js/modalMostrarDescripcion.js" defer></script>
 </head>
-<body data-tab-id="<?php echo htmlspecialchars($tab_id); ?>">
+<body
+        data-tab-id="<?php echo htmlspecialchars($tab_id); ?>"
+        data-username="<?php echo htmlspecialchars($username); ?>">
 <div class="sidebar">
     <div class="user-dropdown" id="userDropdownToggle">
         <img src="imagenes/avatar_default.png" alt="Avatar" class="avatar-icon">
