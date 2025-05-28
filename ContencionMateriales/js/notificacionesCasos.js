@@ -1,46 +1,48 @@
 // js/notificacionesCasos.js
 document.addEventListener('DOMContentLoaded', () => {
-    // 1) Obtener el username del body
+    // 1) Datos del usuario y canal exclusivo
     const usernameActual = document.body.dataset.username;
-    // Usamos un canal único por usuario:
     const canal = new BroadcastChannel(`casosChannel_${usernameActual}`);
-    // Badge y botón de "Mis casos"
-    const btnMisCasos = document.getElementById('btn-mis-casos');
-    const badge      = btnMisCasos.querySelector('.badge-count');
-    // Clave de almacenamiento local también por usuario
-    const storageKey = `newCasesCount_${usernameActual}`;
 
-    // 2) Inicializar contador desde localStorage
+    // 2) Elementos UI
+    const btnMisCasos = document.getElementById('btn-mis-casos');
+    const badge       = btnMisCasos.querySelector('.badge-count');
+    const storageKey  = `newCasesCount_${usernameActual}`;
+
+    // 3) Inicializar contador desde localStorage
     let contador = parseInt(localStorage.getItem(storageKey) || '0', 10);
     actualizarBadge(contador);
 
-    // 3) Escuchar nuevos casos EN ESTE CANAL
-    canal.addEventListener('message', ({data}) => {
+    // 4) Listener para otros tabs (mismo usuario)
+    canal.addEventListener('message', ({ data }) => {
         if (data.type === 'new-case') {
-            // Solo este usuario recibe su propio mensaje
             contador++;
             localStorage.setItem(storageKey, contador);
             actualizarBadge(contador);
         }
     });
 
-    // 4) Al hacer clic en “Mis casos” reseteamos el contador
+    // 5) Click en “Mis casos” resetea el badge
     btnMisCasos.addEventListener('click', () => {
         contador = 0;
         localStorage.setItem(storageKey, '0');
         actualizarBadge(contador);
-        // ...tu lógica para mostrar #historial aquí
+        // aquí tu lógica para mostrar la sección #historial…
     });
 
-    // 5) Capturar el submit del formulario para emitir la notificación
+    // 6) Interceptar envío de formulario para notificar primero
     const form = document.querySelector('form.data-form');
-    form.addEventListener('submit', () => {
-        // Después de que el usuario envíe el caso,
-        // avisamos SOLO A SU CANAL
-        canal.postMessage({ type: 'new-case' });
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();                        // detener envío
+        canal.postMessage({ type: 'new-case' });   // notificar al canal propio
+        contador++;                                // actualizar contador ahora mismo
+        localStorage.setItem(storageKey, contador);
+        actualizarBadge(contador);
+        // esperar un instante y reanudar el submit
+        setTimeout(() => form.submit(), 50);
     });
 
-    // Función helper para mostrar/ocultar el badge
+    // Helper para mostrar/ocultar el badge
     function actualizarBadge(count) {
         if (count > 0) {
             badge.textContent = count;
