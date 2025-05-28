@@ -27,12 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // aquí tu lógica para mostrar #historial…
     });
 
-    // Único handler de submit: valida, envía, notifica y actualiza UI
+    // Único handler de submit
     const form = document.querySelector('form.data-form');
     form.addEventListener('submit', async e => {
         e.preventDefault();
 
-        // --- Validaciones (campos, responsable, parte, cantidad, fotos) ---
+        // 1) Validar campos requeridos
         const campos = ['responsable','no-parte','cantidad','terciaria','proveedor','commodity','defectos'];
         for (const id of campos) {
             const el = document.getElementById(id);
@@ -44,48 +44,54 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
         }
-        // ... tus otras validaciones aquí sin duplicar ...
 
-        // Feedback de carga
-        Swal.fire({ title:'Guardando caso…', allowOutsideClick:false, didOpen:() => Swal.showLoading() });
+        // 2) (Aquí agrégalas—responsable, parte, cantidad, fotos—sin duplicar…)
 
-        // Envío AJAX
+        // 3) Feedback de carga
+        Swal.fire({ title:'Guardando caso…', allowOutsideClick:false, didOpen:()=>Swal.showLoading() });
+
+        // 4) Envío AJAX
         try {
             const resp = await fetch(form.action, { method:'POST', body:new FormData(form) });
-            const json = await resp.json();
+            // cerrar loader antes de parsear
             Swal.close();
 
+            if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+            const json = await resp.json();
+
             if (json.status === 'success') {
-                // Notificar solo una vez
+                // 5) Notificar **una** vez
                 canal.postMessage({ type:'new-case', folio: json.folio });
                 contador++;
                 localStorage.setItem(storageKey, contador);
                 actualizarBadge(contador);
 
-                // Reset UI
+                // 6) Reset UI
                 form.reset();
                 document.getElementById('evidencia-preview').innerHTML = '';
 
-                // Insertar en tabla “Mis casos”
+                // 7) Insertar en tabla “Mis casos”
                 const tbody = document.querySelector('#historial .cases-table tbody');
-                if (tbody) {
+                if (tbody && json.folio && json.fecha) {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `<td>${json.folio}</td><td>${json.fecha}</td><td><button class="show-desc">Mostrar descripción</button></td>`;
                     tbody.prepend(tr);
                     if (window.historialPaginador) window.historialPaginador.addRow(tr);
                 }
 
+                // 8) Mensaje final
                 await Swal.fire('¡Caso guardado!', json.message, 'success');
             } else {
-                await Swal.fire('Error', json.message||'Algo salió mal','error');
+                throw new Error(json.message || 'Error inesperado');
             }
         } catch (err) {
             console.error(err);
-            Swal.fire('Error', 'No se pudo conectar con el servidor','error');
+            Swal.close();
+            Swal.fire('Error', err.message, 'error');
         }
     });
 
-    // Helpers
+    // — Helpers —
     function actualizarBadge(c) {
         if (c > 0) {
             badge.textContent = c;
@@ -94,6 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
             badge.style.display = 'none';
         }
     }
-    function marcarError(el){ el.classList.add('input-error'); }
-    function quitarError(el){ el.classList.remove('input-error'); }
+    function marcarError(el) { el.classList.add('input-error'); }
+    function quitarError(el) { el.classList.remove('input-error'); }
 });
