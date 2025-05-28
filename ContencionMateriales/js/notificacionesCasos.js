@@ -1,17 +1,16 @@
 // js/notificacionesCasos.js
 document.addEventListener('DOMContentLoaded', () => {
-    // ————————— Configuración básica —————————
     const usernameActual = document.body.dataset.username;
     const canal          = new BroadcastChannel(`casosChannel_${usernameActual}`);
     const btnMisCasos    = document.getElementById('btn-mis-casos');
     const badge          = btnMisCasos.querySelector('.badge-count');
     const storageKey     = `newCasesCount_${usernameActual}`;
 
-    // Iniciar contador
+    // Iniciar badge
     let contador = parseInt(localStorage.getItem(storageKey) || '0', 10);
     actualizarBadge(contador);
 
-    // Escuchar notificaciones en este canal
+    // Escuchar notificaciones del canal propio
     canal.addEventListener('message', ({ data }) => {
         if (data.type === 'new-case') {
             contador++;
@@ -20,50 +19,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Reset al click
+    // Al hacer click en “Mis casos”, reiniciar badge
     btnMisCasos.addEventListener('click', () => {
         contador = 0;
         localStorage.setItem(storageKey, '0');
         actualizarBadge(contador);
-        // ... tu lógica para mostrar #historial…
+        // aquí tu lógica para mostrar #historial…
     });
 
-    // ————————— Interceptar y AJAX submit —————————
+    // Interceptar el submit y enviar por AJAX
     const form = document.querySelector('form.data-form');
     form.addEventListener('submit', async e => {
-        e.preventDefault();  // 1) frenamos la navegación automática
-
-        // 2) Preparamos los datos del formulario
-        const url      = form.action;
-        const method   = form.method.toUpperCase();
-        const payload  = new FormData(form);
-
+        e.preventDefault();                   // 1) evita recarga
         try {
-            // 3) Enviamos via fetch
-            const resp = await fetch(url, {
-                method,
-                body: payload
+            const resp = await fetch(form.action, {
+                method: form.method.toUpperCase(),
+                body: new FormData(form)
             });
             const json = await resp.json();
 
             if (json.status === 'success') {
-                // 4) Notificamos localmente y vía BroadcastChannel
+                // 2) notificación local y por BroadcastChannel
                 canal.postMessage({ type: 'new-case' });
                 contador++;
                 localStorage.setItem(storageKey, contador);
                 actualizarBadge(contador);
 
-                // 5) Opcional: limpia form o muestra mensaje
+                // 3) reiniciar formulario
                 form.reset();
-                Swal.fire({
-                    icon: 'success',
-                    title: '¡Caso registrado!',
-                    text: json.message
-                });
-                // 6) Aquí podrías recargar tu tabla via tablaMisCasos.js si la tienes AJAX
+
+                // 4) feedback al usuario
+                Swal.fire('¡Caso registrado!', json.message, 'success');
             } else {
-                // manejar error devuelto
-                Swal.fire('Error', json.message || 'Algo falló', 'error');
+                Swal.fire('Error', json.message || 'Algo salió mal', 'error');
             }
         } catch (err) {
             console.error(err);
@@ -71,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // —————— Función helper para el badge ——————
     function actualizarBadge(count) {
         if (count > 0) {
             badge.textContent = count;
