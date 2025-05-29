@@ -462,13 +462,29 @@ $stmtUser->close();
             </tr>
             </thead>
             <tbody>
-            <!-- Se llenará dinámicamente con todos los casos -->
-            <tr><td>001</td><td>2025-05-13</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
-            <tr><td>002</td><td>2025-05-14</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
-            <tr><td>003</td><td>2025-05-15</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
-            <tr><td>004</td><td>2025-05-16</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
-            <tr><td>005</td><td>2025-05-17</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
-            <tr><td>006</td><td>2025-05-18</td><td><button class="show-desc">Mostrar descripción</button></td></tr>
+            <?php
+            $todos = $con->query("
+    SELECT 
+        FolioCaso AS folio,
+        DATE_FORMAT(FechaRegistro, '%Y-%m-%d') AS fecha,
+        Descripcion AS descripcion
+    FROM Casos
+    ORDER BY FolioCaso DESC
+");
+
+            while ($row = $todos->fetch_assoc()):
+                ?>
+                <tr>
+                    <td><?= htmlspecialchars($row['folio']) ?></td>
+                    <td><?= htmlspecialchars($row['fecha']) ?></td>
+                    <td>
+                        <button class="show-desc"
+                                data-folio="<?= htmlspecialchars($row['folio']) ?>">
+                            Mostrar descripción
+                        </button>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
             </tbody>
         </table>
 
