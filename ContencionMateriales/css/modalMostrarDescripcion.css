@@ -202,15 +202,23 @@
         row-gap: 1rem;
         column-gap: 0;
     }
-    /* Etiquetas e inputs a full-width */
-    .field-label,
+
+    /* ————— Limita el ancho de campos y céntralos ————— */
+    .field-label {
+        width: 100%;
+        max-width: 260px;    /* <--- ajusta este valor a tu gusto */
+        justify-self: center;
+    }
     .field-value,
     .description-box {
         width: 100%;
-        justify-self: stretch;
+        max-width: 260px;    /* <--- igual que arriba */
+        justify-self: center;
     }
+
     /* Ajusta la caja de descripción */
     .description-box {
+        /* ya hereda width/max-width, solo necesitamos altura mínima */
         min-height: 100px;
     }
 
@@ -219,12 +227,17 @@
         flex-direction: column;
         gap: 1rem;
     }
-    /* Galería: 2 o 3 columnas según espacio */
+
+    /* Galería: miniaturas de 80px–1fr */
     .photos-grid {
         grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     }
 
     /* 5) Ajustes de tipografía y botones */
-    .modal-heading { font-size: 1.2rem; }
-    .modal-close { font-size: 1.2rem; }
+    .modal-heading {
+        font-size: 1.2rem;
+    }
+    .modal-close {
+        font-size: 1.2rem;
+    }
 }
