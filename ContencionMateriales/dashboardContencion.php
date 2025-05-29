@@ -133,9 +133,10 @@ $stmtUser->close();
 
     <div class="bottom-actions">
         <?php if ($rol == 2): ?>
-            <button class="sidebar-btn" data-section="historial-casos">
+            <button class="sidebar-btn" data-section="historial-casos" id="btn-historial-casos">
                 <i class="fa-solid fa-clock-rotate-left"></i>
                 Historial de casos
+                <span class="badge-count" style="display:none"></span>
             </button>
             <button class="sidebar-btn" data-section="admin">
                 <i class="fa-solid fa-user-shield"></i>
