@@ -3,21 +3,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const username     = document.body.dataset.username;
     const canalGlobal  = new BroadcastChannel('canal-casos');
     const btnHistorial = document.getElementById('btn-historial-casos');
-    const badge        = btnHistorial.querySelector('.badge-count');
-    const storageKey   = `adminNewCases_${username}`;
-    let contador       = parseInt(localStorage.getItem(storageKey) || '0', 10);
+    const badgeAdmin   = btnHistorial.querySelector('.badge-count');
+    const storageKeyA  = `adminNewCases_${username}`;
+    let contadorAdmin  = parseInt(localStorage.getItem(storageKeyA) || '0', 10);
 
-    // Inicia badge
-    actualizarBadge(contador);
+    actualizarBadgeAdmin(contadorAdmin);
 
-    // Escucha canal global
+    // Escuchar TODO new-case, sin filtrar by from
     canalGlobal.addEventListener('message', ({ data }) => {
-        if (data.type === 'new-case' && data.from !== username) {
-            contador++;
-            localStorage.setItem(storageKey, contador);
-            actualizarBadge(contador);
+        if (data.type === 'new-case') {
+            contadorAdmin++;
+            localStorage.setItem(storageKeyA, contadorAdmin);
+            actualizarBadgeAdmin(contadorAdmin);
 
-            // Insertar en tabla #historial-casos si existe
+            // Insertar en tabla #historial-casos
             const tbody = document.querySelector('#historial-casos .cases-table tbody');
             if (tbody && data.folio && data.fecha) {
                 const tr = document.createElement('tr');
@@ -29,19 +28,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Resetea badge al abrir la sección de admin
+    // Reset badge al abrir sección admin
     btnHistorial.addEventListener('click', () => {
-        contador = 0;
-        localStorage.setItem(storageKey, '0');
-        actualizarBadge(0);
+        contadorAdmin = 0;
+        localStorage.setItem(storageKeyA, '0');
+        actualizarBadgeAdmin(0);
     });
 
-    function actualizarBadge(c) {
+    function actualizarBadgeAdmin(c) {
         if (c > 0) {
-            badge.textContent = c;
-            badge.style.display = 'inline-block';
+            badgeAdmin.textContent = c;
+            badgeAdmin.style.display = 'inline-block';
         } else {
-            badge.style.display = 'none';
+            badgeAdmin.style.display = 'none';
         }
     }
 });

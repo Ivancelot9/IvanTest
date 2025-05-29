@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Historial Reportes del Administrador">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/notificacionesCasos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/notificacionesCasos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/validacionesCasos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/validacionesCasos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,15 +195,7 @@
       <workItem from="1748268830555" duration="15414000" />
       <workItem from="1748355471679" duration="15666000" />
       <workItem from="1748441533130" duration="9665000" />
-      <workItem from="1748540390085" duration="4207000" />
-    </task>
-    <task id="LOCAL-01457" summary="NotificacionesCasos.js">
-      <option name="closed" value="true" />
-      <created>1748281853285</created>
-      <option name="number" value="01457" />
-      <option name="presentableId" value="LOCAL-01457" />
-      <option name="project" value="LOCAL" />
-      <updated>1748281853285</updated>
+      <workItem from="1748540390085" duration="5030000" />
     </task>
     <task id="LOCAL-01458" summary="NotificacionesCasos.js">
       <option name="closed" value="true" />
@@ -592,7 +581,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748542402386</updated>
     </task>
-    <option name="localTasksCounter" value="1506" />
+    <task id="LOCAL-01506" summary="Historial Reportes del Administrador">
+      <option name="closed" value="true" />
+      <created>1748545332878</created>
+      <option name="number" value="01506" />
+      <option name="presentableId" value="LOCAL-01506" />
+      <option name="project" value="LOCAL" />
+      <updated>1748545332879</updated>
+    </task>
+    <option name="localTasksCounter" value="1507" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
