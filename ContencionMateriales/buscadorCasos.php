@@ -8,28 +8,28 @@
     <script defer src="js/buscador.js"></script>
 </head>
 <body>
+<div class="mobile-search">
+    <!-- Logo Grammer -->
+    <header class="mobile-header">
+        <img src="imagenes/Recurso%206%20(2).png" alt="Grammer" class="mobile-logo"/>
+    </header>
 
-<main class="mobile-search">
-    <h1>🔍 Buscar Caso</h1>
-
-    <form id="search-form">
-        <input
-            type="number"
-            id="case-number"
-            placeholder="Número de caso"
-            min="1"
-            required
-        />
-        <button type="submit">Buscar</button>
-    </form>
-
-    <div id="case-container">
-        <!-- Aquí aparecerá el caso ó mensaje de error -->
+    <!-- Panel azul con título e input pill -->
+    <div class="mobile-panel">
+        <h2 class="mobile-title">Lista Casos</h2>
+        <form id="search-form" class="mobile-form">
+            <input
+                type="number"
+                id="case-number"
+                placeholder="Ingresa número del caso"
+                min="1"
+                required
+            />
+        </form>
     </div>
-</main>
 
-<!-- Iconos FontAwesome -->
-<script src="https://kit.fontawesome.com/tu-kit.js" crossorigin="anonymous"></script>
+    <!-- Aquí aparecerá el detalle del caso -->
+    <div id="case-container"></div>
+</div>
 </body>
 </html>
-

@@ -7,86 +7,59 @@ document.addEventListener('DOMContentLoaded', () => {
         const folio = document.getElementById('case-number').value.trim();
         if (!folio) return;
 
-        container.innerHTML = '<p>Cargando caso…</p>';
+        container.innerHTML = '<p style="text-align:center;">Cargando…</p>';
         try {
             const resp = await fetch(`obtenerCaso.php?folio=${folio}`);
             const data = await resp.json();
             if (!resp.ok || data.error) {
-                throw new Error(data.error || 'Error al obtener el caso');
+                throw new Error(data.error || 'Caso no encontrado');
             }
             container.innerHTML = renderCase(data);
         } catch (err) {
-            container.innerHTML = `<p class="error">${err.message}</p>`;
+            container.innerHTML = `<p style="color:var(--accent-no); text-align:center;">${err.message}</p>`;
         }
     });
 
     function renderCase(c) {
         const {
-            folio,
-            fecha,
-            numeroParte,
-            cantidad,
-            descripcion,
-            terciaria,
-            proveedor,
-            commodity,
-            defectos,
-            fotosOk = [],
+            folio, fecha,
+            numeroParte, cantidad,
+            descripcion, terciaria,
+            proveedor, commodity,
+            defectos, fotosOk = [],
             fotosNo = []
         } = c;
 
-        const gallery = (arr, tipo) => arr.length
-            ? `<div class="photos-grid ${tipo}">
-           ${arr.map(src => `<img src="${src}" alt="Foto ${tipo}">`).join('')}
-         </div>`
-            : `<p>No hay fotos ${tipo === 'ok' ? 'OK' : 'NO OK'}</p>`;
+        const gallery = (arr, tipo) =>
+            arr.length
+                ? `<div class="photos-grid ${tipo}">
+             ${arr.map(src => `<img src="${src}" alt="Foto ${tipo}">`).join('')}
+           </div>`
+                : `<p style="text-align:center; font-size:.9rem;">No hay fotos ${tipo.toUpperCase()}</p>`;
 
         return `
-      <div class="modal-content reporte">
-        <div class="reporte-inner">
-          <div class="reporte-header">
-            <h2 class="modal-heading">Caso #${folio}</h2>
-          </div>
-
-          <div class="reporte-grid">
-            <label class="field-label">Folio:</label>
-            <div class="field-value">${folio}</div>
-
-            <label class="field-label">Fecha:</label>
-            <div class="field-value">${fecha}</div>
-
-            <label class="field-label">No. Parte:</label>
-            <div class="field-value">${numeroParte}</div>
-
-            <label class="field-label">Cantidad:</label>
-            <div class="field-value">${cantidad}</div>
-
-            <label class="field-label">Terciaria:</label>
-            <div class="field-value">${terciaria}</div>
-
-            <label class="field-label">Proveedor:</label>
-            <div class="field-value">${proveedor}</div>
-
-            <label class="field-label">Commodity:</label>
-            <div class="field-value">${commodity}</div>
-
-            <label class="field-label">Defectos:</label>
-            <div class="field-value">${defectos}</div>
-
-            <label class="field-label">Descripción:</label>
-            <div class="description-box">${descripcion}</div>
-          </div>
-
-          <div class="reporte-photos">
-            <div class="photo-section ok-section">
-              <h3><i class="fas fa-check-circle"></i> Fotos OK</h3>
-              ${gallery(fotosOk, 'ok')}
-            </div>
-            <div class="photo-section no-section">
-              <h3><i class="fas fa-times-circle"></i> Fotos NO OK</h3>
-              ${gallery(fotosNo, 'no')}
-            </div>
-          </div>
+      <div style="background:#fff; border-radius:12px; padding:1rem; color:#000; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+        <h3 style="margin-bottom:.75rem; text-align:center; color:var(--text-dark);">Caso #${folio}</h3>
+        <ul style="list-style:none; padding:0; font-size:.9rem; line-height:1.4; color:var(--text-dark);">
+          <li><strong>Fecha:</strong> ${fecha}</li>
+          <li><strong>No. Parte:</strong> ${numeroParte}</li>
+          <li><strong>Cantidad:</strong> ${cantidad}</li>
+          <li><strong>Terciaria:</strong> ${terciaria}</li>
+          <li><strong>Proveedor:</strong> ${proveedor}</li>
+          <li><strong>Commodity:</strong> ${commodity}</li>
+          <li><strong>Defectos:</strong> ${defectos}</li>
+        </ul>
+        <div style="margin:1rem 0;">
+          <strong>Descripción:</strong>
+          <p style="margin:.5rem 0; background:var(--gray-border); padding:.5rem; border-radius:8px;">${descripcion}</p>
+        </div>
+        <div style="font-size:.9rem; color:var(--text-dark);">
+          <strong>Fotos OK</strong>
+          ${gallery(fotosOk, 'ok')}
+        </div>
+        <div style="margin-top:1rem; font-size:.9rem; color:var(--text-dark);">
+          <strong>Fotos NO OK</strong>
+          ${gallery(fotosNo, 'no')}
         </div>
       </div>
     `;

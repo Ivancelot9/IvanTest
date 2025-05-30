@@ -1,4 +1,4 @@
-/* ————— Variables de color (ya las tienes definidas) ————— */
+/* ————— Variables de color ————— */
 :root {
     --blue-dark:    #1e2a38;
     --blue-primary: #0366d6;
@@ -12,8 +12,7 @@
 /* ————— Reset & Body ————— */
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
 }
 body {
     font-family: 'Segoe UI', sans-serif;
@@ -21,69 +20,69 @@ body {
     color: var(--text-light);
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: start;
 }
 
-/* ————— Header con logo centrado ————— */
-.ms-header {
-    padding: 1rem 0;
-    text-align: center;
+/* ————— Contenedor general ————— */
+.mobile-search {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 1rem;
+    padding-bottom: 2rem;
 }
-.ms-logo {
+
+/* ————— Header con logo ————— */
+.mobile-header {
+    text-align: center;
+    padding: 1rem 0;
+}
+.mobile-logo {
     width: 60%;
     max-width: 180px;
     height: auto;
 }
 
-/* ————— Contenedor principal ————— */
-main.ms-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    padding-top: 2rem;
-}
-
 /* ————— Panel azul “pill” ————— */
-.ms-panel {
+.mobile-panel {
     position: relative;
     background: var(--blue-primary);
-    border-radius: 80px;       /* forma pill grande */
-    padding: 2.5rem 1rem 3rem; /* espacio extra abajo para el input */
+    border-radius: 80px;
+    padding: 2.5rem 1rem 3rem; /* espacio extra abajo */
+    margin: 0 auto;
     width: 90%;
     max-width: 340px;
-    margin: 0 auto;
     text-align: center;
 }
-.ms-title {
+.mobile-title {
     color: var(--text-light);
     font-size: 1.6rem;
     font-weight: bold;
     margin: 0;
 }
 
-/* ————— Input estilo “pill” posicionado abajo ————— */
-.ms-form {
+/* ————— Input estilo pill posicionado abajo ————— */
+.mobile-form {
     position: absolute;
-    bottom: 1.5rem;           /* ajusta la altura dentro del panel */
+    bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
     max-width: 280px;
 }
-.ms-form input {
+.mobile-form input {
     width: 100%;
     padding: 0.75rem 1rem;
     font-size: 1rem;
     border: 2px solid var(--gray-border);
-    border-radius: 999px;      /* pill en el input */
+    border-radius: 999px;
     background: #fff;
     color: var(--text-dark);
     outline: none;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* ————— Contenedor del resultado (móvil) ————— */
+/* ————— Contenedor del resultado ————— */
 #case-container {
     margin-top: 1rem;
     width: 90%;
