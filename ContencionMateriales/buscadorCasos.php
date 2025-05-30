@@ -30,6 +30,13 @@
 
     <!-- Aquí aparecerá el detalle del caso -->
     <div id="case-container"></div>
+    <!-- Modal para mostrar el reporte -->
+    <div id="case-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
