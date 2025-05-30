@@ -2,9 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const form         = document.getElementById('search-form');
     const container    = document.getElementById('case-container');
     const modalOverlay = document.getElementById('case-modal');
-    const modalBody    = document.getElementById('modal-body');
-    const modalClose   = document.getElementById('modal-close');
 
+    // Rutas absolutas a tus carpetas de imágenes
     const baseOk = 'https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/ok/';
     const baseNo = 'https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/no/';
 
@@ -22,13 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(data.error || 'Caso no encontrado');
             }
 
-            // Sólo inyectamos el número como botón
+            // Inyecta un botón que solo muestra el número
             container.innerHTML = `<button id="report-btn">${folio}</button>`;
 
-            document.getElementById('report-btn').addEventListener('click', () => {
-                modalBody.innerHTML = renderCase(data);
-                modalOverlay.classList.add('active');
-            });
+            document
+                .getElementById('report-btn')
+                .addEventListener('click', () => showModal(data));
 
         } catch (err) {
             container.innerHTML = `
@@ -38,16 +36,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    modalClose.addEventListener('click', () => {
-        modalOverlay.classList.remove('active');
-    });
-    modalOverlay.addEventListener('click', e => {
-        if (e.target === modalOverlay) {
-            modalOverlay.classList.remove('active');
-        }
-    });
+    // Función para montar y mostrar el modal usando tu vista reciclada
+    function showModal(c) {
+        modalOverlay.innerHTML = renderModal(c);
+        modalOverlay.classList.add('active');
 
-    function renderCase(c) {
+        // Cerrar con la X
+        modalOverlay
+            .querySelector('.modal-close')
+            .addEventListener('click', hideModal);
+
+        // Cerrar clic fuera del contenido
+        modalOverlay.addEventListener('click', e => {
+            if (e.target === modalOverlay) hideModal();
+        });
+    }
+
+    function hideModal() {
+        modalOverlay.classList.remove('active');
+        modalOverlay.innerHTML = '';
+    }
+
+    // Genera la estructura HTML del modal conforme a tu CSS existente
+    function renderModal(c) {
         const {
             folio, fecha,
             numeroParte, cantidad,
@@ -57,48 +68,59 @@ document.addEventListener('DOMContentLoaded', () => {
             fotosNo = []
         } = c;
 
-        const gallery = (arr, tipo) => {
-            const base = tipo === 'ok' ? baseOk : baseNo;
+        const field = (label, value) => `
+      <label class="field-label">${label}</label>
+      <div class="field-value">${value}</div>
+    `;
+
+        const photosSection = (arr, tipo) => {
+            const cls   = tipo === 'ok' ? 'ok-section' : 'no-section';
+            const icon  = tipo === 'ok'
+                ? '<i class="fas fa-check-circle"></i>'
+                : '<i class="fas fa-times-circle"></i>';
+            const base  = tipo === 'ok' ? baseOk : baseNo;
             if (!arr.length) {
-                return `<p style="text-align:center; font-size:.9rem;">
-                  No hay fotos ${tipo.toUpperCase()}
-                </p>`;
+                return `<div class="photo-section ${cls}">
+                  <h3>${icon} Fotos ${tipo.toUpperCase()}</h3>
+                  <p>(ninguna)</p>
+                </div>`;
             }
-            return `
+            return `<div class="photo-section ${cls}">
+        <h3>${icon} Fotos ${tipo.toUpperCase()}</h3>
         <div class="photos-grid ${tipo}">
           ${arr.map(file => {
                 const url = base + encodeURIComponent(file);
-                return `<img src="${url}"
-                         alt="Foto ${tipo}"
-                         onclick="window.open('${url}','_blank')">`;
+                return `<img src="${url}" alt="Foto ${tipo}">`;
             }).join('')}
         </div>
-      `;
+      </div>`;
         };
 
         return `
-      <div class="report-card">
-        <h3>Caso #${folio}</h3>
-        <ul>
-          <li><strong>Fecha:</strong> ${fecha}</li>
-          <li><strong>No. Parte:</strong> ${numeroParte}</li>
-          <li><strong>Cantidad:</strong> ${cantidad}</li>
-          <li><strong>Terciaria:</strong> ${terciaria}</li>
-          <li><strong>Proveedor:</strong> ${proveedor}</li>
-          <li><strong>Commodity:</strong> ${commodity}</li>
-          <li><strong>Defectos:</strong> ${defectos}</li>
-        </ul>
-        <div class="desc">
-          <strong>Descripción:</strong>
-          <p>${descripcion}</p>
-        </div>
-        <div>
-          <strong>Fotos OK</strong>
-          ${gallery(fotosOk, 'ok')}
-        </div>
-        <div>
-          <strong>Fotos NO OK</strong>
-          ${gallery(fotosNo, 'no')}
+      <div class="modal-content reporte">
+        <div class="reporte-inner">
+          <div class="reporte-header">
+            <h2 class="modal-heading"><i class="fas fa-folder-open"></i> Datos del Caso</h2>
+            <button class="modal-close">&times;</button>
+          </div>
+
+          <div class="reporte-grid">
+            ${field('Folio:', folio)}
+            ${field('Fecha:', fecha)}
+            ${field('No. Parte:', numeroParte)}
+            ${field('Cantidad:', cantidad)}
+            ${field('Terciaria:', terciaria)}
+            ${field('Proveedor:', proveedor)}
+            ${field('Commodity:', commodity)}
+            ${field('Defectos:', defectos)}
+            <label class="field-label">Descripción:</label>
+            <div class="description-box">${descripcion}</div>
+          </div>
+
+          <div class="reporte-photos">
+            ${photosSection(fotosOk, 'ok')}
+            ${photosSection(fotosNo, 'no')}
+          </div>
         </div>
       </div>
     `;
