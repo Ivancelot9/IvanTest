@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Historial Reportes del Administrador">
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/modalMostrarDescripcion.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/modalMostrarDescripcion.css" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Caso Css Adaptable">
+      <change afterPath="$PROJECT_DIR$/ContencionMateriales/buscadorCasos.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ContencionMateriales/css/buscador.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ContencionMateriales/js/buscador.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +22,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -195,15 +198,8 @@
       <workItem from="1748268830555" duration="15414000" />
       <workItem from="1748355471679" duration="15666000" />
       <workItem from="1748441533130" duration="9665000" />
-      <workItem from="1748540390085" duration="6028000" />
-    </task>
-    <task id="LOCAL-01461" summary="Modal Mostrar Descripcion">
-      <option name="closed" value="true" />
-      <created>1748285208262</created>
-      <option name="number" value="01461" />
-      <option name="presentableId" value="LOCAL-01461" />
-      <option name="project" value="LOCAL" />
-      <updated>1748285208262</updated>
+      <workItem from="1748540390085" duration="7298000" />
+      <workItem from="1748614513449" duration="1345000" />
     </task>
     <task id="LOCAL-01462" summary="Modal Mostrar Descripcion">
       <option name="closed" value="true" />
@@ -589,7 +585,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748551017534</updated>
     </task>
-    <option name="localTasksCounter" value="1510" />
+    <task id="LOCAL-01510" summary="Caso Css Adaptable">
+      <option name="closed" value="true" />
+      <created>1748551276654</created>
+      <option name="number" value="01510" />
+      <option name="presentableId" value="LOCAL-01510" />
+      <option name="project" value="LOCAL" />
+      <updated>1748551276654</updated>
+    </task>
+    <option name="localTasksCounter" value="1511" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -641,7 +645,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Perfil Usuario" />
     <MESSAGE value="Navegacion entre botones" />
     <MESSAGE value="Cerrar Sesion" />
     <MESSAGE value="historial casos" />
@@ -666,7 +669,8 @@
     <MESSAGE value="NotificacionesCasos.js" />
     <MESSAGE value="Modal Mostrar Descripcion" />
     <MESSAGE value="Historial Reportes del Administrador" />
-    <option name="LAST_COMMIT_MESSAGE" value="Historial Reportes del Administrador" />
+    <MESSAGE value="Caso Css Adaptable" />
+    <option name="LAST_COMMIT_MESSAGE" value="Caso Css Adaptable" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
