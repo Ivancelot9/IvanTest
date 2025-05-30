@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Parte Externa Usuario">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/buscador.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/buscador.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/buscador.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/buscador.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,15 +198,7 @@
       <workItem from="1748355471679" duration="15666000" />
       <workItem from="1748441533130" duration="9665000" />
       <workItem from="1748540390085" duration="7298000" />
-      <workItem from="1748614513449" duration="11726000" />
-    </task>
-    <task id="LOCAL-01471" summary="Modal Mostrar Descripcion">
-      <option name="closed" value="true" />
-      <created>1748361280973</created>
-      <option name="number" value="01471" />
-      <option name="presentableId" value="LOCAL-01471" />
-      <option name="project" value="LOCAL" />
-      <updated>1748361280973</updated>
+      <workItem from="1748614513449" duration="12019000" />
     </task>
     <task id="LOCAL-01472" summary="Modal Mostrar Descripcion">
       <option name="closed" value="true" />
@@ -590,7 +584,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748627776238</updated>
     </task>
-    <option name="localTasksCounter" value="1520" />
+    <task id="LOCAL-01520" summary="Parte Externa Usuario">
+      <option name="closed" value="true" />
+      <created>1748637694964</created>
+      <option name="number" value="01520" />
+      <option name="presentableId" value="LOCAL-01520" />
+      <option name="project" value="LOCAL" />
+      <updated>1748637694964</updated>
+    </task>
+    <option name="localTasksCounter" value="1521" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
