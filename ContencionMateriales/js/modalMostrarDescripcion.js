@@ -1,111 +1,111 @@
-(function(){
-    const modal    = document.getElementById('modal-descripcion');
-    const btnClose = modal.querySelector('#modal-cerrar');
-    const lb       = document.getElementById('modal-image');
-    const lbImg    = lb.querySelector('img');
-    const lbClose  = lb.querySelector('.close-img');
+document.addEventListener('DOMContentLoaded', () => {
+    const form      = document.getElementById('search-form');
+    const container = document.getElementById('case-container');
+    // Bases para las rutas de las imágenes
+    const baseOk    = 'dao/uploads/ok/';
+    const baseNo    = 'dao/uploads/no/';
 
-    // ← Modificación: asegurarnos de que ambos modales estén ocultos al arrancar
-    modal.style.display = 'none';
-    lb.style.display    = 'none';
+    form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const folio = document.getElementById('case-number').value.trim();
+        if (!folio) return;
 
-    // Mapeo de campos
-    const campos = {
-        folio:       document.getElementById('r-folio'),
-        fecha:       document.getElementById('r-fecha'),
-        numeroParte: document.getElementById('r-parte'),
-        cantidad:    document.getElementById('r-cantidad'),
-        descripcion: document.getElementById('r-descripcion'),
-        terciaria:   document.getElementById('r-terciaria'),
-        proveedor:   document.getElementById('r-proveedor'),
-        commodity:   document.getElementById('r-commodity'),
-        defectos:    document.getElementById('r-defectos'),
-        photosOk:    document.getElementById('r-photos-ok'),
-        photosNo:    document.getElementById('r-photos-no')
-    };
-
-    // Cerrar modales
-    btnClose.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-    lbClose.addEventListener('click', () => {
-        lb.style.display = 'none';
-    });
-
-    // Cerrar lightbox al hacer clic fuera de la imagen
-    lb.addEventListener('click', e => {
-        if (e.target === lb) {
-            lb.style.display = 'none';
-        }
-    });
-
-    // Función global para abrir el modal de descripción
-    window.mostrarModalDescripcion = async function(folio) {
-        // limpiar contenidos de todos los campos
-        Object.values(campos).forEach(el => el.innerHTML = '');
-
-        // abrir modal de descripción
-        modal.style.display = 'flex';
-
+        container.innerHTML = '<p style="text-align:center;">Cargando…</p>';
         try {
-            const res  = await fetch(`dao/obtenerCaso.php?folio=${folio}`);
-            const data = await res.json();
-            if (data.error) throw new Error(data.error);
-
-            // Rellenar campos
-            campos.folio.textContent       = data.folio;
-            campos.fecha.textContent       = data.fecha.split('-').reverse().join('-');
-            campos.numeroParte.textContent = data.numeroParte;
-            campos.cantidad.textContent    = data.cantidad;
-            campos.terciaria.textContent   = data.terciaria;
-            campos.proveedor.textContent   = data.proveedor;
-            campos.commodity.textContent   = data.commodity;
-            campos.defectos.textContent    = data.defectos;
-            campos.descripcion.textContent = data.descripcion || '(sin texto)';
-
-            // Fotos OK
-            const okGrid = campos.photosOk;
-            okGrid.classList.add('ok');
-            if (data.fotosOk.length) {
-                data.fotosOk.forEach(r => {
-                    const img = new Image();
-                    img.src = `dao/uploads/ok/${r}`;
-                    img.alt = 'OK';
-                    okGrid.appendChild(img);
-
-                    // ← Modificación: sólo abres el lightbox al hacer clic en la miniatura
-                    img.addEventListener('click', () => {
-                        lbImg.src          = img.src;
-                        lb.style.display   = 'flex';
-                    });
-                });
-            } else {
-                okGrid.textContent = '(ninguna)';
+            // <-- Ruta corregida al PHP dentro de dao/ -->
+            const resp = await fetch(`dao/obtenerCaso.php?folio=${folio}`);
+            const data = await resp.json();
+            if (!resp.ok || data.error) {
+                throw new Error(data.error || 'Caso no encontrado');
             }
-
-            // Fotos NO OK
-            const noGrid = campos.photosNo;
-            noGrid.classList.add('no');
-            if (data.fotosNo.length) {
-                data.fotosNo.forEach(r => {
-                    const img = new Image();
-                    img.src = `dao/uploads/no/${r}`;
-                    img.alt = 'NO OK';
-                    noGrid.appendChild(img);
-
-                    // ← Modificación: sólo abres el lightbox al hacer clic en la miniatura
-                    img.addEventListener('click', () => {
-                        lbImg.src          = img.src;
-                        lb.style.display   = 'flex';
-                    });
-                });
-            } else {
-                noGrid.textContent = '(ninguna)';
-            }
-
-        } catch(err) {
-            campos.descripcion.textContent = 'Error al cargar datos.';
-            console.error(err);
+            container.innerHTML = renderCase(data);
+        } catch (err) {
+            container.innerHTML = `
+        <p style="color: var(--accent-no); text-align:center;">
+          ${err.message}
+        </p>`;
         }
-    };
-})();
+    });
+
+    function renderCase(c) {
+        const {
+            folio, fecha,
+            numeroParte, cantidad,
+            descripcion, terciaria,
+            proveedor, commodity,
+            defectos, fotosOk = [],
+            fotosNo = []
+        } = c;
+
+        // Helper para construir cada galería
+        const gallery = (arr, tipo) => {
+            const base = tipo === 'ok' ? baseOk : baseNo;
+            if (!arr.length) {
+                return `<p style="text-align:center; font-size:.9rem;">
+                  No hay fotos ${tipo.toUpperCase()}
+                </p>`;
+            }
+            return `
+        <div class="photos-grid ${tipo}">
+          ${arr.map(filename =>
+                `<img src="${base + encodeURIComponent(filename)}"
+                  alt="Foto ${tipo}"
+                  style="width:100%; height:80px; object-fit:cover; border-radius:4px; margin-bottom:.25rem; cursor:pointer;">`
+            ).join('')}
+        </div>
+      `;
+        };
+
+        return `
+      <div style="
+        background:#fff;
+        border-radius:12px;
+        padding:1rem;
+        color:#000;
+        box-shadow:0 2px 6px rgba(0,0,0,0.1);
+      ">
+        <h3 style="
+          margin-bottom:.75rem;
+          text-align:center;
+          color:var(--text-dark);
+        ">Caso #${folio}</h3>
+
+        <ul style="
+          list-style:none;
+          padding:0;
+          font-size:.9rem;
+          line-height:1.4;
+          color:var(--text-dark);
+        ">
+          <li><strong>Fecha:</strong> ${fecha}</li>
+          <li><strong>No. Parte:</strong> ${numeroParte}</li>
+          <li><strong>Cantidad:</strong> ${cantidad}</li>
+          <li><strong>Terciaria:</strong> ${terciaria}</li>
+          <li><strong>Proveedor:</strong> ${proveedor}</li>
+          <li><strong>Commodity:</strong> ${commodity}</li>
+          <li><strong>Defectos:</strong> ${defectos}</li>
+        </ul>
+
+        <div style="margin:1rem 0;">
+          <strong>Descripción:</strong>
+          <p style="
+            margin:.5rem 0;
+            background:var(--gray-border);
+            padding:.5rem;
+            border-radius:8px;
+          ">${descripcion}</p>
+        </div>
+
+        <div style="font-size:.9rem; color:var(--text-dark);">
+          <strong>Fotos OK</strong>
+          ${gallery(fotosOk, 'ok')}
+        </div>
+
+        <div style="margin-top:1rem; font-size:.9rem; color:var(--text-dark);">
+          <strong>Fotos NO OK</strong>
+          ${gallery(fotosNo, 'no')}
+        </div>
+      </div>
+    `;
+    }
+});
