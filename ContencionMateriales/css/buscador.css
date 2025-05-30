@@ -20,26 +20,26 @@ body {
     color: var(--text-light);
     min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: start;
+    justify-content: flex-start; /* móvil: empieza arriba */
+    align-items: center;
+    padding: 1rem 0;
 }
 
 /* ————— Contenedor general ————— */
 .mobile-search {
     width: 100%;
-    max-width: 400px;
-    margin-top: 1rem;
-    padding-bottom: 2rem;
+    max-width: 360px;
+    margin: 0 auto 2rem;  /* centrado horizontal, espacio abajo */
 }
 
 /* ————— Header con logo ————— */
 .mobile-header {
     text-align: center;
-    padding: 1rem 0;
+    margin-bottom: 1rem;
 }
 .mobile-logo {
-    width: 60%;
-    max-width: 180px;
+    width: 50%;
+    max-width: 160px;
     height: auto;
 }
 
@@ -48,7 +48,7 @@ body {
     position: relative;
     background: var(--blue-primary);
     border-radius: 80px;
-    padding: 2.5rem 1rem 3rem; /* espacio extra abajo */
+    padding: 2.5rem 1rem 3rem;
     margin: 0 auto;
     width: 90%;
     max-width: 340px;
@@ -58,10 +58,9 @@ body {
     color: var(--text-light);
     font-size: 1.6rem;
     font-weight: bold;
-    margin: 0;
 }
 
-/* ————— Input estilo pill posicionado abajo ————— */
+/* ————— Input estilo pill ————— */
 .mobile-form {
     position: absolute;
     bottom: 1.5rem;
@@ -84,9 +83,34 @@ body {
 
 /* ————— Contenedor del resultado ————— */
 #case-container {
-    margin-top: 1rem;
-    width: 90%;
+    margin-top: 1.5rem;
+    width: 100%;
     max-width: 360px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* ————— Ajustes para pantallas anchas (>768px) ————— */
+@media (min-width: 768px) {
+    body {
+        justify-content: center; /* centra verticalmente en desktop */
+        padding: 2rem 0;
+    }
+    .mobile-search {
+        max-width: 400px;
+        margin-bottom: 0;
+    }
+    .mobile-panel {
+        border-radius: 40px;
+        padding: 2rem 1.5rem 2.5rem;
+        max-width: 400px;
+    }
+    .mobile-form {
+        /* dejamos el input en flujo normal debajo del título */
+        position: static;
+        transform: none;
+        margin: 1rem auto 0;
+        width: 60%;
+        max-width: 300px;
+    }
 }

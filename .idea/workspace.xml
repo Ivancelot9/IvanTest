@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Caso Css Adaptable">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Parte Externa Usuario">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/buscadorCasos.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/buscadorCasos.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/buscador.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/buscador.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -198,15 +197,7 @@
       <workItem from="1748355471679" duration="15666000" />
       <workItem from="1748441533130" duration="9665000" />
       <workItem from="1748540390085" duration="7298000" />
-      <workItem from="1748614513449" duration="2668000" />
-    </task>
-    <task id="LOCAL-01464" summary="Modal Mostrar Descripcion">
-      <option name="closed" value="true" />
-      <created>1748286331858</created>
-      <option name="number" value="01464" />
-      <option name="presentableId" value="LOCAL-01464" />
-      <option name="project" value="LOCAL" />
-      <updated>1748286331858</updated>
+      <workItem from="1748614513449" duration="3538000" />
     </task>
     <task id="LOCAL-01465" summary="Modal Mostrar Descripcion">
       <option name="closed" value="true" />
@@ -592,7 +583,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748616813841</updated>
     </task>
-    <option name="localTasksCounter" value="1513" />
+    <task id="LOCAL-01513" summary="Parte Externa Usuario">
+      <option name="closed" value="true" />
+      <created>1748617409795</created>
+      <option name="number" value="01513" />
+      <option name="presentableId" value="LOCAL-01513" />
+      <option name="project" value="LOCAL" />
+      <updated>1748617409796</updated>
+    </task>
+    <option name="localTasksCounter" value="1514" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -644,7 +643,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Navegacion entre botones" />
     <MESSAGE value="Cerrar Sesion" />
     <MESSAGE value="historial casos" />
     <MESSAGE value="Diderenciar entre roles" />
@@ -669,7 +667,8 @@
     <MESSAGE value="Modal Mostrar Descripcion" />
     <MESSAGE value="Historial Reportes del Administrador" />
     <MESSAGE value="Caso Css Adaptable" />
-    <option name="LAST_COMMIT_MESSAGE" value="Caso Css Adaptable" />
+    <MESSAGE value="Parte Externa Usuario" />
+    <option name="LAST_COMMIT_MESSAGE" value="Parte Externa Usuario" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
