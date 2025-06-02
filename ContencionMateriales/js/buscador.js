@@ -28,7 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await resp.json();
 
             if (!resp.ok || data.error) {
-                throw new Error(data.error || 'Caso no encontrado');
+                // Lanzamos SweetAlert2 en lugar de inyectar un párrafo
+                await Swal.fire({
+                    icon: 'error',
+                    title: 'Caso no encontrado',
+                    text: data.error || 'El caso no existe. Por favor verifica el número e intenta de nuevo.',
+                });
+                container.innerHTML = ''; // Limpiamos el contenedor
+                return;
             }
 
             // Inyectamos un botón DENTRO del panel
@@ -40,10 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 .addEventListener('click', () => showModal(data));
 
         } catch (err) {
-            container.innerHTML = `
-        <p style="color: var(--accent-no); text-align:center;">
-          ${err.message}
-        </p>`;
+            // En caso de otro tipo de error (por ejemplo, fallo en la fetch):
+            await Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: err.message || 'Ocurrió un problema al buscar el caso.',
+            });
+            container.innerHTML = '';
         }
     });
 
@@ -65,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === modalOverlay) hideModal();
         });
 
-        // ← Aquí asignamos el listener a cada miniatura INYECTADA:
+        // Asignamos el listener a cada miniatura INYECTADA:
         modalOverlay.querySelectorAll('.photos-grid img').forEach(img => {
             img.addEventListener('click', openImageFullscreen);
         });
@@ -74,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function hideModal() {
         modalOverlay.classList.remove('active');
         modalOverlay.innerHTML = '';
-        // Si el lightbox está abierto, ocultarlo (no eliminarlo):
+        // Si el lightbox está abierto, ocultarlo (no eliminarlo)
         lb.style.display = 'none';
     }
 

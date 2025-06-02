@@ -11,6 +11,7 @@
 
     <!-- El JS se carga con defer para que DOM esté listo -->
     <script defer src="js/buscador.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <div class="mobile-search">
