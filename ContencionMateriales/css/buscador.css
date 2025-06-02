@@ -35,15 +35,15 @@ body {
 /* ————— Header con logo ————— */
 .mobile-header {
     text-align: center;
-    margin-bottom: 0.5rem;   /* Antes era 1rem; lo reduje a 0.5rem */
-    margin-top: -0.5rem;     /* Lo hago negativo para subirlo ligeramente */
+    margin: 0;        /* Sin márgenes que empujen */
+    padding: 0;       /* Sin padding interno extra */
 }
 .mobile-logo {
     width: 50%;
     max-width: 160px;
     height: auto;
     display: block;
-    margin: 0 auto;          /* Asegura que el logo esté centrado */
+    margin: 0 auto;  /* Centrado */
 }
 
 /* ————— Panel azul “pill” ————— */
