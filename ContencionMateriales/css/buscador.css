@@ -40,11 +40,11 @@ body {
     padding: 0;       /* Sin padding interno extra */
 }
 .mobile-logo {
-    width: 60%;             /* Logo más grande */
-    max-width: 200px;       /* Límite superior en píxeles */
+    width: 60%;
+    max-width: 200px;
     height: auto;
     display: block;
-    margin: 0 auto 1.5rem;  /* Separación mayor del panel */
+    margin: 0 auto 5rem;  /* 5rem de espacio bajo el logo */
 }
 
 /* ————— Panel azul “pill” ————— */
