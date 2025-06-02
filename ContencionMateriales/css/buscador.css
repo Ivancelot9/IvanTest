@@ -69,20 +69,23 @@ body {
 /* ————— Input estilo pill ————— */
 /* Ya no está absolutamente posicionado, así que el panel crecerá hacia abajo */
 .mobile-form {
-    /* Display flex para alinear input + botón en línea */
     display: flex;
-    gap: 0.5rem;               /* Separación entre input y botón */
+    gap: 0.5rem;
     justify-content: center;
-    width: 80%;                /* Igual que antes, 80% de ancho del panel */
-    max-width: 280px;          /* Limita el ancho total (input + botón) */
-    margin: 0 auto 1.5rem;     /* 1.5rem debajo del form para separar del botón de resultado */
+    /* Permite que el input y el botón se envuelvan si no caben */
+    flex-wrap: wrap;
+
+    width: 80%;
+    max-width: 280px;
+    margin: 0 auto 1.5rem;
 }
 .mobile-form input {
-    flex: 1;                   /* Ocupa el espacio disponible dentro del form */
+    flex: 1;            /* Ocupa todo el espacio restante */
+    min-width: 0;       /* <— Obligatorio para que no crezca más allá */
     padding: 0.75rem 1rem;
     font-size: 1rem;
     border: 2px solid var(--gray-border);
-    border-radius: 999px;      /* Pill shape */
+    border-radius: 999px;
     background: #fff;
     color: var(--text-dark);
     outline: none;
@@ -91,12 +94,13 @@ body {
 
 /* Estilo para el botón “Buscar” */
 .search-button {
-    padding: 0.75rem 1.25rem;  /* Un poco más ancho para fácil touch */
+    flex-shrink: 0;     /* Evita que el botón se haga demasiado pequeño */
+    padding: 0.75rem 1.25rem;
     font-size: 1rem;
-    background: #fff;          /* Fondo blanco igual que el input */
-    color: #000;               /* Texto negro */
+    background: #fff;
+    color: #000;
     border: none;
-    border-radius: 999px;      /* Pill shape */
+    border-radius: 999px;
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     transition: background 0.2s;
