@@ -20,7 +20,7 @@ body {
     color: var(--text-light);
     min-height: 100vh;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center; /* Centrado horizontal en escritorio y móvil */
     align-items: flex-start;
     padding: 1rem 0;
 }
@@ -28,7 +28,7 @@ body {
 /* ————— Contenedor general ————— */
 .mobile-search {
     width: 100%;
-    max-width: 360px;
+    max-width: 360px;      /* En móvil se queda ahí */
     margin: 0 auto 2rem;
 }
 
@@ -41,21 +41,21 @@ body {
 .mobile-logo {
     width: 60%;
     max-width: 200px;
-    height: auto;
     display: block;
-    margin: 2rem auto 5rem;  /* baja el logo y deja separación extra con el panel */
+    margin: 2rem auto 5rem;
 }
 
-/* ————— Panel azul “pill” ————— */
+/* ————— Panel verde “pill” ————— */
 .mobile-panel {
     position: relative;
     background: #2ea043;
     border-radius: 80px;
-    padding: 2.5rem 1rem 1rem; /* Ajustamos padding-bottom para espacio interno */
+    padding: 2.5rem 1rem 1rem;
     margin: 1.5rem auto 0;
     width: 90%;
-    max-width: 340px;
+    max-width: 340px;       /* En móvil se queda en 340px */
     text-align: center;
+    overflow: hidden;
 }
 
 /* ————— Título dentro del panel ————— */
@@ -66,22 +66,19 @@ body {
     margin-bottom: 1rem;
 }
 
-/* ————— Input estilo pill ————— */
-/* Ya no está absolutamente posicionado, así que el panel crecerá hacia abajo */
+/* ————— Input + botón “Buscar” ————— */
 .mobile-form {
     display: flex;
     gap: 0.5rem;
     justify-content: center;
-    /* Permite que el input y el botón se envuelvan si no caben */
     flex-wrap: wrap;
-
     width: 80%;
     max-width: 280px;
     margin: 0 auto 1.5rem;
 }
 .mobile-form input {
-    flex: 1;            /* Ocupa todo el espacio restante */
-    min-width: 0;       /* <— Obligatorio para que no crezca más allá */
+    flex: 1;
+    min-width: 0;
     padding: 0.75rem 1rem;
     font-size: 1rem;
     border: 2px solid var(--gray-border);
@@ -91,10 +88,8 @@ body {
     outline: none;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
-
-/* Estilo para el botón “Buscar” */
 .search-button {
-    flex-shrink: 0;     /* Evita que el botón se haga demasiado pequeño */
+    flex-shrink: 0;
     padding: 0.75rem 1.25rem;
     font-size: 1rem;
     background: #fff;
@@ -106,20 +101,16 @@ body {
     transition: background 0.2s;
 }
 .search-button:hover {
-    background: #f0f0f0;       /* Sutil hover para desktop */
+    background: #f0f0f0;
 }
 
-
-/* ————— Contenedor de resultados (botón con folio) ————— */
+/* ————— Contenedor de resultados ————— */
 #case-container {
-    /* Opcional: poco de padding para no quedar pegado a los bordes */
     padding: 0.5rem 0;
 }
-
-/* ————— Botón sólo con número ————— */
 #report-btn {
     display: block;
-    margin: 0.5rem auto;  /* un pequeño espacio arriba/abajo */
+    margin: 0.5rem auto;
     padding: 0.75rem 1.5rem;
     background: #fff;
     color: #000;
@@ -142,50 +133,66 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    padding: 1rem; /* Mantiene un margen interior en móviles/pc */
 }
 .modal-overlay.active {
     display: flex;
 }
-/* ————— Modal content ————— */
-.modal-content {
+/* ————— Modal content (reporte) ————— */
+.modal-content.reporte {
     background: #fff;
+    border: 2px solid var(--blue-dark);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 900px;   /* En pantallas grandes puede llegar a 900px */
+    max-height: 90vh;
     padding: 1rem;
-    border-radius: 8px;
-    max-width: 90%;
-    max-height: 90%;
     overflow-y: auto;
-    position: relative;
+    font-family: 'Segoe UI', sans-serif;
     color: var(--text-dark);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    margin: 0 auto;     /* Centrado */
+    box-sizing: border-box;
 }
-.modal-close {
-    position: absolute;
-    top: 0.5rem; right: 0.5rem;
-    border: none;
-    background: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--text-dark);
+/* Responsive del modal para pantallas <768px */
+@media (max-width: 768px) {
+    .modal-content.reporte {
+        width: 95%;
+        max-width: none;
+        max-height: 100vh;
+        border-radius: 8px;
+        padding: 0.75rem;
+    }
 }
 
-/* ————— Ajustes para pantallas anchas (>768px) ————— */
+/* ————— Media Queries para escritorio (>768px) ————— */
 @media (min-width: 768px) {
-    body {
-        justify-content: center;
-        padding: 2rem 0;
-    }
+    /* Hacemos que el contenedor principal sea más ancho en escritorio */
     .mobile-search {
-        max-width: 400px;
-        margin-bottom: 0;
+        max-width: 500px;   /* Antes: 360px; ahora 500px en desktop */
     }
+    /* Aumentar el ancho del panel verde */
     .mobile-panel {
-        border-radius: 40px;
-        padding: 2rem 1.5rem 1rem; /* igual, padding-bottom reducido */
-        max-width: 400px;
+        max-width: 480px;   /* Antes: 340px; ahora 480px en desktop */
+        width: 85%;         /* Usa 85% del contenedor padre */
+        padding: 3rem 1.5rem 1.5rem; /* Más padding arriba */
     }
+    /* Aumentar el formulario (input + botón) en desktop */
     .mobile-form {
-        width: 60%;
-        max-width: 300px;
-        margin: 0 auto 1.5rem;
+        width: 70%;         /* Antes: 80% en móvil; ahora 70% en desktop */
+        max-width: 360px;   /* Un poco más ancho que en móvil */
+        margin-bottom: 2rem; /* Más espacio debajo */
+    }
+    .mobile-form input {
+        font-size: 1.1rem;  /* Campo de texto ligeramente más grande */
+        padding: 0.85rem 1rem;
+    }
+    .search-button {
+        font-size: 1.1rem;  /* Botón ligeramente más grande */
+        padding: 0.85rem 1.5rem;
+    }
+    /* Ajuste del botón con folio para que se vea proporcional */
+    #report-btn {
+        font-size: 1.3rem;  /* Antes 1.2rem; un poco más grande en desktop */
+        padding: 0.85rem 1.75rem;
     }
 }
