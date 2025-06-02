@@ -92,16 +92,18 @@ body {
     flex-shrink: 0;
     padding: 0.75rem 1.25rem;
     font-size: 1rem;
-    background: #fff;
-    color: #000;
-    border: none;
+    background: #1c1e21;       /* Fondo azul oscuro */
+    color: #ffffff;            /* Texto blanco */
+    border: 2px solid #ffffff; /* Borde blanco para resaltarlo */
     border-radius: 999px;
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
 }
 .search-button:hover {
-    background: #f0f0f0;
+    background: #ffffff;       /* Al pasar por encima, fondo blanco */
+    color: #1c1e21;            /* Texto cambia a azul oscuro */
+    border-color: #1c1e21;     /* Borde azul oscuro */
 }
 
 /* ————— Contenedor de resultados ————— */
