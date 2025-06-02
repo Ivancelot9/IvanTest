@@ -56,11 +56,48 @@ document.addEventListener('DOMContentLoaded', () => {
         modalOverlay.addEventListener('click', e => {
             if (e.target === modalOverlay) hideModal();
         });
+
+        // ★ Nuevas líneas: después de inyectar el contenido,
+        // buscamos cada <img> dentro de .photos-grid y le añadimos un evento de clic:
+        modalOverlay.querySelectorAll('.photos-grid img').forEach(img => {
+            img.addEventListener('click', openImageFullscreen);
+        });
     }
 
     function hideModal() {
         modalOverlay.classList.remove('active');
         modalOverlay.innerHTML = '';
+        // Si hay un lightbox abierto (#modal-image), cerrarlo también:
+        const existingLightbox = document.getElementById('modal-image');
+        if (existingLightbox) existingLightbox.remove();
+    }
+
+    // ★ Nueva función: abre la imagen en pantalla completa (lightbox)
+    function openImageFullscreen(e) {
+        const src = e.currentTarget.src; // URL de la imagen clicada
+        // Creamos el contenedor overlay
+        const lightbox = document.createElement('div');
+        lightbox.id = 'modal-image';                // coincide con el CSS que ya tienes
+        lightbox.className = 'modal-overlay';       // reutiliza la clase de overlay
+        lightbox.innerHTML = `
+      <div class="lightbox-content">
+        <button class="close-img">&times;</button>
+        <img src="${src}" alt="Foto ampliada">
+      </div>
+    `;
+        document.body.appendChild(lightbox);
+
+        // Evento para cerrar al hacer clic en la X
+        lightbox.querySelector('.close-img').addEventListener('click', () => {
+            lightbox.remove();
+        });
+
+        // Evento para cerrar al hacer clic fuera de la imagen (en el overlay)
+        lightbox.addEventListener('click', e => {
+            if (e.target === lightbox) {
+                lightbox.remove();
+            }
+        });
     }
 
     // Genera la estructura HTML del modal con los datos devueltos
