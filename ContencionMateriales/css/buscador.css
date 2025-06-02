@@ -77,8 +77,8 @@ body {
     margin: 0 auto 1.5rem;
 }
 .mobile-form input {
-    flex: 1;
-    min-width: 150px;
+    flex: 1;            /* En móvil, ocupa todo el espacio disponible */
+    min-width: 150px;   /* MANTÉN 150px para móvil (no dejar que sea más estrecho) */
     padding: 0.75rem 1rem;
     font-size: 1rem;
     border: 2px solid var(--gray-border);
@@ -164,35 +164,41 @@ body {
     }
 }
 
-/* ————— Media Queries para escritorio (>768px) ————— */
+/* ————— Ajustes para pantallas grandes (>768px) ————— */
 @media (min-width: 768px) {
     /* Hacemos que el contenedor principal sea más ancho en escritorio */
     .mobile-search {
-        max-width: 500px;   /* Antes: 360px; ahora 500px en desktop */
+        max-width: 500px;
     }
     /* Aumentar el ancho del panel verde */
     .mobile-panel {
-        max-width: 480px;   /* Antes: 340px; ahora 480px en desktop */
-        width: 85%;         /* Usa 85% del contenedor padre */
-        padding: 3rem 1.5rem 1.5rem; /* Más padding arriba */
+        max-width: 480px;
+        width: 85%;
+        padding: 3rem 1.5rem 1.5rem;
     }
-    /* Aumentar el formulario (input + botón) en desktop */
+    /* Aumentar el formulario (input + botón) en escritorio */
     .mobile-form {
-        width: 70%;         /* Antes: 80% en móvil; ahora 70% en desktop */
-        max-width: 360px;   /* Un poco más ancho que en móvil */
-        margin-bottom: 2rem; /* Más espacio debajo */
+        width: 70%;
+        max-width: 360px;
+        margin-bottom: 2rem;
     }
     .mobile-form input {
-        font-size: 1.1rem;  /* Campo de texto ligeramente más grande */
+        /* Cambiamos a “flex: 2” para que el input ocupe más espacio que el botón */
+        flex: 2;
+        /* Aseguramos un mínimo que permita ver todo el placeholder */
+        min-width: 250px;
+        font-size: 1.1rem;
         padding: 0.85rem 1rem;
     }
     .search-button {
-        font-size: 1.1rem;  /* Botón ligeramente más grande */
+        /* Ocupa la “mitad” del espacio que ocupa el input */
+        flex: 1;
+        font-size: 1.1rem;
         padding: 0.85rem 1.5rem;
     }
     /* Ajuste del botón con folio para que se vea proporcional */
     #report-btn {
-        font-size: 1.3rem;  /* Antes 1.2rem; un poco más grande en desktop */
+        font-size: 1.3rem;
         padding: 0.85rem 1.75rem;
     }
 }
