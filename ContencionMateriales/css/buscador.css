@@ -164,39 +164,49 @@ body {
     }
 }
 
-/* ————— Ajustes para pantallas grandes (>768px) ————— */
 @media (min-width: 768px) {
-    /* Hacemos que el contenedor principal sea más ancho en escritorio */
+    /* … tus otros estilos para desktop … */
+
+    /* 1) El contenedor principal se hace más ancho */
     .mobile-search {
         max-width: 500px;
     }
-    /* Aumentar el ancho del panel verde */
+
+    /* 2) El panel verde puede crecer más */
     .mobile-panel {
         max-width: 480px;
         width: 85%;
         padding: 3rem 1.5rem 1.5rem;
     }
-    /* Aumentar el formulario (input + botón) en escritorio */
+
+    /* 3) Ajustes para el formulario en desktop */
     .mobile-form {
-        width: 70%;
-        max-width: 360px;
-        margin-bottom: 2rem;
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        /* Importante: evitar wrap en desktop */
+        flex-wrap: nowrap;
+        /* Le damos un ancho fijo mayor para que el input y el botón quepan en línea */
+        width: 80%;
+        max-width: 380px;  /* antes era 360px; subimos un poco */
+        margin: 0 auto 2rem;
     }
     .mobile-form input {
-        /* Cambiamos a “flex: 2” para que el input ocupe más espacio que el botón */
+        /* Sigue ocupando “espacio proporcional” dentro del flex */
         flex: 2;
-        /* Aseguramos un mínimo que permita ver todo el placeholder */
-        min-width: 250px;
+        /* Aseguramos que no se encoja demasiado */
+        min-width: 280px;  /* suficiente para ver “Número de caso” completo */
         font-size: 1.1rem;
         padding: 0.85rem 1rem;
     }
     .search-button {
-        /* Ocupa la “mitad” del espacio que ocupa el input */
+        /* Ocupa la “mitad” del espacio que ocupa el input (o menos) */
         flex: 1;
         font-size: 1.1rem;
         padding: 0.85rem 1.5rem;
     }
-    /* Ajuste del botón con folio para que se vea proporcional */
+
+    /* 4) Ajuste del botón de resultado (folio) */
     #report-btn {
         font-size: 1.3rem;
         padding: 0.85rem 1.75rem;
