@@ -43,7 +43,10 @@ body {
     max-width: 160px;
     height: auto;
     display: block;
-    margin: 0 auto;  /* Centrado */
+    margin: 0 auto;    /* Centrado */
+
+    position: relative;
+    top: -15px;        /* Ajusta este valor (-10px, -20px, etc.) hasta que quede al nivel que desees */
 }
 
 /* ————— Panel azul “pill” ————— */
