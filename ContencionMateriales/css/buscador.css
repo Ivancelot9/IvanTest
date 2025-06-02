@@ -21,7 +21,8 @@ body {
     min-height: 100vh;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    /* ← Cambio clave: ya no centramos verticalmente */
+    align-items: flex-start;
     padding: 1rem 0;
 }
 
@@ -43,10 +44,10 @@ body {
     max-width: 160px;
     height: auto;
     display: block;
-    margin: 0 auto;    /* Centrado */
+    margin: 0 auto;    /* Centrado horizontal */
 
     position: relative;
-    top: -15px;        /* Ajusta este valor (-10px, -20px, etc.) hasta que quede al nivel que desees */
+    top: -15px;        /* Mueve la imagen hacia arriba */
 }
 
 /* ————— Panel azul “pill” ————— */
