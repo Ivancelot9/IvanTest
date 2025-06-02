@@ -44,10 +44,7 @@ body {
     max-width: 160px;
     height: auto;
     display: block;
-    margin: 0 auto;    /* Centrado horizontal */
-
-    position: relative;
-    top: -15px;        /* Mueve la imagen hacia arriba */
+    margin: 0 auto 1rem;   /* ← Agrega margen inferior para separar del panel */
 }
 
 /* ————— Panel azul “pill” ————— */
