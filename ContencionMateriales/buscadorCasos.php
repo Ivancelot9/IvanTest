@@ -11,25 +11,31 @@
 <div class="mobile-search">
     <!-- Logo Grammer -->
     <header class="mobile-header">
-        <img src="imagenes/Grammer_Logo_Original_White_sRGB_screen_transparent.png" alt="Grammer" class="mobile-logo"/>
+        <img
+                src="imagenes/Grammer_Logo_Original_White_sRGB_screen_transparent.png"
+                alt="Grammer"
+                class="mobile-logo"
+        />
     </header>
 
-    <!-- Panel azul con título e input pill -->
+    <!-- Panel azul con título, input pill Y contenedor de resultados -->
     <div class="mobile-panel">
         <h2 class="mobile-title">Lista Casos</h2>
+
         <form id="search-form" class="mobile-form">
             <input
-                type="number"
-                id="case-number"
-                placeholder="Ingresa número del caso"
-                min="1"
-                required
+                    type="number"
+                    id="case-number"
+                    placeholder="Ingresa número del caso"
+                    min="1"
+                    required
             />
         </form>
+
+        <!-- ↓ Aquí movimos #case-container dentro del panel ↓ -->
+        <div id="case-container"></div>
     </div>
 
-    <!-- Aquí aparecerá el detalle del caso -->
-    <div id="case-container"></div>
     <!-- Modal para mostrar el reporte -->
     <div id="case-modal" class="modal-overlay">
         <div class="modal-content">

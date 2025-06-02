@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(data.error || 'Caso no encontrado');
             }
 
-            // Inyecta un botón que solo muestra el número
+            // Inyecta un botón DENTRO del panel (en #case-container)
             container.innerHTML = `<button id="report-btn">${folio}</button>`;
 
             document
@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Función para montar y mostrar el modal usando tu vista reciclada
     function showModal(c) {
         modalOverlay.innerHTML = renderModal(c);
         modalOverlay.classList.add('active');
@@ -57,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         modalOverlay.innerHTML = '';
     }
 
-    // Genera la estructura HTML del modal conforme a tu CSS existente
     function renderModal(c) {
         const {
             folio, fecha,
@@ -69,9 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } = c;
 
         const field = (label, value) => `
-      <label class="field-label">${label}</label>
-      <div class="field-value">${value}</div>
-    `;
+          <label class="field-label">${label}</label>
+          <div class="field-value">${value}</div>
+        `;
 
         const photosSection = (arr, tipo) => {
             const cls   = tipo === 'ok' ? 'ok-section' : 'no-section';
@@ -86,43 +84,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>`;
             }
             return `<div class="photo-section ${cls}">
-        <h3>${icon} Fotos ${tipo.toUpperCase()}</h3>
-        <div class="photos-grid ${tipo}">
-          ${arr.map(file => {
+              <h3>${icon} Fotos ${tipo.toUpperCase()}</h3>
+              <div class="photos-grid ${tipo}">
+                ${arr.map(file => {
                 const url = base + encodeURIComponent(file);
                 return `<img src="${url}" alt="Foto ${tipo}">`;
             }).join('')}
-        </div>
-      </div>`;
+              </div>
+            </div>`;
         };
 
         return `
-      <div class="modal-content reporte">
-        <div class="reporte-inner">
-          <div class="reporte-header">
-            <h2 class="modal-heading"><i class="fas fa-folder-open"></i> Datos del Caso</h2>
-            <button class="modal-close">&times;</button>
-          </div>
+          <div class="modal-content reporte">
+            <div class="reporte-inner">
+              <div class="reporte-header">
+                <h2 class="modal-heading">
+                  <i class="fas fa-folder-open"></i> Datos del Caso
+                </h2>
+                <button class="modal-close">&times;</button>
+              </div>
 
-          <div class="reporte-grid">
-            ${field('Folio:', folio)}
-            ${field('Fecha:', fecha)}
-            ${field('No. Parte:', numeroParte)}
-            ${field('Cantidad:', cantidad)}
-            ${field('Terciaria:', terciaria)}
-            ${field('Proveedor:', proveedor)}
-            ${field('Commodity:', commodity)}
-            ${field('Defectos:', defectos)}
-            <label class="field-label">Descripción:</label>
-            <div class="description-box">${descripcion}</div>
-          </div>
+              <div class="reporte-grid">
+                ${field('Folio:', folio)}
+                ${field('Fecha:', fecha)}
+                ${field('No. Parte:', numeroParte)}
+                ${field('Cantidad:', cantidad)}
+                ${field('Terciaria:', terciaria)}
+                ${field('Proveedor:', proveedor)}
+                ${field('Commodity:', commodity)}
+                ${field('Defectos:', defectos)}
+                <label class="field-label">Descripción:</label>
+                <div class="description-box">${descripcion}</div>
+              </div>
 
-          <div class="reporte-photos">
-            ${photosSection(fotosOk, 'ok')}
-            ${photosSection(fotosNo, 'no')}
+              <div class="reporte-photos">
+                ${photosSection(fotosOk, 'ok')}
+                ${photosSection(fotosNo, 'no')}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    `;
+        `;
     }
 });
