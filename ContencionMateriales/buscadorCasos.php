@@ -5,13 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Buscar Caso (Móvil)</title>
 
-    <!-- Tu CSS principal -->
+    <!-- Font Awesome para el icono de lupa -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+            integrity="sha512-…tuIntegridad…"
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+
+    <!-- Tu CSS principal (incluye todos los estilos anteriores) -->
     <link rel="stylesheet" href="css/buscador.css"/>
     <link rel="stylesheet" href="css/modalMostrarDescripcion.css"/>
 
+    <!-- SweetAlert2 (si lo necesitas para alertas) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- El JS se carga con defer para que DOM esté listo -->
     <script defer src="js/buscador.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <div class="mobile-search">
@@ -24,7 +35,7 @@
         />
     </header>
 
-    <!-- Panel azul con título, input + botón "Buscar" y contenedor de resultados -->
+    <!-- Panel verde con animaciones -->
     <div class="mobile-panel">
         <h2 class="mobile-title">Lista Casos</h2>
 
@@ -36,10 +47,12 @@
                     min="1"
                     required
             />
-            <button type="submit" class="search-button">Buscar</button>
+            <button type="submit" class="search-button">
+                <i class="fas fa-search"></i> Buscar
+            </button>
         </form>
 
-        <!-- Aquí se inyecta el botón con el folio; debe estar dentro del panel -->
+        <!-- Aquí se inyecta dinámicamente el botón con el folio -->
         <div id="case-container"></div>
     </div>
 
