@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Parte Externa Usuario">
-      <change afterPath="$PROJECT_DIR$/ContencionMateriales/imagenes/Grammer_Logo_Original_White_sRGB_screen_transparent.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/buscadorCasos.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/buscadorCasos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/imagenes/21002 Grammer WoW Logo White RGB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/buscador.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/buscador.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,15 +198,7 @@
       <workItem from="1748441533130" duration="9665000" />
       <workItem from="1748540390085" duration="7298000" />
       <workItem from="1748614513449" duration="13168000" />
-      <workItem from="1748873850294" duration="2725000" />
-    </task>
-    <task id="LOCAL-01481" summary="Modal Mostrar Descripcion">
-      <option name="closed" value="true" />
-      <created>1748369079231</created>
-      <option name="number" value="01481" />
-      <option name="presentableId" value="LOCAL-01481" />
-      <option name="project" value="LOCAL" />
-      <updated>1748369079231</updated>
+      <workItem from="1748873850294" duration="3039000" />
     </task>
     <task id="LOCAL-01482" summary="Modal Mostrar Descripcion">
       <option name="closed" value="true" />
@@ -594,7 +584,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748875997902</updated>
     </task>
-    <option name="localTasksCounter" value="1530" />
+    <task id="LOCAL-01530" summary="Parte Externa Usuario">
+      <option name="closed" value="true" />
+      <created>1748876662709</created>
+      <option name="number" value="01530" />
+      <option name="presentableId" value="LOCAL-01530" />
+      <option name="project" value="LOCAL" />
+      <updated>1748876662709</updated>
+    </task>
+    <option name="localTasksCounter" value="1531" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
