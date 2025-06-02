@@ -19,10 +19,12 @@
         />
     </header>
 
-    <!-- Panel azul con título, input pill Y contenedor de resultados -->
+    <!-- Panel azul con título, input y contenedor de resultados -->
     <div class="mobile-panel">
         <h2 class="mobile-title">Lista Casos</h2>
 
+        <!-- Antes: solo tenías el <input> en el form -->
+        <!-- Ahora: agregamos un botón de tipo submit al lado del input -->
         <form id="search-form" class="mobile-form">
             <input
                     type="number"
@@ -31,18 +33,11 @@
                     min="1"
                     required
             />
+            <button type="submit" class="search-button">Buscar</button>
         </form>
 
-        <!-- ↓ Aquí movimos #case-container dentro del panel ↓ -->
+        <!-- Mantén el case-container dentro del panel -->
         <div id="case-container"></div>
-    </div>
-
-    <!-- Modal para mostrar el reporte -->
-    <div id="case-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button id="modal-close" class="modal-close">&times;</button>
-            <div id="modal-body"></div>
-        </div>
     </div>
 </div>
 </body>

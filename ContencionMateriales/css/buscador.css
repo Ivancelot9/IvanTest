@@ -69,21 +69,42 @@ body {
 /* ————— Input estilo pill ————— */
 /* Ya no está absolutamente posicionado, así que el panel crecerá hacia abajo */
 .mobile-form {
-    width: 80%;
-    max-width: 280px;
-    margin: 0 auto 1.5rem;  /* espacio debajo del input, antes de los resultados */
+    /* Display flex para alinear input + botón en línea */
+    display: flex;
+    gap: 0.5rem;               /* Separación entre input y botón */
+    justify-content: center;
+    width: 80%;                /* Igual que antes, 80% de ancho del panel */
+    max-width: 280px;          /* Limita el ancho total (input + botón) */
+    margin: 0 auto 1.5rem;     /* 1.5rem debajo del form para separar del botón de resultado */
 }
 .mobile-form input {
-    width: 100%;
+    flex: 1;                   /* Ocupa el espacio disponible dentro del form */
     padding: 0.75rem 1rem;
     font-size: 1rem;
     border: 2px solid var(--gray-border);
-    border-radius: 999px;
+    border-radius: 999px;      /* Pill shape */
     background: #fff;
     color: var(--text-dark);
     outline: none;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
+
+/* Estilo para el botón “Buscar” */
+.search-button {
+    padding: 0.75rem 1.25rem;  /* Un poco más ancho para fácil touch */
+    font-size: 1rem;
+    background: #fff;          /* Fondo blanco igual que el input */
+    color: #000;               /* Texto negro */
+    border: none;
+    border-radius: 999px;      /* Pill shape */
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: background 0.2s;
+}
+.search-button:hover {
+    background: #f0f0f0;       /* Sutil hover para desktop */
+}
+
 
 /* ————— Contenedor de resultados (botón con folio) ————— */
 #case-container {

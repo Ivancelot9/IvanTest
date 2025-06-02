@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const folio = document.getElementById('case-number').value.trim();
         if (!folio) return;
 
+        // Mostrar indicador de carga mientras llega la respuesta
         container.innerHTML = '<p style="text-align:center;">Cargando…</p>';
 
         try {
@@ -36,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Función para montar y mostrar el modal usando tu vista reciclada
     function showModal(c) {
         modalOverlay.innerHTML = renderModal(c);
         modalOverlay.classList.add('active');
@@ -56,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalOverlay.innerHTML = '';
     }
 
+    // Genera la estructura HTML del modal conforme a tu CSS existente
     function renderModal(c) {
         const {
             folio, fecha,
