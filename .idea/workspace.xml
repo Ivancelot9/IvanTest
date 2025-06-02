@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Parte Externa Usuario">
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/buscador.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/buscador.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ContencionMateriales/imagenes/21002 Grammer WoW Logo White RGB.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/buscadorCasos.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/buscadorCasos.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,15 +199,7 @@
       <workItem from="1748441533130" duration="9665000" />
       <workItem from="1748540390085" duration="7298000" />
       <workItem from="1748614513449" duration="13168000" />
-      <workItem from="1748873850294" duration="1648000" />
-    </task>
-    <task id="LOCAL-01478" summary="Modal Mostrar Descripcion">
-      <option name="closed" value="true" />
-      <created>1748366295709</created>
-      <option name="number" value="01478" />
-      <option name="presentableId" value="LOCAL-01478" />
-      <option name="project" value="LOCAL" />
-      <updated>1748366295709</updated>
+      <workItem from="1748873850294" duration="2073000" />
     </task>
     <task id="LOCAL-01479" summary="Modal Mostrar Descripcion">
       <option name="closed" value="true" />
@@ -591,7 +585,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748875338173</updated>
     </task>
-    <option name="localTasksCounter" value="1527" />
+    <task id="LOCAL-01527" summary="Parte Externa Usuario">
+      <option name="closed" value="true" />
+      <created>1748875542898</created>
+      <option name="number" value="01527" />
+      <option name="presentableId" value="LOCAL-01527" />
+      <option name="project" value="LOCAL" />
+      <updated>1748875542898</updated>
+    </task>
+    <option name="localTasksCounter" value="1528" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

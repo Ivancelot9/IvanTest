@@ -11,7 +11,7 @@
 <div class="mobile-search">
     <!-- Logo Grammer -->
     <header class="mobile-header">
-        <img src="imagenes/Recurso%206%20(2).png" alt="Grammer" class="mobile-logo"/>
+        <img src="imagenes/21002%20Grammer%20WoW%20Logo%20White%20RGB.jpg" alt="Grammer" class="mobile-logo"/>
     </header>
 
     <!-- Panel azul con título e input pill -->
