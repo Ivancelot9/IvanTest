@@ -31,7 +31,7 @@
             <input
                     type="number"
                     id="case-number"
-                    placeholder="Ingresa número del caso"
+                    placeholder="Número de caso"
                     min="1"
                     required
             />

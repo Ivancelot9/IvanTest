@@ -78,7 +78,7 @@ body {
 }
 .mobile-form input {
     flex: 1;
-    min-width: 0;
+    min-width: 150px;
     padding: 0.75rem 1rem;
     font-size: 1rem;
     border: 2px solid var(--gray-border);
