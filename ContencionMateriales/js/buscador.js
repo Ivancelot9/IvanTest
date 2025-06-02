@@ -12,12 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const folio = document.getElementById('case-number').value.trim();
         if (!folio) return;
 
-        // Mostrar indicador de carga mientras llega la respuesta
+        // Mostramos un “Cargando…” mientras esperamos la respuesta
         container.innerHTML = '<p style="text-align:center;">Cargando…</p>';
 
         try {
             const resp = await fetch(`dao/obtenerCaso.php?folio=${folio}`);
             const data = await resp.json();
+
             if (!resp.ok || data.error) {
                 throw new Error(data.error || 'Caso no encontrado');
             }
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Inyecta un botón DENTRO del panel (en #case-container)
             container.innerHTML = `<button id="report-btn">${folio}</button>`;
 
+            // Ahora sí agregamos el listener al botón “report-btn”
             document
                 .getElementById('report-btn')
                 .addEventListener('click', () => showModal(data));
@@ -37,17 +39,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Función para montar y mostrar el modal usando tu vista reciclada
+    // Función para montar y mostrar el modal
     function showModal(c) {
+        // Primero vaciamos cualquier contenido previo (por si acaso)
+        modalOverlay.innerHTML = '';
+        // Luego inyectamos el HTML del modal con la función renderModal
         modalOverlay.innerHTML = renderModal(c);
         modalOverlay.classList.add('active');
 
-        // Cerrar con la X
+        // Asignamos el listener para cerrar con la X
         modalOverlay
             .querySelector('.modal-close')
             .addEventListener('click', hideModal);
 
-        // Cerrar clic fuera del contenido
+        // Asignamos el listener para cerrar al hacer clic fuera del cuadro
         modalOverlay.addEventListener('click', e => {
             if (e.target === modalOverlay) hideModal();
         });
@@ -58,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalOverlay.innerHTML = '';
     }
 
-    // Genera la estructura HTML del modal conforme a tu CSS existente
+    // Genera la estructura HTML del modal con los datos devueltos
     function renderModal(c) {
         const {
             folio, fecha,
@@ -69,63 +74,71 @@ document.addEventListener('DOMContentLoaded', () => {
             fotosNo = []
         } = c;
 
+        // Helper para cada fila de etiqueta + valor
         const field = (label, value) => `
-          <label class="field-label">${label}</label>
-          <div class="field-value">${value}</div>
-        `;
+      <label class="field-label">${label}</label>
+      <div class="field-value">${value}</div>
+    `;
 
+        // Genera la sección de fotos (ok o no)
         const photosSection = (arr, tipo) => {
             const cls   = tipo === 'ok' ? 'ok-section' : 'no-section';
             const icon  = tipo === 'ok'
                 ? '<i class="fas fa-check-circle"></i>'
                 : '<i class="fas fa-times-circle"></i>';
             const base  = tipo === 'ok' ? baseOk : baseNo;
+
             if (!arr.length) {
-                return `<div class="photo-section ${cls}">
-                  <h3>${icon} Fotos ${tipo.toUpperCase()}</h3>
-                  <p>(ninguna)</p>
-                </div>`;
+                return `
+          <div class="photo-section ${cls}">
+            <h3>${icon} Fotos ${tipo.toUpperCase()}</h3>
+            <p>(ninguna)</p>
+          </div>
+        `;
             }
-            return `<div class="photo-section ${cls}">
-              <h3>${icon} Fotos ${tipo.toUpperCase()}</h3>
-              <div class="photos-grid ${tipo}">
-                ${arr.map(file => {
+
+            return `
+        <div class="photo-section ${cls}">
+          <h3>${icon} Fotos ${tipo.toUpperCase()}</h3>
+          <div class="photos-grid ${tipo}">
+            ${arr.map(file => {
                 const url = base + encodeURIComponent(file);
                 return `<img src="${url}" alt="Foto ${tipo}">`;
             }).join('')}
-              </div>
-            </div>`;
+          </div>
+        </div>
+      `;
         };
 
         return `
-          <div class="modal-content reporte">
-            <div class="reporte-inner">
-              <div class="reporte-header">
-                <h2 class="modal-heading">
-                  <i class="fas fa-folder-open"></i> Datos del Caso
-                </h2>
-                <button class="modal-close">&times;</button>
-              </div>
-
-              <div class="reporte-grid">
-                ${field('Folio:', folio)}
-                ${field('Fecha:', fecha)}
-                ${field('No. Parte:', numeroParte)}
-                ${field('Cantidad:', cantidad)}
-                ${field('Terciaria:', terciaria)}
-                ${field('Proveedor:', proveedor)}
-                ${field('Commodity:', commodity)}
-                ${field('Defectos:', defectos)}
-                <label class="field-label">Descripción:</label>
-                <div class="description-box">${descripcion}</div>
-              </div>
-
-              <div class="reporte-photos">
-                ${photosSection(fotosOk, 'ok')}
-                ${photosSection(fotosNo, 'no')}
-              </div>
-            </div>
+      <div class="modal-content reporte">
+        <div class="reporte-inner">
+          <div class="reporte-header">
+            <h2 class="modal-heading">
+              <i class="fas fa-folder-open"></i> Datos del Caso
+            </h2>
+            <button class="modal-close">&times;</button>
           </div>
-        `;
+
+          <div class="reporte-grid">
+            ${field('Folio:', folio)}
+            ${field('Fecha:', fecha)}
+            ${field('No. Parte:', numeroParte)}
+            ${field('Cantidad:', cantidad)}
+            ${field('Terciaria:', terciaria)}
+            ${field('Proveedor:', proveedor)}
+            ${field('Commodity:', commodity)}
+            ${field('Defectos:', defectos)}
+            <label class="field-label">Descripción:</label>
+            <div class="description-box">${descripcion}</div>
+          </div>
+
+          <div class="reporte-photos">
+            ${photosSection(fotosOk, 'ok')}
+            ${photosSection(fotosNo, 'no')}
+          </div>
+        </div>
+      </div>
+    `;
     }
 });
