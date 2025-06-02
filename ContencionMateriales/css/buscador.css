@@ -90,20 +90,20 @@ body {
 }
 .search-button {
     flex-shrink: 0;
-    padding: 0.75rem 1.25rem;
+    padding: 0.75rem 1.5rem;
     font-size: 1rem;
-    background: #1c1e21;       /* Fondo azul oscuro */
-    color: #ffffff;            /* Texto blanco */
-    border: 2px solid #ffffff; /* Borde blanco para resaltarlo */
+    background: transparent;          /* Fondo transparente */
+    color: #ffffff;                   /* Texto blanco */
+    border: 2px solid #ffffff;        /* Borde blanco fino */
     border-radius: 999px;
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 .search-button:hover {
-    background: #ffffff;       /* Al pasar por encima, fondo blanco */
-    color: #1c1e21;            /* Texto cambia a azul oscuro */
-    border-color: #1c1e21;     /* Borde azul oscuro */
+    background: #ffffff;
+    color: #2ea043;                   /* Usa el mismo verde del panel */
+    border-color: #2ea043;
 }
 
 /* ————— Contenedor de resultados ————— */
