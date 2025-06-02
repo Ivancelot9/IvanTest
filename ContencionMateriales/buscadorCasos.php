@@ -38,12 +38,20 @@
             <button type="submit" class="search-button">Buscar</button>
         </form>
 
-        <!-- ← Aquí se inyecta el botón con el folio; debe estar dentro del panel -->
+        <!-- Aquí se inyecta el botón con el folio; debe estar dentro del panel -->
         <div id="case-container"></div>
     </div>
 
     <!-- Modal overlay (vacío al inicio; el JS inyecta su contenido) -->
     <div id="case-modal" class="modal-overlay"></div>
+</div>
+
+<!-- Lightbox estático para imágenes ampliadas -->
+<div id="modal-image" class="modal-overlay">
+    <div class="lightbox-content">
+        <button class="close-img">&times;</button>
+        <img src="" alt="Foto ampliada">
+    </div>
 </div>
 </body>
 </html>

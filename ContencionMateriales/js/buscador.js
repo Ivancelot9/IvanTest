@@ -7,12 +7,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseOk = 'https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/ok/';
     const baseNo = 'https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/no/';
 
+    // Referencias al lightbox estático que añadimos en el HTML
+    const lb      = document.getElementById('modal-image');
+    const lbImg   = lb.querySelector('img');
+    const lbClose = lb.querySelector('.close-img');
+
+    // Asegurarnos de que el lightbox esté oculto al iniciar
+    lb.style.display = 'none';
+
     form.addEventListener('submit', async e => {
         e.preventDefault();
         const folio = document.getElementById('case-number').value.trim();
         if (!folio) return;
 
-        // Mostramos un “Cargando…” mientras esperamos la respuesta
+        // Mostramos “Cargando…” mientras llega la respuesta
         container.innerHTML = '<p style="text-align:center;">Cargando…</p>';
 
         try {
@@ -23,10 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(data.error || 'Caso no encontrado');
             }
 
-            // Inyecta un botón DENTRO del panel (en #case-container)
+            // Inyectamos un botón DENTRO del panel
             container.innerHTML = `<button id="report-btn">${folio}</button>`;
 
-            // Ahora sí agregamos el listener al botón “report-btn”
+            // Agregamos el listener al botón “report-btn”
             document
                 .getElementById('report-btn')
                 .addEventListener('click', () => showModal(data));
@@ -39,26 +47,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Función para montar y mostrar el modal
+    // Función para montar y mostrar el modal de datos
     function showModal(c) {
-        // Primero vaciamos cualquier contenido previo (por si acaso)
+        // Limpiamos contenido previo
         modalOverlay.innerHTML = '';
-        // Luego inyectamos el HTML del modal con la función renderModal
+        // Inyectamos el HTML del modal
         modalOverlay.innerHTML = renderModal(c);
         modalOverlay.classList.add('active');
 
-        // Asignamos el listener para cerrar con la X
+        // Listener para cerrar con la X
         modalOverlay
             .querySelector('.modal-close')
             .addEventListener('click', hideModal);
 
-        // Asignamos el listener para cerrar al hacer clic fuera del cuadro
+        // Listener para cerrar clic fuera del contenido
         modalOverlay.addEventListener('click', e => {
             if (e.target === modalOverlay) hideModal();
         });
 
-        // ★ Nuevas líneas: después de inyectar el contenido,
-        // buscamos cada <img> dentro de .photos-grid y le añadimos un evento de clic:
+        // ← Aquí asignamos el listener a cada miniatura INYECTADA:
         modalOverlay.querySelectorAll('.photos-grid img').forEach(img => {
             img.addEventListener('click', openImageFullscreen);
         });
@@ -67,40 +74,31 @@ document.addEventListener('DOMContentLoaded', () => {
     function hideModal() {
         modalOverlay.classList.remove('active');
         modalOverlay.innerHTML = '';
-        // Si hay un lightbox abierto (#modal-image), cerrarlo también:
-        const existingLightbox = document.getElementById('modal-image');
-        if (existingLightbox) existingLightbox.remove();
+        // Si el lightbox está abierto, ocultarlo (no eliminarlo):
+        lb.style.display = 'none';
     }
 
-    // ★ Nueva función: abre la imagen en pantalla completa (lightbox)
+    // Abre la imagen en pantalla completa reutilizando el lightbox estático
     function openImageFullscreen(e) {
-        const src = e.currentTarget.src; // URL de la imagen clicada
-        // Creamos el contenedor overlay
-        const lightbox = document.createElement('div');
-        lightbox.id = 'modal-image';                // coincide con el CSS que ya tienes
-        lightbox.className = 'modal-overlay';       // reutiliza la clase de overlay
-        lightbox.innerHTML = `
-      <div class="lightbox-content">
-        <button class="close-img">&times;</button>
-        <img src="${src}" alt="Foto ampliada">
-      </div>
-    `;
-        document.body.appendChild(lightbox);
-
-        // Evento para cerrar al hacer clic en la X
-        lightbox.querySelector('.close-img').addEventListener('click', () => {
-            lightbox.remove();
-        });
-
-        // Evento para cerrar al hacer clic fuera de la imagen (en el overlay)
-        lightbox.addEventListener('click', e => {
-            if (e.target === lightbox) {
-                lightbox.remove();
-            }
-        });
+        const src = e.currentTarget.src; // URL de la miniatura clicada
+        // Simplemente actualizamos el <img> del lightbox y lo mostramos:
+        lbImg.src = src;
+        lb.style.display = 'flex';
     }
 
-    // Genera la estructura HTML del modal con los datos devueltos
+    // Listener para cerrar el lightbox al hacer clic en la “X”
+    lbClose.addEventListener('click', () => {
+        lb.style.display = 'none';
+    });
+
+    // Listener para cerrar lightbox al hacer clic fuera de la imagen
+    lb.addEventListener('click', e => {
+        if (e.target === lb) {
+            lb.style.display = 'none';
+        }
+    });
+
+    // Genera la estructura HTML del modal con los datos recibidos
     function renderModal(c) {
         const {
             folio, fecha,
@@ -111,13 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
             fotosNo = []
         } = c;
 
-        // Helper para cada fila de etiqueta + valor
         const field = (label, value) => `
       <label class="field-label">${label}</label>
       <div class="field-value">${value}</div>
     `;
 
-        // Genera la sección de fotos (ok o no)
         const photosSection = (arr, tipo) => {
             const cls   = tipo === 'ok' ? 'ok-section' : 'no-section';
             const icon  = tipo === 'ok'
