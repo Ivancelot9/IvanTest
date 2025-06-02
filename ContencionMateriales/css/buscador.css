@@ -49,7 +49,7 @@ body {
 /* ————— Panel azul “pill” ————— */
 .mobile-panel {
     position: relative;
-    background: var(--blue-primary);
+    background: #2ea043;
     border-radius: 80px;
     padding: 2.5rem 1rem 1rem; /* Ajustamos padding-bottom para espacio interno */
     margin: 1.5rem auto 0;
