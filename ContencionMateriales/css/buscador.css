@@ -100,6 +100,7 @@ body {
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
+
 .search-button:hover {
     background: #ffffff;
     color: #2ea043;                   /* Usa el mismo verde del panel */
@@ -109,6 +110,19 @@ body {
 /* ————— Contenedor de resultados ————— */
 #case-container {
     padding: 0.5rem 0;
+}
+
+/* ——— Keyframes para el pulso al hacer clic en #report-btn ——— */
+@keyframes pulse-report {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.92);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 #report-btn {
     display: block;
@@ -124,6 +138,25 @@ body {
     text-align: center;
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+    /* Añadimos transición para el transform para hover */
+    transition: transform 0.1s ease, background 0.2s ease;
+}
+/* ——— Hover: agrandar ligeramente el botón ——— */
+#report-btn:hover {
+    transform: scale(1.05);
+}
+
+/* ——— Active (al hacer clic): disparar el pulso y cambiar fondo ——— */
+#report-btn:active {
+    animation: pulse-report 0.25s ease-out;
+    background: #f0f0f0; /* Un gris muy claro para indicar “presionado” */
+}
+
+/* ——— Focus-visible (para accesibilidad): outline sutil en caso de tab ——— */
+#report-btn:focus-visible {
+    outline: 2px solid #2ea043; /* Mismo verde del panel */
+    outline-offset: 2px;
 }
 
 /* ————— Modal overlay ————— */
