@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // 1) nuevo canal para estatus manual
     const canalStatus = new BroadcastChannel("canalStatus");
 
-    // 2) listener que actualiza el botón correspondiente
-    canalStatus.addEventListener("message", ({data}) => {
+    // 2) listener que actualiza el botón correspondiente cuando se guarda un estatus manual
+    canalStatus.addEventListener("message", ({ data }) => {
         const { folio, progreso, color } = data;
         // busca el botón que tenga data-folio==folio
         const btn = document.querySelector(`.ver-estatus-btn[data-folio='${folio}']`);
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.style.backgroundColor = color;
         btn.textContent = `${progreso}%`;
         btn.classList.add("ver-estatus-circulo");
-        // (opcional) ajusta textShadow, fontSize, etc. igual que en estatusEditor
+        // (opcional) podrías ajustar aquí textShadow, fontSize, etc.
     });
 
     const filasPorPagina   = 10;
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let   datosReportes    = [];   // todos los pendientes
     let   datosFiltrados   = [];   // filtrados/paginados
 
-    // Exponer para uso en dashboard
+    // Exponer para uso en dashboard u otros scripts
     window.datosReportes = datosReportes;
 
     /* DOM */
@@ -81,16 +81,6 @@ document.addEventListener("DOMContentLoaded", function () {
         (!f || f.trim() === "") ? txt
             : String(txt).replace(new RegExp(`(${f})`, "gi"), `<span class="highlight">$1</span>`);
 
-    function obtenerClaseEstado(p) {
-        switch (parseInt(p)) {
-            case 100: return "green";
-            case  75: return "blue";
-            case  50: return "yellow";
-            case  25: return "red";
-            default:  return "";
-        }
-    }
-
     const formatearFecha = f => {
         const p = f.split(" ")[0].split("-");
         return (p.length === 3) ? `${p[2]}-${p[1]}-${p[0]}` : f;
@@ -116,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.datosReportes = datosReportes;
                 mostrarReportes(1);
 
-                // Calcular nuevos desde última carga
+                // Calcular cuántos nuevos desde la última carga
                 const actuales = datosReportes.map(r => r.FolioReportes);
                 const nuevos   = actuales.filter(folio => !vistos.includes(folio));
 
@@ -146,10 +136,18 @@ document.addEventListener("DOMContentLoaded", function () {
         slice.forEach(rep => {
             const folio = rep.FolioReportes || "S/F";
 
+            // ---------------------------------------------------
+            //  ↓↓↓ Aquí empieza la parte corregida ↓↓↓
+            //
+            //  Antes se calculaba automático o se asumía estatus existente.
+            //  Ahora SOLO mostramos color/porcentaje si el usuario ya guardó
+            //  manualmente una letra válida (G, B, Y o R). En cualquier otro
+            //  caso, el botón sale por defecto "Ver Estatus" sin color.
+            //
             const storageAll = JSON.parse(localStorage.getItem("estatusReportes") || "{}");
             const entry      = storageAll[folio] || {};
 
-            // Solo mostrar círculo si existe progreso Y color manual válido
+            //  Sólo existe círculo si entry.colorManual es una de las letras válidas
             const letrasValidas       = ["G", "B", "Y", "R"];
             const tieneEstatusManual  = letrasValidas.includes(entry.colorManual);
             const prog                = tieneEstatusManual ? entry.progresoManual : null;
@@ -157,10 +155,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 ? { G: "green", B: "blue", Y: "yellow", R: "red" }[entry.colorManual]
                 : null;
 
-            // Construcción del botón
             let btnHTML;
             if (tieneEstatusManual) {
-                // Estilo de círculo con porcentaje
+                // Si ya hay un estatus manual, mostrará el círculo con porcentaje
                 const circleStyle = `
     width:50px;height:50px;border-radius:50%;
     background:${colorCode};color:white;font-weight:bold;
@@ -174,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
            ${prog}% 
        </button>`;
             } else {
-                // Botón por defecto “Ver Estatus”
+                // Si NO hay estatus manual, botón por defecto "Ver Estatus"
                 const defaultStyle = `
     background:white;color:black;border:2px solid black;
     font-weight:bold;padding:4px 10px;margin:auto;`;
@@ -185,8 +182,10 @@ document.addEventListener("DOMContentLoaded", function () {
            Ver Estatus
        </button>`;
             }
+            //  ↑↑↑ Aquí termina la parte corregida ↑↑↑
+            // ---------------------------------------------------
 
-            // Encargados
+            // Encargados (separar supervisor/shift leader para poder filtrar o resaltar)
             let [sup, sl] = (rep.Encargado || "N/A").split("<br>");
             sup = extraerTextoPlano(sup); sl = extraerTextoPlano(sl);
             if (col === "encargado") {
@@ -289,11 +288,11 @@ document.addEventListener("DOMContentLoaded", function () {
         datosReportes.push(rep);
         window.datosReportes = datosReportes;
 
-        // 2. Ordenar por fecha y filtrar/paginar
+        // 2. Ordenar por fecha descendente y refrescar la vista
         datosReportes.sort((a, b) => new Date(b.FechaRegistro) - new Date(a.FechaRegistro));
         filtrarReportes();
 
-        // 3. Animación de entrada
+        // 3. Animación de entrada (solo un efecto visual)
         const first = tablaBody.querySelector("tr");
         if (first) {
             first.classList.add("nueva-fila");
@@ -332,7 +331,7 @@ document.addEventListener("DOMContentLoaded", function () {
         canalFinalizados.addEventListener("message", (event) => {
             const repFin = event.data;
 
-            // Filtro inicial
+            // Filtro inicial: no procesar si es del mismo usuario o ya procesado
             if (!repFin?.folio
                 || repFin.origen === userId
                 || window.foliosFinalizados.has(repFin.folio)
@@ -355,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.moverReporteACompletados(repFin, notify);
             }
 
-            // Si completados está abierta, sólo marcar visto
+            // Si completados está abierta, solo marcarlo como “visto”
             if (vis2 === "reportes-completos") {
                 const keyF  = `foliosContadosCompletos_${userId}`;
                 let foliosC = JSON.parse(localStorage.getItem(keyF) || "[]");
