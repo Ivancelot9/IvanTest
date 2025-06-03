@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 1) nuevo canal para estatus manual
     const canalStatus = new BroadcastChannel("canalStatus");
 
-// 2) listener que actualiza el botón correspondiente
+    // 2) listener que actualiza el botón correspondiente
     canalStatus.addEventListener("message", ({data}) => {
         const { folio, progreso, color } = data;
         // busca el botón que tenga data-folio==folio
@@ -149,40 +149,42 @@ document.addEventListener("DOMContentLoaded", function () {
             const storageAll = JSON.parse(localStorage.getItem("estatusReportes") || "{}");
             const entry      = storageAll[folio] || {};
 
-// Sólo existe círculo si el usuario ya guardó colorManual
-            const esCirculo  = typeof entry.colorManual === "string";
-            const prog       = esCirculo ? entry.progresoManual : null;
-            const colorCode  = esCirculo
+            // Solo mostrar círculo si existe progreso Y color manual válido
+            const letrasValidas       = ["G", "B", "Y", "R"];
+            const tieneEstatusManual  = letrasValidas.includes(entry.colorManual);
+            const prog                = tieneEstatusManual ? entry.progresoManual : null;
+            const colorCode           = tieneEstatusManual
                 ? { G: "green", B: "blue", Y: "yellow", R: "red" }[entry.colorManual]
                 : null;
 
-// Construcción del botón
-            // Tus estilos inline originales
-            const circleStyle = `
+            // Construcción del botón
+            let btnHTML;
+            if (tieneEstatusManual) {
+                // Estilo de círculo con porcentaje
+                const circleStyle = `
     width:50px;height:50px;border-radius:50%;
     background:${colorCode};color:white;font-weight:bold;
     font-size:14px;text-shadow:2px 2px 0 black;
     border:3px solid black;margin:auto;
     display:flex;align-items:center;justify-content:center;`;
-
-            const defaultStyle = `
-    background:white;color:black;border:2px solid black;
-    font-weight:bold;padding:4px 10px;margin:auto;`;
-
-            // Volvemos a usar btnHTML con esos estilos
-            const btnHTML = esCirculo
-                ? `<button
+                btnHTML = `<button
          class="ver-estatus-btn ver-estatus-circulo"
          data-folio="${folio}"
          style="${circleStyle}">
-           ${prog}%
-       </button>`
-                : `<button
+           ${prog}% 
+       </button>`;
+            } else {
+                // Botón por defecto “Ver Estatus”
+                const defaultStyle = `
+    background:white;color:black;border:2px solid black;
+    font-weight:bold;padding:4px 10px;margin:auto;`;
+                btnHTML = `<button
          class="ver-estatus-btn"
          data-folio="${folio}"
          style="${defaultStyle}">
            Ver Estatus
        </button>`;
+            }
 
             // Encargados
             let [sup, sl] = (rep.Encargado || "N/A").split("<br>");
@@ -257,11 +259,11 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarReportes(1);
     }
 
-    prevPageBtn.addEventListener("click", () => { if (paginaActual > 1)
-        mostrarReportes(--paginaActual);
+    prevPageBtn.addEventListener("click", () => {
+        if (paginaActual > 1) mostrarReportes(--paginaActual);
     });
-    nextPageBtn.addEventListener("click", () => { if (paginaActual * filasPorPagina < datosFiltrados.length)
-        mostrarReportes(++paginaActual);
+    nextPageBtn.addEventListener("click", () => {
+        if (paginaActual * filasPorPagina < datosFiltrados.length) mostrarReportes(++paginaActual);
     });
     filterInput.addEventListener("input", filtrarReportes);
     filterButton.addEventListener("click", filtrarReportes);
