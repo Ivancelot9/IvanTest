@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Arreglando Estatus (Buzon Reportes)">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Buzon de Reportes Correcion a la inyencion de reportes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/insertarReporte.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/insertarReporte.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,15 +200,7 @@
       <workItem from="1748614513449" duration="13168000" />
       <workItem from="1748873850294" duration="17620000" />
       <workItem from="1748960505844" duration="5936000" />
-      <workItem from="1749046602541" duration="2763000" />
-    </task>
-    <task id="LOCAL-01509" summary="Historial Reportes del Administrador">
-      <option name="closed" value="true" />
-      <created>1748551017534</created>
-      <option name="number" value="01509" />
-      <option name="presentableId" value="LOCAL-01509" />
-      <option name="project" value="LOCAL" />
-      <updated>1748551017534</updated>
+      <workItem from="1749046602541" duration="3766000" />
     </task>
     <task id="LOCAL-01510" summary="Caso Css Adaptable">
       <option name="closed" value="true" />
@@ -593,7 +586,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748971814414</updated>
     </task>
-    <option name="localTasksCounter" value="1558" />
+    <task id="LOCAL-01558" summary="Buzon de Reportes Correcion a la inyencion de reportes">
+      <option name="closed" value="true" />
+      <created>1749056876007</created>
+      <option name="number" value="01558" />
+      <option name="presentableId" value="LOCAL-01558" />
+      <option name="project" value="LOCAL" />
+      <updated>1749056876008</updated>
+    </task>
+    <option name="localTasksCounter" value="1559" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -645,7 +646,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="historial casos" />
     <MESSAGE value="Diderenciar entre roles" />
     <MESSAGE value="Cambio de Idioma" />
     <MESSAGE value="Modal Fotos" />
@@ -670,7 +670,8 @@
     <MESSAGE value="Caso Css Adaptable" />
     <MESSAGE value="Parte Externa Usuario" />
     <MESSAGE value="Arreglando Estatus (Buzon Reportes)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglando Estatus (Buzon Reportes)" />
+    <MESSAGE value="Buzon de Reportes Correcion a la inyencion de reportes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Buzon de Reportes Correcion a la inyencion de reportes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
