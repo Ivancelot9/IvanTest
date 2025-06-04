@@ -138,6 +138,14 @@ document.addEventListener("DOMContentLoaded", function () {
         slice.forEach(rep => {
             const folio = rep.FolioReportes || "S/F";
 
+            // Escapar la descripción para que las comillas no rompan el atributo HTML
+            const descripcionRaw = rep.Descripcion || "Sin descripción";
+            const descripcionEsc = descripcionRaw
+                .replace(/&/g, "&amp;")
+                .replace(/"/g, "&quot;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+
             // ─────────────────────────────────────────────────────────────────
             //  ↓↓↓ Aquí empieza la lógica CORREGIDA ↓↓↓
             //
@@ -218,8 +226,8 @@ document.addEventListener("DOMContentLoaded", function () {
     <td>${rep.Area || "Sin área"}</td>
     <td class="celda-encargado">${sup}<br>${sl}</td>
    <td>
-  <button class="mostrar-descripcion"
-          data-descripcion="${rep.Descripcion || 'Sin descripción'}"
+   <button class="mostrar-descripcion"
+          data-descripcion="${descripcionEsc}"
           data-folioreportes="${rep.FolioReportes}">
     Mostrar Descripción
   </button>

@@ -7,6 +7,7 @@
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Buzon de Reportes Correcion a la inyencion de reportes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/insertarReporte.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/insertarReporte.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,15 +201,7 @@
       <workItem from="1748614513449" duration="13168000" />
       <workItem from="1748873850294" duration="17620000" />
       <workItem from="1748960505844" duration="5936000" />
-      <workItem from="1749046602541" duration="3766000" />
-    </task>
-    <task id="LOCAL-01510" summary="Caso Css Adaptable">
-      <option name="closed" value="true" />
-      <created>1748551276654</created>
-      <option name="number" value="01510" />
-      <option name="presentableId" value="LOCAL-01510" />
-      <option name="project" value="LOCAL" />
-      <updated>1748551276654</updated>
+      <workItem from="1749046602541" duration="4699000" />
     </task>
     <task id="LOCAL-01511" summary="Caso Css Adaptable">
       <option name="closed" value="true" />
@@ -594,7 +587,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749056876008</updated>
     </task>
-    <option name="localTasksCounter" value="1559" />
+    <task id="LOCAL-01559" summary="Buzon de Reportes Correcion a la inyencion de reportes">
+      <option name="closed" value="true" />
+      <created>1749057847180</created>
+      <option name="number" value="01559" />
+      <option name="presentableId" value="LOCAL-01559" />
+      <option name="project" value="LOCAL" />
+      <updated>1749057847180</updated>
+    </task>
+    <option name="localTasksCounter" value="1560" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
