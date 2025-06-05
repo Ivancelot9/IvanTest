@@ -185,7 +185,7 @@ $stmtUser->close();
                     <!-- No. PARTE + CANTIDAD -->
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="no-parte">No. Parte</label>
+                            <label for="no-parte" title="Agrega el Número de Parte">No. Parte</label>
                             <input type="text"
                                    name="NumeroParte"
                                    id="no-parte"
@@ -193,7 +193,7 @@ $stmtUser->close();
                                     />
                         </div>
                         <div class="form-group">
-                            <label for="cantidad">Cantidad</label>
+                            <label for="cantidad" title="Agrega la cantidad deseada">Cantidad</label>
                             <input
                                     type="number"
                                     name="Cantidad"
@@ -208,7 +208,7 @@ $stmtUser->close();
 
                     <!-- DESCRIPCIÓN -->
                     <div class="form-group">
-                        <label for="descripcion">Descripción</label>
+                        <label for="descripcion" title="Agrega la descripcion del material">Descripción</label>
                         <textarea name="Descripcion"
                                   id="descripcion"
                                   placeholder="Descripción del caso"></textarea>
@@ -217,7 +217,7 @@ $stmtUser->close();
                     <!-- TERCIARIA + PROVEEDOR -->
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="terciaria">Terciaria</label>
+                            <label for="terciaria" title="Agrega el proveedor tercero">Terciaria</label>
                             <select name="IdTerceria" id="terciaria" >
                                 <option value="">Selecciona opción</option>
                                 <!-- PHP carga aquí -->
@@ -229,7 +229,7 @@ $stmtUser->close();
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="proveedor">Proveedor de la Pieza</label>
+                            <label for="proveedor" title="Agrega el nombre del proveedor de la pieza">Proveedor de la Pieza</label>
                             <select name="IdProveedor" id="proveedor" >
                                 <option value="">Selecciona al proveedor de pieza</option>
                                 <!-- PHP carga aquí -->
@@ -244,7 +244,7 @@ $stmtUser->close();
 
                     <!-- COMMODITY -->
                     <div class="form-group">
-                        <label for="commodity">Commodity</label>
+                        <label for="commodity" title="Agrega el Commodity">Commodity</label>
                         <select name="IdCommodity" id="commodity" >
                             <option value="">Selecciona commodity</option>
                             <!-- PHP carga aquí -->
