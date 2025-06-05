@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Buzon de Reportes Correcion a la inyencion de reportes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/dao/insertarReporte.php" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/dao/insertarReporte.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BuzonQuejas/js/tablaReportes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/cambioIdioma.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/cambioIdioma.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,15 +201,8 @@
       <workItem from="1748614513449" duration="13168000" />
       <workItem from="1748873850294" duration="17620000" />
       <workItem from="1748960505844" duration="5936000" />
-      <workItem from="1749046602541" duration="4699000" />
-    </task>
-    <task id="LOCAL-01511" summary="Caso Css Adaptable">
-      <option name="closed" value="true" />
-      <created>1748615886182</created>
-      <option name="number" value="01511" />
-      <option name="presentableId" value="LOCAL-01511" />
-      <option name="project" value="LOCAL" />
-      <updated>1748615886182</updated>
+      <workItem from="1749046602541" duration="7021000" />
+      <workItem from="1749133469229" duration="5245000" />
     </task>
     <task id="LOCAL-01512" summary="Caso Css Adaptable">
       <option name="closed" value="true" />
@@ -595,7 +588,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749057847180</updated>
     </task>
-    <option name="localTasksCounter" value="1560" />
+    <task id="LOCAL-01560" summary="Buzon de Reportes Correcion a la inyencion de reportes">
+      <option name="closed" value="true" />
+      <created>1749058820426</created>
+      <option name="number" value="01560" />
+      <option name="presentableId" value="LOCAL-01560" />
+      <option name="project" value="LOCAL" />
+      <updated>1749058820426</updated>
+    </task>
+    <option name="localTasksCounter" value="1561" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

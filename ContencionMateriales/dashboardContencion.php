@@ -229,9 +229,9 @@ $stmtUser->close();
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="proveedor">Proveedor</label>
+                            <label for="proveedor">Proveedor de la Pieza</label>
                             <select name="IdProveedor" id="proveedor" >
-                                <option value="">Selecciona proveedor</option>
+                                <option value="">Selecciona al proveedor de pieza</option>
                                 <!-- PHP carga aquí -->
                                 <?php while($r = $proveedores->fetch_assoc()): ?>
                                     <option value="<?= $r['IdProveedor'] ?>">
