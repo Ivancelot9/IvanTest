@@ -172,7 +172,7 @@ $stmtUser->close();
                       enctype="multipart/form-data" novalidate>
                     <!-- RESPONSABLE -->
                     <div class="form-group">
-                        <label for="responsable">Responsable</label>
+                        <label for="responsable" title="Agrega el nombre de un responsable">Responsable</label>
                         <input
                                 type="text"
                                 name="Responsable"
