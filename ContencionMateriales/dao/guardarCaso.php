@@ -62,10 +62,11 @@ try {
 
     // 6) Insertar el nuevo caso
     $sql = "
-      INSERT INTO Casos
-        (IdUsuario, NumeroParte, Cantidad, Descripcion, IdTerceria, IdCommodity, IdProveedor, IdDefectos)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+       INSERT INTO Casos
+    (IdUsuario, NumeroParte, Cantidad, Descripcion, IdTerceria, IdCommodity, IdProveedor, IdDefectos, IdEstatus)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     ";
+    $estatus = 1;
     $stmt = $con->prepare($sql);
     if (! $stmt) {
         throw new Exception('Error preparando INSERT Casos: ' . $con->error);
@@ -79,7 +80,8 @@ try {
         $idTerceria,
         $idCommodity,
         $idProveedor,
-        $idDefectos
+        $idDefectos,
+        $estatus
     );
     if (! $stmt->execute()) {
         throw new Exception('Error ejecutando INSERT Casos: ' . $stmt->error);
