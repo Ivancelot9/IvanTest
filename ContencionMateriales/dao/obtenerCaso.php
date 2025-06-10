@@ -1,5 +1,5 @@
 <?php
-// 1) para que PHP vuelque todos los errores:
+// 1) Mostrar errores en desarrollo
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -9,7 +9,7 @@ header('Content-Type: application/json; charset=UTF-8');
 
 include_once 'conexionContencion.php';
 
-// 2) Parámetro folio obligatorio
+// 2) Validar que llegue el parámetro "folio"
 if (!isset($_GET['folio'])) {
     http_response_code(400);
     echo json_encode(['error' => 'Falta el parámetro folio.']);
@@ -19,7 +19,7 @@ $folio = intval($_GET['folio']);
 
 $con = (new LocalConector())->conectar();
 
-// 3) Traer datos del caso usando FolioCaso
+// 3) Obtener datos del caso (incluyendo IdEstatus)
 $stmt = $con->prepare("
     SELECT 
       NumeroParte,
@@ -29,13 +29,14 @@ $stmt = $con->prepare("
       IdProveedor,
       IdCommodity,
       IdDefectos,
+      IdEstatus,
       DATE_FORMAT(FechaRegistro, '%Y-%m-%d') AS FechaRegistro
     FROM Casos
     WHERE FolioCaso = ?
 ");
 if (! $stmt) {
     http_response_code(500);
-    echo json_encode(['error' => 'Error preparando SELECT Casos: '.$con->error]);
+    echo json_encode(['error' => 'Error preparando SELECT Casos: ' . $con->error]);
     exit;
 }
 $stmt->bind_param('i', $folio);
@@ -48,6 +49,7 @@ $stmt->bind_result(
     $idProveedor,
     $idCommodity,
     $idDefectos,
+    $idEstatus,
     $fecha
 );
 if (! $stmt->fetch()) {
@@ -56,14 +58,14 @@ if (! $stmt->fetch()) {
 }
 $stmt->close();
 
-// 4) Helper de lookup para los nombres de catálogos
+// 4) Buscar nombres legibles de catálogos
 function lookup(mysqli $con, string $table, string $idfield, string $namefield, int $id): string {
     $n = '';
     $sql = "SELECT $namefield FROM $table WHERE $idfield = ?";
     $s = $con->prepare($sql);
     if (! $s) {
         http_response_code(500);
-        echo json_encode(['error' => "Error preparando lookup ($table): ".$con->error]);
+        echo json_encode(['error' => "Error preparando lookup ($table): " . $con->error]);
         exit;
     }
     $s->bind_param('i', $id);
@@ -101,7 +103,7 @@ while ($sn->fetch()) {
 }
 $sn->close();
 
-// 7) Devolvemos todo
+// 7) Enviar respuesta JSON con todos los datos
 echo json_encode([
     'folio'       => $folio,
     'fecha'       => $fecha,
@@ -112,6 +114,7 @@ echo json_encode([
     'proveedor'   => $proveedor,
     'commodity'   => $commodity,
     'defectos'    => $defectosN,
+    'estatus'     => $idEstatus, // 👈 Aquí se incluye el ID bruto
     'fotosOk'     => $fotosOk,
     'fotosNo'     => $fotosNo
 ]);

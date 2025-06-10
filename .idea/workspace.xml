@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Buzon de Reportes Correcion a la inyencion de reportes">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Ajustes tabla">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dao/guardarCaso.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dao/guardarCaso.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dao/obtenerCaso.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dao/obtenerCaso.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,15 +205,7 @@
       <workItem from="1749133469229" duration="7858000" />
       <workItem from="1749219697350" duration="7874000" />
       <workItem from="1749478425571" duration="4797000" />
-      <workItem from="1749565709518" duration="1842000" />
-    </task>
-    <task id="LOCAL-01515" summary="Parte Externa Usuario">
-      <option name="closed" value="true" />
-      <created>1748623827721</created>
-      <option name="number" value="01515" />
-      <option name="presentableId" value="LOCAL-01515" />
-      <option name="project" value="LOCAL" />
-      <updated>1748623827721</updated>
+      <workItem from="1749565709518" duration="2707000" />
     </task>
     <task id="LOCAL-01516" summary="Parte Externa Usuario">
       <option name="closed" value="true" />
@@ -597,7 +591,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749151399642</updated>
     </task>
-    <option name="localTasksCounter" value="1564" />
+    <task id="LOCAL-01564" summary="Ajustes tabla">
+      <option name="closed" value="true" />
+      <created>1749578878508</created>
+      <option name="number" value="01564" />
+      <option name="presentableId" value="LOCAL-01564" />
+      <option name="project" value="LOCAL" />
+      <updated>1749578878509</updated>
+    </task>
+    <option name="localTasksCounter" value="1565" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -649,7 +651,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Diderenciar entre roles" />
     <MESSAGE value="Cambio de Idioma" />
     <MESSAGE value="Modal Fotos" />
     <MESSAGE value="Modal Descripcion" />
@@ -674,7 +675,8 @@
     <MESSAGE value="Parte Externa Usuario" />
     <MESSAGE value="Arreglando Estatus (Buzon Reportes)" />
     <MESSAGE value="Buzon de Reportes Correcion a la inyencion de reportes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Buzon de Reportes Correcion a la inyencion de reportes" />
+    <MESSAGE value="Ajustes tabla" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustes tabla" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

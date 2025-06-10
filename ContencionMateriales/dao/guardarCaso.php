@@ -6,12 +6,12 @@ header('Content-Type: application/json; charset=UTF-8');
 include_once 'conexionContencion.php';
 
 try {
-    // 1) Método POST
+    // 1) Validar método POST
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         throw new Exception('Método no permitido');
     }
 
-    // 2) Recuperar tab_id y username de la sesión
+    // 2) Obtener usuario por tab_id desde sesión
     $tab_id = $_GET['tab_id'] ?? '';
     if (
         empty($tab_id) ||
@@ -21,7 +21,7 @@ try {
     }
     $username = $_SESSION['usuariosPorPestana'][$tab_id]['Username'];
 
-    // 2b) Obtener IdUsuario real de la tabla Usuario
+    // 2b) Obtener IdUsuario desde base de datos
     $conUser = (new LocalConector())->conectar();
     $stmtUser = $conUser->prepare("SELECT IdUsuario FROM Usuario WHERE Username = ?");
     if (! $stmtUser) {
@@ -36,7 +36,7 @@ try {
     $stmtUser->close();
     $conUser->close();
 
-    // 3) Validar campos obligatorios
+    // 3) Validar campos requeridos
     $campos = [
         'Responsable','NumeroParte','Cantidad',
         'IdTerceria','IdCommodity','IdProveedor','IdDefectos'
@@ -56,23 +56,21 @@ try {
     $idCommodity  = intval($_POST['IdCommodity']);
     $idProveedor  = intval($_POST['IdProveedor']);
     $idDefectos   = intval($_POST['IdDefectos']);
+    $estatus      = 1; // Valor fijo por defecto
 
-    // 5) Conectar a la BD para insertar el caso
+    // 5) Insertar el nuevo caso en BD
     $con = (new LocalConector())->conectar();
-
-    // 6) Insertar el nuevo caso
     $sql = "
-       INSERT INTO Casos
-    (IdUsuario, NumeroParte, Cantidad, Descripcion, IdTerceria, IdCommodity, IdProveedor, IdDefectos, IdEstatus)
-  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO Casos
+        (IdUsuario, NumeroParte, Cantidad, Descripcion, IdTerceria, IdCommodity, IdProveedor, IdDefectos, IdEstatus)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     ";
-    $estatus = 1;
     $stmt = $con->prepare($sql);
     if (! $stmt) {
         throw new Exception('Error preparando INSERT Casos: ' . $con->error);
     }
     $stmt->bind_param(
-        "isdsiiii",
+        "isdsiiiii",
         $idUsuario,
         $numeroParte,
         $cantidad,
@@ -89,7 +87,7 @@ try {
     $folioCaso = $stmt->insert_id;
     $stmt->close();
 
-    // 7) Preparar carpetas de subida
+    // 6) Preparar carpetas de subida
     $baseDir = __DIR__ . '/uploads';
     $okDir   = "$baseDir/ok";
     $noDir   = "$baseDir/no";
@@ -99,13 +97,9 @@ try {
         }
     }
 
-    // 7b) Validar número máximo de archivos por tipo
-    $numOk = isset($_FILES['fotosOk']['name'])
-        ? count(array_filter($_FILES['fotosOk']['name']))
-        : 0;
-    $numNo = isset($_FILES['fotosNo']['name'])
-        ? count(array_filter($_FILES['fotosNo']['name']))
-        : 0;
+    // 7) Validar cantidad de archivos
+    $numOk = isset($_FILES['fotosOk']['name']) ? count(array_filter($_FILES['fotosOk']['name'])) : 0;
+    $numNo = isset($_FILES['fotosNo']['name']) ? count(array_filter($_FILES['fotosNo']['name'])) : 0;
     if ($numOk > 5) {
         throw new Exception("No puedes subir más de 5 fotos OK.");
     }
@@ -113,19 +107,14 @@ try {
         throw new Exception("No puedes subir más de 5 fotos NO OK.");
     }
 
-    // 8) Función helper para procesar fotos
+    // 8) Función para procesar fotos
     function procesarFotos(array $filesArray, string $tipo, int $folio, $con, string $destDir) {
-        if (
-            empty($filesArray['name']) ||
-            ! is_array($filesArray['name'])
-        ) {
-            return;
-        }
+        if (empty($filesArray['name']) || ! is_array($filesArray['name'])) return;
+
         $count = count($filesArray['name']);
         for ($i = 0; $i < $count; $i++) {
-            if (empty($filesArray['tmp_name'][$i])) {
-                continue;
-            }
+            if (empty($filesArray['tmp_name'][$i])) continue;
+
             $origName = basename($filesArray['name'][$i]);
             $newName  = uniqid() . "_{$origName}";
             $destPath = "$destDir/$newName";
@@ -135,8 +124,8 @@ try {
             }
 
             $ins = $con->prepare("
-              INSERT INTO Fotos (FolioCaso, TipoFoto, Ruta)
-              VALUES (?, ?, ?)
+                INSERT INTO Fotos (FolioCaso, TipoFoto, Ruta)
+                VALUES (?, ?, ?)
             ");
             if (! $ins) {
                 throw new Exception('Error preparando INSERT Fotos: ' . $con->error);
@@ -149,11 +138,11 @@ try {
         }
     }
 
-    // 9) Procesar todas las fotos OK y NO OK
-    procesarFotos($_FILES['fotosOk']  ?? ['name'=>[]], 'ok', $folioCaso, $con, $okDir);
-    procesarFotos($_FILES['fotosNo']  ?? ['name'=>[]], 'no', $folioCaso, $con, $noDir);
+    // 9) Procesar fotos OK y NO OK
+    procesarFotos($_FILES['fotosOk'] ?? ['name'=>[]], 'ok', $folioCaso, $con, $okDir);
+    procesarFotos($_FILES['fotosNo'] ?? ['name'=>[]], 'no', $folioCaso, $con, $noDir);
 
-    // 10) Responder éxito
+    // 10) Devolver respuesta exitosa
     echo json_encode([
         'status'  => 'success',
         'message' => "Caso #{$folioCaso} guardado correctamente.",
@@ -163,7 +152,7 @@ try {
     exit;
 
 } catch (Exception $e) {
-    // En caso de error
+    // Manejo de errores
     echo json_encode([
         'status'  => 'error',
         'message' => $e->getMessage()
