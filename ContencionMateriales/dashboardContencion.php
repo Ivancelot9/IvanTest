@@ -387,6 +387,7 @@ $stmtUser->close();
             <tr>
                 <th>Folio</th>
                 <th>Fecha Registro</th>
+                <th>Estatus</th> <!-- 👈 NUEVO -->
                 <th>Descripción</th>
             </tr>
             </thead>
