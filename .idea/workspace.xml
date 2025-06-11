@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Ajustes Estatus">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/validacionesCasos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/validacionesCasos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -205,15 +204,7 @@
       <workItem from="1749219697350" duration="7874000" />
       <workItem from="1749478425571" duration="4797000" />
       <workItem from="1749565709518" duration="3857000" />
-      <workItem from="1749651368375" duration="8186000" />
-    </task>
-    <task id="LOCAL-01524" summary="Parte Externa Usuario">
-      <option name="closed" value="true" />
-      <created>1748874861471</created>
-      <option name="number" value="01524" />
-      <option name="presentableId" value="LOCAL-01524" />
-      <option name="project" value="LOCAL" />
-      <updated>1748874861471</updated>
+      <workItem from="1749651368375" duration="8414000" />
     </task>
     <task id="LOCAL-01525" summary="Parte Externa Usuario">
       <option name="closed" value="true" />
@@ -599,7 +590,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749663109886</updated>
     </task>
-    <option name="localTasksCounter" value="1573" />
+    <task id="LOCAL-01573" summary="Ajustes Estatus">
+      <option name="closed" value="true" />
+      <created>1749664553191</created>
+      <option name="number" value="01573" />
+      <option name="presentableId" value="LOCAL-01573" />
+      <option name="project" value="LOCAL" />
+      <updated>1749664553191</updated>
+    </task>
+    <option name="localTasksCounter" value="1574" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

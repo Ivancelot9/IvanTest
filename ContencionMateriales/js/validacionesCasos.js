@@ -1,12 +1,12 @@
 // js/validacionesCasos.js
 document.addEventListener('DOMContentLoaded', () => {
-    const username    = document.body.dataset.username;
-    const canalLocal  = new BroadcastChannel(`casosChannel_${username}`);
-    const canalGlobal = new BroadcastChannel('canal-casos');
-    const btnMisCasos = document.getElementById('btn-mis-casos');
-    const badgeLocal  = btnMisCasos.querySelector('.badge-count');
-    const storageKey  = `newCasesCount_${username}`;
-    let contadorLocal = parseInt(localStorage.getItem(storageKey) || '0', 10);
+    const username       = document.body.dataset.username;
+    const canalLocal     = new BroadcastChannel(`casosChannel_${username}`);
+    const canalGlobal    = new BroadcastChannel('canal-casos');
+    const btnMisCasos    = document.getElementById('btn-mis-casos');
+    const badgeLocal     = btnMisCasos.querySelector('.badge-count');
+    const storageKey     = `newCasesCount_${username}`;
+    let contadorLocal    = parseInt(localStorage.getItem(storageKey) || '0', 10);
 
     actualizarBadgeLocal(contadorLocal);
 
@@ -22,14 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
         contadorLocal = 0;
         localStorage.setItem(storageKey, '0');
         actualizarBadgeLocal(0);
-        // mostrar sección #historial...
+        // Aquí muestras la sección #historial
     });
 
     const form = document.querySelector('form.data-form');
     form.addEventListener('submit', async e => {
         e.preventDefault();
 
-        // ...tus validaciones previas...
+        // … (tus validaciones previas) …
 
         Swal.fire({
             title: 'Guardando caso…',
@@ -51,8 +51,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Notificar nuevos casos
-            canalLocal.postMessage(json);
-            canalGlobal.postMessage(json);
+            canalLocal.postMessage({ type: 'new-case', folio: json.folio });
+            canalGlobal.postMessage({
+                type:        'new-case',
+                folio:       json.folio,
+                fecha:       json.fecha,
+                estatus:     json.estatus,      // “En Proceso”
+                responsable: json.responsable,  // tu texto
+                terciaria:   json.terciaria,    // tu texto
+                from:        username
+            });
 
             // Actualizar badge
             contadorLocal++;
@@ -67,16 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const tbody = document.querySelector('#historial .cases-table tbody');
             if (tbody) {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `
-                  <td>${json.folio}</td>
-                  <td>${json.fecha}</td>
-                  <td>${json.estatus}</td>
-                  <td>${json.responsable}</td>
-                  <td>${json.terciaria}</td>
-                  <td>
-                    <button class="show-desc">Mostrar descripción</button>
-                  </td>
-                `;
+                tr.innerHTML =
+                    `<td>${data.folio}</td><td>${data.fecha}</td>` +
+                    `<td>${data.estatus}</td>` +         // esto ya viene
+                    `<td>${data.responsable}</td>` +     // esto será undefined sin el paso 1
+                    `<td>${data.terciaria}</td>` +       // idem
+                    `<td><button class="show-desc">Mostrar descripción</button></td>`;
                 tbody.prepend(tr);
                 if (window.historialPaginador) {
                     window.historialPaginador.addRow(tr);
