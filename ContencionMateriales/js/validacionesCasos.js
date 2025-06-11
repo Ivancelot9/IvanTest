@@ -53,10 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Notificar nuevos casos
             canalLocal.postMessage({ type: 'new-case', folio: json.folio });
             canalGlobal.postMessage({
-                type:  'new-case',
-                folio: json.folio,
-                fecha: json.fecha,
-                from:  username
+                type:        'new-case',
+                folio:       json.folio,
+                fecha:       json.fecha,
+                estatus:     json.estatus,      // “En Proceso”
+                responsable: json.responsable,  // tu texto
+                terciaria:   json.terciaria,    // tu texto
+                from:        username
             });
 
             // Actualizar badge
@@ -73,11 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (tbody) {
                 const tr = document.createElement('tr');
                 tr.innerHTML =
-                    `<td>${json.folio}</td>` +
-                    `<td>${json.fecha}</td>` +
-                    `<td>${json.estatus}</td>` +             // ← Muestra el texto real
-                    `<td>${json.responsable}</td>` +
-                    `<td>${json.terciaria}</td>` +
+                    `<td>${data.folio}</td><td>${data.fecha}</td>` +
+                    `<td>${data.estatus}</td>` +         // esto ya viene
+                    `<td>${data.responsable}</td>` +     // esto será undefined sin el paso 1
+                    `<td>${data.terciaria}</td>` +       // idem
                     `<td><button class="show-desc">Mostrar descripción</button></td>`;
                 tbody.prepend(tr);
                 if (window.historialPaginador) {
