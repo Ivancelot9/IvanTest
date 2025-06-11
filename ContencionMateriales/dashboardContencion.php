@@ -394,14 +394,15 @@ $stmtUser->close();
             <?php
             // Ahora la consulta incluye IdEstatus:
             $rs = $con->prepare("
-            SELECT 
-                FolioCaso                     AS folio,
-                DATE_FORMAT(FechaRegistro, '%Y-%m-%d') AS fecha,
-                IdEstatus                     AS estatus,
-                Descripcion                   AS descripcion
-            FROM Casos
-            WHERE IdUsuario = ?
-            ORDER BY FolioCaso DESC
+           SELECT 
+        c.FolioCaso                     AS folio,
+        DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
+        e.NombreEstatus                 AS estatus,    -- ahora el texto
+        c.Descripcion                   AS descripcion
+    FROM Casos c
+    JOIN Estatus e ON e.IdEstatus = c.IdEstatus
+    WHERE c.IdUsuario = ?
+    ORDER BY c.FolioCaso DESC
         ");
             $rs->bind_param("i", $idUsuario);
             $rs->execute();
@@ -468,15 +469,16 @@ $stmtUser->close();
             // Ahora la consulta también trae los campos nuevos:
             $todos = $con->prepare("
             SELECT 
-                c.FolioCaso        AS folio,
-                DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
-                c.IdEstatus        AS estatus,
-                c.Responsable      AS responsable,
-                t.NombreTerceria   AS terciaria,
-                c.Descripcion      AS descripcion
-            FROM Casos c
-            JOIN Terceria t ON t.IdTerceria = c.IdTerceria
-            ORDER BY c.FolioCaso DESC
+        c.FolioCaso        AS folio,
+        DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
+        e.NombreEstatus    AS estatus,      -- texto legible
+        c.Responsable      AS responsable,
+        t.NombreTerceria   AS terciaria,
+        c.Descripcion      AS descripcion
+    FROM Casos c
+    JOIN Estatus e   ON e.IdEstatus   = c.IdEstatus
+    JOIN Terceria t  ON t.IdTerceria  = c.IdTerceria
+    ORDER BY c.FolioCaso DESC
         ");
             $todos->execute();
             $result = $todos->get_result();
