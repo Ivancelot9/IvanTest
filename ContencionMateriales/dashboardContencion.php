@@ -386,23 +386,22 @@ $stmtUser->close();
             <tr>
                 <th>Folio</th>
                 <th>Fecha Registro</th>
-                <th>Estatus</th>       <!-- ← Ya está -->
-                <th>Descripción</th>
+                <th>Descripción</th>    <!-- movido -->
+                <th>Estatus</th>        <!-- al final -->
             </tr>
             </thead>
             <tbody>
             <?php
-            // Ahora la consulta incluye IdEstatus:
             $rs = $con->prepare("
-           SELECT 
-        c.FolioCaso                     AS folio,
-        DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
-        e.NombreEstatus                 AS estatus,    -- ahora el texto
-        c.Descripcion                   AS descripcion
-    FROM Casos c
-    JOIN Estatus e ON e.IdEstatus = c.IdEstatus
-    WHERE c.IdUsuario = ?
-    ORDER BY c.FolioCaso DESC
+            SELECT 
+                c.FolioCaso                     AS folio,
+                DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
+                e.NombreEstatus                 AS estatus,
+                c.Descripcion                   AS descripcion
+            FROM Casos c
+            JOIN Estatus e ON e.IdEstatus = c.IdEstatus
+            WHERE c.IdUsuario = ?
+            ORDER BY c.FolioCaso DESC
         ");
             $rs->bind_param("i", $idUsuario);
             $rs->execute();
@@ -412,13 +411,13 @@ $stmtUser->close();
                 <tr>
                     <td><?= htmlspecialchars($row['folio']) ?></td>
                     <td><?= htmlspecialchars($row['fecha']) ?></td>
-                    <td><?= htmlspecialchars($row['estatus']) ?></td>  <!-- ← Aquí el valor -->
                     <td>
                         <button class="show-desc"
                                 data-folio="<?= htmlspecialchars($row['folio']) ?>">
                             Mostrar descripción
                         </button>
                     </td>
+                    <td><?= htmlspecialchars($row['estatus']) ?></td>
                 </tr>
             <?php
             endwhile;
@@ -458,44 +457,43 @@ $stmtUser->close();
             <tr>
                 <th>Folio</th>
                 <th>Fecha Registro</th>
-                <th>Estatus</th>       <!-- ← Agregado -->
-                <th>Responsable</th>   <!-- ← Agregado -->
-                <th>Terciaria</th>     <!-- ← Agregado -->
-                <th>Descripción</th>
+                <th>Responsable</th>   <!-- movido -->
+                <th>Terciaria</th>     <!-- movido -->
+                <th>Descripción</th>   <!-- movido -->
+                <th>Estatus</th>       <!-- al final -->
             </tr>
             </thead>
             <tbody>
             <?php
-            // Ahora la consulta también trae los campos nuevos:
             $todos = $con->prepare("
             SELECT 
-        c.FolioCaso        AS folio,
-        DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
-        e.NombreEstatus    AS estatus,      -- texto legible
-        c.Responsable      AS responsable,
-        t.NombreTerceria   AS terciaria,
-        c.Descripcion      AS descripcion
-    FROM Casos c
-    JOIN Estatus e   ON e.IdEstatus   = c.IdEstatus
-    JOIN Terceria t  ON t.IdTerceria  = c.IdTerceria
-    ORDER BY c.FolioCaso DESC
+                c.FolioCaso        AS folio,
+                DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
+                c.Responsable      AS responsable,
+                t.NombreTerceria   AS terciaria,
+                c.Descripcion      AS descripcion,
+                e.NombreEstatus    AS estatus
+            FROM Casos c
+            JOIN Terceria t  ON t.IdTerceria  = c.IdTerceria
+            JOIN Estatus e   ON e.IdEstatus   = c.IdEstatus
+            ORDER BY c.FolioCaso DESC
         ");
             $todos->execute();
             $result = $todos->get_result();
             while ($row = $result->fetch_assoc()):
                 ?>
                 <tr>
-                    <td><?= htmlspecialchars($row['folio']) ?></td>
-                    <td><?= htmlspecialchars($row['fecha']) ?></td>
-                    <td><?= htmlspecialchars($row['estatus']) ?></td>
-                    <td><?= htmlspecialchars($row['responsable']) ?></td>
-                    <td><?= htmlspecialchars($row['terciaria']) ?></td>
+                    <td><?= htmlspecialchars($row['folio'])      ?></td>
+                    <td><?= htmlspecialchars($row['fecha'])      ?></td>
+                    <td><?= htmlspecialchars($row['responsable'])?></td>
+                    <td><?= htmlspecialchars($row['terciaria'])  ?></td>
                     <td>
                         <button class="show-desc"
                                 data-folio="<?= htmlspecialchars($row['folio']) ?>">
                             Mostrar descripción
                         </button>
                     </td>
+                    <td><?= htmlspecialchars($row['estatus'])    ?></td>
                 </tr>
             <?php endwhile;
             $todos->close();
