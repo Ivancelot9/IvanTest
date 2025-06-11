@@ -21,16 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem(storageKeyA, contadorAdmin);
             actualizarBadgeAdmin(contadorAdmin);
 
-            // Insertar en tabla #historial-casos
+            // Insertar en #historial-casos (6 columnas)
             const tbody = document.querySelector('#historial-casos .cases-table tbody');
             if (tbody && data.folio && data.fecha) {
                 const tr = document.createElement('tr');
-                tr.innerHTML =  `<td>${data.folio}</td>` +
+                tr.innerHTML =
+                    `<td>${data.folio}</td>` +
                     `<td>${data.fecha}</td>` +
-                    `<td>${data.estatus}</td>` +           // ← ahora el texto
+                    `<td>${data.estatus}</td>` +
                     `<td>${data.responsable}</td>` +
                     `<td>${data.terciaria}</td>` +
-                    `<td><button class="show-desc">Mostrar descripción</button></td>`; // Descripción
+                    `<td><button class="show-desc" data-folio="${data.folio}">Mostrar descripción</button></td>`;
                 tbody.prepend(tr);
                 if (window.historialPaginador) window.historialPaginador.addRow(tr);
             }

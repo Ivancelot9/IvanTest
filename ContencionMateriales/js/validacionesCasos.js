@@ -76,19 +76,18 @@ document.addEventListener('DOMContentLoaded', () => {
             form.reset();
             document.getElementById('evidencia-preview').innerHTML = '';
 
-            // Insertar fila nueva en "Mis Casos"
+            // … tras: const json = await resp.json();
+            const { folio, fecha, estatus } = json;
+
+// Insertar fila nueva en "Mis Casos" (solo 4 columnas)
             const tbody = document.querySelector('#historial .cases-table tbody');
             if (tbody) {
                 const tr = document.createElement('tr');
-                // justo después de: const json = await resp.json();
-                const { folio, fecha, estatus, responsable, terciaria } = json;
-
                 tr.innerHTML =
-                    `<td>${folio}</td><td>${fecha}</td>` +
+                    `<td>${folio}</td>` +
+                    `<td>${fecha}</td>` +
                     `<td>${estatus}</td>` +
-                    `<td>${responsable}</td>` +
-                    `<td>${terciaria}</td>` +
-                    `<td><button class="show-desc">Mostrar descripción</button></td>`;
+                    `<td><button class="show-desc" data-folio="${folio}">Mostrar descripción</button></td>`;
                 tbody.prepend(tr);
                 if (window.historialPaginador) {
                     window.historialPaginador.addRow(tr);
