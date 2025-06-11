@@ -3,8 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const username       = document.body.dataset.username;
     const canalLocal     = new BroadcastChannel(`casosChannel_${username}`);
     const canalGlobal    = new BroadcastChannel('canal-casos');
-    const btnMisCasos    = document.getElementById('btn-mis-casos');
-    const badgeLocal     = btnMisCasos.querySelector('.badge-count');
+    const btnMisCasos = document.getElementById('btn-mis-casos');
+    let badgeLocal = null;
+    if (btnMisCasos) {
+        badgeLocal = btnMisCasos.querySelector('.badge-count');
+    } else {
+        console.warn('⚠️ No se encontró #btn-mis-casos en el DOM');
+    }
     const storageKey     = `newCasesCount_${username}`;
     let contadorLocal    = parseInt(localStorage.getItem(storageKey) || '0', 10);
 

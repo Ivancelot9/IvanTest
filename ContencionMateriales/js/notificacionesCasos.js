@@ -3,7 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const username     = document.body.dataset.username;
     const canalGlobal  = new BroadcastChannel('canal-casos');
     const btnHistorial = document.getElementById('btn-historial-casos');
-    const badgeAdmin   = btnHistorial.querySelector('.badge-count');
+    let badgeAdmin = null;
+    if (btnHistorial) {
+        badgeAdmin = btnHistorial.querySelector('.badge-count');
+    } else {
+        console.warn('⚠️ No se encontró #btn-historial-casos en el DOM');
+    }
     const storageKeyA  = `adminNewCases_${username}`;
     let contadorAdmin  = parseInt(localStorage.getItem(storageKeyA) || '0', 10);
 
