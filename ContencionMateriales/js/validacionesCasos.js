@@ -79,23 +79,19 @@ document.addEventListener('DOMContentLoaded', () => {
             // … tras: const json = await resp.json();
             const { folio, fecha, estatus } = json;
 
-// Insertar fila nueva en "Mis Casos" (Folio | Fecha | Descripción | Estatus)
+// Insertar fila nueva en "Mis Casos" (solo 4 columnas)
             const tbody = document.querySelector('#historial .cases-table tbody');
             if (tbody) {
                 const tr = document.createElement('tr');
                 tr.innerHTML =
                     `<td>${folio}</td>` +
                     `<td>${fecha}</td>` +
-                    // ← descripción (el botón) en la 3ª columna
-                    `<td>
-            <button class="show-desc" data-folio="${folio}">
-              Mostrar descripción
-            </button>
-         </td>` +
-                    // ← estatus en la 4ª columna
-                    `<td>${estatus}</td>`;
+                    `<td>${estatus}</td>` +
+                    `<td><button class="show-desc" data-folio="${folio}">Mostrar descripción</button></td>`;
                 tbody.prepend(tr);
-                if (window.historialPaginador) window.historialPaginador.addRow(tr);
+                if (window.historialPaginador) {
+                    window.historialPaginador.addRow(tr);
+                }
             }
 
             await Swal.fire('¡Caso guardado!', json.message, 'success');
