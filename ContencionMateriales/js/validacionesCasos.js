@@ -73,11 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (tbody) {
                 const tr = document.createElement('tr');
                 tr.innerHTML =
-                    `<td>${json.folio}</td>` +                          // Folio
-                    `<td>${json.fecha}</td>` +                          // Fecha
-                    `<td>1</td>` +                                      // Estatus por defecto
-                    `<td><button class="show-desc">Mostrar descripción</button></td>`; // Descripción
-
+                    `<td>${json.folio}</td>` +
+                    `<td>${json.fecha}</td>` +
+                    `<td>${json.estatus}</td>` +             // ← Muestra el texto real
+                    `<td>${json.responsable}</td>` +
+                    `<td>${json.terciaria}</td>` +
+                    `<td><button class="show-desc">Mostrar descripción</button></td>`;
                 tbody.prepend(tr);
                 if (window.historialPaginador) {
                     window.historialPaginador.addRow(tr);

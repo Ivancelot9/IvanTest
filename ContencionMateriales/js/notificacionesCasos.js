@@ -20,11 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const tbody = document.querySelector('#historial-casos .cases-table tbody');
             if (tbody && data.folio && data.fecha) {
                 const tr = document.createElement('tr');
-                tr.innerHTML =  `<td>${data.folio}</td>` +     // Folio
-                    `<td>${data.fecha}</td>` +     // Fecha
-                    `<td>1</td>` +                 // Estatus
-                    `<td></td>` +                  // Responsable
-                    `<td></td>` +                  // Terciaria
+                tr.innerHTML =  `<td>${data.folio}</td>` +
+                    `<td>${data.fecha}</td>` +
+                    `<td>${data.estatus}</td>` +           // ← ahora el texto
+                    `<td>${data.responsable}</td>` +
+                    `<td>${data.terciaria}</td>` +
                     `<td><button class="show-desc">Mostrar descripción</button></td>`; // Descripción
                 tbody.prepend(tr);
                 if (window.historialPaginador) window.historialPaginador.addRow(tr);

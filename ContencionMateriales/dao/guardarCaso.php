@@ -2,7 +2,6 @@
 session_start();
 header('Content-Type: application/json; charset=UTF-8');
 
-// Incluimos la clase de conexión
 include_once 'conexionContencion.php';
 
 try {
@@ -48,7 +47,7 @@ try {
     }
 
     // 4) Recoger datos del formulario
-    $responsable  = trim($_POST['Responsable']);           // ← Nuevo
+    $responsable  = trim($_POST['Responsable']);
     $numeroParte  = trim($_POST['NumeroParte']);
     $cantidad     = floatval(str_replace(',', '.', $_POST['Cantidad']));
     $descripcion  = trim($_POST['Descripcion'] ?? '');
@@ -58,7 +57,7 @@ try {
     $idDefectos   = intval($_POST['IdDefectos']);
     $estatus      = 1; // Valor fijo por defecto
 
-    // 5) Insertar el nuevo caso en BD, ahora con Responsable
+    // 5) Insertar el nuevo caso en BD
     $con = (new LocalConector())->conectar();
     $sql = "
         INSERT INTO Casos
@@ -82,7 +81,7 @@ try {
         $idProveedor,
         $idDefectos,
         $estatus,
-        $responsable   // ← Nuevo
+        $responsable
     );
     if (! $stmt->execute()) {
         throw new Exception('Error ejecutando INSERT Casos: ' . $stmt->error);
@@ -101,8 +100,12 @@ try {
     }
 
     // 7) Validar cantidad de archivos
-    $numOk = isset($_FILES['fotosOk']['name']) ? count(array_filter($_FILES['fotosOk']['name'])) : 0;
-    $numNo = isset($_FILES['fotosNo']['name']) ? count(array_filter($_FILES['fotosNo']['name'])) : 0;
+    $numOk = isset($_FILES['fotosOk']['name'])
+        ? count(array_filter($_FILES['fotosOk']['name']))
+        : 0;
+    $numNo = isset($_FILES['fotosNo']['name'])
+        ? count(array_filter($_FILES['fotosNo']['name']))
+        : 0;
     if ($numOk > 5) {
         throw new Exception("No puedes subir más de 5 fotos OK.");
     }
@@ -110,22 +113,18 @@ try {
         throw new Exception("No puedes subir más de 5 fotos NO OK.");
     }
 
-    // 8) Función para procesar fotos
+    // 8) Función helper para procesar fotos
     function procesarFotos(array $filesArray, string $tipo, int $folio, $con, string $destDir) {
         if (empty($filesArray['name']) || ! is_array($filesArray['name'])) return;
-
         $count = count($filesArray['name']);
         for ($i = 0; $i < $count; $i++) {
             if (empty($filesArray['tmp_name'][$i])) continue;
-
             $origName = basename($filesArray['name'][$i]);
             $newName  = uniqid() . "_{$origName}";
             $destPath = "$destDir/$newName";
-
             if (! move_uploaded_file($filesArray['tmp_name'][$i], $destPath)) {
                 throw new Exception("No se pudo mover foto ($tipo): $origName");
             }
-
             $ins = $con->prepare("
                 INSERT INTO Fotos (FolioCaso, TipoFoto, Ruta)
                 VALUES (?, ?, ?)
@@ -141,21 +140,37 @@ try {
         }
     }
 
-    // 9) Procesar fotos OK y NO OK
+    // 9) Procesar todas las fotos OK y NO OK
     procesarFotos($_FILES['fotosOk']  ?? ['name'=>[]], 'ok', $folioCaso, $con, $okDir);
     procesarFotos($_FILES['fotosNo']  ?? ['name'=>[]], 'no', $folioCaso, $con, $noDir);
 
-    // 10) Devolver respuesta exitosa
+    // 10) Obtener texto de Estatus y nombre de Terciaria para respuesta
+    function lookup(mysqli $c, string $table, string $idField, string $nameField, int $id) {
+        $sql = "SELECT $nameField FROM $table WHERE $idField = ?";
+        $st = $c->prepare($sql);
+        $st->bind_param("i", $id);
+        $st->execute();
+        $st->bind_result($n);
+        $st->fetch();
+        $st->close();
+        return $n;
+    }
+    $estatusText     = lookup($con, 'Estatus',  'IdEstatus',   'NombreEstatus',   $estatus);
+    $terciariaNombre = lookup($con, 'Terceria', 'IdTerceria',  'NombreTerceria',  $idTerceria);
+
+    // 11) Devolver JSON con todos los campos
     echo json_encode([
-        'status'  => 'success',
-        'message' => "Caso #{$folioCaso} guardado correctamente.",
-        'folio'   => $folioCaso,
-        'fecha'   => date('Y-m-d')
+        'status'      => 'success',
+        'message'     => "Caso #{$folioCaso} guardado correctamente.",
+        'folio'       => $folioCaso,
+        'fecha'       => date('Y-m-d'),
+        'estatus'     => $estatusText,
+        'responsable' => $responsable,
+        'terciaria'   => $terciariaNombre
     ]);
     exit;
 
 } catch (Exception $e) {
-    // Manejo de errores
     echo json_encode([
         'status'  => 'error',
         'message' => $e->getMessage()
