@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Ajustes Estatus">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/notificacionesCasos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/notificacionesCasos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/validacionesCasos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/validacionesCasos.js" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Ajustes Estatus" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -206,15 +202,7 @@
       <workItem from="1749219697350" duration="7874000" />
       <workItem from="1749478425571" duration="4797000" />
       <workItem from="1749565709518" duration="3857000" />
-      <workItem from="1749651368375" duration="10499000" />
-    </task>
-    <task id="LOCAL-01526" summary="Parte Externa Usuario">
-      <option name="closed" value="true" />
-      <created>1748875338173</created>
-      <option name="number" value="01526" />
-      <option name="presentableId" value="LOCAL-01526" />
-      <option name="project" value="LOCAL" />
-      <updated>1748875338173</updated>
+      <workItem from="1749651368375" duration="10683000" />
     </task>
     <task id="LOCAL-01527" summary="Parte Externa Usuario">
       <option name="closed" value="true" />
@@ -600,7 +588,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749664776077</updated>
     </task>
-    <option name="localTasksCounter" value="1575" />
+    <task id="LOCAL-01575" summary="Ajustes Estatus">
+      <option name="closed" value="true" />
+      <created>1749667796277</created>
+      <option name="number" value="01575" />
+      <option name="presentableId" value="LOCAL-01575" />
+      <option name="project" value="LOCAL" />
+      <updated>1749667796277</updated>
+    </task>
+    <option name="localTasksCounter" value="1576" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
