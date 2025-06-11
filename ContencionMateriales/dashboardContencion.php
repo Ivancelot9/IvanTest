@@ -368,7 +368,6 @@ $stmtUser->close();
     <section id="historial" class="main-section" style="display: none;">
         <h1><strong>Mis Casos</strong></h1>
 
-
         <!-- 🔎 Controles de búsqueda -->
         <div class="table-controls">
             <div class="filter-container">
@@ -387,25 +386,23 @@ $stmtUser->close();
             <tr>
                 <th>Folio</th>
                 <th>Fecha Registro</th>
-                <th>Estatus</th> <!-- 👈 NUEVO -->
+                <th>Estatus</th>       <!-- ← Ya está -->
                 <th>Descripción</th>
             </tr>
             </thead>
             <tbody>
             <?php
-            // ————————————————
-            // 2) Trae todos los casos del usuario
-            // ————————————————
-
-   $rs = $con->prepare("
-  SELECT 
-    FolioCaso    AS folio,
-    DATE_FORMAT(FechaRegistro, '%Y-%m-%d') AS fecha,
-    Descripcion  AS descripcion
-  FROM Casos
-  WHERE IdUsuario = ?
-  ORDER BY FolioCaso DESC
-");
+            // Ahora la consulta incluye IdEstatus:
+            $rs = $con->prepare("
+            SELECT 
+                FolioCaso                     AS folio,
+                DATE_FORMAT(FechaRegistro, '%Y-%m-%d') AS fecha,
+                IdEstatus                     AS estatus,
+                Descripcion                   AS descripcion
+            FROM Casos
+            WHERE IdUsuario = ?
+            ORDER BY FolioCaso DESC
+        ");
             $rs->bind_param("i", $idUsuario);
             $rs->execute();
             $result = $rs->get_result();
@@ -414,6 +411,7 @@ $stmtUser->close();
                 <tr>
                     <td><?= htmlspecialchars($row['folio']) ?></td>
                     <td><?= htmlspecialchars($row['fecha']) ?></td>
+                    <td><?= htmlspecialchars($row['estatus']) ?></td>  <!-- ← Aquí el valor -->
                     <td>
                         <button class="show-desc"
                                 data-folio="<?= htmlspecialchars($row['folio']) ?>">
@@ -425,7 +423,6 @@ $stmtUser->close();
             endwhile;
             $rs->close();
             ?>
-
             </tbody>
         </table>
 
@@ -435,14 +432,14 @@ $stmtUser->close();
             <span id="hist-page-indicator">Página 1</span>
             <button id="hist-next">Siguiente ➡</button>
         </div>
-
     </section>
 
+    <!-- Sección 3: Historial de Casos-->
     <!-- Sección 3: Historial de Casos-->
     <section id="historial-casos" class="main-section" style="display: none;">
         <h1><strong>Historial de Casos</strong></h1>
 
-        <!-- 🔎 Controles de búsqueda -->
+        <!-- Controles de búsqueda -->
         <div class="table-controls">
             <div class="filter-container">
                 <label for="todos-filter-column">Filtrar por:</label>
@@ -460,25 +457,37 @@ $stmtUser->close();
             <tr>
                 <th>Folio</th>
                 <th>Fecha Registro</th>
+                <th>Estatus</th>       <!-- ← Agregado -->
+                <th>Responsable</th>   <!-- ← Agregado -->
+                <th>Terciaria</th>     <!-- ← Agregado -->
                 <th>Descripción</th>
             </tr>
             </thead>
             <tbody>
             <?php
-            $todos = $con->query("
-    SELECT 
-        FolioCaso AS folio,
-        DATE_FORMAT(FechaRegistro, '%Y-%m-%d') AS fecha,
-        Descripcion AS descripcion
-    FROM Casos
-    ORDER BY FolioCaso DESC
-");
-
-            while ($row = $todos->fetch_assoc()):
+            // Ahora la consulta también trae los campos nuevos:
+            $todos = $con->prepare("
+            SELECT 
+                c.FolioCaso        AS folio,
+                DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
+                c.IdEstatus        AS estatus,
+                c.Responsable      AS responsable,
+                t.NombreTerceria   AS terciaria,
+                c.Descripcion      AS descripcion
+            FROM Casos c
+            JOIN Terceria t ON t.IdTerceria = c.IdTerceria
+            ORDER BY c.FolioCaso DESC
+        ");
+            $todos->execute();
+            $result = $todos->get_result();
+            while ($row = $result->fetch_assoc()):
                 ?>
                 <tr>
                     <td><?= htmlspecialchars($row['folio']) ?></td>
                     <td><?= htmlspecialchars($row['fecha']) ?></td>
+                    <td><?= htmlspecialchars($row['estatus']) ?></td>
+                    <td><?= htmlspecialchars($row['responsable']) ?></td>
+                    <td><?= htmlspecialchars($row['terciaria']) ?></td>
                     <td>
                         <button class="show-desc"
                                 data-folio="<?= htmlspecialchars($row['folio']) ?>">
@@ -486,14 +495,16 @@ $stmtUser->close();
                         </button>
                     </td>
                 </tr>
-            <?php endwhile; ?>
+            <?php endwhile;
+            $todos->close();
+            ?>
             </tbody>
         </table>
 
-        <!-- 📑 Controles de paginación -->
+        <!-- Controles de paginación -->
         <div class="pagination" id="todos-pagination">
             <button id="todos-prev" disabled>⬅ Anterior</button>
-            <span id="todos-page-indicator">Página 1</span>
+            <span id="todos-page-indicator">Página 1 de X</span>
             <button id="todos-next">Siguiente ➡</button>
         </div>
     </section>
