@@ -20,8 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const tbody = document.querySelector('#historial-casos .cases-table tbody');
             if (tbody && data.folio && data.fecha) {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td>${data.folio}</td><td>${data.fecha}</td>` +
-                    `<td><button class="show-desc">Mostrar descripción</button></td>`;
+                tr.innerHTML =  `<td>${data.folio}</td>` +     // Folio
+                    `<td>${data.fecha}</td>` +     // Fecha
+                    `<td>1</td>` +                 // Estatus
+                    `<td></td>` +                  // Responsable
+                    `<td></td>` +                  // Terciaria
+                    `<td><button class="show-desc">Mostrar descripción</button></td>`; // Descripción
                 tbody.prepend(tr);
                 if (window.historialPaginador) window.historialPaginador.addRow(tr);
             }
