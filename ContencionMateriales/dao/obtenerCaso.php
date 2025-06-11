@@ -19,7 +19,7 @@ $folio = intval($_GET['folio']);
 
 $con = (new LocalConector())->conectar();
 
-// 3) Obtener datos del caso (incluyendo IdEstatus)
+// 3) Obtener datos del caso (incluyendo IdEstatus y Responsable)
 $stmt = $con->prepare("
     SELECT 
       NumeroParte,
@@ -30,11 +30,12 @@ $stmt = $con->prepare("
       IdCommodity,
       IdDefectos,
       IdEstatus,
+      Responsable,
       DATE_FORMAT(FechaRegistro, '%Y-%m-%d') AS FechaRegistro
     FROM Casos
     WHERE FolioCaso = ?
 ");
-if (! $stmt) {
+if (!$stmt) {
     http_response_code(500);
     echo json_encode(['error' => 'Error preparando SELECT Casos: ' . $con->error]);
     exit;
@@ -50,20 +51,21 @@ $stmt->bind_result(
     $idCommodity,
     $idDefectos,
     $idEstatus,
+    $responsable,   // ← Nuevo
     $fecha
 );
-if (! $stmt->fetch()) {
+if (!$stmt->fetch()) {
     echo json_encode(['error' => 'Caso no encontrado.']);
     exit;
 }
 $stmt->close();
 
-// 4) Buscar nombres legibles de catálogos
+// 4) Helper de lookup para los nombres de catálogos
 function lookup(mysqli $con, string $table, string $idfield, string $namefield, int $id): string {
     $n = '';
     $sql = "SELECT $namefield FROM $table WHERE $idfield = ?";
     $s = $con->prepare($sql);
-    if (! $s) {
+    if (!$s) {
         http_response_code(500);
         echo json_encode(['error' => "Error preparando lookup ($table): " . $con->error]);
         exit;
@@ -76,12 +78,14 @@ function lookup(mysqli $con, string $table, string $idfield, string $namefield, 
     return $n;
 }
 
-$terciaria = lookup($con, 'Terceria',    'IdTerceria',   'NombreTerceria',  $idTerceria);
-$proveedor = lookup($con, 'Proveedores', 'IdProveedor',  'NombreProveedor', $idProveedor);
-$commodity = lookup($con, 'Commodity',   'IdCommodity',  'NombreCommodity', $idCommodity);
-$defectosN = lookup($con, 'Defectos',    'IdDefectos',   'NombreDefectos',  $idDefectos);
+// 5) Obtener nombres legibles
+$terciaria   = lookup($con, 'Terceria',    'IdTerceria',   'NombreTerceria',  $idTerceria);
+$proveedor   = lookup($con, 'Proveedores', 'IdProveedor',  'NombreProveedor', $idProveedor);
+$commodity   = lookup($con, 'Commodity',   'IdCommodity',  'NombreCommodity', $idCommodity);
+$defectosN   = lookup($con, 'Defectos',    'IdDefectos',   'NombreDefectos',  $idDefectos);
+$estatusText = lookup($con, 'Estatus',     'IdEstatus',    'NombreEstatus',   $idEstatus);  // ← Nuevo lookup
 
-// 5) Fotos OK
+// 6) Fotos OK
 $fotosOk = [];
 $sf = $con->prepare("SELECT Ruta FROM Fotos WHERE FolioCaso = ? AND TipoFoto = 'ok'");
 $sf->bind_param('i', $folio);
@@ -92,7 +96,7 @@ while ($sf->fetch()) {
 }
 $sf->close();
 
-// 6) Fotos NO OK
+// 7) Fotos NO OK
 $fotosNo = [];
 $sn = $con->prepare("SELECT Ruta FROM Fotos WHERE FolioCaso = ? AND TipoFoto = 'no'");
 $sn->bind_param('i', $folio);
@@ -103,19 +107,20 @@ while ($sn->fetch()) {
 }
 $sn->close();
 
-// 7) Enviar respuesta JSON con todos los datos
+// 8) Enviar respuesta JSON con todos los datos
 echo json_encode([
-    'folio'       => $folio,
-    'fecha'       => $fecha,
-    'numeroParte' => $numeroParte,
-    'cantidad'    => $cantidad,
-    'descripcion' => $descripcion,
-    'terciaria'   => $terciaria,
-    'proveedor'   => $proveedor,
-    'commodity'   => $commodity,
-    'defectos'    => $defectosN,
-    'estatus'     => $idEstatus, // 👈 Aquí se incluye el ID bruto
-    'fotosOk'     => $fotosOk,
-    'fotosNo'     => $fotosNo
+    'folio'        => $folio,
+    'fecha'        => $fecha,
+    'numeroParte'  => $numeroParte,
+    'cantidad'     => $cantidad,
+    'descripcion'  => $descripcion,
+    'terciaria'    => $terciaria,
+    'proveedor'    => $proveedor,
+    'commodity'    => $commodity,
+    'defectos'     => $defectosN,
+    'estatus'      => $estatusText,    // ← Ahora el nombre legible
+    'responsable'  => $responsable,    // ← Nuevo campo
+    'fotosOk'      => $fotosOk,
+    'fotosNo'      => $fotosNo
 ]);
 exit;

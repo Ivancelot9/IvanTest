@@ -48,7 +48,7 @@ try {
     }
 
     // 4) Recoger datos del formulario
-    $responsable  = trim($_POST['Responsable']);
+    $responsable  = trim($_POST['Responsable']);           // ← Nuevo
     $numeroParte  = trim($_POST['NumeroParte']);
     $cantidad     = floatval(str_replace(',', '.', $_POST['Cantidad']));
     $descripcion  = trim($_POST['Descripcion'] ?? '');
@@ -58,19 +58,21 @@ try {
     $idDefectos   = intval($_POST['IdDefectos']);
     $estatus      = 1; // Valor fijo por defecto
 
-    // 5) Insertar el nuevo caso en BD
+    // 5) Insertar el nuevo caso en BD, ahora con Responsable
     $con = (new LocalConector())->conectar();
     $sql = "
         INSERT INTO Casos
-        (IdUsuario, NumeroParte, Cantidad, Descripcion, IdTerceria, IdCommodity, IdProveedor, IdDefectos, IdEstatus)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+          (IdUsuario, NumeroParte, Cantidad, Descripcion,
+           IdTerceria, IdCommodity, IdProveedor, IdDefectos,
+           IdEstatus, Responsable)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ";
     $stmt = $con->prepare($sql);
     if (! $stmt) {
         throw new Exception('Error preparando INSERT Casos: ' . $con->error);
     }
     $stmt->bind_param(
-        "isdsiiiii",
+        "isdsiiiiis",
         $idUsuario,
         $numeroParte,
         $cantidad,
@@ -79,7 +81,8 @@ try {
         $idCommodity,
         $idProveedor,
         $idDefectos,
-        $estatus
+        $estatus,
+        $responsable   // ← Nuevo
     );
     if (! $stmt->execute()) {
         throw new Exception('Error ejecutando INSERT Casos: ' . $stmt->error);
@@ -139,8 +142,8 @@ try {
     }
 
     // 9) Procesar fotos OK y NO OK
-    procesarFotos($_FILES['fotosOk'] ?? ['name'=>[]], 'ok', $folioCaso, $con, $okDir);
-    procesarFotos($_FILES['fotosNo'] ?? ['name'=>[]], 'no', $folioCaso, $con, $noDir);
+    procesarFotos($_FILES['fotosOk']  ?? ['name'=>[]], 'ok', $folioCaso, $con, $okDir);
+    procesarFotos($_FILES['fotosNo']  ?? ['name'=>[]], 'no', $folioCaso, $con, $noDir);
 
     // 10) Devolver respuesta exitosa
     echo json_encode([
