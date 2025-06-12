@@ -91,24 +91,26 @@ function inicializarTablaCasos(idContenedor) {
             {
                 const raw = cells[1].textContent.trim();
                 const fmt = formatearFecha(raw);
+                cells[1].textContent = fmt;
                 if (selFilt.value === 'fecha') {
                     cells[1].innerHTML = resaltar(fmt, inpFilt.value.trim());
-                } else {
-                    cells[1].textContent = fmt;
                 }
             }
 
-            // ESTATUS (columna 2 si existe)
-            if (config.tieneEstatus && cells[2]) {
-                cells[2].textContent = cells[2].textContent.trim();
+            // — No tocamos cells[config.idxDescripcion], para preservar el <button> — //
+
+            // ESTATUS (columna dinámica)
+            if (config.tieneEstatus && cells[config.idxEstatus]) {
+                cells[config.idxEstatus].textContent =
+                    cells[config.idxEstatus].textContent.trim();
             }
 
-            // RESPONSABLE (columna 3 si existe)
+            // RESPONSABLE (si aplica)
             if (config.tieneResponsable && cells[3]) {
                 cells[3].textContent = cells[3].textContent.trim();
             }
 
-            // TERCIARIA (columna 4 si existe)
+            // TERCIARIA (si aplica)
             if (config.tieneTerciaria && cells[4]) {
                 cells[4].textContent = cells[4].textContent.trim();
             }
