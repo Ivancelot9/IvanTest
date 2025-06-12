@@ -26,12 +26,17 @@ function inicializarTablaCasos(idContenedor) {
     };
 
     if (idContenedor === '#historial') {
-        config.tieneEstatus = true;
+        config.tieneEstatus     = true;
+        config.idxDescripcion   = 2;  // tercera columna → Descripción
+        config.idxEstatus       = 3;  // cuarta columna  → Estatus
     } else if (idContenedor === '#historial-casos') {
-        config.tieneEstatus = true;
+        config.tieneEstatus     = true;
         config.tieneResponsable = true;
-        config.tieneTerciaria = true;
+        config.tieneTerciaria   = true;
+        config.idxDescripcion   = 4;  // quinta columna   → Descripción
+        config.idxEstatus       = 5;  // sexta columna    → Estatus
     }
+
 
     // ─── Capturar las filas originales UNA SOLA VEZ ───────────────────────
     const filasIniciales = Array.from(tbody.querySelectorAll('tr'));
@@ -99,20 +104,20 @@ function inicializarTablaCasos(idContenedor) {
 
             // — No tocamos cells[config.idxDescripcion], para preservar el <button> — //
 
-            // ESTATUS (columna dinámica)
+            // ESTATUS (celda dinámica según config.idxEstatus)
             if (config.tieneEstatus && cells[config.idxEstatus]) {
                 cells[config.idxEstatus].textContent =
                     cells[config.idxEstatus].textContent.trim();
             }
 
-            // RESPONSABLE (si aplica)
-            if (config.tieneResponsable && cells[3]) {
-                cells[3].textContent = cells[3].textContent.trim();
+// RESPONSABLE (sigue en índice 2 para #historial-casos)
+            if (config.tieneResponsable && cells[2]) {
+                cells[2].textContent = cells[2].textContent.trim();
             }
 
-            // TERCIARIA (si aplica)
-            if (config.tieneTerciaria && cells[4]) {
-                cells[4].textContent = cells[4].textContent.trim();
+// TERCIARIA (sigue en índice 3 para #historial-casos)
+            if (config.tieneTerciaria && cells[3]) {
+                cells[3].textContent = cells[3].textContent.trim();
             }
 
             tbody.appendChild(tr);

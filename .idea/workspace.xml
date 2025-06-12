@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Ajustes Estatus">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Ajustes Boton Mostrar Descrpcio">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/tablaMisCasos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/tablaMisCasos.js" afterDir="false" />
     </list>
@@ -206,15 +206,7 @@
       <workItem from="1749478425571" duration="4797000" />
       <workItem from="1749565709518" duration="3857000" />
       <workItem from="1749651368375" duration="15709000" />
-      <workItem from="1749737820907" duration="1382000" />
-    </task>
-    <task id="LOCAL-01533" summary="Parte Externa Usuario">
-      <option name="closed" value="true" />
-      <created>1748878305137</created>
-      <option name="number" value="01533" />
-      <option name="presentableId" value="LOCAL-01533" />
-      <option name="project" value="LOCAL" />
-      <updated>1748878305137</updated>
+      <workItem from="1749737820907" duration="1908000" />
     </task>
     <task id="LOCAL-01534" summary="Parte Externa Usuario">
       <option name="closed" value="true" />
@@ -600,7 +592,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749676052830</updated>
     </task>
-    <option name="localTasksCounter" value="1582" />
+    <task id="LOCAL-01582" summary="Ajustes Boton Mostrar Descrpcio">
+      <option name="closed" value="true" />
+      <created>1749739606611</created>
+      <option name="number" value="01582" />
+      <option name="presentableId" value="LOCAL-01582" />
+      <option name="project" value="LOCAL" />
+      <updated>1749739606611</updated>
+    </task>
+    <option name="localTasksCounter" value="1583" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -652,7 +652,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modal Fotos" />
     <MESSAGE value="Modal Descripcion" />
     <MESSAGE value="Modal Estatus" />
     <MESSAGE value="Modal Finalizacion &quot;G&quot;" />
@@ -677,7 +676,8 @@
     <MESSAGE value="Buzon de Reportes Correcion a la inyencion de reportes" />
     <MESSAGE value="Ajustes tabla" />
     <MESSAGE value="Ajustes Estatus" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajustes Estatus" />
+    <MESSAGE value="Ajustes Boton Mostrar Descrpcio" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustes Boton Mostrar Descrpcio" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
