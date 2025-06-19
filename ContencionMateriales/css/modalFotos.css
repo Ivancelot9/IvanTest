@@ -21,11 +21,12 @@
     background: #f4f6f8;
     border: 1px solid #d1d5da;
     border-radius: 6px;
-    padding: 16px;
+    /* Padding derecho extra para la X */
+    padding: 16px 48px 16px 16px;
 }
 
 /* ————————————————————————————————————————————————
-  Fila interna: select + campos + botón eliminar
+  Fila interna: select + fotos + botón eliminar
 ———————————————————————————————————————————————— */
 .bloque-defecto .form-row {
     display: flex;
@@ -92,9 +93,7 @@
 
 /* ————————————————————————————————————————————————
   Estilos para el botón interno de file
-  (modern browsers + webkit/moz)
 ———————————————————————————————————————————————— */
-/* Modern */
 .bloque-defecto .campo-foto input[type="file"]::file-selector-button {
     border: none;
     border-radius: 4px;
@@ -106,55 +105,41 @@
 .bloque-defecto .campo-no input[type="file"]::file-selector-button {
     background: var(--accent-no);
 }
+
 /* WebKit */
 .bloque-defecto .campo-ok input[type="file"]::-webkit-file-upload-button {
     background: var(--accent-ok);
     color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 4px 8px;
-    cursor: pointer;
 }
 .bloque-defecto .campo-no input[type="file"]::-webkit-file-upload-button {
     background: var(--accent-no);
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 4px 8px;
-    cursor: pointer;
 }
 /* Firefox */
 .bloque-defecto .campo-ok input[type="file"]::-moz-file-upload-button {
     background: var(--accent-ok);
     color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 4px 8px;
-    cursor: pointer;
 }
 .bloque-defecto .campo-no input[type="file"]::-moz-file-upload-button {
     background: var(--accent-no);
     color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 4px 8px;
-    cursor: pointer;
 }
 
 /* ————————————————————————————————————————————————
-  Botón eliminar bloque (✖) centrado verticalmente
+  Botón eliminar bloque (✖)
+  ahora en esquina superior, sin tapar nada
 ———————————————————————————————————————————————— */
 .bloque-defecto .btn-eliminar-defecto {
     position: absolute;
-    top: 50%;
+    top: 8px;
     right: 8px;
-    transform: translateY(-50%);
+    transform: none;      /* nada de translateY */
     background: none;
     border: none;
     color: var(--accent-no);
     font-size: 1.2rem;
     cursor: pointer;
     line-height: 1;
+    z-index: 2;
 }
 .bloque-defecto .btn-eliminar-defecto:hover {
     color: #82111b;
