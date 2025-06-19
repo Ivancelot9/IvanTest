@@ -1,3 +1,8 @@
+:root {
+    --accent-ok: #2ea043;
+    --accent-no: #d93025;
+}
+
 /* ————————————————————————————————————————————————
   Contenedor general de bloques de defectos
 ———————————————————————————————————————————————— */
@@ -20,7 +25,7 @@
 }
 
 /* ————————————————————————————————————————————————
-  Fila interna: select + dos fotos + botón eliminar
+  Fila interna: select + campos + botón eliminar
 ———————————————————————————————————————————————— */
 .bloque-defecto .form-row {
     display: flex;
@@ -32,7 +37,6 @@
 /* Select de defectos */
 .bloque-defecto select {
     flex: 1 1 100%;
-    max-width: 100%;
     padding: 6px 8px;
     border: 1px solid #c1c7cd;
     border-radius: 4px;
@@ -44,23 +48,23 @@
   Campos de foto OK / NO OK
 ———————————————————————————————————————————————— */
 .bloque-defecto .campo-foto {
-    display: flex;
     flex: 1 1 calc(50% - 12px);
-    min-width: 200px;
+    display: flex;
     align-items: center;
     gap: 6px;
     padding: 8px;
     border-radius: 4px;
+    white-space: nowrap;
 }
 
 /* Contenedores verde / rojo */
 .bloque-defecto .campo-ok {
     background: #e6ffed;
-    border: 1px solid #2ea043;
+    border: 1px solid var(--accent-ok);
 }
 .bloque-defecto .campo-no {
     background: #ffeef0;
-    border: 1px solid #cb2431;
+    border: 1px solid var(--accent-no);
 }
 
 /* Iconos antes de la etiqueta */
@@ -72,60 +76,82 @@
 }
 .campo-ok .label-ok::before {
     content: "\f058"; /* fa-check-circle */
-    color: #2ea043;
+    color: var(--accent-ok);
 }
 .campo-no .label-no::before {
     content: "\f057"; /* fa-times-circle */
-    color: #cb2431;
+    color: var(--accent-no);
 }
 
 /* Etiquetas de foto */
 .campo-foto .label-ok,
 .campo-foto .label-no {
-    white-space: nowrap;
     font-weight: 600;
     font-size: 0.9rem;
 }
 
-/* Estilo a los botones “Choose File” */
-.campo-ok input[type="file"]::-webkit-file-upload-button,
-.campo-ok input[type="file"]::-moz-file-upload-button {
-    background: #2ea043;
+/* ————————————————————————————————————————————————
+  Estilos para el botón interno de file
+  (modern browsers + webkit/moz)
+———————————————————————————————————————————————— */
+/* Modern */
+.bloque-defecto .campo-foto input[type="file"]::file-selector-button {
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    color: #fff;
+    background: var(--accent-ok);
+}
+.bloque-defecto .campo-no input[type="file"]::file-selector-button {
+    background: var(--accent-no);
+}
+/* WebKit */
+.bloque-defecto .campo-ok input[type="file"]::-webkit-file-upload-button {
+    background: var(--accent-ok);
     color: #fff;
     border: none;
     border-radius: 4px;
     padding: 4px 8px;
     cursor: pointer;
 }
-.campo-ok input[type="file"]::-webkit-file-upload-button:hover,
-.campo-ok input[type="file"]::-moz-file-upload-button:hover {
-    background: #238636;
-}
-
-.campo-no input[type="file"]::-webkit-file-upload-button,
-.campo-no input[type="file"]::-moz-file-upload-button {
-    background: #cb2431;
+.bloque-defecto .campo-no input[type="file"]::-webkit-file-upload-button {
+    background: var(--accent-no);
     color: #fff;
     border: none;
     border-radius: 4px;
     padding: 4px 8px;
     cursor: pointer;
 }
-.campo-no input[type="file"]::-webkit-file-upload-button:hover,
-.campo-no input[type="file"]::-moz-file-upload-button:hover {
-    background: #a40e26;
+/* Firefox */
+.bloque-defecto .campo-ok input[type="file"]::-moz-file-upload-button {
+    background: var(--accent-ok);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+.bloque-defecto .campo-no input[type="file"]::-moz-file-upload-button {
+    background: var(--accent-no);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
 }
 
 /* ————————————————————————————————————————————————
-  Botón eliminar bloque (✖)
+  Botón eliminar bloque (✖) centrado verticalmente
 ———————————————————————————————————————————————— */
 .bloque-defecto .btn-eliminar-defecto {
     position: absolute;
-    top: 8px;
+    top: 50%;
     right: 8px;
+    transform: translateY(-50%);
     background: none;
     border: none;
-    color: #cb2431;
+    color: var(--accent-no);
     font-size: 1.2rem;
     cursor: pointer;
     line-height: 1;
@@ -153,7 +179,7 @@
 }
 
 /* ————————————————————————————————————————————————
-  Responsive: bloques en columna en móvil
+  Responsive: bloques apilados en móvil
 ———————————————————————————————————————————————— */
 @media (max-width: 600px) {
     .bloque-defecto .form-row {
@@ -162,6 +188,5 @@
     }
     .bloque-defecto .campo-foto {
         flex: 1 1 auto;
-        min-width: auto;
     }
 }
