@@ -75,15 +75,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 body: new FormData(form)
             });
-            Swal.close();
-            if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
 
+            // Si hay error 500 (u otro), leer el body en texto
+            if (!resp.ok) {
+                const text = await resp.text();
+                Swal.close();
+                console.error('SERVER ERROR:', text);
+                return Swal.fire('Error interno', text, 'error');
+            }
+
+            // Cerrar el loading y parsear el JSON
+            Swal.close();
             const json = await resp.json();
             if (json.status !== 'success') {
                 throw new Error(json.message || 'Error inesperado');
             }
 
-            // … resto de tu lógica de notificaciones y actualización de tabla …
+            // … resto de tu lógica de notificaciones …
             canalLocal.postMessage({ type: 'new-case', folio: json.folio });
             canalGlobal.postMessage({
                 type:        'new-case',
