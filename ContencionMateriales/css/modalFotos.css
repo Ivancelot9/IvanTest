@@ -21,18 +21,18 @@
 
 /* ————————————————————————————————————————————————
    Fila interna: select, fotos y botón
-   Usamos flex-wrap para evitar desborde
 ———————————————————————————————————————————————— */
 .bloque-defecto .form-row {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;        /* deja envolver si hace falta */
     gap: 12px;
     align-items: center;
 }
 
-/* Select de defectos */
+/* Select de defectos ocupa todo lo que quede */
 .bloque-defecto select {
     flex: 1 1 200px;
+    min-width: 150px;
     padding: 6px 8px;
     border: 1px solid #c1c7cd;
     border-radius: 4px;
@@ -40,40 +40,64 @@
     font-size: 0.95rem;
 }
 
-/* Inputs de archivo estándar */
-.bloque-defecto input[type="file"] {
-    font-size: 0.85rem;
-}
-
-/* Contenedor para cada input de foto */
+/* ————————————————————————————————————————————————
+   Cada campo de foto OK/NO OK
+———————————————————————————————————————————————— */
 .bloque-defecto .campo-foto {
     display: flex;
+    flex: 0 0 180px;        /* ancho fijo aproximado */
+    min-width: 140px;
     align-items: center;
     gap: 6px;
+    white-space: nowrap;    /* evita saltos dentro del campo */
 }
 
-/* Etiquetas en color (OK = verde, NO OK = rojo) */
-.label-ok {
-    color: #2ea043;
-    font-weight: 600;
+/* Etiquetas coloreadas */
+.label-ok { color: #2ea043; font-weight: 600; }
+.label-no { color: #cb2431; font-weight: 600; }
+
+/* Estilos a los “Choose File” dentro de cada campo */
+.campo-ok input[type="file"]::-webkit-file-upload-button,
+.campo-ok input[type="file"]::-moz-file-upload-button {
+    background: #2ea043;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
 }
-.label-no {
-    color: #cb2431;
-    font-weight: 600;
+.campo-ok input[type="file"]::-webkit-file-upload-button:hover,
+.campo-ok input[type="file"]::-moz-file-upload-button:hover {
+    background: #238636;
 }
 
-/* Botón de eliminar bloque (✖) */
+.campo-no input[type="file"]::-webkit-file-upload-button,
+.campo-no input[type="file"]::-moz-file-upload-button {
+    background: #cb2431;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+.campo-no input[type="file"]::-webkit-file-upload-button:hover,
+.campo-no input[type="file"]::-moz-file-upload-button:hover {
+    background: #a40e26;
+}
+
+/* ————————————————————————————————————————————————
+   Botón de eliminar bloque (✖)
+   Siempre en esquina superior derecha
+———————————————————————————————————————————————— */
 .bloque-defecto .btn-eliminar-defecto {
+    position: absolute;
+    top: 8px;
+    right: 8px;
     background: none;
     border: none;
     color: #cb2431;
     font-size: 1.2rem;
     cursor: pointer;
-    line-height: 1;
-    padding: 2px;
-    position: absolute;
-    top: 8px;
-    right: 8px;
 }
 .bloque-defecto .btn-eliminar-defecto:hover {
     color: #82111b;
@@ -97,42 +121,6 @@
 }
 
 /* ————————————————————————————————————————————————
-   Botones “Choose File” verdes/rojos
-   (Chrome/Safari/Edge y Firefox)
-———————————————————————————————————————————————— */
-/* Foto OK */
-.campo-ok input[type="file"]::-webkit-file-upload-button {
-    background: #2ea043; color: #fff; border: none; border-radius: 4px;
-    padding: 4px 8px; cursor: pointer;
-}
-.campo-ok input[type="file"]::-webkit-file-upload-button:hover {
-    background: #238636;
-}
-.campo-ok input[type="file"]::-moz-file-upload-button {
-    background: #2ea043; color: #fff; border: none; border-radius: 4px;
-    padding: 4px 8px; cursor: pointer;
-}
-.campo-ok input[type="file"]::-moz-file-upload-button:hover {
-    background: #238636;
-}
-
-/* Foto NO OK */
-.campo-no input[type="file"]::-webkit-file-upload-button {
-    background: #cb2431; color: #fff; border: none; border-radius: 4px;
-    padding: 4px 8px; cursor: pointer;
-}
-.campo-no input[type="file"]::-webkit-file-upload-button:hover {
-    background: #a40e26;
-}
-.campo-no input[type="file"]::-moz-file-upload-button {
-    background: #cb2431; color: #fff; border: none; border-radius: 4px;
-    padding: 4px 8px; cursor: pointer;
-}
-.campo-no input[type="file"]::-moz-file-upload-button:hover {
-    background: #a40e26;
-}
-
-/* ————————————————————————————————————————————————
    Responsive: en móvil ordenar en columna
 ———————————————————————————————————————————————— */
 @media (max-width: 600px) {
@@ -140,8 +128,8 @@
         flex-direction: column;
         gap: 8px;
     }
-    .bloque-defecto .btn-eliminar-defecto {
-        top: 6px;
-        right: 6px;
+    .bloque-defecto .campo-foto {
+        flex: 1 1 auto;
+        min-width: auto;
     }
 }
