@@ -1,18 +1,11 @@
-// js/validacionesCasos.js
 document.addEventListener('DOMContentLoaded', () => {
-    const username       = document.body.dataset.username;
-    const canalLocal     = new BroadcastChannel(`casosChannel_${username}`);
-    const canalGlobal    = new BroadcastChannel('canal-casos');
+    const username    = document.body.dataset.username;
+    const canalLocal  = new BroadcastChannel(`casosChannel_${username}`);
+    const canalGlobal = new BroadcastChannel('canal-casos');
     const btnMisCasos = document.getElementById('btn-mis-casos');
-    let badgeLocal = null;
-    if (btnMisCasos) {
-        badgeLocal = btnMisCasos.querySelector('.badge-count');
-    } else {
-        console.warn('⚠️ No se encontró #btn-mis-casos en el DOM');
-    }
-    const storageKey     = `newCasesCount_${username}`;
-    let contadorLocal    = parseInt(localStorage.getItem(storageKey) || '0', 10);
-
+    let badgeLocal    = btnMisCasos?.querySelector('.badge-count') || null;
+    const storageKey  = `newCasesCount_${username}`;
+    let contadorLocal = parseInt(localStorage.getItem(storageKey) || '0', 10);
     actualizarBadgeLocal(contadorLocal);
 
     canalLocal.addEventListener('message', ({ data }) => {
@@ -23,19 +16,54 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    btnMisCasos.addEventListener('click', () => {
+    btnMisCasos?.addEventListener('click', () => {
         contadorLocal = 0;
         localStorage.setItem(storageKey, '0');
         actualizarBadgeLocal(0);
-        // Aquí muestras la sección #historial
+        // Mostrar sección #historial…
     });
 
     const form = document.querySelector('form.data-form');
     form.addEventListener('submit', async e => {
         e.preventDefault();
 
-        // … (tus validaciones previas) …
+        // 1) Validación de campos generales
+        const responsable = form.Responsable.value.trim();
+        const numeroParte = form.NumeroParte.value.trim();
+        const cantidad    = form.Cantidad.value.trim();
+        const descripcion = form.Descripcion.value.trim();
+        const idTerceria  = form.IdTerceria.value;
+        const idProveedor = form.IdProveedor.value;
+        const idCommodity = form.IdCommodity.value;
 
+        if (!responsable || !numeroParte || !cantidad || !descripcion ||
+            !idTerceria || !idProveedor || !idCommodity) {
+            return Swal.fire('Error', 'Por favor completa todos los datos generales.', 'error');
+        }
+
+        // 2) Validar bloques de defectos
+        const bloques = document.querySelectorAll('.bloque-defecto');
+        if (bloques.length === 0) {
+            return Swal.fire('Error', 'Agrega al menos un defecto con sus dos fotos.', 'error');
+        }
+        for (let i = 0; i < bloques.length; i++) {
+            const bloque = bloques[i];
+            const sel  = bloque.querySelector('select');
+            const ok   = bloque.querySelector('input[type="file"][name*="[fotoOk]"]');
+            const no   = bloque.querySelector('input[type="file"][name*="[fotoNo]"]');
+
+            if (!sel.value) {
+                return Swal.fire('Error', `Selecciona el defecto en el bloque ${i + 1}.`, 'error');
+            }
+            if (!ok.files.length) {
+                return Swal.fire('Error', `Agrega la foto OK en el bloque ${i + 1}.`, 'error');
+            }
+            if (!no.files.length) {
+                return Swal.fire('Error', `Agrega la foto NO OK en el bloque ${i + 1}.`, 'error');
+            }
+        }
+
+        // 3) Si todo OK, seguimos con el envío
         Swal.fire({
             title: 'Guardando caso…',
             allowOutsideClick: false,
@@ -55,43 +83,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(json.message || 'Error inesperado');
             }
 
-            // Notificar nuevos casos
+            // … resto de tu lógica de notificaciones y actualización de tabla …
             canalLocal.postMessage({ type: 'new-case', folio: json.folio });
             canalGlobal.postMessage({
                 type:        'new-case',
                 folio:       json.folio,
                 fecha:       json.fecha,
-                estatus:     json.estatus,      // “En Proceso”
-                responsable: json.responsable,  // tu texto
-                terciaria:   json.terciaria,    // tu texto
+                estatus:     json.estatus,
+                responsable: json.responsable,
+                terciaria:   json.terciaria,
                 from:        username
             });
 
-            // Actualizar badge
+            // Actualizar badge y limpiar UI
             contadorLocal++;
             localStorage.setItem(storageKey, contadorLocal);
             actualizarBadgeLocal(contadorLocal);
-
-            // Limpiar UI
             form.reset();
             document.getElementById('evidencia-preview').innerHTML = '';
 
-            // … tras: const json = await resp.json();
-            const { folio, fecha, estatus } = json;
-
-// Insertar fila nueva en "Mis Casos" (solo 4 columnas)
+            // Añadir fila a “Mis Casos”
             const tbody = document.querySelector('#historial .cases-table tbody');
             if (tbody) {
                 const tr = document.createElement('tr');
                 tr.innerHTML =
-                    `<td>${folio}</td>` +
-                    `<td>${fecha}</td>` +
-                    `<td>${estatus}</td>` +
-                    `<td><button class="show-desc" data-folio="${folio}">Mostrar descripción</button></td>`;
+                    `<td>${json.folio}</td>` +
+                    `<td>${json.fecha}</td>` +
+                    `<td>${json.estatus}</td>` +
+                    `<td><button class="show-desc" data-folio="${json.folio}">Mostrar descripción</button></td>`;
                 tbody.prepend(tr);
-                if (window.historialPaginador) {
-                    window.historialPaginador.addRow(tr);
-                }
+                window.historialPaginador?.addRow(tr);
             }
 
             await Swal.fire('¡Caso guardado!', json.message, 'success');
