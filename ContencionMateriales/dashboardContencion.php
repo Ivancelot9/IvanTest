@@ -162,65 +162,42 @@ $stmtUser->close();
         <h1><strong>DATOS</strong></h1>
 
         <div class="form-panel">
-            <!-- ————————————————
-                 1) Canvas: tu formulario en blanco
-                 ———————————————— -->
             <div class="form-main" id="form-main">
                 <form class="data-form"
                       method="post"
                       action="https://grammermx.com/IvanTest/ContencionMateriales/dao/guardarCaso.php?tab_id=<?php echo urlencode($tab_id)?>"
                       enctype="multipart/form-data" novalidate>
+
                     <!-- RESPONSABLE -->
                     <div class="form-group">
                         <label for="responsable" title="Agrega el nombre de un responsable">Responsable</label>
-                        <input
-                                type="text"
-                                name="Responsable"
-                                id="responsable"
-                                placeholder="Nombre del responsable"
-
-                        />
+                        <input type="text" name="Responsable" id="responsable" placeholder="Nombre del responsable" />
                     </div>
 
                     <!-- No. PARTE + CANTIDAD -->
                     <div class="form-row">
                         <div class="form-group">
                             <label for="no-parte" title="Agrega el Número de Parte">No. Parte</label>
-                            <input type="text"
-                                   name="NumeroParte"
-                                   id="no-parte"
-                                   placeholder="Número de parte"
-                                    />
+                            <input type="text" name="NumeroParte" id="no-parte" placeholder="Número de parte" />
                         </div>
                         <div class="form-group">
                             <label for="cantidad" title="Agrega la cantidad deseada">Cantidad</label>
-                            <input
-                                    type="number"
-                                    name="Cantidad"
-                                    id="cantidad"
-                                    placeholder="Cantidad"
-                                    min="0.001"
-                                    step="0.001"
-
-                            />
+                            <input type="number" name="Cantidad" id="cantidad" placeholder="Cantidad" min="0.001" step="0.001" />
                         </div>
                     </div>
 
                     <!-- DESCRIPCIÓN -->
                     <div class="form-group">
-                        <label for="descripcion" title="Agrega la descripcion del material">Descripción</label>
-                        <textarea name="Descripcion"
-                                  id="descripcion"
-                                  placeholder="Descripción del caso"></textarea>
+                        <label for="descripcion" title="Agrega la descripción del material">Descripción</label>
+                        <textarea name="Descripcion" id="descripcion" placeholder="Descripción del caso"></textarea>
                     </div>
 
                     <!-- TERCIARIA + PROVEEDOR -->
                     <div class="form-row">
                         <div class="form-group">
                             <label for="terciaria" title="Agrega el proveedor tercero">Terciaria</label>
-                            <select name="IdTerceria" id="terciaria" >
+                            <select name="IdTerceria" id="terciaria">
                                 <option value="">Selecciona opción</option>
-                                <!-- PHP carga aquí -->
                                 <?php while($r = $terciarias->fetch_assoc()): ?>
                                     <option value="<?= $r['IdTerceria'] ?>">
                                         <?= htmlspecialchars($r['NombreTerceria']) ?>
@@ -230,9 +207,8 @@ $stmtUser->close();
                         </div>
                         <div class="form-group">
                             <label for="proveedor" title="Agrega el nombre del proveedor de la pieza">Proveedor de la Pieza</label>
-                            <select name="IdProveedor" id="proveedor" >
+                            <select name="IdProveedor" id="proveedor">
                                 <option value="">Selecciona al proveedor de pieza</option>
-                                <!-- PHP carga aquí -->
                                 <?php while($r = $proveedores->fetch_assoc()): ?>
                                     <option value="<?= $r['IdProveedor'] ?>">
                                         <?= htmlspecialchars($r['NombreProveedor']) ?>
@@ -245,9 +221,8 @@ $stmtUser->close();
                     <!-- COMMODITY -->
                     <div class="form-group">
                         <label for="commodity" title="Agrega el Commodity">Commodity</label>
-                        <select name="IdCommodity" id="commodity" >
+                        <select name="IdCommodity" id="commodity">
                             <option value="">Selecciona commodity</option>
-                            <!-- PHP carga aquí -->
                             <?php while($c = $commodities->fetch_assoc()): ?>
                                 <option value="<?= $c['IdCommodity'] ?>">
                                     <?= htmlspecialchars($c['NombreCommodity']) ?>
@@ -256,71 +231,17 @@ $stmtUser->close();
                         </select>
                     </div>
 
-                    <!-- DEFECTOS -->
+                    <!-- DEFECTOS Y FOTOS - NUEVO FLUJO -->
                     <div class="form-group">
-                        <label for="defectos">Defectos</label>
-                        <select name="IdDefectos" id="defectos" >
-                            <option value="">Selecciona defecto</option>
-                            <!-- PHP carga aquí -->
-                            <?php while($d = $defectos->fetch_assoc()): ?>
-                                <option value="<?= $d['IdDefectos'] ?>">
-                                    <?= htmlspecialchars($d['NombreDefectos']) ?>
-                                </option>
-                            <?php endwhile; ?>
-                        </select>
+                        <label>Defectos encontrados</label>
+                        <button type="button" id="btn-agregar-defecto" class="form-button">
+                            + Agregar defecto
+                        </button>
                     </div>
 
-                    <!-- FOTOS/EVIDENCIA -->
-                    <div class="form-group">
-                        <label>Fotos/Evidencia</label>
-                        <button type="button" class="form-button">Agregar Fotos</button>
-                        <div id="evidencia-preview" class="evidencia-preview"></div>
+                    <div id="bloques-defectos" class="bloques-defectos-container">
+                        <!-- Aquí se insertarán dinámicamente los bloques -->
                     </div>
-
-                    <!-- ↓↓↓ Modal AGREGAR FOTOS, dentro del form ↓↓↓ -->
-                    <div id="modal-fotos" class="modal-overlay" style="display: none;">
-                        <div class="modal-content scrollable">
-                            <h2>Agregar Evidencia</h2>
-
-                            <div class="drop-zone" id="drop-ok">
-                                <label>Foto OK:</label>
-                                <div class="drop-area">
-                                    Arrastra aquí o
-                                    <button type="button" class="custom-file-btn" data-target="foto-ok">
-                                        Elegir archivo
-                                    </button>
-                                </div>
-                                <input type="file" id="foto-ok" name="fotosOk[]" accept="image/*" hidden />
-                            </div>
-
-                            <div class="drop-zone" id="drop-no-ok">
-                                <label>Foto NO OK:</label>
-                                <div class="drop-area">
-                                    Arrastra aquí o
-                                    <button type="button" class="custom-file-btn" data-target="foto-no-ok">
-                                        Elegir archivo
-                                    </button>
-                                </div>
-                                <input type="file" id="foto-no-ok" name="fotosNo[]" accept="image/*" hidden />
-                            </div>
-
-                            <div id="fotos-ok-extra-container">
-                                <h3>Fotos OK adicionales (máx. 4):</h3>
-                            </div>
-                            <button type="button" id="btn-agregar-ok">+ Foto OK adicional</button>
-
-                            <div id="fotos-no-extra-container">
-                                <h3>Fotos NO OK adicionales (máx. 4):</h3>
-                            </div>
-                            <button type="button" id="btn-agregar-no">+ Foto NO OK adicional</button>
-
-                            <div class="modal-buttons">
-                                <button type="button" id="btn-cancelar-fotos">Cancelar</button>
-                                <button type="button" id="btn-confirmar-fotos">Confirmar</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ↑↑↑ Fin del modal dentro del form ↑↑↑ -->
 
                     <!-- BOTÓN CONFIRMAR -->
                     <div class="form-group confirm">
@@ -328,6 +249,8 @@ $stmtUser->close();
                     </div>
                 </form>
             </div>
+        </div>
+    </section>
 
             <!-- —————————————————————————
                  2) Barra lateral derecha
@@ -558,6 +481,19 @@ $stmtUser->close();
 
 
 
-
+<script>
+    window.defectosCatalogo = [
+        <?php
+        $res = $con->query("SELECT IdDefectos, NombreDefectos FROM Defectos ORDER BY NombreDefectos");
+        $items = [];
+        while ($d = $res->fetch_assoc()) {
+            $id   = (int)$d['IdDefectos'];
+            $name = json_encode($d['NombreDefectos']); // para escapar bien caracteres
+            $items[] = "{ id: $id, name: $name }";
+        }
+        echo implode(",", $items);
+        ?>
+    ];
+</script>
 </body>
 </html>

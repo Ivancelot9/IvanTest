@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Ajustes Boton Mostrar Descrpcio">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/tablaMisCasos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/tablaMisCasos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dao/guardarCaso.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dao/guardarCaso.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/modalFotos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/modalFotos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,15 +208,10 @@
       <workItem from="1749478425571" duration="4797000" />
       <workItem from="1749565709518" duration="3857000" />
       <workItem from="1749651368375" duration="15709000" />
-      <workItem from="1749737820907" duration="1908000" />
-    </task>
-    <task id="LOCAL-01534" summary="Parte Externa Usuario">
-      <option name="closed" value="true" />
-      <created>1748880848492</created>
-      <option name="number" value="01534" />
-      <option name="presentableId" value="LOCAL-01534" />
-      <option name="project" value="LOCAL" />
-      <updated>1748880848492</updated>
+      <workItem from="1749737820907" duration="5772000" />
+      <workItem from="1749833377972" duration="2476000" />
+      <workItem from="1750169864632" duration="2662000" />
+      <workItem from="1750256350611" duration="11367000" />
     </task>
     <task id="LOCAL-01535" summary="Parte Externa Usuario">
       <option name="closed" value="true" />
@@ -600,7 +597,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749739606611</updated>
     </task>
-    <option name="localTasksCounter" value="1583" />
+    <task id="LOCAL-01583" summary="Ajustes Boton Mostrar Descrpcio">
+      <option name="closed" value="true" />
+      <created>1749740096848</created>
+      <option name="number" value="01583" />
+      <option name="presentableId" value="LOCAL-01583" />
+      <option name="project" value="LOCAL" />
+      <updated>1749740096848</updated>
+    </task>
+    <option name="localTasksCounter" value="1584" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
