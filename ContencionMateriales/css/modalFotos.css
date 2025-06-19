@@ -1,38 +1,38 @@
 /* ————————————————————————————————————————————————
-   Contenedor de bloques de defectos
+  Contenedor general de bloques de defectos
 ———————————————————————————————————————————————— */
 .bloques-defectos-container {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-bottom: 24px;
+    margin: 16px 0;
 }
 
 /* ————————————————————————————————————————————————
-   Cada bloque de defecto
+  Cada bloque de defecto
 ———————————————————————————————————————————————— */
 .bloque-defecto {
+    position: relative;
     background: #f4f6f8;
     border: 1px solid #d1d5da;
     border-radius: 6px;
-    padding: 12px 16px;
-    position: relative;
+    padding: 16px;
 }
 
 /* ————————————————————————————————————————————————
-   Fila interna: select, fotos y botón
+  Fila interna: select + dos fotos + botón eliminar
 ———————————————————————————————————————————————— */
 .bloque-defecto .form-row {
     display: flex;
-    flex-wrap: wrap;        /* deja envolver si hace falta */
+    flex-wrap: wrap;
     gap: 12px;
-    align-items: center;
+    align-items: flex-start;
 }
 
-/* Select de defectos ocupa todo lo que quede */
+/* Select de defectos */
 .bloque-defecto select {
-    flex: 1 1 200px;
-    min-width: 150px;
+    flex: 1 1 100%;
+    max-width: 100%;
     padding: 6px 8px;
     border: 1px solid #c1c7cd;
     border-radius: 4px;
@@ -41,22 +41,53 @@
 }
 
 /* ————————————————————————————————————————————————
-   Cada campo de foto OK/NO OK
+  Campos de foto OK / NO OK
 ———————————————————————————————————————————————— */
 .bloque-defecto .campo-foto {
     display: flex;
-    flex: 0 0 180px;        /* ancho fijo aproximado */
-    min-width: 140px;
+    flex: 1 1 calc(50% - 12px);
+    min-width: 200px;
     align-items: center;
     gap: 6px;
-    white-space: nowrap;    /* evita saltos dentro del campo */
+    padding: 8px;
+    border-radius: 4px;
 }
 
-/* Etiquetas coloreadas */
-.label-ok { color: #2ea043; font-weight: 600; }
-.label-no { color: #cb2431; font-weight: 600; }
+/* Contenedores verde / rojo */
+.bloque-defecto .campo-ok {
+    background: #e6ffed;
+    border: 1px solid #2ea043;
+}
+.bloque-defecto .campo-no {
+    background: #ffeef0;
+    border: 1px solid #cb2431;
+}
 
-/* Estilos a los “Choose File” dentro de cada campo */
+/* Iconos antes de la etiqueta */
+.campo-ok .label-ok::before,
+.campo-no .label-no::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 6px;
+}
+.campo-ok .label-ok::before {
+    content: "\f058"; /* fa-check-circle */
+    color: #2ea043;
+}
+.campo-no .label-no::before {
+    content: "\f057"; /* fa-times-circle */
+    color: #cb2431;
+}
+
+/* Etiquetas de foto */
+.campo-foto .label-ok,
+.campo-foto .label-no {
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Estilo a los botones “Choose File” */
 .campo-ok input[type="file"]::-webkit-file-upload-button,
 .campo-ok input[type="file"]::-moz-file-upload-button {
     background: #2ea043;
@@ -86,8 +117,7 @@
 }
 
 /* ————————————————————————————————————————————————
-   Botón de eliminar bloque (✖)
-   Siempre en esquina superior derecha
+  Botón eliminar bloque (✖)
 ———————————————————————————————————————————————— */
 .bloque-defecto .btn-eliminar-defecto {
     position: absolute;
@@ -98,15 +128,17 @@
     color: #cb2431;
     font-size: 1.2rem;
     cursor: pointer;
+    line-height: 1;
 }
 .bloque-defecto .btn-eliminar-defecto:hover {
     color: #82111b;
 }
 
 /* ————————————————————————————————————————————————
-   Botón “+ Agregar defecto”
+  Botón “+ Agregar defecto”
 ———————————————————————————————————————————————— */
 #btn-agregar-defecto {
+    display: inline-block;
     background: #0366d6;
     color: #fff;
     border: none;
@@ -114,14 +146,14 @@
     padding: 8px 14px;
     font-size: 0.95rem;
     cursor: pointer;
-    margin-top: 4px;
+    margin-bottom: 12px;
 }
 #btn-agregar-defecto:hover {
     background: #0254b0;
 }
 
 /* ————————————————————————————————————————————————
-   Responsive: en móvil ordenar en columna
+  Responsive: bloques en columna en móvil
 ———————————————————————————————————————————————— */
 @media (max-width: 600px) {
     .bloque-defecto .form-row {
