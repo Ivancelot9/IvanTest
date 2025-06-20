@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // 3) Si todo OK, seguimos con el envío
+        // 3) Envío al servidor
         Swal.fire({
             title: 'Guardando caso…',
             allowOutsideClick: false,
@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: new FormData(form)
             });
 
-            // Si hay error 500 (u otro), leer el body en texto
             if (!resp.ok) {
                 const text = await resp.text();
                 Swal.close();
@@ -84,14 +83,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 return Swal.fire('Error interno', text, 'error');
             }
 
-            // Cerrar el loading y parsear el JSON
             Swal.close();
             const json = await resp.json();
             if (json.status !== 'success') {
                 throw new Error(json.message || 'Error inesperado');
             }
 
-            // … resto de tu lógica de notificaciones …
+            // Notificaciones
             canalLocal.postMessage({ type: 'new-case', folio: json.folio });
             canalGlobal.postMessage({
                 type:        'new-case',
@@ -103,12 +101,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 from:        username
             });
 
-            // Actualizar badge y limpiar UI
+            // Actualizar badge
             contadorLocal++;
             localStorage.setItem(storageKey, contadorLocal);
             actualizarBadgeLocal(contadorLocal);
+
+            // Limpiar formulario y bloques de defectos
             form.reset();
-            document.getElementById('evidencia-preview').innerHTML = '';
+            const cont = document.getElementById('bloques-defectos');
+            if (cont) cont.innerHTML = '';
 
             // Añadir fila a “Mis Casos”
             const tbody = document.querySelector('#historial .cases-table tbody');
@@ -132,11 +133,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function actualizarBadgeLocal(count) {
-        if (count > 0) {
-            badgeLocal.textContent = count;
-            badgeLocal.style.display = 'inline-block';
-        } else {
-            badgeLocal.style.display = 'none';
+        if (badgeLocal) {
+            if (count > 0) {
+                badgeLocal.textContent = count;
+                badgeLocal.style.display = 'inline-block';
+            } else {
+                badgeLocal.style.display = 'none';
+            }
         }
     }
 });
