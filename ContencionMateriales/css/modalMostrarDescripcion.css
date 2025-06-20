@@ -1,3 +1,5 @@
+/* CSS COMPLETO */
+/* Pega esto en tu hoja de estilos o dentro de <style> */
 :root {
     --blue-dark:    #1e2a38;
     --blue-primary: #0366d6;
@@ -7,7 +9,7 @@
     --text-dark:    #1c1e21;
 }
 
-/* Overlay genérico */
+/* Overlay */
 .modal-overlay {
     position: fixed; inset: 0;
     background: rgba(30,42,56,0.75);
@@ -16,8 +18,8 @@
     z-index: 999;
 }
 
-/* Caja del modal */
-.modal-box {
+/* Modal box */
+.modal-dialog {
     background: var(--blue-dark);
     border-radius: 8px;
     width: 90%; max-width: 800px;
@@ -26,26 +28,26 @@
     overflow: hidden;
 }
 
-/* Header del modal */
-.box-header {
+/* Header */
+.modal-header {
     background: var(--blue-primary);
     padding: 1rem 1.5rem;
     display: flex; align-items: center; justify-content: space-between;
 }
-.box-header h2 {
+.modal-header h2 {
     margin: 0; font-size: 1.5rem;
 }
-.close-btn {
+.modal-close {
     background: none; border: none;
     color: #fff; font-size: 1.5rem;
     cursor: pointer; transition: transform .2s;
 }
-.close-btn:hover {
+.modal-close:hover {
     transform: scale(1.2);
 }
 
-/* Cuerpo del modal */
-.box-body {
+/* Body */
+.modal-body {
     background: #fff;
     color: var(--text-dark);
     padding: 1.5rem;
@@ -53,21 +55,24 @@
     overflow-y: auto;
 }
 
-/* Grid de datos generales */
+/* Grid datos generales */
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
     gap: 1rem;
 }
-.info-item {
+.info-cell {
     display: flex; flex-direction: column;
 }
-.info-item.full-width { grid-column: 1 / -1; }
-.info-item strong {
+.info-cell.full-width {
+    grid-column: 1 / -1;
+}
+.info-cell label {
+    font-weight: 600;
     margin-bottom: .25rem;
     color: var(--blue-dark);
 }
-.info-item span,
+.info-cell span,
 .desc-text {
     background: var(--light-bg);
     padding: .5rem;
@@ -76,19 +81,10 @@
     line-height: 1.4;
 }
 
-/* Sección de defectos */
-.defects-section {
+/* Sección defectos */
+.defects-container {
     margin-top: 2rem;
 }
-.defects-section h3 {
-    color: var(--blue-dark);
-    margin-bottom: 1rem;
-    border-bottom: 2px solid var(--blue-primary);
-    display: inline-block;
-    padding-bottom: .25rem;
-}
-
-/* Bloque de cada defecto */
 .defect-block {
     background: var(--light-bg);
     border-radius: 6px;
@@ -96,84 +92,80 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     overflow: hidden;
 }
-.block-header {
+.defect-title {
     background: var(--blue-primary);
     color: #fff;
+    margin: 0;
     padding: .75rem 1rem;
-    font-weight: bold;
+    font-size: 1.1rem;
 }
 
-/* Fila con OK a la izquierda y NO OK a la derecha */
-.photo-row {
+/* OK / NO OK lado a lado */
+.photos-row {
     display: flex;
     gap: 1rem;
     padding: 1rem;
 }
-.photo-side {
+.photos-group {
     flex: 1;
     background: #fff;
     border-radius: 6px;
     padding: .75rem;
     display: flex; flex-direction: column;
-    border: 3px solid transparent;
+    border: 2px solid transparent;
 }
-.ok-side {
+.photos-group.ok {
     border-color: var(--accent-ok);
 }
-.no-side {
+.photos-group.no {
     border-color: var(--accent-no);
 }
-.photo-side figcaption {
-    margin: 0 0 .5rem 0;
-    font-size: 1rem;
+.group-title {
     font-weight: 600;
+    margin-bottom: .5rem;
+    color: inherit;
 }
-.ok-side figcaption { color: var(--accent-ok); }
-.no-side figcaption { color: var(--accent-no); }
+.photos-group.ok .group-title {
+    color: var(--accent-ok);
+}
+.photos-group.no .group-title {
+    color: var(--accent-no);
+}
 
-/* Grid de miniaturas */
-.photo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(70px,1fr));
+/* Miniaturas */
+.thumbs {
+    display: flex;
+    flex-wrap: wrap;
     gap: .5rem;
-    flex: 1;
+    max-height: 100px;
     overflow-y: auto;
 }
-.photo-grid img {
-    width: 100%;
+.thumbs img {
+    width: 70px;
     height: 70px;
     object-fit: cover;
     border-radius: 4px;
     cursor: pointer;
     transition: transform .2s, box-shadow .2s;
 }
-.photo-grid img:hover {
-    transform: scale(1.05);
+.thumbs img:hover {
+    transform: scale(1.1);
     box-shadow: 0 0 8px rgba(0,0,0,0.15);
 }
 
-/* Lightbox */
-#modal-image {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(30,42,56,0.85);
-    align-items: center; justify-content: center;
-    z-index: 1000;
-}
+/* Lightbox ampliado */
 #modal-image img {
     max-width: 90%; max-height: 90%;
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
-.close-img {
-    position: absolute; top: 20px; right: 30px;
-    font-size: 2rem; color: #fff;
-    background: none; border: none; cursor: pointer;
-    z-index: 1001;
-}
 
-/* Responsive móvil */
+/* Responsive */
 @media (max-width: 600px) {
-    .photo-row { flex-direction: column; }
-    .info-grid { grid-template-columns: 1fr; }
+    .photos-row {
+        flex-direction: column;
+    }
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
 }

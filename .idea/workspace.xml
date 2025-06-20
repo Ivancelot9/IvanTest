@@ -210,15 +210,7 @@
       <workItem from="1749833377972" duration="2476000" />
       <workItem from="1750169864632" duration="2662000" />
       <workItem from="1750256350611" duration="17186000" />
-      <workItem from="1750429336608" duration="9774000" />
-    </task>
-    <task id="LOCAL-01559" summary="Buzon de Reportes Correcion a la inyencion de reportes">
-      <option name="closed" value="true" />
-      <created>1749057847180</created>
-      <option name="number" value="01559" />
-      <option name="presentableId" value="LOCAL-01559" />
-      <option name="project" value="LOCAL" />
-      <updated>1749057847180</updated>
+      <workItem from="1750429336608" duration="10200000" />
     </task>
     <task id="LOCAL-01560" summary="Buzon de Reportes Correcion a la inyencion de reportes">
       <option name="closed" value="true" />
@@ -604,7 +596,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750449937565</updated>
     </task>
-    <option name="localTasksCounter" value="1608" />
+    <task id="LOCAL-01608" summary="Reajustandi Mostrar Descripcion">
+      <option name="closed" value="true" />
+      <created>1750450226008</created>
+      <option name="number" value="01608" />
+      <option name="presentableId" value="LOCAL-01608" />
+      <option name="project" value="LOCAL" />
+      <updated>1750450226008</updated>
+    </task>
+    <option name="localTasksCounter" value="1609" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

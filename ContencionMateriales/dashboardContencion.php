@@ -433,64 +433,85 @@ $stmtUser->close();
     </section>
 </main>
 
+<!-- HTML COMPLETO -->
+<!-- Pega esto justo antes del </body> -->
 <div id="modal-descripcion" class="modal-overlay">
-    <div class="modal-box">
-        <header class="box-header">
+    <div class="modal-dialog">
+        <header class="modal-header">
             <h2>Datos del Caso</h2>
-            <button class="close-btn" id="modal-cerrar">&times;</button>
+            <button id="modal-cerrar" class="modal-close">&times;</button>
         </header>
-        <div class="box-body">
+        <div class="modal-body">
 
             <!-- Datos generales -->
             <div class="info-grid">
-                <div class="info-item">
-                    <strong>Folio</strong>
+                <div class="info-cell">
+                    <label>Folio</label>
                     <span id="r-folio"></span>
                 </div>
-                <div class="info-item">
-                    <strong>Fecha</strong>
+                <div class="info-cell">
+                    <label>Fecha</label>
                     <span id="r-fecha"></span>
                 </div>
-                <div class="info-item">
-                    <strong>No. Parte</strong>
+                <div class="info-cell">
+                    <label>No. Parte</label>
                     <span id="r-parte"></span>
                 </div>
-                <div class="info-item">
-                    <strong>Cantidad</strong>
+                <div class="info-cell">
+                    <label>Cantidad</label>
                     <span id="r-cantidad"></span>
                 </div>
-                <div class="info-item">
-                    <strong>Terciaria</strong>
+                <div class="info-cell">
+                    <label>Terciaria</label>
                     <span id="r-terciaria"></span>
                 </div>
-                <div class="info-item">
-                    <strong>Proveedor</strong>
+                <div class="info-cell">
+                    <label>Proveedor</label>
                     <span id="r-proveedor"></span>
                 </div>
-                <div class="info-item">
-                    <strong>Commodity</strong>
+                <div class="info-cell">
+                    <label>Commodity</label>
                     <span id="r-commodity"></span>
                 </div>
-                <div class="info-item full-width">
-                    <strong>Descripción</strong>
+                <div class="info-cell full-width">
+                    <label>Descripción</label>
                     <p class="desc-text" id="r-descripcion"></p>
                 </div>
             </div>
 
             <!-- Defectos -->
-            <section class="defects-section">
-                <h3>Defectos</h3>
-                <div id="r-defectos-container">
-                    <!-- bloques se inyectan con JS -->
+            <div id="r-defectos-container" class="defects-container">
+                <!-- Ejemplo de bloque de defecto (se inyecta con JS) -->
+                <!--
+                <div class="defect-block">
+                  <h3 class="defect-title">Componente Roto</h3>
+                  <div class="photos-row">
+                    <div class="photos-group ok">
+                      <div class="group-title">OK</div>
+                      <div class="thumbs">
+                        <img src="dao/uploads/ok/imagen1.jpg" alt="OK">
+                        <img src="dao/uploads/ok/imagen2.jpg" alt="OK">
+                      </div>
+                    </div>
+                    <div class="photos-group no">
+                      <div class="group-title">NO OK</div>
+                      <div class="thumbs">
+                        <img src="dao/uploads/no/imagen1.jpg" alt="NO OK">
+                        <img src="dao/uploads/no/imagen2.jpg" alt="NO OK">
+                      </div>
+                    </div>
+                  </div>
                 </div>
-            </section>
+                -->
+            </div>
+
         </div>
     </div>
 </div>
 
-<!-- Lightbox para imágenes -->
+<!-- Lightbox para ampliar imágenes -->
 <div id="modal-image" class="modal-overlay">
-    <button class="close-img">&times;</button>
+    <button class="modal-close">&times;</button>
     <img src="" alt="Vista ampliada">
 </div>
 <script>
