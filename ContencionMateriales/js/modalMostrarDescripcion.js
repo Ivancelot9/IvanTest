@@ -5,7 +5,7 @@
     const lbImg    = lb.querySelector('img');
     const lbClose  = lb.querySelector('.close-img');
 
-    // Mapa de campos
+    // Campos básicos
     const campos = {
         folio:       document.getElementById('r-folio'),
         fecha:       document.getElementById('r-fecha'),
@@ -17,10 +17,10 @@
         commodity:   document.getElementById('r-commodity')
     };
 
-    // Contenedor donde inyectamos todos los defectos
+    // Contenedor de defectos
     const contDefectos = document.getElementById('r-defectos-container');
 
-    // Ocultamos modales al inicio
+    // Ocultar modales
     modal.style.display = 'none';
     lb.style.display    = 'none';
 
@@ -31,13 +31,13 @@
         if (e.target === lb) lb.style.display = 'none';
     });
 
-    // Función pública para mostrar datos
+    // Función para mostrar datos
     window.mostrarModalDescripcion = async folio => {
-        // 1) Limpiar
+        // Limpiar
         Object.values(campos).forEach(el => el.textContent = '');
         contDefectos.innerHTML = '';
 
-        // 2) Abre modal
+        // Mostrar
         modal.style.display = 'flex';
 
         try {
@@ -48,7 +48,7 @@
                 throw new Error(data.error || data.message);
             }
 
-            // 3) Rellenar campos básicos
+            // Rellenar campos
             campos.folio.textContent       = data.folio;
             campos.fecha.textContent       = data.fecha.split('-').reverse().join('-');
             campos.numeroParte.textContent = data.numeroParte;
@@ -58,7 +58,7 @@
             campos.commodity.textContent   = data.commodity;
             campos.descripcion.textContent = data.descripcion || '(sin descripción)';
 
-            // 4) Construir HTML para defectos
+            // Generar HTML de defectos
             const html = data.defectos.map(def => `
         <div class="defect-block">
           <div class="block-header">Defecto: ${def.nombre}</div>
@@ -87,8 +87,9 @@
         </div>
       `).join('');
 
-            // 5) Inyectar y enlazar lightbox
             contDefectos.innerHTML = html;
+
+            // Lightbox
             contDefectos.querySelectorAll('.photos-grid img').forEach(img => {
                 img.onclick = () => {
                     lbImg.src        = img.src;
