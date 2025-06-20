@@ -433,7 +433,6 @@ $stmtUser->close();
     </section>
 </main>
 
-<!-- Modal de reporte -->
 <div id="modal-descripcion" class="modal-overlay">
     <div class="modal-box">
         <header class="box-header">
@@ -482,28 +481,7 @@ $stmtUser->close();
             <section class="defects-section">
                 <h3>Defectos</h3>
                 <div id="r-defectos-container">
-                    <!-- Ejemplo estático de bloque: -->
-                    <!--
-                    <div class="defect-block">
-                      <div class="block-header">Defecto: Componente Roto</div>
-                      <div class="photo-row">
-                        <div class="photo-group ok-group">
-                          <h4>OK</h4>
-                          <div class="photo-strip">
-                            <img src="dao/uploads/ok/imagen1.jpg" alt="OK">
-                            <img src="dao/uploads/ok/imagen2.jpg" alt="OK">
-                          </div>
-                        </div>
-                        <div class="photo-group no-group">
-                          <h4>NO OK</h4>
-                          <div class="photo-strip">
-                            <img src="dao/uploads/no/imagen1.jpg" alt="NO OK">
-                            <img src="dao/uploads/no/imagen2.jpg" alt="NO OK">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    -->
+                    <!-- bloques se inyectan con JS -->
                 </div>
             </section>
         </div>
