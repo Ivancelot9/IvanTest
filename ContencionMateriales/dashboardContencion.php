@@ -439,11 +439,11 @@ $stmtUser->close();
         <div class="reporte-inner">
 
             <header class="reporte-header">
-                <h2 class="modal-heading">
-                    Datos del Caso
-                    <img src="imagenes/Recurso 6 (2).png" alt="Logo" class="modal-logo-inline">
-                </h2>
                 <button id="modal-cerrar" class="modal-close">&times;</button>
+                <h2 class="modal-heading">Datos del Caso</h2>
+                <img src="imagenes/Recurso 6 (2).png"
+                     alt="Logo"
+                     class="modal-logo-inline">
             </header>
 
             <section class="reporte-grid">
@@ -472,7 +472,6 @@ $stmtUser->close();
                 <div class="description-box" id="r-descripcion"></div>
             </section>
 
-            <!-- Aquí se inyectan dinámicamente todos los defectos con sus fotos -->
             <div id="r-defectos-container"></div>
 
         </div>
