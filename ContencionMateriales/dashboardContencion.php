@@ -437,6 +437,7 @@ $stmtUser->close();
 <div id="modal-descripcion" class="modal-overlay">
     <div class="modal-content reporte">
         <div class="reporte-inner">
+
             <header class="reporte-header">
                 <h2 class="modal-heading">
                     Datos del Caso
@@ -446,20 +447,34 @@ $stmtUser->close();
             </header>
 
             <section class="reporte-grid">
-                <div class="field-label">Folio:</div>      <div class="field-value"   id="r-folio"></div>
-                <div class="field-label">Fecha:</div>      <div class="field-value"   id="r-fecha"></div>
-                <div class="field-label">No. Parte:</div>  <div class="field-value"   id="r-parte"></div>
-                <div class="field-label">Cantidad:</div>   <div class="field-value"   id="r-cantidad"></div>
-                <div class="field-label">Terciaria:</div>  <div class="field-value"   id="r-terciaria"></div>
-                <div class="field-label">Proveedor:</div>  <div class="field-value"   id="r-proveedor"></div>
-                <div class="field-label">Commodity:</div>  <div class="field-value"   id="r-commodity"></div>
-                <div class="field-label">Defectos:</div>   <div class="field-value"   id="r-defectos"></div>
+                <div class="field-label">Folio:</div>
+                <div class="field-value" id="r-folio"></div>
+
+                <div class="field-label">Fecha:</div>
+                <div class="field-value" id="r-fecha"></div>
+
+                <div class="field-label">No. Parte:</div>
+                <div class="field-value" id="r-parte"></div>
+
+                <div class="field-label">Cantidad:</div>
+                <div class="field-value" id="r-cantidad"></div>
+
+                <div class="field-label">Terciaria:</div>
+                <div class="field-value" id="r-terciaria"></div>
+
+                <div class="field-label">Proveedor:</div>
+                <div class="field-value" id="r-proveedor"></div>
+
+                <div class="field-label">Commodity:</div>
+                <div class="field-value" id="r-commodity"></div>
 
                 <div class="field-label description-label">Descripción:</div>
-                <div class="description-box"           id="r-descripcion"></div>
+                <div class="description-box" id="r-descripcion"></div>
             </section>
 
+            <!-- Aquí se inyectan dinámicamente todos los defectos con sus fotos -->
             <div id="r-defectos-container"></div>
+
         </div>
     </div>
 </div>
