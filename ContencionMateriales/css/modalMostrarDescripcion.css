@@ -1,245 +1,156 @@
-/* ————— Variables de color ————— */
 :root {
     --blue-dark:     #1e2a38;
     --blue-primary:  #0366d6;
-    --gray-border:   #d0d7de;
-    --text-light:    #ffffff;
-    --text-dark:     #1c1e21;
     --accent-ok:     #2ea043;
     --accent-no:     #d93025;
+    --light-bg:      #f5f7fa;
+    --text-dark:     #1c1e21;
 }
 
-/* ————— Overlay semitransparente ————— */
+/* Overlay */
 .modal-overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    position: fixed; inset: 0;
     background: rgba(30,42,56,0.75);
     display: none;
-    align-items: center;
-    justify-content: center;
+    align-items: center; justify-content: center;
     z-index: 999;
 }
 
-/* ————— Ventana principal ————— */
-.modal-content.reporte {
-    background: #fff;
-    border: 2px solid var(--blue-dark);
-    border-radius: 12px;
-    width: 95%; max-width: 900px;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 1rem;
-    font-family: 'Segoe UI', sans-serif;
-    color: var(--text-dark);
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent-ok) transparent;
-}
-.modal-content.reporte::-webkit-scrollbar { width: 6px; }
-.modal-content.reporte::-webkit-scrollbar-track { background: transparent; }
-.modal-content.reporte::-webkit-scrollbar-thumb {
-    background: var(--accent-ok);
-    border: 1px solid var(--gray-border);
-    border-radius: 3px;
-}
-
-/* ————— Tarjeta interior ————— */
-.reporte-inner {
+/* Caja principal */
+.modal-box {
     background: var(--blue-dark);
-    border-radius: 12px;
-    padding: 1.5rem;
-    position: relative;
+    border-radius: 8px;
+    width: 90%; max-width: 800px;
+    color: #fff;
+    overflow: hidden;
+    display: flex; flex-direction: column;
 }
 
-/* ————— Header con logo y título ————— */
-.reporte-header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    border-bottom: 2px solid var(--gray-border);
-    padding-bottom: .5rem;
-    margin-bottom: 1rem;
+/* Header */
+.box-header {
+    background: var(--blue-primary);
+    padding: 1rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
 }
-.modal-close {
-    position: absolute;
-    top: 1rem; right: 1rem;
+.box-header h2 {
+    margin: 0; font-size: 1.5rem;
+}
+.close-btn {
     background: none; border: none;
-    font-size: 1.5rem; color: var(--text-light);
+    color: #fff; font-size: 1.5rem;
     cursor: pointer;
-}
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1.4); }
-}
-.modal-close:hover {
-    animation: pulse .2s forwards;
-    border: 2px solid var(--accent-no);
-    border-radius: 50%;
-}
-.modal-heading {
-    font-size: 1.6rem;
-    color: var(--text-light);
-    margin: 0 0 .75rem 0;
-}
-.modal-logo-inline {
-    align-self: flex-end;
-    width: 48px; height: auto;
     transition: transform .2s;
 }
-.modal-logo-inline:hover {
-    transform: scale(1.1);
+.close-btn:hover {
+    transform: scale(1.2);
 }
 
-/* ————— Grid de datos ————— */
-.reporte-grid {
-    display: grid;
-    grid-template-columns:
-        max-content minmax(140px,1fr)
-        max-content minmax(140px,1fr);
-    row-gap: .5rem;
-    column-gap: 1rem;
-    background: var(--blue-dark);
-    padding: 1rem;
-    border-radius: 8px;
-}
-.field-label {
-    font-weight: 600;
-    color: var(--text-light);
-    justify-self: start;
-}
-.field-value,
-.description-box {
-    border: 6px solid transparent;
-    border-radius: 16px;
-    background-image:
-            linear-gradient(#fff,#fff),
-            linear-gradient(135deg, var(--accent-ok), var(--blue-primary));
-    background-origin: padding-box, border-box;
-    background-clip: padding-box, border-box;
-    padding: .5rem;
+/* Cuerpo */
+.box-body {
+    background: #fff;
     color: var(--text-dark);
-}
-/* La caja de descripción ahora abarca todo el ancho del grid */
-.description-box {
-    grid-column: 1 / -1;
-    min-height: 120px;
+    padding: 1.5rem;
+    max-height: 80vh;
     overflow-y: auto;
-    padding: .75rem;
 }
 
-/* ————— Bloque de cada defecto ————— */
-.defect-block {
-    margin-top: 1.5rem;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    background: #fafbfc;
-}
-.defect-block .block-header {
-    background: var(--blue-primary);
-    color: var(--text-light);
-    padding: .75rem 1rem;
-    font-size: 1.1rem;
-    font-weight: bold;
-}
-
-/* ————— Fotos OK / NO OK lado a lado ————— */
-.defect-photos {
-    display: flex;
+/* Grid de datos */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
     gap: 1rem;
-    padding: 1rem;
 }
-.defect-photos .photo-section {
-    flex: 1;
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+.info-item.full-width { grid-column: 1 / -1; }
+.info-item strong {
+    margin-bottom: .25rem;
+    color: var(--blue-dark);
+}
+.info-item span,
+.desc-text {
+    background: var(--light-bg);
+    padding: .5rem;
+    border-radius: 4px;
+    line-height: 1.4;
+    min-height: 2rem;
+}
+
+/* Sección de defectos */
+.defects-section {
+    margin-top: 2rem;
+}
+.defects-section h3 {
+    color: var(--blue-dark);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--blue-primary);
+    display: inline-block;
+    padding-bottom: .25rem;
+}
+
+/* Tarjeta de cada defecto */
+.defect-item {
+    background: #fafbfc;
     border-radius: 6px;
     padding: 1rem;
-    background: #fff;
-    border: 2px solid var(--gray-border);
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--accent-ok);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
-.ok-section {
-    background: #e6f4ea;
-    border-color: var(--accent-ok);
+.defect-item.no {
+    border-left-color: var(--accent-no);
 }
-.no-section {
-    background: #fce8e6;
-    border-color: var(--accent-no);
+.defect-header {
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin-bottom: .75rem;
 }
-.defect-photos .photo-section h3 {
-    margin: 0 0 .5rem 0;
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-}
-.ok-section h3, .ok-section i { color: var(--accent-ok); }
-.no-section h3, .no-section i { color: var(--accent-no); }
 
-/* ————— Galería interna ————— */
+/* Fotos */
+.photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+.photo-block {
+    background: #fff;
+    border: 1px solid #dde2e6;
+    border-radius: 4px;
+    padding: .75rem;
+}
+.photo-block h4 {
+    margin: 0 0 .5rem 0;
+    font-size: 1rem;
+}
+.photo-block h4 { color: var(--accent-ok); }
+.defect-item.no .photo-block h4 { color: var(--accent-no); }
+
 .photos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(80px,1fr));
     gap: .5rem;
 }
 .photos-grid img {
-    width: 100%; height: 100px;
+    width: 100%;
+    height: 80px;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 3px;
     cursor: pointer;
-    transition: transform .2s;
+    transition: transform .15s;
 }
 .photos-grid.ok img:hover {
     transform: scale(1.1);
-    border: 4px solid var(--accent-ok);
+    border: 2px solid var(--accent-ok);
 }
 .photos-grid.no img:hover {
     transform: scale(1.1);
-    border: 4px solid var(--accent-no);
+    border: 2px solid var(--accent-no);
 }
 
-/* ————— Lightbox ————— */
-#modal-image {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(30,42,56,0.85);
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-#modal-image img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-#modal-image .close-img {
-    position: absolute;
-    top: 20px; right: 30px;
-    font-size: 2rem;
-    color: #fff;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-/* ————— Responsive para móvil (≤768px) ————— */
-@media (max-width: 768px) {
-    .reporte-grid {
-        grid-template-columns: 1fr;
-    }
-    .description-box {
-        grid-column: auto;
-        min-height: 100px;
-    }
-    .defect-photos {
-        flex-direction: column;
-        padding: 0;
-    }
-    .photos-grid {
-        grid-template-columns: repeat(auto-fill, minmax(80px,1fr));
-    }
-    .modal-logo-inline {
-        align-self: center;
-        margin-bottom: .5rem;
-    }
+/* Responsive móvil */
+@media (max-width: 600px) {
+    .photos { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr; }
 }

@@ -435,59 +435,87 @@ $stmtUser->close();
 
 <!-- Modal de reporte -->
 <div id="modal-descripcion" class="modal-overlay">
-    <div class="modal-content reporte">
-        <div class="reporte-inner">
+    <div class="modal-box">
+        <header class="box-header">
+            <h2>Datos del Caso</h2>
+            <button class="close-btn" id="modal-cerrar">&times;</button>
+        </header>
+        <div class="box-body">
 
-            <header class="reporte-header">
-                <button id="modal-cerrar" class="modal-close">&times;</button>
-                <h2 class="modal-heading">Datos del Caso</h2>
-                <img
-                        src="imagenes/Recurso 6 (2).png"
-                        alt="Logo"
-                        class="modal-logo-inline"
-                >
-            </header>
+            <!-- Datos generales -->
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Folio</strong>
+                    <span id="r-folio"></span>
+                </div>
+                <div class="info-item">
+                    <strong>Fecha</strong>
+                    <span id="r-fecha"></span>
+                </div>
+                <div class="info-item">
+                    <strong>No. Parte</strong>
+                    <span id="r-parte"></span>
+                </div>
+                <div class="info-item">
+                    <strong>Cantidad</strong>
+                    <span id="r-cantidad"></span>
+                </div>
+                <div class="info-item">
+                    <strong>Terciaria</strong>
+                    <span id="r-terciaria"></span>
+                </div>
+                <div class="info-item">
+                    <strong>Proveedor</strong>
+                    <span id="r-proveedor"></span>
+                </div>
+                <div class="info-item">
+                    <strong>Commodity</strong>
+                    <span id="r-commodity"></span>
+                </div>
+                <div class="info-item full-width">
+                    <strong>Descripción</strong>
+                    <p class="desc-text" id="r-descripcion"></p>
+                </div>
+            </div>
 
-            <section class="reporte-grid">
-                <div class="field-label">Folio:</div>
-                <div class="field-value" id="r-folio"></div>
-
-                <div class="field-label">Fecha:</div>
-                <div class="field-value" id="r-fecha"></div>
-
-                <div class="field-label">No. Parte:</div>
-                <div class="field-value" id="r-parte"></div>
-
-                <div class="field-label">Cantidad:</div>
-                <div class="field-value" id="r-cantidad"></div>
-
-                <div class="field-label">Terciaria:</div>
-                <div class="field-value" id="r-terciaria"></div>
-
-                <div class="field-label">Proveedor:</div>
-                <div class="field-value" id="r-proveedor"></div>
-
-                <div class="field-label">Commodity:</div>
-                <div class="field-value" id="r-commodity"></div>
-
-                <!-- Etiqueta + caja de descripción -->
-                <div class="field-label">Descripción:</div>
-                <div class="description-box" id="r-descripcion"></div>
+            <!-- Defectos -->
+            <section class="defects-section">
+                <h3>Defectos</h3>
+                <div id="r-defectos-container">
+                    <!-- Estos bloques se generan dinámicamente -->
+                    <!-- Ejemplo de bloque: -->
+                    <!--
+                    <div class="defect-item ok">
+                      <div class="defect-header">Componente Roto</div>
+                      <div class="photos">
+                        <div class="photo-block">
+                          <h4>OK</h4>
+                          <div class="photos-grid ok">
+                            <img src="..." alt="">
+                            ...
+                          </div>
+                        </div>
+                        <div class="photo-block">
+                          <h4>NO OK</h4>
+                          <div class="photos-grid no">
+                            <img src="..." alt="">
+                            ...
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    -->
+                </div>
             </section>
-
-            <!-- Defectos con sus fotos -->
-            <div id="r-defectos-container"></div>
-
         </div>
     </div>
 </div>
 
-<!-- Lightbox para imágenes -->
+<!-- Lightbox para imágenes (sin cambios) -->
 <div id="modal-image" class="modal-overlay">
     <button class="close-img">&times;</button>
     <img src="" alt="Vista ampliada">
 </div>
-
 
 <script>
     window.defectosCatalogo = [
