@@ -434,7 +434,7 @@ $stmtUser->close();
 </main>
 
 <!-- HTML COMPLETO -->
-<!-- Pega esto justo antes del </body> -->
+<!-- MODAL DE DESCRIPCIÓN -->
 <div id="modal-descripcion" class="modal-overlay">
     <div class="modal-dialog">
         <header class="modal-header">
@@ -442,76 +442,27 @@ $stmtUser->close();
             <button id="modal-cerrar" class="modal-close">&times;</button>
         </header>
         <div class="modal-body">
-
             <!-- Datos generales -->
             <div class="info-grid">
-                <div class="info-cell">
-                    <label>Folio</label>
-                    <span id="r-folio"></span>
-                </div>
-                <div class="info-cell">
-                    <label>Fecha</label>
-                    <span id="r-fecha"></span>
-                </div>
-                <div class="info-cell">
-                    <label>No. Parte</label>
-                    <span id="r-parte"></span>
-                </div>
-                <div class="info-cell">
-                    <label>Cantidad</label>
-                    <span id="r-cantidad"></span>
-                </div>
-                <div class="info-cell">
-                    <label>Terciaria</label>
-                    <span id="r-terciaria"></span>
-                </div>
-                <div class="info-cell">
-                    <label>Proveedor</label>
-                    <span id="r-proveedor"></span>
-                </div>
-                <div class="info-cell">
-                    <label>Commodity</label>
-                    <span id="r-commodity"></span>
-                </div>
-                <div class="info-cell full-width">
-                    <label>Descripción</label>
-                    <p class="desc-text" id="r-descripcion"></p>
-                </div>
+                <div class="info-cell"><label>Folio</label><span id="r-folio"></span></div>
+                <div class="info-cell"><label>Fecha</label><span id="r-fecha"></span></div>
+                <div class="info-cell"><label>No. Parte</label><span id="r-parte"></span></div>
+                <div class="info-cell"><label>Cantidad</label><span id="r-cantidad"></span></div>
+                <div class="info-cell"><label>Terciaria</label><span id="r-terciaria"></span></div>
+                <div class="info-cell"><label>Proveedor</label><span id="r-proveedor"></span></div>
+                <div class="info-cell"><label>Commodity</label><span id="r-commodity"></span></div>
+                <div class="info-cell full-width"><label>Descripción</label><p class="desc-text" id="r-descripcion"></p></div>
             </div>
 
             <!-- Defectos -->
-            <div id="r-defectos-container" class="defects-container">
-                <!-- Ejemplo de bloque de defecto (se inyecta con JS) -->
-                <!--
-                <div class="defect-block">
-                  <h3 class="defect-title">Componente Roto</h3>
-                  <div class="photos-row">
-                    <div class="photos-group ok">
-                      <div class="group-title">OK</div>
-                      <div class="thumbs">
-                        <img src="dao/uploads/ok/imagen1.jpg" alt="OK">
-                        <img src="dao/uploads/ok/imagen2.jpg" alt="OK">
-                      </div>
-                    </div>
-                    <div class="photos-group no">
-                      <div class="group-title">NO OK</div>
-                      <div class="thumbs">
-                        <img src="dao/uploads/no/imagen1.jpg" alt="NO OK">
-                        <img src="dao/uploads/no/imagen2.jpg" alt="NO OK">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                -->
-            </div>
-
+            <div id="r-defectos-container" class="defects-container"></div>
         </div>
     </div>
 </div>
 
-<!-- Lightbox para ampliar imágenes -->
+<!-- LIGHTBOX PARA IMÁGENES -->
 <div id="modal-image" class="modal-overlay">
-    <button class="modal-close">&times;</button>
+    <button class="modal-close close-img">&times;</button>
     <img src="" alt="Vista ampliada">
 </div>
 <script>

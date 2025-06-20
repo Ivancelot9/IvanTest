@@ -1,5 +1,3 @@
-/* CSS COMPLETO */
-/* Pega esto en tu hoja de estilos o dentro de <style> */
 :root {
     --blue-dark:    #1e2a38;
     --blue-primary: #0366d6;
@@ -9,7 +7,6 @@
     --text-dark:    #1c1e21;
 }
 
-/* Overlay */
 .modal-overlay {
     position: fixed; inset: 0;
     background: rgba(30,42,56,0.75);
@@ -18,7 +15,6 @@
     z-index: 999;
 }
 
-/* Modal box */
 .modal-dialog {
     background: var(--blue-dark);
     border-radius: 8px;
@@ -28,12 +24,13 @@
     overflow: hidden;
 }
 
-/* Header */
 .modal-header {
     background: var(--blue-primary);
     padding: 1rem 1.5rem;
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; justify-content: space-between;
+    align-items: center;
 }
+
 .modal-header h2 {
     margin: 0; font-size: 1.5rem;
 }
@@ -46,7 +43,6 @@
     transform: scale(1.2);
 }
 
-/* Body */
 .modal-body {
     background: #fff;
     color: var(--text-dark);
@@ -55,7 +51,6 @@
     overflow-y: auto;
 }
 
-/* Grid datos generales */
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
@@ -81,7 +76,6 @@
     line-height: 1.4;
 }
 
-/* Sección defectos */
 .defects-container {
     margin-top: 2rem;
 }
@@ -99,8 +93,6 @@
     padding: .75rem 1rem;
     font-size: 1.1rem;
 }
-
-/* OK / NO OK lado a lado */
 .photos-row {
     display: flex;
     gap: 1rem;
@@ -111,7 +103,8 @@
     background: #fff;
     border-radius: 6px;
     padding: .75rem;
-    display: flex; flex-direction: column;
+    display: flex;
+    flex-direction: column;
     border: 2px solid transparent;
 }
 .photos-group.ok {
@@ -123,7 +116,6 @@
 .group-title {
     font-weight: 600;
     margin-bottom: .5rem;
-    color: inherit;
 }
 .photos-group.ok .group-title {
     color: var(--accent-ok);
@@ -131,8 +123,6 @@
 .photos-group.no .group-title {
     color: var(--accent-no);
 }
-
-/* Miniaturas */
 .thumbs {
     display: flex;
     flex-wrap: wrap;
@@ -153,14 +143,12 @@
     box-shadow: 0 0 8px rgba(0,0,0,0.15);
 }
 
-/* Lightbox ampliado */
 #modal-image img {
     max-width: 90%; max-height: 90%;
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-/* Responsive */
 @media (max-width: 600px) {
     .photos-row {
         flex-direction: column;
