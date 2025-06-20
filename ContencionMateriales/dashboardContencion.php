@@ -441,9 +441,11 @@ $stmtUser->close();
             <header class="reporte-header">
                 <button id="modal-cerrar" class="modal-close">&times;</button>
                 <h2 class="modal-heading">Datos del Caso</h2>
-                <img src="imagenes/Recurso 6 (2).png"
-                     alt="Logo"
-                     class="modal-logo-inline">
+                <img
+                        src="imagenes/Recurso 6 (2).png"
+                        alt="Logo"
+                        class="modal-logo-inline"
+                >
             </header>
 
             <section class="reporte-grid">
@@ -468,10 +470,12 @@ $stmtUser->close();
                 <div class="field-label">Commodity:</div>
                 <div class="field-value" id="r-commodity"></div>
 
+                <!-- Aquí movimos Descripción para que esté arriba -->
                 <div class="field-label description-label">Descripción:</div>
                 <div class="description-box" id="r-descripcion"></div>
             </section>
 
+            <!-- Defectos con sus fotos -->
             <div id="r-defectos-container"></div>
 
         </div>
@@ -483,7 +487,6 @@ $stmtUser->close();
     <button class="close-img">&times;</button>
     <img src="" alt="Vista ampliada">
 </div>
-
 
 
 <script>
