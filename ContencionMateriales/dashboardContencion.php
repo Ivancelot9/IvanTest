@@ -470,8 +470,8 @@ $stmtUser->close();
                 <div class="field-label">Commodity:</div>
                 <div class="field-value" id="r-commodity"></div>
 
-                <!-- Aquí movimos Descripción para que esté arriba -->
-                <div class="field-label description-label">Descripción:</div>
+                <!-- Etiqueta + caja de descripción -->
+                <div class="field-label">Descripción:</div>
                 <div class="description-box" id="r-descripcion"></div>
             </section>
 
