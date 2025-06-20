@@ -1,11 +1,11 @@
-(function(){
+(function() {
     const modal    = document.getElementById('modal-descripcion');
     const btnClose = modal.querySelector('#modal-cerrar');
     const lb       = document.getElementById('modal-image');
     const lbImg    = lb.querySelector('img');
     const lbClose  = lb.querySelector('.close-img');
 
-    // ← Modificación: asegurarnos de que ambos modales estén ocultos al arrancar
+    // Ocultar al arrancar
     modal.style.display = 'none';
     lb.style.display    = 'none';
 
@@ -21,7 +21,7 @@
         commodity:   document.getElementById('r-commodity'),
         defectos:    document.getElementById('r-defectos'),
         photosOk:    document.getElementById('r-photos-ok'),
-        photosNo:    document.getElementById('r-photos-no')
+        photosNo:     document.getElementById('r-photos-no')
     };
 
     // Cerrar modales
@@ -31,28 +31,29 @@
     lbClose.addEventListener('click', () => {
         lb.style.display = 'none';
     });
-
-    // Cerrar lightbox al hacer clic fuera de la imagen
     lb.addEventListener('click', e => {
         if (e.target === lb) {
             lb.style.display = 'none';
         }
     });
 
-    // Función global para abrir el modal de descripción
+    // Función global
     window.mostrarModalDescripcion = async function(folio) {
-        // limpiar contenidos de todos los campos
+        // Limpiar todos los campos
         Object.values(campos).forEach(el => el.innerHTML = '');
 
-        // abrir modal de descripción
+        // Mostrar modal
         modal.style.display = 'flex';
 
         try {
-            const res  = await fetch(`dao/obtenerCaso.php?folio=${folio}`);
+            const res = await fetch(`dao/obtenerCaso.php?folio=${folio}`);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const data = await res.json();
-            if (data.error) throw new Error(data.error);
+            if (data.status && data.status !== 'success') {
+                throw new Error(data.message || 'Error al cargar datos');
+            }
 
-            // Rellenar campos
+            // 1) Campos básicos
             campos.folio.textContent       = data.folio;
             campos.fecha.textContent       = data.fecha.split('-').reverse().join('-');
             campos.numeroParte.textContent = data.numeroParte;
@@ -60,52 +61,50 @@
             campos.terciaria.textContent   = data.terciaria;
             campos.proveedor.textContent   = data.proveedor;
             campos.commodity.textContent   = data.commodity;
-            campos.defectos.textContent    = data.defectos;
-            campos.descripcion.textContent = data.descripcion || '(sin texto)';
+            campos.descripcion.textContent = data.descripcion || '(sin descripción)';
 
-            // Fotos OK
+            // 2) Defectos (varios)
+            const listaNombres = data.defectos.map(d => d.nombre);
+            campos.defectos.textContent = listaNombres.join(', ') || '(ninguno)';
+
+            // 3) Fotos OK / NO OK
             const okGrid = campos.photosOk;
-            okGrid.classList.add('ok');
-            if (data.fotosOk.length) {
-                data.fotosOk.forEach(r => {
-                    const img = new Image();
-                    img.src = `dao/uploads/ok/${r}`;
-                    img.alt = 'OK';
-                    okGrid.appendChild(img);
-
-                    // ← Modificación: sólo abres el lightbox al hacer clic en la miniatura
-                    img.addEventListener('click', () => {
-                        lbImg.src          = img.src;
-                        lb.style.display   = 'flex';
-                    });
-                });
-            } else {
-                okGrid.textContent = '(ninguna)';
-            }
-
-            // Fotos NO OK
             const noGrid = campos.photosNo;
+            okGrid.innerHTML = '';
+            noGrid.innerHTML = '';
+            okGrid.classList.add('ok');
             noGrid.classList.add('no');
-            if (data.fotosNo.length) {
-                data.fotosNo.forEach(r => {
+
+            data.defectos.forEach(def => {
+                def.fotosOk.forEach(ruta => {
                     const img = new Image();
-                    img.src = `dao/uploads/no/${r}`;
-                    img.alt = 'NO OK';
-                    noGrid.appendChild(img);
-
-                    // ← Modificación: sólo abres el lightbox al hacer clic en la miniatura
+                    img.src = `dao/uploads/ok/${ruta}`;
+                    img.alt = def.nombre;
                     img.addEventListener('click', () => {
-                        lbImg.src          = img.src;
-                        lb.style.display   = 'flex';
+                        lbImg.src        = img.src;
+                        lb.style.display = 'flex';
                     });
+                    okGrid.appendChild(img);
                 });
-            } else {
-                noGrid.textContent = '(ninguna)';
-            }
+                def.fotosNo.forEach(ruta => {
+                    const img = new Image();
+                    img.src = `dao/uploads/no/${ruta}`;
+                    img.alt = def.nombre;
+                    img.addEventListener('click', () => {
+                        lbImg.src        = img.src;
+                        lb.style.display = 'flex';
+                    });
+                    noGrid.appendChild(img);
+                });
+            });
 
-        } catch(err) {
-            campos.descripcion.textContent = 'Error al cargar datos.';
+            if (!okGrid.children.length) okGrid.textContent = '(ninguna)';
+            if (!noGrid.children.length) noGrid.textContent  = '(ninguna)';
+
+        } catch (err) {
             console.error(err);
+            campos.descripcion.textContent = 'Error al cargar datos.';
+            Swal.fire('Error', err.message, 'error');
         }
     };
 })();

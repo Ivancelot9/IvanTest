@@ -1,5 +1,5 @@
 <?php
-// 1) Mostrar errores en desarrollo
+// 1) Mostrar errores en desarrollo (comentar en prod)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -9,17 +9,22 @@ header('Content-Type: application/json; charset=UTF-8');
 
 include_once 'conexionContencion.php';
 
-// 2) Validar que llegue el parámetro "folio"
+// 2) Validar parámetro folio
 if (!isset($_GET['folio'])) {
     http_response_code(400);
     echo json_encode(['error' => 'Falta el parámetro folio.']);
     exit;
 }
 $folio = intval($_GET['folio']);
+if ($folio <= 0) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Folio inválido.']);
+    exit;
+}
 
 $con = (new LocalConector())->conectar();
 
-// 3) Obtener datos del caso (incluyendo IdEstatus y Responsable)
+// 3) Datos básicos del caso
 $stmt = $con->prepare("
     SELECT 
       NumeroParte,
@@ -28,18 +33,12 @@ $stmt = $con->prepare("
       IdTerceria,
       IdProveedor,
       IdCommodity,
-      IdDefectos,
       IdEstatus,
       Responsable,
       DATE_FORMAT(FechaRegistro, '%Y-%m-%d') AS FechaRegistro
     FROM Casos
     WHERE FolioCaso = ?
 ");
-if (!$stmt) {
-    http_response_code(500);
-    echo json_encode(['error' => 'Error preparando SELECT Casos: ' . $con->error]);
-    exit;
-}
 $stmt->bind_param('i', $folio);
 $stmt->execute();
 $stmt->bind_result(
@@ -49,27 +48,20 @@ $stmt->bind_result(
     $idTerceria,
     $idProveedor,
     $idCommodity,
-    $idDefectos,
     $idEstatus,
-    $responsable,   // ← Nuevo
+    $responsable,
     $fecha
 );
-if (!$stmt->fetch()) {
+if (! $stmt->fetch()) {
     echo json_encode(['error' => 'Caso no encontrado.']);
     exit;
 }
 $stmt->close();
 
-// 4) Helper de lookup para los nombres de catálogos
-function lookup(mysqli $con, string $table, string $idfield, string $namefield, int $id): string {
+// 4) Función helper para nombres legibles
+function lookup($con, $table, $idfield, $namefield, $id) {
     $n = '';
-    $sql = "SELECT $namefield FROM $table WHERE $idfield = ?";
-    $s = $con->prepare($sql);
-    if (!$s) {
-        http_response_code(500);
-        echo json_encode(['error' => "Error preparando lookup ($table): " . $con->error]);
-        exit;
-    }
+    $s = $con->prepare("SELECT `$namefield` FROM `$table` WHERE `$idfield` = ?");
     $s->bind_param('i', $id);
     $s->execute();
     $s->bind_result($n);
@@ -78,37 +70,48 @@ function lookup(mysqli $con, string $table, string $idfield, string $namefield, 
     return $n;
 }
 
-// 5) Obtener nombres legibles
-$terciaria   = lookup($con, 'Terceria',    'IdTerceria',   'NombreTerceria',  $idTerceria);
-$proveedor   = lookup($con, 'Proveedores', 'IdProveedor',  'NombreProveedor', $idProveedor);
-$commodity   = lookup($con, 'Commodity',   'IdCommodity',  'NombreCommodity', $idCommodity);
-$defectosN   = lookup($con, 'Defectos',    'IdDefectos',   'NombreDefectos',  $idDefectos);
-$estatusText = lookup($con, 'Estatus',     'IdEstatus',    'NombreEstatus',   $idEstatus);  // ← Nuevo lookup
+// 5) Campos legibles
+$terciaria = lookup($con, 'Terceria',    'IdTerceria',  'NombreTerceria',  $idTerceria);
+$proveedor = lookup($con, 'Proveedores', 'IdProveedor', 'NombreProveedor', $idProveedor);
+$commodity = lookup($con, 'Commodity',   'IdCommodity', 'NombreCommodity', $idCommodity);
+$estatus   = lookup($con, 'Estatus',     'IdEstatus',   'NombreEstatus',   $idEstatus);
 
-// 6) Fotos OK
-$fotosOk = [];
-$sf = $con->prepare("SELECT Ruta FROM Fotos WHERE FolioCaso = ? AND TipoFoto = 'ok'");
-$sf->bind_param('i', $folio);
-$sf->execute();
-$sf->bind_result($ruta);
-while ($sf->fetch()) {
-    $fotosOk[] = $ruta;
+// 6) Recoger todos los defectos y sus fotos
+//    Construimos un array asociativo para agrupar
+$map = [];
+$stmt2 = $con->prepare("
+    SELECT dc.IdDefectos, d.NombreDefectos,
+           f.TipoFoto, f.Ruta
+      FROM DefectosCaso dc
+      JOIN Defectos d ON d.IdDefectos = dc.IdDefectos
+ LEFT JOIN Fotos f ON f.IdDefectoCaso = dc.IdDefectoCaso
+     WHERE dc.FolioCaso = ?
+");
+$stmt2->bind_param('i', $folio);
+$stmt2->execute();
+$res2 = $stmt2->get_result();
+while ($row = $res2->fetch_assoc()) {
+    $idDef = $row['IdDefectos'];
+    if (!isset($map[$idDef])) {
+        $map[$idDef] = [
+            'nombre'   => $row['NombreDefectos'],
+            'fotosOk'  => [],
+            'fotosNo'  => []
+        ];
+    }
+    if ($row['Ruta']) {
+        $key = $row['TipoFoto'] === 'ok' ? 'fotosOk' : 'fotosNo';
+        $map[$idDef][$key][] = $row['Ruta'];
+    }
 }
-$sf->close();
+$stmt2->close();
 
-// 7) Fotos NO OK
-$fotosNo = [];
-$sn = $con->prepare("SELECT Ruta FROM Fotos WHERE FolioCaso = ? AND TipoFoto = 'no'");
-$sn->bind_param('i', $folio);
-$sn->execute();
-$sn->bind_result($ruta);
-while ($sn->fetch()) {
-    $fotosNo[] = $ruta;
-}
-$sn->close();
+// Volcamos a un array indexado
+$defectos = array_values($map);
 
-// 8) Enviar respuesta JSON con todos los datos
+// 7) Enviar JSON final
 echo json_encode([
+    'status'       => 'success',
     'folio'        => $folio,
     'fecha'        => $fecha,
     'numeroParte'  => $numeroParte,
@@ -117,10 +120,8 @@ echo json_encode([
     'terciaria'    => $terciaria,
     'proveedor'    => $proveedor,
     'commodity'    => $commodity,
-    'defectos'     => $defectosN,
-    'estatus'      => $estatusText,    // ← Ahora el nombre legible
-    'responsable'  => $responsable,    // ← Nuevo campo
-    'fotosOk'      => $fotosOk,
-    'fotosNo'      => $fotosNo
+    'estatus'      => $estatus,
+    'responsable'  => $responsable,
+    'defectos'     => $defectos   // <-- ahora es un array de múltiples defectos
 ]);
 exit;
