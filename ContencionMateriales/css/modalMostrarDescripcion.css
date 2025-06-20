@@ -1,13 +1,15 @@
 :root {
-    --blue-dark:     #1e2a38;
-    --blue-primary:  #0366d6;
-    --accent-ok:     #2ea043;
-    --accent-no:     #d93025;
-    --light-bg:      #f5f7fa;
-    --text-dark:     #1c1e21;
+    --blue-dark:      #1e2a38;
+    --blue-primary:   #0366d6;
+    --accent-ok:      #2ea043;
+    --accent-no:      #d93025;
+    --accent-ok-rgb:  46,160,67;
+    --accent-no-rgb:  217,48,37;
+    --light-bg:       #f5f7fa;
+    --text-dark:      #1c1e21;
 }
 
-/* Overlay */
+/* Overlay genérico */
 .modal-overlay {
     position: fixed; inset: 0;
     background: rgba(30,42,56,0.75);
@@ -16,29 +18,28 @@
     z-index: 999;
 }
 
-/* Caja principal */
+/* Modal box */
 .modal-box {
     background: var(--blue-dark);
     border-radius: 8px;
     width: 90%; max-width: 800px;
     color: #fff;
-    overflow: hidden;
     display: flex; flex-direction: column;
+    overflow: hidden;
 }
 
 /* Header */
 .box-header {
     background: var(--blue-primary);
     padding: 1rem 1.5rem;
-    display: flex; justify-content: space-between; align-items: center;
+    display: flex; align-items: center; justify-content: space-between;
 }
 .box-header h2 {
     margin: 0; font-size: 1.5rem;
 }
 .close-btn {
     background: none; border: none;
-    color: #fff; font-size: 1.5rem;
-    cursor: pointer;
+    color: #fff; font-size: 1.5rem; cursor: pointer;
     transition: transform .2s;
 }
 .close-btn:hover {
@@ -61,24 +62,20 @@
     gap: 1rem;
 }
 .info-item {
-    display: flex;
-    flex-direction: column;
+    display: flex; flex-direction: column;
 }
 .info-item.full-width { grid-column: 1 / -1; }
-.info-item strong {
-    margin-bottom: .25rem;
-    color: var(--blue-dark);
-}
+.info-item strong { margin-bottom: .25rem; color: var(--blue-dark); }
 .info-item span,
 .desc-text {
     background: var(--light-bg);
     padding: .5rem;
     border-radius: 4px;
-    line-height: 1.4;
     min-height: 2rem;
+    line-height: 1.4;
 }
 
-/* Sección de defectos */
+/* Título sección defectos */
 .defects-section {
     margin-top: 2rem;
 }
@@ -90,67 +87,85 @@
     padding-bottom: .25rem;
 }
 
-/* Tarjeta de cada defecto */
-.defect-item {
+/* Bloque de defecto */
+.defect-block {
     background: #fafbfc;
     border-radius: 6px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-left: 4px solid var(--accent-ok);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
 }
-.defect-item.no {
-    border-left-color: var(--accent-no);
-}
-.defect-header {
-    font-weight: 700;
-    color: var(--blue-dark);
-    margin-bottom: .75rem;
+.block-header {
+    background: var(--blue-primary);
+    color: #fff;
+    padding: .75rem 1rem;
+    font-weight: bold;
 }
 
-/* Fotos */
-.photos {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+/* Fila de fotos OK / NO OK */
+.photo-row {
+    display: flex;
     gap: 1rem;
+    padding: 1rem;
 }
-.photo-block {
-    background: #fff;
-    border: 1px solid #dde2e6;
-    border-radius: 4px;
+
+/* Grupo de fotos */
+.photo-group {
+    flex: 1;
+    border-radius: 6px;
     padding: .75rem;
+    display: flex; flex-direction: column;
+    background-clip: padding-box;
 }
-.photo-block h4 {
+.ok-group {
+    background: rgba(var(--accent-ok-rgb), 0.1);
+    border: 2px solid var(--accent-ok);
+}
+.no-group {
+    background: rgba(var(--accent-no-rgb), 0.1);
+    border: 2px solid var(--accent-no);
+}
+.photo-group h4 {
     margin: 0 0 .5rem 0;
     font-size: 1rem;
 }
-.photo-block h4 { color: var(--accent-ok); }
-.defect-item.no .photo-block h4 { color: var(--accent-no); }
+.ok-group h4 { color: var(--accent-ok); }
+.no-group h4 { color: var(--accent-no); }
 
-.photos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px,1fr));
+/* Tira desplazable */
+.photo-strip {
+    display: flex;
     gap: .5rem;
+    overflow-x: auto;
+    padding-bottom: .25rem;
 }
-.photos-grid img {
-    width: 100%;
-    height: 80px;
-    object-fit: cover;
+.photo-strip::-webkit-scrollbar {
+    height: 6px;
+}
+.photo-strip::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2);
     border-radius: 3px;
-    cursor: pointer;
-    transition: transform .15s;
 }
-.photos-grid.ok img:hover {
-    transform: scale(1.1);
-    border: 2px solid var(--accent-ok);
+
+/* Miniaturas */
+.photo-strip img {
+    height: 80px; flex-shrink: 0;
+    border-radius: 4px; object-fit: cover;
+    cursor: pointer; transition: transform .15s;
 }
-.photos-grid.no img:hover {
-    transform: scale(1.1);
-    border: 2px solid var(--accent-no);
+.photo-strip img:hover {
+    transform: scale(1.05);
+    border: 2px solid currentColor;
+}
+
+/* Lightbox (sin cambios) */
+#modal-image img {
+    max-width: 90%; max-height: 90%;
+    border-radius: 4px; box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 /* Responsive móvil */
 @media (max-width: 600px) {
-    .photos { grid-template-columns: 1fr; }
+    .photo-row { flex-direction: column; }
     .info-grid { grid-template-columns: 1fr; }
 }

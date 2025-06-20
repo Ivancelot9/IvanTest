@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Ajustes Boton Mostrar Descrpcio">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Reajustandi Mostrar Descripcion">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/modalMostrarDescripcion.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/modalMostrarDescripcion.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -210,15 +211,7 @@
       <workItem from="1749833377972" duration="2476000" />
       <workItem from="1750169864632" duration="2662000" />
       <workItem from="1750256350611" duration="17186000" />
-      <workItem from="1750429336608" duration="8942000" />
-    </task>
-    <task id="LOCAL-01557" summary="Arreglando Estatus (Buzon Reportes)">
-      <option name="closed" value="true" />
-      <created>1748971814414</created>
-      <option name="number" value="01557" />
-      <option name="presentableId" value="LOCAL-01557" />
-      <option name="project" value="LOCAL" />
-      <updated>1748971814414</updated>
+      <workItem from="1750429336608" duration="9514000" />
     </task>
     <task id="LOCAL-01558" summary="Buzon de Reportes Correcion a la inyencion de reportes">
       <option name="closed" value="true" />
@@ -604,7 +597,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750444829018</updated>
     </task>
-    <option name="localTasksCounter" value="1606" />
+    <task id="LOCAL-01606" summary="Reajustandi Mostrar Descripcion">
+      <option name="closed" value="true" />
+      <created>1750449428996</created>
+      <option name="number" value="01606" />
+      <option name="presentableId" value="LOCAL-01606" />
+      <option name="project" value="LOCAL" />
+      <updated>1750449428996</updated>
+    </task>
+    <option name="localTasksCounter" value="1607" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -656,7 +657,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modal Descripcion" />
     <MESSAGE value="Modal Estatus" />
     <MESSAGE value="Modal Finalizacion &quot;G&quot;" />
     <MESSAGE value="Modal Fotos/Contencion" />
@@ -681,7 +681,8 @@
     <MESSAGE value="Ajustes tabla" />
     <MESSAGE value="Ajustes Estatus" />
     <MESSAGE value="Ajustes Boton Mostrar Descrpcio" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajustes Boton Mostrar Descrpcio" />
+    <MESSAGE value="Reajustandi Mostrar Descripcion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reajustandi Mostrar Descripcion" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
