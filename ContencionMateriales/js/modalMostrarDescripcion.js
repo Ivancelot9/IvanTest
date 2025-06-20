@@ -5,11 +5,7 @@
     const lbImg    = lb.querySelector('img');
     const lbClose  = lb.querySelector('.close-img');
 
-    // Ocultar al arrancar
-    modal.style.display = 'none';
-    lb.style.display    = 'none';
-
-    // Mapeo de campos
+    // Campos básicos
     const campos = {
         folio:       document.getElementById('r-folio'),
         fecha:       document.getElementById('r-fecha'),
@@ -18,42 +14,41 @@
         descripcion: document.getElementById('r-descripcion'),
         terciaria:   document.getElementById('r-terciaria'),
         proveedor:   document.getElementById('r-proveedor'),
-        commodity:   document.getElementById('r-commodity'),
-        defectos:    document.getElementById('r-defectos'),
-        photosOk:    document.getElementById('r-photos-ok'),
-        photosNo:     document.getElementById('r-photos-no')
+        commodity:   document.getElementById('r-commodity')
     };
 
-    // Cerrar modales
-    btnClose.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-    lbClose.addEventListener('click', () => {
-        lb.style.display = 'none';
-    });
+    // Contenedor de defectos
+    const contDefectos = document.getElementById('r-defectos-container');
+
+    // Ocultar ambos al inicio
+    modal.style.display = 'none';
+    lb.style.display    = 'none';
+
+    // Cierres
+    btnClose.onclick = () => modal.style.display = 'none';
+    lbClose.onclick  = () => lb.style.display    = 'none';
     lb.addEventListener('click', e => {
-        if (e.target === lb) {
-            lb.style.display = 'none';
-        }
+        if (e.target === lb) lb.style.display = 'none';
     });
 
     // Función global
-    window.mostrarModalDescripcion = async function(folio) {
-        // Limpiar todos los campos
-        Object.values(campos).forEach(el => el.innerHTML = '');
+    window.mostrarModalDescripcion = async folio => {
+        // 1) Limpiar básicos y defectos
+        Object.values(campos).forEach(el => el.textContent = '');
+        contDefectos.innerHTML = '';
 
-        // Mostrar modal
+        // 2) Mostrar modal
         modal.style.display = 'flex';
 
         try {
             const res = await fetch(`dao/obtenerCaso.php?folio=${folio}`);
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const data = await res.json();
-            if (data.status && data.status !== 'success') {
-                throw new Error(data.message || 'Error al cargar datos');
+            if (data.error || data.status === 'error') {
+                throw new Error(data.error || data.message);
             }
 
-            // 1) Campos básicos
+            // 3) Rellenar campos básicos
             campos.folio.textContent       = data.folio;
             campos.fecha.textContent       = data.fecha.split('-').reverse().join('-');
             campos.numeroParte.textContent = data.numeroParte;
@@ -63,45 +58,46 @@
             campos.commodity.textContent   = data.commodity;
             campos.descripcion.textContent = data.descripcion || '(sin descripción)';
 
-            // 2) Defectos (varios)
-            const listaNombres = data.defectos.map(d => d.nombre);
-            campos.defectos.textContent = listaNombres.join(', ') || '(ninguno)';
+            // 4) Construir tarjetas de defectos
+            const html = data.defectos.map(def => `
+        <div class="defect-block">
+          <h4>${def.nombre}</h4>
 
-            // 3) Fotos OK / NO OK
-            const okGrid = campos.photosOk;
-            const noGrid = campos.photosNo;
-            okGrid.innerHTML = '';
-            noGrid.innerHTML = '';
-            okGrid.classList.add('ok');
-            noGrid.classList.add('no');
+          <div class="photo-section ok-section">
+            <h3><i class="fa fa-check-circle"></i> Fotos OK</h3>
+            <div class="photos-grid ok">
+              ${
+                def.fotosOk.length
+                    ? def.fotosOk.map(r => `<img src="dao/uploads/ok/${r}" alt="${def.nombre}">`).join('')
+                    : '<small>(ninguna)</small>'
+            }
+            </div>
+          </div>
 
-            data.defectos.forEach(def => {
-                def.fotosOk.forEach(ruta => {
-                    const img = new Image();
-                    img.src = `dao/uploads/ok/${ruta}`;
-                    img.alt = def.nombre;
-                    img.addEventListener('click', () => {
-                        lbImg.src        = img.src;
-                        lb.style.display = 'flex';
-                    });
-                    okGrid.appendChild(img);
-                });
-                def.fotosNo.forEach(ruta => {
-                    const img = new Image();
-                    img.src = `dao/uploads/no/${ruta}`;
-                    img.alt = def.nombre;
-                    img.addEventListener('click', () => {
-                        lbImg.src        = img.src;
-                        lb.style.display = 'flex';
-                    });
-                    noGrid.appendChild(img);
-                });
+          <div class="photo-section no-section">
+            <h3><i class="fa fa-times-circle"></i> Fotos NO OK</h3>
+            <div class="photos-grid no">
+              ${
+                def.fotosNo.length
+                    ? def.fotosNo.map(r => `<img src="dao/uploads/no/${r}" alt="${def.nombre}">`).join('')
+                    : '<small>(ninguna)</small>'
+            }
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+            contDefectos.innerHTML = html;
+
+            // 5) Lightbox para todas las miniaturas
+            contDefectos.querySelectorAll('.photos-grid img').forEach(img => {
+                img.onclick = () => {
+                    lbImg.src        = img.src;
+                    lb.style.display = 'flex';
+                };
             });
 
-            if (!okGrid.children.length) okGrid.textContent = '(ninguna)';
-            if (!noGrid.children.length) noGrid.textContent  = '(ninguna)';
-
-        } catch (err) {
+        } catch(err) {
             console.error(err);
             campos.descripcion.textContent = 'Error al cargar datos.';
             Swal.fire('Error', err.message, 'error');

@@ -459,16 +459,7 @@ $stmtUser->close();
                 <div class="description-box"           id="r-descripcion"></div>
             </section>
 
-            <section class="reporte-photos">
-                <div class="photo-section ok-section">
-                    <h3><i class="fa fa-check-circle"></i> Fotos OK</h3>
-                    <div class="photos-grid ok" id="r-photos-ok"></div>
-                </div>
-                <div class="photo-section no-section">
-                    <h3><i class="fa fa-times-circle"></i> Fotos NO OK</h3>
-                    <div class="photos-grid no" id="r-photos-no"></div>
-                </div>
-            </section>
+            <div id="r-defectos-container"></div>
         </div>
     </div>
 </div>
