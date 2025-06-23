@@ -76,40 +76,45 @@ $proveedor = lookup($con, 'Proveedores', 'IdProveedor', 'NombreProveedor', $idPr
 $commodity = lookup($con, 'Commodity',   'IdCommodity', 'NombreCommodity', $idCommodity);
 $estatus   = lookup($con, 'Estatus',     'IdEstatus',   'NombreEstatus',   $idEstatus);
 
-// 6) Recoger todos los defectos y sus fotos
-//    Construimos un array asociativo para agrupar
+// 6) Recoger todos los defectos y sus fotos, agrupando por IdDefectoCaso
 $map = [];
 $stmt2 = $con->prepare("
-    SELECT dc.IdDefectos, d.NombreDefectos,
-           f.TipoFoto, f.Ruta
-      FROM DefectosCaso dc
-      JOIN Defectos d ON d.IdDefectos = dc.IdDefectos
- LEFT JOIN Fotos f ON f.IdDefectoCaso = dc.IdDefectoCaso
-     WHERE dc.FolioCaso = ?
+    SELECT
+      dc.IdDefectoCaso,
+      d.NombreDefectos      AS nombreDefecto,
+      f.TipoFoto,
+      f.Ruta
+    FROM DefectosCaso dc
+    JOIN Defectos d
+      ON d.IdDefectos = dc.IdDefectos
+    LEFT JOIN Fotos f
+      ON f.IdDefectoCaso = dc.IdDefectoCaso
+    WHERE dc.FolioCaso = ?
+    ORDER BY dc.IdDefectoCaso, FIELD(f.TipoFoto,'ok','no')
 ");
 $stmt2->bind_param('i', $folio);
 $stmt2->execute();
 $res2 = $stmt2->get_result();
 while ($row = $res2->fetch_assoc()) {
-    $idDef = $row['IdDefectos'];
-    if (!isset($map[$idDef])) {
-        $map[$idDef] = [
-            'nombre'   => $row['NombreDefectos'],
-            'fotosOk'  => [],
-            'fotosNo'  => []
+    $idCasoDef = $row['IdDefectoCaso'];
+    if (!isset($map[$idCasoDef])) {
+        $map[$idCasoDef] = [
+            'nombre'  => $row['nombreDefecto'],
+            'fotosOk' => [],
+            'fotosNo' => []
         ];
     }
-    if ($row['Ruta']) {
+    if (!empty($row['Ruta'])) {
         $key = $row['TipoFoto'] === 'ok' ? 'fotosOk' : 'fotosNo';
-        $map[$idDef][$key][] = $row['Ruta'];
+        $map[$idCasoDef][$key][] = $row['Ruta'];
     }
 }
 $stmt2->close();
 
-// Volcamos a un array indexado
+// 7) Volcar a un array indexado
 $defectos = array_values($map);
 
-// 7) Enviar JSON final
+// 8) Enviar JSON final
 echo json_encode([
     'status'       => 'success',
     'folio'        => $folio,
@@ -122,6 +127,6 @@ echo json_encode([
     'commodity'    => $commodity,
     'estatus'      => $estatus,
     'responsable'  => $responsable,
-    'defectos'     => $defectos   // <-- ahora es un array de múltiples defectos
+    'defectos'     => $defectos
 ]);
 exit;
