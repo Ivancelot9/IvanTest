@@ -186,6 +186,19 @@
     z-index: 1001;
 }
 
+.header-title-with-logo {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+}
+
+.header-logo {
+    height: 32px;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1); /* blanco si fondo oscuro */
+}
+
 /* Responsive */
 @media (max-width: 600px) {
     .photos-row {

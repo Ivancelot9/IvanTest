@@ -438,7 +438,10 @@ $stmtUser->close();
 <div id="modal-descripcion" class="modal-overlay">
     <div class="modal-dialog">
         <header class="modal-header">
-            <h2>Datos del Caso</h2>
+            <div class="header-title-with-logo">
+                <img src="imagenes/Recurso 6 (2).png" alt="Logo" class="header-logo">
+                <h2>Datos del Caso</h2>
+            </div>
             <button id="modal-cerrar" class="modal-close">&times;</button>
         </header>
         <div class="modal-body">
