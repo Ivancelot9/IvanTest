@@ -26,12 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (tbody && data.folio && data.fecha) {
                 const tr = document.createElement('tr');
                 tr.innerHTML =
-                    `<td>${data.folio}</td>` +
-                    `<td>${data.fecha}</td>` +
-                    `<td><button class="show-desc" data-folio="${data.folio}">Mostrar descripción</button></td>` + // Descripción en columna 2
-                    `<td>${data.estatus}</td>` +       // Estatus en columna 3
-                    `<td>${data.responsable}</td>` +
-                    `<td>${data.terciaria}</td>`;
+                    `<td>${data.folio}</td>` +                                            // 0: Folio
+                    `<td>${data.fecha}</td>` +                                            // 1: Fecha Registro
+                    `<td>${data.responsable}</td>` +                                      // 2: Responsable
+                    `<td>${data.terciaria}</td>` +                                        // 3: Terciaria
+                    `<td><button class="show-desc" data-folio="${data.folio}">Mostrar descripción</button></td>` +
+                    // 4: Descripción
+                    `<td>${data.estatus}</td>`;                                           // 5: Estatus
                 tbody.prepend(tr);
                 if (window.historialPaginador) window.historialPaginador.addRow(tr);
             }
