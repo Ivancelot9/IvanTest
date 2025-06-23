@@ -28,10 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 tr.innerHTML =
                     `<td>${data.folio}</td>` +
                     `<td>${data.fecha}</td>` +
-                    `<td>${data.estatus}</td>` +
+                    `<td><button class="show-desc" data-folio="${data.folio}">Mostrar descripción</button></td>` + // Descripción en columna 2
+                    `<td>${data.estatus}</td>` +       // Estatus en columna 3
                     `<td>${data.responsable}</td>` +
-                    `<td>${data.terciaria}</td>` +
-                    `<td><button class="show-desc" data-folio="${data.folio}">Mostrar descripción</button></td>`;
+                    `<td>${data.terciaria}</td>`;
                 tbody.prepend(tr);
                 if (window.historialPaginador) window.historialPaginador.addRow(tr);
             }

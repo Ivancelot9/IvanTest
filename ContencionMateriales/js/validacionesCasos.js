@@ -118,8 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 tr.innerHTML =
                     `<td>${json.folio}</td>` +
                     `<td>${json.fecha}</td>` +
-                    `<td>${json.estatus}</td>` +
-                    `<td><button class="show-desc" data-folio="${json.folio}">Mostrar descripción</button></td>`;
+                    `<td><button class="show-desc" data-folio="${json.folio}">Mostrar descripción</button></td>` +
+                    `<td>${json.estatus}</td>`;
                 tbody.prepend(tr);
                 window.historialPaginador?.addRow(tr);
             }
