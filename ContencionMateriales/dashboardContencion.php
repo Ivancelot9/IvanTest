@@ -162,6 +162,7 @@ $stmtUser->close();
         <h1><strong>DATOS</strong></h1>
 
         <div class="form-panel">
+            <!-- Contenedor del formulario principal -->
             <div class="form-main" id="form-main">
                 <form class="data-form"
                       method="post"
@@ -247,14 +248,11 @@ $stmtUser->close();
                     <div class="form-group confirm">
                         <button type="submit" class="confirm-button">Confirmar</button>
                     </div>
-                </form>
-            </div>
-        </div>
-    </section>
 
-            <!-- —————————————————————————
-                 2) Barra lateral derecha
-                 ————————————————————————— -->
+                </form> <!-- ✅ Cierre del <form> -->
+            </div> <!-- ✅ Cierre de .form-main -->
+
+            <!-- ✅ BARRA LATERAL - dentro del mismo .form-panel -->
             <aside class="form-sidebar">
                 <ul>
                     <li>
@@ -278,11 +276,11 @@ $stmtUser->close();
                         </button>
                     </li>
                 </ul>
-            </aside>
+            </aside> <!-- ✅ Fin de aside -->
 
-        </div>
-    </section>
+        </div> <!-- ✅ Cierre de .form-panel -->
 
+    </section> <!-- ✅ Cierre correcto de section#formulario -->
 
 
 
