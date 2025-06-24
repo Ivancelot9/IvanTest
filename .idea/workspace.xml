@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Envio a Externos" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Envio a Externos">
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/modalEnviarCorreos.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/modalEnviarCorreos.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -208,15 +210,7 @@
       <workItem from="1750169864632" duration="2662000" />
       <workItem from="1750256350611" duration="17186000" />
       <workItem from="1750429336608" duration="22350000" />
-      <workItem from="1750774428800" duration="14144000" />
-    </task>
-    <task id="LOCAL-01595" summary="Ajustes Boton Mostrar Descrpcio">
-      <option name="closed" value="true" />
-      <created>1750367093715</created>
-      <option name="number" value="01595" />
-      <option name="presentableId" value="LOCAL-01595" />
-      <option name="project" value="LOCAL" />
-      <updated>1750367093715</updated>
+      <workItem from="1750774428800" duration="14267000" />
     </task>
     <task id="LOCAL-01596" summary="Ajustes Boton Mostrar Descrpcio">
       <option name="closed" value="true" />
@@ -602,7 +596,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750792514548</updated>
     </task>
-    <option name="localTasksCounter" value="1644" />
+    <task id="LOCAL-01644" summary="Envio a Externos">
+      <option name="closed" value="true" />
+      <created>1750792545511</created>
+      <option name="number" value="01644" />
+      <option name="presentableId" value="LOCAL-01644" />
+      <option name="project" value="LOCAL" />
+      <updated>1750792545511</updated>
+    </task>
+    <option name="localTasksCounter" value="1645" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

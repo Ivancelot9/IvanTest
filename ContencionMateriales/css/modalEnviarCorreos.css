@@ -1,83 +1,95 @@
-:root {
-    --text-dark: #1c1e21;
-    --dark-bg:   #202c3a;
+/* modalEnviarCorreos.css */
+
+/* Contenedor global */
+#modal-enviar {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1000;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-/* Contenedor del deck */
-#modal-enviar .cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 16px;
-}
-
-/* Cada “carta” de folio */
-.folio-card {
-    background: var(--dark-bg);
-    color: var(--text-dark);
-    border-radius: 6px;
-    padding: 12px 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
-    flex: 1 1 calc(50% - 12px);
-    min-width: 140px;
-}
-
-/* Número de folio destacado */
-.folio-card h4 {
-    margin: 0;
-    font-size: 1rem;
-}
-
-/* Botón para quitar carta */
-.folio-card .remove-folio {
+/* Fondo semitransparente */
+#modal-enviar .backdrop {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.4);
+}
+
+/* Ventana centrada */
+#modal-enviar .content {
+    position: relative;
+    background: #fff;
+    border-radius: 8px;
+    width: 90%; max-width: 500px;
+    margin: 5% auto;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Encabezado */
+#modal-enviar header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#modal-enviar .close-btn {
     background: none;
     border: none;
-    color: #d93025;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     cursor: pointer;
 }
 
-/* Ajustes del modal */
-#modal-enviar .content {
-    background: #fff;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 520px;
-    margin: 5% auto;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    font-family: 'Segoe UI', sans-serif;
+/* Lista de folios */
+#modal-enviar ul {
+    list-style: none;
+    padding: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #d0d7de;
+    border-radius: 4px;
 }
-#modal-enviar header h2 {
-    margin: 0;
+#modal-enviar ul li {
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
 }
-#modal-enviar section label {
-    display: block;
-    margin-bottom: 4px;
-    font-weight: 500;
+#modal-enviar ul li .remove-folio {
+    background: none;
+    border: none;
+    color: #d93025;
+    font-size: 1.1rem;
+    cursor: pointer;
 }
-#modal-enviar section input[type="email"] {
+
+/* Email input */
+#modal-enviar input[type="email"] {
     width: 100%;
     padding: 8px;
     border: 1px solid #d0d7de;
     border-radius: 4px;
-    margin-bottom: 12px;
+    font-size: 0.95rem;
 }
+
+/* Botones pie */
 #modal-enviar footer {
     display: flex;
     justify-content: flex-end;
     gap: 8px;
 }
 #modal-enviar footer button {
-    padding: 8px 16px;
+    padding: 8px 14px;
     border: none;
     border-radius: 4px;
-    font-size: 0.95rem;
     cursor: pointer;
+    font-size: 0.95rem;
 }
 #modal-enviar #modal-send {
     background: #2ea043;
@@ -86,4 +98,3 @@
 #modal-enviar #modal-cancel {
     background: #d0d7de;
 }
-
