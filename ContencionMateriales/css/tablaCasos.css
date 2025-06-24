@@ -163,10 +163,18 @@
     font-size: 0.9rem;
     color: #24292f;
 }
-.check-folio,
-#check-all-historial {
-    transition: outline 0.2s ease-in-out;
-    /* outline-offset ya lo definimos en línea */
+@keyframes pulse-outline {
+    0%, 100% {
+        outline: none;
+    }
+    50% {
+        outline: 2px solid #2ea043;
+        outline-offset: 2px;
+    }
+}
+
+.pulse-check {
+    animation: pulse-outline 1.2s infinite ease-in-out;
 }
 
 /* ============================= */
