@@ -310,11 +310,9 @@ $stmtUser->close();
         <table class="cases-table" id="tabla-historial">
             <thead>
             <tr>
-                <!-- Columna 1: seleccionar todos (oculto hasta activar) -->
-                <th>
-                    <input type="checkbox"
-                           id="check-all-historial"
-                           style="display: none;">
+                <!-- ► Agregamos esta celda en blanco con el checkbox de "todos" -->
+                <th style="width: 40px; text-align: center;">
+                    <input type="checkbox" id="check-all-historial" style="display: none;">
                 </th>
                 <th>Folio</th>
                 <th>Fecha Registro</th>
@@ -326,10 +324,10 @@ $stmtUser->close();
             <?php
             $rs = $con->prepare("
                 SELECT 
-                    c.FolioCaso                     AS folio,
+                    c.FolioCaso AS folio,
                     DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
-                    e.NombreEstatus                 AS estatus,
-                    c.Descripcion                   AS descripcion
+                    e.NombreEstatus AS estatus,
+                    c.Descripcion AS descripcion
                 FROM Casos c
                 JOIN Estatus e ON e.IdEstatus = c.IdEstatus
                 WHERE c.IdUsuario = ?
@@ -341,18 +339,19 @@ $stmtUser->close();
             while ($row = $result->fetch_assoc()):
                 ?>
                 <tr>
-                    <!-- Checkbox individual (oculto hasta activar) -->
-                    <td>
-                        <input type="checkbox"
-                               class="check-folio"
-                               value="<?= htmlspecialchars($row['folio']) ?>"
-                               style="display: none;">
+                    <!-- ► Aquí va el checkbox por fila -->
+                    <td style="text-align: center;">
+                        <input
+                                type="checkbox"
+                                class="check-folio"
+                                value="<?= htmlspecialchars($row['folio']) ?>"
+                                style="display: none;"
+                        >
                     </td>
                     <td><?= htmlspecialchars($row['folio']) ?></td>
                     <td><?= htmlspecialchars($row['fecha']) ?></td>
                     <td>
-                        <button class="show-desc"
-                                data-folio="<?= htmlspecialchars($row['folio']) ?>">
+                        <button class="show-desc" data-folio="<?= htmlspecialchars($row['folio']) ?>">
                             Mostrar descripción
                         </button>
                     </td>
