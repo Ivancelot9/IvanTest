@@ -306,17 +306,21 @@ $stmtUser->close();
             </div>
         </div>
 
-        <!-- 📋 Tabla de casos con una sola columna de selección -->
+        <!-- 📋 Tabla de casos con columna de selección + datos alineados -->
         <table class="cases-table" id="tabla-historial">
             <thead>
             <tr>
-                <!-- Columna de selección -->
-                <th style="width: 40px; text-align: center;">
-                    <input type="checkbox" id="check-all-historial" style="display: none;">
+                <!-- 1) Selección -->
+                <th style="width:40px; text-align:center;">
+                    <input type="checkbox" id="check-all-historial" style="display:none;">
                 </th>
+                <!-- 2) Folio -->
                 <th>Folio</th>
+                <!-- 3) Fecha Registro -->
                 <th>Fecha Registro</th>
+                <!-- 4) Descripción -->
                 <th>Descripción</th>
+                <!-- 5) Estatus -->
                 <th>Estatus</th>
             </tr>
             </thead>
@@ -326,8 +330,8 @@ $stmtUser->close();
         SELECT 
           c.FolioCaso AS folio,
           DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
-          e.NombreEstatus AS estatus,
-          c.Descripcion AS descripcion
+          c.Descripcion AS descripcion,
+          e.NombreEstatus AS estatus
         FROM Casos c
         JOIN Estatus e ON e.IdEstatus = c.IdEstatus
         WHERE c.IdUsuario = ?
@@ -339,25 +343,32 @@ $stmtUser->close();
             while ($row = $result->fetch_assoc()):
                 ?>
                 <tr>
-                    <!-- Checkbox individual -->
-                    <td style="text-align: center;">
+                    <!-- 1) Checkbox individual -->
+                    <td style="text-align:center;">
                         <input
                                 type="checkbox"
                                 class="check-folio"
                                 value="<?= htmlspecialchars($row['folio']) ?>"
-                                style="display: none;"
+                                style="display:none;"
                         >
                     </td>
+                    <!-- 2) Folio -->
                     <td><?= htmlspecialchars($row['folio']) ?></td>
+                    <!-- 3) Fecha Registro -->
                     <td><?= htmlspecialchars($row['fecha']) ?></td>
+                    <!-- 4) Descripción (botón) -->
                     <td>
                         <button class="show-desc" data-folio="<?= htmlspecialchars($row['folio']) ?>">
                             Mostrar descripción
                         </button>
                     </td>
+                    <!-- 5) Estatus -->
                     <td><?= htmlspecialchars($row['estatus']) ?></td>
                 </tr>
-            <?php endwhile; $rs->close(); ?>
+            <?php
+            endwhile;
+            $rs->close();
+            ?>
             </tbody>
         </table>
 
