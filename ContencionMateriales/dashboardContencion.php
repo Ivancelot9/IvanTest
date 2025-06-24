@@ -308,15 +308,17 @@ $stmtUser->close();
             </div>
         </div>
 
-        <!-- 📋 Tabla de casos con columna de selección -->
+        <!-- 📋 Tabla de casos con columna vacía + selección -->
         <table class="cases-table" id="tabla-historial">
             <thead>
             <tr>
-                <!-- 1) Columna de selección -->
+                <!-- 1) Columna vacía para alinear -->
+                <th></th>
+                <!-- 2) Columna de "Seleccionar todos" -->
                 <th style="width: 40px; text-align: center;">
                     <input type="checkbox" id="check-all-historial" style="display: none;">
                 </th>
-                <!-- 2) Columnas de datos -->
+                <!-- 3,4,5,6) Columnas de datos -->
                 <th>Folio</th>
                 <th>Fecha Registro</th>
                 <th>Descripción</th>
@@ -342,7 +344,9 @@ $stmtUser->close();
             while ($row = $result->fetch_assoc()):
                 ?>
                 <tr>
-                    <!-- 1) Checkbox individual -->
+                    <!-- 1) Celda vacía -->
+                    <td></td>
+                    <!-- 2) Checkbox individual -->
                     <td style="text-align: center;">
                         <input
                                 type="checkbox"
@@ -351,7 +355,7 @@ $stmtUser->close();
                                 style="display: none;"
                         >
                     </td>
-                    <!-- 2) Datos del caso -->
+                    <!-- 3,4,5,6) Datos originales -->
                     <td><?= htmlspecialchars($row['folio']) ?></td>
                     <td><?= htmlspecialchars($row['fecha']) ?></td>
                     <td>
@@ -375,6 +379,7 @@ $stmtUser->close();
             <button id="hist-next">Siguiente ➡</button>
         </div>
     </section>
+
 
     <!-- Sección 3: Historial de Casos-->
     <section id="historial-casos" class="main-section" style="display: none;">
