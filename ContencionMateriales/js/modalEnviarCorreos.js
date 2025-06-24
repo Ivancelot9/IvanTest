@@ -1,5 +1,5 @@
 // modalEnviarCorreo.js
-// Requiere SweetAlert2 (Swal.fire) y tu función enviarCorreo(folios, email)
+// Requiere SweetAlert2 (Swal.fire) y tu función enviarCorreo(folios: string[], email: string): Promise
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1) Inyectar el HTML del modal en el body
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>`;
     document.body.insertAdjacentHTML('beforeend', html);
 
-    // 2) Referencias a elementos
+    // 2) Referencias
     const modal     = document.getElementById('modal-enviar');
     const backdrop  = modal.querySelector('.backdrop');
     const btnClose  = document.getElementById('modal-close');
@@ -34,62 +34,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const inpEmail  = document.getElementById('email-destino');
     const toggleBtn = document.getElementById('btn-toggle-seleccion');
 
-    // 3) Funciones para abrir y cerrar modal
+    // 3) Funciones abrir/cerrar
     function openModal() {
-        // Limpiar lista
         ulFolios.innerHTML = '';
-        // Recoger folios marcados
+        // recoger folios marcados
         const folios = Array.from(document.querySelectorAll('.check-folio:checked'))
             .map(cb => cb.value);
         if (folios.length === 0) {
+            // si quieres, puedes omitir este warning
             Swal.fire('Atención','No has seleccionado ningún caso.','warning');
             return;
         }
-        // Poner cada folio en la lista con botón para quitarlo
         folios.forEach(folio => {
             const li = document.createElement('li');
             li.dataset.folio = folio;
-            li.textContent = `Folio ${folio}`;
+            li.textContent   = `Folio ${folio}`;
             const btnX = document.createElement('button');
             btnX.textContent = '×';
-            btnX.className = 'remove-folio';
+            btnX.className   = 'remove-folio';
             btnX.addEventListener('click', () => li.remove());
             li.appendChild(btnX);
             ulFolios.appendChild(li);
         });
-        // Resetear email y mostrar modal
         inpEmail.value = '';
         modal.style.display = 'block';
     }
-
     function closeModal() {
         modal.style.display = 'none';
     }
 
-    // 4) Asignar cierres de modal
+    // 4) Cierres
     backdrop.addEventListener('click', closeModal);
     btnClose .addEventListener('click', closeModal);
     btnCancel.addEventListener('click', closeModal);
 
-    // 5) Al pulsar “Confirmar envío” en el mismo botón de selección
-    toggleBtn.addEventListener('click', () => {
-        // Solo cuando el botón esté en “✅ Confirmar envío”
-        if (toggleBtn.textContent.startsWith('✅')) {
-            const seleccionados = document.querySelectorAll('.check-folio:checked');
-            if (seleccionados.length === 0) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Selecciona al menos un caso',
-                    text: 'Marca con el checkbox el/los caso(s) que quieras enviar.',
-                    confirmButtonText: 'OK'
-                });
-                return;
+    // 5) Interceptar el segundo click en “Confirmar envío”
+    toggleBtn.addEventListener('click', function(e) {
+        // solo si ya está en modo “✅ Confirmar envío”
+        if (this.textContent.startsWith('✅')) {
+            const checked = document.querySelectorAll('.check-folio:checked');
+            if (checked.length === 0) {
+                // si quieres warning, descomenta:
+                // Swal.fire('Atención','Marca al menos un caso.','warning');
+            } else {
+                openModal();
             }
-            openModal();
+            // evitar que el script de selección original cambie el estado
+            e.stopImmediatePropagation();
+            e.preventDefault();
         }
-    });
+    }, true);  // <<< captura antes que el listener original
 
-    // 6) Envío definitivo desde el modal
+    // 6) Envío desde el modal
     btnSend.addEventListener('click', () => {
         const folios = Array.from(ulFolios.children).map(li => li.dataset.folio);
         const email  = inpEmail.value.trim();
@@ -97,16 +93,15 @@ document.addEventListener('DOMContentLoaded', () => {
             Swal.fire('Error','Ingresa un correo válido.','error');
             return;
         }
-        // Llama a tu función de envío de correos:
         enviarCorreo(folios, email)
             .then(() => {
-                Swal.fire('Éxito','Correos enviados correctamente.','success');
+                Swal.fire('Éxito','Correos enviados.','success');
                 closeModal();
-                // Reiniciar modo selección
+                // ahora sí desactivar modo selección
                 toggleBtn.click();
             })
             .catch(err => {
-                Swal.fire('Error','Falló el envío: ' + err.message,'error');
+                Swal.fire('Error','Falló el envío: '+err.message,'error');
             });
     });
 });
