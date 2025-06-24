@@ -298,21 +298,27 @@ $stmtUser->close();
                     <option value="folio">Folio</option>
                     <option value="fecha">Fecha Registro</option>
                 </select>
-                <input type="text" id="historial-filter-input" placeholder="Buscar...">
+                <input type="text" id="historial-filter-input" placeholder="Buscar…">
                 <button id="historial-filter-button">🔍 Buscar</button>
 
                 <!-- Botón para activar modo selección -->
-                <button id="btn-toggle-seleccion" class="enviar-btn">📤 Enviar por correo</button>
+                <button id="btn-toggle-seleccion" class="enviar-btn" style="margin-left: 12px;">
+                    📤 Enviar por correo
+                </button>
             </div>
         </div>
 
-        <!-- 📋 Tabla de casos con checkboxes -->
+        <!-- 📋 Tabla de casos con columna de selección -->
         <table class="cases-table" id="tabla-historial">
             <thead>
             <tr>
-                <!-- ► Agregamos esta celda en blanco con el checkbox de "todos" -->
+                <!-- Columna 1: Seleccionar todos -->
                 <th style="width: 40px; text-align: center;">
-                    <input type="checkbox" id="check-all-historial" style="display: none;">
+                    <input
+                            type="checkbox"
+                            id="check-all-historial"
+                            style="display: none;"
+                    >
                 </th>
                 <th>Folio</th>
                 <th>Fecha Registro</th>
@@ -339,7 +345,7 @@ $stmtUser->close();
             while ($row = $result->fetch_assoc()):
                 ?>
                 <tr>
-                    <!-- ► Aquí va el checkbox por fila -->
+                    <!-- Checkbox individual (oculto hasta activar) -->
                     <td style="text-align: center;">
                         <input
                                 type="checkbox"
