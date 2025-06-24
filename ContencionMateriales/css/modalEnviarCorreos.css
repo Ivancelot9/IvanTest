@@ -7,7 +7,7 @@
     --card-border-alt: #4285f4;
 }
 
-/* Contenedor global */
+/* — Contenedor global del modal — */
 #modal-enviar {
     display: none;
     position: fixed;
@@ -16,58 +16,75 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* Fondo semitransparente */
+/* — Fondo semitransparente — */
 #modal-enviar .backdrop {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.4);
 }
 
-/* Ventana modal */
+/* — Ventana modal — */
 #modal-enviar .content {
     position: relative;
-    background: #fff;
+    background: var(--card-bg-alt);
     border-radius: 8px;
     width: 90%;
     max-width: 600px;
     margin: 5% auto;
-    padding: 24px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 20px;
 }
 
-/* Encabezado */
-#modal-enviar header {
+/* — Encabezado — */
+#modal-enviar .content header {
+    background: var(--dark-bg);
+    color: #fff;
+    padding: 16px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+#modal-enviar .content header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
 #modal-enviar .close-btn {
     background: none;
     border: none;
+    color: #fff;
     font-size: 1.4rem;
     cursor: pointer;
 }
 
-/* Wrapper de cartas con fondo suave */
+/* — Cuerpo con fondo blanco — */
+#modal-enviar .content section {
+    background: #fff;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* — Wrapper de cartas con fondo suave — */
 .cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     gap: 12px;
-    max-height: 260px;
+    max-height: 220px;
     overflow-y: auto;
-    background: #f0f4f8;
+    background: var(--card-bg);
     padding: 12px;
     border-radius: 6px;
+    border: 1px solid var(--card-border);
 }
 
-/* Carta vertical pequeña */
+/* — Carta vertical pequeña — */
 .folio-card {
-    background: var(--card-bg);
+    background: #fff;
     border: 1px solid var(--card-border);
-    border-radius: 8px;
+    border-radius: 6px;
     width: 80px;
     height: 120px;
     display: flex;
@@ -76,22 +93,26 @@
     position: relative;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     margin: 0 auto;
+    transition: transform 0.2s;
+}
+.folio-card:hover {
+    transform: translateY(-4px);
 }
 
-/* Alterna color de fondo/borde en pares */
+/* — Alterna color de fondo/borde en pares — */
 .cards-container .folio-card:nth-child(even) {
     background: var(--card-bg-alt);
     border-color: var(--card-border-alt);
 }
 
-/* Texto centrado */
+/* — Texto centrado — */
 .folio-card h4 {
     margin: 0;
     font-size: 1rem;
     color: var(--text-dark);
 }
 
-/* Círculo rojo con “×” en esquina */
+/* — Círculo rojo con “×” en esquina — */
 .folio-card .remove-folio {
     position: absolute;
     top: 6px;
@@ -108,11 +129,11 @@
     cursor: pointer;
 }
 
-/* Input de correo */
-#modal-enviar label[for="email-destino"] {
+/* — Input de correo — */
+#modal-enviar section label[for="email-destino"] {
     font-weight: 500;
 }
-#modal-enviar input[type="email"] {
+#modal-enviar section input[type="email"] {
     width: 100%;
     padding: 8px;
     border: 1px solid var(--card-border);
@@ -121,13 +142,16 @@
     box-sizing: border-box;
 }
 
-/* Footer de botones */
-#modal-enviar footer {
+/* — Pie de modal — */
+#modal-enviar .content footer {
+    background: var(--card-bg-alt);
+    padding: 12px 24px;
     display: flex;
     justify-content: flex-end;
     gap: 8px;
+    border-top: 1px solid var(--card-border);
 }
-#modal-enviar footer button {
+#modal-enviar .content footer button {
     padding: 8px 16px;
     border: none;
     border-radius: 4px;
