@@ -1,10 +1,9 @@
 /**
  * Script para paginar, filtrar y resaltar las tablas de casos.
  * Soporta dos tablas distintas con estructura variable:
- * - #historial: muestra Folio, Fecha, Estatus
- * - #historial-casos: muestra Folio, Fecha, Estatus, Responsable, Terciaria
+ * - #historial: muestra Folio, Fecha, Descripción, Estatus
+ * - #historial-casos: muestra Folio, Fecha, Descripción, Estatus, Responsable, Terciaria
  */
-
 function inicializarTablaCasos(idContenedor) {
     const filasPorPagina = 5;
     let paginaActual = 1;
@@ -27,16 +26,17 @@ function inicializarTablaCasos(idContenedor) {
 
     if (idContenedor === '#historial') {
         config.tieneEstatus     = true;
-        config.idxDescripcion   = 2;  // tercera columna → Descripción
-        config.idxEstatus       = 3;  // cuarta columna  → Estatus
+        // DESCRIPCIÓN → columna 4, ESTATUS → columna 5
+        config.idxDescripcion   = 4;
+        config.idxEstatus       = 5;
     } else if (idContenedor === '#historial-casos') {
         config.tieneEstatus     = true;
         config.tieneResponsable = true;
         config.tieneTerciaria   = true;
-        config.idxDescripcion   = 4;  // quinta columna   → Descripción
-        config.idxEstatus       = 5;  // sexta columna    → Estatus
+        // DESCRIPCIÓN → columna 6, ESTATUS → columna 7
+        config.idxDescripcion   = 6;
+        config.idxEstatus       = 7;
     }
-
 
     // ─── Capturar las filas originales UNA SOLA VEZ ───────────────────────
     const filasIniciales = Array.from(tbody.querySelectorAll('tr'));
@@ -61,8 +61,8 @@ function inicializarTablaCasos(idContenedor) {
     function filasFiltradas() {
         const term = inpFilt.value.trim().toLowerCase();
         let idx = 0;
-        if (selFilt.value === 'folio') idx = 0;
-        else if (selFilt.value === 'fecha') idx = 1;
+        if (selFilt.value === 'folio') idx = 2;   // ahora Folio está en cells[2]
+        else if (selFilt.value === 'fecha') idx = 3; // Fecha en cells[3]
 
         return filasIniciales.filter(tr => {
             let txt = tr.cells[idx].textContent.trim();
@@ -87,22 +87,22 @@ function inicializarTablaCasos(idContenedor) {
             const tr = trOrig.cloneNode(true);
             const cells = tr.cells;
 
-            // FOLIO (columna 0)
+            // FOLIO (columna 2)
             if (selFilt.value === 'folio') {
-                cells[0].innerHTML = resaltar(cells[0].textContent.trim(), inpFilt.value.trim());
+                cells[2].innerHTML = resaltar(cells[2].textContent.trim(), inpFilt.value.trim());
             }
 
-            // FECHA (columna 1)
+            // FECHA (columna 3)
             {
-                const raw = cells[1].textContent.trim();
+                const raw = cells[3].textContent.trim();
                 const fmt = formatearFecha(raw);
-                cells[1].textContent = fmt;
+                cells[3].textContent = fmt;
                 if (selFilt.value === 'fecha') {
-                    cells[1].innerHTML = resaltar(fmt, inpFilt.value.trim());
+                    cells[3].innerHTML = resaltar(fmt, inpFilt.value.trim());
                 }
             }
 
-            // — No tocamos cells[config.idxDescripcion], para preservar el <button> — //
+            // — No tocamos cells[config.idxDescripcion] para preservar el <button> — //
 
             // ESTATUS (celda dinámica según config.idxEstatus)
             if (config.tieneEstatus && cells[config.idxEstatus]) {
@@ -110,12 +110,10 @@ function inicializarTablaCasos(idContenedor) {
                     cells[config.idxEstatus].textContent.trim();
             }
 
-// RESPONSABLE (sigue en índice 2 para #historial-casos)
+            // RESPONSABLE y TERCIARIA (para #historial-casos)
             if (config.tieneResponsable && cells[2]) {
                 cells[2].textContent = cells[2].textContent.trim();
             }
-
-// TERCIARIA (sigue en índice 3 para #historial-casos)
             if (config.tieneTerciaria && cells[3]) {
                 cells[3].textContent = cells[3].textContent.trim();
             }
@@ -128,17 +126,16 @@ function inicializarTablaCasos(idContenedor) {
         indicador.textContent = `Página ${paginaActual} de ${total}`;
     }
 
-    // ─── Filtro y paginación interactiva ───────────────────────────────────
+    // ─── Interactividad ───────────────────────────────────────────────────
     inpFilt.addEventListener('input', () => { paginaActual = 1; renderizar(); });
     selFilt.addEventListener('change', () => { paginaActual = 1; renderizar(); });
     btnPrev .addEventListener('click', () => { if (paginaActual > 1) { paginaActual--; renderizar(); } });
     btnNext .addEventListener('click', () => { paginaActual++; renderizar(); });
 
-    // ─── Delegación de evento para mostrar descripción ─────────────────────
     cont.addEventListener('click', e => {
         const btn = e.target.closest('button.show-desc');
         if (!btn) return;
-        const folio = btn.closest('tr').querySelector('td').textContent.trim();
+        const folio = btn.closest('tr').querySelectorAll('td')[2].textContent.trim();
         if (window.mostrarModalDescripcion) {
             window.mostrarModalDescripcion(parseInt(folio, 10));
         }

@@ -316,7 +316,7 @@ $stmtUser->close();
                 <th></th>
                 <!-- 2) Columna de "Seleccionar todos" -->
                 <th style="width: 40px; text-align: center;">
-                    <input type="checkbox" id="check-all-historial" style="display: none;">
+                    <input type="checkbox" id="check-all-historial">
                 </th>
                 <!-- 3,4,5,6) Columnas de datos -->
                 <th>Folio</th>
@@ -328,16 +328,16 @@ $stmtUser->close();
             <tbody>
             <?php
             $rs = $con->prepare("
-        SELECT 
-          c.FolioCaso AS folio,
-          DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
-          e.NombreEstatus AS estatus,
-          c.Descripcion AS descripcion
-        FROM Casos c
-        JOIN Estatus e ON e.IdEstatus = c.IdEstatus
-        WHERE c.IdUsuario = ?
-        ORDER BY c.FolioCaso DESC
-      ");
+            SELECT 
+              c.FolioCaso AS folio,
+              DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
+              e.NombreEstatus AS estatus,
+              c.Descripcion AS descripcion
+            FROM Casos c
+            JOIN Estatus e ON e.IdEstatus = c.IdEstatus
+            WHERE c.IdUsuario = ?
+            ORDER BY c.FolioCaso DESC
+        ");
             $rs->bind_param("i", $idUsuario);
             $rs->execute();
             $result = $rs->get_result();
@@ -352,7 +352,6 @@ $stmtUser->close();
                                 type="checkbox"
                                 class="check-folio"
                                 value="<?= htmlspecialchars($row['folio']) ?>"
-                                style="display: none;"
                         >
                     </td>
                     <!-- 3,4,5,6) Datos originales -->
@@ -379,6 +378,7 @@ $stmtUser->close();
             <button id="hist-next">Siguiente ➡</button>
         </div>
     </section>
+
 
 
 
