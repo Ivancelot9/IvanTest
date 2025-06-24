@@ -163,6 +163,11 @@
     font-size: 0.9rem;
     color: #24292f;
 }
+.check-folio,
+#check-all-historial {
+    transition: outline 0.2s ease-in-out;
+    /* outline-offset ya lo definimos en línea */
+}
 
 /* ============================= */
 /* Ajustes responsivos (< 400px) */

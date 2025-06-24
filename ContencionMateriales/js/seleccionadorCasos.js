@@ -1,4 +1,6 @@
 // seleccionadorCasos.js
+// Requiere SweetAlert2 cargado en la página (Swal.fire)
+
 document.addEventListener('DOMContentLoaded', () => {
     const table      = document.getElementById('tabla-historial');
     const headerRow  = table.querySelector('thead tr');
@@ -28,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cb.type       = 'checkbox';
             cb.className  = 'check-folio';
             // Asignar el folio como valor
-            cb.value      = row.cells[1].textContent.trim();
+            cb.value      = row.cells[2].textContent.trim(); // ojo: folio está en la 3ª celda
             cb.style.display = 'none';
             td.appendChild(cb);
             row.insertBefore(td, row.firstChild);
@@ -43,17 +45,38 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleBtn.addEventListener('click', () => {
         seleccionActiva = !seleccionActiva;
         const cbs = allCbs();
-        cbs.forEach(cb => cb.style.display = seleccionActiva ? '' : 'none');
+
+        // Mostrar/ocultar + contorno verde
+        cbs.forEach(cb => {
+            cb.style.display = seleccionActiva ? '' : 'none';
+            cb.style.outline = seleccionActiva ? '2px solid #2ea043' : '';
+            cb.style.outlineOffset = '2px';
+        });
         checkAll.style.display = seleccionActiva ? '' : 'none';
+        checkAll.style.outline = seleccionActiva ? '2px solid #2ea043' : '';
+        checkAll.style.outlineOffset = '2px';
+
+        // Cambiar texto del botón
         toggleBtn.textContent  = seleccionActiva
             ? '✅ Confirmar envío'
             : '📤 Enviar por correo';
-        if (!seleccionActiva) {
+
+        if (seleccionActiva) {
+            // 🎉 SweetAlert al activar selección
+            Swal.fire({
+                title: 'Modo Selección Activado',
+                text:  'Ahora puedes marcar los correos que quieras enviar.',
+                icon:  'info',
+                confirmButtonText: '¡Entendido!'
+            });
+        } else {
+            // Al desactivar, desmarcar todo
             cbs.forEach(cb => cb.checked = false);
             checkAll.checked = false;
         }
     });
 
+    // 4) “Seleccionar todos”
     checkAll.addEventListener('change', () => {
         allCbs().forEach(cb => cb.checked = checkAll.checked);
     });
