@@ -1,12 +1,7 @@
-// modalEnviarCorreo.js
+// modalEnviarCorreos.js
 // Requiere SweetAlert2 (Swal.fire) y tu función enviarCorreo(folios: string[], email: string): Promise
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ——> Solo inicializamos en la sección “Mis Casos”
-    if (!document.getElementById('tabla-historial')) {
-        return;
-    }
-
     // 1) Inyectar HTML del modal
     const html = `
     <div id="modal-enviar">
@@ -38,15 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const ulFolios  = document.getElementById('lista-folios');
     const inpEmail  = document.getElementById('email-destino');
     const toggleBtn = document.getElementById('btn-toggle-seleccion');
-    if (!toggleBtn) return;
 
     // 3) Abrir / cerrar modal
     function openModal() {
         ulFolios.innerHTML = '';
-        const folios = Array.from(
-            document.querySelectorAll('.check-folio:checked')
-        ).map(cb => cb.value);
-
+        const folios = Array.from(document.querySelectorAll('.check-folio:checked'))
+            .map(cb => cb.value);
+        // Aquí ya sabemos que hay ≥1 porque lo validamos antes
         folios.forEach(folio => {
             const li = document.createElement('li');
             li.dataset.folio = folio;
@@ -58,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
             li.appendChild(btnX);
             ulFolios.appendChild(li);
         });
-
         inpEmail.value = '';
         modal.style.display = 'block';
     }
@@ -66,27 +58,28 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = 'none';
     }
 
-    // 4) Cierres
+    // 4) Listeners de cierre
     backdrop.addEventListener('click', closeModal);
     btnClose .addEventListener('click', closeModal);
     btnCancel.addEventListener('click', closeModal);
 
-    // 5) Capturar 2º click (Confirmar envío)
+    // 5) Capturar el 2º click (modo Confirmar envío)
     toggleBtn.addEventListener('click', function(e) {
-        // Solo si ya estamos en modo selección
-        if (this.dataset.selectionActive === 'true') {
+        // Solo si estamos ya en modo selección
+        if ( this.dataset.selectionActive === 'true' ) {
             const marked = document.querySelectorAll('.check-folio:checked');
             if (marked.length === 0) {
                 Swal.fire('Atención','Marca al menos un caso.','warning');
             } else {
                 openModal();
             }
+            // ¡Detener aquí! para que NO llame al toggler y no desactive el modo
             e.stopImmediatePropagation();
             e.preventDefault();
         }
-    }, true); // fase captura
+    }, true); // en fase captura
 
-    // 6) Envío final
+    // 6) Envío final desde el modal
     btnSend.addEventListener('click', () => {
         const folios = Array.from(ulFolios.children).map(li => li.dataset.folio);
         const email  = inpEmail.value.trim();
@@ -98,7 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(() => {
                 Swal.fire('Éxito','Correos enviados correctamente.','success');
                 closeModal();
-                toggleBtn.click(); // restablecer modo selección
+                // Al cerrar el modal, simulamos el click para volver al estado inicial
+                toggleBtn.click();
             })
             .catch(err => {
                 Swal.fire('Error','Falló el envío: ' + err.message,'error');
