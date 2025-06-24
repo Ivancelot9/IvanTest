@@ -1,12 +1,12 @@
 // seleccionadorCasos.js
-// Requiere SweetAlert2 (Swal.fire) incluído en la página
+// Requiere SweetAlert2 cargado (Swal.fire)
 
 document.addEventListener('DOMContentLoaded', () => {
     const table      = document.getElementById('tabla-historial');
     const headerRow  = table.querySelector('thead tr');
     let   checkAll   = headerRow.querySelector('#check-all-historial');
 
-    // ── 1) Si ya existe un checkAll del HTML, mantenlo; si no, lo inyectas ──
+    // 1) Inyectar “select all” si falta
     if (!checkAll) {
         const th = document.createElement('th');
         th.style.width     = '40px';
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         headerRow.insertBefore(th, headerRow.firstChild);
     }
 
-    // ── 2) Inyectar un checkbox por cada fila si faltara ──
+    // 2) Inyectar un checkbox en cada fila si faltara
     const rows = table.querySelectorAll('tbody tr');
     rows.forEach(row => {
         let cb = row.querySelector('.check-folio');
@@ -26,40 +26,50 @@ document.addEventListener('DOMContentLoaded', () => {
             const td = document.createElement('td');
             td.style.textAlign = 'center';
             cb = document.createElement('input');
-            cb.type       = 'checkbox';
-            cb.className  = 'check-folio';
-            // El folio está en la 3ª celda (índice 2)
-            cb.value      = row.cells[2].textContent.trim();
+            cb.type      = 'checkbox';
+            cb.className = 'check-folio';
+            cb.value     = row.cells[2].textContent.trim(); // Folio en la 3ª celda
             td.appendChild(cb);
             row.insertBefore(td, row.firstChild);
         }
     });
 
-    // ── 3) Ocultar TODO al inicio ──
+    // 3) Helpers
     const allCbs = () => Array.from(table.querySelectorAll('.check-folio'));
+
+    // Al primer cambio en cualquier checkbox, quitamos el pulso de todos
+    function disablePulse() {
+        allCbs().forEach(x => x.classList.remove('pulse-check'));
+        checkAll.classList.remove('pulse-check');
+    }
+    allCbs().forEach(cb => cb.addEventListener('change', disablePulse));
+    checkAll.addEventListener('change', () => {
+        allCbs().forEach(x => x.checked = checkAll.checked);
+        disablePulse();
+    });
+
+    // 4) Ocultar al inicio
     allCbs().forEach(cb => cb.style.display = 'none');
     checkAll.style.display = 'none';
 
-    // ── 4) Toggle del botón ──
+    // 5) Toggle modo selección
     const toggleBtn = document.getElementById('btn-toggle-seleccion');
     let seleccionActiva = false;
 
     toggleBtn.addEventListener('click', () => {
         seleccionActiva = !seleccionActiva;
-        const cbs = allCbs();
 
         if (seleccionActiva) {
-            // • mostrar y marcar todos
-            cbs.forEach(cb => {
+            // Mostrar, desmarcar y añadir pulso
+            allCbs().forEach(cb => {
                 cb.style.display = '';
-                cb.checked       = true;
+                cb.checked       = false;
                 cb.classList.add('pulse-check');
             });
             checkAll.style.display = '';
-            checkAll.checked       = true;
+            checkAll.checked       = false;
             checkAll.classList.add('pulse-check');
 
-            // • SweetAlert explicativo
             Swal.fire({
                 title: 'Modo Selección Activado',
                 text:  'Marca los correos que quieras enviar.',
@@ -69,8 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             toggleBtn.textContent = '✅ Confirmar envío';
         } else {
-            // • ocultar y desmarcar todo
-            cbs.forEach(cb => {
+            // Ocultar, desmarcar y quitar pulso
+            allCbs().forEach(cb => {
                 cb.style.display = 'none';
                 cb.checked       = false;
                 cb.classList.remove('pulse-check');
@@ -83,12 +93,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ── 5) “Seleccionar todos” dentro del modo selección ──
-    checkAll.addEventListener('change', () => {
-        allCbs().forEach(cb => {
-            cb.checked = checkAll.checked;
-        });
-    });
-
-    console.log('✅ seleccionadorCasos.js cargado — encontrados', allCbs().length, 'checkboxes');
+    console.log('✅ seleccionadorCasos.js cargado —', allCbs().length, 'checkboxes encontrados');
 });
