@@ -78,6 +78,7 @@ $stmtUser->close();
     <link rel="stylesheet" href= "css/modalFotos.css"/>
     <link rel="stylesheet" href="css/perfilUsuario.css" />
     <link rel="stylesheet" href="css/tablaCasos.css" />
+    <link rel="stylesheet" href="css/modalEnviarCorreos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 
@@ -101,6 +102,7 @@ $stmtUser->close();
     <script src="js/notificacionesCasos.js" defer></script>
     <script src="js/modalMostrarDescripcion.js" defer></script>
     <script src="js/seleccionadorCasos.js" defer></script>
+    <script src="js/modalEnviarCorreos.js" defer></script>
 </head>
 <body
         data-tab-id="<?php echo htmlspecialchars($tab_id); ?>"

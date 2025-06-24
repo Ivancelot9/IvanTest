@@ -1,0 +1,100 @@
+/* modalEnviarCorreos.css */
+
+/* Contenedor global */
+#modal-enviar {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1000;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Fondo semitransparente */
+#modal-enviar .backdrop {
+    position: absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.4);
+}
+
+/* Ventana centrada */
+#modal-enviar .content {
+    position: relative;
+    background: #fff;
+    border-radius: 8px;
+    width: 90%; max-width: 500px;
+    margin: 5% auto;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Encabezado */
+#modal-enviar header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#modal-enviar .close-btn {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+/* Lista de folios */
+#modal-enviar ul {
+    list-style: none;
+    padding: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #d0d7de;
+    border-radius: 4px;
+}
+#modal-enviar ul li {
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+#modal-enviar ul li .remove-folio {
+    background: none;
+    border: none;
+    color: #d93025;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+/* Email input */
+#modal-enviar input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d0d7de;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+/* Botones pie */
+#modal-enviar footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+#modal-enviar footer button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+#modal-enviar #modal-send {
+    background: #2ea043;
+    color: #fff;
+}
+#modal-enviar #modal-cancel {
+    background: #d0d7de;
+}
