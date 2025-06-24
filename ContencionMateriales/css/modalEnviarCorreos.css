@@ -1,13 +1,13 @@
 :root {
-    --text-dark:    #1c1e21;
-    --dark-bg:      #202c3a;
-    --card-bg:      #f6f8fa;
-    --card-bg-alt:  #e8f0fe;      /* fondo azul claro */
-    --card-border:  #d0d7de;
-    --card-border-alt: #4285f4;   /* borde azul */
+    --text-dark:       #1c1e21;
+    --dark-bg:         #202c3a;
+    --card-bg:         #f6f8fa;
+    --card-bg-alt:     #e8f0fe;
+    --card-border:     #d0d7de;
+    --card-border-alt: #4285f4;
 }
 
-/* — Contenedor global del modal — */
+/* Contenedor global */
 #modal-enviar {
     display: none;
     position: fixed;
@@ -16,14 +16,14 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* — Fondo semitransparente — */
+/* Fondo semitransparente */
 #modal-enviar .backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.4);
 }
 
-/* — Ventana modal — */
+/* Ventana modal */
 #modal-enviar .content {
     position: relative;
     background: #fff;
@@ -38,7 +38,7 @@
     gap: 20px;
 }
 
-/* — Encabezado — */
+/* Encabezado */
 #modal-enviar header {
     display: flex;
     justify-content: space-between;
@@ -51,23 +51,25 @@
     cursor: pointer;
 }
 
-/* — Grid de cartas en 3 columnas — */
+/* Wrapper de cartas con fondo suave */
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 12px;
     max-height: 260px;
     overflow-y: auto;
-    padding: 8px 0;
+    background: #f0f4f8;
+    padding: 12px;
+    border-radius: 6px;
 }
 
-/* — Carta vertical estándar — */
+/* Carta vertical pequeña */
 .folio-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 8px;
-    width: 120px;
-    height: 160px;
+    width: 80px;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,37 +78,37 @@
     margin: 0 auto;
 }
 
-/* — Carta vertical azul alterna (2ª, 4ª, etc.) — */
+/* Alterna color de fondo/borde en pares */
 .cards-container .folio-card:nth-child(even) {
     background: var(--card-bg-alt);
     border-color: var(--card-border-alt);
 }
 
-/* — Número centrado — */
+/* Texto centrado */
 .folio-card h4 {
     margin: 0;
-    font-size: 1.4rem;
+    font-size: 1rem;
     color: var(--text-dark);
 }
 
-/* — Círculo con X en esquina superior izquierda — */
+/* Círculo rojo con “×” en esquina */
 .folio-card .remove-folio {
     position: absolute;
     top: 6px;
     left: 6px;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     background: #d93025;
     border: none;
     border-radius: 50%;
     color: #fff;
-    font-size: 1rem;
-    line-height: 24px;
+    font-size: 0.9rem;
+    line-height: 20px;
     text-align: center;
     cursor: pointer;
 }
 
-/* — Input de correo — */
+/* Input de correo */
 #modal-enviar label[for="email-destino"] {
     font-weight: 500;
 }
@@ -119,7 +121,7 @@
     box-sizing: border-box;
 }
 
-/* — Botones de pie — */
+/* Footer de botones */
 #modal-enviar footer {
     display: flex;
     justify-content: flex-end;

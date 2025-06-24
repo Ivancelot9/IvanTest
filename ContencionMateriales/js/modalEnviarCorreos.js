@@ -72,11 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         folios.forEach(folio => {
             const card = document.createElement('div');
-            card.className = 'folio-card';
+            card.className   = 'folio-card';
             card.dataset.folio = folio;
 
             const h4 = document.createElement('h4');
-            h4.textContent = `Folio ${folio}`;
+            h4.textContent = `Caso ${folio}`; // <-- aquí el cambio
 
             const btnX = document.createElement('button');
             btnX.className = 'remove-folio';
