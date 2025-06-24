@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerRow  = table.querySelector('thead tr');
     let   checkAll   = headerRow.querySelector('#check-all-historial');
 
-    // 1) Inyectar “select all” si falta
+    // Inyectar “select all” si falta...
     if (!checkAll) {
         const th = document.createElement('th');
         th.style.width     = '40px';
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         headerRow.insertBefore(th, headerRow.firstChild);
     }
 
-    // 2) Inyectar un checkbox en cada fila si faltara
+    // Inyectar un checkbox por fila si hace falta...
     const rows = table.querySelectorAll('tbody tr');
     rows.forEach(row => {
         let cb = row.querySelector('.check-folio');
@@ -28,16 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
             cb = document.createElement('input');
             cb.type      = 'checkbox';
             cb.className = 'check-folio';
-            cb.value     = row.cells[2].textContent.trim(); // Folio en la 3ª celda
+            cb.value     = row.cells[2].textContent.trim(); // folio en columna 3
             td.appendChild(cb);
             row.insertBefore(td, row.firstChild);
         }
     });
 
-    // 3) Helpers
+    // Helpers
     const allCbs = () => Array.from(table.querySelectorAll('.check-folio'));
-
-    // Al primer cambio en cualquier checkbox, quitamos el pulso de todos
     function disablePulse() {
         allCbs().forEach(x => x.classList.remove('pulse-check'));
         checkAll.classList.remove('pulse-check');
@@ -48,19 +46,22 @@ document.addEventListener('DOMContentLoaded', () => {
         disablePulse();
     });
 
-    // 4) Ocultar al inicio
+    // Ocultar al inicio
     allCbs().forEach(cb => cb.style.display = 'none');
     checkAll.style.display = 'none';
 
-    // 5) Toggle modo selección
+    // Toggle modo selección
     const toggleBtn = document.getElementById('btn-toggle-seleccion');
+    // Flag compartido con data-attribute
+    toggleBtn.dataset.selectionActive = 'false';
     let seleccionActiva = false;
 
     toggleBtn.addEventListener('click', () => {
         seleccionActiva = !seleccionActiva;
+        toggleBtn.dataset.selectionActive = seleccionActiva.toString();
 
         if (seleccionActiva) {
-            // Mostrar, desmarcar y añadir pulso
+            // === Entramos en MODO SELECCIÓN ===
             allCbs().forEach(cb => {
                 cb.style.display = '';
                 cb.checked       = false;
@@ -79,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             toggleBtn.textContent = '✅ Confirmar envío';
         } else {
-            // Ocultar, desmarcar y quitar pulso
+            // === Salimos de MODO SELECCIÓN ===
             allCbs().forEach(cb => {
                 cb.style.display = 'none';
                 cb.checked       = false;
