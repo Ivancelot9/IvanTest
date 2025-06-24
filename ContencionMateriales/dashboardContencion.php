@@ -300,8 +300,6 @@ $stmtUser->close();
                 </select>
                 <input type="text" id="historial-filter-input" placeholder="Buscar…">
                 <button id="historial-filter-button">🔍 Buscar</button>
-
-                <!-- Botón para alternar modo selección -->
                 <button id="btn-toggle-seleccion" class="enviar-btn" style="margin-left: 12px;">
                     📤 Enviar por correo
                 </button>
@@ -312,11 +310,10 @@ $stmtUser->close();
         <table class="cases-table" id="tabla-historial">
             <thead>
             <tr>
-                <!-- 1) Columna de selección -->
+                <!-- Columna de selección -->
                 <th style="width: 40px; text-align: center;">
                     <input type="checkbox" id="check-all-historial" style="display: none;">
                 </th>
-                <!-- 2) Columnas de datos -->
                 <th>Folio</th>
                 <th>Fecha Registro</th>
                 <th>Descripción</th>
@@ -327,10 +324,10 @@ $stmtUser->close();
             <?php
             $rs = $con->prepare("
         SELECT 
-          c.FolioCaso                     AS folio,
+          c.FolioCaso AS folio,
           DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
-          e.NombreEstatus                 AS estatus,
-          c.Descripcion                   AS descripcion
+          e.NombreEstatus AS estatus,
+          c.Descripcion AS descripcion
         FROM Casos c
         JOIN Estatus e ON e.IdEstatus = c.IdEstatus
         WHERE c.IdUsuario = ?
@@ -351,7 +348,6 @@ $stmtUser->close();
                                 style="display: none;"
                         >
                     </td>
-                    <!-- Datos del caso -->
                     <td><?= htmlspecialchars($row['folio']) ?></td>
                     <td><?= htmlspecialchars($row['fecha']) ?></td>
                     <td>
@@ -361,10 +357,7 @@ $stmtUser->close();
                     </td>
                     <td><?= htmlspecialchars($row['estatus']) ?></td>
                 </tr>
-            <?php
-            endwhile;
-            $rs->close();
-            ?>
+            <?php endwhile; $rs->close(); ?>
             </tbody>
         </table>
 
