@@ -308,17 +308,15 @@ $stmtUser->close();
             </div>
         </div>
 
-        <!-- 📋 Tabla de casos con columna vacía + selección -->
+        <!-- 📋 Tabla de casos con una sola columna de selección -->
         <table class="cases-table" id="tabla-historial">
             <thead>
             <tr>
-                <!-- 1) Columna vacía para alinear -->
-                <th></th>
-                <!-- 2) Columna de "Seleccionar todos" -->
+                <!-- 1) Columna de selección -->
                 <th style="width: 40px; text-align: center;">
                     <input type="checkbox" id="check-all-historial" style="display: none;">
                 </th>
-                <!-- 3,4,5,6) Columnas de datos -->
+                <!-- 2) Columnas de datos -->
                 <th>Folio</th>
                 <th>Fecha Registro</th>
                 <th>Descripción</th>
@@ -329,10 +327,10 @@ $stmtUser->close();
             <?php
             $rs = $con->prepare("
         SELECT 
-          c.FolioCaso AS folio,
+          c.FolioCaso                     AS folio,
           DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
-          e.NombreEstatus AS estatus,
-          c.Descripcion AS descripcion
+          e.NombreEstatus                 AS estatus,
+          c.Descripcion                   AS descripcion
         FROM Casos c
         JOIN Estatus e ON e.IdEstatus = c.IdEstatus
         WHERE c.IdUsuario = ?
@@ -344,9 +342,7 @@ $stmtUser->close();
             while ($row = $result->fetch_assoc()):
                 ?>
                 <tr>
-                    <!-- 1) Celda vacía -->
-                    <td></td>
-                    <!-- 2) Checkbox individual -->
+                    <!-- Checkbox individual -->
                     <td style="text-align: center;">
                         <input
                                 type="checkbox"
@@ -355,7 +351,7 @@ $stmtUser->close();
                                 style="display: none;"
                         >
                     </td>
-                    <!-- 3,4,5,6) Datos originales -->
+                    <!-- Datos del caso -->
                     <td><?= htmlspecialchars($row['folio']) ?></td>
                     <td><?= htmlspecialchars($row['fecha']) ?></td>
                     <td>
@@ -379,6 +375,7 @@ $stmtUser->close();
             <button id="hist-next">Siguiente ➡</button>
         </div>
     </section>
+
 
 
     <!-- Sección 3: Historial de Casos-->
