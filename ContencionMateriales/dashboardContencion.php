@@ -302,34 +302,41 @@ $stmtUser->close();
             </div>
         </div>
 
-        <table class="cases-table">
+        <!-- 📋 Tabla de casos con checkboxes -->
+        <table class="cases-table" id="tabla-historial">
             <thead>
             <tr>
+                <!-- ✅ Columna nueva: seleccionar todos -->
+                <th><input type="checkbox" id="check-all-historial"></th>
                 <th>Folio</th>
                 <th>Fecha Registro</th>
-                <th>Descripción</th>    <!-- movido -->
-                <th>Estatus</th>        <!-- al final -->
+                <th>Descripción</th>
+                <th>Estatus</th>
             </tr>
             </thead>
             <tbody>
             <?php
             $rs = $con->prepare("
-            SELECT 
-                c.FolioCaso                     AS folio,
-                DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
-                e.NombreEstatus                 AS estatus,
-                c.Descripcion                   AS descripcion
-            FROM Casos c
-            JOIN Estatus e ON e.IdEstatus = c.IdEstatus
-            WHERE c.IdUsuario = ?
-            ORDER BY c.FolioCaso DESC
-        ");
+                SELECT 
+                    c.FolioCaso                     AS folio,
+                    DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
+                    e.NombreEstatus                 AS estatus,
+                    c.Descripcion                   AS descripcion
+                FROM Casos c
+                JOIN Estatus e ON e.IdEstatus = c.IdEstatus
+                WHERE c.IdUsuario = ?
+                ORDER BY c.FolioCaso DESC
+            ");
             $rs->bind_param("i", $idUsuario);
             $rs->execute();
             $result = $rs->get_result();
             while ($row = $result->fetch_assoc()):
                 ?>
                 <tr>
+                    <!-- ✅ Checkbox individual con valor = folio -->
+                    <td>
+                        <input type="checkbox" class="check-folio" value="<?= htmlspecialchars($row['folio']) ?>">
+                    </td>
                     <td><?= htmlspecialchars($row['folio']) ?></td>
                     <td><?= htmlspecialchars($row['fecha']) ?></td>
                     <td>
@@ -355,7 +362,7 @@ $stmtUser->close();
         </div>
     </section>
 
-    <!-- Sección 3: Historial de Casos-->
+
     <!-- Sección 3: Historial de Casos-->
     <section id="historial-casos" class="main-section" style="display: none;">
         <h1><strong>Historial de Casos</strong></h1>
