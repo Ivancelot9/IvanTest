@@ -126,6 +126,9 @@
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
+#btn-toggle-seleccion {
+    margin-left: 12px;
+}
 .filter-container button:hover {
     background-color: #238636;
 }

@@ -100,6 +100,7 @@ $stmtUser->close();
     <!-- notificaciones en tiempo real -->
     <script src="js/notificacionesCasos.js" defer></script>
     <script src="js/modalMostrarDescripcion.js" defer></script>
+    <script src="js/seleccionadorCasos.js" defer></script>
 </head>
 <body
         data-tab-id="<?php echo htmlspecialchars($tab_id); ?>"
