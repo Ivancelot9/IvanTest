@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Envio a Externos">
-      <change afterPath="$PROJECT_DIR$/ContencionMateriales/css/modalEnviarCorreos.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ContencionMateriales/js/modalEnviarCorreos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/modalEnviarCorreos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/modalEnviarCorreos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,15 +210,7 @@
       <workItem from="1750169864632" duration="2662000" />
       <workItem from="1750256350611" duration="17186000" />
       <workItem from="1750429336608" duration="22350000" />
-      <workItem from="1750774428800" duration="11858000" />
-    </task>
-    <task id="LOCAL-01587" summary="Ajustes Boton Mostrar Descrpcio">
-      <option name="closed" value="true" />
-      <created>1750359345052</created>
-      <option name="number" value="01587" />
-      <option name="presentableId" value="LOCAL-01587" />
-      <option name="project" value="LOCAL" />
-      <updated>1750359345052</updated>
+      <workItem from="1750774428800" duration="12196000" />
     </task>
     <task id="LOCAL-01588" summary="Ajustes Boton Mostrar Descrpcio">
       <option name="closed" value="true" />
@@ -607,7 +596,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750788927000</updated>
     </task>
-    <option name="localTasksCounter" value="1636" />
+    <task id="LOCAL-01636" summary="Envio a Externos">
+      <option name="closed" value="true" />
+      <created>1750790266601</created>
+      <option name="number" value="01636" />
+      <option name="presentableId" value="LOCAL-01636" />
+      <option name="project" value="LOCAL" />
+      <updated>1750790266601</updated>
+    </task>
+    <option name="localTasksCounter" value="1637" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
