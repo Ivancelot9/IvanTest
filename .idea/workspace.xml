@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Envio a Externos">
-      <change afterPath="$PROJECT_DIR$/ContencionMateriales/js/seleccionadorCasos.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/tablaCasos.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/tablaCasos.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/seleccionadorCasos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/seleccionadorCasos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,15 +212,7 @@
       <workItem from="1750169864632" duration="2662000" />
       <workItem from="1750256350611" duration="17186000" />
       <workItem from="1750429336608" duration="22350000" />
-      <workItem from="1750774428800" duration="4431000" />
-    </task>
-    <task id="LOCAL-01571" summary="Ajustes Estatus">
-      <option name="closed" value="true" />
-      <created>1749661983134</created>
-      <option name="number" value="01571" />
-      <option name="presentableId" value="LOCAL-01571" />
-      <option name="project" value="LOCAL" />
-      <updated>1749661983134</updated>
+      <workItem from="1750774428800" duration="5357000" />
     </task>
     <task id="LOCAL-01572" summary="Ajustes Estatus">
       <option name="closed" value="true" />
@@ -607,7 +598,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750779981675</updated>
     </task>
-    <option name="localTasksCounter" value="1620" />
+    <task id="LOCAL-01620" summary="Envio a Externos">
+      <option name="closed" value="true" />
+      <created>1750782515813</created>
+      <option name="number" value="01620" />
+      <option name="presentableId" value="LOCAL-01620" />
+      <option name="project" value="LOCAL" />
+      <updated>1750782515813</updated>
+    </task>
+    <option name="localTasksCounter" value="1621" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
