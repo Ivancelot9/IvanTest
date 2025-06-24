@@ -1,34 +1,33 @@
 :root {
-    --text-dark: #1c1e21;
-    --dark-bg:   #202c3a;
-    --card-bg:   #f6f8fa;
-    --card-border: #d0d7de;
+    --text-dark:    #1c1e21;
+    --dark-bg:      #202c3a;
+    --card-bg:      #f6f8fa;
+    --card-border:  #d0d7de;
 }
 
-/* Contenedor global */
+/* — Contenedor global del modal — */
 #modal-enviar {
     display: none;
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    inset: 0;
     z-index: 1000;
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* Fondo semitransparente */
+/* — Fondo semitransparente — */
 #modal-enviar .backdrop {
     position: absolute;
-    top:0; left:0;
-    width:100%; height:100%;
+    inset: 0;
     background: rgba(0,0,0,0.4);
 }
 
-/* Ventana centrada */
+/* — Ventana modal — */
 #modal-enviar .content {
     position: relative;
     background: #fff;
     border-radius: 8px;
-    width: 90%; max-width: 520px;
+    width: 90%;
+    max-width: 520px;
     margin: 5% auto;
     padding: 20px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -37,7 +36,7 @@
     gap: 16px;
 }
 
-/* Header */
+/* — Encabezado — */
 #modal-enviar header {
     display: flex;
     justify-content: space-between;
@@ -50,43 +49,50 @@
     cursor: pointer;
 }
 
-/* Deck de cartas */
+/* — Deck de cartas verticales — */
 .cards-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    max-height: 200px;
+    gap: 16px;
+    max-height: 240px;
     overflow-y: auto;
-    padding: 4px;
+    padding: 8px;
 }
 .folio-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 6px;
-    padding: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    width: 120px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    flex: 1 1 calc(50% - 12px);
-    min-width: 120px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 .folio-card h4 {
     margin: 0;
-    font-size: 1rem;
+    font-size: 1.3rem;
     color: var(--text-dark);
 }
 .folio-card .remove-folio {
     position: absolute;
     top: 6px;
-    right: 6px;
-    background: none;
+    left: 6px;
+    width: 24px;
+    height: 24px;
+    background: #d93025;
     border: none;
-    color: #d93025;
-    font-size: 1.2rem;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 24px;
+    text-align: center;
     cursor: pointer;
 }
 
-/* Email input */
-#modal-enviar section label {
+/* — Input de correo — */
+#modal-enviar label[for="email-destino"] {
     font-weight: 500;
 }
 #modal-enviar input[type="email"] {
@@ -95,9 +101,10 @@
     border: 1px solid var(--card-border);
     border-radius: 4px;
     font-size: 0.95rem;
+    box-sizing: border-box;
 }
 
-/* Footer buttons */
+/* — Botones de pie — */
 #modal-enviar footer {
     display: flex;
     justify-content: flex-end;
