@@ -289,7 +289,7 @@ $stmtUser->close();
     <section id="historial" class="main-section" style="display: none;">
         <h1><strong>Mis Casos</strong></h1>
 
-        <!-- 🔎 Controles de búsqueda -->
+        <!-- 🔎 Controles de búsqueda y botón de envío -->
         <div class="table-controls">
             <div class="filter-container">
                 <label for="historial-filter-column">Filtrar por:</label>
@@ -299,6 +299,9 @@ $stmtUser->close();
                 </select>
                 <input type="text" id="historial-filter-input" placeholder="Buscar...">
                 <button id="historial-filter-button">🔍 Buscar</button>
+
+                <!-- ✅ Botón para activar modo selección -->
+                <button id="btn-toggle-seleccion" class="enviar-btn">📤 Enviar por correo</button>
             </div>
         </div>
 
@@ -307,7 +310,7 @@ $stmtUser->close();
             <thead>
             <tr>
                 <!-- ✅ Columna nueva: seleccionar todos -->
-                <th><input type="checkbox" id="check-all-historial"></th>
+                <th><input type="checkbox" id="check-all-historial" style="display: none;"></th>
                 <th>Folio</th>
                 <th>Fecha Registro</th>
                 <th>Descripción</th>
@@ -335,7 +338,7 @@ $stmtUser->close();
                 <tr>
                     <!-- ✅ Checkbox individual con valor = folio -->
                     <td>
-                        <input type="checkbox" class="check-folio" value="<?= htmlspecialchars($row['folio']) ?>">
+                        <input type="checkbox" class="check-folio" value="<?= htmlspecialchars($row['folio']) ?>" style="display: none;">
                     </td>
                     <td><?= htmlspecialchars($row['folio']) ?></td>
                     <td><?= htmlspecialchars($row['fecha']) ?></td>

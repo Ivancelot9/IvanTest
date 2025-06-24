@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Reajustandi Mostrar Descripcion">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Envio a Externos" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -211,15 +208,7 @@
       <workItem from="1750169864632" duration="2662000" />
       <workItem from="1750256350611" duration="17186000" />
       <workItem from="1750429336608" duration="22350000" />
-      <workItem from="1750774428800" duration="2360000" />
-    </task>
-    <task id="LOCAL-01569" summary="Ajustes Estatus">
-      <option name="closed" value="true" />
-      <created>1749655682298</created>
-      <option name="number" value="01569" />
-      <option name="presentableId" value="LOCAL-01569" />
-      <option name="project" value="LOCAL" />
-      <updated>1749655682298</updated>
+      <workItem from="1750774428800" duration="2865000" />
     </task>
     <task id="LOCAL-01570" summary="Ajustes Estatus">
       <option name="closed" value="true" />
@@ -605,7 +594,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750710765105</updated>
     </task>
-    <option name="localTasksCounter" value="1618" />
+    <task id="LOCAL-01618" summary="Envio a Externos">
+      <option name="closed" value="true" />
+      <created>1750779331292</created>
+      <option name="number" value="01618" />
+      <option name="presentableId" value="LOCAL-01618" />
+      <option name="project" value="LOCAL" />
+      <updated>1750779331292</updated>
+    </task>
+    <option name="localTasksCounter" value="1619" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -657,7 +654,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modal Estatus" />
     <MESSAGE value="Modal Finalizacion &quot;G&quot;" />
     <MESSAGE value="Modal Fotos/Contencion" />
     <MESSAGE value="Barra Agregar" />
@@ -682,7 +678,8 @@
     <MESSAGE value="Ajustes Estatus" />
     <MESSAGE value="Ajustes Boton Mostrar Descrpcio" />
     <MESSAGE value="Reajustandi Mostrar Descripcion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reajustandi Mostrar Descripcion" />
+    <MESSAGE value="Envio a Externos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Envio a Externos" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
