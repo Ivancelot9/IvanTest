@@ -301,7 +301,7 @@ $stmtUser->close();
                 <input type="text" id="historial-filter-input" placeholder="Buscar…">
                 <button id="historial-filter-button">🔍 Buscar</button>
 
-                <!-- Botón para activar modo selección -->
+                <!-- Botón para alternar modo selección -->
                 <button id="btn-toggle-seleccion" class="enviar-btn" style="margin-left: 12px;">
                     📤 Enviar por correo
                 </button>
@@ -312,14 +312,11 @@ $stmtUser->close();
         <table class="cases-table" id="tabla-historial">
             <thead>
             <tr>
-                <!-- Columna 1: Seleccionar todos -->
+                <!-- 1) Columna de selección -->
                 <th style="width: 40px; text-align: center;">
-                    <input
-                            type="checkbox"
-                            id="check-all-historial"
-                            style="display: none;"
-                    >
+                    <input type="checkbox" id="check-all-historial" style="display: none;">
                 </th>
+                <!-- 2) Columnas de datos -->
                 <th>Folio</th>
                 <th>Fecha Registro</th>
                 <th>Descripción</th>
@@ -329,23 +326,23 @@ $stmtUser->close();
             <tbody>
             <?php
             $rs = $con->prepare("
-                SELECT 
-                    c.FolioCaso AS folio,
-                    DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
-                    e.NombreEstatus AS estatus,
-                    c.Descripcion AS descripcion
-                FROM Casos c
-                JOIN Estatus e ON e.IdEstatus = c.IdEstatus
-                WHERE c.IdUsuario = ?
-                ORDER BY c.FolioCaso DESC
-            ");
+        SELECT 
+          c.FolioCaso AS folio,
+          DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
+          e.NombreEstatus AS estatus,
+          c.Descripcion AS descripcion
+        FROM Casos c
+        JOIN Estatus e ON e.IdEstatus = c.IdEstatus
+        WHERE c.IdUsuario = ?
+        ORDER BY c.FolioCaso DESC
+      ");
             $rs->bind_param("i", $idUsuario);
             $rs->execute();
             $result = $rs->get_result();
             while ($row = $result->fetch_assoc()):
                 ?>
                 <tr>
-                    <!-- Checkbox individual (oculto hasta activar) -->
+                    <!-- 1) Checkbox individual -->
                     <td style="text-align: center;">
                         <input
                                 type="checkbox"
@@ -354,6 +351,7 @@ $stmtUser->close();
                                 style="display: none;"
                         >
                     </td>
+                    <!-- 2) Datos del caso -->
                     <td><?= htmlspecialchars($row['folio']) ?></td>
                     <td><?= htmlspecialchars($row['fecha']) ?></td>
                     <td>
@@ -377,7 +375,6 @@ $stmtUser->close();
             <button id="hist-next">Siguiente ➡</button>
         </div>
     </section>
-
 
     <!-- Sección 3: Historial de Casos-->
     <section id="historial-casos" class="main-section" style="display: none;">
