@@ -300,27 +300,28 @@ $stmtUser->close();
                 </select>
                 <input type="text" id="historial-filter-input" placeholder="Buscar…">
                 <button id="historial-filter-button">🔍 Buscar</button>
+
+                <!-- Botón para alternar modo selección -->
                 <button id="btn-toggle-seleccion" class="enviar-btn" style="margin-left: 12px;">
                     📤 Enviar por correo
                 </button>
             </div>
         </div>
 
-        <!-- 📋 Tabla de casos con columna de selección + datos alineados -->
+        <!-- 📋 Tabla de casos con columna vacía + selección -->
         <table class="cases-table" id="tabla-historial">
             <thead>
             <tr>
-                <!-- 1) Selección -->
-                <th style="width:40px; text-align:center;">
-                    <input type="checkbox" id="check-all-historial" style="display:none;">
+                <!-- 1) Columna vacía para alinear -->
+                <th></th>
+                <!-- 2) Columna de "Seleccionar todos" -->
+                <th style="width: 40px; text-align: center;">
+                    <input type="checkbox" id="check-all-historial" style="display: none;">
                 </th>
-                <!-- 2) Folio -->
+                <!-- 3,4,5,6) Columnas de datos -->
                 <th>Folio</th>
-                <!-- 3) Fecha Registro -->
                 <th>Fecha Registro</th>
-                <!-- 4) Descripción -->
                 <th>Descripción</th>
-                <!-- 5) Estatus -->
                 <th>Estatus</th>
             </tr>
             </thead>
@@ -330,8 +331,8 @@ $stmtUser->close();
         SELECT 
           c.FolioCaso AS folio,
           DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
-          c.Descripcion AS descripcion,
-          e.NombreEstatus AS estatus
+          e.NombreEstatus AS estatus,
+          c.Descripcion AS descripcion
         FROM Casos c
         JOIN Estatus e ON e.IdEstatus = c.IdEstatus
         WHERE c.IdUsuario = ?
@@ -343,26 +344,25 @@ $stmtUser->close();
             while ($row = $result->fetch_assoc()):
                 ?>
                 <tr>
-                    <!-- 1) Checkbox individual -->
-                    <td style="text-align:center;">
+                    <!-- 1) Celda vacía -->
+                    <td></td>
+                    <!-- 2) Checkbox individual -->
+                    <td style="text-align: center;">
                         <input
                                 type="checkbox"
                                 class="check-folio"
                                 value="<?= htmlspecialchars($row['folio']) ?>"
-                                style="display:none;"
+                                style="display: none;"
                         >
                     </td>
-                    <!-- 2) Folio -->
+                    <!-- 3,4,5,6) Datos originales -->
                     <td><?= htmlspecialchars($row['folio']) ?></td>
-                    <!-- 3) Fecha Registro -->
                     <td><?= htmlspecialchars($row['fecha']) ?></td>
-                    <!-- 4) Descripción (botón) -->
                     <td>
                         <button class="show-desc" data-folio="<?= htmlspecialchars($row['folio']) ?>">
                             Mostrar descripción
                         </button>
                     </td>
-                    <!-- 5) Estatus -->
                     <td><?= htmlspecialchars($row['estatus']) ?></td>
                 </tr>
             <?php
