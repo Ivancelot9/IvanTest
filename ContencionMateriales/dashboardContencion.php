@@ -286,84 +286,91 @@ $stmtUser->close();
 
 
 
-    <!-- 🔎 Controles de búsqueda y botón de envío -->
-    <div class="table-controls">
-        <div class="filter-container">
-            <label for="historial-filter-column">Filtrar por:</label>
-            <select id="historial-filter-column">
-                <option value="folio">Folio</option>
-                <option value="fecha">Fecha Registro</option>
-            </select>
-            <input type="text" id="historial-filter-input" placeholder="Buscar...">
-            <button id="historial-filter-button">🔍 Buscar</button>
+    <!-- Sección 2: Mis Casos -->
+    <section id="historial" class="main-section" style="display: none;">
+        <h1><strong>Mis Casos</strong></h1>
 
-            <!-- Botón para activar modo selección -->
-            <button id="btn-toggle-seleccion" class="enviar-btn">📤 Enviar por correo</button>
+        <!-- 🔎 Controles de búsqueda y botón de envío -->
+        <div class="table-controls">
+            <div class="filter-container">
+                <label for="historial-filter-column">Filtrar por:</label>
+                <select id="historial-filter-column">
+                    <option value="folio">Folio</option>
+                    <option value="fecha">Fecha Registro</option>
+                </select>
+                <input type="text" id="historial-filter-input" placeholder="Buscar...">
+                <button id="historial-filter-button">🔍 Buscar</button>
+
+                <!-- Botón para activar modo selección -->
+                <button id="btn-toggle-seleccion" class="enviar-btn">📤 Enviar por correo</button>
+            </div>
         </div>
-    </div>
 
-    <!-- 📋 Tabla de casos con checkboxes -->
-    <table class="cases-table" id="tabla-historial">
-        <thead>
-        <tr>
-            <!-- Columna 1: seleccionar todos (oculto hasta activar) -->
-            <th><input type="checkbox" id="check-all-historial" style="display: none;"></th>
-            <th>Folio</th>
-            <th>Fecha Registro</th>
-            <th>Descripción</th>
-            <th>Estatus</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        $rs = $con->prepare("
+        <!-- 📋 Tabla de casos con checkboxes -->
+        <table class="cases-table" id="tabla-historial">
+            <thead>
+            <tr>
+                <!-- Columna 1: seleccionar todos (oculto hasta activar) -->
+                <th>
+                    <input type="checkbox"
+                           id="check-all-historial"
+                           style="display: none;">
+                </th>
+                <th>Folio</th>
+                <th>Fecha Registro</th>
+                <th>Descripción</th>
+                <th>Estatus</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            $rs = $con->prepare("
                 SELECT 
-                    c.FolioCaso AS folio,
+                    c.FolioCaso                     AS folio,
                     DATE_FORMAT(c.FechaRegistro, '%Y-%m-%d') AS fecha,
-                    e.NombreEstatus AS estatus,
-                    c.Descripcion AS descripcion
+                    e.NombreEstatus                 AS estatus,
+                    c.Descripcion                   AS descripcion
                 FROM Casos c
                 JOIN Estatus e ON e.IdEstatus = c.IdEstatus
                 WHERE c.IdUsuario = ?
                 ORDER BY c.FolioCaso DESC
             ");
-        $rs->bind_param("i", $idUsuario);
-        $rs->execute();
-        $result = $rs->get_result();
-        while ($row = $result->fetch_assoc()):
+            $rs->bind_param("i", $idUsuario);
+            $rs->execute();
+            $result = $rs->get_result();
+            while ($row = $result->fetch_assoc()):
+                ?>
+                <tr>
+                    <!-- Checkbox individual (oculto hasta activar) -->
+                    <td>
+                        <input type="checkbox"
+                               class="check-folio"
+                               value="<?= htmlspecialchars($row['folio']) ?>"
+                               style="display: none;">
+                    </td>
+                    <td><?= htmlspecialchars($row['folio']) ?></td>
+                    <td><?= htmlspecialchars($row['fecha']) ?></td>
+                    <td>
+                        <button class="show-desc"
+                                data-folio="<?= htmlspecialchars($row['folio']) ?>">
+                            Mostrar descripción
+                        </button>
+                    </td>
+                    <td><?= htmlspecialchars($row['estatus']) ?></td>
+                </tr>
+            <?php
+            endwhile;
+            $rs->close();
             ?>
-            <tr>
-                <!-- Checkbox individual (oculto hasta activar) -->
-                <td>
-                    <input
-                            type="checkbox"
-                            class="check-folio"
-                            value="<?= htmlspecialchars($row['folio']) ?>"
-                            style="display: none;"
-                    >
-                </td>
-                <td><?= htmlspecialchars($row['folio']) ?></td>
-                <td><?= htmlspecialchars($row['fecha']) ?></td>
-                <td>
-                    <button class="show-desc" data-folio="<?= htmlspecialchars($row['folio']) ?>">
-                        Mostrar descripción
-                    </button>
-                </td>
-                <td><?= htmlspecialchars($row['estatus']) ?></td>
-            </tr>
-        <?php
-        endwhile;
-        $rs->close();
-        ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <!-- 📑 Controles de paginación -->
-    <div class="pagination" id="historial-pagination">
-        <button id="hist-prev" disabled>⬅ Anterior</button>
-        <span id="hist-page-indicator">Página 1</span>
-        <button id="hist-next">Siguiente ➡</button>
-    </div>
+        <!-- 📑 Controles de paginación -->
+        <div class="pagination" id="historial-pagination">
+            <button id="hist-prev" disabled>⬅ Anterior</button>
+            <span id="hist-page-indicator">Página 1</span>
+            <button id="hist-next">Siguiente ➡</button>
+        </div>
     </section>
 
 
