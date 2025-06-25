@@ -1,5 +1,5 @@
 // modalEnviarCorreos.js
-// Requiere SweetAlert2 (Swal.fire) y tu función enviarCorreo(folios: string[], email: string): Promise
+// Requiere SweetAlert2 (Swal.fire)
 
 document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('btn-toggle-seleccion');
@@ -42,22 +42,37 @@ document.addEventListener('DOMContentLoaded', () => {
         btnClose.addEventListener('click', closeModal);
         btnCancel.addEventListener('click', closeModal);
 
-        btnSend.addEventListener('click', () => {
+        btnSend.addEventListener('click', async () => {
             const folios = Array.from(cardsContainer.children)
                 .map(card => card.dataset.folio);
             const email = inpEmail.value.trim();
+
             if (!/.+@.+\..+/.test(email)) {
-                Swal.fire('Error','Ingresa un correo válido.','error');
+                Swal.fire('Error', 'Ingresa un correo válido.', 'error');
                 return;
             }
-            enviarCorreo(folios, email)
-                .then(() => {
-                    Swal.fire('Éxito','Correos enviados correctamente.','success');
-                    closeModal();
-                })
-                .catch(err => {
-                    Swal.fire('Error','Falló el envío: ' + err.message,'error');
+
+            try {
+                const formData = new FormData();
+                formData.append('correo', email);
+                folios.forEach(folio => formData.append('folios[]', folio));
+
+                const resp = await fetch('mailer/enviarCorreoaExterno.php', {
+                    method: 'POST',
+                    body: formData
                 });
+
+                const data = await resp.json();
+
+                if (data.status === 'success') {
+                    Swal.fire('Éxito', 'Correos enviados correctamente.', 'success');
+                    closeModal();
+                } else {
+                    throw new Error(data.message || 'Fallo al enviar correo');
+                }
+            } catch (err) {
+                Swal.fire('Error', 'Falló el envío: ' + err.message, 'error');
+            }
         });
 
         injected = true;
@@ -71,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         folios.forEach(folio => {
             const card = document.createElement('div');
-            card.className    = 'folio-card';
+            card.className = 'folio-card';
             card.dataset.folio = folio;
 
             const h4 = document.createElement('h4');
@@ -91,23 +106,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function closeModal() {
-        // 1) Cierra el modal
         modal.style.display = 'none';
 
-        // 2) Si seguimos en modo selección, simula un click para desactivarlo
         if (toggleBtn.dataset.selectionActive === 'true') {
-            // Pone temporalmente dataset en 'false' para que el capture listener no abra el modal
             toggleBtn.dataset.selectionActive = 'false';
-            toggleBtn.click(); // dispara el listener de seleccionadorCasos.js y sale del modo selección
+            toggleBtn.click();
         }
     }
 
-    // Captura el 2º click (cuando el botón dice “✅ Confirmar envío”)
-    toggleBtn.addEventListener('click', function(e) {
+    toggleBtn.addEventListener('click', function (e) {
         if (this.dataset.selectionActive === 'true') {
             const marked = document.querySelectorAll('.check-folio:checked');
             if (marked.length === 0) {
-                Swal.fire('Atención','Marca al menos un caso.','warning');
+                Swal.fire('Atención', 'Marca al menos un caso.', 'warning');
             } else {
                 if (!injected) injectModal();
                 openModal();

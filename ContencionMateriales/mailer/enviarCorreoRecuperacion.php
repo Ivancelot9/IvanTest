@@ -1,29 +1,27 @@
 <?php
-// dao/enviarCorreoRecuperacion.php
+// mailer/enviarCorreoaExterno.php
 
 session_start();
-include_once("conexionContencion.php");
+include_once("../dao/conexionContencion.php");
 
 // Incluir PHPMailer
-require 'Phpmailer/Exception.php';
-require 'Phpmailer/PHPMailer.php';
-require 'Phpmailer/SMTP.php';
+require '../Phpmailer/Exception.php';
+require '../Phpmailer/PHPMailer.php';
+require '../Phpmailer/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 header('Content-Type: application/json; charset=UTF-8');
 
-// Validar que se reciban los datos necesarioss
-if (!isset($_POST['correo'], $_POST['asunto'], $_POST['mensaje'])) {
-    echo json_encode(['status' => 'error', 'message' => 'Faltan parámetros obligatorios.']);
+if (!isset($_POST['correo'], $_POST['folios']) || !is_array($_POST['folios'])) {
+    echo json_encode(['status' => 'error', 'message' => 'Faltan parámetros o el formato es incorrecto.']);
     exit;
 }
 
-// Variables recibidas
 $correoDestino = $_POST['correo'];
-$asunto        = $_POST['asunto'];
-$mensajeHTML   = $_POST['mensaje'];
+$folios        = $_POST['folios'];
+$asunto        = "Casos asignados para revisión";
 
 $mail = new PHPMailer(true);
 
@@ -37,20 +35,29 @@ try {
     $mail->SMTPSecure = 'ssl';
     $mail->Port       = 465;
 
-    // Remitente
+    // Remitente y destinatarios
     $mail->setFrom('contencion_materiales@grammermx.com', 'Sistema Contención Materiales Grammer');
-
-    // Destinatarios
     $mail->addAddress($correoDestino);
     $mail->addBCC('contencion_materiales@grammermx.com');
-    $mail->addBCC('Ivan.Medina@grammer.com'); // Opcional, puedes cambiarlo
+    $mail->addBCC('Ivan.Medina@grammer.com');
 
-    // Contenido
+    // Cuerpo del mensaje
+    $listaFolios = '';
+    foreach ($folios as $folio) {
+        $listaFolios .= "• Caso $folio<br>";
+    }
+
+    $mensajeHTML = "
+    <p>Se te han asignado los siguientes casos:</p>
+    <p>$listaFolios</p>
+    <p>Puedes consultarlos en el siguiente enlace:<br>
+    <a href='https://grammermx.com/IvanTest/ContencionMateriales/buscadorCasos.php' target='_blank'>
+    https://grammermx.com/IvanTest/ContencionMateriales/buscadorCasos.php</a></p>";
+
     $mail->isHTML(true);
     $mail->CharSet = 'UTF-8';
     $mail->Subject = $asunto;
 
-    // Estilo del cuerpo del mensaje
     $contenido = "
     <html>
     <head><meta charset='UTF-8'><title>$asunto</title></head>
@@ -74,8 +81,6 @@ try {
     </html>";
 
     $mail->Body = $contenido;
-
-    // Enviar
     $mail->send();
 
     echo json_encode(['status' => 'success', 'message' => 'Correo enviado correctamente.']);
