@@ -72,22 +72,21 @@ function inicializarTablaCasos(idContenedor) {
             .forEach(trOrig => {
                 const tr = trOrig.cloneNode(true);
 
-                // mantener estado real de selección
                 const cb = tr.querySelector('.check-folio');
                 if (cb) {
-                    cb.style.display = 'none';
+                    const seleccionActiva = document.getElementById('btn-toggle-seleccion')?.dataset.selectionActive === 'true';
+                    cb.style.display = seleccionActiva ? '' : 'none';
                     cb.checked       = window.selectedFolios.has(cb.value);
-                    cb.classList.remove('pulse-check');
+                    if (seleccionActiva) cb.classList.add('pulse-check');
+                    else                 cb.classList.remove('pulse-check');
                 }
 
-                // Folio
                 if (selFilt.value==='folio') {
                     tr.cells[2].innerHTML = resaltar(
                         tr.cells[2].textContent.trim(), inpFilt.value.trim()
                     );
                 }
 
-                // Fecha
                 {
                     const raw = tr.cells[3].textContent.trim();
                     const fmt = formatearFecha(raw);
@@ -97,13 +96,11 @@ function inicializarTablaCasos(idContenedor) {
                     }
                 }
 
-                // Estatus
                 if (config.tieneEstatus && tr.cells[config.idxEstatus]) {
                     tr.cells[config.idxEstatus].textContent =
                         tr.cells[config.idxEstatus].textContent.trim();
                 }
 
-                // Responsable / Terciaria
                 if (config.tieneResponsable && tr.cells[2]) {
                     tr.cells[2].textContent = tr.cells[2].textContent.trim();
                 }
@@ -119,7 +116,6 @@ function inicializarTablaCasos(idContenedor) {
         indicador.textContent = `Página ${paginaActual} de ${total}`;
     }
 
-    // sincronizar Set al cambiar un checkbox
     cont.addEventListener('change', e => {
         const cb = e.target;
         if (!cb.classList.contains('check-folio')) return;
