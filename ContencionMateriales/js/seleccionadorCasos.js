@@ -1,11 +1,12 @@
 // seleccionadorCasos.js
-// Requiere SweetAlert2 (Swal.fire)
+// Requiere SweetAlert2 cargado (Swal.fire)
 
 document.addEventListener('DOMContentLoaded', () => {
-    const table     = document.getElementById('tabla-historial');
-    const headerRow = table.querySelector('thead tr');
-    let   checkAll  = headerRow.querySelector('#check-all-historial');
+    const table      = document.getElementById('tabla-historial');
+    const headerRow  = table.querySelector('thead tr');
+    let   checkAll   = headerRow.querySelector('#check-all-historial');
 
+    // Inyectar “select all” si falta...
     if (!checkAll) {
         const th = document.createElement('th');
         th.style.width     = '40px';
@@ -17,20 +18,23 @@ document.addEventListener('DOMContentLoaded', () => {
         headerRow.insertBefore(th, headerRow.firstChild);
     }
 
+    // Inyectar un checkbox por fila si hace falta...
     const rows = table.querySelectorAll('tbody tr');
     rows.forEach(row => {
-        if (!row.querySelector('.check-folio')) {
+        let cb = row.querySelector('.check-folio');
+        if (!cb) {
             const td = document.createElement('td');
             td.style.textAlign = 'center';
-            const cb = document.createElement('input');
+            cb = document.createElement('input');
             cb.type      = 'checkbox';
             cb.className = 'check-folio';
-            cb.value     = row.cells[2].textContent.trim();
+            cb.value     = row.cells[2].textContent.trim(); // folio en columna 3
             td.appendChild(cb);
             row.insertBefore(td, row.firstChild);
         }
     });
 
+    // Helpers
     const allCbs = () => Array.from(table.querySelectorAll('.check-folio'));
     function disablePulse() {
         allCbs().forEach(x => x.classList.remove('pulse-check'));
@@ -38,18 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     allCbs().forEach(cb => cb.addEventListener('change', disablePulse));
     checkAll.addEventListener('change', () => {
-        allCbs().forEach(cb => {
-            cb.checked = checkAll.checked;
-            // sincronizar global Set
-            if (cb.checked) window.selectedFolios.add(cb.value);
-            else            window.selectedFolios.delete(cb.value);
-        });
+        allCbs().forEach(x => x.checked = checkAll.checked);
         disablePulse();
     });
 
+    // Ocultar al inicio
     allCbs().forEach(cb => cb.style.display = 'none');
     checkAll.style.display = 'none';
 
+    // Toggle modo selección
     const toggleBtn = document.getElementById('btn-toggle-seleccion');
     toggleBtn.dataset.selectionActive = 'false';
     let seleccionActiva = false;
@@ -59,16 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleBtn.dataset.selectionActive = seleccionActiva.toString();
 
         if (seleccionActiva) {
-            // mostrar y re-mostrar marcas según Set
+            // === Entramos en MODO SELECCIÓN ===
             allCbs().forEach(cb => {
                 cb.style.display = '';
                 cb.checked       = window.selectedFolios.has(cb.value);
                 cb.classList.add('pulse-check');
             });
             checkAll.style.display = '';
-            // checkAll sólo si todos están marcados
-            checkAll.checked = allCbs().length > 0
-                && allCbs().every(cb => cb.checked);
+            checkAll.checked       = false;
             checkAll.classList.add('pulse-check');
 
             Swal.fire({
@@ -80,7 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             toggleBtn.textContent = '✅ Confirmar envío';
         } else {
-            // ocultar y desmarcar TODO
+            // === Salimos de MODO SELECCIÓN ===
+            // Se interpreta como cancelación → reiniciar selección real
+            if (window.selectedFolios) {
+                window.selectedFolios.clear();
+            }
+
             allCbs().forEach(cb => {
                 cb.style.display = 'none';
                 cb.checked       = false;
@@ -91,8 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
             checkAll.classList.remove('pulse-check');
 
             toggleBtn.textContent = '📤 Enviar por correo';
-            // limpiar también el Set?
-            // window.selectedFolios.clear();
         }
     });
 
