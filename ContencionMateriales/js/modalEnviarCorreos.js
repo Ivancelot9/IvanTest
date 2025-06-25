@@ -91,15 +91,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function closeModal() {
-        // 1) cerrar el modal
+        // 1) Oculta el modal
         modal.style.display = 'none';
-        // 2) si aún seguimos en modo selección, hacer click en toggleBtn para salir
-        if (toggleBtn.dataset.selectionActive === 'true') {
-            toggleBtn.click();
+
+        // 2) Desactivar modo selección manualmente
+        // Oculta y desmarca todos los checkboxes individuales
+        document.querySelectorAll('.check-folio').forEach(cb => {
+            cb.style.display = 'none';
+            cb.checked       = false;
+            cb.classList.remove('pulse-check');
+        });
+        // Oculta y desmarca el “select‐all”
+        const checkAll = document.getElementById('check-all-historial');
+        if (checkAll) {
+            checkAll.style.display = 'none';
+            checkAll.checked       = false;
+            checkAll.classList.remove('pulse-check');
         }
+
+        // 3) Reset del botón “Enviar por correo”
+        toggleBtn.textContent             = '📤 Enviar por correo';
+        toggleBtn.dataset.selectionActive = 'false';
     }
 
-    // Capturamos el 2º click en fase capture (cuando el botón ya dice “✅ Confirmar envío”)
+    // Capturamos el 2º click en fase de captura
     toggleBtn.addEventListener('click', function(e) {
         if (this.dataset.selectionActive === 'true') {
             const marked = document.querySelectorAll('.check-folio:checked');
