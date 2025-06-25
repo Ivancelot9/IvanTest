@@ -1,3 +1,8 @@
+// tablaMisCasos.js
+
+// Mantiene los folios actualmente seleccionados
+const selectedFolios = new Set();
+
 /**
  * Script para paginar, filtrar y resaltar las tablas de casos.
  * Soporta dos tablas distintas con estructura variable:
@@ -25,15 +30,13 @@ function inicializarTablaCasos(idContenedor) {
     };
 
     if (idContenedor === '#historial') {
-        config.tieneEstatus     = true;
-        // DESCRIPCIÓN → columna 4, ESTATUS → columna 5
-        config.idxDescripcion   = 4;
-        config.idxEstatus       = 5;
+        config.tieneEstatus   = true;
+        config.idxDescripcion = 4;
+        config.idxEstatus     = 5;
     } else if (idContenedor === '#historial-casos') {
         config.tieneEstatus     = true;
         config.tieneResponsable = true;
         config.tieneTerciaria   = true;
-        // DESCRIPCIÓN → columna 6, ESTATUS → columna 7
         config.idxDescripcion   = 6;
         config.idxEstatus       = 7;
     }
@@ -60,10 +63,7 @@ function inicializarTablaCasos(idContenedor) {
     // ─── Filtro activo según columna seleccionada ──────────────────────────
     function filasFiltradas() {
         const term = inpFilt.value.trim().toLowerCase();
-        let idx = 0;
-        if (selFilt.value === 'folio') idx = 2;   // ahora Folio está en cells[2]
-        else if (selFilt.value === 'fecha') idx = 3; // Fecha en cells[3]
-
+        let idx = selFilt.value === 'folio' ? 2 : 3;
         return filasIniciales.filter(tr => {
             let txt = tr.cells[idx].textContent.trim();
             if (selFilt.value === 'fecha') {
@@ -75,32 +75,35 @@ function inicializarTablaCasos(idContenedor) {
 
     // ─── Repinta la página actual con filas visibles ───────────────────────
     function renderizar() {
-        const filtr   = filasFiltradas();
-        const total   = Math.max(1, Math.ceil(filtr.length / filasPorPagina));
+        const filtr = filasFiltradas();
+        const total = Math.max(1, Math.ceil(filtr.length / filasPorPagina));
         if (paginaActual > total) paginaActual = total;
 
-        const inicio  = (paginaActual - 1) * filasPorPagina;
-        const fin     = inicio + filasPorPagina;
+        const inicio = (paginaActual - 1) * filasPorPagina;
+        const fin    = inicio + filasPorPagina;
 
         tbody.innerHTML = '';
         filtr.slice(inicio, fin).forEach(trOrig => {
             const tr = trOrig.cloneNode(true);
             const cells = tr.cells;
 
-            // ← Aquí añadimos (justo después de clonar) para ocultar y desmarcar:
+            // Mantener estado real de selección
             const cb = tr.querySelector('.check-folio');
             if (cb) {
                 cb.style.display = 'none';
-                cb.checked       = false;
+                cb.checked       = selectedFolios.has(cb.value);
+                cb.classList.remove('pulse-check');
             }
-            // ————————————— fin de la sección añadida —————————————
 
-            // FOLIO (columna 2)
+            // Folio
             if (selFilt.value === 'folio') {
-                cells[2].innerHTML = resaltar(cells[2].textContent.trim(), inpFilt.value.trim());
+                cells[2].innerHTML = resaltar(
+                    cells[2].textContent.trim(),
+                    inpFilt.value.trim()
+                );
             }
 
-            // FECHA (columna 3)
+            // Fecha
             {
                 const raw = cells[3].textContent.trim();
                 const fmt = formatearFecha(raw);
@@ -110,15 +113,13 @@ function inicializarTablaCasos(idContenedor) {
                 }
             }
 
-            // — No tocamos cells[config.idxDescripcion] para preservar el <button> — //
-
-            // ESTATUS (celda dinámica según config.idxEstatus)
+            // Estatus
             if (config.tieneEstatus && cells[config.idxEstatus]) {
                 cells[config.idxEstatus].textContent =
                     cells[config.idxEstatus].textContent.trim();
             }
 
-            // RESPONSABLE y TERCIARIA (para #historial-casos)
+            // Responsable y terciaria
             if (config.tieneResponsable && cells[2]) {
                 cells[2].textContent = cells[2].textContent.trim();
             }
@@ -134,11 +135,23 @@ function inicializarTablaCasos(idContenedor) {
         indicador.textContent = `Página ${paginaActual} de ${total}`;
     }
 
+    // ─── Sincronizar Set con cambios de checkbox ──────────────────────────
+    cont.addEventListener('change', e => {
+        const cb = e.target;
+        if (!cb.classList.contains('check-folio')) return;
+        if (cb.checked) selectedFolios.add(cb.value);
+        else           selectedFolios.delete(cb.value);
+    });
+
     // ─── Interactividad ───────────────────────────────────────────────────
     inpFilt.addEventListener('input', () => { paginaActual = 1; renderizar(); });
     selFilt.addEventListener('change', () => { paginaActual = 1; renderizar(); });
-    btnPrev .addEventListener('click', () => { if (paginaActual > 1) { paginaActual--; renderizar(); } });
-    btnNext .addEventListener('click', () => { paginaActual++; renderizar(); });
+    btnPrev.addEventListener('click', () => {
+        if (paginaActual > 1) { paginaActual--; renderizar(); }
+    });
+    btnNext.addEventListener('click', () => {
+        paginaActual++; renderizar();
+    });
 
     cont.addEventListener('click', e => {
         const btn = e.target.closest('button.show-desc');
@@ -149,7 +162,7 @@ function inicializarTablaCasos(idContenedor) {
         }
     });
 
-    // ─── Render inicial ────────────────────────────────────────────────────
+    // Render inicial
     renderizar();
 }
 
