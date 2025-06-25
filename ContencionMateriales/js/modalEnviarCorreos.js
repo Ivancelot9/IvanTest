@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 formData.append('correo', email);
                 folios.forEach(folio => formData.append('folios[]', folio));
 
-                const resp = await fetch('Mailer/enviarCorreoaExterno.php', {
+                const resp = await fetch('https://grammermx.com/Mailer/enviarCorreoaExterno.php', {
                     method: 'POST',
                     body: formData
                 });
