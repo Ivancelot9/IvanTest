@@ -1,7 +1,7 @@
 // tablaMisCasos.js
 
-// Mantiene los folios actualmente seleccionados
-const selectedFolios = new Set();
+// Mantiene los folios actualmente seleccionados (global)
+window.selectedFolios = new Set();
 
 /**
  * Script para paginar, filtrar y resaltar las tablas de casos.
@@ -22,13 +22,7 @@ function inicializarTablaCasos(idContenedor) {
     const selFilt   = cont.querySelector('select[id$="-filter-column"]');
     const inpFilt   = cont.querySelector('input[id$="-filter-input"]');
 
-    // ─── Configuración personalizada por tabla ─────────────────────────────
-    const config = {
-        tieneEstatus: false,
-        tieneResponsable: false,
-        tieneTerciaria: false
-    };
-
+    const config = { tieneEstatus:false, tieneResponsable:false, tieneTerciaria:false };
     if (idContenedor === '#historial') {
         config.tieneEstatus   = true;
         config.idxDescripcion = 4;
@@ -41,133 +35,119 @@ function inicializarTablaCasos(idContenedor) {
         config.idxEstatus       = 7;
     }
 
-    // ─── Capturar las filas originales UNA SOLA VEZ ───────────────────────
     const filasIniciales = Array.from(tbody.querySelectorAll('tr'));
 
-    // ─── Helpers ───────────────────────────────────────────────────────────
     function escapeRegExp(s) {
-        return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
     }
     function resaltar(txt, term) {
         if (!term) return txt;
         return txt.replace(
-            new RegExp(`(${escapeRegExp(term)})`, 'gi'),
+            new RegExp(`(${escapeRegExp(term)})`,'gi'),
             '<mark>$1</mark>'
         );
     }
     function formatearFecha(iso) {
-        const [año, mes, día] = iso.split('-');
-        return (día && mes && año) ? `${día}-${mes}-${año}` : iso;
+        const [a,m,d] = iso.split('-');
+        return (d&&m&&a)? `${d}-${m}-${a}` : iso;
     }
 
-    // ─── Filtro activo según columna seleccionada ──────────────────────────
     function filasFiltradas() {
         const term = inpFilt.value.trim().toLowerCase();
         let idx = selFilt.value === 'folio' ? 2 : 3;
         return filasIniciales.filter(tr => {
             let txt = tr.cells[idx].textContent.trim();
-            if (selFilt.value === 'fecha') {
-                txt = formatearFecha(txt);
-            }
+            if (selFilt.value === 'fecha') txt = formatearFecha(txt);
             return txt.toLowerCase().includes(term);
         });
     }
 
-    // ─── Repinta la página actual con filas visibles ───────────────────────
     function renderizar() {
         const filtr = filasFiltradas();
-        const total = Math.max(1, Math.ceil(filtr.length / filasPorPagina));
+        const total = Math.max(1, Math.ceil(filtr.length/filasPorPagina));
         if (paginaActual > total) paginaActual = total;
 
-        const inicio = (paginaActual - 1) * filasPorPagina;
-        const fin    = inicio + filasPorPagina;
-
         tbody.innerHTML = '';
-        filtr.slice(inicio, fin).forEach(trOrig => {
-            const tr = trOrig.cloneNode(true);
-            const cells = tr.cells;
+        filtr.slice((paginaActual-1)*filasPorPagina, paginaActual*filasPorPagina)
+            .forEach(trOrig => {
+                const tr = trOrig.cloneNode(true);
 
-            // Mantener estado real de selección
-            const cb = tr.querySelector('.check-folio');
-            if (cb) {
-                cb.style.display = 'none';
-                cb.checked       = selectedFolios.has(cb.value);
-                cb.classList.remove('pulse-check');
-            }
-
-            // Folio
-            if (selFilt.value === 'folio') {
-                cells[2].innerHTML = resaltar(
-                    cells[2].textContent.trim(),
-                    inpFilt.value.trim()
-                );
-            }
-
-            // Fecha
-            {
-                const raw = cells[3].textContent.trim();
-                const fmt = formatearFecha(raw);
-                cells[3].textContent = fmt;
-                if (selFilt.value === 'fecha') {
-                    cells[3].innerHTML = resaltar(fmt, inpFilt.value.trim());
+                // mantener estado real de selección
+                const cb = tr.querySelector('.check-folio');
+                if (cb) {
+                    cb.style.display = 'none';
+                    cb.checked       = window.selectedFolios.has(cb.value);
+                    cb.classList.remove('pulse-check');
                 }
-            }
 
-            // Estatus
-            if (config.tieneEstatus && cells[config.idxEstatus]) {
-                cells[config.idxEstatus].textContent =
-                    cells[config.idxEstatus].textContent.trim();
-            }
+                // Folio
+                if (selFilt.value==='folio') {
+                    tr.cells[2].innerHTML = resaltar(
+                        tr.cells[2].textContent.trim(), inpFilt.value.trim()
+                    );
+                }
 
-            // Responsable y terciaria
-            if (config.tieneResponsable && cells[2]) {
-                cells[2].textContent = cells[2].textContent.trim();
-            }
-            if (config.tieneTerciaria && cells[3]) {
-                cells[3].textContent = cells[3].textContent.trim();
-            }
+                // Fecha
+                {
+                    const raw = tr.cells[3].textContent.trim();
+                    const fmt = formatearFecha(raw);
+                    tr.cells[3].textContent = fmt;
+                    if (selFilt.value==='fecha') {
+                        tr.cells[3].innerHTML = resaltar(fmt, inpFilt.value.trim());
+                    }
+                }
 
-            tbody.appendChild(tr);
-        });
+                // Estatus
+                if (config.tieneEstatus && tr.cells[config.idxEstatus]) {
+                    tr.cells[config.idxEstatus].textContent =
+                        tr.cells[config.idxEstatus].textContent.trim();
+                }
 
-        btnPrev.disabled = paginaActual === 1;
-        btnNext.disabled = paginaActual === total;
+                // Responsable / Terciaria
+                if (config.tieneResponsable && tr.cells[2]) {
+                    tr.cells[2].textContent = tr.cells[2].textContent.trim();
+                }
+                if (config.tieneTerciaria && tr.cells[3]) {
+                    tr.cells[3].textContent = tr.cells[3].textContent.trim();
+                }
+
+                tbody.appendChild(tr);
+            });
+
+        btnPrev.disabled = paginaActual===1;
+        btnNext.disabled = paginaActual===total;
         indicador.textContent = `Página ${paginaActual} de ${total}`;
     }
 
-    // ─── Sincronizar Set con cambios de checkbox ──────────────────────────
+    // sincronizar Set al cambiar un checkbox
     cont.addEventListener('change', e => {
         const cb = e.target;
         if (!cb.classList.contains('check-folio')) return;
-        if (cb.checked) selectedFolios.add(cb.value);
-        else           selectedFolios.delete(cb.value);
+        if (cb.checked) window.selectedFolios.add(cb.value);
+        else            window.selectedFolios.delete(cb.value);
     });
 
-    // ─── Interactividad ───────────────────────────────────────────────────
-    inpFilt.addEventListener('input', () => { paginaActual = 1; renderizar(); });
-    selFilt.addEventListener('change', () => { paginaActual = 1; renderizar(); });
-    btnPrev.addEventListener('click', () => {
-        if (paginaActual > 1) { paginaActual--; renderizar(); }
+    inpFilt.addEventListener('input', ()=>{ paginaActual=1; renderizar(); });
+    selFilt.addEventListener('change',()=>{ paginaActual=1; renderizar(); });
+    btnPrev.addEventListener('click', ()=>{
+        if(paginaActual>1){paginaActual--;renderizar();}
     });
-    btnNext.addEventListener('click', () => {
-        paginaActual++; renderizar();
+    btnNext.addEventListener('click', ()=>{
+        paginaActual++;renderizar();
     });
 
-    cont.addEventListener('click', e => {
+    cont.addEventListener('click', e=>{
         const btn = e.target.closest('button.show-desc');
-        if (!btn) return;
-        const folio = btn.closest('tr').querySelectorAll('td')[2].textContent.trim();
-        if (window.mostrarModalDescripcion) {
-            window.mostrarModalDescripcion(parseInt(folio, 10));
-        }
+        if(!btn) return;
+        const folio = btn.closest('tr').cells[2].textContent.trim();
+        if(window.mostrarModalDescripcion)
+            window.mostrarModalDescripcion(parseInt(folio,10));
     });
 
-    // Render inicial
     renderizar();
 }
 
-// Inicia ambas tablas al cargar
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded',()=>{
     inicializarTablaCasos('#historial');
     inicializarTablaCasos('#historial-casos');
 });
