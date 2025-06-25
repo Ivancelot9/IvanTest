@@ -91,30 +91,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function closeModal() {
-        // 1) Oculta el modal
+        // 1) Cierra el modal
         modal.style.display = 'none';
 
-        // 2) Desactivar modo selección manualmente
-        // Oculta y desmarca todos los checkboxes individuales
-        document.querySelectorAll('.check-folio').forEach(cb => {
-            cb.style.display = 'none';
-            cb.checked       = false;
-            cb.classList.remove('pulse-check');
-        });
-        // Oculta y desmarca el “select‐all”
-        const checkAll = document.getElementById('check-all-historial');
-        if (checkAll) {
-            checkAll.style.display = 'none';
-            checkAll.checked       = false;
-            checkAll.classList.remove('pulse-check');
+        // 2) Si seguimos en modo selección, simula un click para desactivarlo
+        if (toggleBtn.dataset.selectionActive === 'true') {
+            // Pone temporalmente dataset en 'false' para que el capture listener no abra el modal
+            toggleBtn.dataset.selectionActive = 'false';
+            toggleBtn.click(); // dispara el listener de seleccionadorCasos.js y sale del modo selección
         }
-
-        // 3) Reset del botón “Enviar por correo”
-        toggleBtn.textContent             = '📤 Enviar por correo';
-        toggleBtn.dataset.selectionActive = 'false';
     }
 
-    // Capturamos el 2º click en fase de captura
+    // Captura el 2º click (cuando el botón dice “✅ Confirmar envío”)
     toggleBtn.addEventListener('click', function(e) {
         if (this.dataset.selectionActive === 'true') {
             const marked = document.querySelectorAll('.check-folio:checked');
