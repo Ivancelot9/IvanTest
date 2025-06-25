@@ -2,7 +2,7 @@
 // mailer/enviarCorreoaExterno.php
 
 session_start();
-include_once("../dao/conexionContencion.php");
+include_once("conexionContencion.php");
 
 // Incluir PHPMailer
 require '../Phpmailer/Exception.php';
