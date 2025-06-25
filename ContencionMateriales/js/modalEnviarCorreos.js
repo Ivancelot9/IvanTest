@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(() => {
                     Swal.fire('Éxito','Correos enviados correctamente.','success');
                     closeModal();
-                    // ya se desactivará el modo selección dentro de closeModal()
                 })
                 .catch(err => {
                     Swal.fire('Error','Falló el envío: ' + err.message,'error');
@@ -92,14 +91,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function closeModal() {
+        // 1) cerrar el modal
         modal.style.display = 'none';
-        // Si aún estamos en modo selección, salimos de él:
+        // 2) si aún seguimos en modo selección, hacer click en toggleBtn para salir
         if (toggleBtn.dataset.selectionActive === 'true') {
             toggleBtn.click();
         }
     }
 
-    // Capturamos el 2º click en fase capture
+    // Capturamos el 2º click en fase capture (cuando el botón ya dice “✅ Confirmar envío”)
     toggleBtn.addEventListener('click', function(e) {
         if (this.dataset.selectionActive === 'true') {
             const marked = document.querySelectorAll('.check-folio:checked');
