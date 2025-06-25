@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(() => {
                     Swal.fire('Éxito','Correos enviados correctamente.','success');
                     closeModal();
-                    toggleBtn.click(); // reset modo selección
+                    // ya se desactivará el modo selección dentro de closeModal()
                 })
                 .catch(err => {
                     Swal.fire('Error','Falló el envío: ' + err.message,'error');
@@ -72,11 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         folios.forEach(folio => {
             const card = document.createElement('div');
-            card.className   = 'folio-card';
+            card.className    = 'folio-card';
             card.dataset.folio = folio;
 
             const h4 = document.createElement('h4');
-            h4.textContent = `Caso ${folio}`; // <-- aquí el cambio
+            h4.textContent = `Caso ${folio}`;
 
             const btnX = document.createElement('button');
             btnX.className = 'remove-folio';
@@ -93,6 +93,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeModal() {
         modal.style.display = 'none';
+        // Si aún estamos en modo selección, salimos de él:
+        if (toggleBtn.dataset.selectionActive === 'true') {
+            toggleBtn.click();
+        }
     }
 
     // Capturamos el 2º click en fase capture
