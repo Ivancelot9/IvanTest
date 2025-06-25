@@ -10,24 +10,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function injectModal() {
         const html = `
-      <div id="modal-enviar">
-        <div class="backdrop"></div>
-        <div class="content">
-          <header>
-            <h2>Confirma Casos a Enviar</h2>
-            <button class="close-btn" id="modal-close">×</button>
-          </header>
-          <section>
-            <div class="cards-container" id="cards-container"></div>
-            <label for="email-destino">Correo destino:</label>
-            <input type="email" id="email-destino" placeholder="correo@ejemplo.com">
-          </section>
-          <footer>
-            <button id="modal-send">📤 Enviar</button>
-            <button id="modal-cancel">Cancelar</button>
-          </footer>
-        </div>
-      </div>`;
+        <div id="modal-enviar">
+            <div class="backdrop"></div>
+            <div class="content">
+                <header>
+                    <h2>Confirma Casos a Enviar</h2>
+                    <button class="close-btn" id="modal-close">×</button>
+                </header>
+                <section>
+                    <div class="cards-container" id="cards-container"></div>
+                    <label for="email-destino">Correo destino:</label>
+                    <input type="email" id="email-destino" placeholder="correo@ejemplo.com">
+                </section>
+                <footer>
+                    <button id="modal-send">📤 Enviar</button>
+                    <button id="modal-cancel">Cancelar</button>
+                </footer>
+            </div>
+        </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
 
         modal          = document.getElementById('modal-enviar');
@@ -52,10 +52,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // Armar tabla HTML con links a los casos
+            const tablaHTML = `
+                <table border="1" cellspacing="0" cellpadding="6" style="width:100%; border-collapse:collapse;">
+                    <thead style="background:#0366d6; color:white;">
+                        <tr><th>Folio</th><th>Ver</th></tr>
+                    </thead>
+                    <tbody>
+                        ${folios.map(folio => `
+                            <tr>
+                                <td style="text-align:center;">${folio}</td>
+                                <td style="text-align:center;">
+                                    <a href="https://grammermx.com/IvanTest/ContencionMateriales/buscadorCasos.php?folio=${folio}" target="_blank">
+                                        Ver caso
+                                    </a>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            const asunto = `Casos asignados - Contención de Materiales`;
+
             try {
                 const formData = new FormData();
                 formData.append('correo', email);
-                folios.forEach(folio => formData.append('folios[]', folio));
+                formData.append('asunto', asunto);
+                formData.append('tabla', tablaHTML);
 
                 const resp = await fetch('https://grammermx.com/Mailer/enviarCorreoaExterno.php', {
                     method: 'POST',
@@ -65,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await resp.json();
 
                 if (data.status === 'success') {
-                    Swal.fire('Éxito', 'Correos enviados correctamente.', 'success');
+                    Swal.fire('Éxito', 'Correo enviado correctamente.', 'success');
                     closeModal();
                 } else {
                     throw new Error(data.message || 'Fallo al enviar correo');
