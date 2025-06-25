@@ -87,6 +87,14 @@ function inicializarTablaCasos(idContenedor) {
             const tr = trOrig.cloneNode(true);
             const cells = tr.cells;
 
+            // ← Aquí añadimos (justo después de clonar) para ocultar y desmarcar:
+            const cb = tr.querySelector('.check-folio');
+            if (cb) {
+                cb.style.display = 'none';
+                cb.checked       = false;
+            }
+            // ————————————— fin de la sección añadida —————————————
+
             // FOLIO (columna 2)
             if (selFilt.value === 'folio') {
                 cells[2].innerHTML = resaltar(cells[2].textContent.trim(), inpFilt.value.trim());
