@@ -45,14 +45,6 @@ try {
     $mail->addBCC('contencion_materiales@grammermx.com');
     $mail->addBCC('Ivan.Medina@grammer.com');
 
-    // Incrustar imagen sólo si existe
-    $rutaImagen = __DIR__ . '/recurso6.png';
-    if (file_exists($rutaImagen)) {
-        $mail->addEmbeddedImage($rutaImagen, 'recurso6');
-    } else {
-        error_log('No se encontró recurso6.png en ' . $rutaImagen);
-    }
-
     // Configuración del contenido
     $mail->isHTML(true);
     $mail->CharSet = 'UTF-8';
@@ -81,13 +73,7 @@ try {
             </tr>
             <tr>
                 <td style='background-color: #202c3a; color: white; padding: 10px; text-align: center;'>
-                    <p>© Grammer – Contención de Materiales</p>";
-    // Si la imagen está incrustada, la mostramos
-    if (file_exists($rutaImagen)) {
-        $contenido .= "
-                    <img src='cid:recurso6' alt='Recurso' style='max-width:120px; margin-top:8px; display:block; margin:0 auto;' />";
-    }
-    $contenido .= "
+                    <p>© Grammer – Contención de Materiales</p>
                 </td>
             </tr>
         </table>
