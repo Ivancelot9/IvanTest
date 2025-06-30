@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <tr>
                                 <td style="text-align:center;">${folio}</td>
                                 <td style="text-align:center;">
-                                    <a href="https://grammermx.com/IvanTest/ContencionMateriales/buscadorCasos.php?folio=${folio}" target="_blank">
+                                    <a href="https://grammermx.com/IvanTest/ContencionMateriales/dao/verCaso.php?folio=${folio}" target="_blank">
                                         Ver caso
                                     </a>
                                 </td>
