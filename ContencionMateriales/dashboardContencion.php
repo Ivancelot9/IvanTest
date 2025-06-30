@@ -174,7 +174,7 @@ $stmtUser->close();
 
                     <!-- RESPONSABLE -->
                     <div class="form-group">
-                        <label for="responsable" title="Agrega el nombre de un responsable">Responsable</label>
+                        <label for="responsable" title="Agrega el Nombre de un Responsable">Responsable</label>
                         <input type="text" name="Responsable" id="responsable" placeholder="Nombre del responsable" />
                     </div>
 
@@ -185,21 +185,21 @@ $stmtUser->close();
                             <input type="text" name="NumeroParte" id="no-parte" placeholder="Número de parte" />
                         </div>
                         <div class="form-group">
-                            <label for="cantidad" title="Agrega la cantidad deseada">Cantidad</label>
+                            <label for="cantidad" title="Agrega la Cantidad a Inspeccionar">Cantidad</label>
                             <input type="number" name="Cantidad" id="cantidad" placeholder="Cantidad" min="0.001" step="0.001" />
                         </div>
                     </div>
 
                     <!-- DESCRIPCIÓN -->
                     <div class="form-group">
-                        <label for="descripcion" title="Agrega la descripción del material">Descripción</label>
+                        <label for="descripcion" title="Agrega la Descripción del Material">Descripción</label>
                         <textarea name="Descripcion" id="descripcion" placeholder="Descripción del caso"></textarea>
                     </div>
 
                     <!-- TERCIARIA + PROVEEDOR -->
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="terciaria" title="Agrega el proveedor tercero">Terciaria</label>
+                            <label for="terciaria" title="Agrega el Proveedor Tercero">Terciaria</label>
                             <select name="IdTerceria" id="terciaria">
                                 <option value="">Selecciona opción</option>
                                 <?php while($r = $terciarias->fetch_assoc()): ?>
@@ -210,7 +210,7 @@ $stmtUser->close();
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="proveedor" title="Agrega el nombre del proveedor de la pieza">Proveedor de la Pieza</label>
+                            <label for="proveedor" title="Agrega el Nombre del proveedor del Material">Proveedor del Material</label>
                             <select name="IdProveedor" id="proveedor">
                                 <option value="">Selecciona al proveedor de pieza</option>
                                 <?php while($r = $proveedores->fetch_assoc()): ?>
@@ -224,7 +224,7 @@ $stmtUser->close();
 
                     <!-- COMMODITY -->
                     <div class="form-group">
-                        <label for="commodity" title="Agrega el Commodity">Commodity</label>
+                        <label for="commodity" title="Selecciona el Commodity">Commodity</label>
                         <select name="IdCommodity" id="commodity">
                             <option value="">Selecciona commodity</option>
                             <?php while($c = $commodities->fetch_assoc()): ?>
