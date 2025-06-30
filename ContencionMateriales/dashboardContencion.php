@@ -210,7 +210,7 @@ $stmtUser->close();
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="proveedor" title="Agrega el Nombre del proveedor del Material">Proveedor del Material</label>
+                            <label for="proveedor" title="Agrega el Nombre del Proveedor del Material">Proveedor del Material</label>
                             <select name="IdProveedor" id="proveedor">
                                 <option value="">Selecciona al proveedor de pieza</option>
                                 <?php while($r = $proveedores->fetch_assoc()): ?>
@@ -237,7 +237,7 @@ $stmtUser->close();
 
                     <!-- DEFECTOS Y FOTOS - NUEVO FLUJO -->
                     <div class="form-group">
-                        <label>Defectos encontrados</label>
+                        <label for="Defectos" title="Agrega los Defectos a Inspeccionar">Defectos a Inspeccionar</label>
                         <button type="button" id="btn-agregar-defecto" class="form-button">
                             + Agregar defecto
                         </button>
