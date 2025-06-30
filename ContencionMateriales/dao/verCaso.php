@@ -100,7 +100,7 @@ $defectos = array_values($map);
     <title>Caso <?= htmlspecialchars($folio) ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Tu CSS del modal convertido en página -->
-    <link rel="stylesheet" href="css/estilosModalCaso.css">
+    <link rel="stylesheet" href="../css/modalMostrarDescripcion.css">
 </head>
 <body>
 <div class="modal-dialog">
