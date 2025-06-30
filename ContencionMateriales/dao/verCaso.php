@@ -1,11 +1,21 @@
 <?php
+// verCaso.php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// CONEXIÓN
 include_once 'conexionContencion.php';
 
-$folio = isset($_GET['folio']) ? intval($_GET['folio']) : 0;
+// 0) Capturar el parámetro (acepta "folio" o "Caso")
+if (isset($_GET['folio'])) {
+    $folio = intval($_GET['folio']);
+} elseif (isset($_GET['Caso'])) {
+    $folio = intval($_GET['Caso']);
+} else {
+    $folio = 0;
+}
+
 if ($folio <= 0) {
     echo "<h2>Folio inválido.</h2>";
     exit;
@@ -13,7 +23,7 @@ if ($folio <= 0) {
 
 $con = (new LocalConector())->conectar();
 
-// 1. Datos del caso
+// 1) Consulta principal
 $stmt = $con->prepare("
     SELECT 
       NumeroParte, Cantidad, Descripcion,
@@ -24,14 +34,18 @@ $stmt = $con->prepare("
 ");
 $stmt->bind_param('i', $folio);
 $stmt->execute();
-$stmt->bind_result($numeroParte, $cantidad, $descripcion, $idTerceria, $idProveedor, $idCommodity, $idEstatus, $responsable, $fecha);
-if (!$stmt->fetch()) {
+$stmt->bind_result(
+    $numeroParte, $cantidad, $descripcion,
+    $idTerceria, $idProveedor, $idCommodity, $idEstatus,
+    $responsable, $fecha
+);
+if (! $stmt->fetch()) {
     echo "<h2>⚠️ Caso no encontrado.</h2>";
     exit;
 }
 $stmt->close();
 
-// 2. Nombres legibles
+// 2) Helper para lookup
 function lookup($con, $table, $idfield, $namefield, $id) {
     $n = '';
     $s = $con->prepare("SELECT `$namefield` FROM `$table` WHERE `$idfield` = ?");
@@ -43,12 +57,12 @@ function lookup($con, $table, $idfield, $namefield, $id) {
     return $n;
 }
 
-$terciaria = lookup($con, 'Terceria', 'IdTerceria', 'NombreTerceria', $idTerceria);
+$terciaria = lookup($con, 'Terceria',    'IdTerceria',  'NombreTerceria',  $idTerceria);
 $proveedor = lookup($con, 'Proveedores', 'IdProveedor', 'NombreProveedor', $idProveedor);
-$commodity = lookup($con, 'Commodity', 'IdCommodity', 'NombreCommodity', $idCommodity);
-$estatus   = lookup($con, 'Estatus', 'IdEstatus', 'NombreEstatus', $idEstatus);
+$commodity = lookup($con, 'Commodity',   'IdCommodity', 'NombreCommodity', $idCommodity);
+$estatus   = lookup($con, 'Estatus',     'IdEstatus',   'NombreEstatus',   $idEstatus);
 
-// 3. Defectos + fotos
+// 3) Recoger defectos + fotos
 $map = [];
 $stmt2 = $con->prepare("
     SELECT dc.IdDefectoCaso, d.NombreDefectos, f.TipoFoto, f.Ruta
@@ -56,7 +70,7 @@ $stmt2 = $con->prepare("
     JOIN Defectos d ON d.IdDefectos = dc.IdDefectos
     LEFT JOIN Fotos f ON f.IdDefectoCaso = dc.IdDefectoCaso
     WHERE dc.FolioCaso = ?
-    ORDER BY dc.IdDefectoCaso, FIELD(f.TipoFoto, 'ok', 'no')
+    ORDER BY dc.IdDefectoCaso, FIELD(f.TipoFoto,'ok','no')
 ");
 $stmt2->bind_param('i', $folio);
 $stmt2->execute();
@@ -75,8 +89,9 @@ while ($row = $res2->fetch_assoc()) {
         $map[$id][$key][] = $row['Ruta'];
     }
 }
-$defectos = array_values($map);
 $stmt2->close();
+
+$defectos = array_values($map);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -84,20 +99,22 @@ $stmt2->close();
     <meta charset="UTF-8">
     <title>Caso <?= htmlspecialchars($folio) ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tu CSS del modal convertido en página -->
     <link rel="stylesheet" href="css/estilosModalCaso.css">
 </head>
 <body>
 <div class="modal-dialog">
     <div class="modal-header">
         <div class="header-title-with-logo">
-            <img src="imagenes/Grammer_Logo_Original_White_sRGB_screen_transparent.png" class="header-logo" alt="Logo">
+            <img src="imagenes/Grammer_Logo_Original_White_sRGB_screen_transparent.png"
+                 class="header-logo" alt="Logo">
             <h2>Caso <?= htmlspecialchars($folio) ?></h2>
         </div>
     </div>
     <div class="modal-body">
         <div class="info-grid">
             <div class="info-cell"><label>Fecha</label><span><?= $fecha ?></span></div>
-            <div class="info-cell"><label>Parte</label><span><?= $numeroParte ?></span></div>
+            <div class="info-cell"><label>No. Parte</label><span><?= $numeroParte ?></span></div>
             <div class="info-cell"><label>Cantidad</label><span><?= $cantidad ?></span></div>
             <div class="info-cell"><label>Responsable</label><span><?= $responsable ?></span></div>
             <div class="info-cell"><label>Terciaria</label><span><?= $terciaria ?></span></div>
@@ -110,7 +127,6 @@ $stmt2->close();
             </div>
         </div>
 
-        <!-- SECCIÓN DE DEFECTOS -->
         <div class="defects-container">
             <?php foreach ($defectos as $def): ?>
                 <div class="defect-block">
@@ -137,15 +153,13 @@ $stmt2->close();
             <?php endforeach; ?>
         </div>
 
-        <!-- FUTURAS SECCIONES -->
-        <hr style="margin-top: 2rem;">
-        <div id="secciones-futuras">
-            <!-- Aquí podrás añadir: botones de resolver, comentarios, historial, etc. -->
-        </div>
+        <!-- Placeholder para futuras secciones -->
+        <hr>
+        <div id="secciones-futuras"></div>
     </div>
 </div>
 
-<!-- Lightbox para fotos -->
+<!-- Lightbox -->
 <div id="modal-image" class="modal-overlay">
     <div class="lightbox-content">
         <button class="close-img">&times;</button>
@@ -154,6 +168,7 @@ $stmt2->close();
 </div>
 
 <script>
+    // Lightbox para ampliar fotos
     document.querySelectorAll('.thumbs img').forEach(img => {
         img.addEventListener('click', () => {
             const lb = document.getElementById('modal-image');
@@ -165,9 +180,7 @@ $stmt2->close();
         document.getElementById('modal-image').style.display = 'none';
     });
     document.getElementById('modal-image').addEventListener('click', e => {
-        if (e.target.id === 'modal-image') {
-            e.currentTarget.style.display = 'none';
-        }
+        if (e.target.id === 'modal-image') e.currentTarget.style.display = 'none';
     });
 </script>
 </body>

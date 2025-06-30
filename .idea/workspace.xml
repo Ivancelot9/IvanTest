@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Envio a Externos">
-      <change afterPath="$PROJECT_DIR$/ContencionMateriales/dao/verCaso.php" afterDir="false" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Mosttar Caso por correo con link">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/buscadorCasos.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/buscador.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/buscador.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dao/verCaso.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dao/verCaso.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/modalEnviarCorreos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/modalEnviarCorreos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,15 +215,7 @@
       <workItem from="1750774428800" duration="16888000" />
       <workItem from="1750861233348" duration="14916000" />
       <workItem from="1751033807312" duration="4756000" />
-      <workItem from="1751292862056" duration="9524000" />
-    </task>
-    <task id="LOCAL-01625" summary="Envio a Externos">
-      <option name="closed" value="true" />
-      <created>1750785238521</created>
-      <option name="number" value="01625" />
-      <option name="presentableId" value="LOCAL-01625" />
-      <option name="project" value="LOCAL" />
-      <updated>1750785238521</updated>
+      <workItem from="1751292862056" duration="10048000" />
     </task>
     <task id="LOCAL-01626" summary="Envio a Externos">
       <option name="closed" value="true" />
@@ -611,7 +601,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751301808151</updated>
     </task>
-    <option name="localTasksCounter" value="1674" />
+    <task id="LOCAL-01674" summary="Mosttar Caso por correo con link">
+      <option name="closed" value="true" />
+      <created>1751308258771</created>
+      <option name="number" value="01674" />
+      <option name="presentableId" value="LOCAL-01674" />
+      <option name="project" value="LOCAL" />
+      <updated>1751308258771</updated>
+    </task>
+    <option name="localTasksCounter" value="1675" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -663,7 +661,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modal Finalizacion &quot;G&quot;" />
     <MESSAGE value="Modal Fotos/Contencion" />
     <MESSAGE value="Barra Agregar" />
     <MESSAGE value="Agregar Componentes Formulario" />
@@ -688,7 +685,8 @@
     <MESSAGE value="Ajustes Boton Mostrar Descrpcio" />
     <MESSAGE value="Reajustandi Mostrar Descripcion" />
     <MESSAGE value="Envio a Externos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Envio a Externos" />
+    <MESSAGE value="Mosttar Caso por correo con link" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mosttar Caso por correo con link" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

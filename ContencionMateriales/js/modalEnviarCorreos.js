@@ -52,10 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Armar tabla HTML con links a los casos
+            // Construir la tabla con enlaces a verCaso.php
             const tablaHTML = `
-                <table border="1" cellspacing="0" cellpadding="6" style="width:100%; border-collapse:collapse;">
-                    <thead style="background:#0366d6; color:white;">
+                <table border="1" cellspacing="0" cellpadding="6" style="width:100%;border-collapse:collapse;">
+                    <thead style="background:#0366d6;color:white;">
                         <tr><th>Folio</th><th>Ver</th></tr>
                     </thead>
                     <tbody>
@@ -63,7 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             <tr>
                                 <td style="text-align:center;">${folio}</td>
                                 <td style="text-align:center;">
-                                    <a href="https://grammermx.com/IvanTest/ContencionMateriales/dao/verCaso.php?folio=${folio}" target="_blank">
+                                    <a href="https://grammermx.com/IvanTest/ContencionMateriales/dao/verCaso.php?folio=${folio}"
+                                       target="_blank">
                                         Ver caso
                                     </a>
                                 </td>
@@ -85,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     method: 'POST',
                     body: formData
                 });
-
                 const data = await resp.json();
 
                 if (data.status === 'success') {
@@ -104,24 +104,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openModal() {
         cardsContainer.innerHTML = '';
-        const folios = Array.from(
-            document.querySelectorAll('.check-folio:checked')
-        ).map(cb => cb.value);
+        const folios = Array.from(document.querySelectorAll('.check-folio:checked'))
+            .map(cb => cb.value);
 
         folios.forEach(folio => {
             const card = document.createElement('div');
             card.className = 'folio-card';
             card.dataset.folio = folio;
-
-            const h4 = document.createElement('h4');
-            h4.textContent = `Caso ${folio}`;
-
-            const btnX = document.createElement('button');
-            btnX.className = 'remove-folio';
-            btnX.innerHTML = '×';
-            btnX.addEventListener('click', () => card.remove());
-
-            card.append(h4, btnX);
+            card.innerHTML = `
+                <h4>Caso ${folio}</h4>
+                <button class="remove-folio">×</button>
+            `;
+            card.querySelector('.remove-folio')
+                .addEventListener('click', () => card.remove());
             cardsContainer.appendChild(card);
         });
 
@@ -131,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeModal() {
         modal.style.display = 'none';
-
         if (toggleBtn.dataset.selectionActive === 'true') {
             toggleBtn.dataset.selectionActive = 'false';
             toggleBtn.click();
