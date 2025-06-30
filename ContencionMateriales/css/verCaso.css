@@ -14,7 +14,7 @@
 /* Wrapper para centrar la página */
 .ver-caso-page {
     display: flex;
-    justify-content: center;
+    justify-content: center;  /* Centrado horizontal */
     padding: 1rem;
 }
 

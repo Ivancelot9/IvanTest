@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 
 include_once 'conexionContencion.php';
 
+// 0) Capturar el parámetro ("folio" o "Caso")
 if (isset($_GET['folio'])) {
     $folio = intval($_GET['folio']);
 } elseif (isset($_GET['Caso'])) {
@@ -43,7 +44,7 @@ if (! $stmt->fetch()) {
 }
 $stmt->close();
 
-// Helper lookup
+// 2) Helper lookup
 function lookup($con, $table, $idfield, $namefield, $id) {
     $n = '';
     $s = $con->prepare("SELECT `$namefield` FROM `$table` WHERE `$idfield` = ?");
@@ -60,7 +61,7 @@ $proveedor = lookup($con, 'Proveedores', 'IdProveedor', 'NombreProveedor', $idPr
 $commodity = lookup($con, 'Commodity',   'IdCommodity', 'NombreCommodity', $idCommodity);
 $estatus   = lookup($con, 'Estatus',     'IdEstatus',   'NombreEstatus',   $idEstatus);
 
-// Recoger defectos + fotos
+// 3) Recoger defectos + fotos
 $map = [];
 $stmt2 = $con->prepare("
     SELECT dc.IdDefectoCaso, d.NombreDefectos, f.TipoFoto, f.Ruta
@@ -96,63 +97,60 @@ $defectos = array_values($map);
     <meta charset="UTF-8">
     <title>Caso <?= htmlspecialchars($folio) ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- RUTA ABSOLUTA AL CSS -->
+    <!-- CSS específico para esta página -->
     <link rel="stylesheet" href="../css/verCaso.css">
 </head>
 <body>
-<div class="modal-dialog">
-    <div class="modal-header">
-        <div class="header-title-with-logo">
-            <!-- RUTA ABSOLUTA AL LOGO -->
-            <img src="https://grammermx.com/IvanTest/ContencionMateriales/imagenes/Grammer_Logo_Original_White_sRGB_screen_transparent.png"
-                 class="header-logo" alt="Logo">
-            <h2>Caso <?= htmlspecialchars($folio) ?></h2>
-        </div>
-    </div>
-    <div class="modal-body">
-        <div class="info-grid">
-            <div class="info-cell"><label>Fecha</label><span><?= $fecha ?></span></div>
-            <div class="info-cell"><label>No. Parte</label><span><?= $numeroParte ?></span></div>
-            <div class="info-cell"><label>Cantidad</label><span><?= $cantidad ?></span></div>
-            <div class="info-cell"><label>Responsable</label><span><?= $responsable ?></span></div>
-            <div class="info-cell"><label>Terciaria</label><span><?= $terciaria ?></span></div>
-            <div class="info-cell"><label>Proveedor</label><span><?= $proveedor ?></span></div>
-            <div class="info-cell"><label>Commodity</label><span><?= $commodity ?></span></div>
-            <div class="info-cell"><label>Estatus</label><span><?= $estatus ?></span></div>
-            <div class="info-cell full-width">
-                <label>Descripción</label>
-                <div class="desc-text"><?= nl2br(htmlspecialchars($descripcion ?: '(Sin descripción)')) ?></div>
+<div class="ver-caso-page">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <div class="header-title-with-logo">
+                <img src="https://grammermx.com/IvanTest/ContencionMateriales/imagenes/Grammer_Logo_Original_White_sRGB_screen_transparent.png"
+                     class="header-logo" alt="Logo">
+                <h2>Caso <?= htmlspecialchars($folio) ?></h2>
             </div>
         </div>
+        <div class="modal-body">
+            <div class="info-grid">
+                <div class="info-cell"><label>Fecha</label><span><?= $fecha ?></span></div>
+                <div class="info-cell"><label>No. Parte</label><span><?= $numeroParte ?></span></div>
+                <div class="info-cell"><label>Cantidad</label><span><?= $cantidad ?></span></div>
+                <div class="info-cell"><label>Responsable</label><span><?= $responsable ?></span></div>
+                <div class="info-cell"><label>Terciaria</label><span><?= $terciaria ?></span></div>
+                <div class="info-cell"><label>Proveedor</label><span><?= $proveedor ?></span></div>
+                <div class="info-cell"><label>Commodity</label><span><?= $commodity ?></span></div>
+                <div class="info-cell"><label>Estatus</label><span><?= $estatus ?></span></div>
+                <div class="info-cell full-width">
+                    <label>Descripción</label>
+                    <div class="desc-text"><?= nl2br(htmlspecialchars($descripcion ?: '(Sin descripción)')) ?></div>
+                </div>
+            </div>
 
-        <div class="defects-container">
-            <?php foreach ($defectos as $def): ?>
-                <div class="defect-block">
-                    <h3 class="defect-title"><?= htmlspecialchars($def['nombre']) ?></h3>
-                    <div class="photos-row">
-                        <div class="photos-group ok">
-                            <div class="group-title">OK</div>
-                            <div class="thumbs">
-                                <?php foreach ($def['fotosOk'] as $f): ?>
-                                    <!-- RUTA ABSOLUTA A CADA FOTO OK -->
-                                    <img src="https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/ok/<?= urlencode($f) ?>"
-                                         alt="OK">
-                                <?php endforeach; ?>
+            <div class="defects-container">
+                <?php foreach ($defectos as $def): ?>
+                    <div class="defect-block">
+                        <h3 class="defect-title"><?= htmlspecialchars($def['nombre']) ?></h3>
+                        <div class="photos-row">
+                            <div class="photos-group ok">
+                                <div class="group-title">OK</div>
+                                <div class="thumbs">
+                                    <?php foreach ($def['fotosOk'] as $f): ?>
+                                        <img src="https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/ok/<?= urlencode($f) ?>" alt="OK">
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="photos-group no">
-                            <div class="group-title">NO OK</div>
-                            <div class="thumbs">
-                                <?php foreach ($def['fotosNo'] as $f): ?>
-                                    <!-- RUTA ABSOLUTA A CADA FOTO NO OK -->
-                                    <img src="https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/no/<?= urlencode($f) ?>"
-                                         alt="NO OK">
-                                <?php endforeach; ?>
+                            <div class="photos-group no">
+                                <div class="group-title">NO OK</div>
+                                <div class="thumbs">
+                                    <?php foreach ($def['fotosNo'] as $f): ?>
+                                        <img src="https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/no/<?= urlencode($f) ?>" alt="NO OK">
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
 </div>
@@ -166,7 +164,6 @@ $defectos = array_values($map);
 </div>
 
 <script>
-    // Lightbox
     document.querySelectorAll('.thumbs img').forEach(img => {
         img.addEventListener('click', () => {
             const lb = document.getElementById('modal-image');
