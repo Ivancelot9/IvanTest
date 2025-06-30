@@ -485,7 +485,7 @@ $stmtUser->close();
 
             <!-- Defectos -->
             <div class="info-cell full-width">
-                <label>Defectos encontrados</label>
+                <label>Defectos a Inspeccionar</label>
                 <div id="r-defectos-container" class="defects-container"></div>
             </div>
         </div>
