@@ -97,7 +97,7 @@ $defectos = array_values($map);
     <title>Caso <?= htmlspecialchars($folio) ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- RUTA ABSOLUTA AL CSS -->
-    <link rel="stylesheet" href="../css/modalMostrarDescripcion.css">
+    <link rel="stylesheet" href="../css/verCaso.css">
 </head>
 <body>
 <div class="modal-dialog">

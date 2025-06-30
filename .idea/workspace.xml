@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Mosttar Caso por correo con link">
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ContencionMateriales/css/verCaso.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dao/verCaso.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dao/verCaso.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -213,15 +215,7 @@
       <workItem from="1750774428800" duration="16888000" />
       <workItem from="1750861233348" duration="14916000" />
       <workItem from="1751033807312" duration="4756000" />
-      <workItem from="1751292862056" duration="12008000" />
-    </task>
-    <task id="LOCAL-01629" summary="Envio a Externos">
-      <option name="closed" value="true" />
-      <created>1750786412677</created>
-      <option name="number" value="01629" />
-      <option name="presentableId" value="LOCAL-01629" />
-      <option name="project" value="LOCAL" />
-      <updated>1750786412677</updated>
+      <workItem from="1751292862056" duration="12910000" />
     </task>
     <task id="LOCAL-01630" summary="Envio a Externos">
       <option name="closed" value="true" />
@@ -607,7 +601,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751311165720</updated>
     </task>
-    <option name="localTasksCounter" value="1678" />
+    <task id="LOCAL-01678" summary="Mosttar Caso por correo con link">
+      <option name="closed" value="true" />
+      <created>1751311574518</created>
+      <option name="number" value="01678" />
+      <option name="presentableId" value="LOCAL-01678" />
+      <option name="project" value="LOCAL" />
+      <updated>1751311574518</updated>
+    </task>
+    <option name="localTasksCounter" value="1679" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
