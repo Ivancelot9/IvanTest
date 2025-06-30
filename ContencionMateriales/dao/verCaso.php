@@ -4,10 +4,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// CONEXIÓN
 include_once 'conexionContencion.php';
 
-// 0) Capturar el parámetro (acepta "folio" o "Caso")
 if (isset($_GET['folio'])) {
     $folio = intval($_GET['folio']);
 } elseif (isset($_GET['Caso'])) {
@@ -45,7 +43,7 @@ if (! $stmt->fetch()) {
 }
 $stmt->close();
 
-// 2) Helper para lookup
+// Helper lookup
 function lookup($con, $table, $idfield, $namefield, $id) {
     $n = '';
     $s = $con->prepare("SELECT `$namefield` FROM `$table` WHERE `$idfield` = ?");
@@ -62,7 +60,7 @@ $proveedor = lookup($con, 'Proveedores', 'IdProveedor', 'NombreProveedor', $idPr
 $commodity = lookup($con, 'Commodity',   'IdCommodity', 'NombreCommodity', $idCommodity);
 $estatus   = lookup($con, 'Estatus',     'IdEstatus',   'NombreEstatus',   $idEstatus);
 
-// 3) Recoger defectos + fotos
+// Recoger defectos + fotos
 $map = [];
 $stmt2 = $con->prepare("
     SELECT dc.IdDefectoCaso, d.NombreDefectos, f.TipoFoto, f.Ruta
@@ -90,7 +88,6 @@ while ($row = $res2->fetch_assoc()) {
     }
 }
 $stmt2->close();
-
 $defectos = array_values($map);
 ?>
 <!DOCTYPE html>
@@ -99,14 +96,15 @@ $defectos = array_values($map);
     <meta charset="UTF-8">
     <title>Caso <?= htmlspecialchars($folio) ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Tu CSS del modal convertido en página -->
+    <!-- RUTA ABSOLUTA AL CSS -->
     <link rel="stylesheet" href="../css/modalMostrarDescripcion.css">
 </head>
 <body>
 <div class="modal-dialog">
     <div class="modal-header">
         <div class="header-title-with-logo">
-            <img src="imagenes/Grammer_Logo_Original_White_sRGB_screen_transparent.png"
+            <!-- RUTA ABSOLUTA AL LOGO -->
+            <img src="https://grammermx.com/IvanTest/ContencionMateriales/imagenes/Grammer_Logo_Original_White_sRGB_screen_transparent.png"
                  class="header-logo" alt="Logo">
             <h2>Caso <?= htmlspecialchars($folio) ?></h2>
         </div>
@@ -136,7 +134,9 @@ $defectos = array_values($map);
                             <div class="group-title">OK</div>
                             <div class="thumbs">
                                 <?php foreach ($def['fotosOk'] as $f): ?>
-                                    <img src="dao/uploads/ok/<?= urlencode($f) ?>" alt="OK">
+                                    <!-- RUTA ABSOLUTA A CADA FOTO OK -->
+                                    <img src="https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/ok/<?= urlencode($f) ?>"
+                                         alt="OK">
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -144,7 +144,9 @@ $defectos = array_values($map);
                             <div class="group-title">NO OK</div>
                             <div class="thumbs">
                                 <?php foreach ($def['fotosNo'] as $f): ?>
-                                    <img src="dao/uploads/no/<?= urlencode($f) ?>" alt="NO OK">
+                                    <!-- RUTA ABSOLUTA A CADA FOTO NO OK -->
+                                    <img src="https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/no/<?= urlencode($f) ?>"
+                                         alt="NO OK">
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -152,10 +154,6 @@ $defectos = array_values($map);
                 </div>
             <?php endforeach; ?>
         </div>
-
-        <!-- Placeholder para futuras secciones -->
-        <hr>
-        <div id="secciones-futuras"></div>
     </div>
 </div>
 
@@ -168,7 +166,7 @@ $defectos = array_values($map);
 </div>
 
 <script>
-    // Lightbox para ampliar fotos
+    // Lightbox
     document.querySelectorAll('.thumbs img').forEach(img => {
         img.addEventListener('click', () => {
             const lb = document.getElementById('modal-image');
