@@ -119,7 +119,6 @@ $defectos = array_values($map);
                 <div class="info-cell"><label>Terciaria</label><span><?= $terciaria ?></span></div>
                 <div class="info-cell"><label>Proveedor</label><span><?= $proveedor ?></span></div>
                 <div class="info-cell"><label>Commodity</label><span><?= $commodity ?></span></div>
-                <div class="info-cell"><label>Estatus</label><span><?= $estatus ?></span></div>
                 <div class="info-cell full-width">
                     <label>Descripción</label>
                     <div class="desc-text"><?= nl2br(htmlspecialchars($descripcion ?: '(Sin descripción)')) ?></div>
