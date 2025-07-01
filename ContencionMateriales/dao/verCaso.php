@@ -126,6 +126,13 @@ $defectos = array_values($map);
                 </div>
             </div>
 
+            <!-- Nueva sección: título de defectos -->
+            <div class="info-grid">
+                <div class="info-cell full-width">
+                    <label>Defectos a Inspeccionar</label>
+                </div>
+            </div>
+
             <!-- Defectos en acordeón -->
             <div class="defects-container">
                 <?php foreach ($defectos as $def): ?>
@@ -152,8 +159,15 @@ $defectos = array_values($map);
                     </div>
                 <?php endforeach; ?>
             </div>
-
         </div>
+    </div>
+</div>
+
+<!-- Lightbox -->
+<div id="modal-image" class="modal-overlay">
+    <div class="lightbox-content">
+        <button class="close-img">&times;</button>
+        <img src="" alt="Ampliada">
     </div>
 </div>
 
