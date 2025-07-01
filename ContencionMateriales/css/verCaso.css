@@ -1,75 +1,85 @@
-/* === css/verCaso-fondo.css === */
+/* === css/verCaso-accordion.css === */
 
-/* 1) Colores base */
+/* —————————————————————————— */
+/* 1) Variables de color        */
+/* —————————————————————————— */
 :root {
     --blue-dark:    #1e2a38;
     --accent-ok:    #2ea043;
     --accent-no:    #d93025;
-    --light-bg:     rgba(245,247,250,0.8);
+    --light-bg:     #f5f7fa;
     --text-dark:    #1c1e21;
     --dark-bg:      #202c3a;
     --card-border:  #d0d7de;
 }
 
-/* 2) Fondo detrás del modal */
-/* Mantiene el modal intacto, solo cambiamos el body */
+/* —————————————————————————— */
+/* 2) Fondo general animado     */
+/* —————————————————————————— */
 body {
     margin: 0;
-    background: radial-gradient(
-            circle at top left,
-            #e2e7ec 0%,
-            #cfd8df 60%,
-            #e2e7ec 100%
-    );
-    /* sutil animación de gradiente */
-    background-size: 200% 200%;
-    animation: bgPulse 15s ease-in-out infinite;
+    background: linear-gradient(-45deg, #f0f2f5, #e2e7ec, #f5f6f8, #dfe4e8);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
     min-height: 100vh;
 }
-@keyframes bgPulse {
-    0%   { background-position: 0% 0%; }
-    50%  { background-position: 100% 100%; }
-    100% { background-position: 0% 0%; }
+
+@keyframes gradientBG {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-/* 3) Wrapper centrado; sin fondo para dejar ver el radial */
+/* —————————————————————————— */
+/* 3) Wrapper para centrar      */
+/* —————————————————————————— */
 .ver-caso-page {
     display: flex;
     justify-content: center;
-    padding: 2rem 1rem;
+    padding: 2rem 0;
+    /* background: none; */      /* ya no tiene fondo blanco */
 }
 
-/* 4) Lightbox overlay */
+/* —————————————————————————— */
+/* 4) Lightbox overlay           */
+/* —————————————————————————— */
 .modal-overlay {
     position: fixed; inset: 0;
-    background: rgba(0,0,0,0.75);
+    background: rgba(30,42,56,0.75);
     display: none;
     align-items: center;
     justify-content: center;
     z-index: 999;
 }
 
-/* 5) Modal “glass” intacto */
+/* —————————————————————————— */
+/* 5) Contenedor principal       */
+/* —————————————————————————— */
 .modal-dialog {
-    background: rgba(30,42,56,0.85);
-    backdrop-filter: blur(6px);
-    border-radius: 16px;
-    width: 100%;
+    background: var(--blue-dark);
+    border-radius: 12px;
+    width: 95%;
     max-width: 900px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .modal-dialog:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.2);
 }
 
-/* 6) Encabezado sin tocar */
+/* —————————————————————————— */
+/* 6) Encabezado                */
+/* —————————————————————————— */
 .modal-header {
     background: var(--dark-bg);
-    color: #fff;
     padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
     border-bottom: 1px solid var(--card-border);
 }
 .header-title-with-logo {
@@ -83,21 +93,30 @@ body {
 }
 .modal-header h2 {
     margin: 0;
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.4rem;
 }
 
-/* 7) Cuerpo intacto */
+/* —————————————————————————— */
+/* 7) Cuerpo                    */
+/* —————————————————————————— */
 .modal-body {
-    background: var(--light-bg);
+    background: #fff;                 /* aquí sí es blanco */
+    color: var(--text-dark);
     padding: 1.5rem;
-    max-height: 75vh;
+    max-height: 80vh;
     overflow-y: auto;
 }
 .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
     gap: 1rem;
+}
+.info-cell {
+    display: flex;
+    flex-direction: column;
+}
+.info-cell.full-width {
+    grid-column: 1 / -1;
 }
 .info-cell label {
     font-weight: 600;
@@ -106,7 +125,7 @@ body {
 }
 .info-cell span,
 .desc-text {
-    background: #fff;
+    background: var(--light-bg);
     padding: .5rem;
     border: 1px solid var(--card-border);
     border-radius: 4px;
@@ -114,13 +133,15 @@ body {
     line-height: 1.4;
 }
 
-/* 8) Acordeón de defectos intacto */
+/* —————————————————————————— */
+/* 8) Defectos en acordeón      */
+/* —————————————————————————— */
 .defects-container {
     margin-top: 2rem;
 }
 .defect-block {
-    background: #fff;
-    border-left: 6px solid var(--blue-dark);
+    background: var(--light-bg);
+    border: 1px solid var(--card-border);
     border-radius: 8px;
     margin-bottom: 1.5rem;
     overflow: hidden;
@@ -129,29 +150,37 @@ body {
 .defect-title {
     background: var(--dark-bg);
     color: #fff;
-    padding: .85rem 1rem;
-    font-size: 1.1rem;
+    margin: 0;
+    padding: .75rem 1rem;
+    font-size: 1rem;
     font-weight: 600;
-    position: relative;
+    border-bottom: 1px solid var(--card-border);
     cursor: pointer;
+    position: relative;
 }
 .defect-title::after {
     content: "+";
     position: absolute;
     right: 1rem;
-    font-size: 1.4rem;
-    transition: transform .3s;
+    font-size: 1.2rem;
+    transition: transform .3s ease;
 }
 @media (min-width: 768px) {
-    .defect-block .photos-row { display: none; }
-    .defect-block.expanded .photos-row { display: flex; }
+    .defect-block .photos-row {
+        display: none;
+    }
+    .defect-block.expanded .photos-row {
+        display: flex;
+    }
     .defect-block.expanded .defect-title::after {
-        content: "−";
+        content: "–";
         transform: rotate(180deg);
     }
 }
 
-/* 9) Fotos OK/NO OK */
+/* —————————————————————————— */
+/* 9) Fotos OK / NO OK          */
+/* —————————————————————————— */
 .photos-row {
     display: flex;
     gap: 1rem;
@@ -162,38 +191,41 @@ body {
     background: #fff;
     border-radius: 6px;
     padding: .75rem;
-    border: 1px solid var(--card-border);
     display: flex;
     flex-direction: column;
+    border: 2px solid transparent;
 }
 .photos-group.ok { border-color: var(--accent-ok); }
 .photos-group.no { border-color: var(--accent-no); }
-.group-title {
-    font-weight: 700;
-    margin-bottom: .5rem;
-}
+.group-title { font-weight: 600; margin-bottom: .5rem; }
 
-/* 10) Miniaturas */
+/* —————————————————————————— */
+/* 10) Miniaturas                */
+/* —————————————————————————— */
 .thumbs {
     display: flex;
     flex-wrap: wrap;
     gap: .5rem;
+    max-height: 100px;
+    overflow-y: auto;
 }
 .thumbs img {
     width: 70px;
     height: 70px;
     object-fit: cover;
     border-radius: 4px;
-    border: 1px solid #ccc;
     cursor: pointer;
+    border: 1px solid #ccc;
     transition: transform .2s, box-shadow .2s;
 }
 .thumbs img:hover {
     transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
 }
 
-/* 11) Lightbox intacto */
+/* —————————————————————————— */
+/* 11) Lightbox contenido        */
+/* —————————————————————————— */
 .lightbox-content img {
     max-width: 90%;
     max-height: 90%;
@@ -202,8 +234,8 @@ body {
 }
 .close-img {
     position: absolute;
-    top: 16px;
-    right: 24px;
+    top: 20px;
+    right: 30px;
     font-size: 2rem;
     color: #fff;
     background: none;
@@ -212,10 +244,11 @@ body {
     z-index: 1001;
 }
 
-/* 12) Responsive móvil intacto */
+/* —————————————————————————— */
+/* 12) Responsive para móvil     */
+/* —————————————————————————— */
 @media (max-width: 600px) {
-    .modal-dialog { width: 100%; height: 100%; border-radius: 0; }
-    .modal-body { max-height: calc(100vh - 80px); padding: 1.5rem; }
+    .photos-row { flex-direction: column; }
     .info-grid { grid-template-columns: 1fr; }
-    .thumbs img { width: 60px; height: 60px; }
+    .modal-dialog { width: 95%; max-width: none; }
 }
