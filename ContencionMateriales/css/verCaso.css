@@ -8,9 +8,7 @@
     --card-border:  #d0d7de;
 }
 
-/* —————————————————————————— */
-/* 1) Fondo acero animado       */
-/* —————————————————————————— */
+/* 1) Fondo suave animado */
 body {
     margin: 0;
     background: linear-gradient(-45deg, #e4ebf1, #d6dee6, #cdd5df, #e4ebf1);
@@ -22,14 +20,12 @@ body {
     overflow-x: hidden;
 }
 @keyframes fondoSuave {
-    0%   { background-position:   0% 50%; }
+    0%   { background-position: 0% 50%; }
     50%  { background-position: 100% 50%; }
-    100% { background-position:   0% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-/* —————————————————————————— */
-/* 2) Wrapper para centrar      */
-/* —————————————————————————— */
+/* 2) Centrado del modal */
 .ver-caso-page {
     display: flex;
     justify-content: center;
@@ -38,13 +34,11 @@ body {
     z-index: 1;
 }
 
-/* —————————————————————————— */
-/* 3) Overlay translúcido claro */
-/* —————————————————————————— */
+/* 3) Overlay para lightbox */
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255,255,255,0.4);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     display: none;
@@ -53,9 +47,7 @@ body {
     z-index: 999;
 }
 
-/* —————————————————————————— */
-/* 4) Contenedor del modal      */
-/* —————————————————————————— */
+/* 4) Contenedor principal */
 .modal-dialog {
     background: var(--blue-dark);
     border-radius: 12px;
@@ -66,7 +58,7 @@ body {
     flex-direction: column;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform .2s ease, box-shadow .2s ease;
     z-index: 1000;
 }
 .modal-dialog:hover {
@@ -74,9 +66,7 @@ body {
     box-shadow: 0 16px 32px rgba(0,0,0,0.3);
 }
 
-/* —————————————————————————— */
-/* 5) Encabezado                */
-/* —————————————————————————— */
+/* 5) Header */
 .modal-header {
     background: var(--dark-bg);
     padding: 1rem 1.5rem;
@@ -98,9 +88,7 @@ body {
     font-size: 1.4rem;
 }
 
-/* —————————————————————————— */
-/* 6) Cuerpo del modal          */
-/* —————————————————————————— */
+/* 6) Cuerpo */
 .modal-body {
     background: #fff;
     color: var(--text-dark);
@@ -108,6 +96,8 @@ body {
     max-height: 80vh;
     overflow-y: auto;
 }
+
+/* Info grid */
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
@@ -135,9 +125,7 @@ body {
     line-height: 1.4;
 }
 
-/* —————————————————————————— */
-/* 7) Defectos en acordeón      */
-/* —————————————————————————— */
+/* 7) Acordeón de defectos */
 .defects-container {
     margin-top: 2rem;
 }
@@ -167,66 +155,61 @@ body {
     font-size: 1.2rem;
     transition: transform .3s ease;
 }
-/* cerrado/abierto */
+
+/* **Clave**: fotos ocultas por defecto */
 .defect-block .photos-row {
     display: none;
 }
+
+/* al hacer clic (class expanded) */
 .defect-block.expanded .photos-row {
     display: flex;
-    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 .defect-block.expanded .defect-title::after {
     content: "–";
     transform: rotate(180deg);
 }
-@media (min-width: 600px) {
+
+/* en móvil, si prefieres columna */
+@media (max-width: 600px) {
     .defect-block.expanded .photos-row {
-        flex-direction: row;
+        flex-direction: column;
     }
 }
 
-/* —————————————————————————— */
 /* 8) Fotos OK / NO OK lado a lado */
-/* —————————————————————————— */
-.photos-row {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 1rem;
-}
-/* cada grupo 50% */
 .photos-group {
     flex: 1 1 calc(50% - 1rem);
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
     background: #fff;
     border-radius: 6px;
     padding: .75rem;
     border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
 }
 .photos-group.ok { border-color: var(--accent-ok); }
 .photos-group.no { border-color: var(--accent-no); }
+
 .group-title {
     font-weight: 600;
     margin-bottom: .5rem;
 }
 
-/* —————————————————————————— */
-/* 9) Miniaturas ajustadas      */
-/* —————————————————————————— */
+/* thumbs: que ocupen ancho completo del grupo */
 .thumbs {
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     width: 100%;
-    /* quitar límite de altura */
-    max-height: none;
 }
 .thumbs img {
-    width: calc(100% - 1.5rem);  /* casi todo el ancho del contenedor */
+    width: 100%;
     height: auto;
     object-fit: contain;
     border-radius: 4px;
@@ -238,9 +221,7 @@ body {
     box-shadow: 0 0 6px rgba(0,0,0,0.1);
 }
 
-/* —————————————————————————— */
-/* 10) Lightbox contenido        */
-/* —————————————————————————— */
+/* 9) Lightbox */
 .lightbox-content img {
     max-width: 90%;
     max-height: 90%;
@@ -259,9 +240,7 @@ body {
     z-index: 1001;
 }
 
-/* —————————————————————————— */
-/* 11) Responsive para móvil     */
-/* —————————————————————————— */
+/* 10) Responsive ajustes */
 @media (max-width: 600px) {
     .info-grid { grid-template-columns: 1fr; }
     .modal-dialog { width: 95%; max-width: none; }
