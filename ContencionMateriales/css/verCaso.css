@@ -160,11 +160,13 @@ body {
     font-size: 1.2rem;
     transition: transform .3s ease;
 }
-/* cerrado por defecto */
+
+/* <-- Aquí ocultamos siempre las fotos al inicio --> */
 .defect-block .photos-row {
     display: none;
 }
-/* abierto al hacer clic */
+
+/* <-- Solo al expandir mostramos las fotos en fila --> */
 .defect-block.expanded .photos-row {
     display: flex;
     gap: 1rem;
@@ -176,6 +178,8 @@ body {
     content: "–";
     transform: rotate(180deg);
 }
+
+/* En móvil, si lo prefieres en columna */
 @media (max-width: 600px) {
     .defect-block.expanded .photos-row {
         flex-direction: column;
@@ -183,12 +187,6 @@ body {
 }
 
 /* 8) Fotos OK / NO OK lado a lado */
-.photos-row {
-    display: flex !important;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 1rem;
-}
 .photos-group {
     flex: 1 1 calc(50% - 1rem);
     box-sizing: border-box;
@@ -248,9 +246,8 @@ body {
 
 /* 10) Responsive ajustes */
 @media (max-width: 600px) {
-    /* Ahora dos columnas para los campos */
     .info-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2,1fr);
         gap: 1rem;
     }
     .info-cell.full-width {
