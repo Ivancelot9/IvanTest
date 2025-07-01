@@ -14,26 +14,33 @@
 }
 
 /* —————————————————————————— */
-/* 2) Fondo general y wrapper   */
+/* 2) Fondo general animado     */
 /* —————————————————————————— */
-/* Fondo suave degradado en todo el viewport */
 body {
     margin: 0;
-    background: linear-gradient(135deg, #f0f2f5 0%, #e2e7ec 100%);
+    background: linear-gradient(-45deg, #f0f2f5, #e2e7ec, #f5f6f8, #dfe4e8);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
     min-height: 100vh;
 }
 
-/* Fondo de la “tarjeta” completa */
+@keyframes gradientBG {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* —————————————————————————— */
+/* 3) Wrapper para centrar      */
+/* —————————————————————————— */
 .ver-caso-page {
     display: flex;
     justify-content: center;
     padding: 2rem 0;
-    background: var(--light-bg);
-    min-height: 100vh;
 }
 
 /* —————————————————————————— */
-/* 3) Lightbox overlay           */
+/* 4) Lightbox overlay           */
 /* —————————————————————————— */
 .modal-overlay {
     position: fixed;
@@ -46,7 +53,7 @@ body {
 }
 
 /* —————————————————————————— */
-/* 4) Contenedor principal       */
+/* 5) Contenedor principal       */
 /* —————————————————————————— */
 .modal-dialog {
     background: var(--blue-dark);
@@ -66,7 +73,7 @@ body {
 }
 
 /* —————————————————————————— */
-/* 5) Encabezado                */
+/* 6) Encabezado                */
 /* —————————————————————————— */
 .modal-header {
     background: var(--dark-bg);
@@ -90,7 +97,7 @@ body {
 }
 
 /* —————————————————————————— */
-/* 6) Cuerpo                    */
+/* 7) Cuerpo                    */
 /* —————————————————————————— */
 .modal-body {
     background: #fff;
@@ -99,11 +106,9 @@ body {
     max-height: 80vh;
     overflow-y: auto;
 }
-
-/* Datos generales */
 .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
     gap: 1rem;
 }
 .info-cell {
@@ -129,7 +134,7 @@ body {
 }
 
 /* —————————————————————————— */
-/* 7) Defectos en acordeón      */
+/* 8) Defectos en acordeón      */
 /* —————————————————————————— */
 .defects-container {
     margin-top: 2rem;
@@ -161,7 +166,7 @@ body {
     transition: transform .3s ease;
 }
 
-/* Por defecto, ocultar fotos en PC */
+/* Pliegue en desktop */
 @media (min-width: 768px) {
     .defect-block .photos-row {
         display: none;
@@ -176,7 +181,7 @@ body {
 }
 
 /* —————————————————————————— */
-/* 8) Fotos OK / NO OK          */
+/* 9) Fotos OK / NO OK          */
 /* —————————————————————————— */
 .photos-row {
     display: flex;
@@ -192,19 +197,12 @@ body {
     flex-direction: column;
     border: 2px solid transparent;
 }
-.photos-group.ok {
-    border-color: var(--accent-ok);
-}
-.photos-group.no {
-    border-color: var(--accent-no);
-}
-.group-title {
-    font-weight: 600;
-    margin-bottom: .5rem;
-}
+.photos-group.ok { border-color: var(--accent-ok); }
+.photos-group.no { border-color: var(--accent-no); }
+.group-title { font-weight: 600; margin-bottom: .5rem; }
 
 /* —————————————————————————— */
-/* 9) Miniaturas                */
+/* 10) Miniaturas                */
 /* —————————————————————————— */
 .thumbs {
     display: flex;
@@ -228,7 +226,7 @@ body {
 }
 
 /* —————————————————————————— */
-/* 10) Lightbox contenido        */
+/* 11) Lightbox contenido        */
 /* —————————————————————————— */
 .lightbox-content img {
     max-width: 90%;
@@ -249,17 +247,10 @@ body {
 }
 
 /* —————————————————————————— */
-/* 11) Responsive para móvil     */
+/* 12) Responsive para móvil     */
 /* —————————————————————————— */
 @media (max-width: 600px) {
-    .photos-row {
-        flex-direction: column;
-    }
-    .info-grid {
-        grid-template-columns: 1fr;
-    }
-    .modal-dialog {
-        width: 95%;
-        max-width: none;
-    }
+    .photos-row { flex-direction: column; }
+    .info-grid { grid-template-columns: 1fr; }
+    .modal-dialog { width: 95%; max-width: none; }
 }
