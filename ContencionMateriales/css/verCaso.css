@@ -20,9 +20,9 @@ body {
     overflow-x: hidden;
 }
 @keyframes fondoSuave {
-    0%   { background-position: 0% 50%; }
+    0%   { background-position: 0 50%; }
     50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    100% { background-position: 0 50%; }
 }
 
 /* 2) Centrado del modal */
@@ -125,9 +125,14 @@ body {
     line-height: 1.4;
 }
 
-/* 7) Acordeón de defectos */
+/* 7) Separación antes de “Defectos a Inspeccionar” */
+.info-grid + .info-grid {
+    margin-top: 1.5rem;
+}
+
+/* 8) Acordeón de defectos */
 .defects-container {
-    margin-top: 2rem;
+    margin-top: 1rem; /* adicional si quieres más espacio antes del acordeón */
 }
 .defect-block {
     background: var(--light-bg);
@@ -155,12 +160,10 @@ body {
     font-size: 1.2rem;
     transition: transform .3s ease;
 }
-
-/* **Clave**: fotos ocultas por defecto */
+/* fotos ocultas por defecto */
 .defect-block .photos-row {
     display: none;
 }
-
 /* al hacer clic (class expanded) */
 .defect-block.expanded .photos-row {
     display: flex;
@@ -173,15 +176,13 @@ body {
     content: "–";
     transform: rotate(180deg);
 }
-
-/* en móvil, si prefieres columna */
 @media (max-width: 600px) {
     .defect-block.expanded .photos-row {
         flex-direction: column;
     }
 }
 
-/* 8) Fotos OK / NO OK lado a lado */
+/* 9) Fotos OK / NO OK lado a lado */
 .photos-group {
     flex: 1 1 calc(50% - 1rem);
     box-sizing: border-box;
@@ -194,13 +195,12 @@ body {
 }
 .photos-group.ok { border-color: var(--accent-ok); }
 .photos-group.no { border-color: var(--accent-no); }
-
 .group-title {
     font-weight: 600;
     margin-bottom: .5rem;
 }
 
-/* thumbs: que ocupen ancho completo del grupo */
+/* thumbs: ocupan ancho completo del grupo */
 .thumbs {
     display: flex;
     justify-content: center;
@@ -221,7 +221,7 @@ body {
     box-shadow: 0 0 6px rgba(0,0,0,0.1);
 }
 
-/* 9) Lightbox */
+/* 10) Lightbox */
 .lightbox-content img {
     max-width: 90%;
     max-height: 90%;
@@ -240,7 +240,7 @@ body {
     z-index: 1001;
 }
 
-/* 10) Responsive ajustes */
+/* 11) Responsive ajustes */
 @media (max-width: 600px) {
     .info-grid { grid-template-columns: 1fr; }
     .modal-dialog { width: 95%; max-width: none; }
