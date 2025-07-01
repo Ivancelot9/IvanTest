@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Mosttar Caso por correo con link" />
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Mosttar Caso por correo con link">
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/verCaso.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/verCaso.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -212,15 +214,7 @@
       <workItem from="1750861233348" duration="14916000" />
       <workItem from="1751033807312" duration="4756000" />
       <workItem from="1751292862056" duration="14039000" />
-      <workItem from="1751379406742" duration="11065000" />
-    </task>
-    <task id="LOCAL-01657" summary="Envio a Externos">
-      <option name="closed" value="true" />
-      <created>1750871528268</created>
-      <option name="number" value="01657" />
-      <option name="presentableId" value="LOCAL-01657" />
-      <option name="project" value="LOCAL" />
-      <updated>1750871528268</updated>
+      <workItem from="1751379406742" duration="11377000" />
     </task>
     <task id="LOCAL-01658" summary="Envio a Externos">
       <option name="closed" value="true" />
@@ -606,7 +600,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751395500840</updated>
     </task>
-    <option name="localTasksCounter" value="1706" />
+    <task id="LOCAL-01706" summary="Mosttar Caso por correo con link">
+      <option name="closed" value="true" />
+      <created>1751395969951</created>
+      <option name="number" value="01706" />
+      <option name="presentableId" value="LOCAL-01706" />
+      <option name="project" value="LOCAL" />
+      <updated>1751395969951</updated>
+    </task>
+    <option name="localTasksCounter" value="1707" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
