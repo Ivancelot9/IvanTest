@@ -1,5 +1,3 @@
-/*=== css/verCaso-accordion.css === */
-
 /* —————————————————————————— */
 /* 1) Variables de color        */
 /* —————————————————————————— */
@@ -37,15 +35,16 @@ body {
     display: flex;
     justify-content: center;
     padding: 2rem 0;
-    /* background: none; */      /* ya no tiene fondo blanco */
 }
 
 /* —————————————————————————— */
-/* 4) Lightbox overlay           */
+/* 4) Lightbox overlay (MODIFICADO) */
 /* —————————————————————————— */
 .modal-overlay {
     position: fixed; inset: 0;
-    background: rgba(30,42,56,0.75);
+    background: rgba(30, 42, 56, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     display: none;
     align-items: center;
     justify-content: center;
@@ -100,7 +99,7 @@ body {
 /* 7) Cuerpo                    */
 /* —————————————————————————— */
 .modal-body {
-    background: #fff;                 /* aquí sí es blanco */
+    background: #fff;
     color: var(--text-dark);
     padding: 1.5rem;
     max-height: 80vh;
