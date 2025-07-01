@@ -125,14 +125,14 @@ body {
     line-height: 1.4;
 }
 
-/* 7) Separación antes de “Defectos a Inspeccionar” */
+/* Separación antes de “Defectos a Inspeccionar” */
 .info-grid + .info-grid {
     margin-top: 1.5rem;
 }
 
-/* 8) Acordeón de defectos */
+/* 7) Acordeón de defectos */
 .defects-container {
-    margin-top: 1rem; /* adicional si quieres más espacio antes del acordeón */
+    margin-top: 1rem;
 }
 .defect-block {
     background: var(--light-bg);
@@ -160,11 +160,11 @@ body {
     font-size: 1.2rem;
     transition: transform .3s ease;
 }
-/* fotos ocultas por defecto */
+/* cerrado por defecto */
 .defect-block .photos-row {
     display: none;
 }
-/* al hacer clic (class expanded) */
+/* abierto al hacer clic */
 .defect-block.expanded .photos-row {
     display: flex;
     gap: 1rem;
@@ -182,7 +182,13 @@ body {
     }
 }
 
-/* 9) Fotos OK / NO OK lado a lado */
+/* 8) Fotos OK / NO OK lado a lado */
+.photos-row {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+}
 .photos-group {
     flex: 1 1 calc(50% - 1rem);
     box-sizing: border-box;
@@ -200,7 +206,7 @@ body {
     margin-bottom: .5rem;
 }
 
-/* thumbs: ocupan ancho completo del grupo */
+/* Miniaturas */
 .thumbs {
     display: flex;
     justify-content: center;
@@ -221,7 +227,7 @@ body {
     box-shadow: 0 0 6px rgba(0,0,0,0.1);
 }
 
-/* 10) Lightbox */
+/* 9) Lightbox */
 .lightbox-content img {
     max-width: 90%;
     max-height: 90%;
@@ -240,8 +246,18 @@ body {
     z-index: 1001;
 }
 
-/* 11) Responsive ajustes */
+/* 10) Responsive ajustes */
 @media (max-width: 600px) {
-    .info-grid { grid-template-columns: 1fr; }
-    .modal-dialog { width: 95%; max-width: none; }
+    /* Ahora dos columnas para los campos */
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    .info-cell.full-width {
+        grid-column: 1 / -1;
+    }
+    .modal-dialog {
+        width: 95%;
+        max-width: none;
+    }
 }
