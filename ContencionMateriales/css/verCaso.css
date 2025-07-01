@@ -12,20 +12,17 @@
 }
 
 /* —————————————————————————— */
-/* 2) Fondo general animado     */
+/* 2) Fondo general con textura */
 /* —————————————————————————— */
 body {
     margin: 0;
-    background: linear-gradient(-45deg, #f0f2f5, #e2e7ec, #f5f6f8, #dfe4e8);
-    background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
+    background-color: #0d1117;
+    background-image: url('https://www.transparenttextures.com/patterns/hexellence.png');
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
     min-height: 100vh;
-}
-
-@keyframes gradientBG {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    font-family: sans-serif;
 }
 
 /* —————————————————————————— */
@@ -38,13 +35,12 @@ body {
 }
 
 /* —————————————————————————— */
-/* 4) Lightbox overlay (MODIFICADO) */
+/* 4) Lightbox overlay ajustado */
 /* —————————————————————————— */
 .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(30, 42, 56, 0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4); /* más transparente para mostrar fondo */
     display: none;
     align-items: center;
     justify-content: center;
