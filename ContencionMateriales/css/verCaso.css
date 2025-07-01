@@ -37,14 +37,14 @@ body {
     display: flex;
     justify-content: center;
     padding: 2rem 0;
+    /* background: none; */      /* ya no tiene fondo blanco */
 }
 
 /* —————————————————————————— */
 /* 4) Lightbox overlay           */
 /* —————————————————————————— */
 .modal-overlay {
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background: rgba(30,42,56,0.75);
     display: none;
     align-items: center;
@@ -100,7 +100,7 @@ body {
 /* 7) Cuerpo                    */
 /* —————————————————————————— */
 .modal-body {
-    background: #fff;
+    background: #fff;                 /* aquí sí es blanco */
     color: var(--text-dark);
     padding: 1.5rem;
     max-height: 80vh;
@@ -165,8 +165,6 @@ body {
     font-size: 1.2rem;
     transition: transform .3s ease;
 }
-
-/* Pliegue en desktop */
 @media (min-width: 768px) {
     .defect-block .photos-row {
         display: none;

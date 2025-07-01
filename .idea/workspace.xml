@@ -212,15 +212,7 @@
       <workItem from="1750861233348" duration="14916000" />
       <workItem from="1751033807312" duration="4756000" />
       <workItem from="1751292862056" duration="14039000" />
-      <workItem from="1751379406742" duration="5342000" />
-    </task>
-    <task id="LOCAL-01638" summary="Envio a Externos">
-      <option name="closed" value="true" />
-      <created>1750791029887</created>
-      <option name="number" value="01638" />
-      <option name="presentableId" value="LOCAL-01638" />
-      <option name="project" value="LOCAL" />
-      <updated>1750791029887</updated>
+      <workItem from="1751379406742" duration="5615000" />
     </task>
     <task id="LOCAL-01639" summary="Envio a Externos">
       <option name="closed" value="true" />
@@ -606,7 +598,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751389974757</updated>
     </task>
-    <option name="localTasksCounter" value="1687" />
+    <task id="LOCAL-01687" summary="Mosttar Caso por correo con link">
+      <option name="closed" value="true" />
+      <created>1751390211246</created>
+      <option name="number" value="01687" />
+      <option name="presentableId" value="LOCAL-01687" />
+      <option name="project" value="LOCAL" />
+      <updated>1751390211246</updated>
+    </task>
+    <option name="localTasksCounter" value="1688" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
