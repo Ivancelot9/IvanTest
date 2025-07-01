@@ -12,21 +12,59 @@
 }
 
 /* —————————————————————————— */
-/* 2) Fondo acero animado       */
+/* 2) Fondo general con formas animadas */
 /* —————————————————————————— */
 body {
     margin: 0;
+    font-family: sans-serif;
     background: linear-gradient(-45deg, #e4ebf1, #d6dee6, #cdd5df, #e4ebf1);
     background-size: 400% 400%;
     animation: fondoSuave 12s ease infinite;
     min-height: 100vh;
-    font-family: sans-serif;
+    overflow-x: hidden;
+    position: relative;
 }
 
 @keyframes fondoSuave {
     0%   { background-position: 0% 50%; }
     50%  { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+}
+
+/* — Ondas decorativas */
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::before {
+    top: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg width="100%" height="300" xmlns="http://www.w3.org/2000/svg"><path fill="%23c0cad4" d="M0,160L80,144C160,128,320,96,480,96C640,96,800,128,960,154.7C1120,181,1280,203,1360,213.3L1440,224V0H0Z"/></svg>');
+    animation: waveDown 20s ease-in-out infinite;
+}
+
+body::after {
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg width="100%" height="300" xmlns="http://www.w3.org/2000/svg"><path fill="%23c0cad4" d="M0,96L80,122.7C160,149,320,203,480,192C640,181,800,107,960,106.7C1120,107,1280,181,1360,218.7L1440,256V0H0Z"/></svg>');
+    animation: waveUp 25s ease-in-out infinite;
+}
+
+@keyframes waveDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(20px); }
+}
+
+@keyframes waveUp {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
 }
 
 /* —————————————————————————— */
@@ -36,6 +74,8 @@ body {
     display: flex;
     justify-content: center;
     padding: 2rem 0;
+    position: relative;
+    z-index: 1;
 }
 
 /* —————————————————————————— */
@@ -67,6 +107,7 @@ body {
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 1000;
 }
 .modal-dialog:hover {
     transform: translateY(-4px);
@@ -75,7 +116,6 @@ body {
 
 /* —————————————————————————— */
 /* 6) Encabezado                */
-/* —————————————————————————— */
 .modal-header {
     background: var(--dark-bg);
     padding: 1rem 1.5rem;
@@ -99,7 +139,6 @@ body {
 
 /* —————————————————————————— */
 /* 7) Cuerpo del modal          */
-/* —————————————————————————— */
 .modal-body {
     background: #fff;
     color: var(--text-dark);
@@ -135,8 +174,7 @@ body {
 }
 
 /* —————————————————————————— */
-/* 8) Defectos en acordeón      */
-/* —————————————————————————— */
+/* 8) Defectos acordeón         */
 .defects-container {
     margin-top: 2rem;
 }
@@ -167,12 +205,8 @@ body {
     transition: transform .3s ease;
 }
 @media (min-width: 768px) {
-    .defect-block .photos-row {
-        display: none;
-    }
-    .defect-block.expanded .photos-row {
-        display: flex;
-    }
+    .defect-block .photos-row { display: none; }
+    .defect-block.expanded .photos-row { display: flex; }
     .defect-block.expanded .defect-title::after {
         content: "–";
         transform: rotate(180deg);
@@ -181,7 +215,6 @@ body {
 
 /* —————————————————————————— */
 /* 9) Fotos OK / NO OK          */
-/* —————————————————————————— */
 .photos-row {
     display: flex;
     gap: 1rem;
@@ -201,8 +234,7 @@ body {
 .group-title { font-weight: 600; margin-bottom: .5rem; }
 
 /* —————————————————————————— */
-/* 10) Miniaturas                */
-/* —————————————————————————— */
+/* 10) Miniaturas imágenes      */
 .thumbs {
     display: flex;
     flex-wrap: wrap;
@@ -225,8 +257,7 @@ body {
 }
 
 /* —————————————————————————— */
-/* 11) Lightbox contenido        */
-/* —————————————————————————— */
+/* 11) Lightbox imagen grande   */
 .lightbox-content img {
     max-width: 90%;
     max-height: 90%;
@@ -246,8 +277,7 @@ body {
 }
 
 /* —————————————————————————— */
-/* 12) Responsive para móvil     */
-/* —————————————————————————— */
+/* 12) Responsive móvil         */
 @media (max-width: 600px) {
     .photos-row { flex-direction: column; }
     .info-grid { grid-template-columns: 1fr; }
