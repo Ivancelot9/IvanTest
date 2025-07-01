@@ -12,17 +12,21 @@
 }
 
 /* —————————————————————————— */
-/* 2) Fondo general con textura */
+/* 2) Fondo acero animado       */
 /* —————————————————————————— */
 body {
     margin: 0;
-    background-color: #0d1117;
-    background-image: url('https://www.transparenttextures.com/patterns/hexellence.png');
-    background-repeat: repeat;
-    background-attachment: fixed;
-    background-position: center;
+    background: linear-gradient(-45deg, #e4ebf1, #d6dee6, #cdd5df, #e4ebf1);
+    background-size: 400% 400%;
+    animation: fondoSuave 12s ease infinite;
     min-height: 100vh;
     font-family: sans-serif;
+}
+
+@keyframes fondoSuave {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 /* —————————————————————————— */
@@ -35,12 +39,14 @@ body {
 }
 
 /* —————————————————————————— */
-/* 4) Lightbox overlay ajustado */
+/* 4) Overlay translúcido claro */
 /* —————————————————————————— */
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4); /* más transparente para mostrar fondo */
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     display: none;
     align-items: center;
     justify-content: center;
@@ -48,7 +54,7 @@ body {
 }
 
 /* —————————————————————————— */
-/* 5) Contenedor principal       */
+/* 5) Contenedor del modal      */
 /* —————————————————————————— */
 .modal-dialog {
     background: var(--blue-dark);
@@ -59,12 +65,12 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .modal-dialog:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 32px rgba(0,0,0,0.2);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.3);
 }
 
 /* —————————————————————————— */
@@ -92,7 +98,7 @@ body {
 }
 
 /* —————————————————————————— */
-/* 7) Cuerpo                    */
+/* 7) Cuerpo del modal          */
 /* —————————————————————————— */
 .modal-body {
     background: #fff;
