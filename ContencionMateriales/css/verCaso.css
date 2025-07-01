@@ -1,4 +1,4 @@
-/* === css/verCaso-prop1.css === */
+/* === css/verCaso-prop2.css === */
 
 /* Variables de color */
 :root {
@@ -38,7 +38,6 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Encabezado */
@@ -113,6 +112,7 @@
     margin-bottom: 1.5rem;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     overflow: hidden;
+    transition: all 0.3s ease;
 }
 .defect-title {
     background: var(--dark-bg);
@@ -122,6 +122,30 @@
     font-size: 1rem;
     font-weight: 600;
     border-bottom: 1px solid var(--card-border);
+    cursor: pointer;
+    position: relative;
+}
+.defect-title::after {
+    content: "+";
+    position: absolute;
+    right: 1rem;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+/* Por defecto oculto el contenido de fotos en PC (acordeón) */
+@media (min-width: 768px) {
+    .defect-block .photos-row {
+        display: none;
+    }
+    /* Al expandir */
+    .defect-block.expanded .photos-row {
+        display: flex;
+    }
+    .defect-block.expanded .defect-title::after {
+        content: "–";
+        transform: rotate(180deg);
+    }
 }
 
 /* Fotos OK / NO OK */
@@ -207,51 +231,5 @@
     .modal-dialog {
         width: 95%;
         max-width: none;
-    }
-}
-
-/* ============================= */
-/* Propuesta 1: Grid de tarjetas */
-/* ============================= */
-body {
-    background: #f0f2f5;  /* gris muy suave */
-}
-
-@media (min-width: 768px) {
-    .ver-caso-page {
-        padding: 2rem 0;
-        min-height: 100vh;
-    }
-    .modal-dialog {
-        max-width: 900px;
-        width: 90%;
-        margin: auto;
-        border-radius: 12px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    .modal-dialog:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 32px rgba(0,0,0,0.2);
-    }
-    .defects-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-    }
-    .defect-block {
-        background: #fff;
-        border: 1px solid var(--card-border);
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .defect-block:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    }
-    .defect-title {
-        cursor: default;
     }
 }

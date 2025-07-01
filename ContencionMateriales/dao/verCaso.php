@@ -178,5 +178,15 @@ $defectos = array_values($map);
         if (e.target.id === 'modal-image') e.currentTarget.style.display = 'none';
     });
 </script>
+
+<script>
+    document.querySelectorAll('.defect-title').forEach(title => {
+        const block = title.closest('.defect-block');
+        title.addEventListener('click', () => {
+            block.classList.toggle('expanded');
+        });
+    });
+</script>
+
 </body>
 </html>
