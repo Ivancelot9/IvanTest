@@ -96,7 +96,7 @@ $defectos = array_values($map);
     <meta charset="UTF-8">
     <title>Caso <?= htmlspecialchars($folio) ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS de la Propuesta 3 -->
+    <!-- CSS de la Propuesta 2 (acordeón) -->
     <link rel="stylesheet" href="../css/verCaso.css">
 </head>
 <body>
@@ -126,39 +126,32 @@ $defectos = array_values($map);
                 </div>
             </div>
 
-            <!-- Propuesta 3: Tabs de defectos -->
-            <div class="tab-list">
-                <?php foreach ($defectos as $i => $def): ?>
-                    <button class="<?= $i===0?'active':'' ?>" data-tab="<?= $i ?>">
-                        <?= htmlspecialchars($def['nombre']) ?>
-                    </button>
-                <?php endforeach; ?>
-            </div>
-
-            <?php foreach ($defectos as $i => $def): ?>
-                <div class="tab-content <?= $i===0?'active':'' ?>" data-tab="<?= $i ?>">
-                    <div class="photos-row">
-                        <div class="photos-group ok">
-                            <div class="group-title">OK</div>
-                            <div class="thumbs">
-                                <?php foreach ($def['fotosOk'] as $f): ?>
-                                    <img src="https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/ok/<?= urlencode($f) ?>"
-                                         alt="OK">
-                                <?php endforeach; ?>
+            <!-- Defectos en acordeón -->
+            <div class="defects-container">
+                <?php foreach ($defectos as $def): ?>
+                    <div class="defect-block">
+                        <h3 class="defect-title"><?= htmlspecialchars($def['nombre']) ?></h3>
+                        <div class="photos-row">
+                            <div class="photos-group ok">
+                                <div class="group-title">OK</div>
+                                <div class="thumbs">
+                                    <?php foreach ($def['fotosOk'] as $f): ?>
+                                        <img src="https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/ok/<?= urlencode($f) ?>" alt="OK">
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="photos-group no">
-                            <div class="group-title">NO OK</div>
-                            <div class="thumbs">
-                                <?php foreach ($def['fotosNo'] as $f): ?>
-                                    <img src="https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/no/<?= urlencode($f) ?>"
-                                         alt="NO OK">
-                                <?php endforeach; ?>
+                            <div class="photos-group no">
+                                <div class="group-title">NO OK</div>
+                                <div class="thumbs">
+                                    <?php foreach ($def['fotosNo'] as $f): ?>
+                                        <img src="https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/no/<?= urlencode($f) ?>" alt="NO OK">
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
 
         </div>
     </div>
@@ -189,16 +182,12 @@ $defectos = array_values($map);
     });
 </script>
 
-<!-- JS de pestañas -->
+<!-- JS Acordeón -->
 <script>
-    document.querySelectorAll('.tab-list button').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const idx = btn.dataset.tab;
-            document.querySelectorAll('.tab-list button, .tab-content')
-                .forEach(el => el.classList.remove('active'));
-            btn.classList.add('active');
-            document.querySelector(`.tab-content[data-tab="${idx}"]`)
-                .classList.add('active');
+    document.querySelectorAll('.defect-title').forEach(title => {
+        const block = title.closest('.defect-block');
+        title.addEventListener('click', () => {
+            block.classList.toggle('expanded');
         });
     });
 </script>

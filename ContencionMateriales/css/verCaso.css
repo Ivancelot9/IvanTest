@@ -1,4 +1,4 @@
-/* === css/verCaso-prop3.css === */
+/* === css/verCaso-accordion.css === */
 
 /* Variables de color */
 :root {
@@ -11,14 +11,24 @@
     --card-border:  #d0d7de;
 }
 
-/* Wrapper para centrar */
+/* Wrapper para centrar la página */
 .ver-caso-page {
     display: flex;
     justify-content: center;
     padding: 1rem;
 }
 
-/* Modal/dialog base */
+/* Lightbox overlay */
+.modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(30,42,56,0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+/* Contenedor principal */
 .modal-dialog {
     background: var(--blue-dark);
     border-radius: 10px;
@@ -28,7 +38,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    transition: box-shadow .2s ease;
+    transition: box-shadow .2s;
 }
 .modal-dialog:hover {
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
@@ -42,11 +52,11 @@
     align-items: center;
     border-bottom: 1px solid var(--card-border);
 }
-.header-title-with-logo { display: flex; align-items: center; gap:.75rem; }
+.header-title-with-logo { display:flex; align-items:center; gap:.75rem; }
 .header-logo { height:32px; filter:brightness(0) invert(1); }
 .modal-header h2 { margin:0; font-size:1.4rem; }
 
-/* Cuerpo base */
+/* Cuerpo */
 .modal-body {
     background:#fff;
     color:var(--text-dark);
@@ -54,66 +64,126 @@
     max-height:80vh;
     overflow-y:auto;
 }
+
 /* Datos generales */
-.info-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; }
+.info-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:1rem;
+}
 .info-cell { display:flex; flex-direction:column; }
 .info-cell.full-width { grid-column:1/-1; }
 .info-cell label { font-weight:600; margin-bottom:.25rem; color:var(--blue-dark); }
-.info-cell span,.desc-text { background:var(--light-bg); padding:.5rem; border:1px solid var(--card-border); border-radius:4px; }
+.info-cell span,
+.desc-text {
+    background:var(--light-bg);
+    padding:.5rem;
+    border:1px solid var(--card-border);
+    border-radius:4px;
+    min-height:2rem;
+    line-height:1.4;
+}
 
-/* Base defectos y fotos */
-.defects-container { margin-top:2rem; }
-.photos-row { display:flex; gap:1rem; padding:1rem; }
-.photos-group { flex:1; background:#fff; border-radius:6px; padding:.75rem; border:2px solid transparent; display:flex; flex-direction:column; }
+/* Defectos en acordeón */
+.defects-container {
+    margin-top:2rem;
+}
+.defect-block {
+    background: var(--light-bg);
+    border: 1px solid var(--card-border);
+    border-radius:8px;
+    margin-bottom:1.5rem;
+    overflow:hidden;
+    transition: all .3s ease;
+}
+.defect-title {
+    background: var(--dark-bg);
+    color: #fff;
+    margin: 0;
+    padding: .75rem 1rem;
+    font-size:1rem;
+    font-weight:600;
+    border-bottom:1px solid var(--card-border);
+    cursor:pointer;
+    position: relative;
+}
+.defect-title::after {
+    content: "+";
+    position: absolute;
+    right: 1rem;
+    font-size:1.2rem;
+    transition: transform .3s;
+}
+/* fotos ocultas en PC */
+@media(min-width:768px) {
+    .defect-block .photos-row {
+        display:none;
+    }
+    .defect-block.expanded .photos-row {
+        display:flex;
+    }
+    .defect-block.expanded .defect-title::after {
+        content: "–";
+        transform: rotate(180deg);
+    }
+}
+
+/* Fotos OK / NO OK */
+.photos-row {
+    display:flex;
+    gap:1rem;
+    padding:1rem;
+}
+.photos-group {
+    flex:1;
+    background:#fff;
+    border-radius:6px;
+    padding:.75rem;
+    display:flex;
+    flex-direction:column;
+    border:2px solid transparent;
+}
 .photos-group.ok { border-color:var(--accent-ok); }
 .photos-group.no { border-color:var(--accent-no); }
 .group-title { font-weight:600; margin-bottom:.5rem; }
 
 /* Miniaturas */
-.thumbs { display:flex; flex-wrap:wrap; gap:.5rem; max-height:100px; overflow-y:auto; }
-.thumbs img { width:70px; height:70px; object-fit:cover; border-radius:4px; cursor:pointer; border:1px solid #ccc; transition:transform .2s,box-shadow .2s; }
-.thumbs img:hover { transform:scale(1.1); box-shadow:0 0 6px rgba(0,0,0,0.1); }
+.thumbs {
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem;
+    max-height:100px;
+    overflow-y:auto;
+}
+.thumbs img {
+    width:70px; height:70px;
+    object-fit:cover;
+    border-radius:4px;
+    cursor:pointer;
+    border:1px solid #ccc;
+    transition: transform .2s, box-shadow .2s;
+}
+.thumbs img:hover {
+    transform:scale(1.1);
+    box-shadow:0 0 6px rgba(0,0,0,0.1);
+}
 
-/* Lightbox */
-.modal-overlay { position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(30,42,56,0.75); }
-.lightbox-content img { max-width:90%;max-height:90%;border-radius:4px;box-shadow:0 0 10px rgba(0,0,0,0.5); }
-.close-img { position:absolute;top:20px;right:30px;font-size:2rem;color:#fff;background:none;border:none;cursor:pointer;z-index:1001; }
+/* Lightbox contenido */
+.lightbox-content img {
+    max-width:90%;
+    max-height:90%;
+    border-radius:4px;
+    box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+.close-img {
+    position:absolute; top:20px; right:30px;
+    font-size:2rem; color:#fff; background:none;
+    border:none; cursor:pointer; z-index:1001;
+}
 
-/* Responsive móvil */
+/* Mobile tweaks */
 @media(max-width:600px) {
     .photos-row { flex-direction:column; }
     .info-grid { grid-template-columns:1fr; }
-    .modal-dialog { width:95%;max-width:none; }
-}
-
-/* ——————————————— */
-/* Mejora PC: Pestañas */
-/* ——————————————— */
-@media(min-width:768px) {
-    /* Tab headers */
-    .tab-list {
-        display:flex;
-        border-bottom:2px solid var(--card-border);
-        margin-top:1rem;
-    }
-    .tab-list button {
-        flex:1;
-        padding:.75rem 1.5rem;
-        background:var(--light-bg);
-        border:none;
-        cursor:pointer;
-        font-weight:600;
-        transition:background .2s;
-    }
-    .tab-list button.active {
-        background:var(--dark-bg);
-        color:#fff;
-    }
-
-    /* Tab panels */
-    .tab-content { display:none; }
-    .tab-content.active { display:block; }
-
-    /* Ajustes de fotos dentro de tab */
-    .tab-content .photos-row { display:flex; }
+    .modal-dialog { width:95%; max-width:none; }
 }
