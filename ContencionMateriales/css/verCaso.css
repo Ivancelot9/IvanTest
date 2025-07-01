@@ -1,55 +1,44 @@
 /* === css/verCaso-accordion.css === */
 
-/* 1) Variables de color */
+/* —————————————————————————— */
+/* 1) Variables de color        */
+/* —————————————————————————— */
 :root {
     --blue-dark:    #1e2a38;
     --accent-ok:    #2ea043;
     --accent-no:    #d93025;
-    --light-bg:     #f5f6f8;
+    --light-bg:     #f5f7fa;
     --text-dark:    #1c1e21;
     --dark-bg:      #202c3a;
     --card-border:  #d0d7de;
 }
 
-/* 2) Fondo dinámico color-shifting */
+/* —————————————————————————— */
+/* 2) Fondo con patrón SVG      */
+/* —————————————————————————— */
 body {
     margin: 0;
-    position: relative;
-    overflow: hidden;
-}
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(
-            60deg,
-            #0366d6 0%,
-            #2ea043 33%,
-            #d93025 66%,
-            #0366d6 100%
-    );
-    background-size: 600% 600%;
-    z-index: -1;
-    animation: bgShift 15s ease infinite;
-}
-@keyframes bgShift {
-    0%   { background-position:   0% 50%; }
-    33%  { background-position:  50% 50%; }
-    66%  { background-position: 100% 50%; }
-    100% { background-position:   0% 50%; }
+    background-color: #0d1117;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 0L20 20H0L10 0Z' fill='%231e2a38'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 40px 40px;
+    min-height: 100vh;
 }
 
-/* 3) Wrapper para centrar */
+/* —————————————————————————— */
+/* 3) Wrapper principal         */
+/* —————————————————————————— */
 .ver-caso-page {
     display: flex;
     justify-content: center;
     padding: 2rem 0;
 }
 
-/* 4) Lightbox overlay */
+/* —————————————————————————— */
+/* 4) Overlay del lightbox     */
+/* —————————————————————————— */
 .modal-overlay {
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background: rgba(30,42,56,0.75);
     display: none;
     align-items: center;
@@ -57,7 +46,9 @@ body::before {
     z-index: 999;
 }
 
-/* 5) Contenedor principal */
+/* —————————————————————————— */
+/* 5) Contenedor principal     */
+/* —————————————————————————— */
 .modal-dialog {
     background: var(--blue-dark);
     border-radius: 12px;
@@ -67,15 +58,17 @@ body::before {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .modal-dialog:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 32px rgba(0,0,0,0.35);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.2);
 }
 
-/* 6) Encabezado */
+/* —————————————————————————— */
+/* 6) Encabezado               */
+/* —————————————————————————— */
 .modal-header {
     background: var(--dark-bg);
     padding: 1rem 1.5rem;
@@ -97,7 +90,9 @@ body::before {
     font-size: 1.4rem;
 }
 
-/* 7) Cuerpo */
+/* —————————————————————————— */
+/* 7) Cuerpo del modal         */
+/* —————————————————————————— */
 .modal-body {
     background: #fff;
     color: var(--text-dark);
@@ -132,7 +127,9 @@ body::before {
     line-height: 1.4;
 }
 
-/* 8) Defectos en acordeón */
+/* —————————————————————————— */
+/* 8) Acordeones de defectos   */
+/* —————————————————————————— */
 .defects-container {
     margin-top: 2rem;
 }
@@ -175,7 +172,9 @@ body::before {
     }
 }
 
-/* 9) Fotos OK / NO OK */
+/* —————————————————————————— */
+/* 9) Fotos OK / NO OK         */
+/* —————————————————————————— */
 .photos-row {
     display: flex;
     gap: 1rem;
@@ -194,7 +193,9 @@ body::before {
 .photos-group.no { border-color: var(--accent-no); }
 .group-title { font-weight: 600; margin-bottom: .5rem; }
 
-/* 10) Miniaturas */
+/* —————————————————————————— */
+/* 10) Miniaturas              */
+/* —————————————————————————— */
 .thumbs {
     display: flex;
     flex-wrap: wrap;
@@ -216,7 +217,9 @@ body::before {
     box-shadow: 0 0 6px rgba(0,0,0,0.1);
 }
 
-/* 11) Lightbox contenido */
+/* —————————————————————————— */
+/* 11) Lightbox                */
+/* —————————————————————————— */
 .lightbox-content img {
     max-width: 90%;
     max-height: 90%;
@@ -235,7 +238,9 @@ body::before {
     z-index: 1001;
 }
 
-/* 12) Responsive móvil */
+/* —————————————————————————— */
+/* 12) Responsive móvil        */
+/* —————————————————————————— */
 @media (max-width: 600px) {
     .photos-row { flex-direction: column; }
     .info-grid { grid-template-columns: 1fr; }
