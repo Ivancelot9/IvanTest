@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Mosttar Caso por correo con link">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Mosttar Caso por correo con link" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -214,15 +212,7 @@
       <workItem from="1750861233348" duration="14916000" />
       <workItem from="1751033807312" duration="4756000" />
       <workItem from="1751292862056" duration="14039000" />
-      <workItem from="1751379406742" duration="10610000" />
-    </task>
-    <task id="LOCAL-01656" summary="Envio a Externos">
-      <option name="closed" value="true" />
-      <created>1750866938537</created>
-      <option name="number" value="01656" />
-      <option name="presentableId" value="LOCAL-01656" />
-      <option name="project" value="LOCAL" />
-      <updated>1750866938537</updated>
+      <workItem from="1751379406742" duration="11065000" />
     </task>
     <task id="LOCAL-01657" summary="Envio a Externos">
       <option name="closed" value="true" />
@@ -608,7 +598,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751394040768</updated>
     </task>
-    <option name="localTasksCounter" value="1705" />
+    <task id="LOCAL-01705" summary="Mosttar Caso por correo con link">
+      <option name="closed" value="true" />
+      <created>1751395500840</created>
+      <option name="number" value="01705" />
+      <option name="presentableId" value="LOCAL-01705" />
+      <option name="project" value="LOCAL" />
+      <updated>1751395500840</updated>
+    </task>
+    <option name="localTasksCounter" value="1706" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

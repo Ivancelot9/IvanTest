@@ -8,7 +8,9 @@
     --card-border:  #d0d7de;
 }
 
-/* Fondo suave animado */
+/* —————————————————————————— */
+/* 2) Fondo acero animado       */
+/* —————————————————————————— */
 body {
     margin: 0;
     background: linear-gradient(-45deg, #e4ebf1, #d6dee6, #cdd5df, #e4ebf1);
@@ -16,14 +18,18 @@ body {
     animation: fondoSuave 12s ease infinite;
     min-height: 100vh;
     font-family: sans-serif;
+    position: relative;
+    overflow-x: hidden;
 }
-
 @keyframes fondoSuave {
     0%   { background-position: 0% 50%; }
     50%  { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
+/* —————————————————————————— */
+/* 3) Wrapper para centrar      */
+/* —————————————————————————— */
 .ver-caso-page {
     display: flex;
     justify-content: center;
@@ -32,6 +38,9 @@ body {
     z-index: 1;
 }
 
+/* —————————————————————————— */
+/* 4) Overlay translúcido claro */
+/* —————————————————————————— */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -44,6 +53,9 @@ body {
     z-index: 999;
 }
 
+/* —————————————————————————— */
+/* 5) Contenedor del modal      */
+/* —————————————————————————— */
 .modal-dialog {
     background: var(--blue-dark);
     border-radius: 12px;
@@ -62,6 +74,9 @@ body {
     box-shadow: 0 16px 32px rgba(0,0,0,0.3);
 }
 
+/* —————————————————————————— */
+/* 6) Encabezado                */
+/* —————————————————————————— */
 .modal-header {
     background: var(--dark-bg);
     padding: 1rem 1.5rem;
@@ -83,6 +98,9 @@ body {
     font-size: 1.4rem;
 }
 
+/* —————————————————————————— */
+/* 7) Cuerpo del modal          */
+/* —————————————————————————— */
 .modal-body {
     background: #fff;
     color: var(--text-dark);
@@ -90,7 +108,6 @@ body {
     max-height: 80vh;
     overflow-y: auto;
 }
-
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
@@ -118,7 +135,9 @@ body {
     line-height: 1.4;
 }
 
-/* Acordeón de defectos */
+/* —————————————————————————— */
+/* 8) Defectos en acordeón      */
+/* —————————————————————————— */
 .defects-container {
     margin-top: 2rem;
 }
@@ -149,6 +168,7 @@ body {
     transition: transform .3s ease;
 }
 
+/* Acordeón cerrado/abierto en todos los tamaños */
 .defect-block .photos-row {
     display: none;
 }
@@ -167,30 +187,44 @@ body {
     }
 }
 
-/* Fotos */
+/* —————————————————————————— */
+/* 9) Fotos OK / NO OK lado a lado */
+/* —————————————————————————— */
 .photos-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
     gap: 1rem;
     padding: 1rem;
 }
+
+/* Cada grupo ocupa la mitad del ancho */
 .photos-group {
-    flex: 1;
+    flex: 1 1 calc(50% - 1rem);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
     background: #fff;
     border-radius: 6px;
     padding: .75rem;
-    display: flex;
-    flex-direction: column;
     border: 2px solid transparent;
 }
 .photos-group.ok { border-color: var(--accent-ok); }
 .photos-group.no { border-color: var(--accent-no); }
-.group-title { font-weight: 600; margin-bottom: .5rem; }
 
+.group-title {
+    font-weight: 600;
+    margin-bottom: .5rem;
+}
+
+/* Miniaturas dentro de cada grupo */
 .thumbs {
     display: flex;
     flex-wrap: wrap;
     gap: .5rem;
     max-height: 100px;
     overflow-y: auto;
+    justify-content: center;
 }
 .thumbs img {
     width: 70px;
@@ -206,7 +240,9 @@ body {
     box-shadow: 0 0 6px rgba(0,0,0,0.1);
 }
 
-/* Lightbox imagen grande */
+/* —————————————————————————— */
+/* 10) Lightbox contenido        */
+/* —————————————————————————— */
 .lightbox-content img {
     max-width: 90%;
     max-height: 90%;
@@ -225,9 +261,10 @@ body {
     z-index: 1001;
 }
 
-/* Responsive */
+/* —————————————————————————— */
+/* 11) Responsive para móvil     */
+/* —————————————————————————— */
 @media (max-width: 600px) {
-    .photos-row { flex-direction: column; }
     .info-grid { grid-template-columns: 1fr; }
     .modal-dialog { width: 95%; max-width: none; }
 }
