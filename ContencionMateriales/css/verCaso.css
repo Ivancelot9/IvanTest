@@ -18,24 +18,19 @@
 /* —————————————————————————— */
 body {
     margin: 0;
-    /* Un fondo oscuro con patrón geométrico sutil */
     background-color: #1e2a38;
     background-image:
-            repeating-linear-gradient(
-                    45deg,
-                    rgba(255,255,255,0.05) 0,
-                    rgba(255,255,255,0.05) 1px,
-                    transparent 1px,
-                    transparent 8px
-            ),
-            repeating-linear-gradient(
-                    -45deg,
-                    rgba(255,255,255,0.05) 0,
-                    rgba(255,255,255,0.05) 1px,
-                    transparent 1px,
-                    transparent 8px
+        /* Brillos suaves */
+            radial-gradient(circle at 15% 15%, rgba(255,255,255,0.06), transparent 60%),
+            radial-gradient(circle at 85% 85%, rgba(255,255,255,0.04), transparent 60%),
+                /* Patrón geométrico */
+            repeating-conic-gradient(
+                    from 45deg,
+                    rgba(255,255,255,0.02) 0deg 5deg,
+                    transparent 5deg 15deg
             );
-    background-size: 80px 80px;
+    background-size: 100% 100%, 100% 100%, 30px 30px;
+    background-blend-mode: overlay, overlay, normal;
     min-height: 100vh;
 }
 
