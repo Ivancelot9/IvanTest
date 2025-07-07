@@ -16,6 +16,7 @@ try {
     }
     $username = $_SESSION['usuariosPorPestana'][$tab_id]['Username'];
 
+    // Obtener IdUsuario
     $conUser = (new LocalConector())->conectar();
     $stmtUser = $conUser->prepare("SELECT IdUsuario FROM Usuario WHERE Username = ?");
     $stmtUser->bind_param("s", $username);
@@ -27,6 +28,7 @@ try {
     $stmtUser->close();
     $conUser->close();
 
+    // Validación de campos
     $required = ['Responsable','NumeroParte','Cantidad','IdTerceria','IdCommodity','IdProveedor'];
     foreach ($required as $f) {
         if (!isset($_POST[$f]) || trim($_POST[$f]) === '') {
@@ -55,18 +57,15 @@ try {
     $folioCaso = $stmt->insert_id;
     $stmt->close();
 
-    // Carpetas físicas
+    // Crear carpetas si no existen
     $baseDir = __DIR__ . '/uploads';
     $okDir   = "$baseDir/ok";
     $noDir   = "$baseDir/no";
-
     foreach ([$okDir, $noDir] as $d) {
         if (!is_dir($d)) mkdir($d, 0755, true);
     }
 
-    // URL pública base
-    $baseURL = 'https://grammermx.com/IvanTest/ContencionMateriales/uploads';
-
+    // Procesar defectos
     if (!isset($_POST['defectos']) || !is_array($_POST['defectos'])) {
         throw new Exception('No se recibieron defectos');
     }
@@ -75,14 +74,14 @@ try {
         $idDef = intval($bloque['idDefecto'] ?? 0);
         if ($idDef <= 0) throw new Exception("Defecto inválido en el bloque " . ($idx + 1));
 
-        $sd = $con->prepare("INSERT INTO DefectosCaso (FolioCaso, IdDefectos) VALUES (?,?)");
+        $sd = $con->prepare("INSERT INTO DefectosCaso (FolioCaso, IdDefectos) VALUES (?, ?)");
         $sd->bind_param("ii", $folioCaso, $idDef);
         $sd->execute();
         $idDefCaso = $sd->insert_id;
         $sd->close();
 
-        subirFoto($idx, 'fotoOk', 'ok', $folioCaso, $idDefCaso, $okDir, "$baseURL/ok", $con);
-        subirFoto($idx, 'fotoNo', 'no', $folioCaso, $idDefCaso, $noDir, "$baseURL/no", $con);
+        subirFoto($idx, 'fotoOk', 'ok', $folioCaso, $idDefCaso, $okDir, $con);
+        subirFoto($idx, 'fotoNo', 'no', $folioCaso, $idDefCaso, $noDir, $con);
     }
 
     ob_clean();
@@ -100,25 +99,29 @@ try {
     exit;
 }
 
-function subirFoto($idx, $campo, $tipo, $folio, $idDefCaso, $dirFisico, $dirPublico, $con) {
+// 📷 Subida de una foto individual
+function subirFoto($idx, $campo, $tipo, $folio, $idDefCaso, $dir, $con) {
     if (
         !isset($_FILES['defectos']['tmp_name'][$idx][$campo]) ||
         $_FILES['defectos']['error'][$idx][$campo] !== UPLOAD_ERR_OK
     ) {
+        $error = $_FILES['defectos']['error'][$idx][$campo] ?? 'No detectado';
+        if ($error !== UPLOAD_ERR_NO_FILE) {
+            throw new Exception("Error al subir la foto ($tipo), código: $error");
+        }
         return;
     }
 
-    $original = basename($_FILES['defectos']['name'][$idx][$campo]);
-    $nombreUnico = uniqid() . "_" . preg_replace('/[^a-zA-Z0-9_\.-]/', '', $original);
-    $rutaCompleta = "$dirFisico/$nombreUnico";
-    $urlPublica   = "$dirPublico/$nombreUnico";
+    $orig = basename($_FILES['defectos']['name'][$idx][$campo]);
+    $new  = uniqid() . "_$orig";
+    $destino = "$dir/$new";
 
-    if (!move_uploaded_file($_FILES['defectos']['tmp_name'][$idx][$campo], $rutaCompleta)) {
-        throw new Exception("Error al subir la foto ($tipo)");
+    if (!move_uploaded_file($_FILES['defectos']['tmp_name'][$idx][$campo], $destino)) {
+        throw new Exception("Error al mover el archivo ($tipo) a $destino");
     }
 
     $stmt = $con->prepare("INSERT INTO Fotos (FolioCaso, IdDefectoCaso, TipoFoto, Ruta) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("iiss", $folio, $idDefCaso, $tipo, $urlPublica);
+    $stmt->bind_param("iiss", $folio, $idDefCaso, $tipo, $new);
     $stmt->execute();
     $stmt->close();
 }
