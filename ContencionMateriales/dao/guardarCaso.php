@@ -6,18 +6,20 @@ header('Content-Type: application/json; charset=UTF-8');
 include_once 'conexionContencion.php';
 
 try {
+    // 1) Validar método
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         throw new Exception('Método no permitido');
     }
 
+    // 2) Validar sesión
     $tab_id = $_GET['tab_id'] ?? '';
     if (!$tab_id || !isset($_SESSION['usuariosPorPestana'][$tab_id]['Username'])) {
         throw new Exception('Sesión inválida');
     }
     $username = $_SESSION['usuariosPorPestana'][$tab_id]['Username'];
 
-    // Obtener IdUsuario
-    $conUser = (new LocalConector())->conectar();
+    // 3) Obtener IdUsuario
+    $conUser  = (new LocalConector())->conectar();
     $stmtUser = $conUser->prepare("SELECT IdUsuario FROM Usuario WHERE Username = ?");
     $stmtUser->bind_param("s", $username);
     $stmtUser->execute();
@@ -28,7 +30,7 @@ try {
     $stmtUser->close();
     $conUser->close();
 
-    // Validación de campos
+    // 4) Validar campos obligatorios
     $required = ['Responsable','NumeroParte','Cantidad','IdTerceria','IdCommodity','IdProveedor'];
     foreach ($required as $f) {
         if (!isset($_POST[$f]) || trim($_POST[$f]) === '') {
@@ -36,6 +38,7 @@ try {
         }
     }
 
+    // 5) Recoger datos
     $responsable = trim($_POST['Responsable']);
     $numeroParte = trim($_POST['NumeroParte']);
     $cantidad    = floatval(str_replace(',', '.', $_POST['Cantidad']));
@@ -45,6 +48,7 @@ try {
     $idProveedor = intval($_POST['IdProveedor']);
     $estatus     = 1;
 
+    // 6) Insertar caso
     $con = (new LocalConector())->conectar();
     $sql = "
         INSERT INTO Casos
@@ -57,15 +61,7 @@ try {
     $folioCaso = $stmt->insert_id;
     $stmt->close();
 
-    // Crear carpetas si no existen
-    $baseDir = __DIR__ . '/uploads';
-    $okDir   = "$baseDir/ok";
-    $noDir   = "$baseDir/no";
-    foreach ([$okDir, $noDir] as $d) {
-        if (!is_dir($d)) mkdir($d, 0755, true);
-    }
-
-    // Procesar defectos
+    // 7) Procesar defectos
     if (!isset($_POST['defectos']) || !is_array($_POST['defectos'])) {
         throw new Exception('No se recibieron defectos');
     }
@@ -74,16 +70,19 @@ try {
         $idDef = intval($bloque['idDefecto'] ?? 0);
         if ($idDef <= 0) throw new Exception("Defecto inválido en el bloque " . ($idx + 1));
 
-        $sd = $con->prepare("INSERT INTO DefectosCaso (FolioCaso, IdDefectos) VALUES (?, ?)");
+        // Insertar DefectoCaso
+        $sd = $con->prepare("INSERT INTO DefectosCaso (FolioCaso, IdDefectos) VALUES (?,?)");
         $sd->bind_param("ii", $folioCaso, $idDef);
         $sd->execute();
         $idDefCaso = $sd->insert_id;
         $sd->close();
 
-        subirFoto($idx, 'fotoOk', 'ok', $folioCaso, $idDefCaso, $okDir, $con);
-        subirFoto($idx, 'fotoNo', 'no', $folioCaso, $idDefCaso, $noDir, $con);
+        // Subir fotos
+        subirFoto($idx, 'fotoOk', 'ok', $folioCaso, $idDefCaso, $con);
+        subirFoto($idx, 'fotoNo', 'no', $folioCaso, $idDefCaso, $con);
     }
 
+    // 8) Respuesta JSON final
     ob_clean();
     echo json_encode([
         'status' => 'success',
@@ -99,29 +98,43 @@ try {
     exit;
 }
 
+
 // 📷 Subida de una foto individual
-function subirFoto($idx, $campo, $tipo, $folio, $idDefCaso, $dir, $con) {
+function subirFoto($idx, $campo, $tipo, $folio, $idDefCaso, $con) {
     if (
         !isset($_FILES['defectos']['tmp_name'][$idx][$campo]) ||
         $_FILES['defectos']['error'][$idx][$campo] !== UPLOAD_ERR_OK
     ) {
-        $error = $_FILES['defectos']['error'][$idx][$campo] ?? 'No detectado';
-        if ($error !== UPLOAD_ERR_NO_FILE) {
-            throw new Exception("Error al subir la foto ($tipo), código: $error");
-        }
         return;
     }
 
-    $orig = basename($_FILES['defectos']['name'][$idx][$campo]);
-    $new  = uniqid() . "_$orig";
-    $destino = "$dir/$new";
+    $archivo = $_FILES['defectos'];
+    $nombreOriginal = basename($archivo['name'][$idx][$campo]);
+    $nombreUnico = uniqid() . "_$nombreOriginal";
 
-    if (!move_uploaded_file($_FILES['defectos']['tmp_name'][$idx][$campo], $destino)) {
-        throw new Exception("Error al mover el archivo ($tipo) a $destino");
+    // Rutas
+    $carpetaRelativa = "uploads/$tipo";
+    $carpetaFisica = __DIR__ . "/$carpetaRelativa";
+    $rutaFinal = "$carpetaFisica/$nombreUnico";
+
+    // Crear carpeta si no existe
+    if (!is_dir($carpetaFisica)) {
+        if (!mkdir($carpetaFisica, 0755, true)) {
+            throw new Exception("No se pudo crear el directorio $carpetaFisica");
+        }
     }
 
+    // Mover archivo
+    if (!move_uploaded_file($archivo['tmp_name'][$idx][$campo], $rutaFinal)) {
+        throw new Exception("Error al subir la imagen ($tipo)");
+    }
+
+    // URL pública
+    $url = "https://grammermx.com/IvanTest/ContencionMateriales/$carpetaRelativa/$nombreUnico";
+
+    // Guardar en base de datos
     $stmt = $con->prepare("INSERT INTO Fotos (FolioCaso, IdDefectoCaso, TipoFoto, Ruta) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("iiss", $folio, $idDefCaso, $tipo, $new);
+    $stmt->bind_param("iiss", $folio, $idDefCaso, $tipo, $url);
     $stmt->execute();
     $stmt->close();
 }
