@@ -50,24 +50,24 @@
             campos.descripcion.textContent = data.descripcion || '(sin descripción)';
 
             const html = data.defectos.map(def => `
-  <div class="defect-block">
-    <h3 class="defect-title">${def.nombre}</h3>
-    <div class="photos-row">
-      <div class="photos-group ok">
-        <div class="group-title">OK</div>
-        <div class="thumbs">
-          ${def.fotosOk.map(r => `<img src="${r}" alt="OK">`).join('')}
+        <div class="defect-block">
+          <h3 class="defect-title">${def.nombre}</h3>
+          <div class="photos-row">
+            <div class="photos-group ok">
+              <div class="group-title">OK</div>
+              <div class="thumbs">
+                ${def.fotosOk.map(r => `<img src="dao/uploads/ok/${r}" alt="OK">`).join('')}
+              </div>
+            </div>
+            <div class="photos-group no">
+              <div class="group-title">NO OK</div>
+              <div class="thumbs">
+                ${def.fotosNo.map(r => `<img src="dao/uploads/no/${r}" alt="NO OK">`).join('')}
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="photos-group no">
-        <div class="group-title">NO OK</div>
-        <div class="thumbs">
-          ${def.fotosNo.map(r => `<img src="${r}" alt="NO OK">`).join('')}
-        </div>
-      </div>
-    </div>
-  </div>
-`).join('');
+      `).join('');
 
             contDefectos.innerHTML = html;
 
