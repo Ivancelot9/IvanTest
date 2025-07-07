@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Mosttar Caso por correo con link">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/verCaso.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/verCaso.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,6 +215,10 @@
       <workItem from="1751033807312" duration="4756000" />
       <workItem from="1751292862056" duration="14039000" />
       <workItem from="1751379406742" duration="12565000" />
+      <workItem from="1751465857899" duration="2722000" />
+      <workItem from="1751552200009" duration="5406000" />
+      <workItem from="1751638665246" duration="4115000" />
+      <workItem from="1751897867051" duration="993000" />
     </task>
     <task id="LOCAL-01664" summary="Envio a Externos">
       <option name="closed" value="true" />
