@@ -1,28 +1,25 @@
 <?php
-// Buffer para evitar salidas accidentales
 ob_start();
-
-// Sesión y cabecera JSON
 session_start();
 header('Content-Type: application/json; charset=UTF-8');
 
 include_once 'conexionContencion.php';
 
 try {
-    // 1) Método
+    // 1) Validar método
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         throw new Exception('Método no permitido');
     }
 
-    // 2) Sesión / tab_id
+    // 2) Validar sesión
     $tab_id = $_GET['tab_id'] ?? '';
-    if (empty($tab_id) || !isset($_SESSION['usuariosPorPestana'][$tab_id]['Username'])) {
+    if (!$tab_id || !isset($_SESSION['usuariosPorPestana'][$tab_id]['Username'])) {
         throw new Exception('Sesión inválida');
     }
     $username = $_SESSION['usuariosPorPestana'][$tab_id]['Username'];
 
-    // 3) Usuario actual
-    $conUser = (new LocalConector())->conectar();
+    // 3) Obtener IdUsuario
+    $conUser  = (new LocalConector())->conectar();
     $stmtUser = $conUser->prepare("SELECT IdUsuario FROM Usuario WHERE Username = ?");
     $stmtUser->bind_param("s", $username);
     $stmtUser->execute();
@@ -33,45 +30,43 @@ try {
     $stmtUser->close();
     $conUser->close();
 
-    // 4) Validar campos obligatorios
-    $required = ['Responsable', 'NumeroParte', 'Cantidad', 'IdTerceria', 'IdCommodity', 'IdProveedor'];
-    foreach ($required as $campo) {
-        if (empty($_POST[$campo])) {
-            throw new Exception("Falta el campo: $campo");
+    // 4) Validar campos
+    $required = ['Responsable','NumeroParte','Cantidad','IdTerceria','IdCommodity','IdProveedor'];
+    foreach ($required as $f) {
+        if (!isset($_POST[$f]) || trim($_POST[$f]) === '') {
+            throw new Exception("Falta el campo $f");
         }
     }
 
-    // 5) Datos del formulario
+    // 5) Recoger datos
     $responsable = trim($_POST['Responsable']);
     $numeroParte = trim($_POST['NumeroParte']);
-    $cantidad = floatval(str_replace(',', '.', $_POST['Cantidad']));
+    $cantidad    = floatval(str_replace(',', '.', $_POST['Cantidad']));
     $descripcion = $_POST['Descripcion'] ?? '';
-    $idTerceria = intval($_POST['IdTerceria']);
+    $idTerceria  = intval($_POST['IdTerceria']);
     $idCommodity = intval($_POST['IdCommodity']);
     $idProveedor = intval($_POST['IdProveedor']);
-    $estatus = 1;
+    $estatus     = 1;
 
     // 6) Insertar caso
     $con = (new LocalConector())->conectar();
-    $stmt = $con->prepare("
-        INSERT INTO Casos (IdUsuario, NumeroParte, Cantidad, Descripcion, IdTerceria, IdCommodity, IdProveedor, IdEstatus, Responsable)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    ");
+    $sql = "
+        INSERT INTO Casos
+            (IdUsuario, NumeroParte, Cantidad, Descripcion,
+             IdTerceria, IdCommodity, IdProveedor, IdEstatus, Responsable)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $con->prepare($sql);
     $stmt->bind_param("isdsiiiis", $idUsuario, $numeroParte, $cantidad, $descripcion, $idTerceria, $idCommodity, $idProveedor, $estatus, $responsable);
     $stmt->execute();
     $folioCaso = $stmt->insert_id;
     $stmt->close();
 
-    // 7) Crear carpetas si no existen (para Hostinger)
-    $uploadBase = realpath(__DIR__) . '/uploads';
-    $okDir = $uploadBase . '/ok';
-    $noDir = $uploadBase . '/no';
-    foreach ([$okDir, $noDir] as $carpeta) {
-        if (!is_dir($carpeta)) {
-            if (!mkdir($carpeta, 0755, true)) {
-                throw new Exception("No se pudo crear la carpeta: $carpeta");
-            }
-        }
+    // 7) Crear carpetas si no existen
+    $baseDir = __DIR__ . '/uploads';
+    $okDir   = "$baseDir/ok";
+    $noDir   = "$baseDir/no";
+    foreach ([$okDir, $noDir] as $d) {
+        if (!is_dir($d)) mkdir($d, 0755, true);
     }
 
     // 8) Procesar defectos
@@ -79,33 +74,29 @@ try {
         throw new Exception('No se recibieron defectos');
     }
 
-    foreach ($_POST['defectos'] as $i => $bloque) {
+    foreach ($_POST['defectos'] as $idx => $bloque) {
         $idDef = intval($bloque['idDefecto'] ?? 0);
-        if ($idDef <= 0) {
-            throw new Exception("Defecto inválido en bloque " . ($i + 1));
-        }
+        if ($idDef <= 0) throw new Exception("Defecto inválido en el bloque " . ($idx + 1));
 
-        $stmtDef = $con->prepare("INSERT INTO DefectosCaso (FolioCaso, IdDefectos) VALUES (?, ?)");
-        $stmtDef->bind_param("ii", $folioCaso, $idDef);
-        $stmtDef->execute();
-        $idDefCaso = $stmtDef->insert_id;
-        $stmtDef->close();
+        // Insertar DefectoCaso
+        $sd = $con->prepare("INSERT INTO DefectosCaso (FolioCaso, IdDefectos) VALUES (?,?)");
+        $sd->bind_param("ii", $folioCaso, $idDef);
+        $sd->execute();
+        $idDefCaso = $sd->insert_id;
+        $sd->close();
 
         // Subir fotos
-        subirFoto($i, 'fotoOk', 'ok', $folioCaso, $idDefCaso, $okDir, $con);
-        subirFoto($i, 'fotoNo', 'no', $folioCaso, $idDefCaso, $noDir, $con);
+        subirFoto($idx, 'fotoOk', 'ok', $folioCaso, $idDefCaso, $okDir, $con);
+        subirFoto($idx, 'fotoNo', 'no', $folioCaso, $idDefCaso, $noDir, $con);
     }
 
-    // 9) Devolver JSON
+    // 9) Respuesta JSON final
     ob_clean();
     echo json_encode([
         'status' => 'success',
+        'message' => "Caso #$folioCaso guardado correctamente",
         'folio' => $folioCaso,
-        'message' => "Caso guardado correctamente",
         'fecha' => date('Y-m-d'),
-        'estatus' => lookup($con, 'Estatus', 'IdEstatus', 'NombreEstatus', $estatus),
-        'responsable' => $responsable,
-        'terciaria' => lookup($con, 'Terceria', 'IdTerceria', 'NombreTerceria', $idTerceria)
     ]);
     exit;
 
@@ -115,7 +106,7 @@ try {
     exit;
 }
 
-// 🔧 Subir archivo
+// 📷 Subida de una foto individual
 function subirFoto($idx, $campo, $tipo, $folio, $idDefCaso, $dir, $con) {
     if (
         !isset($_FILES['defectos']['tmp_name'][$idx][$campo]) ||
@@ -123,29 +114,15 @@ function subirFoto($idx, $campo, $tipo, $folio, $idDefCaso, $dir, $con) {
     ) {
         return;
     }
+    $orig = basename($_FILES['defectos']['name'][$idx][$campo]);
+    $new  = uniqid() . "_$orig";
 
-    $original = basename($_FILES['defectos']['name'][$idx][$campo]);
-    $nombreFinal = uniqid() . "_" . preg_replace('/[^A-Za-z0-9_.-]/', '_', $original);
-    $rutaFinal = $dir . '/' . $nombreFinal;
-
-    if (!move_uploaded_file($_FILES['defectos']['tmp_name'][$idx][$campo], $rutaFinal)) {
-        throw new Exception("No se pudo guardar la foto ($tipo)");
+    if (!move_uploaded_file($_FILES['defectos']['tmp_name'][$idx][$campo], "$dir/$new")) {
+        throw new Exception("Error al subir la foto ($tipo)");
     }
 
     $stmt = $con->prepare("INSERT INTO Fotos (FolioCaso, IdDefectoCaso, TipoFoto, Ruta) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("iiss", $folio, $idDefCaso, $tipo, $nombreFinal);
+    $stmt->bind_param("iiss", $folio, $idDefCaso, $tipo, $new);
     $stmt->execute();
     $stmt->close();
-}
-
-// 🔧 Traduce ID a nombre (para mostrarlo legible)
-function lookup($con, $tabla, $idFld, $nameFld, $val) {
-    $salida = '';
-    $st = $con->prepare("SELECT `$nameFld` FROM `$tabla` WHERE `$idFld` = ?");
-    $st->bind_param("i", $val);
-    $st->execute();
-    $st->bind_result($salida);
-    $st->fetch();
-    $st->close();
-    return $salida;
 }
