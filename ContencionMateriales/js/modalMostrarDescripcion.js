@@ -56,13 +56,13 @@
       <div class="photos-group ok">
         <div class="group-title">OK</div>
         <div class="thumbs">
-          ${def.fotosOk.map(r => `<img src="uploads/ok/${r}" alt="OK">`).join('')}
+          ${def.fotosOk.map(r => `<img src="${r}" alt="OK">`).join('')}
         </div>
       </div>
       <div class="photos-group no">
         <div class="group-title">NO OK</div>
         <div class="thumbs">
-          ${def.fotosNo.map(r => `<img src="uploads/no/${r}" alt="NO OK">`).join('')}
+          ${def.fotosNo.map(r => `<img src="${r}" alt="NO OK">`).join('')}
         </div>
       </div>
     </div>

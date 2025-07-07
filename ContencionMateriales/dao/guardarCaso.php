@@ -6,20 +6,17 @@ header('Content-Type: application/json; charset=UTF-8');
 include_once 'conexionContencion.php';
 
 try {
-    // 1) Validar método
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         throw new Exception('Método no permitido');
     }
 
-    // 2) Validar sesión
     $tab_id = $_GET['tab_id'] ?? '';
     if (!$tab_id || !isset($_SESSION['usuariosPorPestana'][$tab_id]['Username'])) {
         throw new Exception('Sesión inválida');
     }
     $username = $_SESSION['usuariosPorPestana'][$tab_id]['Username'];
 
-    // 3) Obtener IdUsuario
-    $conUser  = (new LocalConector())->conectar();
+    $conUser = (new LocalConector())->conectar();
     $stmtUser = $conUser->prepare("SELECT IdUsuario FROM Usuario WHERE Username = ?");
     $stmtUser->bind_param("s", $username);
     $stmtUser->execute();
@@ -30,7 +27,6 @@ try {
     $stmtUser->close();
     $conUser->close();
 
-    // 4) Validar campos
     $required = ['Responsable','NumeroParte','Cantidad','IdTerceria','IdCommodity','IdProveedor'];
     foreach ($required as $f) {
         if (!isset($_POST[$f]) || trim($_POST[$f]) === '') {
@@ -38,7 +34,6 @@ try {
         }
     }
 
-    // 5) Recoger datos
     $responsable = trim($_POST['Responsable']);
     $numeroParte = trim($_POST['NumeroParte']);
     $cantidad    = floatval(str_replace(',', '.', $_POST['Cantidad']));
@@ -48,7 +43,6 @@ try {
     $idProveedor = intval($_POST['IdProveedor']);
     $estatus     = 1;
 
-    // 6) Insertar caso
     $con = (new LocalConector())->conectar();
     $sql = "
         INSERT INTO Casos
@@ -61,15 +55,18 @@ try {
     $folioCaso = $stmt->insert_id;
     $stmt->close();
 
-    // 7) Crear carpetas si no existen
+    // Carpetas físicas
     $baseDir = __DIR__ . '/uploads';
     $okDir   = "$baseDir/ok";
     $noDir   = "$baseDir/no";
+
     foreach ([$okDir, $noDir] as $d) {
         if (!is_dir($d)) mkdir($d, 0755, true);
     }
 
-    // 8) Procesar defectos
+    // URL pública base
+    $baseURL = 'https://grammermx.com/IvanTest/ContencionMateriales/uploads';
+
     if (!isset($_POST['defectos']) || !is_array($_POST['defectos'])) {
         throw new Exception('No se recibieron defectos');
     }
@@ -78,19 +75,16 @@ try {
         $idDef = intval($bloque['idDefecto'] ?? 0);
         if ($idDef <= 0) throw new Exception("Defecto inválido en el bloque " . ($idx + 1));
 
-        // Insertar DefectoCaso
         $sd = $con->prepare("INSERT INTO DefectosCaso (FolioCaso, IdDefectos) VALUES (?,?)");
         $sd->bind_param("ii", $folioCaso, $idDef);
         $sd->execute();
         $idDefCaso = $sd->insert_id;
         $sd->close();
 
-        // Subir fotos
-        subirFoto($idx, 'fotoOk', 'ok', $folioCaso, $idDefCaso, $okDir, $con);
-        subirFoto($idx, 'fotoNo', 'no', $folioCaso, $idDefCaso, $noDir, $con);
+        subirFoto($idx, 'fotoOk', 'ok', $folioCaso, $idDefCaso, $okDir, "$baseURL/ok", $con);
+        subirFoto($idx, 'fotoNo', 'no', $folioCaso, $idDefCaso, $noDir, "$baseURL/no", $con);
     }
 
-    // 9) Respuesta JSON final
     ob_clean();
     echo json_encode([
         'status' => 'success',
@@ -106,23 +100,25 @@ try {
     exit;
 }
 
-// 📷 Subida de una foto individual
-function subirFoto($idx, $campo, $tipo, $folio, $idDefCaso, $dir, $con) {
+function subirFoto($idx, $campo, $tipo, $folio, $idDefCaso, $dirFisico, $dirPublico, $con) {
     if (
         !isset($_FILES['defectos']['tmp_name'][$idx][$campo]) ||
         $_FILES['defectos']['error'][$idx][$campo] !== UPLOAD_ERR_OK
     ) {
         return;
     }
-    $orig = basename($_FILES['defectos']['name'][$idx][$campo]);
-    $new  = uniqid() . "_$orig";
 
-    if (!move_uploaded_file($_FILES['defectos']['tmp_name'][$idx][$campo], "$dir/$new")) {
+    $original = basename($_FILES['defectos']['name'][$idx][$campo]);
+    $nombreUnico = uniqid() . "_" . preg_replace('/[^a-zA-Z0-9_\.-]/', '', $original);
+    $rutaCompleta = "$dirFisico/$nombreUnico";
+    $urlPublica   = "$dirPublico/$nombreUnico";
+
+    if (!move_uploaded_file($_FILES['defectos']['tmp_name'][$idx][$campo], $rutaCompleta)) {
         throw new Exception("Error al subir la foto ($tipo)");
     }
 
     $stmt = $con->prepare("INSERT INTO Fotos (FolioCaso, IdDefectoCaso, TipoFoto, Ruta) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("iiss", $folio, $idDefCaso, $tipo, $new);
+    $stmt->bind_param("iiss", $folio, $idDefCaso, $tipo, $urlPublica);
     $stmt->execute();
     $stmt->close();
 }
