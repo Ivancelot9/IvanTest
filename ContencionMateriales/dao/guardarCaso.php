@@ -6,6 +6,12 @@ header('Content-Type: application/json; charset=UTF-8');
 include_once 'conexionContencion.php';
 
 try {
+
+    // ———> Aquí:
+    file_put_contents(__DIR__ . '/debug_files.txt',
+        print_r($_FILES, true) . "\n\n",
+        FILE_APPEND
+    );
     // 1) Validar método
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         throw new Exception('Método no permitido');
