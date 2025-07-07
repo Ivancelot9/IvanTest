@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Mosttar Caso por correo con link">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Carpetas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -218,15 +218,7 @@
       <workItem from="1751465857899" duration="2722000" />
       <workItem from="1751552200009" duration="5406000" />
       <workItem from="1751638665246" duration="4115000" />
-      <workItem from="1751897867051" duration="993000" />
-    </task>
-    <task id="LOCAL-01664" summary="Envio a Externos">
-      <option name="closed" value="true" />
-      <created>1750879355600</created>
-      <option name="number" value="01664" />
-      <option name="presentableId" value="LOCAL-01664" />
-      <option name="project" value="LOCAL" />
-      <updated>1750879355600</updated>
+      <workItem from="1751897867051" duration="3240000" />
     </task>
     <task id="LOCAL-01665" summary="Envio a Externos">
       <option name="closed" value="true" />
@@ -612,7 +604,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751397326124</updated>
     </task>
-    <option name="localTasksCounter" value="1713" />
+    <task id="LOCAL-01713" summary="Carpetas">
+      <option name="closed" value="true" />
+      <created>1751898910167</created>
+      <option name="number" value="01713" />
+      <option name="presentableId" value="LOCAL-01713" />
+      <option name="project" value="LOCAL" />
+      <updated>1751898910167</updated>
+    </task>
+    <option name="localTasksCounter" value="1714" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -664,7 +664,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modal Fotos/Contencion" />
     <MESSAGE value="Barra Agregar" />
     <MESSAGE value="Agregar Componentes Formulario" />
     <MESSAGE value="Diseño Responsivo Celular" />
@@ -689,7 +688,8 @@
     <MESSAGE value="Reajustandi Mostrar Descripcion" />
     <MESSAGE value="Envio a Externos" />
     <MESSAGE value="Mosttar Caso por correo con link" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mosttar Caso por correo con link" />
+    <MESSAGE value="Carpetas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Carpetas" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
