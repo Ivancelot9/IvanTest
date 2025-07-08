@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Carga de foto personalizada
+    // Carga de foto personalizadas
     inputFile.addEventListener("change", (event) => {
         const file = event.target.files[0];
         if (!file) return;
