@@ -257,13 +257,27 @@ $stmtUser->close();
                         </select>
                     </div>
 
-                    <!-- Defectos + Cargar PDF (ahora inline) -->
+                    <!-- Defectos + Toggle + Cargar PDF (inline) -->
                     <div class="form-group buttons-inline">
+                        <!-- Botón de agregar defecto -->
                         <button type="button" id="btn-agregar-defecto" class="form-button">
                             + Agregar defecto
                         </button>
-                        <button type="button" id="btn-cargar-pdf" class="form-button">
-                            📄 Cargar PDF
+
+                        <!-- Switch para habilitar el "Método de Trabajo" -->
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-metodo-trabajo">
+                            <span class="slider"></span>
+                        </label>
+                        <span style="font-size:0.9rem;">Agregar método de trabajo</span>
+
+                        <!-- Botón de PDF, oculto hasta que el switch esté activo -->
+                        <button
+                                type="button"
+                                id="btn-cargar-pdf"
+                                class="form-button"
+                                style="display: none;">
+                            📄 Cargar Método de Trabajo
                         </button>
                     </div>
 
@@ -271,8 +285,13 @@ $stmtUser->close();
                         <!-- Aquí se insertarán dinámicamente los bloques -->
                     </div>
 
-                    <!-- Campo oculto real para el PDF (fuera de la vista, pero funcional) -->
-                    <input type="file" id="archivoPDF" name="archivoPDF" accept="application/pdf" style="display: none;">
+                    <!-- Input real oculto para el PDF -->
+                    <input
+                            type="file"
+                            id="archivoPDF"
+                            name="archivoPDF"
+                            accept="application/pdf"
+                            style="display: none;">
 
 
 
