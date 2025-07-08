@@ -257,9 +257,8 @@ $stmtUser->close();
                         </select>
                     </div>
 
-                    <!-- DEFECTOS Y FOTOS - NUEVO FLUJO -->
-                    <div class="form-group">
-                        <label for="Defectos" title="Agrega los Defectos a Inspeccionar">Defectos a Inspeccionar</label>
+                    <!-- Defectos + Cargar PDF (ahora inline) -->
+                    <div class="form-group buttons-inline">
                         <button type="button" id="btn-agregar-defecto" class="form-button">
                             + Agregar defecto
                         </button>

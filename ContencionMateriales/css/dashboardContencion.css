@@ -208,6 +208,16 @@ body {
     transition: background 0.2s, transform 0.1s;
 }
 
+/* Nuevo estilo para botones inline */
+.form-group.buttons-inline {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;        /* separación entre botones */
+    margin-bottom: 20px; /* igual espaciado que los demás grupos */
+}
+
+
 .modal {
     position: fixed;
     z-index: 9999;
