@@ -5,6 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentAvatarMini = document.getElementById("currentAvatarMini");
     const currentAvatarLarge = document.getElementById("currentAvatarLarge");
 
+    // Recuperar el avatar guardado en localStorage (si existe)
+    const savedAvatar = localStorage.getItem("avatarSeleccionado");
+    if (savedAvatar) {
+        currentAvatarMini.src = savedAvatar;
+        currentAvatarLarge.src = savedAvatar;
+    }
+
     // Abrir/cerrar panel
     toggle.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -21,30 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // Manejar selección de avatar
     avatars.forEach(avatar => {
         avatar.addEventListener("click", () => {
-            // Visualmente marcarlo
             avatars.forEach(a => a.classList.remove("selected"));
             avatar.classList.add("selected");
 
-            // Cambiar mini y grande
-            currentAvatarMini.src = "uploads/avatars/" + avatar.dataset.avatar;
-            currentAvatarLarge.src = "uploads/avatars/" + avatar.dataset.avatar;
+            const ruta = avatar.getAttribute('src');
 
-            // (Opcional) enviar al backend con AJAX
-            // saveAvatarToServer(avatar.dataset.avatar);
+            currentAvatarMini.src = ruta;
+            currentAvatarLarge.src = ruta;
+
+            // Guardar en localStorage
+            localStorage.setItem("avatarSeleccionado", ruta);
         });
     });
-
-    // Función AJAX opcional para guardar en servidor
-    function saveAvatarToServer(filename) {
-        fetch('guardarAvatar.php', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ avatar: filename })
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log("Avatar actualizado:", data);
-            })
-            .catch(err => console.error("Error al guardar avatar:", err));
-    }
 });
