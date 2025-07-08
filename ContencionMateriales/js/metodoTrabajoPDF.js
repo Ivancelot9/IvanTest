@@ -1,25 +1,36 @@
-const inputPDF    = document.getElementById('archivoPDF');
-const btnVerPDF   = document.getElementById('verPDF');
-const visorPDF    = document.getElementById('visor-pdf');
-const modalPDF    = document.getElementById('modal-pdf');
+const btnPDF = document.getElementById('btn-cargar-pdf');
+const modalPDF = document.getElementById('modal-pdf');
 const cerrarModal = document.getElementById('cerrarModalPDF');
+const inputModal = document.getElementById('input-pdf-modal');
+const visorPDF = document.getElementById('visor-pdf');
+const inputOculto = document.getElementById('archivoPDF');
 
-inputPDF.addEventListener('change', () => {
-    const archivo = inputPDF.files[0];
+// Abrir el modal al hacer clic en el botón
+btnPDF.addEventListener('click', () => {
+    modalPDF.style.display = 'flex';
+    inputModal.value = '';
+    visorPDF.style.display = 'none';
+});
+
+// Cerrar el modal
+cerrarModal.addEventListener('click', () => {
+    modalPDF.style.display = 'none';
+});
+
+// Cuando el usuario elige un PDF en el modal
+inputModal.addEventListener('change', () => {
+    const archivo = inputModal.files[0];
     if (archivo && archivo.type === 'application/pdf') {
         const url = URL.createObjectURL(archivo);
         visorPDF.src = url;
-        btnVerPDF.disabled = false;
+        visorPDF.style.display = 'block';
+
+        // Copiar el archivo al input oculto real del formulario
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(archivo);
+        inputOculto.files = dataTransfer.files;
     } else {
-        btnVerPDF.disabled = true;
-        visorPDF.src = '';
+        visorPDF.style.display = 'none';
+        inputOculto.value = '';
     }
-});
-
-btnVerPDF.addEventListener('click', () => {
-    modalPDF.style.display = 'flex';
-});
-
-cerrarModal.addEventListener('click', () => {
-    modalPDF.style.display = 'none';
 });

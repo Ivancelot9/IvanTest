@@ -103,6 +103,7 @@ $stmtUser->close();
     <script src="js/modalMostrarDescripcion.js" defer></script>
     <script src="js/seleccionadorCasos.js" defer></script>
     <script src="js/modalEnviarCorreos.js" defer></script>
+    <script src="js/metodoTrabajoPDF.js"  defer></script>
 </head>
 <body
         data-tab-id="<?php echo htmlspecialchars($tab_id); ?>"
@@ -262,18 +263,19 @@ $stmtUser->close();
                         <button type="button" id="btn-agregar-defecto" class="form-button">
                             + Agregar defecto
                         </button>
+                        <button type="button" id="btn-cargar-pdf" class="form-button">
+                            📄 Cargar PDF
+                        </button>
                     </div>
 
                     <div id="bloques-defectos" class="bloques-defectos-container">
                         <!-- Aquí se insertarán dinámicamente los bloques -->
                     </div>
 
-                    <!-- PDF opcional -->
-                    <div class="form-group">
-                        <label for="archivoPDF" title="Sube un archivo PDF si lo tienes">Archivo PDF del caso (opcional)</label>
-                        <input type="file" id="archivoPDF" name="archivoPDF" accept="application/pdf">
-                        <button type="button" id="verPDF" class="form-button" disabled>🔍 Ver PDF</button>
-                    </div>
+                    <!-- Campo oculto real para el PDF (fuera de la vista, pero funcional) -->
+                    <input type="file" id="archivoPDF" name="archivoPDF" accept="application/pdf" style="display: none;">
+
+
 
                     <!-- BOTÓN CONFIRMAR -->
                     <div class="form-group confirm">
@@ -520,11 +522,15 @@ $stmtUser->close();
     </div>
 </div>
 
-<!-- Modal para vista previa del PDF -->
+<!-- Modal para subir y previsualizar PDF -->
 <div id="modal-pdf" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close-modal" id="cerrarModalPDF">❌</span>
-        <embed id="visor-pdf" type="application/pdf" width="100%" height="600px"/>
+
+        <h3>Subir archivo PDF del caso</h3>
+        <input type="file" id="input-pdf-modal" accept="application/pdf">
+        <hr>
+        <embed id="visor-pdf" type="application/pdf" width="100%" height="600px" style="margin-top: 10px; display: none;">
     </div>
 </div>
 
