@@ -109,15 +109,28 @@ $stmtUser->close();
         data-username="<?php echo htmlspecialchars($username); ?>">
 <div class="sidebar">
     <div class="user-dropdown" id="userDropdownToggle">
-        <img src="imagenes/avatar_default.png" alt="Avatar" class="avatar-icon">
+        <img src="imagenes/avatar_default.png" alt="Avatar" class="avatar-icon" id="currentAvatarMini">
         <span id="usernameLabel"><?php echo $nombre; ?></span>
         <i class="fa-solid fa-caret-down"></i>
+
         <div class="user-dropdown-panel" id="userDropdownPanel">
             <div class="user-info">
-                <img src="imagenes/avatar_default.png" alt="Avatar" class="avatar-large">
+                <img src="imagenes/avatar_default.png" alt="Avatar" class="avatar-large" id="currentAvatarLarge">
                 <div class="user-text">
                     <strong><?php echo $nombre; ?></strong>
                     <p class="username">@<?php echo $username; ?></p>
+                </div>
+            </div>
+
+            <hr style="margin: 10px 0; border-color: #333;">
+
+            <div>
+                <p style="margin-bottom: 8px;">Selecciona tu avatar:</p>
+                <div id="avatarSelector" class="avatar-selector">
+                    <img src="uploads/avatars/avatar_chibi_formal_1.png" class="avatar-option" data-avatar="avatar_chibi_formal_1.png">
+                    <img src="uploads/avatars/avatar_chibi_formal_2.png" class="avatar-option" data-avatar="avatar_chibi_formal_2.png">
+                    <img src="uploads/avatars/avatar_chibi_formal_3.png" class="avatar-option" data-avatar="avatar_chibi_formal_3.png">
+                    <img src="uploads/avatars/avatar_chibi_formal_4.png" class="avatar-option" data-avatar="avatar_chibi_formal_4.png">
                 </div>
             </div>
         </div>
