@@ -127,10 +127,10 @@ $stmtUser->close();
             <div>
                 <p style="margin-bottom: 8px;">Selecciona tu avatar:</p>
                 <div id="avatarSelector" class="avatar-selector">
-                    <img src="uploads/avatars/avatar_chibi_formal_1.png" class="avatar-option" data-avatar="avatar_chibi_formal_1.png">
-                    <img src="uploads/avatars/avatar_chibi_formal_2.png" class="avatar-option" data-avatar="avatar_chibi_formal_2.png">
-                    <img src="uploads/avatars/avatar_chibi_formal_3.png" class="avatar-option" data-avatar="avatar_chibi_formal_3.png">
-                    <img src="uploads/avatars/avatar_chibi_formal_4.png" class="avatar-option" data-avatar="avatar_chibi_formal_4.png">
+                    <img src="imagenes/avatar_grammer_latino_1.png" class="avatar-option" data-avatar="avatar_chibi_formal_1.png">
+                    <img src="imagenes/avatar_grammer_latino_2.png" class="avatar-option" data-avatar="avatar_chibi_formal_2.png">
+                    <img src="imagenes/avatar_grammer_latino_3.png" class="avatar-option" data-avatar="avatar_chibi_formal_3.png">
+                    <img src="imagenes/avatar_grammer_latino_4.png" class="avatar-option" data-avatar="avatar_chibi_formal_4.png">
                 </div>
             </div>
         </div>
