@@ -90,5 +90,6 @@ document.addEventListener('click', e => {
     const btn = e.target.closest('.show-desc');
     if (!btn) return;
     const folio = btn.dataset.folio;
+    console.log('[DEBUG] Folio capturado:', folio); // Agrega esta línea
     if (folio) window.mostrarModalDescripcion(folio);
 });

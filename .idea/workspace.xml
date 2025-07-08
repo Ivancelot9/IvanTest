@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Carpetas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dao/guardarCaso.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dao/guardarCaso.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dao/obtenerCaso.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dao/obtenerCaso.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/modalMostrarDescripcion.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/modalMostrarDescripcion.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +66,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;web.server&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -79,8 +76,8 @@
       <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\BuzonQuejas\css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\ContencionMateriales\imagenes" />
       <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\ContencionMateriales\dao" />
+      <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\ContencionMateriales\imagenes" />
       <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\ContencionMateriales\mailer" />
       <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\BuzonQuejas\imagenes" />
       <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\BuzonQuejas\js" />
@@ -221,15 +218,8 @@
       <workItem from="1751465857899" duration="2722000" />
       <workItem from="1751552200009" duration="5406000" />
       <workItem from="1751638665246" duration="4115000" />
-      <workItem from="1751897867051" duration="11958000" />
-    </task>
-    <task id="LOCAL-01674" summary="Mosttar Caso por correo con link">
-      <option name="closed" value="true" />
-      <created>1751308258771</created>
-      <option name="number" value="01674" />
-      <option name="presentableId" value="LOCAL-01674" />
-      <option name="project" value="LOCAL" />
-      <updated>1751308258771</updated>
+      <workItem from="1751897867051" duration="16505000" />
+      <workItem from="1751984011339" duration="1256000" />
     </task>
     <task id="LOCAL-01675" summary="Mosttar Caso por correo con link">
       <option name="closed" value="true" />
@@ -615,7 +605,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751913165435</updated>
     </task>
-    <option name="localTasksCounter" value="1723" />
+    <task id="LOCAL-01723" summary="Carpetas">
+      <option name="closed" value="true" />
+      <created>1751913968840</created>
+      <option name="number" value="01723" />
+      <option name="presentableId" value="LOCAL-01723" />
+      <option name="project" value="LOCAL" />
+      <updated>1751913968840</updated>
+    </task>
+    <option name="localTasksCounter" value="1724" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
