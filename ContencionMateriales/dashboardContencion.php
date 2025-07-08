@@ -108,6 +108,7 @@ $stmtUser->close();
         data-tab-id="<?php echo htmlspecialchars($tab_id); ?>"
         data-username="<?php echo htmlspecialchars($username); ?>">
 <div class="sidebar">
+    <!-- Panel del usuario -->
     <div class="user-dropdown" id="userDropdownToggle">
         <img src="imagenes/avatar_default.png" alt="Avatar" class="avatar-icon" id="currentAvatarMini">
         <span id="usernameLabel"><?php echo $nombre; ?></span>
@@ -127,13 +128,26 @@ $stmtUser->close();
             <div>
                 <p style="margin-bottom: 8px;">Selecciona tu avatar:</p>
                 <div id="avatarSelector" class="avatar-selector">
-                    <img src="imagenes/avatar_grammer_latino_1.png" class="avatar-option" data-avatar="imagenes/av">
-                    <img src="imagenes/avatar_grammer_latino_2.png" class="avatar-option" data-avatar="avatar_chibi_formal_2.png">
-                    <img src="imagenes/avatar_grammer_latino_3.png" class="avatar-option" data-avatar="avatar_chibi_formal_3.png">
-                    <img src="imagenes/avatar_grammer_latino_4.png" class="avatar-option" data-avatar="avatar_chibi_formal_4.png">
+                    <img src="imagenes/avatar_grammer_latino_1.png" class="avatar-option">
+                    <img src="imagenes/avatar_grammer_latino_2.png" class="avatar-option">
+                    <img src="imagenes/avatar_grammer_latino_3.png" class="avatar-option">
+                    <img src="imagenes/avatar_grammer_latino_4.png" class="avatar-option">
+
+                    <!-- Botón para subir foto -->
+                    <label for="customAvatarInput" class="avatar-option custom-avatar-label">
+                        <span>📷</span>
+                        <p style="font-size: 0.7rem;">Tu foto</p>
+                        <input type="file" id="customAvatarInput" accept="image/*" style="display: none;">
+                    </label>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Lightbox para ampliar imagen -->
+    <div id="avatarLightbox" class="avatar-lightbox">
+        <span class="close-avatar">&times;</span>
+        <img id="avatarZoom" src="" alt="Avatar ampliado">
     </div>
 
     <button class="sidebar-btn" data-section="formulario">

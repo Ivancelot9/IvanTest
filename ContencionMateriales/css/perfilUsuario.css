@@ -90,6 +90,80 @@
     border-color: #58a6ff;
 }
 
+.avatar-selector {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 5px;
+}
+
+.avatar-option {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s, border-color 0.2s;
+    object-fit: cover;
+}
+
+.avatar-option:hover {
+    transform: scale(1.1);
+}
+
+.avatar-option.selected {
+    border-color: #58a6ff;
+}
+
+.custom-avatar-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border: 2px dashed #58a6ff;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #58a6ff;
+    font-size: 20px;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+.custom-avatar-label:hover {
+    background-color: rgba(88, 166, 255, 0.1);
+}
+
+.avatar-lightbox {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar-lightbox img {
+    max-width: 300px;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+.close-avatar {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+
 /* Sutil animación */
 @keyframes fadeIn {
     from {
