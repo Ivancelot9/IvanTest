@@ -144,12 +144,6 @@ $stmtUser->close();
         </div>
     </div>
 
-    <!-- Lightbox para ampliar imagen -->
-    <div id="avatarLightbox" class="avatar-lightbox">
-        <span class="close-avatar">&times;</span>
-        <img id="avatarZoom" src="" alt="Avatar ampliado">
-    </div>
-
     <button class="sidebar-btn" data-section="formulario">
         <i class="fa-solid fa-plus"></i>
         Levantar nuevo caso
@@ -523,6 +517,11 @@ $stmtUser->close();
 <div id="modal-image" class="modal-overlay">
     <button class="modal-close close-img">&times;</button>
     <img src="" alt="Vista ampliada">
+</div>
+<!-- Lightbox para ampliar imagen -->
+<div id="avatarLightbox" class="avatar-lightbox">
+    <span class="close-avatar">&times;</span>
+    <img id="avatarZoom" src="" alt="Avatar ampliado">
 </div>
 <script>
     window.defectosCatalogo = [

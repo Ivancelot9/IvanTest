@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Carpetas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/perfilUsuario.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/perfilUsuario.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -221,23 +220,7 @@
       <workItem from="1751552200009" duration="5406000" />
       <workItem from="1751638665246" duration="4115000" />
       <workItem from="1751897867051" duration="16505000" />
-      <workItem from="1751984011339" duration="9102000" />
-    </task>
-    <task id="LOCAL-01680" summary="Mosttar Caso por correo con link">
-      <option name="closed" value="true" />
-      <created>1751316348208</created>
-      <option name="number" value="01680" />
-      <option name="presentableId" value="LOCAL-01680" />
-      <option name="project" value="LOCAL" />
-      <updated>1751316348208</updated>
-    </task>
-    <task id="LOCAL-01681" summary="Mosttar Caso por correo con link">
-      <option name="closed" value="true" />
-      <created>1751381987510</created>
-      <option name="number" value="01681" />
-      <option name="presentableId" value="LOCAL-01681" />
-      <option name="project" value="LOCAL" />
-      <updated>1751381987511</updated>
+      <workItem from="1751984011339" duration="10038000" />
     </task>
     <task id="LOCAL-01682" summary="Mosttar Caso por correo con link">
       <option name="closed" value="true" />
@@ -615,7 +598,23 @@
       <option name="project" value="LOCAL" />
       <updated>1751996329252</updated>
     </task>
-    <option name="localTasksCounter" value="1729" />
+    <task id="LOCAL-01729" summary="Carpetas">
+      <option name="closed" value="true" />
+      <created>1751998619839</created>
+      <option name="number" value="01729" />
+      <option name="presentableId" value="LOCAL-01729" />
+      <option name="project" value="LOCAL" />
+      <updated>1751998619839</updated>
+    </task>
+    <task id="LOCAL-01730" summary="Carpetas">
+      <option name="closed" value="true" />
+      <created>1751998639996</created>
+      <option name="number" value="01730" />
+      <option name="presentableId" value="LOCAL-01730" />
+      <option name="project" value="LOCAL" />
+      <updated>1751998639996</updated>
+    </task>
+    <option name="localTasksCounter" value="1731" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
