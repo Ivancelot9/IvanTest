@@ -268,6 +268,13 @@ $stmtUser->close();
                         <!-- Aquí se insertarán dinámicamente los bloques -->
                     </div>
 
+                    <!-- PDF opcional -->
+                    <div class="form-group">
+                        <label for="archivoPDF" title="Sube un archivo PDF si lo tienes">Archivo PDF del caso (opcional)</label>
+                        <input type="file" id="archivoPDF" name="archivoPDF" accept="application/pdf">
+                        <button type="button" id="verPDF" class="form-button" disabled>🔍 Ver PDF</button>
+                    </div>
+
                     <!-- BOTÓN CONFIRMAR -->
                     <div class="form-group confirm">
                         <button type="submit" class="confirm-button">Confirmar</button>
@@ -510,6 +517,14 @@ $stmtUser->close();
                 <div id="r-defectos-container" class="defects-container"></div>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Modal para vista previa del PDF -->
+<div id="modal-pdf" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-modal" id="cerrarModalPDF">❌</span>
+        <embed id="visor-pdf" type="application/pdf" width="100%" height="600px"/>
     </div>
 </div>
 
