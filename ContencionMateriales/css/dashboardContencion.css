@@ -171,6 +171,12 @@ body {
     width: fit-content;
     transition: background 0.2s, transform 0.2s;
 }
+
+/* Aplica solo al botón “+ Agregar defecto” */
+#btn-agregar-defecto {
+    margin-top: 20px;  /* lo baja 20px respecto a su posición original */
+}
+
 .form-button:hover {
     background-color: #1558b0;
     transform: scale(1.03);
