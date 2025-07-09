@@ -257,28 +257,26 @@ $stmtUser->close();
                         </select>
                     </div>
 
-                    <!-- Defectos + Toggle + Cargar PDF (inline) -->
+                    <!-- Defectos + Toggle + PDF (inline) -->
                     <div class="form-group buttons-inline">
-                        <!-- Botón de agregar defecto -->
+                        <!-- Botón de agregar defecto, siempre visible -->
                         <button type="button" id="btn-agregar-defecto" class="form-button">
                             + Agregar defecto
                         </button>
 
-                        <!-- Switch para habilitar el "Método de Trabajo" -->
-                        <label class="switch">
-                            <input type="checkbox" id="toggle-metodo-trabajo">
-                            <span class="slider"></span>
-                        </label>
-                        <span style="font-size:0.9rem;">Agregar método de trabajo</span>
-
-                        <!-- Botón de PDF, oculto hasta que el switch esté activo -->
-                        <button
-                                type="button"
-                                id="btn-cargar-pdf"
-                                class="form-button"
-                                style="display: none;">
-                            📄 Cargar Método de Trabajo
-                        </button>
+                        <!-- Agrupamos toggle + botón PDF en columna -->
+                        <div class="toggle-block">
+                            <label class="toggle-label">
+                                <input type="checkbox" id="toggle-metodo-trabajo">
+                                Agregar método de trabajo
+                            </label>
+                            <button
+                                    type="button"
+                                    id="btn-cargar-pdf"
+                                    class="form-button">
+                                📄 Cargar Método de Trabajo
+                            </button>
+                        </div>
                     </div>
 
                     <div id="bloques-defectos" class="bloques-defectos-container">
