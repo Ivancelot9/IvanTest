@@ -1,9 +1,9 @@
 /* ———————— Modal PDF ———————— */
 .pdf-modal {
     position: fixed;
-    inset: 0;                            /* top/right/bottom/left: 0 */
+    inset: 0;
     background: rgba(0, 0, 0, 0.5);
-    display: none;                       /* se activa con la clase .show */
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 9999;
@@ -54,26 +54,27 @@
 
 /* ———————— Botón PDF ———————— */
 #btn-cargar-pdf {
-    background-color: #e42101;          /* rojo estilo PDF */
-    color: #ffffff;                     /* texto/icono blanco */
-    padding: 6px 12px;                  /* vertical 6px, horizontal 12px */
+    display: none;                     /* <-- oculto por defecto */
+    background-color: #e42101;
+    color: #fff;
+    padding: 6px 12px;
     font-size: 0.9rem;
     line-height: 1;
     border-radius: 4px;
-    display: inline-flex;               /* para icono + texto */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;                           /* espacio entre icono y texto */
-    transition: width 0.2s ease, padding 0.2s ease, background-color 0.2s;
+    gap: 6px;
+    transition: width 0.2s ease, padding 0.2s ease;
 }
 #btn-cargar-pdf:hover {
-    background-color: #b71c1c;          /* rojo más oscuro al hover */
+    background-color: #b71c1c;
 }
 
 /* ———————— Estado compacto: sólo icono ———————— */
 #btn-cargar-pdf.compact {
-    width: 34px;                        /* cuadrado pequeño */
-    padding: 6px;                       /* solo padding uniforme */
+    width: 34px;
+    padding: 6px;
 }
 
 /* ———————— Nombre del PDF truncado ———————— */
