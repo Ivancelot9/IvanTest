@@ -265,20 +265,26 @@ $stmtUser->close();
                                 <input type="checkbox" id="toggle-metodo-trabajo">
                                 Agregar método de trabajo
                             </label>
-                            <button type="button"
+
+                            <button
+                                    type="button"
                                     id="btn-cargar-pdf"
                                     class="form-button"
                                     style="display: none;">
-                                📄 Cargar Método de Trabajo
+                                📄 Cargar método de trabajo
                             </button>
-                            <!-- Indicador de estado -->
-                            <span id="pdf-status"
-                                  style="display: none;
-                         color: #2ea043;
-                         margin-top: 6px;
-                         font-size: 0.9rem;">
-              ✔ PDF listo
-            </span>
+
+                            <!-- Indicador de nombre de archivo -->
+                            <span
+                                    id="pdf-file-name"
+                                    style="
+      display: none;
+      color: #2ea043;
+      margin-top: 6px;
+      font-size: 0.9rem;
+    ">
+    <!-- Aquí aparecerá el nombre del PDF -->
+  </span>
                         </div>
 
                         <button type="button"
@@ -545,7 +551,7 @@ $stmtUser->close();
     </div>
 </div>
 
-<!-- Modal para subir y previsualizar PDF -->
+<!-- Modal PDF -->
 <div id="modal-pdf" class="pdf-modal">
     <div class="pdf-modal-content">
         <button class="pdf-close" id="cerrarModalPDF">❌</button>
@@ -555,7 +561,6 @@ $stmtUser->close();
         <div class="pdf-preview-container">
             <embed id="visor-pdf" type="application/pdf" />
         </div>
-        <!-- Botón de confirmación -->
         <div style="text-align: right; margin-top: 16px;">
             <button id="confirmar-pdf" class="form-button">Guardar PDF</button>
         </div>

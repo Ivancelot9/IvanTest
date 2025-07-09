@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Carpetas">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Agregando Metodo de Trabajo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/metodoTrabajoPDF.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/metodoTrabajoPDF.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,15 +221,7 @@
       <workItem from="1751638665246" duration="4115000" />
       <workItem from="1751897867051" duration="16505000" />
       <workItem from="1751984011339" duration="14095000" />
-      <workItem from="1752071160716" duration="7739000" />
-    </task>
-    <task id="LOCAL-01700" summary="Mosttar Caso por correo con link">
-      <option name="closed" value="true" />
-      <created>1751392639304</created>
-      <option name="number" value="01700" />
-      <option name="presentableId" value="LOCAL-01700" />
-      <option name="project" value="LOCAL" />
-      <updated>1751392639304</updated>
+      <workItem from="1752071160716" duration="8413000" />
     </task>
     <task id="LOCAL-01701" summary="Mosttar Caso por correo con link">
       <option name="closed" value="true" />
@@ -616,7 +607,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752086913991</updated>
     </task>
-    <option name="localTasksCounter" value="1749" />
+    <task id="LOCAL-01749" summary="Agregando Metodo de Trabajo">
+      <option name="closed" value="true" />
+      <created>1752087487273</created>
+      <option name="number" value="01749" />
+      <option name="presentableId" value="LOCAL-01749" />
+      <option name="project" value="LOCAL" />
+      <updated>1752087487273</updated>
+    </task>
+    <option name="localTasksCounter" value="1750" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -668,7 +667,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Barra Agregar" />
     <MESSAGE value="Agregar Componentes Formulario" />
     <MESSAGE value="Diseño Responsivo Celular" />
     <MESSAGE value="Tabla Mis Casos" />
@@ -693,7 +691,8 @@
     <MESSAGE value="Envio a Externos" />
     <MESSAGE value="Mosttar Caso por correo con link" />
     <MESSAGE value="Carpetas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Carpetas" />
+    <MESSAGE value="Agregando Metodo de Trabajo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregando Metodo de Trabajo" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
