@@ -52,16 +52,22 @@
     display: block;
 }
 
-/* ———————— Botón PDF compacto ———————— */
+/* ———————— Botón PDF ———————— */
 #btn-cargar-pdf {
-    padding: 6px;
-    font-size: 1.1rem;
+    background-color: #e42101;          /* rojo estilo PDF */
+    color: #ffffff;                     /* texto/icono blanco */
+    padding: 6px 12px;                  /* ajustar altura y algo de espacio horizontal */
+    font-size: 0.9rem;
     line-height: 1;
-    width: 34px;
+    border-radius: 4px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 4px;
+    gap: 6px;                           /* espacio entre icono y texto */
+    transition: background-color 0.2s;
+}
+#btn-cargar-pdf:hover {
+    background-color: #b71c1c;          /* rojo más oscuro al hover */
 }
 
 /* ———————— Nombre del PDF truncado ———————— */
