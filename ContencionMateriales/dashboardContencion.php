@@ -543,11 +543,10 @@ $stmtUser->close();
 <!-- Modal para subir y previsualizar PDF -->
 <div id="modal-pdf" class="pdf-modal">
     <div class="pdf-modal-content">
-        <span class="pdf-close" id="cerrarModalPDF">❌</span>
-
+        <button class="pdf-close" id="cerrarModalPDF">❌</button>
         <h3>Subir archivo PDF del caso</h3>
         <input type="file" id="input-pdf-modal" accept="application/pdf">
-
+        <hr>
         <div class="pdf-preview-container">
             <embed id="visor-pdf" type="application/pdf" />
         </div>
