@@ -1,51 +1,56 @@
-// Elementos del DOM
+// Elementos del DOM ya existentes...
 const toggle      = document.getElementById('toggle-metodo-trabajo');
-const btnPDF       = document.getElementById('btn-cargar-pdf');
-const modalPDF     = document.getElementById('modal-pdf');
-const cerrarModal  = document.getElementById('cerrarModalPDF');
-const inputModal   = document.getElementById('input-pdf-modal');
-const visorPDF     = document.getElementById('visor-pdf');
-const inputOculto  = document.getElementById('archivoPDF');
+const btnPDF      = document.getElementById('btn-cargar-pdf');
+const modalPDF    = document.getElementById('modal-pdf');
+const cerrarModal = document.getElementById('cerrarModalPDF');
+const inputModal  = document.getElementById('input-pdf-modal');
+const visorPDF    = document.getElementById('visor-pdf');
+const inputOculto = document.getElementById('archivoPDF');
+const pdfStatus   = document.getElementById('pdf-status');
+const btnConfirm  = document.getElementById('confirmar-pdf');
 
-// 1) Mostrar/ocultar el botón de PDF según el toggle
+// 1) Toggle para mostrar/ocultar botón de carga
 toggle.addEventListener('change', () => {
-    if (toggle.checked) {
-        btnPDF.style.display = 'inline-block';
-    } else {
-        btnPDF.style.display = 'none';
-        inputOculto.value = ''; // limpia cualquier PDF previo
+    btnPDF.style.display = toggle.checked ? 'inline-block' : 'none';
+    if (!toggle.checked) {
+        inputOculto.value = '';
+        pdfStatus.style.display = 'none';
     }
 });
 
-// 2) Abrir el modal al hacer clic en "📄 Cargar Método de Trabajo"
+// 2) Abrir modal
 btnPDF.addEventListener('click', () => {
-    modalPDF.classList.add('show');   // en lugar de style.display = 'flex'
-    inputModal.value       = '';      // resetea el input interno
-    visorPDF.style.display = 'none';  // oculta el embed hasta que haya archivo
-    visorPDF.src           = '';
+    modalPDF.classList.add('show');
+    inputModal.value = '';
+    visorPDF.style.display = 'none';
 });
 
-// 3) Cerrar el modal
+// 3) Cerrar modal
 cerrarModal.addEventListener('click', () => {
-    modalPDF.classList.remove('show'); // en lugar de style.display = 'none'
+    modalPDF.classList.remove('show');
 });
 
-// 4) Cuando el usuario elige un PDF en el modal
+// 4) Previsualizar PDF al seleccionarlo
 inputModal.addEventListener('change', () => {
     const archivo = inputModal.files[0];
     if (archivo && archivo.type === 'application/pdf') {
-        // Previsualizar PDF
-        const url = URL.createObjectURL(archivo);
-        visorPDF.src           = url;
+        visorPDF.src = URL.createObjectURL(archivo);
         visorPDF.style.display = 'block';
-
-        // Copiar el archivo al input oculto real del formulario
+        // copia al input oculto
         const dt = new DataTransfer();
         dt.items.add(archivo);
         inputOculto.files = dt.files;
     } else {
-        // Si no es PDF válido, limpiar vista y formulario
         visorPDF.style.display = 'none';
-        inputOculto.value      = '';
+        inputOculto.value = '';
     }
+});
+
+// 5) Confirmar dentro del modal
+btnConfirm.addEventListener('click', () => {
+    if (!inputModal.files.length) {
+        return Swal.fire('Error', 'Selecciona un PDF antes de guardar.', 'error');
+    }
+    modalPDF.classList.remove('show');
+    pdfStatus.style.display = 'inline-block';
 });

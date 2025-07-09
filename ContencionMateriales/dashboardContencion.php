@@ -258,41 +258,46 @@ $stmtUser->close();
                         </select>
                     </div>
 
-                    <!-- PDF + Toggle antes, luego Defectos -->
+                    <!-- PDF + Toggle + Defectos -->
                     <div class="form-group buttons-inline">
-                        <!-- Agrupamos toggle + botón PDF en columna -->
                         <div class="toggle-block">
                             <label class="toggle-label">
                                 <input type="checkbox" id="toggle-metodo-trabajo">
                                 Agregar método de trabajo
                             </label>
-                            <button
-                                    type="button"
+                            <button type="button"
                                     id="btn-cargar-pdf"
                                     class="form-button"
                                     style="display: none;">
                                 📄 Cargar Método de Trabajo
                             </button>
+                            <!-- Indicador de estado -->
+                            <span id="pdf-status"
+                                  style="display: none;
+                         color: #2ea043;
+                         margin-top: 6px;
+                         font-size: 0.9rem;">
+              ✔ PDF listo
+            </span>
                         </div>
 
-                        <!-- Botón de agregar defecto, siempre visible -->
-                        <button type="button" id="btn-agregar-defecto" class="form-button">
+                        <button type="button"
+                                id="btn-agregar-defecto"
+                                class="form-button">
                             + Agregar defecto
                         </button>
                     </div>
 
                     <div id="bloques-defectos" class="bloques-defectos-container">
-                        <!-- Aquí se insertarán dinámicamente los bloques -->
+                        <!-- bloques dinámicos -->
                     </div>
 
-                    <!-- Input real oculto para el PDF -->
-                    <input
-                            type="file"
-                            id="archivoPDF"
-                            name="archivoPDF"
-                            accept="application/pdf"
-                            style="display: none;">
-
+                    <!-- Input oculto real para el PDF -->
+                    <input type="file"
+                           id="archivoPDF"
+                           name="archivoPDF"
+                           accept="application/pdf"
+                           style="display: none;">
 
 
                     <!-- BOTÓN CONFIRMAR -->
@@ -549,6 +554,10 @@ $stmtUser->close();
         <hr>
         <div class="pdf-preview-container">
             <embed id="visor-pdf" type="application/pdf" />
+        </div>
+        <!-- Botón de confirmación -->
+        <div style="text-align: right; margin-top: 16px;">
+            <button id="confirmar-pdf" class="form-button">Guardar PDF</button>
         </div>
     </div>
 </div>
