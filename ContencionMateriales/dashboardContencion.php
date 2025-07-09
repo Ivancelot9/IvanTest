@@ -258,13 +258,8 @@ $stmtUser->close();
                         </select>
                     </div>
 
-                    <!-- Defectos + Toggle + PDF (inline) -->
+                    <!-- PDF + Toggle antes, luego Defectos -->
                     <div class="form-group buttons-inline">
-                        <!-- Botón de agregar defecto, siempre visible -->
-                        <button type="button" id="btn-agregar-defecto" class="form-button">
-                            + Agregar defecto
-                        </button>
-
                         <!-- Agrupamos toggle + botón PDF en columna -->
                         <div class="toggle-block">
                             <label class="toggle-label">
@@ -274,10 +269,16 @@ $stmtUser->close();
                             <button
                                     type="button"
                                     id="btn-cargar-pdf"
-                                    class="form-button">
+                                    class="form-button"
+                                    style="display: none;">
                                 📄 Cargar Método de Trabajo
                             </button>
                         </div>
+
+                        <!-- Botón de agregar defecto, siempre visible -->
+                        <button type="button" id="btn-agregar-defecto" class="form-button">
+                            + Agregar defecto
+                        </button>
                     </div>
 
                     <div id="bloques-defectos" class="bloques-defectos-container">
