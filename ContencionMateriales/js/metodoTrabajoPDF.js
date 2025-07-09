@@ -12,23 +12,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let storedFile = null;
     let storedURL  = null;
 
-    //  Pone el botón en su estado inicial (ancho + texto)
+    //  Función para poner el botón en modo “Agregar” (ancho, con texto)
     function resetBtnPDF() {
         btnPDF.classList.remove('compact');
         btnPDF.textContent = '📄 Agregar método de trabajo';
         btnPDF.title       = 'Agregar método de trabajo';
     }
 
-    // Estado inicial: oculto y con texto
+    //  Estado inicial: oculto y en “Agregar”
     btnPDF.style.display = 'none';
     resetBtnPDF();
 
-    // 1) Toggle: mostrar/ocultar botón de PDF
+    // 1) Toggle: al marcar DESCOMPACTA y muestra; al desmarcar reinicia todo
     toggle.addEventListener('change', () => {
         if (toggle.checked) {
-            btnPDF.style.display = 'inline-flex';
+            resetBtnPDF();                          // quita compact
+            btnPDF.style.display = 'inline-flex';   // muestra ancho
         } else {
-            btnPDF.style.display = 'none';
+            btnPDF.style.display = 'none';          // oculta
             storedFile = null;
             storedURL  = null;
             inputOculto.value      = '';
@@ -70,31 +71,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 5) Confirmar dentro del modal
+    // 5) Confirmar dentro del modal —> compactar botón
     btnConfirm.addEventListener('click', () => {
         const archivo = inputModal.files[0];
         if (!archivo) {
             return Swal.fire('Error', 'Selecciona un PDF antes de guardar.', 'error');
         }
 
-        // Guardar archivo
+        // guardamos en memoria y en el input oculto
         storedFile = archivo;
         storedURL  = URL.createObjectURL(archivo);
-        const dt    = new DataTransfer();
+        const dt = new DataTransfer();
         dt.items.add(archivo);
         inputOculto.files = dt.files;
 
-        // Mostrar nombre truncado con tooltip
+        // mostramos nombre truncado+tooltip
         pdfFileNameEl.textContent   = archivo.name;
         pdfFileNameEl.title         = archivo.name;
         pdfFileNameEl.style.display = 'inline-block';
 
-        // Cambiar botón a compacto “Modificar”
+        // compactamos el botón a solo icono
         btnPDF.classList.add('compact');
         btnPDF.innerHTML = '<i class="fa fa-pencil-alt" aria-hidden="true"></i>';
         btnPDF.title     = 'Modificar método de trabajo';
 
-        // Cerrar modal
+        // cerramos el modal
         modalPDF.classList.remove('show');
     });
 
