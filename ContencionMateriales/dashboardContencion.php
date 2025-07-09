@@ -79,6 +79,7 @@ $stmtUser->close();
     <link rel="stylesheet" href="css/perfilUsuario.css" />
     <link rel="stylesheet" href="css/tablaCasos.css" />
     <link rel="stylesheet" href="css/modalEnviarCorreos.css">
+    <link rel="stylesheet" href="css/modalPDF.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 
@@ -539,14 +540,16 @@ $stmtUser->close();
 </div>
 
 <!-- Modal para subir y previsualizar PDF -->
-<div id="modal-pdf" class="modal" style="display: none;">
-    <div class="modal-content">
-        <span class="close-modal" id="cerrarModalPDF">❌</span>
+<div id="modal-pdf" class="pdf-modal">
+    <div class="pdf-modal-content">
+        <span class="pdf-close" id="cerrarModalPDF">❌</span>
 
         <h3>Subir archivo PDF del caso</h3>
         <input type="file" id="input-pdf-modal" accept="application/pdf">
-        <hr>
-        <embed id="visor-pdf" type="application/pdf" width="100%" height="600px" style="margin-top: 10px; display: none;">
+
+        <div class="pdf-preview-container">
+            <embed id="visor-pdf" type="application/pdf" />
+        </div>
     </div>
 </div>
 
