@@ -48,16 +48,4 @@
     margin-left: 8px;
 }
 
-/* Afinar solo el botón de PDF para que sea más compacto */
-#btn-cargar-pdf {
-    padding: 6px 12px;       /* menos altura y un poquito de espacio horizontal */
-    font-size: 0.9rem;       /* un poco más pequeño que el resto */
-    line-height: 1.2;        /* compacta la línea interna */
-    border-radius: 4px;      /* bordes un poco menos redondeados */
-}
 
-/* Asegúrate de que en tu contenedor esté centrado verticalmente */
-.form-group.buttons-inline,
-.toggle-block {
-    align-items: center;     /* todos los elementos centrados en su fila/columna */
-}
