@@ -12,24 +12,24 @@ const btnConfirm    = document.getElementById('confirmar-pdf');
 let storedFile = null;
 let storedURL  = null;
 
-/**
- * Pone el botón de PDF en su estado inicial:
- * 📄 Agregar método de trabajo (rojo con texto blanco)
- */
+//  Función para dejar el botón en estado “Agregar” (ancho)
+//  Quita la clase .compact y pone texto + icono
 function resetBtnPDF() {
+    btnPDF.classList.remove('compact');
     btnPDF.innerHTML = '📄 Agregar método de trabajo';
     btnPDF.title     = 'Agregar método de trabajo';
 }
 
 // Estado inicial
 resetBtnPDF();
-// El btnPDF ya está oculto por CSS inline; el toggle lo mostrará.
 
 // 1) Toggle: mostrar/ocultar botón de PDF
 toggle.addEventListener('change', () => {
-    btnPDF.style.display = toggle.checked ? 'inline-flex' : 'none';
-    if (!toggle.checked) {
-        // Reiniciar todo si se desactiva
+    if (toggle.checked) {
+        btnPDF.style.display = 'inline-flex';
+    } else {
+        btnPDF.style.display = 'none';
+        // Reiniciamos todo si se desactiva
         storedFile = null;
         storedURL  = null;
         inputOculto.value      = '';
@@ -78,7 +78,7 @@ btnConfirm.addEventListener('click', () => {
         return Swal.fire('Error', 'Selecciona un PDF antes de guardar.', 'error');
     }
 
-    // Guardar archivo en memoria y en el input oculto
+    // Guardar archivo internamente y en el input oculto
     storedFile = archivo;
     storedURL  = URL.createObjectURL(archivo);
     const dt = new DataTransfer();
@@ -90,7 +90,8 @@ btnConfirm.addEventListener('click', () => {
     pdfFileNameEl.title       = archivo.name;
     pdfFileNameEl.style.display = 'inline-block';
 
-    // Cambiar botón a estado “Modificar”
+    // Cambiar botón a estado compacto “Modificar”
+    btnPDF.classList.add('compact');
     btnPDF.innerHTML = '<i class="fa fa-pencil-alt" aria-hidden="true"></i>';
     btnPDF.title     = 'Modificar método de trabajo';
 
