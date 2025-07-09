@@ -213,7 +213,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 200px;        /* separación entre botones */
+    gap: 250px;        /* separación entre botones */
     margin-bottom: 20px; /* igual espaciado que los demás grupos */
 }
 
