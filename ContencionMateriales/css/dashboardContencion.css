@@ -222,7 +222,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* checkbox + etiqueta alineados a la izquierda */
-    gap: 6px;                /* espacio pequeño entre label y botón */
+    gap: 15px;                /* espacio pequeño entre label y botón */
 }
 
 /* Oculta el botón PDF hasta que el checkbox esté marcado */
