@@ -258,7 +258,7 @@ $stmtUser->close();
                         </select>
                     </div>
 
-                    <!-- PDF + Toggle + Defectos -->
+                    <!-- PDF + Toggle + Defectos (con botón compacto y nombre truncado) -->
                     <div class="form-group buttons-inline">
                         <div class="toggle-block">
                             <label class="toggle-label">
@@ -266,44 +266,64 @@ $stmtUser->close();
                                 Agregar método de trabajo
                             </label>
 
+                            <!-- Botón compacto solo con icono, aparece tras activar el checkbox -->
                             <button
                                     type="button"
                                     id="btn-cargar-pdf"
                                     class="form-button"
-                                    style="display: none;">
-                                📄 Cargar método de trabajo
+                                    title="Modificar método de trabajo"
+                                    style="display: none;
+             padding: 6px;
+             font-size: 1.1rem;
+             line-height: 1;
+             width: 34px;
+             display: inline-flex;
+             align-items: center;
+             justify-content: center;
+             border-radius: 4px;">
+                                <i class="fa fa-pencil-alt" aria-hidden="true"></i>
                             </button>
 
-                            <!-- Indicador de nombre de archivo -->
+                            <!-- Nombre del PDF, truncado si es muy largo -->
                             <span
                                     id="pdf-file-name"
                                     style="
-      display: none;
-      color: #2ea043;
-      margin-top: 6px;
-      font-size: 0.9rem;
-    ">
-    <!-- Aquí aparecerá el nombre del PDF -->
-  </span>
+        display: none;
+        color: #2ea043;
+        margin-top: 6px;
+        font-size: 0.9rem;
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+      "
+                                    title=""
+                            ></span>
                         </div>
 
-                        <button type="button"
+                        <!-- Botón de agregar defecto -->
+                        <button
+                                type="button"
                                 id="btn-agregar-defecto"
-                                class="form-button">
+                                class="form-button"
+                                style="padding: 10px 16px;">
                             + Agregar defecto
                         </button>
                     </div>
 
+                    <!-- Contenedor para los bloques dinámicos de defectos -->
                     <div id="bloques-defectos" class="bloques-defectos-container">
-                        <!-- bloques dinámicos -->
+                        <!-- aquí se insertan los bloques vía JS -->
                     </div>
 
-                    <!-- Input oculto real para el PDF -->
-                    <input type="file"
-                           id="archivoPDF"
-                           name="archivoPDF"
-                           accept="application/pdf"
-                           style="display: none;">
+                    <!-- Input oculto para enviar el PDF en el formulario -->
+                    <input
+                            type="file"
+                            id="archivoPDF"
+                            name="archivoPDF"
+                            accept="application/pdf"
+                            style="display: none;">
 
 
                     <!-- BOTÓN CONFIRMAR -->
