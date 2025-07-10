@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Agregando Metodo de Trabajo">
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/modalPDF.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/modalPDF.css" afterDir="false" />
-    </list>
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Agregando Metodo de Trabajo" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -221,15 +219,7 @@
       <workItem from="1751897867051" duration="16505000" />
       <workItem from="1751984011339" duration="14095000" />
       <workItem from="1752071160716" duration="11882000" />
-      <workItem from="1752157363871" duration="9018000" />
-    </task>
-    <task id="LOCAL-01722" summary="Carpetas">
-      <option name="closed" value="true" />
-      <created>1751913165435</created>
-      <option name="number" value="01722" />
-      <option name="presentableId" value="LOCAL-01722" />
-      <option name="project" value="LOCAL" />
-      <updated>1751913165435</updated>
+      <workItem from="1752157363871" duration="9693000" />
     </task>
     <task id="LOCAL-01723" summary="Carpetas">
       <option name="closed" value="true" />
@@ -615,7 +605,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752171449385</updated>
     </task>
-    <option name="localTasksCounter" value="1771" />
+    <task id="LOCAL-01771" summary="Agregando Metodo de Trabajo">
+      <option name="closed" value="true" />
+      <created>1752171866393</created>
+      <option name="number" value="01771" />
+      <option name="presentableId" value="LOCAL-01771" />
+      <option name="project" value="LOCAL" />
+      <updated>1752171866393</updated>
+    </task>
+    <option name="localTasksCounter" value="1772" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

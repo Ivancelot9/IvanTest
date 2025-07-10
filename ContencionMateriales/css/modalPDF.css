@@ -21,18 +21,18 @@
     display: flex;
 }
 
-/* Contenedor flexible para controlar overflow y footer */
+/* Contenedor con mayor altura máxima */
 .pdf-modal-content {
     background: var(--card-bg);
     border: 2px solid var(--card-border-alt);
     border-radius: 8px;
     padding: 24px;
     width: 90%;
-    max-width: 600px;
-    max-height: 80vh;
+    max-width: 800px;     /* un poco más ancho */
+    max-height: 90vh;     /* más alto */
     display: flex;
     flex-direction: column;
-    overflow: hidden;               /* elimina scroll externo */
+    overflow: hidden;     /* sólo scroll interno */
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', sans-serif;
     color: var(--text-dark);
@@ -70,10 +70,10 @@
 
 /* ———————— Vista previa de PDF ———————— */
 .pdf-preview-container {
-    flex: 1 1 auto;                /* ocupa todo el espacio disponible */
+    height: 60vh;            /* ahora ocupa el 60% de la ventana */
     border: 2px solid var(--card-border-alt);
     border-radius: 6px;
-    overflow: auto;                /* scroll solo aquí dentro */
+    overflow: auto;          /* scroll solo aquí */
     background: #fff;
     margin-bottom: 16px;
 }
@@ -83,7 +83,7 @@
     display: block;
 }
 
-/* ———————— Estilo “Choose File” ———————— */
+/* ———————— “Choose File” estilado ———————— */
 #input-pdf-modal {
     width: 100%;
     box-sizing: border-box;
@@ -102,7 +102,6 @@
     margin-right: 8px;
     border-radius: 4px;
     cursor: pointer;
-    font-family: inherit;
     font-size: 0.9rem;
     color: var(--dark-bg);
     transition: background-color 0.2s, border-color 0.2s;
@@ -112,7 +111,7 @@
     color: #fff;
 }
 
-/* ———————— Botón PDF (normal) ———————— */
+/* ———————— Botón PDF principal ———————— */
 #btn-cargar-pdf {
     display: none;                  /* controlado por JS */
     background: #fff;
@@ -135,7 +134,7 @@
     border-color: #b71c1c;
 }
 
-/* ———————— Botón PDF (compacto) ———————— */
+/* ———————— Botón PDF compacto ———————— */
 #btn-cargar-pdf.compact {
     width: 34px;
     height: 34px;
@@ -150,7 +149,7 @@
     margin: 0;
 }
 
-/* ———————— Nombre del PDF truncado ———————— */
+/* ———————— Nombre PDF truncado ———————— */
 #pdf-file-name {
     display: inline-block;
     color: #2ea043;
@@ -166,13 +165,13 @@
     cursor: default;
 }
 
-/* ———————— Botón Guardar PDF (footer) ———————— */
+/* ———————— Botón Guardar PDF ———————— */
 #confirmar-pdf {
-    align-self: flex-end;           /* lo coloca al final */
+    align-self: flex-end;
     margin-top: 12px;
 }
 
-/* ———————— Layout: checkbox arriba, luego botón + nombre debajo ———————— */
+/* ———————— Layout toggle + PDF ———————— */
 .toggle-block {
     display: grid;
     grid-template-columns: max-content auto;
