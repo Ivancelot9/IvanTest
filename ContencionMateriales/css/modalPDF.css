@@ -18,34 +18,41 @@
     width: 90%;
     max-width: 600px;
     max-height: 80vh;
-    overflow: visible;               /* el scroll externo desaparece */
+    overflow: visible;            /* elimina scroll externo */
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
     font-family: 'Segoe UI', sans-serif;
     color: #1c1e21;
     position: relative;
 }
 
-/* Botón de cierre: círculo verde con X azul */
+/* ———————— Botón de cierre ———————— */
 .pdf-close {
     position: absolute;
     top: 12px;
     right: 12px;
     width: 32px;
     height: 32px;
-    background-color: #2ea043;       /* verde del Confirmar */
+    background: transparent;       /* círculo transparente */
+    border: 2px solid transparent; /* sin borde por defecto */
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease,
+    border-color     0.2s ease;
 }
 .pdf-close i {
-    color: #1e6cd1;                  /* azul del botón Guardar PDF */
+    color: #1e6cd1;               /* X azul */
     font-size: 1rem;
+    transition: color 0.2s ease;
 }
 .pdf-close:hover {
-    background-color: #238636;       /* verde oscuro al hover */
+    background-color: rgba(30, 108, 209, 0.1); /* fondo azul muy pálido */
+    border-color: #1e6cd1;                    /* borde azul */
+}
+.pdf-close:hover i {
+    color: #1558b0;               /* X más oscura al hover */
 }
 
 /* ———————— Vista previa ———————— */
@@ -54,7 +61,7 @@
     height: 400px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    overflow: auto;                  /* sólo scroll interno */
+    overflow: auto;               /* scroll solo interno */
     margin-bottom: 16px;
 }
 .pdf-preview-container embed {
@@ -63,39 +70,39 @@
     display: block;
 }
 
-/* ———————— Botón PDF (estado normal) ———————— */
+/* ———————— Botón PDF (normal) ———————— */
 #btn-cargar-pdf {
-    display: none;                   /* oculto por defecto */
-    background-color: #ffffff;       /* fondo blanco */
-    border: 2px solid #e42101;       /* borde rojo */
-    color: #e42101;                  /* icono/texto rojo */
-    padding: 8px 16px;               /* espacio interior */
+    display: none;                /* oculto por defecto */
+    background-color: #ffffff;    /* fondo blanco */
+    border: 2px solid #e42101;    /* borde rojo */
+    color: #e42101;               /* icono/texto rojo */
+    padding: 8px 16px;
     font-size: 0.9rem;
     line-height: 1;
     border-radius: 4px;
-    display: inline-flex;            /* icono + texto */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;                        /* separación icono/texto */
-    white-space: nowrap;             /* texto en una línea */
-    width: auto;                     /* crece con el contenido */
+    gap: 8px;
+    white-space: nowrap;
+    width: auto;
     transition: background-color 0.2s ease,
     border-color      0.2s ease,
     width             0.2s ease;
 }
 #btn-cargar-pdf:hover {
-    background-color: #ffecec;       /* rojo pálido */
-    border-color: #b71c1c;           /* borde más oscuro */
+    background-color: #ffecec;
+    border-color: #b71c1c;
     cursor: pointer;
 }
 
-/* ———————— Botón PDF (estado compacto) ———————— */
+/* ———————— Botón PDF (compacto) ———————— */
 #btn-cargar-pdf.compact {
-    width: 34px;                     /* cuadrado pequeño */
+    width: 34px;
     height: 34px;
-    padding: 0;                      /* sin padding extra */
+    padding: 0;
     border-radius: 4px;
-    display: inline-flex;            /* centra icono */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
 }
@@ -127,7 +134,7 @@
     grid-template-areas:
     "label label"
     "btn   name";
-    gap: 4px 12px; /* fila x columna gap */
+    gap: 4px 12px;
     align-items: center;
 }
 .toggle-block > label {
