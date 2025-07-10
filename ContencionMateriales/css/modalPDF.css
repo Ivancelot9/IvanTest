@@ -1,9 +1,9 @@
 /* ———————— Modal PDF ———————— */
 .pdf-modal {
     position: fixed;
-    inset: 0;
+    inset: 0;                            /* top/right/bottom/left: 0 */
     background: rgba(0, 0, 0, 0.5);
-    display: none;
+    display: none;                       /* se activa con la clase .show */
     justify-content: center;
     align-items: center;
     z-index: 9999;
@@ -52,43 +52,50 @@
     display: block;
 }
 
-/* ———————— Botón PDF ———————— */
+/* ———————— Botón PDF (estado normal) ———————— */
 #btn-cargar-pdf {
-    /* oculto por defecto */
-    display: none;
+    display: none;                       /* oculto por defecto */
 
-    /* estilo rojo PDF */
-    background-color: #e42101;
-    color: #fff;
+    background-color: #ffffff;           /* fondo blanco */
+    border: 2px solid #e42101;           /* borde rojo */
+    color: #e42101;                      /* texto/icono rojo */
 
-    /* padding ancho para texto */
-    padding: 6px 12px;
+    padding: 8px 16px;                   /* espacio interior */
     font-size: 0.9rem;
     line-height: 1;
     border-radius: 4px;
 
-    /* flex para icono+texto */
-    display: inline-flex;
+    display: inline-flex;                /* icono + texto */
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 8px;                            /* separación icono/texto */
 
-    /* evita wrap y crece al contenido */
-    white-space: nowrap;
-    width: auto;
+    white-space: nowrap;                 /* texto en una línea */
+    width: auto;                         /* crece con el contenido */
 
-    transition: width 0.2s ease, padding 0.2s ease, background-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, width 0.2s ease;
 }
 #btn-cargar-pdf:hover {
-    background-color: #b71c1c;
+    background-color: #ffecec;           /* rojo muy pálido al hover */
+    border-color: #b71c1c;               /* borde rojo más oscuro */
     cursor: pointer;
 }
 
-/* ———————— Estado compacto: solo icono ———————— */
+/* ———————— Botón PDF (estado compacto) ———————— */
 #btn-cargar-pdf.compact {
-    width: 34px;      /* cuadrado pequeño */
-    padding: 6px;     /* padding uniforme */
-    white-space: normal; /* para centrar icono */
+    width: 34px;                         /* cuadrado pequeño */
+    height: 34px;
+    padding: 0;                          /* sin padding extra */
+    border-radius: 4px;
+
+    /* mantiene flex para centrar icono */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+#btn-cargar-pdf.compact i {
+    font-size: 1.2rem;                   /* icono un poco más grande */
+    margin: 0;
 }
 
 /* ———————— Nombre del PDF truncado ———————— */
