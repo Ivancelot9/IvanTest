@@ -54,19 +54,29 @@
 
 /* ———————— Botón PDF ———————— */
 #btn-cargar-pdf {
-    display: none;                     /* oculto por defecto, sin !important */
+    /* oculto por defecto */
+    display: none;
+
+    /* estilo rojo PDF */
     background-color: #e42101;
     color: #fff;
+
+    /* padding ancho para texto */
     padding: 6px 12px;
     font-size: 0.9rem;
     line-height: 1;
     border-radius: 4px;
+
+    /* flex para icono+texto */
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
-    white-space: nowrap;               /* texto en una sola línea */
-    width: auto;                       /* ancho automático */
+
+    /* evita wrap y crece al contenido */
+    white-space: nowrap;
+    width: auto;
+
     transition: width 0.2s ease, padding 0.2s ease, background-color 0.2s ease;
 }
 #btn-cargar-pdf:hover {
@@ -74,11 +84,11 @@
     cursor: pointer;
 }
 
-/* ———————— Estado compacto: sólo icono ———————— */
+/* ———————— Estado compacto: solo icono ———————— */
 #btn-cargar-pdf.compact {
-    width: 34px;                       /* cuadrado pequeño */
-    padding: 6px;                      /* padding uniforme */
-    white-space: normal;               /* para centrar el icono */
+    width: 34px;      /* cuadrado pequeño */
+    padding: 6px;     /* padding uniforme */
+    white-space: normal; /* para centrar icono */
 }
 
 /* ———————— Nombre del PDF truncado ———————— */

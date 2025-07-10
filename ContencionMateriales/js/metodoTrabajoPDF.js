@@ -17,13 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
         btnPDF.classList.remove('compact');
         btnPDF.innerHTML = '📄 Agregar método de trabajo';
         btnPDF.title     = 'Agregar método de trabajo';
-        // Reforzamos ancho automático
         btnPDF.style.width = 'auto';
     }
     resetBtnPDF();
     btnPDF.style.display = 'none';
 
-    // 2) Toggle: mostrar/ocultar botón ancho; al desmarcar reiniciar
+    // 2) Toggle: mostrar/ocultar botón ancho; al desmarcar, reiniciar todo
     toggle.addEventListener('change', () => {
         if (toggle.checked) {
             resetBtnPDF();
@@ -32,8 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
             btnPDF.style.display = 'none';
             storedFile = null;
             storedURL  = null;
-            inputOculto.value            = '';
-            pdfFileNameEl.style.display  = 'none';
+            inputOculto.value           = '';
+            pdfFileNameEl.style.display = 'none';
             resetBtnPDF();
         }
     });
@@ -50,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalPDF.classList.add('show');
     });
 
-    // 4) Cerrar modal con ❌
+    // 4) Cerrar modal
     cerrarModal.addEventListener('click', () => {
         modalPDF.classList.remove('show');
         if (!storedFile) {
@@ -59,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 5) Previsualizar al seleccionar PDF
+    // 5) Previsualizar PDF al seleccionarlo
     inputModal.addEventListener('change', () => {
         const archivo = inputModal.files[0];
         if (archivo && archivo.type === 'application/pdf') {
@@ -77,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!archivo) {
             return Swal.fire('Error', 'Selecciona un PDF antes de guardar.', 'error');
         }
-
         // Guardar archivo
         storedFile = archivo;
         storedURL  = URL.createObjectURL(archivo);
@@ -85,17 +83,15 @@ document.addEventListener('DOMContentLoaded', () => {
         dt.items.add(archivo);
         inputOculto.files = dt.files;
 
-        // Mostrar nombre truncado + tooltip
+        // Mostrar nombre truncado
         pdfFileNameEl.textContent   = archivo.name;
         pdfFileNameEl.title         = archivo.name;
         pdfFileNameEl.style.display = 'inline-block';
 
-        // Compactar el botón → solo icono
+        // Compactar botón → solo icono
         btnPDF.classList.add('compact');
-        btnPDF.innerHTML = '<i class="fa fa-pencil-alt" aria-hidden="true"></i>';
+        btnPDF.innerHTML = '<i class="fa fa-pencil-alt"></i>';
         btnPDF.title     = 'Modificar método de trabajo';
-
-        // Asegurar ancho fijo (compact)
         btnPDF.style.width = '34px';
 
         // Cerrar modal
