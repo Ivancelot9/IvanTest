@@ -574,7 +574,9 @@ $stmtUser->close();
 <!-- Modal PDF -->
 <div id="modal-pdf" class="pdf-modal">
     <div class="pdf-modal-content">
-        <button class="pdf-close" id="cerrarModalPDF">❌</button>
+        <button class="pdf-close" id="cerrarModalPDF">
+            <i class="fa fa-times"></i>
+        </button>
         <h3>Subir archivo PDF del caso</h3>
         <input type="file" id="input-pdf-modal" accept="application/pdf">
         <hr>

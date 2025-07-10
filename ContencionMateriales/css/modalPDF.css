@@ -11,7 +11,6 @@
 .pdf-modal.show {
     display: flex;
 }
-/* Ya no hace scroll externo —> overflow visible */
 .pdf-modal-content {
     background: #fff;
     border-radius: 8px;
@@ -19,23 +18,34 @@
     width: 90%;
     max-width: 600px;
     max-height: 80vh;
-    overflow: visible;               /* <-- cambiado de auto a visible */
+    overflow: visible;               /* el scroll externo desaparece */
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
     font-family: 'Segoe UI', sans-serif;
     color: #1c1e21;
     position: relative;
 }
+
+/* Botón de cierre: círculo verde con X azul */
 .pdf-close {
     position: absolute;
     top: 12px;
     right: 12px;
-    background: none;
-    border: none;
-    font-size: 1.2rem;
+    width: 32px;
+    height: 32px;
+    background-color: #2ea043;       /* verde del Confirmar */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.pdf-close i {
+    color: #1e6cd1;                  /* azul del botón Guardar PDF */
+    font-size: 1rem;
 }
 .pdf-close:hover {
-    color: #1e6cd1;
+    background-color: #238636;       /* verde oscuro al hover */
 }
 
 /* ———————— Vista previa ———————— */
@@ -44,7 +54,7 @@
     height: 400px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    overflow: auto;                  /* el scroll queda aquí dentro */
+    overflow: auto;                  /* sólo scroll interno */
     margin-bottom: 16px;
 }
 .pdf-preview-container embed {
@@ -55,48 +65,42 @@
 
 /* ———————— Botón PDF (estado normal) ———————— */
 #btn-cargar-pdf {
-    display: none;                    /* oculto por defecto */
-
-    background-color: #ffffff;        /* fondo blanco */
-    border: 2px solid #e42101;        /* borde rojo */
-    color: #e42101;                   /* texto/icono rojo */
-
-    padding: 8px 16px;                /* espacio interior */
+    display: none;                   /* oculto por defecto */
+    background-color: #ffffff;       /* fondo blanco */
+    border: 2px solid #e42101;       /* borde rojo */
+    color: #e42101;                  /* icono/texto rojo */
+    padding: 8px 16px;               /* espacio interior */
     font-size: 0.9rem;
     line-height: 1;
     border-radius: 4px;
-
-    display: inline-flex;             /* icono + texto */
+    display: inline-flex;            /* icono + texto */
     align-items: center;
     justify-content: center;
-    gap: 8px;                         /* separación icono/texto */
-
-    white-space: nowrap;              /* texto en una línea */
-    width: auto;                      /* crece con el contenido */
-
+    gap: 8px;                        /* separación icono/texto */
+    white-space: nowrap;             /* texto en una línea */
+    width: auto;                     /* crece con el contenido */
     transition: background-color 0.2s ease,
     border-color      0.2s ease,
     width             0.2s ease;
 }
 #btn-cargar-pdf:hover {
-    background-color: #ffecec;        /* rojo pálido al hover */
-    border-color: #b71c1c;            /* borde más oscuro */
+    background-color: #ffecec;       /* rojo pálido */
+    border-color: #b71c1c;           /* borde más oscuro */
     cursor: pointer;
 }
 
 /* ———————— Botón PDF (estado compacto) ———————— */
 #btn-cargar-pdf.compact {
-    width: 34px;                      /* cuadrado pequeño */
+    width: 34px;                     /* cuadrado pequeño */
     height: 34px;
-    padding: 0;                       /* sin padding extra */
+    padding: 0;                      /* sin padding extra */
     border-radius: 4px;
-
-    display: inline-flex;             /* centra icono */
+    display: inline-flex;            /* centra icono */
     align-items: center;
     justify-content: center;
 }
 #btn-cargar-pdf.compact i {
-    font-size: 1.2rem;                /* icono más grande */
+    font-size: 1.2rem;
     margin: 0;
 }
 
@@ -126,15 +130,12 @@
     gap: 4px 12px; /* fila x columna gap */
     align-items: center;
 }
-
 .toggle-block > label {
     grid-area: label;
 }
-
 #btn-cargar-pdf {
     grid-area: btn;
 }
-
 #pdf-file-name {
     grid-area: name;
 }
