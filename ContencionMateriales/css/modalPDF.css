@@ -113,3 +113,11 @@
 #pdf-file-name:hover {
     cursor: default;
 }
+
+/* ———————— Layout debajo del checkbox ———————— */
+.toggle-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;  /* espacio entre label, botón y nombre */
+}
