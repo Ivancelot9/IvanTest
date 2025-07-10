@@ -55,29 +55,26 @@
 /* ———————— Botón PDF (estado normal) ———————— */
 #btn-cargar-pdf {
     display: none;                       /* oculto por defecto */
-
     background-color: #ffffff;           /* fondo blanco */
     border: 2px solid #e42101;           /* borde rojo */
     color: #e42101;                      /* texto/icono rojo */
-
     padding: 8px 16px;                   /* espacio interior */
     font-size: 0.9rem;
     line-height: 1;
     border-radius: 4px;
-
     display: inline-flex;                /* icono + texto */
     align-items: center;
     justify-content: center;
     gap: 8px;                            /* separación icono/texto */
-
     white-space: nowrap;                 /* texto en una línea */
     width: auto;                         /* crece con el contenido */
-
-    transition: background-color 0.2s ease, border-color 0.2s ease, width 0.2s ease;
+    transition: background-color 0.2s ease,
+    border-color      0.2s ease,
+    width             0.2s ease;
 }
 #btn-cargar-pdf:hover {
-    background-color: #ffecec;           /* rojo muy pálido al hover */
-    border-color: #b71c1c;               /* borde rojo más oscuro */
+    background-color: #ffecec;           /* rojo pálido al hover */
+    border-color: #b71c1c;               /* borde más oscuro */
     cursor: pointer;
 }
 
@@ -87,13 +84,12 @@
     height: 34px;
     padding: 0;                          /* sin padding extra */
     border-radius: 4px;
-
     display: inline-flex;                /* mantiene flex para centrar icono */
     align-items: center;
     justify-content: center;
 }
 #btn-cargar-pdf.compact i {
-    font-size: 1.2rem;                   /* icono un poco más grande */
+    font-size: 1.2rem;                   /* icono más grande */
     margin: 0;
 }
 
@@ -112,10 +108,26 @@
     cursor: default;
 }
 
-/* ———————— Layout: botón y nombre junto al checkbox ———————— */
+/* ———————— Layout: checkbox arriba, luego botón + nombre abajo ———————— */
 .toggle-block {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: max-content auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+    "label label"
+    "btn   name";
+    gap: 4px 12px; /* fila x columna gap */
     align-items: center;
-    gap: 8px;
+}
+
+.toggle-block > label {
+    grid-area: label;
+}
+
+#btn-cargar-pdf {
+    grid-area: btn;
+}
+
+#pdf-file-name {
+    grid-area: name;
 }
