@@ -21,7 +21,7 @@
     display: flex;
 }
 
-/* Contorno más grueso y fondo tipo tarjeta */
+/* Contenedor flexible para controlar overflow y footer */
 .pdf-modal-content {
     background: var(--card-bg);
     border: 2px solid var(--card-border-alt);
@@ -30,7 +30,9 @@
     width: 90%;
     max-width: 600px;
     max-height: 80vh;
-    overflow: visible;               /* scroll sólo en preview */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;               /* elimina scroll externo */
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', sans-serif;
     color: var(--text-dark);
@@ -68,11 +70,10 @@
 
 /* ———————— Vista previa de PDF ———————— */
 .pdf-preview-container {
-    width: 100%;
-    height: 400px;
+    flex: 1 1 auto;                /* ocupa todo el espacio disponible */
     border: 2px solid var(--card-border-alt);
     border-radius: 6px;
-    overflow: auto;                  /* scroll solo interno */
+    overflow: auto;                /* scroll solo aquí dentro */
     background: #fff;
     margin-bottom: 16px;
 }
@@ -113,7 +114,7 @@
 
 /* ———————— Botón PDF (normal) ———————— */
 #btn-cargar-pdf {
-    display: none;                   /* controlado por JS */
+    display: none;                  /* controlado por JS */
     background: #fff;
     border: 2px solid #e42101;
     color: #e42101;
@@ -163,6 +164,12 @@
 }
 #pdf-file-name:hover {
     cursor: default;
+}
+
+/* ———————— Botón Guardar PDF (footer) ———————— */
+#confirmar-pdf {
+    align-self: flex-end;           /* lo coloca al final */
+    margin-top: 12px;
 }
 
 /* ———————— Layout: checkbox arriba, luego botón + nombre debajo ———————— */
