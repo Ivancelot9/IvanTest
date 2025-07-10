@@ -1,3 +1,12 @@
+:root {
+    --text-dark:       #1c1e21;
+    --dark-bg:         #202c3a;
+    --card-bg:         #f6f8fa;
+    --card-bg-alt:     #e8f0fe;
+    --card-border:     #d0d7de;
+    --card-border-alt: #4285f4;
+}
+
 /* ———————— Modal PDF ———————— */
 .pdf-modal {
     position: fixed;
@@ -11,17 +20,20 @@
 .pdf-modal.show {
     display: flex;
 }
+
+/* Ahora con fondo de “tarjeta” y borde alegre */
 .pdf-modal-content {
-    background: #fff;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border-alt);
     border-radius: 8px;
     padding: 24px;
     width: 90%;
     max-width: 600px;
     max-height: 80vh;
-    overflow: visible;            /* elimina scroll externo */
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    overflow: visible; /* scroll sólo interno */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', sans-serif;
-    color: #1c1e21;
+    color: var(--text-dark);
     position: relative;
 }
 
@@ -32,36 +44,36 @@
     right: 12px;
     width: 32px;
     height: 32px;
-    background: transparent;       /* círculo transparente */
-    border: 2px solid transparent; /* sin borde por defecto */
+    background: transparent;       /* sin fondo hasta hover */
+    border: 2px solid transparent;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background-color 0.2s ease,
-    border-color     0.2s ease;
+    transition: background-color 0.2s, border-color 0.2s;
 }
 .pdf-close i {
-    color: #1e6cd1;               /* X azul */
+    color: var(--card-border-alt);
     font-size: 1rem;
-    transition: color 0.2s ease;
+    transition: color 0.2s;
 }
 .pdf-close:hover {
-    background-color: rgba(30, 108, 209, 0.1); /* fondo azul muy pálido */
-    border-color: #1e6cd1;                    /* borde azul */
+    background-color: var(--card-bg-alt);
+    border-color: var(--card-border-alt);
 }
 .pdf-close:hover i {
-    color: #1558b0;               /* X más oscura al hover */
+    color: var(--dark-bg);
 }
 
-/* ———————— Vista previa ———————— */
+/* ———————— Vista previa de PDF ———————— */
 .pdf-preview-container {
     width: 100%;
     height: 400px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--card-border);
     border-radius: 6px;
-    overflow: auto;               /* scroll solo interno */
+    overflow: auto; /* scroll solo aquí */
+    background: #fff;
     margin-bottom: 16px;
 }
 .pdf-preview-container embed {
@@ -70,12 +82,41 @@
     display: block;
 }
 
+/* ———————— Estilo de “Choose File” ———————— */
+#input-pdf-modal {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+#input-pdf-modal::file-selector-button {
+    background: var(--card-bg-alt);
+    border: 1px solid var(--card-border-alt);
+    padding: 6px 12px;
+    margin-right: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--dark-bg);
+    transition: background-color 0.2s, border-color 0.2s;
+}
+#input-pdf-modal::file-selector-button:hover {
+    background: var(--card-border-alt);
+    border-color: var(--dark-bg);
+    color: #fff;
+}
+
 /* ———————— Botón PDF (normal) ———————— */
 #btn-cargar-pdf {
-    display: none;                /* oculto por defecto */
-    background-color: #ffffff;    /* fondo blanco */
-    border: 2px solid #e42101;    /* borde rojo */
-    color: #e42101;               /* icono/texto rojo */
+    display: none;                    /* controlado por JS */
+    background: #fff;
+    border: 2px solid #e42101;
+    color: #e42101;
     padding: 8px 16px;
     font-size: 0.9rem;
     line-height: 1;
@@ -86,14 +127,11 @@
     gap: 8px;
     white-space: nowrap;
     width: auto;
-    transition: background-color 0.2s ease,
-    border-color      0.2s ease,
-    width             0.2s ease;
+    transition: background-color 0.2s, border-color 0.2s, width 0.2s;
 }
 #btn-cargar-pdf:hover {
     background-color: #ffecec;
     border-color: #b71c1c;
-    cursor: pointer;
 }
 
 /* ———————— Botón PDF (compacto) ———————— */
