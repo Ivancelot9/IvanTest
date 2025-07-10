@@ -12,26 +12,28 @@ document.addEventListener('DOMContentLoaded', () => {
     let storedFile = null;
     let storedURL  = null;
 
-    // 1) Estado inicial: botón oculto y con texto “Agregar…”
+    // 1) Inicializar el botón en modo “Agregar” (ancho)
     function resetBtnPDF() {
         btnPDF.classList.remove('compact');
-        btnPDF.textContent = '📄 Agregar método de trabajo';
-        btnPDF.title       = 'Agregar método de trabajo';
+        btnPDF.innerHTML = '📄 Agregar método de trabajo';
+        btnPDF.title     = 'Agregar método de trabajo';
+        // Reforzamos ancho automático
+        btnPDF.style.width = 'auto';
     }
     resetBtnPDF();
     btnPDF.style.display = 'none';
 
-    // 2) Toggle: al marcar, mostramos botón ancho; al desmarcar, lo ocultamos y reseteamos
+    // 2) Toggle: mostrar/ocultar botón ancho; al desmarcar reiniciar
     toggle.addEventListener('change', () => {
         if (toggle.checked) {
-            resetBtnPDF();                        // descompacta
-            btnPDF.style.display = 'inline-flex'; // muestra
+            resetBtnPDF();
+            btnPDF.style.display = 'inline-flex';
         } else {
-            btnPDF.style.display   = 'none';      // oculta
+            btnPDF.style.display = 'none';
             storedFile = null;
             storedURL  = null;
-            inputOculto.value = '';
-            pdfFileNameEl.style.display = 'none';
+            inputOculto.value            = '';
+            pdfFileNameEl.style.display  = 'none';
             resetBtnPDF();
         }
     });
@@ -48,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalPDF.classList.add('show');
     });
 
-    // 4) Cerrar modal (botón ❌)
+    // 4) Cerrar modal con ❌
     cerrarModal.addEventListener('click', () => {
         modalPDF.classList.remove('show');
         if (!storedFile) {
@@ -57,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 5) Vista previa al seleccionar PDF
+    // 5) Previsualizar al seleccionar PDF
     inputModal.addEventListener('change', () => {
         const archivo = inputModal.files[0];
         if (archivo && archivo.type === 'application/pdf') {
@@ -76,31 +78,32 @@ document.addEventListener('DOMContentLoaded', () => {
             return Swal.fire('Error', 'Selecciona un PDF antes de guardar.', 'error');
         }
 
-        // Guardamos el archivo
+        // Guardar archivo
         storedFile = archivo;
         storedURL  = URL.createObjectURL(archivo);
-        const dt = new DataTransfer();
+        const dt    = new DataTransfer();
         dt.items.add(archivo);
         inputOculto.files = dt.files;
 
-        // Mostramos nombre truncado + tooltip
+        // Mostrar nombre truncado + tooltip
         pdfFileNameEl.textContent   = archivo.name;
         pdfFileNameEl.title         = archivo.name;
         pdfFileNameEl.style.display = 'inline-block';
 
-        // Compactamos el botón a solo icono
+        // Compactar el botón → solo icono
         btnPDF.classList.add('compact');
         btnPDF.innerHTML = '<i class="fa fa-pencil-alt" aria-hidden="true"></i>';
         btnPDF.title     = 'Modificar método de trabajo';
 
-        // Cerramos el modal
+        // Asegurar ancho fijo (compact)
+        btnPDF.style.width = '34px';
+
+        // Cerrar modal
         modalPDF.classList.remove('show');
     });
 
-    // 7) Cerrar modal con tecla Escape
+    // 7) Cerrar modal con Escape
     document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            modalPDF.classList.remove('show');
-        }
+        if (e.key === 'Escape') modalPDF.classList.remove('show');
     });
 });
