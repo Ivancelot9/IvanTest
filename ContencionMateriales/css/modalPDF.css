@@ -19,7 +19,7 @@
     display: flex;
 }
 
-/* Contenedor con bordes más gruesos usando --dark-bg */
+/* Contenedor del modal */
 .pdf-modal-content {
     background: var(--card-bg);
     border: 4px solid var(--dark-bg);
@@ -30,7 +30,7 @@
     max-height: 90vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;               /* scroll sólo interno */
+    overflow: hidden;               /* sólo scroll interno */
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', sans-serif;
     color: var(--text-dark);
@@ -68,10 +68,10 @@
 
 /* ———————— Vista previa de PDF ———————— */
 .pdf-preview-container {
-    flex: 1 1 auto;
+    height: 60vh;                   /* restauramos altura amplia */
     border: 4px solid var(--dark-bg);
     border-radius: 6px;
-    overflow: auto;
+    overflow: auto;                 /* scroll solo aquí */
     background: #fff;
     margin-bottom: 16px;
 }
