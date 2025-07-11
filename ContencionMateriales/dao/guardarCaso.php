@@ -101,7 +101,6 @@ try {
         if ($idDef <= 0) {
             throw new Exception("Defecto inválido en bloque " . ($idx + 1));
         }
-        // Insertar en DefectosCaso
         $sd = $con->prepare("INSERT INTO DefectosCaso (FolioCaso, IdDefectos) VALUES (?,?)");
         $sd->bind_param("ii", $folioCaso, $idDef);
         if (! $sd->execute()) {
@@ -110,12 +109,44 @@ try {
         $idDefCaso = $sd->insert_id;
         $sd->close();
 
-        // Subir fotos OK y NO OK
         subirFoto($idx, 'fotoOk', 'ok',  $folioCaso, $idDefCaso, $okDir, $con);
         subirFoto($idx, 'fotoNo',  'no', $folioCaso, $idDefCaso, $noDir, $con);
     }
 
-    // 8) Devolver JSON de éxito
+    // 8) Procesar archivo PDF (método de trabajo)
+    if (isset($_FILES['metodo_pdf']) && $_FILES['metodo_pdf']['error'] === UPLOAD_ERR_OK) {
+        $archivoTmp = $_FILES['metodo_pdf']['tmp_name'];
+        $nombreOriginal = $_FILES['metodo_pdf']['name'];
+        $ext = strtolower(pathinfo($nombreOriginal, PATHINFO_EXTENSION));
+
+        if ($ext !== 'pdf') {
+            throw new Exception('El archivo del método de trabajo debe ser un PDF.');
+        }
+
+        $dirPDF = __DIR__ . '/dao/uploads/';
+        if (!file_exists($dirPDF)) {
+            mkdir($dirPDF, 0777, true);
+        }
+
+        $nombreFinal = 'metodo_' . $folioCaso . '_' . time() . '.pdf';
+        $rutaFinal = $dirPDF . $nombreFinal;
+
+        if (!move_uploaded_file($archivoTmp, $rutaFinal)) {
+            throw new Exception('Error al guardar el archivo PDF.');
+        }
+
+        $subidoPor = $username ?? ($_POST['correoInspector'] ?? 'desconocido');
+        $rutaBD = 'dao/uploads/' . $nombreFinal;
+
+        $stmtMetodo = $con->prepare("INSERT INTO MetodoTrabajo (FolioCaso, RutaPDF, SubidoPor) VALUES (?, ?, ?)");
+        $stmtMetodo->bind_param("iss", $folioCaso, $rutaBD, $subidoPor);
+        if (! $stmtMetodo->execute()) {
+            throw new Exception('Error insertando MetodoTrabajo: ' . $stmtMetodo->error);
+        }
+        $stmtMetodo->close();
+    }
+
+    // 9) Respuesta JSON
     ob_clean();
     echo json_encode([
         'status'      => 'success',
@@ -137,9 +168,6 @@ try {
     exit;
 }
 
-/**
- * Sube una foto de defecto al directorio y registra en BD.
- */
 function subirFoto($idx, $campo, $tipo, $folio, $idDefCaso, $dir, $con) {
     if (
         ! isset($_FILES['defectos']['tmp_name'][$idx][$campo]) ||
@@ -163,11 +191,8 @@ function subirFoto($idx, $campo, $tipo, $folio, $idDefCaso, $dir, $con) {
     $i->close();
 }
 
-/**
- * Busca un valor en una tabla y devuelve el nombre.
- */
 function lookup($con, $tabla, $idFld, $nameFld, $val) {
-    $output = '';  // Inicializamos
+    $output = '';
     $st = $con->prepare("SELECT `$nameFld` FROM `$tabla` WHERE `$idFld` = ?");
     if ($st) {
         $st->bind_param("i", $val);

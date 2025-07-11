@@ -63,6 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // 2.5) Validar archivo PDF si se activó el toggle
+        const togglePDF = document.getElementById('toggle-metodo-pdf');
+        const inputPDF  = document.getElementById('input-metodo-pdf');
+
+        if (togglePDF?.checked && inputPDF?.files.length === 0) {
+            return Swal.fire('Error', 'Debes subir el archivo PDF del método de trabajo.', 'error');
+        }
+
         // 3) Envío al servidor
         Swal.fire({
             title: 'Guardando caso…',
