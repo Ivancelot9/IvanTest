@@ -83,9 +83,9 @@ try {
 
         // Insertar en MetodoTrabajo
         $stmtPDF = $con->prepare("
-            INSERT INTO MetodoTrabajo (FolioCaso, RutaPDF, SubidoPor, Correo)
-            VALUES (?, ?, 'usuario', ?)
-        ");
+    INSERT INTO MetodoTrabajo (FolioCaso, RutaArchivo, SubidoPor)
+    VALUES (?, ?, ?)
+");
         $stmtPDF->bind_param("iss", $folioCaso, $nombrePDF, $username);
         if (! $stmtPDF->execute()) {
             throw new Exception('Error insertando método de trabajo: ' . $stmtPDF->error);
