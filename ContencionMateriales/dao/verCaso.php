@@ -1,19 +1,12 @@
 <?php
-// verCaso.php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include_once 'conexionContencion.php';
 
-// 0) Capturar parámetro
-if (isset($_GET['folio'])) {
-    $folio = intval($_GET['folio']);
-} elseif (isset($_GET['Caso'])) {
-    $folio = intval($_GET['Caso']);
-} else {
-    $folio = 0;
-}
+// Capturar parámetro
+$folio = isset($_GET['folio']) ? intval($_GET['folio']) : (isset($_GET['Caso']) ? intval($_GET['Caso']) : 0);
 if ($folio <= 0) {
     echo "<h2>Folio inválido.</h2>";
     exit;
@@ -21,7 +14,7 @@ if ($folio <= 0) {
 
 $con = (new LocalConector())->conectar();
 
-// 1) Consulta principal
+// Consulta principal
 $stmt = $con->prepare("
     SELECT 
       NumeroParte, Cantidad, Descripcion,
@@ -43,7 +36,7 @@ if (! $stmt->fetch()) {
 }
 $stmt->close();
 
-// 2) Helper lookup
+// Lookup helper
 function lookup($con, $table, $idfield, $namefield, $id) {
     $n = '';
     $s = $con->prepare("SELECT `$namefield` FROM `$table` WHERE `$idfield` = ?");
@@ -60,7 +53,7 @@ $proveedor = lookup($con, 'Proveedores', 'IdProveedor', 'NombreProveedor', $idPr
 $commodity = lookup($con, 'Commodity', 'IdCommodity', 'NombreCommodity', $idCommodity);
 $estatus   = lookup($con, 'Estatus', 'IdEstatus', 'NombreEstatus', $idEstatus);
 
-// 3) Recoger defectos + fotos
+// Defectos y fotos
 $map = [];
 $stmt2 = $con->prepare("
     SELECT dc.IdDefectoCaso, d.NombreDefectos, f.TipoFoto, f.Ruta
@@ -89,6 +82,14 @@ while ($row = $res2->fetch_assoc()) {
 }
 $stmt2->close();
 $defectos = array_values($map);
+
+// Consulta PDF
+$stmt3 = $con->prepare("SELECT RutaArchivo FROM MetodoTrabajo WHERE FolioCaso = ?");
+$stmt3->bind_param('i', $folio);
+$stmt3->execute();
+$stmt3->bind_result($rutaPDF);
+$tienePDF = $stmt3->fetch();
+$stmt3->close();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -96,7 +97,6 @@ $defectos = array_values($map);
     <meta charset="UTF-8">
     <title>Caso <?= htmlspecialchars($folio) ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS de la Propuesta 2 (acordeón) -->
     <link rel="stylesheet" href="../css/verCaso.css">
 </head>
 <body>
@@ -125,14 +125,10 @@ $defectos = array_values($map);
                 </div>
             </div>
 
-            <!-- Nueva sección: título de defectos -->
+            <!-- Defectos -->
             <div class="info-grid">
-                <div class="info-cell full-width">
-                    <label>Defectos a Inspeccionar</label>
-                </div>
+                <div class="info-cell full-width"><label>Defectos a Inspeccionar</label></div>
             </div>
-
-            <!-- Defectos en acordeón -->
             <div class="defects-container">
                 <?php foreach ($defectos as $def): ?>
                     <div class="defect-block">
@@ -142,7 +138,7 @@ $defectos = array_values($map);
                                 <div class="group-title">OK</div>
                                 <div class="thumbs">
                                     <?php foreach ($def['fotosOk'] as $f): ?>
-                                        <img src="https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/ok/<?= urlencode($f) ?>" alt="OK">
+                                        <img src="uploads/ok/<?= urlencode($f) ?>" alt="OK">
                                     <?php endforeach; ?>
                                 </div>
                             </div>
@@ -150,7 +146,7 @@ $defectos = array_values($map);
                                 <div class="group-title">NO OK</div>
                                 <div class="thumbs">
                                     <?php foreach ($def['fotosNo'] as $f): ?>
-                                        <img src="https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/no/<?= urlencode($f) ?>" alt="NO OK">
+                                        <img src="uploads/no/<?= urlencode($f) ?>" alt="NO OK">
                                     <?php endforeach; ?>
                                 </div>
                             </div>
@@ -158,11 +154,46 @@ $defectos = array_values($map);
                     </div>
                 <?php endforeach; ?>
             </div>
+
+            <!-- PDF Método de Trabajo -->
+            <div class="info-grid" style="margin-top:30px;">
+                <div class="info-cell full-width">
+                    <label>Método de Trabajo</label>
+                    <?php if ($tienePDF): ?>
+                        <iframe src="uploads/pdf/<?= urlencode($rutaPDF) ?>" width="100%" height="500px" style="border:1px solid #ccc;"></iframe>
+                    <?php else: ?>
+                        <form method="POST" enctype="multipart/form-data" id="form-subir-metodo" style="margin-top:10px;">
+                            <input type="hidden" name="folio" value="<?= $folio ?>">
+                            <input type="file" name="pdf" accept="application/pdf" required>
+                            <input type="text" name="subidoPor" placeholder="Tu nombre o correo" required>
+                            <button type="submit">Subir PDF</button>
+                        </form>
+                        <script>
+                            document.getElementById('form-subir-metodo')?.addEventListener('submit', async e => {
+                                e.preventDefault();
+                                const form = e.target;
+                                const data = new FormData(form);
+                                const res = await fetch('guardarMetodoTrabajo.php', {
+                                    method: 'POST',
+                                    body: data
+                                });
+                                const json = await res.json();
+                                if (json.status === 'success') {
+                                    alert("PDF subido. Recargando...");
+                                    location.reload();
+                                } else {
+                                    alert("Error: " + json.message);
+                                }
+                            });
+                        </script>
+                    <?php endif; ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Lightbox -->
+<!-- Lightbox para fotos -->
 <div id="modal-image" class="modal-overlay">
     <div class="lightbox-content">
         <button class="close-img">&times;</button>
@@ -170,15 +201,6 @@ $defectos = array_values($map);
     </div>
 </div>
 
-<!-- Lightbox -->
-<div id="modal-image" class="modal-overlay">
-    <div class="lightbox-content">
-        <button class="close-img">&times;</button>
-        <img src="" alt="Ampliada">
-    </div>
-</div>
-
-<!-- JS Lightbox -->
 <script>
     document.querySelectorAll('.thumbs img').forEach(img => {
         img.addEventListener('click', () => {
@@ -193,10 +215,7 @@ $defectos = array_values($map);
     document.getElementById('modal-image').addEventListener('click', e => {
         if (e.target.id === 'modal-image') e.currentTarget.style.display = 'none';
     });
-</script>
 
-<!-- JS Acordeón -->
-<script>
     document.querySelectorAll('.defect-title').forEach(title => {
         const block = title.closest('.defect-block');
         title.addEventListener('click', () => {
