@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Agregando Metodo de Trabajo">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Agregando Metodo de Trabajo en la BD">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dao/guardarCaso.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dao/guardarCaso.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/validacionesCasos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/validacionesCasos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,15 +222,7 @@
       <workItem from="1751984011339" duration="14095000" />
       <workItem from="1752071160716" duration="11882000" />
       <workItem from="1752157363871" duration="11076000" />
-      <workItem from="1752243402768" duration="3623000" />
-    </task>
-    <task id="LOCAL-01726" summary="Carpetas">
-      <option name="closed" value="true" />
-      <created>1751989431212</created>
-      <option name="number" value="01726" />
-      <option name="presentableId" value="LOCAL-01726" />
-      <option name="project" value="LOCAL" />
-      <updated>1751989431212</updated>
+      <workItem from="1752243402768" duration="7854000" />
     </task>
     <task id="LOCAL-01727" summary="Carpetas">
       <option name="closed" value="true" />
@@ -618,7 +608,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752173173836</updated>
     </task>
-    <option name="localTasksCounter" value="1775" />
+    <task id="LOCAL-01775" summary="Agregando Metodo de Trabajo en la BD">
+      <option name="closed" value="true" />
+      <created>1752254147985</created>
+      <option name="number" value="01775" />
+      <option name="presentableId" value="LOCAL-01775" />
+      <option name="project" value="LOCAL" />
+      <updated>1752254147985</updated>
+    </task>
+    <option name="localTasksCounter" value="1776" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -670,7 +668,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Agregar Componentes Formulario" />
     <MESSAGE value="Diseño Responsivo Celular" />
     <MESSAGE value="Tabla Mis Casos" />
     <MESSAGE value="Tabla Todos Mis Casos" />
@@ -695,7 +692,8 @@
     <MESSAGE value="Mosttar Caso por correo con link" />
     <MESSAGE value="Carpetas" />
     <MESSAGE value="Agregando Metodo de Trabajo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregando Metodo de Trabajo" />
+    <MESSAGE value="Agregando Metodo de Trabajo en la BD" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregando Metodo de Trabajo en la BD" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

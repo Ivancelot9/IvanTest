@@ -1,32 +1,26 @@
 <?php
-// Buffer para evitar salidas accidentales
 ob_start();
-
-// Sesión y cabecera JSON
 session_start();
 header('Content-Type: application/json; charset=UTF-8');
-
 include_once 'conexionContencion.php';
 
 try {
-    // 1) Método
+    // 1) Verificar método POST
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         throw new Exception('Método no permitido');
     }
 
-    // 2) Sesión / tab_id
+    // 2) Validar sesión
     $tab_id = isset($_GET['tab_id']) ? $_GET['tab_id'] : '';
     if (empty($tab_id) || ! isset($_SESSION['usuariosPorPestana'][$tab_id]['Username'])) {
         throw new Exception('Sesión inválida: usuario no encontrado.');
     }
     $username = $_SESSION['usuariosPorPestana'][$tab_id]['Username'];
 
-    // 2b) Obtener IdUsuario
+    // 2b) Obtener ID del usuario
     $conUser  = (new LocalConector())->conectar();
     $stmtUser = $conUser->prepare("SELECT IdUsuario FROM Usuario WHERE Username = ?");
-    if (! $stmtUser) {
-        throw new Exception('Error preparando SELECT usuario: ' . $conUser->error);
-    }
+    if (! $stmtUser) throw new Exception('Error preparando SELECT usuario: ' . $conUser->error);
     $stmtUser->bind_param("s", $username);
     $stmtUser->execute();
     $stmtUser->bind_result($idUsuario);
@@ -36,7 +30,7 @@ try {
     $stmtUser->close();
     $conUser->close();
 
-    // 3) Validar campos generales
+    // 3) Validar campos obligatorios
     $required = ['Responsable','NumeroParte','Cantidad','IdTerceria','IdCommodity','IdProveedor'];
     foreach ($required as $f) {
         if (! isset($_POST[$f]) || trim($_POST[$f]) === '') {
@@ -44,7 +38,7 @@ try {
         }
     }
 
-    // 4) Recoger datos
+    // 4) Obtener valores
     $responsable = trim($_POST['Responsable']);
     $numeroParte = trim($_POST['NumeroParte']);
     $cantidad    = floatval(str_replace(',', '.', $_POST['Cantidad']));
@@ -54,53 +48,63 @@ try {
     $idProveedor = intval($_POST['IdProveedor']);
     $estatus     = 1;
 
-    // 5) Insertar Caso
+    // 5) Insertar caso
     $con = (new LocalConector())->conectar();
-    $sql = "
+    $stmt = $con->prepare("
       INSERT INTO Casos
         (IdUsuario, NumeroParte, Cantidad, Descripcion,
          IdTerceria, IdCommodity, IdProveedor, IdEstatus, Responsable)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    ";
-    $stmt = $con->prepare($sql);
-    if (! $stmt) {
-        throw new Exception('Error preparando INSERT Casos: ' . $con->error);
-    }
-    $stmt->bind_param(
-        "isdsiiiis",
-        $idUsuario,
-        $numeroParte,
-        $cantidad,
-        $descripcion,
-        $idTerceria,
-        $idCommodity,
-        $idProveedor,
-        $estatus,
-        $responsable
-    );
-    if (! $stmt->execute()) {
-        throw new Exception('Error ejecutando INSERT Casos: ' . $stmt->error);
-    }
+    ");
+    if (! $stmt) throw new Exception('Error preparando INSERT Casos: ' . $con->error);
+    $stmt->bind_param("isdsiiiis", $idUsuario, $numeroParte, $cantidad, $descripcion,
+        $idTerceria, $idCommodity, $idProveedor, $estatus, $responsable);
+    if (! $stmt->execute()) throw new Exception('Error ejecutando INSERT Casos: ' . $stmt->error);
     $folioCaso = $stmt->insert_id;
     $stmt->close();
 
-    // 6) Crear carpetas de imágenes
+    // 6) Crear carpetas si no existen
     $baseDir = __DIR__ . '/uploads';
-    $okDir   = "$baseDir/ok";
-    $noDir   = "$baseDir/no";
-    foreach ([$okDir, $noDir] as $d) {
-        if (! is_dir($d)) mkdir($d, 0755, true);
+    foreach (['ok', 'no', 'pdf'] as $folder) {
+        $dir = "$baseDir/$folder";
+        if (! is_dir($dir)) mkdir($dir, 0755, true);
     }
 
-    // 7) Procesar defectos
+    // 7) Insertar método de trabajo (si se envió)
+    if (isset($_FILES['archivoPDF']) && $_FILES['archivoPDF']['error'] === UPLOAD_ERR_OK) {
+        $archivoPDF = $_FILES['archivoPDF'];
+        $nombrePDF  = basename($archivoPDF['name']);
+        $nombrePDF  = uniqid() . "_" . preg_replace('/\s+/', '_', $nombrePDF);
+        $destino    = "$baseDir/pdf/$nombrePDF";
+
+        if (!move_uploaded_file($archivoPDF['tmp_name'], $destino)) {
+            throw new Exception('No se pudo subir el archivo PDF.');
+        }
+
+        // Insertar en MetodoTrabajo
+        $stmtPDF = $con->prepare("
+            INSERT INTO MetodoTrabajo (FolioCaso, RutaPDF, SubidoPor, Correo)
+            VALUES (?, ?, 'usuario', ?)
+        ");
+        $stmtPDF->bind_param("iss", $folioCaso, $nombrePDF, $username);
+        if (! $stmtPDF->execute()) {
+            throw new Exception('Error insertando método de trabajo: ' . $stmtPDF->error);
+        }
+        $stmtPDF->close();
+    }
+
+    // 8) Procesar defectos
     if (! isset($_POST['defectos']) || ! is_array($_POST['defectos'])) {
         throw new Exception('No se recibieron defectos.');
     }
+
     foreach ($_POST['defectos'] as $idx => $bloque) {
-        $idDef = intval(isset($bloque['idDefecto']) ? $bloque['idDefecto'] : 0);
+        $idDef = intval($bloque['idDefecto'] ?? 0);
         if ($idDef <= 0) {
             throw new Exception("Defecto inválido en bloque " . ($idx + 1));
         }
+
+        // Insertar defecto
         $sd = $con->prepare("INSERT INTO DefectosCaso (FolioCaso, IdDefectos) VALUES (?,?)");
         $sd->bind_param("ii", $folioCaso, $idDef);
         if (! $sd->execute()) {
@@ -109,44 +113,12 @@ try {
         $idDefCaso = $sd->insert_id;
         $sd->close();
 
-        subirFoto($idx, 'fotoOk', 'ok',  $folioCaso, $idDefCaso, $okDir, $con);
-        subirFoto($idx, 'fotoNo',  'no', $folioCaso, $idDefCaso, $noDir, $con);
+        // Subir fotos
+        subirFoto($idx, 'fotoOk', 'ok', $folioCaso, $idDefCaso, "$baseDir/ok", $con);
+        subirFoto($idx, 'fotoNo',  'no', $folioCaso, $idDefCaso, "$baseDir/no", $con);
     }
 
-    // 8) Procesar archivo PDF (método de trabajo)
-    if (isset($_FILES['metodo_pdf']) && $_FILES['metodo_pdf']['error'] === UPLOAD_ERR_OK) {
-        $archivoTmp = $_FILES['metodo_pdf']['tmp_name'];
-        $nombreOriginal = $_FILES['metodo_pdf']['name'];
-        $ext = strtolower(pathinfo($nombreOriginal, PATHINFO_EXTENSION));
-
-        if ($ext !== 'pdf') {
-            throw new Exception('El archivo del método de trabajo debe ser un PDF.');
-        }
-
-        $dirPDF = __DIR__ . '/dao/uploads/';
-        if (!file_exists($dirPDF)) {
-            mkdir($dirPDF, 0777, true);
-        }
-
-        $nombreFinal = 'metodo_' . $folioCaso . '_' . time() . '.pdf';
-        $rutaFinal = $dirPDF . $nombreFinal;
-
-        if (!move_uploaded_file($archivoTmp, $rutaFinal)) {
-            throw new Exception('Error al guardar el archivo PDF.');
-        }
-
-        $subidoPor = $username ?? ($_POST['correoInspector'] ?? 'desconocido');
-        $rutaBD = 'dao/uploads/' . $nombreFinal;
-
-        $stmtMetodo = $con->prepare("INSERT INTO MetodoTrabajo (FolioCaso, RutaPDF, SubidoPor) VALUES (?, ?, ?)");
-        $stmtMetodo->bind_param("iss", $folioCaso, $rutaBD, $subidoPor);
-        if (! $stmtMetodo->execute()) {
-            throw new Exception('Error insertando MetodoTrabajo: ' . $stmtMetodo->error);
-        }
-        $stmtMetodo->close();
-    }
-
-    // 9) Respuesta JSON
+    // 9) Respuesta final
     ob_clean();
     echo json_encode([
         'status'      => 'success',
@@ -168,11 +140,10 @@ try {
     exit;
 }
 
+// Subir una foto OK o NO OK
 function subirFoto($idx, $campo, $tipo, $folio, $idDefCaso, $dir, $con) {
-    if (
-        ! isset($_FILES['defectos']['tmp_name'][$idx][$campo]) ||
-        $_FILES['defectos']['error'][$idx][$campo] !== UPLOAD_ERR_OK
-    ) {
+    if (! isset($_FILES['defectos']['tmp_name'][$idx][$campo]) ||
+        $_FILES['defectos']['error'][$idx][$campo] !== UPLOAD_ERR_OK) {
         return;
     }
     $orig = basename($_FILES['defectos']['name'][$idx][$campo]);
@@ -182,7 +153,7 @@ function subirFoto($idx, $campo, $tipo, $folio, $idDefCaso, $dir, $con) {
     }
     $i = $con->prepare(
         "INSERT INTO Fotos (FolioCaso, IdDefectoCaso, TipoFoto, Ruta)
-       VALUES (?,?,?,?)"
+         VALUES (?, ?, ?, ?)"
     );
     $i->bind_param("iiss", $folio, $idDefCaso, $tipo, $new);
     if (! $i->execute()) {
@@ -191,6 +162,7 @@ function subirFoto($idx, $campo, $tipo, $folio, $idDefCaso, $dir, $con) {
     $i->close();
 }
 
+// Consulta auxiliar
 function lookup($con, $tabla, $idFld, $nameFld, $val) {
     $output = '';
     $st = $con->prepare("SELECT `$nameFld` FROM `$tabla` WHERE `$idFld` = ?");
