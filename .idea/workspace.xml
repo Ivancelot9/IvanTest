@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Agregando Metodo de Trabajo parte Inspector">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Agregando Metodo de Trabajo para Interno">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dao/obtenerCaso.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dao/obtenerCaso.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dao/verCaso.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dao/verCaso.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/modalMostrarDescripcion.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/modalMostrarDescripcion.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dashboardContencion.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/modalMostrarDescripcion.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/modalMostrarDescripcion.js" afterDir="false" />
     </list>
@@ -226,15 +225,7 @@
       <workItem from="1751984011339" duration="14095000" />
       <workItem from="1752071160716" duration="11882000" />
       <workItem from="1752157363871" duration="11076000" />
-      <workItem from="1752243402768" duration="17675000" />
-    </task>
-    <task id="LOCAL-01731" summary="Carpetas">
-      <option name="closed" value="true" />
-      <created>1751999914656</created>
-      <option name="number" value="01731" />
-      <option name="presentableId" value="LOCAL-01731" />
-      <option name="project" value="LOCAL" />
-      <updated>1751999914656</updated>
+      <workItem from="1752243402768" duration="18079000" />
     </task>
     <task id="LOCAL-01732" summary="Carpetas">
       <option name="closed" value="true" />
@@ -620,7 +611,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752266819123</updated>
     </task>
-    <option name="localTasksCounter" value="1780" />
+    <task id="LOCAL-01780" summary="Agregando Metodo de Trabajo para Interno">
+      <option name="closed" value="true" />
+      <created>1752507040379</created>
+      <option name="number" value="01780" />
+      <option name="presentableId" value="LOCAL-01780" />
+      <option name="project" value="LOCAL" />
+      <updated>1752507040379</updated>
+    </task>
+    <option name="localTasksCounter" value="1781" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -672,7 +671,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tabla Mis Casos" />
     <MESSAGE value="Tabla Todos Mis Casos" />
     <MESSAGE value="Validacion Caso" />
     <MESSAGE value="Validacion Caso con Fotos" />
@@ -697,7 +695,8 @@
     <MESSAGE value="Agregando Metodo de Trabajo" />
     <MESSAGE value="Agregando Metodo de Trabajo en la BD" />
     <MESSAGE value="Agregando Metodo de Trabajo parte Inspector" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregando Metodo de Trabajo parte Inspector" />
+    <MESSAGE value="Agregando Metodo de Trabajo para Interno" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregando Metodo de Trabajo para Interno" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -51,16 +51,14 @@
             campos.commodity.textContent = data.commodity;
             campos.descripcion.textContent = data.descripcion || '(sin descripción)';
 
-            // Mostrar método de trabajo (PDF)
             if (data.metodoTrabajo) {
                 metodoTrabajoEl.innerHTML = `
-                    <a href="dao/uploads/pdf/${encodeURIComponent(data.metodoTrabajo)}"
-                       target="_blank" class="btn btn-sm btn-primary">
-                        📄 Ver método de trabajo
-                    </a>
-                `;
+        <iframe src="dao/uploads/pdf/${encodeURIComponent(data.metodoTrabajo)}"
+                width="100%" height="500px"
+                style="border:1px solid var(--card-border); border-radius: 6px;"></iframe>
+    `;
             } else {
-                metodoTrabajoEl.textContent = '(No disponible)';
+                metodoTrabajoEl.innerHTML = '(No disponible)';
             }
 
             // Renderizar defectos
