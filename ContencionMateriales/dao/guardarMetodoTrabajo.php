@@ -36,15 +36,20 @@ if ($archivo['size'] > 5 * 1024 * 1024) {
 $nombreFinal = uniqid() . '_' . basename($archivo['name']);
 $rutaDestino = __DIR__ . '/dao/uploads/pdf/' . $nombreFinal;
 
-// Mover archivo
 if (!move_uploaded_file($archivo['tmp_name'], $rutaDestino)) {
     echo json_encode(['status' => 'error', 'message' => 'No se pudo guardar el archivo']);
     exit;
 }
 
-// Insertar en la base de datos
+// Conexión y guardado
 $con = (new LocalConector())->conectar();
-$stmt = $con->prepare("INSERT INTO MetodoTrabajo (FolioCaso, RutaArchivo, SubidoPor) VALUES (?, ?, ?)");
+
+// OPCIÓN: REEMPLAZA si ya existe uno para ese folio
+$stmt = $con->prepare("
+    INSERT INTO MetodoTrabajo (FolioCaso, RutaArchivo, SubidoPor)
+    VALUES (?, ?, ?)
+    ON DUPLICATE KEY UPDATE RutaArchivo = VALUES(RutaArchivo), SubidoPor = VALUES(SubidoPor)
+");
 $stmt->bind_param("iss", $folio, $nombreFinal, $subidoPor);
 
 if ($stmt->execute()) {
