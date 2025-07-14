@@ -44,7 +44,6 @@ if (!move_uploaded_file($archivo['tmp_name'], $rutaDestino)) {
 // Conexión y guardado
 $con = (new LocalConector())->conectar();
 
-// OPCIÓN: REEMPLAZA si ya existe uno para ese folio
 $stmt = $con->prepare("
     INSERT INTO MetodoTrabajo (FolioCaso, RutaArchivo, SubidoPor)
     VALUES (?, ?, ?)
@@ -53,8 +52,9 @@ $stmt = $con->prepare("
 $stmt->bind_param("iss", $folio, $nombreFinal, $subidoPor);
 
 if ($stmt->execute()) {
-    echo json_encode(['status' => 'success']);
+    echo json_encode(['status' => 'success', 'filename' => $nombreFinal]);
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Error al guardar en BD']);
 }
+
 $stmt->close();

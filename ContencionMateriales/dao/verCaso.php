@@ -135,10 +135,15 @@ $stmt3->close();
             <div class="info-grid" style="margin-top:30px;">
                 <div class="info-cell full-width">
                     <label>Método de Trabajo</label>
+
                     <?php if ($tienePDF): ?>
-                        <iframe src="uploads/pdf/<?= urlencode($rutaPDF) ?>" width="100%" height="500px" style="border:1px solid #ccc;"></iframe>
+                        <div id="preview-metodo-trabajo">
+                            <iframe src="dao/uploads/pdf/<?= urlencode($rutaPDF) ?>" width="100%" height="500px" style="border:1px solid #ccc;"></iframe>
+                        </div>
                     <?php else: ?>
-                        <form method="POST" enctype="multipart/form-data" id="form-subir-metodo" style="margin-top:10px;">
+                        <div id="preview-metodo-trabajo"></div>
+
+                        <form method="POST" enctype="multipart/form-data" id="formMetodo" style="margin-top:10px;">
                             <input type="hidden" name="folio" value="<?= $folio ?>">
                             <input type="file" name="pdf" accept="application/pdf" required>
                             <input type="text" name="subidoPor" placeholder="Tu nombre o correo" required>
@@ -159,6 +164,8 @@ $stmt3->close();
     </div>
 </div>
 
-<script src="js/subirMetodoTrabajo.js"></script> <!-- Referencia al nuevo script externo -->
+<script src="../js/subirMetodoTrabajo.js"></script>
+<script src="../js/subirMetodoTrabajoExterno.js"></script><!-- Referencia al nuevo script externo -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
