@@ -109,19 +109,28 @@ while ($row = $res2->fetch_assoc()) {
 $stmt2->close();
 $defectos = array_values($map);
 
-// 8) Enviar JSON final
+// 8) Consultar si existe un método de trabajo (PDF)
+$stmt3 = $con->prepare("SELECT RutaArchivo FROM MetodoTrabajo WHERE FolioCaso = ?");
+$stmt3->bind_param('i', $folio);
+$stmt3->execute();
+$stmt3->bind_result($rutaPDF);
+$tienePDF = $stmt3->fetch();
+$stmt3->close();
+
+// 9) Enviar JSON final
 echo json_encode([
-    'status'       => 'success',
-    'folio'        => $folio,
-    'fecha'        => $fecha,
-    'numeroParte'  => $numeroParte,
-    'cantidad'     => $cantidad,
-    'descripcion'  => $descripcion,
-    'terciaria'    => $terciaria,
-    'proveedor'    => $proveedor,
-    'commodity'    => $commodity,
-    'estatus'      => $estatus,
-    'responsable'  => $responsable,
-    'defectos'     => $defectos
+    'status'         => 'success',
+    'folio'          => $folio,
+    'fecha'          => $fecha,
+    'numeroParte'    => $numeroParte,
+    'cantidad'       => $cantidad,
+    'descripcion'    => $descripcion,
+    'terciaria'      => $terciaria,
+    'proveedor'      => $proveedor,
+    'commodity'      => $commodity,
+    'estatus'        => $estatus,
+    'responsable'    => $responsable,
+    'defectos'       => $defectos,
+    'metodoTrabajo'  => $tienePDF ? $rutaPDF : null
 ]);
 exit;

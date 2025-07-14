@@ -199,6 +199,35 @@
     filter: brightness(0) invert(1); /* blanco si fondo oscuro */
 }
 
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background-color: var(--dark-bg);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #111d2a;
+}
+
+.btn-sm {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+}
+
+.btn-primary {
+    background-color: var(--dark-bg);
+    color: #fff;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
     .photos-row {

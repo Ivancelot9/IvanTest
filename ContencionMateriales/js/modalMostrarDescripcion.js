@@ -17,6 +17,7 @@
     };
 
     const contDefectos = document.getElementById('r-defectos-container');
+    const metodoTrabajoEl = document.getElementById('r-metodo-trabajo');
 
     modal.style.display = 'none';
     lb.style.display = 'none';
@@ -30,6 +31,7 @@
     window.mostrarModalDescripcion = async folio => {
         Object.values(campos).forEach(el => el.textContent = '');
         contDefectos.innerHTML = '';
+        metodoTrabajoEl.textContent = '(Cargando...)';
         modal.style.display = 'flex';
 
         try {
@@ -49,25 +51,38 @@
             campos.commodity.textContent = data.commodity;
             campos.descripcion.textContent = data.descripcion || '(sin descripción)';
 
+            // Mostrar método de trabajo (PDF)
+            if (data.metodoTrabajo) {
+                metodoTrabajoEl.innerHTML = `
+                    <a href="dao/uploads/pdf/${encodeURIComponent(data.metodoTrabajo)}"
+                       target="_blank" class="btn btn-sm btn-primary">
+                        📄 Ver método de trabajo
+                    </a>
+                `;
+            } else {
+                metodoTrabajoEl.textContent = '(No disponible)';
+            }
+
+            // Renderizar defectos
             const html = data.defectos.map(def => `
-        <div class="defect-block">
-          <h3 class="defect-title">${def.nombre}</h3>
-          <div class="photos-row">
-            <div class="photos-group ok">
-              <div class="group-title">OK</div>
-              <div class="thumbs">
-                ${def.fotosOk.map(r => `<img src="dao/uploads/ok/${r}" alt="OK">`).join('')}
-              </div>
-            </div>
-            <div class="photos-group no">
-              <div class="group-title">NO OK</div>
-              <div class="thumbs">
-                ${def.fotosNo.map(r => `<img src="dao/uploads/no/${r}" alt="NO OK">`).join('')}
-              </div>
-            </div>
-          </div>
-        </div>
-      `).join('');
+                <div class="defect-block">
+                    <h3 class="defect-title">${def.nombre}</h3>
+                    <div class="photos-row">
+                        <div class="photos-group ok">
+                            <div class="group-title">OK</div>
+                            <div class="thumbs">
+                                ${def.fotosOk.map(r => `<img src="dao/uploads/ok/${r}" alt="OK">`).join('')}
+                            </div>
+                        </div>
+                        <div class="photos-group no">
+                            <div class="group-title">NO OK</div>
+                            <div class="thumbs">
+                                ${def.fotosNo.map(r => `<img src="dao/uploads/no/${r}" alt="NO OK">`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
 
             contDefectos.innerHTML = html;
 
@@ -77,9 +92,11 @@
                     lb.style.display = 'flex';
                 };
             });
+
         } catch (err) {
             console.error(err);
             campos.descripcion.textContent = 'Error al cargar datos.';
+            metodoTrabajoEl.textContent = '(Error al cargar PDF)';
             Swal.fire('Error', err.message, 'error');
         }
     };
@@ -90,6 +107,6 @@ document.addEventListener('click', e => {
     const btn = e.target.closest('.show-desc');
     if (!btn) return;
     const folio = btn.dataset.folio;
-    console.log('[DEBUG] Folio capturado:', folio); // Agrega esta línea
+    console.log('[DEBUG] Folio capturado:', folio);
     if (folio) window.mostrarModalDescripcion(folio);
 });

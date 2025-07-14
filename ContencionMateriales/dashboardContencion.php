@@ -560,6 +560,12 @@ $stmtUser->close();
                 <div class="info-cell"><label>Proveedor</label><span id="r-proveedor"></span></div>
                 <div class="info-cell"><label>Commodity</label><span id="r-commodity"></span></div>
                 <div class="info-cell full-width"><label>Descripción</label><p class="desc-text" id="r-descripcion"></p></div>
+
+                <!-- Nuevo bloque para método de trabajo -->
+                <div class="info-cell full-width">
+                    <label>Método de Trabajo</label>
+                    <div id="r-metodo-trabajo" class="desc-text">(Cargando...)</div>
+                </div>
             </div>
 
             <!-- Defectos -->

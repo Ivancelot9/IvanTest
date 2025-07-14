@@ -200,28 +200,6 @@ $stmt3->close();
         <img src="" alt="Ampliada">
     </div>
 </div>
-
-<script>
-    document.querySelectorAll('.thumbs img').forEach(img => {
-        img.addEventListener('click', () => {
-            const lb = document.getElementById('modal-image');
-            lb.querySelector('img').src = img.src;
-            lb.style.display = 'flex';
-        });
-    });
-    document.querySelector('.close-img').addEventListener('click', () => {
-        document.getElementById('modal-image').style.display = 'none';
-    });
-    document.getElementById('modal-image').addEventListener('click', e => {
-        if (e.target.id === 'modal-image') e.currentTarget.style.display = 'none';
-    });
-
-    document.querySelectorAll('.defect-title').forEach(title => {
-        const block = title.closest('.defect-block');
-        title.addEventListener('click', () => {
-            block.classList.toggle('expanded');
-        });
-    });
-</script>
+<script
 </body>
 </html>
