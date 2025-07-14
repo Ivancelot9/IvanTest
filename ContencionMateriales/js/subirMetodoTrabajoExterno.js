@@ -4,7 +4,7 @@ document.getElementById('formMetodo')?.addEventListener('submit', async function
     const data = new FormData(form);
 
     try {
-        const res = await fetch('dao/guardarMetodoTrabajo.php', {
+        const res = await fetch('../dao/guardarMetodoTrabajo.php', {
             method: 'POST',
             body: data
         });
