@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const data = new FormData(form);
         try {
-            const res = await fetch('guardarMetodoTrabajo.php', {
+            const res = await fetch('../dao/guardarMetodoTrabajo.php', {
                 method: 'POST',
                 body: data
             });
