@@ -5,7 +5,6 @@ error_reporting(E_ALL);
 
 include_once 'conexionContencion.php';
 
-// Capturar parámetro
 $folio = isset($_GET['folio']) ? intval($_GET['folio']) : (isset($_GET['Caso']) ? intval($_GET['Caso']) : 0);
 if ($folio <= 0) {
     echo "<h2>Folio inválido.</h2>";
@@ -14,29 +13,17 @@ if ($folio <= 0) {
 
 $con = (new LocalConector())->conectar();
 
-// Consulta principal
-$stmt = $con->prepare("
-    SELECT 
-      NumeroParte, Cantidad, Descripcion,
-      IdTerceria, IdProveedor, IdCommodity, IdEstatus,
-      Responsable, DATE_FORMAT(FechaRegistro, '%Y-%m-%d') AS FechaRegistro
-    FROM Casos
-    WHERE FolioCaso = ?
-");
+// Datos principales
+$stmt = $con->prepare("SELECT NumeroParte, Cantidad, Descripcion, IdTerceria, IdProveedor, IdCommodity, IdEstatus, Responsable, DATE_FORMAT(FechaRegistro, '%Y-%m-%d') FROM Casos WHERE FolioCaso = ?");
 $stmt->bind_param('i', $folio);
 $stmt->execute();
-$stmt->bind_result(
-    $numeroParte, $cantidad, $descripcion,
-    $idTerceria, $idProveedor, $idCommodity, $idEstatus,
-    $responsable, $fecha
-);
-if (! $stmt->fetch()) {
+$stmt->bind_result($numeroParte, $cantidad, $descripcion, $idTerceria, $idProveedor, $idCommodity, $idEstatus, $responsable, $fecha);
+if (!$stmt->fetch()) {
     echo "<h2>⚠️ Caso no encontrado.</h2>";
     exit;
 }
 $stmt->close();
 
-// Lookup helper
 function lookup($con, $table, $idfield, $namefield, $id) {
     $n = '';
     $s = $con->prepare("SELECT `$namefield` FROM `$table` WHERE `$idfield` = ?");
@@ -51,29 +38,18 @@ function lookup($con, $table, $idfield, $namefield, $id) {
 $terciaria = lookup($con, 'Terceria', 'IdTerceria', 'NombreTerceria', $idTerceria);
 $proveedor = lookup($con, 'Proveedores', 'IdProveedor', 'NombreProveedor', $idProveedor);
 $commodity = lookup($con, 'Commodity', 'IdCommodity', 'NombreCommodity', $idCommodity);
-$estatus   = lookup($con, 'Estatus', 'IdEstatus', 'NombreEstatus', $idEstatus);
+$estatus = lookup($con, 'Estatus', 'IdEstatus', 'NombreEstatus', $idEstatus);
 
-// Defectos y fotos
+// Defectos
 $map = [];
-$stmt2 = $con->prepare("
-    SELECT dc.IdDefectoCaso, d.NombreDefectos, f.TipoFoto, f.Ruta
-    FROM DefectosCaso dc
-    JOIN Defectos d ON d.IdDefectos = dc.IdDefectos
-    LEFT JOIN Fotos f ON f.IdDefectoCaso = dc.IdDefectoCaso
-    WHERE dc.FolioCaso = ?
-    ORDER BY dc.IdDefectoCaso, FIELD(f.TipoFoto,'ok','no')
-");
+$stmt2 = $con->prepare("SELECT dc.IdDefectoCaso, d.NombreDefectos, f.TipoFoto, f.Ruta FROM DefectosCaso dc JOIN Defectos d ON d.IdDefectos = dc.IdDefectos LEFT JOIN Fotos f ON f.IdDefectoCaso = dc.IdDefectoCaso WHERE dc.FolioCaso = ? ORDER BY dc.IdDefectoCaso, FIELD(f.TipoFoto,'ok','no')");
 $stmt2->bind_param('i', $folio);
 $stmt2->execute();
 $res2 = $stmt2->get_result();
 while ($row = $res2->fetch_assoc()) {
     $id = $row['IdDefectoCaso'];
     if (!isset($map[$id])) {
-        $map[$id] = [
-            'nombre'  => $row['NombreDefectos'],
-            'fotosOk' => [],
-            'fotosNo' => []
-        ];
+        $map[$id] = ['nombre' => $row['NombreDefectos'], 'fotosOk' => [], 'fotosNo' => []];
     }
     if (!empty($row['Ruta'])) {
         $key = $row['TipoFoto'] === 'ok' ? 'fotosOk' : 'fotosNo';
@@ -83,7 +59,7 @@ while ($row = $res2->fetch_assoc()) {
 $stmt2->close();
 $defectos = array_values($map);
 
-// Consulta PDF
+// PDF
 $stmt3 = $con->prepare("SELECT RutaArchivo FROM MetodoTrabajo WHERE FolioCaso = ?");
 $stmt3->bind_param('i', $folio);
 $stmt3->execute();
@@ -155,7 +131,7 @@ $stmt3->close();
                 <?php endforeach; ?>
             </div>
 
-            <!-- PDF Método de Trabajo -->
+            <!-- Método de Trabajo -->
             <div class="info-grid" style="margin-top:30px;">
                 <div class="info-cell full-width">
                     <label>Método de Trabajo</label>
@@ -168,24 +144,6 @@ $stmt3->close();
                             <input type="text" name="subidoPor" placeholder="Tu nombre o correo" required>
                             <button type="submit">Subir PDF</button>
                         </form>
-                        <script>
-                            document.getElementById('form-subir-metodo')?.addEventListener('submit', async e => {
-                                e.preventDefault();
-                                const form = e.target;
-                                const data = new FormData(form);
-                                const res = await fetch('guardarMetodoTrabajo.php', {
-                                    method: 'POST',
-                                    body: data
-                                });
-                                const json = await res.json();
-                                if (json.status === 'success') {
-                                    alert("PDF subido. Recargando...");
-                                    location.reload();
-                                } else {
-                                    alert("Error: " + json.message);
-                                }
-                            });
-                        </script>
                     <?php endif; ?>
                 </div>
             </div>
@@ -193,13 +151,14 @@ $stmt3->close();
     </div>
 </div>
 
-<!-- Lightbox para fotos -->
+<!-- Lightbox para imágenes -->
 <div id="modal-image" class="modal-overlay">
     <div class="lightbox-content">
         <button class="close-img">&times;</button>
         <img src="" alt="Ampliada">
     </div>
 </div>
-<script
+
+<script src="js/subirMetodoTrabajo.js"></script> <!-- Referencia al nuevo script externo -->
 </body>
 </html>
