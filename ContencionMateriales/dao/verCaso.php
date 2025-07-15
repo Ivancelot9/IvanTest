@@ -186,20 +186,18 @@ $stmt3->close();
                     <?php else: ?>
                         <div id="preview-metodo-trabajo"></div>
 
-                        <!-- 🔧 FORMULARIO BIEN FORMADO -->
                         <form id="formMetodo" enctype="multipart/form-data" class="upload-form">
                             <input type="hidden" name="folio" value="<?= $folio ?>">
 
-                            <!-- 📁 Selector de archivo -->
-                            <label for="input-file" class="btn-file">Subir PDF…</label>
+                            <!-- ✅ Botón visible para seleccionar archivo -->
+                            <button type="button" id="botonSeleccionarArchivo" class="btn-file">Seleccionar PDF</button>
                             <input id="input-file" type="file" name="pdf" accept="application/pdf" required style="display: none;">
 
-                            <!-- 📝 Nombre o correo -->
                             <div id="file-name" class="file-name"></div>
                             <input type="text" name="subidoPor" placeholder="Tu nombre o correo" required>
 
-                            <!-- ✅ BOTÓN BIEN FORMADO -->
-                            <button type="submit" class="btn-submit" id="btnEnviarPDF">Enviar PDF</button>
+                            <!-- ✅ Botón para enviar -->
+                            <button type="submit" class="btn-submit">Enviar PDF</button>
                         </form>
                     <?php endif; ?>
                 </div>
