@@ -183,7 +183,7 @@ $stmt3->close();
                         </div>
                     <?php else: ?>
                         <div id="preview-metodo-trabajo"></div>
-                        <form method="POST" enctype="multipart/form-data" id="formMetodo" style="margin-top:10px;">
+                        <form id="formMetodo" enctype="multipart/form-data" style="margin-top:10px;">
                             <input type="hidden" name="folio" value="<?= $folio ?>">
                             <input type="file" name="pdf" accept="application/pdf" required>
                             <input type="text" name="subidoPor" placeholder="Tu nombre o correo" required>

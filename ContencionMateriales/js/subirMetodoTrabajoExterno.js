@@ -1,41 +1,70 @@
-document.getElementById('formMetodo')?.addEventListener('submit', async function (e) {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
+document.addEventListener('DOMContentLoaded', () => {
+    const form      = document.getElementById('formMetodo');
+    const preview   = document.getElementById('preview-metodo-trabajo');
+    const fileInput = form?.querySelector('input[type="file"]');
+    const nameDisplay = document.createElement('div');
 
-    try {
-        const res = await fetch('dao/guardarMetodoTrabajo.php', {
-            method: 'POST',
-            body: data
-        });
+    if (!form || !fileInput) return;
 
-        const json = await res.json();
+    // Estilo para el nombre de archivo
+    nameDisplay.style.margin = '0.5rem 0';
+    nameDisplay.style.fontStyle = 'italic';
+    form.insertBefore(nameDisplay, form.querySelector('button'));
 
-        if (json.status === 'success') {
-            Swal.fire({
-                icon: 'success',
-                title: 'Método de trabajo subido correctamente',
-                timer: 2000,
-                showConfirmButton: false
-            });
-
-            const archivo = form.querySelector('input[type="file"]').files[0];
-            const nombre = json.filename || archivo.name;
-            const contenedor = document.getElementById('preview-metodo-trabajo');
-
-            if (contenedor) {
-                contenedor.innerHTML = `
-                    <iframe src="dao/uploads/pdf/${encodeURIComponent(nombre)}"
-                            width="100%" height="500px"
-                            style="border:1px solid #ccc;"></iframe>
-                `;
-                form.style.display = 'none';
-            }
-        } else {
-            Swal.fire('Error', json.message || 'No se pudo subir el archivo', 'error');
+    // 1) Previsualizar PDF al seleccionarlo
+    fileInput.addEventListener('change', () => {
+        const file = fileInput.files[0];
+        if (!file || file.type !== 'application/pdf') {
+            preview.innerHTML = '';
+            nameDisplay.textContent = '';
+            return;
         }
-    } catch (err) {
-        console.error(err);
-        Swal.fire('Error', 'Error al conectar con el servidor', 'error');
-    }
+        const url = URL.createObjectURL(file);
+        preview.innerHTML = `
+      <iframe
+        src="${url}"
+        width="100%" height="300px"
+        style="border:1px solid #ccc; border-radius:6px;"
+      ></iframe>
+    `;
+        nameDisplay.textContent = `Archivo: ${file.name}`;
+    });
+
+    // 2) Enviar al servidor y confirmar con SweetAlert
+    form.addEventListener('submit', async e => {
+        e.preventDefault();
+
+        const data = new FormData(form);
+        try {
+            const res = await fetch('../dao/guardarMetodoTrabajo.php', {
+                method: 'POST',
+                body: data
+            });
+            const text = await res.text();
+            let json;
+            try {
+                json = JSON.parse(text);
+            } catch {
+                console.error('Respuesta inválida:', text);
+                return Swal.fire('Error','El servidor no devolvió JSON','error');
+            }
+
+            if (json.status === 'success') {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'PDF subido correctamente',
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+
+                // Ya está previsualizado, solo ocultamos el formulario
+                form.style.display = 'none';
+            } else {
+                Swal.fire('Error', json.message || 'No se pudo subir el archivo','error');
+            }
+        } catch (err) {
+            console.error(err);
+            Swal.fire('Error','Error de conexión con el servidor','error');
+        }
+    });
 });
