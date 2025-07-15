@@ -25,7 +25,7 @@ document.getElementById('formMetodo')?.addEventListener('submit', async function
 
             if (contenedor) {
                 contenedor.innerHTML = `
-                    <iframe src="dao/uploads/pdf/${encodeURIComponent(nombre)}"
+                    <iframe src="../dao/uploads/pdf/${encodeURIComponent(nombre)}"
                             width="100%" height="500px"
                             style="border:1px solid #ccc;"></iframe>
                 `;
