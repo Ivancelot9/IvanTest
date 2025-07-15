@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameDisplay = document.getElementById('file-name');
     const preview     = document.getElementById('preview-metodo-trabajo');
 
+    // Verificar que los elementos existen
     if (!form) {
         console.error('❌ No existe form#formMetodo');
         return;
@@ -18,9 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!nameDisplay) console.error('❌ No existe div#file-name');
     if (!preview)     console.error('❌ No existe div#preview-metodo-trabajo');
 
-    //  Función para resetear todo
+    // Resetea form y preview
     const resetAll = () => {
-        console.log('🔄 Reseting form and preview');
+        console.log('🔄 Reseteando formulario y vista previa');
         preview.innerHTML       = '';
         nameDisplay.textContent = '';
         fileInput.value         = '';
@@ -28,14 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
         form.style.display      = 'flex';
     };
 
-    //  Función para añadir botón de “✕” sobre el iframe
+    // Añade botón “✕” para cambiar PDF
     const attachRemoveBtn = () => {
         if (preview.querySelector('.btn-remove')) return;
         console.log('➕ Agregando botón de remover PDF');
         const wrapper = document.createElement('div');
-        wrapper.className = 'pdf-wrapper';
         wrapper.style.position = 'relative';
-
         const existingIframe = preview.querySelector('iframe');
         if (existingIframe) wrapper.appendChild(existingIframe);
 
@@ -45,28 +44,22 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.textContent = '✕';
         btn.title = 'Modificar PDF';
         Object.assign(btn.style, {
-            position: 'absolute',
-            top: '8px',
-            right: '8px',
-            background: 'rgba(0,0,0,0.6)',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '50%',
-            width: '24px',
-            height: '24px',
-            cursor: 'pointer'
+            position: 'absolute', top: '8px', right: '8px',
+            background: 'rgba(0,0,0,0.6)', color: '#fff',
+            border: 'none', borderRadius: '50%',
+            width: '24px', height: '24px', cursor: 'pointer'
         });
         btn.addEventListener('click', resetAll);
         wrapper.appendChild(btn);
         preview.appendChild(wrapper);
     };
 
-    // 1) Al cambiar el input de archivo
+    // 1) Previsualizar PDF en cuanto se elige
     fileInput.addEventListener('change', () => {
-        console.log('📄 fileInput change event');
+        console.log('📄 Evento change en input-file');
         const file = fileInput.files[0];
         if (!file || file.type !== 'application/pdf') {
-            console.warn('⚠️ No es un PDF válido');
+            console.warn('⚠️ No es un PDF válido, reseteando');
             return resetAll();
         }
         console.log('✅ PDF seleccionado:', file.name);
@@ -82,12 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
         attachRemoveBtn();
     });
 
-    // 2) Al enviar el formulario
+    // 2) Capturar submit y validar
     form.addEventListener('submit', async e => {
         e.preventDefault();
         console.log('📝 submit capturado');
 
-        // Validaciones
+        // => Validar PDF
         if (!fileInput.files.length) {
             console.log('❌ falta PDF');
             return Swal.fire({
@@ -96,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 confirmButtonText: 'Entendido'
             });
         }
+        // => Validar nombre
         if (!nameInput.value.trim()) {
             console.log('❌ falta nombre o correo');
             return Swal.fire({
@@ -105,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // Alerta de carga
         Swal.fire({
             title: 'Subiendo PDF…',
             allowOutsideClick: false,
@@ -115,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         data.set('pdf', fileInput.files[0]);
 
         try {
-            console.log('🌐 Enviando fetch a guardarMetodoTrabajo.php');
+            console.log('🌐 Haciendo fetch a guardarMetodoTrabajo.php');
             const res  = await fetch('../dao/guardarMetodoTrabajo.php', {
                 method: 'POST',
                 body: data
