@@ -185,18 +185,18 @@ $stmt3->close();
                         </div>
                     <?php else: ?>
                         <div id="preview-metodo-trabajo"></div>
-                        <form id="formMetodo" enctype="multipart/form-data" style="margin-top:10px;">
+                        <form id="formMetodo" enctype="multipart/form-data">
                             <input type="hidden" name="folio" value="<?= $folio ?>">
 
-                            <!-- Botón estilizado para elegir archivo -->
                             <label for="input-file" class="btn-file">📄 Elegir PDF…</label>
                             <input id="input-file" type="file" name="pdf" accept="application/pdf" required>
 
-                            <!-- Nombre de archivo elegido -->
                             <div id="file-name" class="file-name"></div>
 
                             <input type="text" name="subidoPor" placeholder="Tu nombre o correo" required>
-                            <button type="submit">Subir PDF</button>
+
+                            <!-- Botón compacto con nuevo texto -->
+                            <button type="submit" class="btn-submit">Subir archivo</button>
                         </form>
                     <?php endif; ?>
 

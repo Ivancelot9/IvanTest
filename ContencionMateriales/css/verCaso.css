@@ -329,3 +329,29 @@ body {
     font-style: italic;
     color: var(--text-dark);
 }
+/* En tu verCaso.css (o donde tengas tus estilos) */
+
+/* Contenedor del formulario en fila */
+#formMetodo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .75rem;
+    margin-top: 1rem;
+}
+
+/* Botón de submit */
+.btn-submit {
+    padding: 0.5rem 1rem;
+    background-color: var(--dark-bg);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+}
+.btn-submit:hover {
+    background-color: #111d2a;
+}
