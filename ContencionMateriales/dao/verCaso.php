@@ -185,9 +185,11 @@ $stmt3->close();
                         </div>
                     <?php else: ?>
                         <div id="preview-metodo-trabajo"></div>
+
                         <form id="formMetodo" enctype="multipart/form-data" class="upload-form">
                             <input type="hidden" name="folio" value="<?= $folio ?>">
 
+                            <!-- ✅ Este label está solo -->
                             <label for="input-file" class="btn-file">Subir PDF…</label>
                             <input id="input-file" type="file" name="pdf" accept="application/pdf" required>
 
@@ -195,11 +197,10 @@ $stmt3->close();
 
                             <input type="text" name="subidoPor" placeholder="Tu nombre o correo" required>
 
-                            <!-- Texto más claro -->
+                            <!-- ✅ Botón separado del label -->
                             <button type="submit" class="btn-submit">Enviar PDF</button>
                         </form>
                     <?php endif; ?>
-
                 </div>
             </div>
         </div>
