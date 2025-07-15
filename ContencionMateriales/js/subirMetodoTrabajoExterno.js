@@ -1,7 +1,12 @@
 // subirMetodoTrabajoExterno.js
 
+// Atrapa cualquier error global para que no rompa el flujo
+window.addEventListener('error', ev => {
+    console.error('🚨 Uncaught error:', ev.error || ev.message);
+});
+
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🔥 subirMetodoTrabajoExterno.js cargado');
+    console.log('🔥 subirMetodoTrabajoExterno.js cargado (DOMContentLoaded)');
 
     const form        = document.getElementById('formMetodo');
     const fileInput   = document.getElementById('input-file');
@@ -9,19 +14,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameDisplay = document.getElementById('file-name');
     const preview     = document.getElementById('preview-metodo-trabajo');
 
-    // Verificar que los elementos existen
     if (!form) {
-        console.error('❌ No existe form#formMetodo');
+        console.error('❌ No existe form#formMetodo — ¿estás en la rama “no tiene PDF” del PHP?');
         return;
     }
-    if (!fileInput)   console.error('❌ No existe input#input-file');
-    if (!nameInput)   console.error('❌ No existe input[name="subidoPor"]');
-    if (!nameDisplay) console.error('❌ No existe div#file-name');
-    if (!preview)     console.error('❌ No existe div#preview-metodo-trabajo');
+    console.log('📋 form#formMetodo encontrado, montando listener submit');
 
-    // Resetea form y preview
+    // verificación de elementos
+    if (!fileInput)   console.error('❌ Falta #input-file');
+    if (!nameInput)   console.error('❌ Falta input[name="subidoPor"]');
+    if (!nameDisplay) console.error('❌ Falta #file-name');
+    if (!preview)     console.error('❌ Falta #preview-metodo-trabajo');
+
+    // Función para resetear
     const resetAll = () => {
-        console.log('🔄 Reseteando formulario y vista previa');
+        console.log('🔄 Reseteando formulario y preview');
         preview.innerHTML       = '';
         nameDisplay.textContent = '';
         fileInput.value         = '';
@@ -29,14 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
         form.style.display      = 'flex';
     };
 
-    // Añade botón “✕” para cambiar PDF
+    // Función para agregar botón ✕
     const attachRemoveBtn = () => {
         if (preview.querySelector('.btn-remove')) return;
-        console.log('➕ Agregando botón de remover PDF');
+        console.log('➕ Añadiendo botón “✕” para reemplazar PDF');
         const wrapper = document.createElement('div');
         wrapper.style.position = 'relative';
-        const existingIframe = preview.querySelector('iframe');
-        if (existingIframe) wrapper.appendChild(existingIframe);
+        const iframe = preview.querySelector('iframe');
+        if (iframe) wrapper.appendChild(iframe);
 
         const btn = document.createElement('button');
         btn.type = 'button';
@@ -44,22 +51,28 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.textContent = '✕';
         btn.title = 'Modificar PDF';
         Object.assign(btn.style, {
-            position: 'absolute', top: '8px', right: '8px',
-            background: 'rgba(0,0,0,0.6)', color: '#fff',
-            border: 'none', borderRadius: '50%',
-            width: '24px', height: '24px', cursor: 'pointer'
+            position: 'absolute',
+            top: '8px',
+            right: '8px',
+            background: 'rgba(0,0,0,0.6)',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '50%',
+            width: '24px',
+            height: '24px',
+            cursor: 'pointer'
         });
         btn.addEventListener('click', resetAll);
         wrapper.appendChild(btn);
         preview.appendChild(wrapper);
     };
 
-    // 1) Previsualizar PDF en cuanto se elige
+    // 1) Previsualizar nada más elegir PDF
     fileInput.addEventListener('change', () => {
-        console.log('📄 Evento change en input-file');
+        console.log('📄 input-file “change”');
         const file = fileInput.files[0];
         if (!file || file.type !== 'application/pdf') {
-            console.warn('⚠️ No es un PDF válido, reseteando');
+            console.warn('⚠️ El archivo no es PDF, reseteando');
             return resetAll();
         }
         console.log('✅ PDF seleccionado:', file.name);
@@ -75,12 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
         attachRemoveBtn();
     });
 
-    // 2) Capturar submit y validar
+    // 2) Listener de submit
+    console.log('👂 Añadiendo listener “submit” al form');
     form.addEventListener('submit', async e => {
         e.preventDefault();
-        console.log('📝 submit capturado');
+        console.log('📝 “submit” capturado');
 
-        // => Validar PDF
         if (!fileInput.files.length) {
             console.log('❌ falta PDF');
             return Swal.fire({
@@ -89,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 confirmButtonText: 'Entendido'
             });
         }
-        // => Validar nombre
         if (!nameInput.value.trim()) {
             console.log('❌ falta nombre o correo');
             return Swal.fire({
@@ -99,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Alerta de carga
         Swal.fire({
             title: 'Subiendo PDF…',
             allowOutsideClick: false,
@@ -110,24 +121,24 @@ document.addEventListener('DOMContentLoaded', () => {
         data.set('pdf', fileInput.files[0]);
 
         try {
-            console.log('🌐 Haciendo fetch a guardarMetodoTrabajo.php');
+            console.log('🌐 Fetch POST a guardarMetodoTrabajo.php');
             const res  = await fetch('../dao/guardarMetodoTrabajo.php', {
                 method: 'POST',
                 body: data
             });
             const text = await res.text();
-            console.log('📥 respuesta del servidor:', text);
+            console.log('📥 respuesta bruta:', text);
 
             let json;
             try {
                 json = JSON.parse(text);
             } catch (err) {
-                console.error('❌ JSON inválido:', err);
-                throw new Error('Respuesta del servidor no es JSON válido');
+                console.error('❌ JSON.parse falló:', err);
+                throw new Error('Respuesta del servidor inválida');
             }
 
             if (json.status === 'success') {
-                console.log('🎉 PDF subido con éxito');
+                console.log('🎉 upload OK');
                 await Swal.fire({
                     icon: 'success',
                     title: 'PDF subido correctamente',
@@ -137,12 +148,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 form.style.display = 'none';
                 attachRemoveBtn();
             } else {
-                console.error('❌ Error en la respuesta:', json.message);
-                throw new Error(json.message || 'No se pudo subir el archivo');
+                console.error('❌ Error en JSON:', json.message);
+                throw new Error(json.message || 'No se pudo subir el PDF');
             }
         } catch (err) {
-            console.error('❌ Error durante fetch:', err);
+            console.error('❌ Excepción durante fetch:', err);
             Swal.fire('Error', err.message, 'error');
         }
     });
+
 });
