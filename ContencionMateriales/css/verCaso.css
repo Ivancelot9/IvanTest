@@ -316,7 +316,9 @@ body {
 .btn-file:hover {
     background-color: #111d2a;
 }
-
+#formMetodo label.btn-file {
+    color: #fff;            /* texto blanco */
+}
 /* Ocultar el input real */
 #input-file {
     position: absolute;
