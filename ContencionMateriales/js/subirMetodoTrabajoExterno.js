@@ -1,19 +1,21 @@
 // subirMetodoTrabajoExterno.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    const form       = document.getElementById('formMetodo');
-    const fileInput  = document.getElementById('input-file');
-    const nameDisplay= document.getElementById('file-name');
-    const preview    = document.getElementById('preview-metodo-trabajo');
+    const form        = document.getElementById('formMetodo');
+    const fileInput   = document.getElementById('input-file');
+    const nameInput   = form.querySelector('input[name="subidoPor"]');
+    const nameDisplay = document.getElementById('file-name');
+    const preview     = document.getElementById('preview-metodo-trabajo');
 
-    if (!form || !fileInput || !nameDisplay || !preview) return;
+    if (!form || !fileInput || !nameInput || !nameDisplay || !preview) return;
 
     // Resetea todo al estado inicial
     const resetAll = () => {
-        preview.innerHTML    = '';
+        preview.innerHTML      = '';
         nameDisplay.textContent = '';
-        fileInput.value      = '';
-        form.style.display   = 'flex';
+        fileInput.value        = '';
+        nameInput.value        = '';
+        form.style.display     = 'flex';
     };
 
     // Añade botón “✕” para modificar/reemplazar
@@ -22,12 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const wrapper = document.createElement('div');
         wrapper.className = 'pdf-wrapper';
         wrapper.style.position = 'relative';
-        // Mueve el iframe dentro del wrapper si existe
         const existingIframe = preview.querySelector('iframe');
-        if (existingIframe) {
-            wrapper.appendChild(existingIframe);
-        }
-        // Crea el botón
+        if (existingIframe) wrapper.appendChild(existingIframe);
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'btn-remove';
@@ -50,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         preview.appendChild(wrapper);
     };
 
-    // 1) Al elegir archivo, mostrar preview + botón de “✕”
+    // 1) Mostrar nombre y previsualizar PDF al seleccionarlo
     fileInput.addEventListener('change', () => {
         const file = fileInput.files[0];
         if (!file || file.type !== 'application/pdf') {
@@ -68,14 +66,20 @@ document.addEventListener('DOMContentLoaded', () => {
         attachRemoveBtn();
     });
 
-    // 2) Al enviar, guardar por AJAX y ocultar el form
+    // 2) Capturar envío y subir via AJAX con feedback
     form.addEventListener('submit', async e => {
         e.preventDefault();
-        if (!fileInput.files.length) {
-            return Swal.fire('Error', 'Selecciona un PDF antes de enviar.', 'warning');
+
+        // Validaciones previas
+        if (fileInput.files.length === 0) {
+            return Swal.fire('Error', 'Por favor, selecciona un PDF.', 'warning');
         }
+        if (!nameInput.value.trim()) {
+            return Swal.fire('Error', 'Por favor, ingresa tu nombre o correo.', 'warning');
+        }
+
         const data = new FormData(form);
-        data.set('pdf', fileInput.files[0]);
+        data.set('pdf', fileInput.files[0]); // aseguramos archivo
 
         try {
             const res  = await fetch('../dao/guardarMetodoTrabajo.php', {
@@ -87,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
             try { json = JSON.parse(text); }
             catch {
                 console.error('Respuesta inválida:', text);
-                return Swal.fire('Error','El servidor no devolvió JSON válido.','error');
+                return Swal.fire('Error', 'El servidor no devolvió JSON válido.', 'error');
             }
 
             if (json.status === 'success') {
@@ -100,11 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 form.style.display = 'none';
                 attachRemoveBtn();
             } else {
-                Swal.fire('Error', json.message || 'No se pudo subir el archivo.','error');
+                Swal.fire('Error', json.message || 'No se pudo subir el archivo.', 'error');
             }
         } catch (err) {
             console.error('Error de conexión:', err);
-            Swal.fire('Error','Hubo un problema de conexión con el servidor.','error');
+            Swal.fire('Error', 'Hubo un problema de conexión con el servidor.', 'error');
         }
     });
 });
