@@ -355,3 +355,39 @@ body {
 .btn-submit:hover {
     background-color: #111d2a;
 }
+
+.upload-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .75rem;
+}
+
+.btn-file {
+    /* como antes… */
+}
+
+#input-file {
+    position: absolute;
+    left: -9999px;
+}
+
+.file-name {
+    font-style: italic;
+    color: var(--text-dark);
+}
+
+.btn-submit {
+    padding: .5rem 1rem;
+    background-color: var(--dark-bg);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color .2s;
+}
+.btn-submit:hover {
+    background-color: #111d2a;
+}
