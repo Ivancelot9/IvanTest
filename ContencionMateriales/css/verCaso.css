@@ -301,3 +301,31 @@ body {
     color: red;
     font-weight: bold;
 }
+
+/* Botón file personalizado */
+.btn-file {
+    display: inline-block;
+    padding: .5rem 1rem;
+    background-color: var(--dark-bg);
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color .2s;
+}
+.btn-file:hover {
+    background-color: #111d2a;
+}
+
+/* Ocultar el input real */
+#input-file {
+    position: absolute;
+    left: -9999px;
+}
+
+/* Nombre de archivo elegido */
+.file-name {
+    margin: .5rem 0;
+    font-style: italic;
+    color: var(--text-dark);
+}

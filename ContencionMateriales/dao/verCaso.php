@@ -185,7 +185,14 @@ $stmt3->close();
                         <div id="preview-metodo-trabajo"></div>
                         <form id="formMetodo" enctype="multipart/form-data" style="margin-top:10px;">
                             <input type="hidden" name="folio" value="<?= $folio ?>">
-                            <input type="file" name="pdf" accept="application/pdf" required>
+
+                            <!-- Botón estilizado para elegir archivo -->
+                            <label for="input-file" class="btn-file">📄 Elegir PDF…</label>
+                            <input id="input-file" type="file" name="pdf" accept="application/pdf" required>
+
+                            <!-- Mostrar nombre de archivo seleccionado -->
+                            <div id="file-name" class="file-name"></div>
+
                             <input type="text" name="subidoPor" placeholder="Tu nombre o correo" required>
                             <button type="submit">Subir PDF</button>
                         </form>
