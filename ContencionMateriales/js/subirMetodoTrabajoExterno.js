@@ -1,22 +1,24 @@
-// subirMetodoTrabajoExterno.js
-
 document.addEventListener('DOMContentLoaded', () => {
-    const form        = document.getElementById('formMetodo');
-    const fileInput   = document.getElementById('input-file');
-    const nameDisplay = document.getElementById('file-name');
-    const preview     = document.getElementById('preview-metodo-trabajo');
+    const form      = document.getElementById('formMetodo');
+    const preview   = document.getElementById('preview-metodo-trabajo');
+    const fileInput = form?.querySelector('input[type="file"]');
+    const nameDisplay = document.createElement('div');
 
-    if (!form || !fileInput || !nameDisplay || !preview) return;
+    if (!form || !fileInput) return;
 
-    // 1) Mostrar nombre y previsualizar PDF al seleccionarlo
+    // Estilo para el nombre de archivo
+    nameDisplay.style.margin = '0.5rem 0';
+    nameDisplay.style.fontStyle = 'italic';
+    form.insertBefore(nameDisplay, form.querySelector('button'));
+
+    // 1) Previsualizar PDF al seleccionarlo
     fileInput.addEventListener('change', () => {
         const file = fileInput.files[0];
         if (!file || file.type !== 'application/pdf') {
-            nameDisplay.textContent = '';
             preview.innerHTML = '';
+            nameDisplay.textContent = '';
             return;
         }
-        nameDisplay.textContent = `Archivo: ${file.name}`;
         const url = URL.createObjectURL(file);
         preview.innerHTML = `
       <iframe
@@ -25,22 +27,16 @@ document.addEventListener('DOMContentLoaded', () => {
         style="border:1px solid #ccc; border-radius:6px;"
       ></iframe>
     `;
+        nameDisplay.textContent = `Archivo: ${file.name}`;
     });
 
-    // 2) Capturar envío y subir via AJAX con feedback
+    // 2) Enviar al servidor y confirmar con SweetAlert
     form.addEventListener('submit', async e => {
         e.preventDefault();
 
-        // asegúrate de que haya un archivo antes de enviar
-        if (fileInput.files.length === 0) {
-            return Swal.fire('Error', 'Selecciona un PDF antes de enviar.', 'warning');
-        }
-
         const data = new FormData(form);
-        data.set('pdf', fileInput.files[0]); // añadir explícitamente el archivo
-
         try {
-            const res  = await fetch('../dao/guardarMetodoTrabajo.php', {
+            const res = await fetch('../dao/guardarMetodoTrabajo.php', {
                 method: 'POST',
                 body: data
             });
@@ -49,25 +45,26 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 json = JSON.parse(text);
             } catch {
-                console.error('Respuesta inválida del servidor:', text);
-                return Swal.fire('Error', 'El servidor no devolvió JSON válido.', 'error');
+                console.error('Respuesta inválida:', text);
+                return Swal.fire('Error','El servidor no devolvió JSON','error');
             }
 
             if (json.status === 'success') {
-                await Swal.fire({
+                Swal.fire({
                     icon: 'success',
                     title: 'PDF subido correctamente',
                     timer: 1500,
                     showConfirmButton: false
                 });
-                // Ocultar el formulario; la previsualización ya está en pantalla
+
+                // Ya está previsualizado, solo ocultamos el formulario
                 form.style.display = 'none';
             } else {
-                Swal.fire('Error', json.message || 'No se pudo subir el archivo.', 'error');
+                Swal.fire('Error', json.message || 'No se pudo subir el archivo','error');
             }
         } catch (err) {
-            console.error('Error de conexión:', err);
-            Swal.fire('Error', 'Hubo un problema de conexión con el servidor.', 'error');
+            console.error(err);
+            Swal.fire('Error','Error de conexión con el servidor','error');
         }
     });
 });
