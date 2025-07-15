@@ -5,6 +5,9 @@ error_reporting(E_ALL);
 
 include_once 'conexionContencion.php';
 
+// Ruta base para mostrar los PDFs en el navegador
+$pdfWebBase = 'https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/pdf';
+
 $folio = isset($_GET['folio'])
     ? intval($_GET['folio'])
     : (isset($_GET['Caso']) ? intval($_GET['Caso']) : 0);
@@ -176,9 +179,9 @@ $stmt3->close();
                     <?php if ($tienePDF): ?>
                         <div id="preview-metodo-trabajo">
                             <iframe
-                                    src="../dao/uploads/pdf/<?= urlencode($rutaPDF) ?>"
+                                    src="<?= $pdfWebBase . '/' . urlencode($rutaPDF) ?>"
                                     width="100%" height="500px"
-                                    style="border:1px solid #ccc;"
+                                    style="border:1px solid #ccc; border-radius:6px;"
                             ></iframe>
                         </div>
                     <?php else: ?>
@@ -212,7 +215,7 @@ $stmt3->close();
     </div>
 </div>
 
-<script src="../js/subirMetodoTrabajoExterno.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/subirMetodoTrabajoExterno.js"></script>
 </body>
 </html>
