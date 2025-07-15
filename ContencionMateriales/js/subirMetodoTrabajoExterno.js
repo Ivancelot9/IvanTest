@@ -1,33 +1,21 @@
-// Captura errores globales
-window.addEventListener('error', ev => {
-    console.error('🚨 Error no capturado:', ev.error || ev.message);
-});
-
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🔥 JS cargado');
 
-    const form        = document.getElementById('formMetodo');
-    const fileInput   = document.getElementById('input-file');
-    const nameInput   = form?.querySelector('input[name="subidoPor"]');
+    const form = document.getElementById('formMetodo');
+    const fileInput = document.getElementById('input-file');
+    const nameInput = form?.querySelector('input[name="subidoPor"]');
     const nameDisplay = document.getElementById('file-name');
-    const preview     = document.getElementById('preview-metodo-trabajo');
-    const btnSelect   = document.getElementById('botonSeleccionarArchivo'); // NUEVO botón externo
+    const preview = document.getElementById('preview-metodo-trabajo');
+    const botonArchivo = document.getElementById('botonSeleccionarArchivo');
 
-    if (!form || !fileInput || !nameInput || !nameDisplay || !preview) {
+    if (!form || !fileInput || !nameInput || !nameDisplay || !preview || !botonArchivo) {
         console.warn('❌ No se encontraron todos los elementos requeridos');
         return;
     }
 
-    // 🔘 Activar el botón "Seleccionar PDF…" (simula click en input)
-    if (btnSelect) {
-        btnSelect.addEventListener('click', () => {
-            fileInput.click();
-        });
-    }
+    botonArchivo.addEventListener('click', () => fileInput.click());
 
-    // 🔄 Reset completo
     const resetAll = () => {
-        console.log('🔄 Reset');
         preview.innerHTML = '';
         nameDisplay.textContent = '';
         fileInput.value = '';
@@ -35,12 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
         form.style.display = 'flex';
     };
 
-    // ✕ Botón para remover archivo
     const attachRemoveBtn = () => {
         if (preview.querySelector('.btn-remove')) return;
-
         const wrapper = document.createElement('div');
         wrapper.style.position = 'relative';
+
         const iframe = preview.querySelector('iframe');
         if (iframe) wrapper.appendChild(iframe);
 
@@ -48,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.type = 'button';
         btn.className = 'btn-remove';
         btn.textContent = '✕';
-        btn.title = 'Modificar PDF';
         Object.assign(btn.style, {
             position: 'absolute',
             top: '8px',
@@ -62,19 +48,19 @@ document.addEventListener('DOMContentLoaded', () => {
             cursor: 'pointer'
         });
         btn.addEventListener('click', resetAll);
+        wrapper.appendChild(btn);
+
         preview.innerHTML = '';
         preview.appendChild(wrapper);
     };
 
-    // 📄 Mostrar PDF al seleccionarlo
     fileInput.addEventListener('change', () => {
         const file = fileInput.files[0];
         if (!file || file.type !== 'application/pdf') {
-            Swal.fire('Archivo inválido', 'Solo se permiten archivos PDF.', 'warning');
+            Swal.fire('Archivo inválido', 'Selecciona un archivo PDF.', 'warning');
             return resetAll();
         }
 
-        console.log('✅ PDF seleccionado:', file.name);
         nameDisplay.textContent = `Archivo: ${file.name}`;
         const url = URL.createObjectURL(file);
         preview.innerHTML = `
@@ -87,22 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
         attachRemoveBtn();
     });
 
-    // 📤 Validación y envío
     form.addEventListener('submit', async e => {
         e.preventDefault();
-        console.log('📝 Formulario enviado');
 
         const hasPDF = fileInput.files.length > 0;
         const hasName = nameInput.value.trim().length > 0;
 
         if (!hasPDF && !hasName) {
-            return Swal.fire('Faltan datos', 'Debes ingresar un nombre y seleccionar un PDF.', 'warning');
+            return Swal.fire('Faltan datos', 'Debes ingresar tu nombre y seleccionar un PDF.', 'warning');
         }
         if (!hasPDF) {
             return Swal.fire('PDF faltante', 'Selecciona un archivo PDF antes de continuar.', 'warning');
         }
         if (!hasName) {
-            return Swal.fire('Nombre faltante', 'Escribe tu nombre o correo antes de continuar.', 'warning');
+            return Swal.fire('Nombre faltante', 'Escribe tu nombre o correo.', 'warning');
         }
 
         Swal.fire({
@@ -131,11 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 form.style.display = 'none';
             } else {
-                throw new Error(json.message || 'Ocurrió un error al subir el archivo.');
+                throw new Error(json.message || 'Error desconocido');
             }
         } catch (err) {
-            console.error('❌ Error al subir:', err);
-            Swal.fire('Error', err.message || 'Fallo de conexión.', 'error');
+            console.error('❌ Error:', err);
+            Swal.fire('Error', err.message || 'Error de conexión.', 'error');
         }
     });
 });
