@@ -36,7 +36,7 @@ if ($archivo['size'] > 5 * 1024 * 1024) {
 }
 
 $nombreFinal = uniqid() . '_' . basename($archivo['name']);
-$rutaDestino = __DIR__ . '/dao/uploads/pdf/' . $nombreFinal;
+$rutaDestino = __DIR__ . '/uploads/pdf/' . $nombreFinal;
 
 if (!move_uploaded_file($archivo['tmp_name'], $rutaDestino)) {
     ob_clean();
