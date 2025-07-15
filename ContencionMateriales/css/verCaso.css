@@ -363,9 +363,6 @@ body {
     gap: .75rem;
 }
 
-.btn-file {
-    /* como antes… */
-}
 
 #input-file {
     position: absolute;

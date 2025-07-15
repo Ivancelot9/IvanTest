@@ -188,7 +188,7 @@ $stmt3->close();
                         <form id="formMetodo" enctype="multipart/form-data" class="upload-form">
                             <input type="hidden" name="folio" value="<?= $folio ?>">
 
-                            <label for="input-file" class="btn-file">📄 Elegir PDF…</label>
+                            <label for="input-file" class="btn-file">Subir PDF…</label>
                             <input id="input-file" type="file" name="pdf" accept="application/pdf" required>
 
                             <div id="file-name" class="file-name"></div>
@@ -196,7 +196,7 @@ $stmt3->close();
                             <input type="text" name="subidoPor" placeholder="Tu nombre o correo" required>
 
                             <!-- Texto más claro -->
-                            <button type="submit" class="btn-submit">Subir PDF</button>
+                            <button type="submit" class="btn-submit">Enviar PDF</button>
                         </form>
                     <?php endif; ?>
 
