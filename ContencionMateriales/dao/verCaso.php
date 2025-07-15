@@ -119,9 +119,8 @@ $stmt3->close();
     <div class="modal-dialog">
         <div class="modal-header">
             <div class="header-title-with-logo">
-                <img
-                        src="https://grammermx.com/IvanTest/ContencionMateriales/imagenes/Grammer_Logo_Original_White_sRGB_screen_transparent.png"
-                        class="header-logo" alt="Logo">
+                <img src="https://grammermx.com/IvanTest/ContencionMateriales/imagenes/Grammer_Logo_Original_White_sRGB_screen_transparent.png"
+                     class="header-logo" alt="Logo">
                 <h2>Caso <?= htmlspecialchars($folio) ?></h2>
             </div>
         </div>
@@ -154,7 +153,7 @@ $stmt3->close();
                                 <div class="group-title">OK</div>
                                 <div class="thumbs">
                                     <?php foreach ($def['fotosOk'] as $f): ?>
-                                        <img src="../dao/uploads/ok/<?= urlencode($f) ?>" alt="OK">
+                                        <img src="../dao/uploads/ok/<?= rawurlencode($f) ?>" alt="OK">
                                     <?php endforeach; ?>
                                 </div>
                             </div>
@@ -162,7 +161,7 @@ $stmt3->close();
                                 <div class="group-title">NO OK</div>
                                 <div class="thumbs">
                                     <?php foreach ($def['fotosNo'] as $f): ?>
-                                        <img src="../dao/uploads/no/<?= urlencode($f) ?>" alt="NO OK">
+                                        <img src="../dao/uploads/no/<?= rawurlencode($f) ?>" alt="NO OK">
                                     <?php endforeach; ?>
                                 </div>
                             </div>
@@ -179,7 +178,7 @@ $stmt3->close();
                     <?php if ($tienePDF): ?>
                         <div id="preview-metodo-trabajo">
                             <iframe
-                                    src="<?= $pdfWebBase . '/' . urlencode($rutaPDF) ?>"
+                                    src="<?= $pdfWebBase . '/' . rawurlencode($rutaPDF) ?>"
                                     width="100%" height="500px"
                                     style="border:1px solid #ccc; border-radius:6px;"
                             ></iframe>
@@ -193,7 +192,7 @@ $stmt3->close();
                             <label for="input-file" class="btn-file">📄 Elegir PDF…</label>
                             <input id="input-file" type="file" name="pdf" accept="application/pdf" required>
 
-                            <!-- Mostrar nombre de archivo seleccionado -->
+                            <!-- Nombre de archivo elegido -->
                             <div id="file-name" class="file-name"></div>
 
                             <input type="text" name="subidoPor" placeholder="Tu nombre o correo" required>
