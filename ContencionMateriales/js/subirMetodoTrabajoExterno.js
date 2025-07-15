@@ -1,20 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🔥 JS cargado');
-
     const form = document.getElementById('formMetodo');
     const fileInput = document.getElementById('input-file');
-    const nameInput = form?.querySelector('input[name="subidoPor"]');
+    const nameInput = document.querySelector('input[name="subidoPor"]');
     const nameDisplay = document.getElementById('file-name');
     const preview = document.getElementById('preview-metodo-trabajo');
     const botonArchivo = document.getElementById('botonSeleccionarArchivo');
 
     if (!form || !fileInput || !nameInput || !nameDisplay || !preview || !botonArchivo) {
-        console.warn('❌ No se encontraron todos los elementos requeridos');
+        Swal.fire('Error', 'Faltan elementos del formulario.', 'error');
         return;
     }
 
+    // Abre el explorador de archivos
     botonArchivo.addEventListener('click', () => fileInput.click());
 
+    // Limpia todo
     const resetAll = () => {
         preview.innerHTML = '';
         nameDisplay.textContent = '';
@@ -23,8 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
         form.style.display = 'flex';
     };
 
+    // Agrega botón de eliminar PDF cargado
     const attachRemoveBtn = () => {
         if (preview.querySelector('.btn-remove')) return;
+
         const wrapper = document.createElement('div');
         wrapper.style.position = 'relative';
 
@@ -48,16 +50,23 @@ document.addEventListener('DOMContentLoaded', () => {
             cursor: 'pointer'
         });
         btn.addEventListener('click', resetAll);
-        wrapper.appendChild(btn);
 
         preview.innerHTML = '';
         preview.appendChild(wrapper);
+        wrapper.appendChild(btn);
     };
 
+    // Mostrar vista previa del PDF
     fileInput.addEventListener('change', () => {
         const file = fileInput.files[0];
+
         if (!file || file.type !== 'application/pdf') {
-            Swal.fire('Archivo inválido', 'Selecciona un archivo PDF.', 'warning');
+            Swal.fire('Archivo inválido', 'Selecciona un archivo PDF válido.', 'warning');
+            return resetAll();
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+            Swal.fire('Archivo demasiado grande', 'El PDF no debe superar los 5 MB.', 'warning');
             return resetAll();
         }
 
@@ -73,20 +82,16 @@ document.addEventListener('DOMContentLoaded', () => {
         attachRemoveBtn();
     });
 
+    // Envío del formulario con validaciones
     form.addEventListener('submit', async e => {
         e.preventDefault();
 
         const hasPDF = fileInput.files.length > 0;
         const hasName = nameInput.value.trim().length > 0;
 
-        if (!hasPDF && !hasName) {
-            return Swal.fire('Faltan datos', 'Debes ingresar tu nombre y seleccionar un PDF.', 'warning');
-        }
-        if (!hasPDF) {
-            return Swal.fire('PDF faltante', 'Selecciona un archivo PDF antes de continuar.', 'warning');
-        }
-        if (!hasName) {
-            return Swal.fire('Nombre faltante', 'Escribe tu nombre o correo.', 'warning');
+        if (!hasPDF || !hasName) {
+            Swal.fire('Faltan datos', 'Debes seleccionar un PDF y escribir tu nombre.', 'warning');
+            return;
         }
 
         Swal.fire({
@@ -103,8 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 body: data
             });
-            const text = await res.text();
-            const json = JSON.parse(text);
+            const json = await res.json();
 
             if (json.status === 'success') {
                 await Swal.fire({
@@ -115,11 +119,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 form.style.display = 'none';
             } else {
-                throw new Error(json.message || 'Error desconocido');
+                throw new Error(json.message || 'Error desconocido.');
             }
         } catch (err) {
-            console.error('❌ Error:', err);
-            Swal.fire('Error', err.message || 'Error de conexión.', 'error');
+            console.error('❌ Error al subir:', err);
+            Swal.fire('Error', err.message || 'No se pudo subir el archivo.', 'error');
         }
     });
 });

@@ -193,7 +193,10 @@ $stmt3->close();
                             <button type="button" id="botonSeleccionarArchivo" class="btn-file">Seleccionar PDF</button>
                             <input id="input-file" type="file" name="pdf" accept="application/pdf" required style="display: none;">
 
+                            <!-- ✅ Nombre del archivo seleccionado -->
                             <div id="file-name" class="file-name"></div>
+
+                            <!-- ✅ Campo para nombre/correo -->
                             <input type="text" name="subidoPor" placeholder="Tu nombre o correo" required>
 
                             <!-- ✅ Botón para enviar -->
