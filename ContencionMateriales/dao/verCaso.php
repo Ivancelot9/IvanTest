@@ -5,7 +5,10 @@ error_reporting(E_ALL);
 
 include_once 'conexionContencion.php';
 
-$folio = isset($_GET['folio']) ? intval($_GET['folio']) : (isset($_GET['Caso']) ? intval($_GET['Caso']) : 0);
+$folio = isset($_GET['folio'])
+    ? intval($_GET['folio'])
+    : (isset($_GET['Caso']) ? intval($_GET['Caso']) : 0);
+
 if ($folio <= 0) {
     echo "<h2>Folio inválido.</h2>";
     exit;
@@ -14,10 +17,28 @@ if ($folio <= 0) {
 $con = (new LocalConector())->conectar();
 
 // Datos principales
-$stmt = $con->prepare("SELECT NumeroParte, Cantidad, Descripcion, IdTerceria, IdProveedor, IdCommodity, IdEstatus, Responsable, DATE_FORMAT(FechaRegistro, '%Y-%m-%d') FROM Casos WHERE FolioCaso = ?");
+$stmt = $con->prepare("
+    SELECT 
+      NumeroParte, Cantidad, Descripcion,
+      IdTerceria, IdProveedor, IdCommodity, IdEstatus,
+      Responsable,
+      DATE_FORMAT(FechaRegistro, '%Y-%m-%d') AS FechaRegistro
+    FROM Casos
+    WHERE FolioCaso = ?
+");
 $stmt->bind_param('i', $folio);
 $stmt->execute();
-$stmt->bind_result($numeroParte, $cantidad, $descripcion, $idTerceria, $idProveedor, $idCommodity, $idEstatus, $responsable, $fecha);
+$stmt->bind_result(
+    $numeroParte,
+    $cantidad,
+    $descripcion,
+    $idTerceria,
+    $idProveedor,
+    $idCommodity,
+    $idEstatus,
+    $responsable,
+    $fecha
+);
 if (!$stmt->fetch()) {
     echo "<h2>⚠️ Caso no encontrado.</h2>";
     exit;
@@ -35,32 +56,47 @@ function lookup($con, $table, $idfield, $namefield, $id) {
     return $n;
 }
 
-$terciaria = lookup($con, 'Terceria', 'IdTerceria', 'NombreTerceria', $idTerceria);
+$terciaria = lookup($con, 'Terceria',    'IdTerceria',  'NombreTerceria',  $idTerceria);
 $proveedor = lookup($con, 'Proveedores', 'IdProveedor', 'NombreProveedor', $idProveedor);
-$commodity = lookup($con, 'Commodity', 'IdCommodity', 'NombreCommodity', $idCommodity);
-$estatus = lookup($con, 'Estatus', 'IdEstatus', 'NombreEstatus', $idEstatus);
+$commodity = lookup($con, 'Commodity',   'IdCommodity', 'NombreCommodity', $idCommodity);
+$estatus   = lookup($con, 'Estatus',     'IdEstatus',   'NombreEstatus',   $idEstatus);
 
-// Defectos
+// Defectos y fotos
 $map = [];
-$stmt2 = $con->prepare("SELECT dc.IdDefectoCaso, d.NombreDefectos, f.TipoFoto, f.Ruta FROM DefectosCaso dc JOIN Defectos d ON d.IdDefectos = dc.IdDefectos LEFT JOIN Fotos f ON f.IdDefectoCaso = dc.IdDefectoCaso WHERE dc.FolioCaso = ? ORDER BY dc.IdDefectoCaso, FIELD(f.TipoFoto,'ok','no')");
+$stmt2 = $con->prepare("
+    SELECT dc.IdDefectoCaso, d.NombreDefectos, f.TipoFoto, f.Ruta
+    FROM DefectosCaso dc
+    JOIN Defectos d ON d.IdDefectos = dc.IdDefectos
+    LEFT JOIN Fotos f ON f.IdDefectoCaso = dc.IdDefectoCaso
+    WHERE dc.FolioCaso = ?
+    ORDER BY dc.IdDefectoCaso, FIELD(f.TipoFoto,'ok','no')
+");
 $stmt2->bind_param('i', $folio);
 $stmt2->execute();
 $res2 = $stmt2->get_result();
 while ($row = $res2->fetch_assoc()) {
-    $id = $row['IdDefectoCaso'];
-    if (!isset($map[$id])) {
-        $map[$id] = ['nombre' => $row['NombreDefectos'], 'fotosOk' => [], 'fotosNo' => []];
+    $idDef = $row['IdDefectoCaso'];
+    if (!isset($map[$idDef])) {
+        $map[$idDef] = [
+            'nombre'  => $row['NombreDefectos'],
+            'fotosOk' => [],
+            'fotosNo' => []
+        ];
     }
     if (!empty($row['Ruta'])) {
-        $key = $row['TipoFoto'] === 'ok' ? 'fotosOk' : 'fotosNo';
-        $map[$id][$key][] = $row['Ruta'];
+        $key = ($row['TipoFoto'] === 'ok') ? 'fotosOk' : 'fotosNo';
+        $map[$idDef][$key][] = $row['Ruta'];
     }
 }
 $stmt2->close();
 $defectos = array_values($map);
 
-// PDF
-$stmt3 = $con->prepare("SELECT RutaArchivo FROM MetodoTrabajo WHERE FolioCaso = ?");
+// PDF Método de Trabajo
+$stmt3 = $con->prepare("
+    SELECT RutaArchivo
+    FROM MetodoTrabajo
+    WHERE FolioCaso = ?
+");
 $stmt3->bind_param('i', $folio);
 $stmt3->execute();
 $stmt3->bind_result($rutaPDF);
@@ -80,8 +116,9 @@ $stmt3->close();
     <div class="modal-dialog">
         <div class="modal-header">
             <div class="header-title-with-logo">
-                <img src="https://grammermx.com/IvanTest/ContencionMateriales/imagenes/Grammer_Logo_Original_White_sRGB_screen_transparent.png"
-                     class="header-logo" alt="Logo">
+                <img
+                        src="https://grammermx.com/IvanTest/ContencionMateriales/imagenes/Grammer_Logo_Original_White_sRGB_screen_transparent.png"
+                        class="header-logo" alt="Logo">
                 <h2>Caso <?= htmlspecialchars($folio) ?></h2>
             </div>
         </div>
@@ -114,7 +151,7 @@ $stmt3->close();
                                 <div class="group-title">OK</div>
                                 <div class="thumbs">
                                     <?php foreach ($def['fotosOk'] as $f): ?>
-                                        <img src="uploads/ok/<?= urlencode($f) ?>" alt="OK">
+                                        <img src="../dao/uploads/ok/<?= urlencode($f) ?>" alt="OK">
                                     <?php endforeach; ?>
                                 </div>
                             </div>
@@ -122,7 +159,7 @@ $stmt3->close();
                                 <div class="group-title">NO OK</div>
                                 <div class="thumbs">
                                     <?php foreach ($def['fotosNo'] as $f): ?>
-                                        <img src="uploads/no/<?= urlencode($f) ?>" alt="NO OK">
+                                        <img src="../dao/uploads/no/<?= urlencode($f) ?>" alt="NO OK">
                                     <?php endforeach; ?>
                                 </div>
                             </div>
@@ -138,11 +175,14 @@ $stmt3->close();
 
                     <?php if ($tienePDF): ?>
                         <div id="preview-metodo-trabajo">
-                            <iframe src="dao/uploads/pdf/<?= urlencode($rutaPDF) ?>" width="100%" height="500px" style="border:1px solid #ccc;"></iframe>
+                            <iframe
+                                    src="../dao/uploads/pdf/<?= urlencode($rutaPDF) ?>"
+                                    width="100%" height="500px"
+                                    style="border:1px solid #ccc;"
+                            ></iframe>
                         </div>
                     <?php else: ?>
                         <div id="preview-metodo-trabajo"></div>
-
                         <form method="POST" enctype="multipart/form-data" id="formMetodo" style="margin-top:10px;">
                             <input type="hidden" name="folio" value="<?= $folio ?>">
                             <input type="file" name="pdf" accept="application/pdf" required>
@@ -150,6 +190,7 @@ $stmt3->close();
                             <button type="submit">Subir PDF</button>
                         </form>
                     <?php endif; ?>
+
                 </div>
             </div>
         </div>
@@ -164,8 +205,7 @@ $stmt3->close();
     </div>
 </div>
 
-<script src="../js/subirMetodoTrabajo.js"></script>
-<script src="../js/subirMetodoTrabajoExterno.js"></script><!-- Referencia al nuevo script externo -->
+<script src="../js/subirMetodoTrabajoExterno.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
