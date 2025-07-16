@@ -1,11 +1,37 @@
 <?php
+/**
+===============================================================================
+@file       registroUsuarioContencion.php
+@project    Programa de Contención de Materiales
+@module     Autenticación de Usuarios
+@purpose    Registrar nuevos usuarios enviados desde el formulario de registro.
+@description
+Este script maneja las solicitudes POST enviadas desde el frontend cuando
+un usuario desea registrarse. Realiza validaciones de los datos recibidos,
+verifica que el nombre de usuario no esté duplicado en la base de datos,
+y si todo es correcto, guarda el nuevo usuario con el rol predeterminado.
+
+➤ Se invoca desde JS en: inicioSesionContecion.js (modo registro)
+➤ Depende del archivo de conexión: conexionContencion.php
+➤ Retorna un JSON con el estado del registro y mensaje personalizado
+
+⚠️ Nota: La contraseña no está cifrada actualmente, se almacena en texto plano.
+Se recomienda aplicar `password_hash()` para producción segura.
+
+@author     Ivan Medina/Hadbet Altamirano
+@created    Mayo 2025
+@updated    [¿?]
+===============================================================================
+ */
+
+// Iniciar sesión y configurar entorno
 session_start();
 include_once("conexionContencion.php");
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 header('Content-Type: application/json');
 
 // ─────────────────────────────────────────
-// Validar método POST y campos
+// Validar método POST y campos obligatorios
 // ─────────────────────────────────────────
 $response = ['status' => 'error', 'message' => 'Método no permitido.'];
 
@@ -14,14 +40,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username   = trim($_POST['Username']);
         $nombre     = trim($_POST['Nombre']);
         $contrasena = trim($_POST['Contrasena']);
-        $idRol      = 1; // Usuario normal
+        $idRol      = 1; // Rol por defecto para usuario normal
 
-        // Validación básica
+        // Validación de longitud mínima
         $error = validarDatos($username, $nombre, $contrasena);
         if ($error) {
             $response = ['status' => 'error', 'message' => $error];
         } else {
-            // Registrar en BD
+            // Intentar registrar al usuario
             $response = registrarUsuario($username, $nombre, $contrasena, $idRol);
         }
     } else {
@@ -29,11 +55,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+// Devolver respuesta al frontend
 echo json_encode($response);
 exit;
 
 /* ─────────────────────────────────────────
-   Función de validación
+   Función: validarDatos
+   Verifica que los datos cumplan reglas mínimas
 ───────────────────────────────────────── */
 function validarDatos(string $user, string $nombre, string $pwd): ?string {
     if (strlen($user) < 4) {
@@ -49,14 +77,16 @@ function validarDatos(string $user, string $nombre, string $pwd): ?string {
 }
 
 /* ─────────────────────────────────────────
-   Registro en base de datos con bind_param
+   Función: registrarUsuario
+   Inserta el nuevo usuario en la base de datos
 ───────────────────────────────────────── */
 function registrarUsuario(string $username, string $nombre, string $contrasena, int $rol): array {
     try {
+        // Conexión a BD
         $con = new LocalConector();
         $conn = $con->conectar();
 
-        // Verificar si ya existe el usuario
+        // Verificar existencia previa del usuario
         $stmt = $conn->prepare("SELECT COUNT(*) FROM Usuario WHERE Username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
