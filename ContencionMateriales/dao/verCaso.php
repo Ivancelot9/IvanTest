@@ -170,7 +170,7 @@ $stmt3->close();
                 <?php endforeach; ?>
             </div>
 
-            <!-- Método de Trabajo -->
+            <!-- Método de Trabajoo -->
             <div class="info-grid" style="margin-top:30px;">
                 <div class="info-cell full-width">
                     <label>Método de Trabajo</label>
