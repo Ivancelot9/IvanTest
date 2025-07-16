@@ -1,14 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('formMetodo');
+    if (!form) return; // 🛑 Si no hay formulario, no hay nada que hacer
+
     const fileInput = document.getElementById('input-file');
     const nameInput = document.querySelector('input[name="subidoPor"]');
     const nameDisplay = document.getElementById('file-name');
     const preview = document.getElementById('preview-metodo-trabajo');
     const botonArchivo = document.getElementById('botonSeleccionarArchivo');
 
-    if (!form || !fileInput || !nameInput || !nameDisplay || !preview || !botonArchivo) {
-        Swal.fire('Error', 'Faltan elementos del formulario.', 'error');
-        return;
+    if (!fileInput || !nameInput || !nameDisplay || !preview || !botonArchivo) {
+        return; // Ya no mostramos SweetAlert aquí
     }
 
     // Abre el explorador de archivos
@@ -124,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     timer: 1500,
                     showConfirmButton: false
                 });
-                form.style.display = 'none';
+                location.reload(); // 🔄 Recarga para que se muestre el iframe
             } else {
                 throw new Error(json.message || 'Error desconocido.');
             }
