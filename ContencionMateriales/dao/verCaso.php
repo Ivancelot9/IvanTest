@@ -216,7 +216,16 @@ $stmt3->close();
         <img src="" alt="Ampliada">
     </div>
 </div>
-
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.defect-title').forEach(title => {
+            title.addEventListener('click', () => {
+                const block = title.closest('.defect-block');
+                block.classList.toggle('expanded');
+            });
+        });
+    });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../js/subirMetodoTrabajoExterno.js"></script>
 </body>

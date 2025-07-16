@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Agregando Metodo de Trabajo Vista Externo(Recargar pagina y se mantenga e pdf intacto)">
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/subirMetodoTrabajoExterno.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/subirMetodoTrabajoExterno.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,23 +53,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Ex-Medina-I/Documents/IvanTest/BuzonQuejas/imagenes&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;web.server&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Ex-Medina-I/Documents/IvanTest/BuzonQuejas/imagenes",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "web.server",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Ex-Medina-I\Documents\IvanTest\BuzonQuejas\imagenes" />
@@ -223,15 +224,7 @@
       <workItem from="1752071160716" duration="11882000" />
       <workItem from="1752157363871" duration="11076000" />
       <workItem from="1752243402768" duration="41387000" />
-      <workItem from="1752675643234" duration="2474000" />
-    </task>
-    <task id="LOCAL-01767" summary="Agregando Metodo de Trabajo">
-      <option name="closed" value="true" />
-      <created>1752164083337</created>
-      <option name="number" value="01767" />
-      <option name="presentableId" value="LOCAL-01767" />
-      <option name="project" value="LOCAL" />
-      <updated>1752164083337</updated>
+      <workItem from="1752675643234" duration="3158000" />
     </task>
     <task id="LOCAL-01768" summary="Agregando Metodo de Trabajo">
       <option name="closed" value="true" />
@@ -617,7 +610,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752679242335</updated>
     </task>
-    <option name="localTasksCounter" value="1816" />
+    <task id="LOCAL-01816" summary="Agregando Metodo de Trabajo Vista Externo(Recargar pagina y se mantenga e pdf intacto)">
+      <option name="closed" value="true" />
+      <created>1752679544674</created>
+      <option name="number" value="01816" />
+      <option name="presentableId" value="LOCAL-01816" />
+      <option name="project" value="LOCAL" />
+      <updated>1752679544674</updated>
+    </task>
+    <option name="localTasksCounter" value="1817" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
