@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Agregando Metodo de Trabajo Vista Externo(Recargar pagina y se mantenga e pdf intacto)">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Agregando Metodo de Trabajo Vista en Celular">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/verCaso.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/verCaso.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,15 +225,7 @@
       <workItem from="1752071160716" duration="11882000" />
       <workItem from="1752157363871" duration="11076000" />
       <workItem from="1752243402768" duration="41387000" />
-      <workItem from="1752675643234" duration="6639000" />
-    </task>
-    <task id="LOCAL-01770" summary="Agregando Metodo de Trabajo">
-      <option name="closed" value="true" />
-      <created>1752171449385</created>
-      <option name="number" value="01770" />
-      <option name="presentableId" value="LOCAL-01770" />
-      <option name="project" value="LOCAL" />
-      <updated>1752171449385</updated>
+      <workItem from="1752675643234" duration="7211000" />
     </task>
     <task id="LOCAL-01771" summary="Agregando Metodo de Trabajo">
       <option name="closed" value="true" />
@@ -618,7 +611,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752682062652</updated>
     </task>
-    <option name="localTasksCounter" value="1819" />
+    <task id="LOCAL-01819" summary="Agregando Metodo de Trabajo Vista en Celular">
+      <option name="closed" value="true" />
+      <created>1752686176769</created>
+      <option name="number" value="01819" />
+      <option name="presentableId" value="LOCAL-01819" />
+      <option name="project" value="LOCAL" />
+      <updated>1752686176769</updated>
+    </task>
+    <option name="localTasksCounter" value="1820" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -670,7 +671,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Vista Previa Modal Fotos" />
     <MESSAGE value="Guardar Caso en BD" />
     <MESSAGE value="Resetear Foto" />
     <MESSAGE value="Insertar Caso en Tabla" />
@@ -695,7 +695,8 @@
     <MESSAGE value="Agregando Metodo de Trabajo Vista Externo" />
     <MESSAGE value="Agregando Metodo de Trabajo Vista Externo(Validaciones)" />
     <MESSAGE value="Agregando Metodo de Trabajo Vista Externo(Recargar pagina y se mantenga e pdf intacto)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregando Metodo de Trabajo Vista Externo(Recargar pagina y se mantenga e pdf intacto)" />
+    <MESSAGE value="Agregando Metodo de Trabajo Vista en Celular" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregando Metodo de Trabajo Vista en Celular" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
