@@ -391,40 +391,35 @@ body {
     background-color: #111d2a;
 }
 
-/* Contenedor asegurando espacio y scroll solo en móvil */
-#preview-metodo-trabajo {
-    width: 100%;
-    max-width: 100%;
-    margin-top: 1rem;
-    overflow-x: hidden; /* en desktop, sin scroll */
-}
-
-/* Iframe responsivo */
-#preview-metodo-trabajo iframe {
-    width: 100%;
-    min-width: 100%;
-    height: 500px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    display: block;
-}
-
-/* 📱 En móvil: permitimos scroll‑x en el modal y en el contenedor PDF */
+/* -----------------------------
+   RESPONSIVE PDF VIEWER FIX
+   en pantallas pequeñas ≤600px
+   ----------------------------- */
 @media (max-width: 600px) {
+    /* Permitir scroll horizontal en el modal */
     .modal-dialog {
-        overflow-x: auto;               /* deja deslizar todo el diálogo */
+        overflow-x: auto !important;
         -webkit-overflow-scrolling: touch;
     }
+    .modal-body {
+        overflow-x: auto !important;
+    }
+
+    /* Contenedor del PDF: habilita scroll-x */
     #preview-metodo-trabajo {
-        overflow-x: auto;               /* scroll interno al PDF */
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap; /* evita que se rompa la línea */
     }
+
+    /* Iframe: quita width:100%, fuerza un min-width real */
     #preview-metodo-trabajo iframe {
-        height: 300px;                  /* menor alto en móvil */
-    }
-}
-@media (max-width: 400px) {
-    #preview-metodo-trabajo iframe {
-        height: 220px;                  /* más pequeño aún si hace falta */
+        display: inline-block;
+        width: auto !important;    /* deja que sea tan ancho como el PDF */
+        min-width: 700px !important;/* ajusta este valor a tu anchura de página PDF */
+        height: 350px !important;   /* altura para móvil, ajustable */
+        border: 1px solid #ccc;
+        border-radius: 6px;
     }
 }
 
