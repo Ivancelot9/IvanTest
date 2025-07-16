@@ -175,24 +175,34 @@ $stmt3->close();
                 <div class="info-cell full-width">
                     <label>Método de Trabajo</label>
 
-                    <div id="preview-metodo-trabajo"></div>
+                    <?php if ($tienePDF && !empty($rutaPDF)): ?>
+                        <div id="preview-metodo-trabajo">
+                            <iframe
+                                    src="<?= $pdfWebBase . '/' . rawurlencode($rutaPDF) ?>"
+                                    width="100%" height="500px"
+                                    style="border:1px solid #ccc; border-radius:6px;"
+                            ></iframe>
+                        </div>
+                    <?php else: ?>
+                        <div id="preview-metodo-trabajo"></div>
 
-                    <form id="formMetodo" enctype="multipart/form-data" class="upload-form">
-                        <input type="hidden" name="folio" value="<?= $folio ?>">
+                        <form id="formMetodo" enctype="multipart/form-data" class="upload-form">
+                            <input type="hidden" name="folio" value="<?= $folio ?>">
 
-                        <!-- Botón visible para seleccionar archivo -->
-                        <button type="button" id="botonSeleccionarArchivo" class="btn-file">Seleccionar PDF</button>
-                        <input id="input-file" type="file" name="pdf" accept="application/pdf" style="display: none;">
+                            <!-- Botón visible para seleccionar archivo -->
+                            <button type="button" id="botonSeleccionarArchivo" class="btn-file">Seleccionar PDF</button>
+                            <input id="input-file" type="file" name="pdf" accept="application/pdf" style="display: none;">
 
-                        <!-- Nombre del archivo seleccionado -->
-                        <div id="file-name" class="file-name"></div>
+                            <!-- Nombre del archivo seleccionado -->
+                            <div id="file-name" class="file-name"></div>
 
-                        <!-- Campo para nombre/correo -->
-                        <input type="text" name="subidoPor" placeholder="Tu nombre o correo">
+                            <!-- Campo para nombre/correo -->
+                            <input type="text" name="subidoPor" placeholder="Tu nombre o correo">
 
-                        <!-- Botón para enviar -->
-                        <button type="submit" class="btn-submit">Enviar PDF</button>
-                    </form>
+                            <!-- Botón para enviar -->
+                            <button type="submit" class="btn-submit">Enviar PDF</button>
+                        </form>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
