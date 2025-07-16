@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Agregando Metodo de Trabajo Vista en Celular">
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/verCaso.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/verCaso.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/inicioSesionContecion.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/inicioSesionContecion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/login.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,15 +226,7 @@
       <workItem from="1752071160716" duration="11882000" />
       <workItem from="1752157363871" duration="11076000" />
       <workItem from="1752243402768" duration="41387000" />
-      <workItem from="1752675643234" duration="7807000" />
-    </task>
-    <task id="LOCAL-01773" summary="Agregando Metodo de Trabajo">
-      <option name="closed" value="true" />
-      <created>1752172949345</created>
-      <option name="number" value="01773" />
-      <option name="presentableId" value="LOCAL-01773" />
-      <option name="project" value="LOCAL" />
-      <updated>1752172949345</updated>
+      <workItem from="1752675643234" duration="10023000" />
     </task>
     <task id="LOCAL-01774" summary="Agregando Metodo de Trabajo">
       <option name="closed" value="true" />
@@ -618,7 +612,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752686795797</updated>
     </task>
-    <option name="localTasksCounter" value="1822" />
+    <task id="LOCAL-01822" summary="Agregando Metodo de Trabajo Vista en Celular">
+      <option name="closed" value="true" />
+      <created>1752687074686</created>
+      <option name="number" value="01822" />
+      <option name="presentableId" value="LOCAL-01822" />
+      <option name="project" value="LOCAL" />
+      <updated>1752687074686</updated>
+    </task>
+    <option name="localTasksCounter" value="1823" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

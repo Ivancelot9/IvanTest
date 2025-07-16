@@ -1,29 +1,49 @@
 /**
- * Script para gestionar:
- * - Login y Registro de usuarios
- * - Recuperación de contraseña con envío de token por correo
- * - Interacciones con SweetAlert2 para formularios dinámicos
+ ===============================================================================
+ @file       inicioSesionContecion.js
+ @project    Programa de Contención de Materiales
+ @module     Autenticación de Usuarios
+ @purpose    Gestiona el inicio de sesión, registro y recuperación de contraseña.
+ @description
+ Este script controla el comportamiento dinámico del formulario de autenticación.
+ Permite cambiar entre los modos de login y registro, validar campos, manejar
+ errores, enviar datos al backend mediante `fetch` y mostrar mensajes interactivos
+ con SweetAlert2. Además, implementa un flujo completo de recuperación de contraseña
+ con envío de token por correo y verificación cronometrada.
+
+ ➤ Controla dinámicamente el formulario en login.html
+ ➤ Usa SweetAlert2 para mostrar formularios y alertas interactivas
+ ➤ Enlaza con los archivos PHP ubicados en la carpeta /dao "cambiarContrasena.php,
+ validacionUsuarioContencion.php, registroUsuarioContencion.php, solicitarToken.php, cambiarContrasena.php
+ para login, registro, solicitud de token y cambio de contraseña.
+ ➤ Asocia un tab_id único a cada pestaña para identificar sesiones por pestaña
+
+ @author     Ivan Medina/Hadbet Altamirano
+ @created    Mayo 2025
+ @updated    [¿?]
+  ===============================================================================
  */
 
+// Espera a que todo el DOM esté listo para ejecutar la lógica
 document.addEventListener("DOMContentLoaded", () => {
 
-    // 1. Asigna un ID único a cada pestaña del navegador (persistente mientras dure la sesión)
+    // 1. Asigna un ID único por pestaña para identificar la sesión actual
     let tab_id = sessionStorage.getItem("tab_id");
     if (!tab_id) {
         tab_id = crypto.randomUUID();
         sessionStorage.setItem("tab_id", tab_id);
     }
 
-    // 2. Referencias del DOM para los botones y contenedores
+    // 2. Obtiene referencias clave del DOM
     const loginBtn      = document.getElementById("loginBtn");
     const registerBtn   = document.getElementById("registerBtn");
     const dynamicFields = document.getElementById("dynamicFields");
     const mainForm      = document.getElementById("mainForm");
     const forgotLink    = document.querySelector(".link-secondary");
-    let isLoginMode     = true;
+    let isLoginMode     = true; // Controla si estamos en login o registro
 
     /**
-     * 3. Activa el toggle visual para mostrar u ocultar contraseña
+     * 3. Activa el botón de mostrar/ocultar contraseña
      */
     function activarTogglePassword() {
         const pwdInput = document.getElementById("contrasena");
@@ -39,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /**
-     * 4. Construye el formulario de login dinámicamente
+     * 4. Genera el formulario de inicio de sesión dinámicamente
      */
     function cargarLogin() {
         isLoginMode = true;
@@ -60,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /**
-     * Construye el formulario de registro dinámicamente
+     * 5. Genera el formulario de registro dinámicamente
      */
     function cargarRegistro() {
         isLoginMode = false;
@@ -84,12 +104,12 @@ document.addEventListener("DOMContentLoaded", () => {
         activarTogglePassword();
     }
 
-    // 5. Botones de navegación entre formularios
+    // 6. Cambia entre login y registro al hacer clic
     loginBtn.addEventListener("click", cargarLogin);
     registerBtn.addEventListener("click", cargarRegistro);
 
     /**
-     * 6. Envío del formulario de login o registro
+     * 7. Manejador del envío del formulario (login o registro)
      */
     mainForm.addEventListener("submit", async event => {
         event.preventDefault();
@@ -99,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const nombreFld  = document.getElementById("Nombre");
         const nombre     = nombreFld ? nombreFld.value.trim() : "";
 
-        // Validaciones de campos
+        // Validaciones básicas
         if (!usuario || !contrasena || (!isLoginMode && !nombre)) {
             await Swal.fire("Campos incompletos", "Completa todos los campos obligatorios.", "warning");
             return;
@@ -113,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // Preparar envío
+        // Preparación del envío
         const formData = new FormData();
         formData.append("Username", usuario);
         formData.append("Contrasena", contrasena);
@@ -150,13 +170,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /**
-     * 7. Flujo para recuperar contraseña
+     * 8. Flujo de recuperación de contraseña con token
      */
     if (forgotLink) {
         forgotLink.addEventListener("click", async ev => {
             ev.preventDefault();
 
-            // Paso 1: solicitar usuario
+            // Paso 1: Solicita el nombre de usuario
             const { value: username } = await Swal.fire({
                 title: 'Recuperar contraseña',
                 input: 'text',
@@ -166,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             if (!username) return;
 
-            // Paso 2: solicitar correo
+            // Paso 2: Solicita el correo electrónico
             const { value: email } = await Swal.fire({
                 title: 'Correo de recuperación',
                 input: 'email',
@@ -179,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             if (!email) return;
 
-            // Paso 3: solicitar token al servidor
+            // Paso 3: Solicita token al servidor
             try {
                 const r1 = await fetch(
                     'https://grammermx.com/IvanTest/ContencionMateriales/dao/solicitarToken.php', {
@@ -200,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return Swal.fire('Error de red', 'No se pudo enviar el token', 'error');
             }
 
-            // Paso 4: Mostrar formulario para ingresar token + nueva contraseña con temporizador
+            // Paso 4: Formulario para token + nueva contraseña con temporizador
             const timerInterval = 600; // 10 minutos
             let remainingSeconds = timerInterval;
 
@@ -224,7 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         const seconds = remainingSeconds % 60;
                         countdown.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                     }, 1000);
-                    Swal.stopTimer(); // No cerrar automáticamente
+                    Swal.stopTimer(); // Desactiva cierre automático
                 },
                 focusConfirm: false,
                 preConfirm: () => {
@@ -240,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!result.value) return;
             const { token, pwd } = result.value;
 
-            // Paso 5: Enviar token y contraseña al backend
+            // Paso 5: Enviar al servidor para cambio de contraseña
             try {
                 const r2 = await fetch(
                     'https://grammermx.com/IvanTest/ContencionMateriales/dao/cambiarContrasena.php', {
@@ -265,6 +285,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 8. Cargar por defecto el login al abrir
+    // 9. Carga el modo login por defecto al cargar la página
     cargarLogin();
 });

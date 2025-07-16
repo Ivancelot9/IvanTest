@@ -1,4 +1,28 @@
-/* css/loginContencion.css */
+/**
+===============================================================================
+@file       loginContencion.css
+@project    Programa de Contención de Materiales
+@module     Estilos de Autenticación
+@purpose    Estilizar la interfaz de login y registro del sistema.
+@description
+    Este archivo define la apariencia visual de la página de inicio de sesión
+    (`login.html`). Aplica un fondo degradado, bordes decorativos, animaciones
+    suaves, responsividad móvil y un diseño profesional y sobrio.
+
+    ➤ Se integra en login.html para estilizar:
+        - Fondo y acentos visuales
+        - Contenedor del formulario (login/registro)
+        - Campos de entrada, botones y pestañas
+        - Animaciones decorativas
+        - Responsividad para móviles
+
+    ➤ No requiere scripts JS; es puramente visual.
+
+@author     Ivan Medina/Hadbet Altamirano
+@created    Mayo 2025
+@updated    [¿?]
+===============================================================================
+*/
 
 /* 🌐 Body: solo degradado gris claro */
 body {
@@ -33,7 +57,7 @@ body {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 44px;   /* 40px de la raya + 4px de su ancho */
+    left: 44px;
     right: 44px;
     background-image: image-set(
             url('../imagenes/logoHD (2).png') 1x,
@@ -60,7 +84,7 @@ body {
     z-index: -1;
 }
 
-/* 📦 Container: intacto, por encima de todo (z-index 3) */
+/* 📦 Contenedor del login (z-index 3) */
 .login-container {
     position: relative;
     z-index: 3;
@@ -74,7 +98,7 @@ body {
     box-sizing: border-box;
     overflow: hidden;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    animation: fadeInUp 0.8s ease-out,  containerGlow 2s ease-in-out infinite;
+    animation: fadeInUp 0.8s ease-out, containerGlow 2s ease-in-out infinite;
 }
 .login-container::before {
     content: "";
@@ -109,7 +133,7 @@ body {
     animation: fadeInDown 0.8s ease-out both, colorPulse 2s ease-in-out infinite alternate;
 }
 
-/* 🔵 Pestañas */
+/* 🔵 Pestañas para alternar login/registro */
 .form-header {
     display: flex;
     margin-bottom: 20px;
@@ -147,7 +171,7 @@ body {
     border-radius: 2px;
 }
 
-/* 🧩 Inputs */
+/* 🧩 Campos de entrada */
 .input-group {
     display: flex;
     align-items: center;
@@ -175,7 +199,7 @@ input {
     background: transparent;
 }
 
-/* 🟢 Botón Entrar */
+/* 🟢 Botón de acción (Entrar / Registrar) */
 .submit-btn {
     width: 100%;
     padding: 10px 0;
@@ -197,7 +221,7 @@ input {
     outline: none;
 }
 
-/* ✏️ Ayuda */
+/* ✏️ Texto de ayuda (recuperar contraseña) */
 .help-text {
     text-align: center;
     margin-top: 12px;
@@ -212,7 +236,7 @@ input {
     text-decoration: underline;
 }
 
-/* 📱 Responsividad */
+/* 📱 Adaptabilidad a dispositivos móviles */
 @media (max-width: 768px) {
     .login-container { padding: 20px; }
     .login-title { font-size: 1.5rem; margin-bottom: 20px; }
@@ -222,31 +246,28 @@ input {
     .submit-btn { padding: 8px 0; font-size: 0.9rem; }
 }
 
-/* === Animaciones === */
+/* === Animaciones decorativas === */
 @keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(20px); }
+    0%   { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
 }
 @keyframes fadeInDown {
-    0% { opacity: 0; transform: translateY(-20px); }
+    0%   { opacity: 0; transform: translateY(-20px); }
     100% { opacity: 1; transform: translateY(0); }
 }
 @keyframes bounceIn {
-    0% { transform: scale(0.8); opacity: 0; }
-    60% { transform: scale(1.05); opacity: 1; }
+    0%   { transform: scale(0.8); opacity: 0; }
+    60%  { transform: scale(1.05); opacity: 1; }
     100% { transform: scale(1); }
 }
-
 @keyframes colorPulse {
     0%   { color: #24292e; }
     100% { color: #0366d6; }
 }
-
 @keyframes blink {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    50%      { opacity: 0.3; }
 }
-
 @keyframes containerGlow {
     0%, 100% {
         box-shadow: 0 1px 3px rgba(27, 31, 35, 0.12);
