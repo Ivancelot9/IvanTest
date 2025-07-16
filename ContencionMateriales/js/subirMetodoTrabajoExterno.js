@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         form.style.display = 'flex';
     };
 
-    // Agrega botón de eliminar PDF cargado
+    // Botón para quitar PDF cargado
     const attachRemoveBtn = () => {
         if (preview.querySelector('.btn-remove')) return;
 
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         wrapper.appendChild(btn);
     };
 
-    // Mostrar vista previa del PDF
+    // Vista previa del PDF
     fileInput.addEventListener('change', () => {
         const file = fileInput.files[0];
 
@@ -82,15 +82,22 @@ document.addEventListener('DOMContentLoaded', () => {
         attachRemoveBtn();
     });
 
-    // Envío del formulario con validaciones
+    // Enviar formulario con validaciones detalladas
     form.addEventListener('submit', async e => {
         e.preventDefault();
 
         const hasPDF = fileInput.files.length > 0;
-        const hasName = nameInput.value.trim().length > 0;
+        const nameText = nameInput.value.trim();
+        const hasName = nameText.length >= 3;
 
-        if (!hasPDF || !hasName) {
+        if (!hasPDF && !hasName) {
             Swal.fire('Faltan datos', 'Debes seleccionar un PDF y escribir tu nombre.', 'warning');
+            return;
+        } else if (!hasPDF) {
+            Swal.fire('PDF faltante', 'Debes seleccionar un archivo PDF.', 'warning');
+            return;
+        } else if (!hasName) {
+            Swal.fire('Nombre inválido', 'Escribe al menos 3 caracteres en el campo de nombre.', 'warning');
             return;
         }
 
