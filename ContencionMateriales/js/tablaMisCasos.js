@@ -1,14 +1,36 @@
 // tablaMisCasos.js
 
-// Mantiene los folios actualmente seleccionados (global)
-window.selectedFolios = new Set();
-
 /**
- * Script para paginar, filtrar y resaltar las tablas de casos.
- * Soporta dos tablas distintas con estructura variable:
- * - #historial: muestra Folio, Fecha, Descripción, Estatus
- * - #historial-casos: muestra Folio, Fecha, Descripción, Estatus, Responsable, Terciaria
+ * @file        tablaMisCasos.js
+ * @project     Programa de Contención de Materiales
+ * @module      Dashboard (Historial de Casos)
+ * @purpose     Paginación y filtrado de tablas de casos registrados
+ * @description Este script permite:
+ *              - Mostrar dos tablas con columnas distintas:
+ *                • #historial: solo muestra los casos propios del usuario logueado.
+ *                • #historial-casos: muestra todos los casos visibles solo para el administrador.
+ *              - Aplicar filtros por folio o fecha.
+ *              - Navegación entre páginas con botones.
+ *              - Selección de casos por checkbox.
+ *              - Llamado al modal de descripción.
+ *              Cada tabla tiene configuración específica según su estructura.
+ *
+ * @author      Ivan Medina/Hadbet Altamirano
+ * @created     Mayo 2025
+ * @updated     [¿?]
+ *
+ * @uso         Este archivo es cargado en `dashboardContencion.php` y es esencial para
+ *              el funcionamiento dinámico de las secciones "Mis Casos" y "Historial de Casos".
+ *              Ambas tablas deben tener estructura HTML definida previamente con:
+ *              - Botones: `-prev`, `-next`
+ *              - Indicador: `-page-indicator`
+ *              - Filtro columna: `<select>`
+ *              - Campo de búsqueda: `<input>`
+ *              - Tabla con clase `.cases-table`
  */
+
+window.selectedFolios = new Set(); // ✅ Folios seleccionados en tiempo real
+
 function inicializarTablaCasos(idContenedor) {
     const filasPorPagina = 5;
     let paginaActual = 1;
