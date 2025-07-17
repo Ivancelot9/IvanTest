@@ -13,10 +13,13 @@
 
  ➤ Controla dinámicamente el formulario en login.html
  ➤ Usa SweetAlert2 para mostrar formularios y alertas interactivas
- ➤ Enlaza con los archivos PHP ubicados en la carpeta /dao "cambiarContrasena.php,
- validacionUsuarioContencion.php, registroUsuarioContencion.php, solicitarToken.php, cambiarContrasena.php
- para login, registro, solicitud de token y cambio de contraseña.
+ ➤ Enlaza con los archivos PHP ubicados en la carpeta /dao:
+ - validacionUsuarioContencion.php
+ - registroUsuarioContencion.php
+ - solicitarToken.php
+ - cambiarContrasena.php
  ➤ Asocia un tab_id único a cada pestaña para identificar sesiones por pestaña
+ ➤ Tras un login exitoso, redirige automáticamente a: dashboardContencion.php?tab_id=...
 
  @author     Ivan Medina/Hadbet Altamirano
  @created    Mayo 2025
