@@ -228,15 +228,7 @@
       <workItem from="1752761984465" duration="1153000" />
       <workItem from="1752763415387" duration="75000" />
       <workItem from="1752763511667" duration="232000" />
-      <workItem from="1752763780345" duration="6335000" />
-    </task>
-    <task id="LOCAL-01778" summary="Agregando Metodo de Trabajo parte Inspector">
-      <option name="closed" value="true" />
-      <created>1752263918901</created>
-      <option name="number" value="01778" />
-      <option name="presentableId" value="LOCAL-01778" />
-      <option name="project" value="LOCAL" />
-      <updated>1752263918901</updated>
+      <workItem from="1752763780345" duration="7138000" />
     </task>
     <task id="LOCAL-01779" summary="Agregando Metodo de Trabajo parte Inspector">
       <option name="closed" value="true" />
@@ -622,7 +614,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752767801426</updated>
     </task>
-    <option name="localTasksCounter" value="1827" />
+    <task id="LOCAL-01827" summary="Documentacion Codigo DashboardContencion">
+      <option name="closed" value="true" />
+      <created>1752771607316</created>
+      <option name="number" value="01827" />
+      <option name="presentableId" value="LOCAL-01827" />
+      <option name="project" value="LOCAL" />
+      <updated>1752771607316</updated>
+    </task>
+    <option name="localTasksCounter" value="1828" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
