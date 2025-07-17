@@ -1,23 +1,31 @@
-/* ======================================================
-   CSS para el modal de “Agregar Componentes”
-   Archivo: agregarComponentes.css
-   ====================================================== */
+/* ============================================================================
+ * @file agregarComponentes.css
+ * @project Contención de Materiales
+ * @module formularios
+ * @purpose Estilo del modal de “Agregar Componentes”
+ * @description Este archivo define los estilos para el modal emergente que permite
+ * agregar nuevas opciones a los catálogos (terciaria, proveedor, commodity, defecto)
+ * directamente desde la interfaz del formulario principal.
+ * @author Ivan Medina / Hadbet Altamirano
+ * @created Junio 2025
+ * @updated Junio 2025
+ * ============================================================================ */
 
-/* Overlay de fondo */
+/* 🔷 Fondo semitransparente que cubre toda la pantalla */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.4);
-    display: none;               /* se mostrará mediante JS */
+    background: rgba(0, 0, 0, 0.4);       /* Oscurece el fondo */
+    display: none;                        /* Se activa dinámicamente vía JS */
     align-items: center;
     justify-content: center;
-    z-index: 200;
+    z-index: 200;                         /* Asegura visibilidad sobre otros elementos */
 }
 
-/* Caja del modal */
+/* 🔷 Caja blanca del modal (contenedor del contenido) */
 .modal-box {
     background-color: #ffffff;
     border-radius: 8px;
@@ -28,14 +36,14 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* Título */
+/* 🔷 Título del modal */
 .modal-box h2 {
     margin: 0 0 1rem 0;
     font-size: 1.25rem;
     color: #1e2a38;
 }
 
-/* Campo de texto */
+/* 🔷 Campo de entrada de texto */
 #catalog-modal-input {
     width: 100%;
     padding: 0.6rem;
@@ -45,12 +53,13 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* Botones del modal */
+/* 🔷 Contenedor de botones */
 .modal-actions {
     margin-top: 1rem;
     text-align: right;
 }
 
+/* 🔷 Estilo base para los botones */
 .modal-actions button {
     margin-left: 0.5rem;
     padding: 0.5rem 1rem;
@@ -58,11 +67,11 @@
     border-radius: 6px;
     font-size: 0.9rem;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s ease-in-out;
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* Botón Cancelar */
+/* 🔴 Botón Cancelar */
 #catalog-modal-cancel {
     background-color: #e0e0e0;
     color: #333;
@@ -72,7 +81,7 @@
     background-color: #cacaca;
 }
 
-/* Botón Guardar */
+/* 🟦 Botón Guardar */
 #catalog-modal-save {
     background-color: #1e6cd1;
     color: #fff;
