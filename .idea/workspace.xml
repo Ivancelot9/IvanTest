@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentacion Codigo Tabla Mis Casos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/tablaCasos.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/tablaCasos.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/tablaMisCasos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/tablaMisCasos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/validacionesCasos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/validacionesCasos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,15 +230,7 @@
       <workItem from="1752761984465" duration="1153000" />
       <workItem from="1752763415387" duration="75000" />
       <workItem from="1752763511667" duration="232000" />
-      <workItem from="1752763780345" duration="11882000" />
-    </task>
-    <task id="LOCAL-01783" summary="Agregando Metodo de Trabajo para Interno">
-      <option name="closed" value="true" />
-      <created>1752514467881</created>
-      <option name="number" value="01783" />
-      <option name="presentableId" value="LOCAL-01783" />
-      <option name="project" value="LOCAL" />
-      <updated>1752514467881</updated>
+      <workItem from="1752763780345" duration="13545000" />
     </task>
     <task id="LOCAL-01784" summary="Agregando Metodo de Trabajo para Interno">
       <option name="closed" value="true" />
@@ -623,7 +616,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752777932864</updated>
     </task>
-    <option name="localTasksCounter" value="1832" />
+    <task id="LOCAL-01832" summary="Documentacion Codigo Tabla Mis Casos">
+      <option name="closed" value="true" />
+      <created>1752778514836</created>
+      <option name="number" value="01832" />
+      <option name="presentableId" value="LOCAL-01832" />
+      <option name="project" value="LOCAL" />
+      <updated>1752778514836</updated>
+    </task>
+    <option name="localTasksCounter" value="1833" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

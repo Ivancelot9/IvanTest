@@ -3,7 +3,7 @@
 /**
  * @file        tablaMisCasos.js
  * @project     Programa de Contención de Materiales
- * @module      Dashboard (Historial de Casos)
+ * @module      Dashboard (Historial de Casos) dentro de dashboardContencion.php
  * @purpose     Paginación y filtrado de tablas de casos registrados
  * @description Este script permite:
  *              - Mostrar dos tablas con columnas distintas:

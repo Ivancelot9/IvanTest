@@ -1,13 +1,47 @@
+/**
+ * @file        ValidacionesCasos.js
+ * @project     Contención de Materiales
+ * @module      Frontend - Validación y Envío de Casos
+ * @purpose     Validar el formulario de creación de caso y notificar al resto del sistema
+ * @description
+ * Este script realiza las siguientes tareas:
+ * 1. Escucha el envío del formulario de caso.
+ * 2. Valida campos obligatorios del formulario.
+ * 3. Verifica que se hayan agregado defectos con sus fotos OK/NO OK.
+ * 4. Verifica la presencia del archivo PDF si se activó el toggle correspondiente.
+ * 5. Envia los datos al servidor vía `fetch`.
+ * 6. Notifica mediante `BroadcastChannel` al resto de pestañas del navegador.
+ * 7. Actualiza el contador/badge de nuevos casos guardados.
+ * 8. Inserta visualmente el nuevo caso en la tabla de "Mis Casos".
+ *
+ * Este archivo usa:
+ * - SweetAlert2 para feedback visual
+ * - BroadcastChannel API para sincronizar notificaciones entre pestañas
+ * - LocalStorage para almacenar el contador local de nuevos casos
+ *
+ * @author      Ivan Medina/Hadbet Altamirano
+ * @created     Mayo 2025
+ * @updated     [¿?]
+ */
+
+// Espera a que cargue todo el DOM
 document.addEventListener('DOMContentLoaded', () => {
+    // ============================
+    // 🔔 Notificaciones y canales
+    // ============================
     const username    = document.body.dataset.username;
     const canalLocal  = new BroadcastChannel(`casosChannel_${username}`);
     const canalGlobal = new BroadcastChannel('canal-casos');
     const btnMisCasos = document.getElementById('btn-mis-casos');
     let badgeLocal    = btnMisCasos?.querySelector('.badge-count') || null;
+
+    // 🧠 LocalStorage key personalizado por usuario
     const storageKey  = `newCasesCount_${username}`;
     let contadorLocal = parseInt(localStorage.getItem(storageKey) || '0', 10);
+
     actualizarBadgeLocal(contadorLocal);
 
+    // Escucha de nuevos casos recibidos (local)
     canalLocal.addEventListener('message', ({ data }) => {
         if (data.type === 'new-case') {
             contadorLocal++;
@@ -16,18 +50,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Al hacer clic en "Mis Casos", reiniciar el contador
     btnMisCasos?.addEventListener('click', () => {
         contadorLocal = 0;
         localStorage.setItem(storageKey, '0');
         actualizarBadgeLocal(0);
-        // Mostrar sección #historial…
     });
 
+    // ============================
+    // 📤 Validación y envío
+    // ============================
     const form = document.querySelector('form.data-form');
+
     form.addEventListener('submit', async e => {
         e.preventDefault();
 
-        // 1) Validación de campos generales
+        // 1️⃣ Validación de campos generales
         const responsable = form.Responsable.value.trim();
         const numeroParte = form.NumeroParte.value.trim();
         const cantidad    = form.Cantidad.value.trim();
@@ -41,11 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return Swal.fire('Error', 'Por favor completa todos los datos generales.', 'error');
         }
 
-        // 2) Validar bloques de defectos
+        // 2️⃣ Validación de bloques de defectos
         const bloques = document.querySelectorAll('.bloque-defecto');
         if (bloques.length === 0) {
             return Swal.fire('Error', 'Agrega al menos un defecto con sus dos fotos.', 'error');
         }
+
         for (let i = 0; i < bloques.length; i++) {
             const bloque = bloques[i];
             const sel  = bloque.querySelector('select');
@@ -63,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // 2.5) Validar archivo PDF si se activó el toggle
+        // 2.5️⃣ Validación condicional del método de trabajo en PDF
         const togglePDF = document.getElementById('toggle-metodo-pdf');
         const inputPDF  = document.getElementById('input-metodo-pdf');
 
@@ -71,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return Swal.fire('Error', 'Debes subir el archivo PDF del método de trabajo.', 'error');
         }
 
-        // 3) Envío al servidor
+        // 3️⃣ Envío al servidor
         Swal.fire({
             title: 'Guardando caso…',
             allowOutsideClick: false,
@@ -97,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(json.message || 'Error inesperado');
             }
 
-            // Notificaciones
+            // 4️⃣ Notificación a otras pestañas
             canalLocal.postMessage({ type: 'new-case', folio: json.folio });
             canalGlobal.postMessage({
                 type:        'new-case',
@@ -109,17 +148,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 from:        username
             });
 
-            // Actualizar badge
+            // 5️⃣ Actualizar badge y contador local
             contadorLocal++;
             localStorage.setItem(storageKey, contadorLocal);
             actualizarBadgeLocal(contadorLocal);
 
-            // Limpiar formulario y bloques de defectos
+            // 6️⃣ Limpiar formulario y bloques
             form.reset();
             const cont = document.getElementById('bloques-defectos');
             if (cont) cont.innerHTML = '';
 
-            // Añadir fila a “Mis Casos”
+            // 7️⃣ Añadir nueva fila a tabla de "Mis Casos"
             const tbody = document.querySelector('#historial .cases-table tbody');
             if (tbody) {
                 const tr = document.createElement('tr');
@@ -140,6 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // 🔄 Función para actualizar visualmente el badge de notificaciones
     function actualizarBadgeLocal(count) {
         if (badgeLocal) {
             if (count > 0) {
