@@ -1,4 +1,17 @@
-/* 🎨 Avatar y dropdown */
+/* ============================================================================
+ * @file perfilUsuario.css
+ * @project Contención de Materiales
+ * @module interfaz_usuario
+ * @purpose Estilos para el selector de avatar, visor ampliado y panel desplegable
+ * @description Define la apariencia y comportamiento visual del avatar de usuario,
+ * el dropdown que muestra su información, el selector de avatares y el lightbox
+ * para ampliar la imagen de perfil. Incluye animaciones sutiles y adaptación visual.
+ * @author Ivan Medina / Hadbet Altamirano
+ * @created Junio 2025
+ * @updated Junio 2025
+ * ============================================================================ */
+
+/* 🔷 Botón de avatar en el dashboard (parte superior) */
 .user-dropdown {
     position: relative;
     display: flex;
@@ -16,6 +29,7 @@
     background-color: #2b3b4d;
 }
 
+/* 🟦 Icono circular del avatar */
 .avatar-icon {
     width: 30px;
     height: 30px;
@@ -24,6 +38,7 @@
     border: 2px solid #0366d6;
 }
 
+/* 🔽 Panel desplegable con la información del usuario */
 .user-dropdown-panel {
     position: absolute;
     top: 100%;
@@ -40,12 +55,14 @@
     animation: fadeIn 0.3s ease-out;
 }
 
+/* 👤 Información del usuario */
 .user-info {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
+/* 🧍 Avatar grande dentro del panel */
 .avatar-large {
     width: 48px;
     height: 48px;
@@ -65,31 +82,7 @@
     margin-top: 2px;
 }
 
-
-.avatar-selector {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 5px;
-}
-
-.avatar-option {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: transform 0.2s, border-color 0.2s;
-}
-
-.avatar-option:hover {
-    transform: scale(1.1);
-}
-
-.avatar-option.selected {
-    border-color: #58a6ff;
-}
-
+/* 🎨 Selector de avatares para personalización */
 .avatar-selector {
     display: flex;
     gap: 8px;
@@ -115,6 +108,7 @@
     border-color: #58a6ff;
 }
 
+/* ➕ Botón visual para subir avatar personalizado */
 .custom-avatar-label {
     display: flex;
     flex-direction: column;
@@ -135,6 +129,7 @@
     background-color: rgba(88, 166, 255, 0.1);
 }
 
+/* 🔍 Lightbox para ver avatar ampliado en pantalla completa */
 .avatar-lightbox {
     display: none;
     position: fixed;
@@ -155,6 +150,7 @@
     box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
 
+/* ❌ Botón para cerrar visor */
 .close-avatar {
     position: absolute;
     top: 30px;
@@ -164,7 +160,7 @@
     cursor: pointer;
 }
 
-/* Sutil animación */
+/* ✨ Animación para mostrar suavemente el panel */
 @keyframes fadeIn {
     from {
         opacity: 0;
