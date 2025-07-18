@@ -129,33 +129,28 @@
     background-color: rgba(88, 166, 255, 0.1);
 }
 
-/* 🔍 Lightbox para ver avatar ampliado en pantalla completa */
-.avatar-lightbox {
-    display: none;
+#avatarLightbox.modal-overlay {
     position: fixed;
-    z-index: 2000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.85);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: none;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    z-index: 9999;
 }
 
-.avatar-lightbox img {
-    max-width: 300px;
-    border-radius: 50%;
-    border: 5px solid white;
-    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+#avatarZoom {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
 }
 
-/* ❌ Botón para cerrar visor */
 .close-avatar {
     position: absolute;
-    top: 30px;
-    right: 50px;
-    font-size: 40px;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
     color: white;
     cursor: pointer;
 }
