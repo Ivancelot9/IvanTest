@@ -1,10 +1,31 @@
+/**
+ * @file modalFotos.css
+ * @project Sistema de Contención de Materiales
+ * @module Estilos
+ * @purpose Estilizado de bloques de defectos para el formulario de captura
+ * @description
+ * Este archivo define los estilos visuales para el sistema de defectos del formulario de casos.
+ * Cada defecto incluye campos visualmente diferenciados para foto OK y NO OK.
+ * El diseño es responsivo y ofrece una experiencia clara e intuitiva para el usuario.
+ *
+ * @author Ivan Medina/Hadbet Altamirano
+ * @created Mayo 2025
+ * @updated [¿?]
+ *
+ * @uso Utilizado por: `dashboardContencion.php` y `modalFotos.js`
+ * - Define estilos para `#btn-agregar-defecto`, `.bloque-defecto`, campos file, etc.
+ */
+
+/* ————————————————————————————————————————————————
+   Colores base para foto OK y NO OK
+———————————————————————————————————————————————— */
 :root {
     --accent-ok: #2ea043;
     --accent-no: #d93025;
 }
 
 /* ————————————————————————————————————————————————
-  Contenedor general de bloques de defectos
+   Contenedor general de bloques de defectos
 ———————————————————————————————————————————————— */
 .bloques-defectos-container {
     display: flex;
@@ -14,19 +35,18 @@
 }
 
 /* ————————————————————————————————————————————————
-  Cada bloque de defecto
+   Cada bloque individual de defecto
 ———————————————————————————————————————————————— */
 .bloque-defecto {
     position: relative;
     background: #f4f6f8;
     border: 1px solid #d1d5da;
     border-radius: 6px;
-    /* Padding derecho extra para la X */
-    padding: 16px 48px 16px 16px;
+    padding: 16px 48px 16px 16px; /* Espacio para botón ✖ */
 }
 
 /* ————————————————————————————————————————————————
-  Fila interna: select + fotos + botón eliminar
+   Fila interna: select + campos de foto + botón eliminar
 ———————————————————————————————————————————————— */
 .bloque-defecto .form-row {
     display: flex;
@@ -35,7 +55,7 @@
     align-items: flex-start;
 }
 
-/* Select de defectos */
+/* Select desplegable de catálogo de defectos */
 .bloque-defecto select {
     flex: 1 1 100%;
     padding: 6px 8px;
@@ -46,7 +66,7 @@
 }
 
 /* ————————————————————————————————————————————————
-  Campos de foto OK / NO OK
+   Campos para foto OK / NO OK
 ———————————————————————————————————————————————— */
 .bloque-defecto .campo-foto {
     flex: 1 1 calc(50% - 12px);
@@ -58,17 +78,19 @@
     white-space: nowrap;
 }
 
-/* Contenedores verde / rojo */
+/* Fondo verde para OK */
 .bloque-defecto .campo-ok {
     background: #e6ffed;
     border: 1px solid var(--accent-ok);
 }
+
+/* Fondo rojo para NO OK */
 .bloque-defecto .campo-no {
     background: #ffeef0;
     border: 1px solid var(--accent-no);
 }
 
-/* Iconos antes de la etiqueta */
+/* Iconos Font Awesome antes de cada etiqueta */
 .campo-ok .label-ok::before,
 .campo-no .label-no::before {
     font-family: "Font Awesome 6 Free";
@@ -84,7 +106,7 @@
     color: var(--accent-no);
 }
 
-/* Etiquetas de foto */
+/* Etiquetas visibles de cada campo de foto */
 .campo-foto .label-ok,
 .campo-foto .label-no {
     font-weight: 600;
@@ -92,7 +114,7 @@
 }
 
 /* ————————————————————————————————————————————————
-  Estilos para el botón interno de file
+   Botones del input de tipo file
 ———————————————————————————————————————————————— */
 .bloque-defecto .campo-foto input[type="file"]::file-selector-button {
     border: none;
@@ -102,6 +124,8 @@
     color: #fff;
     background: var(--accent-ok);
 }
+
+/* Personalización para bloque rojo */
 .bloque-defecto .campo-no input[type="file"]::file-selector-button {
     background: var(--accent-no);
 }
@@ -114,6 +138,7 @@
 .bloque-defecto .campo-no input[type="file"]::-webkit-file-upload-button {
     background: var(--accent-no);
 }
+
 /* Firefox */
 .bloque-defecto .campo-ok input[type="file"]::-moz-file-upload-button {
     background: var(--accent-ok);
@@ -125,14 +150,13 @@
 }
 
 /* ————————————————————————————————————————————————
-  Botón eliminar bloque (✖)
-  ahora en esquina superior, sin tapar nada
+   Botón “✖” para eliminar bloque
 ———————————————————————————————————————————————— */
 .bloque-defecto .btn-eliminar-defecto {
     position: absolute;
     top: 8px;
     right: 8px;
-    transform: none;      /* nada de translateY */
+    transform: none;
     background: none;
     border: none;
     color: var(--accent-no);
@@ -146,7 +170,7 @@
 }
 
 /* ————————————————————————————————————————————————
-  Botón “+ Agregar defecto”
+   Botón principal para agregar nuevos defectos
 ———————————————————————————————————————————————— */
 #btn-agregar-defecto {
     display: inline-block;
@@ -164,13 +188,14 @@
 }
 
 /* ————————————————————————————————————————————————
-  Responsive: bloques apilados en móvil
+   Responsive: apilar elementos en dispositivos móviles
 ———————————————————————————————————————————————— */
 @media (max-width: 600px) {
     .bloque-defecto .form-row {
         flex-direction: column;
         gap: 8px;
     }
+
     .bloque-defecto .campo-foto {
         flex: 1 1 auto;
     }
