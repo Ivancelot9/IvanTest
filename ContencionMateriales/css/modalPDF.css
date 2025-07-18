@@ -1,3 +1,29 @@
+/**
+ * @file modalPDF.css
+ * @project Contención de Materiales
+ * @module modalPDF
+ * @purpose Estilos del modal de carga y visualización de PDF
+ * @description
+ * Este archivo define los estilos visuales del modal utilizado para subir y previsualizar
+ * un archivo PDF del método de trabajo dentro del sistema. Trabaja junto con el script
+ * `metodoTrabajoPDF.js` y usa clases específicas para mostrar el modal, visor, inputs,
+ * y botones interactivos.
+ *
+ * Paleta de colores y variables:
+ *   --text-dark      → Color base del texto
+ *   --dark-bg        → Fondo oscuro principal
+ *   --card-bg        → Fondo del modal
+ *   --card-bg-alt    → Fondo alternativo para botones
+ *
+ * @author Ivan Medina / Hadbet Altamirano
+ * @created Mayo 2025
+ * @updated [¿?]
+ *
+ * @uso
+ * Este archivo es utilizado exclusivamente por el modal activado desde el formulario de casos,
+ * controlado mediante el archivo `metodoTrabajoPDF.js`.
+ */
+
 :root {
     --text-dark:       #1c1e21;
     --dark-bg:         #202c3a;
@@ -5,7 +31,7 @@
     --card-bg-alt:     #e8f0fe;
 }
 
-/* ———————— Modal PDF ———————— */
+/* ───────────── Modal PDF general ───────────── */
 .pdf-modal {
     position: fixed;
     inset: 0;
@@ -19,7 +45,7 @@
     display: flex;
 }
 
-/* Contenedor del modal */
+/* Contenedor del modal PDF */
 .pdf-modal-content {
     background: var(--card-bg);
     border: 4px solid var(--dark-bg);
@@ -30,14 +56,14 @@
     max-height: 90vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;               /* sólo scroll interno */
+    overflow: hidden;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', sans-serif;
     color: var(--text-dark);
     position: relative;
 }
 
-/* ———————— Botón de cierre ———————— */
+/* ───────────── Botón de cierre (❌) ───────────── */
 .pdf-close {
     position: absolute;
     top: 12px;
@@ -66,12 +92,12 @@
     color: #fff;
 }
 
-/* ———————— Vista previa de PDF ———————— */
+/* ───────────── Vista previa del PDF ───────────── */
 .pdf-preview-container {
-    height: 60vh;                   /* restauramos altura amplia */
+    height: 60vh;
     border: 4px solid var(--dark-bg);
     border-radius: 6px;
-    overflow: auto;                 /* scroll solo aquí */
+    overflow: auto;
     background: #fff;
     margin-bottom: 16px;
 }
@@ -81,7 +107,7 @@
     display: block;
 }
 
-/* ———————— Estilo “Choose File” ———————— */
+/* ───────────── Input de carga PDF ───────────── */
 #input-pdf-modal {
     width: 100%;
     box-sizing: border-box;
@@ -109,7 +135,7 @@
     color: #fff;
 }
 
-/* ———————— Botón PDF (normal) ———————— */
+/* ───────────── Botón PDF estándar ───────────── */
 #btn-cargar-pdf {
     display: none;
     background: #fff;
@@ -132,7 +158,7 @@
     border-color: #b71c1c;
 }
 
-/* ———————— Botón PDF compacto ———————— */
+/* ───────────── Botón PDF compacto ───────────── */
 #btn-cargar-pdf.compact {
     width: 34px;
     height: 34px;
@@ -148,7 +174,7 @@
     margin: 0;
 }
 
-/* ———————— Nombre PDF truncado ———————— */
+/* ───────────── Texto del nombre del archivo PDF ───────────── */
 #pdf-file-name {
     display: inline-block;
     color: #2ea043;
@@ -164,20 +190,20 @@
     cursor: default;
 }
 
-/* ———————— Botón Guardar PDF ———————— */
+/* ───────────── Botón de confirmación del PDF ───────────── */
 #confirmar-pdf {
     align-self: flex-end;
     margin-top: 12px;
 }
 
-/* ———————— Layout toggle + PDF ———————— */
+/* ───────────── Layout conjunto toggle + botón PDF ───────────── */
 .toggle-block {
     display: grid;
     grid-template-columns: max-content auto;
     grid-template-rows: auto auto;
     grid-template-areas:
-    "label label"
-    "btn   name";
+        "label label"
+        "btn   name";
     gap: 4px 12px;
     align-items: center;
 }
