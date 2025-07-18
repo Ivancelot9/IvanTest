@@ -826,6 +826,11 @@ dentro del modal de descripción. Muestra la imagen ampliada centrada en pantall
     <!-- 🖼️ Imagen ampliada -->
     <img src="" alt="Vista ampliada">
 </div>
+<!-- Visor ampliado del avatar (lightbox) -->
+<div id="avatarLightbox" class="modal-overlay" style="display: none;">
+    <span class="close-avatar">❌</span>
+    <img id="avatarZoom" alt="Avatar ampliado" />
+</div>
 
 <!--
 ===============================================================================
