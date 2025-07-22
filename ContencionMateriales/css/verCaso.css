@@ -1,3 +1,34 @@
+/**
+ * @file verCaso.css
+ * @project Contención de Materiales
+ * @module Vista de Casos
+ * @purpose Estilos de presentación del archivo verCaso.php
+ * @description Define estilos para mostrar de forma clara y responsiva la vista
+ *              individual de un caso, incluyendo defectos, fotos (OK / NO OK),
+ *              modal PDF, formulario de método de trabajo y lightbox para imágenes.
+ *
+ * @usage Este archivo CSS está enlazado en el archivo verCaso.php.
+ *        Controla la visualización del modal principal, el formulario,
+ *        las fotos de defectos y la vista de documentos.
+ *
+ * @structure
+ *   1. Variables CSS globales
+ *   2. Animación de fondo y cuerpo principal
+ *   3. Diseño del modal
+ *   4. Layout del formulario
+ *   5. Contenedor de defectos con acordeón
+ *   6. Visualización de fotos tipo OK / NO OK
+ *   7. Lightbox para previsualizar imágenes ampliadas
+ *   8. Estilos responsivos para móviles
+ *
+ * @author Ivan Medina/Hadbet Altamirano
+ * @created Mayo 2025
+ * @updated [¿?]
+ */
+
+/* ─────────────────────────────────────────────
+   VARIABLES DE COLOR Y ESTILO GLOBAL
+───────────────────────────────────────────── */
 :root {
     --blue-dark:    #1e2a38;
     --accent-ok:    #2ea043;
@@ -8,7 +39,9 @@
     --card-border:  #d0d7de;
 }
 
-/* 1) Fondo suave animado */
+/* ─────────────────────────────────────────────
+   ANIMACIÓN DE FONDO SUAVE PARA LA PÁGINA
+───────────────────────────────────────────── */
 body {
     margin: 0;
     background: linear-gradient(-45deg, #e4ebf1, #d6dee6, #cdd5df, #e4ebf1);
@@ -25,7 +58,9 @@ body {
     100% { background-position: 0 50%; }
 }
 
-/* 2) Centrado del modal */
+/* ─────────────────────────────────────────────
+   CONTENEDOR PRINCIPAL CENTRADO
+───────────────────────────────────────────── */
 .ver-caso-page {
     display: flex;
     justify-content: center;
@@ -34,7 +69,9 @@ body {
     z-index: 1;
 }
 
-/* 3) Overlay para lightbox */
+/* ─────────────────────────────────────────────
+   MODAL OVERLAY (Lightbox para imagen ampliada)
+───────────────────────────────────────────── */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -47,7 +84,9 @@ body {
     z-index: 999;
 }
 
-/* 4) Contenedor principal */
+/* ─────────────────────────────────────────────
+   MODAL DE CASO (Panel central)
+───────────────────────────────────────────── */
 .modal-dialog {
     background: var(--blue-dark);
     border-radius: 12px;
@@ -66,7 +105,7 @@ body {
     box-shadow: 0 16px 32px rgba(0,0,0,0.3);
 }
 
-/* 5) Header */
+/* HEADER DEL MODAL */
 .modal-header {
     background: var(--dark-bg);
     padding: 1rem 1.5rem;
@@ -88,7 +127,7 @@ body {
     font-size: 1.4rem;
 }
 
-/* 6) Cuerpo */
+/* CUERPO DEL MODAL */
 .modal-body {
     background: #fff;
     color: var(--text-dark);
@@ -97,7 +136,9 @@ body {
     overflow-y: auto;
 }
 
-/* Info grid */
+/* ─────────────────────────────────────────────
+   GRID DE INFORMACIÓN GENERAL DEL CASO
+───────────────────────────────────────────── */
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
@@ -130,7 +171,9 @@ body {
     margin-top: 1.5rem;
 }
 
-/* 7) Acordeón de defectos */
+/* ─────────────────────────────────────────────
+   DEFECTOS: ACORDEÓN EXPANDIBLE (sidebar derecha)
+───────────────────────────────────────────── */
 .defects-container {
     margin-top: 1rem;
 }
@@ -186,7 +229,9 @@ body {
     }
 }
 
-/* 8) Fotos OK / NO OK lado a lado */
+/* ─────────────────────────────────────────────
+   GRUPOS DE FOTOS OK / NO OK
+───────────────────────────────────────────── */
 .photos-group {
     flex: 1 1 calc(50% - 1rem);
     box-sizing: border-box;
@@ -225,7 +270,9 @@ body {
     box-shadow: 0 0 6px rgba(0,0,0,0.1);
 }
 
-/* 9) Lightbox */
+/* ─────────────────────────────────────────────
+   LIGHTBOX DE IMÁGENES AMPLIADAS
+───────────────────────────────────────────── */
 .lightbox-content img {
     max-width: 90%;
     max-height: 90%;
@@ -244,7 +291,10 @@ body {
     z-index: 1001;
 }
 
-/* 10) Responsive ajustes */
+
+/* ─────────────────────────────────────────────
+   FORMULARIO DE CARGA DE MÉTODO DE TRABAJO
+───────────────────────────────────────────── */
 @media (max-width: 600px) {
     .info-grid {
         grid-template-columns: repeat(2,1fr);
@@ -261,7 +311,7 @@ body {
 
 
 
-/* Pedir caso */
+/* BOTÓN PERSONALIZADO */
 #formMetodo {
     margin-top: 30px;
     padding: 20px;

@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentacion Codigo Modal Envio Correo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ContencionMateriales/css/verCaso.css" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/css/verCaso.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ContencionMateriales/dao/guardarMetodoTrabajo.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dao/guardarMetodoTrabajo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/dao/verCaso.php" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/dao/verCaso.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/subirMetodoTrabajoExterno.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/subirMetodoTrabajoExterno.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,15 +232,7 @@
       <workItem from="1752763511667" duration="232000" />
       <workItem from="1752763780345" duration="14829000" />
       <workItem from="1752848459706" duration="10352000" />
-      <workItem from="1753194293890" duration="14046000" />
-    </task>
-    <task id="LOCAL-01792" summary="Agregando Metodo de Trabajo para Interno">
-      <option name="closed" value="true" />
-      <created>1752595651447</created>
-      <option name="number" value="01792" />
-      <option name="presentableId" value="LOCAL-01792" />
-      <option name="project" value="LOCAL" />
-      <updated>1752595651447</updated>
+      <workItem from="1753194293890" duration="15152000" />
     </task>
     <task id="LOCAL-01793" summary="Agregando Metodo de Trabajo para Interno">
       <option name="closed" value="true" />
@@ -627,7 +618,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753209379164</updated>
     </task>
-    <option name="localTasksCounter" value="1841" />
+    <task id="LOCAL-01841" summary="Documentacion Codigo Modal Envio Correo">
+      <option name="closed" value="true" />
+      <created>1753216745079</created>
+      <option name="number" value="01841" />
+      <option name="presentableId" value="LOCAL-01841" />
+      <option name="project" value="LOCAL" />
+      <updated>1753216745079</updated>
+    </task>
+    <option name="localTasksCounter" value="1842" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

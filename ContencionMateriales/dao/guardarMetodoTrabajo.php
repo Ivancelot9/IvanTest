@@ -22,7 +22,7 @@
  *   - JSON con 'status': 'success' o 'error' y mensaje de respuesta
  *
  * @author Ivan Medina/Hadbet Altamirano
- * @created Mayo 2025
+ * @created Julio 2025
  * @updated [¿?]
  */
 
