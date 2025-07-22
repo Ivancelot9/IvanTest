@@ -1,25 +1,55 @@
 <?php
+/**
+ * @file        verCaso.php
+ * @project     Programa de Contención de Materiales
+ * @module      Visualización de Casos
+ * @purpose     Mostrar los datos detallados de un caso registrado en el sistema.
+ * @description Este archivo PHP obtiene y renderiza la información de un caso según su folio. Muestra los datos generales,
+ *              los defectos registrados con sus fotos correspondientes, y el método de trabajo si ha sido subido. Permite
+ *              también subir el PDF del método si no existe. Incluye un visor de imágenes tipo lightbox y conexión a la
+ *              base de datos usando `LocalConector`. Se apoya en el JS externo `subirMetodoTrabajoExterno.js` y el CSS
+ *              `verCaso.css`.
+ *
+ *              Dependencias:
+ *              - conexionContencion.php (DAO para conexión a BD)
+ *              - verCaso.css (hoja de estilos)
+ *              - subirMetodoTrabajoExterno.js (JS para subir PDF del método)
+ *              - SweetAlert2 (CDN)
+ *              - Base de datos MySQL con tablas: Casos, Terceria, Proveedores, Commodity, Estatus, DefectosCaso, Defectos,
+ *                Fotos, MetodoTrabajo.
+ *
+ * @author      Ivan Medina/Hadbet Altamirano
+ * @created     Julio 2025
+ * @updated     [¿?]
+ */
+
+// Mostrar errores (modo desarrollo)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+
+// Conexión a base de datos
 include_once 'conexionContencion.php';
 
 // Ruta base para mostrar los PDFs en el navegador
 $pdfWebBase = 'https://grammermx.com/IvanTest/ContencionMateriales/dao/uploads/pdf';
 
+// Obtener folio desde la URL
 $folio = isset($_GET['folio'])
     ? intval($_GET['folio'])
     : (isset($_GET['Caso']) ? intval($_GET['Caso']) : 0);
 
+
+// Validación de folio
 if ($folio <= 0) {
     echo "<h2>Folio inválido.</h2>";
     exit;
 }
-
+// Conexión
 $con = (new LocalConector())->conectar();
 
-// Datos principales
+// Obtener datos generales del caso
 $stmt = $con->prepare("
     SELECT 
       NumeroParte, Cantidad, Descripcion,
@@ -47,7 +77,7 @@ if (!$stmt->fetch()) {
     exit;
 }
 $stmt->close();
-
+// Función para obtener nombre de entidades externas (lookup)
 function lookup($con, $table, $idfield, $namefield, $id) {
     $n = '';
     $s = $con->prepare("SELECT `$namefield` FROM `$table` WHERE `$idfield` = ?");
@@ -58,13 +88,13 @@ function lookup($con, $table, $idfield, $namefield, $id) {
     $s->close();
     return $n;
 }
-
+// Obtener nombres de terceria, proveedor, commodity y estatus
 $terciaria = lookup($con, 'Terceria',    'IdTerceria',  'NombreTerceria',  $idTerceria);
 $proveedor = lookup($con, 'Proveedores', 'IdProveedor', 'NombreProveedor', $idProveedor);
 $commodity = lookup($con, 'Commodity',   'IdCommodity', 'NombreCommodity', $idCommodity);
 $estatus   = lookup($con, 'Estatus',     'IdEstatus',   'NombreEstatus',   $idEstatus);
 
-// Defectos y fotos
+// Obtener defectos y fotos asociadas
 $map = [];
 $stmt2 = $con->prepare("
     SELECT dc.IdDefectoCaso, d.NombreDefectos, f.TipoFoto, f.Ruta
@@ -100,6 +130,9 @@ $stmt3 = $con->prepare("
     FROM MetodoTrabajo
     WHERE FolioCaso = ?
 ");
+// ==============================
+// VERIFICACIÓN DEL PDF DEL MÉTODO DE TRABAJO
+// ==============================
 $stmt3->bind_param('i', $folio);
 $stmt3->execute();
 $stmt3->bind_result($rutaPDF);
@@ -216,6 +249,11 @@ $stmt3->close();
         <img src="" alt="Ampliada">
     </div>
 </div>
+<!--
+      @script Expansión de bloques de defectos
+      @description Script ligero que permite expandir o colapsar visualmente los bloques de cada defecto.
+                   El evento click sobre el título del defecto activa el toggling de clase `.expanded`.
+  -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.defect-title').forEach(title => {
@@ -227,6 +265,12 @@ $stmt3->close();
     });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!--
+        @script subirMetodoTrabajoExterno.js
+        @description Script externo que controla el formulario de carga del PDF del Método de Trabajo.
+                     Maneja selección de archivo, previsualización, validación y envío.
+        @ubicacion ../js/subirMetodoTrabajoExterno.js
+    -->
 <script src="../js/subirMetodoTrabajoExterno.js"></script>
 </body>
 </html>

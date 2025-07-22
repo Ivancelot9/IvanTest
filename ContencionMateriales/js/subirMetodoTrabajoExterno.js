@@ -1,7 +1,26 @@
+/**
+ * @file subirMetodoTrabajoExterno.js
+ * @project Contención de Materiales
+ * @module Subida de Método de Trabajo
+ * @purpose Controlar la carga de archivos PDF en el formulario `verCaso.php`
+ * @description Este script se encarga de gestionar la selección, validación,
+ *              previsualización y envío del archivo PDF que contiene el método
+ *              de trabajo asociado a un caso. También muestra alertas con SweetAlert2
+ *              y permite eliminar el PDF cargado antes de enviarlo.
+ *
+ * @dependencies SweetAlert2, FormData API, Fetch API
+ * @related ../dao/guardarMetodoTrabajo.php (receptor del PDF)
+ *
+ * @author Ivan Medina/Hadbet Altamirano
+ * @created Julio 2025
+ * @updated [¿?]
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('formMetodo');
     if (!form) return; // 🛑 Si no hay formulario, no hay nada que hacer
 
+    // Elementos principales del formulario
     const fileInput = document.getElementById('input-file');
     const nameInput = document.querySelector('input[name="subidoPor"]');
     const nameDisplay = document.getElementById('file-name');
@@ -9,13 +28,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const botonArchivo = document.getElementById('botonSeleccionarArchivo');
 
     if (!fileInput || !nameInput || !nameDisplay || !preview || !botonArchivo) {
-        return; // Ya no mostramos SweetAlert aquí
+        return; // 🛑 Si algún elemento no existe, se detiene
     }
 
-    // Abre el explorador de archivos
+    // 🔍 Al hacer clic en el botón, se abre el explorador de archivos
     botonArchivo.addEventListener('click', () => fileInput.click());
 
-    // Limpia todo
+    /**
+     * @function resetAll
+     * @description Limpia los campos del formulario y elimina la vista previa
+     */
     const resetAll = () => {
         preview.innerHTML = '';
         nameDisplay.textContent = '';
@@ -24,7 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
         form.style.display = 'flex';
     };
 
-    // Botón para quitar PDF cargado
+    /**
+     * @function attachRemoveBtn
+     * @description Agrega un botón ✕ para quitar el PDF cargado
+     */
     const attachRemoveBtn = () => {
         if (preview.querySelector('.btn-remove')) return;
 
@@ -130,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(json.message || 'Error desconocido.');
             }
         } catch (err) {
+            // ❌ Error en subida
             console.error('❌ Error al subir:', err);
             Swal.fire('Error', err.message || 'No se pudo subir el archivo.', 'error');
         }
