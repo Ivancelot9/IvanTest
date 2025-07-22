@@ -1,3 +1,19 @@
+/**
+ * @file        modalEnviarCorreos.css
+ * @project     Sistema de Contención de Materiales
+ * @module      Envío de Correos por Modal
+ * @purpose     Estilos visuales para el modal de selección de casos y envío por correo electrónico.
+ * @description Este archivo define el diseño y comportamiento visual del componente modal que permite al usuario:
+ *              - Visualizar casos seleccionados (folios) en formato de tarjetas.
+ *              - Ingresar una dirección de correo electrónico.
+ *              - Confirmar o cancelar el envío.
+ *              El modal cuenta con animaciones sutiles, diseño responsivo y una interfaz moderna.
+ *              Este CSS trabaja en conjunto con el script `modalEnviarCorreos.js` que gestiona la lógica y eventos del modal.
+ *
+ * @author      Ivan Medina/Hadbet Altamirano
+ * @created     Julio 2025
+ * @updated     [¿?]
+ */
 :root {
     --text-dark:       #1c1e21;
     --dark-bg:         #202c3a;
