@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentacion Codigo Modal Fotos">
+    <list default="true" id="ea67e2e7-0247-47e7-84ee-61a86717e65b" name="Changes" comment="Documentacion Codigo Modal Envio Correo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ContencionMateriales/js/modalEnviarCorreos.js" beforeDir="false" afterPath="$PROJECT_DIR$/ContencionMateriales/js/modalEnviarCorreos.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,15 +230,7 @@
       <workItem from="1752763511667" duration="232000" />
       <workItem from="1752763780345" duration="14829000" />
       <workItem from="1752848459706" duration="10352000" />
-      <workItem from="1753194293890" duration="9136000" />
-    </task>
-    <task id="LOCAL-01790" summary="Agregando Metodo de Trabajo para Interno">
-      <option name="closed" value="true" />
-      <created>1752591361483</created>
-      <option name="number" value="01790" />
-      <option name="presentableId" value="LOCAL-01790" />
-      <option name="project" value="LOCAL" />
-      <updated>1752591361483</updated>
+      <workItem from="1753194293890" duration="11077000" />
     </task>
     <task id="LOCAL-01791" summary="Agregando Metodo de Trabajo para Interno">
       <option name="closed" value="true" />
@@ -625,7 +616,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753196693280</updated>
     </task>
-    <option name="localTasksCounter" value="1839" />
+    <task id="LOCAL-01839" summary="Documentacion Codigo Modal Envio Correo">
+      <option name="closed" value="true" />
+      <created>1753206492162</created>
+      <option name="number" value="01839" />
+      <option name="presentableId" value="LOCAL-01839" />
+      <option name="project" value="LOCAL" />
+      <updated>1753206492162</updated>
+    </task>
+    <option name="localTasksCounter" value="1840" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -677,7 +676,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Historial Reportes del Administrador" />
     <MESSAGE value="Caso Css Adaptable" />
     <MESSAGE value="Parte Externa Usuario" />
     <MESSAGE value="Arreglando Estatus (Buzon Reportes)" />
@@ -702,7 +700,8 @@
     <MESSAGE value="Documentacion Codigo DashboardContencion" />
     <MESSAGE value="Documentacion Codigo Tabla Mis Casos" />
     <MESSAGE value="Documentacion Codigo Modal Fotos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Documentacion Codigo Modal Fotos" />
+    <MESSAGE value="Documentacion Codigo Modal Envio Correo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentacion Codigo Modal Envio Correo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
